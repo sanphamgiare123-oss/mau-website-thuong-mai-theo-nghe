@@ -1,0 +1,2489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThanhThuỷ — Cửa hàng máy lọc nước &amp; thiết bị xử lý nước | Chọn máy theo nguồn nước, lắp trong 24h</title>
+<meta name="description" content="ThanhThuỷ đo nước miễn phí tại nhà, chọn đúng máy RO theo nguồn nước máy, giếng khoan hay nước lợ mặn. Lắp đặt tận nhà trong 24h, máy tự nhắc thay lõi, bảo hành 3-5 năm. Phục vụ hộ gia đình và quán ăn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-104 — palette & nền tảng lấy chuẩn chất lượng từ exemplar, đổi toàn bộ ngôn ngữ màu theo nghề nước*/
+:root{
+  --primary:#056592;
+  --primary-2:#0B84B8;
+  --primary-3:#033448;
+  --texture:#EDF6FB;
+  --ink:#152A38;
+  --soft:#4E6878;
+  --accent:#FF7A2F;
+  --accent-2:#C25711;
+  --accent-100:#FFEFE2;
+  --aqua:#0BC5DE;
+  --grad-accent:linear-gradient(135deg,#FF9A50,#FF7A2F);
+  --grad-dark:linear-gradient(140deg,#0B84B8,#056592 52%,#033448);
+  --line:#D5E7F0;
+  --card:#FFFFFF;
+  --ok:#0D8A45;
+  --sh1:0 2px 10px rgba(5,101,146,.08);
+  --sh2:0 12px 34px rgba(5,101,146,.14);
+  --sh3:0 26px 64px rgba(5,101,146,.24);
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--texture);
+  line-height:1.6;
+  font-size:16px;
+}
+img{max-width:100%;display:block;height:auto}/*NB93-FIX: about + pc-media: attr height / khung doc lam crop nang anh ngang*/
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.container{max-width:1180px;margin:0 auto;padding:0 22px}
+.tt{display:block}.sub{display:block}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+
+/* ============ nut ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 26px;border-radius:14px;font-weight:800;font-size:15px;
+  transition:.25s;position:relative;overflow:hidden;white-space:nowrap;
+}
+.btn-a{background:var(--grad-accent);color:#2B1600;box-shadow:0 10px 26px rgba(255,122,47,.4)}
+.btn-a:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(255,122,47,.52)}
+.btn-a::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:translateX(-120%);transition:.6s;
+}
+.btn-a:hover::after{transform:translateX(120%)}
+.btn-n{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh1)}
+.btn-n:hover{border-color:var(--primary-2);transform:translateY(-3px);box-shadow:var(--sh2)}
+.btn-w{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-w:hover{background:rgba(255,255,255,.22);transform:translateY(-3px)}
+.btn-d{background:var(--grad-dark);color:#fff;box-shadow:var(--sh2)}
+.btn-d:hover{transform:translateY(-3px)}
+
+/* ============ topbar ============ */
+.topbar{
+  background:var(--primary-3);color:#BFE0EF;font-size:13px;
+  padding:8px 0;position:relative;z-index:60;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tb-l{display:flex;align-items:center;gap:8px}
+.tb-l .dot{width:8px;height:8px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 4px rgba(11,197,222,.2);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(11,197,222,.26)}50%{box-shadow:0 0 0 6px rgba(11,197,222,.08)}}
+.tb-l b{color:#fff;font-weight:600}
+.tb-r{display:flex;align-items:center;gap:8px;font-weight:700}
+.tb-r .hot{color:var(--aqua);font-size:15px;letter-spacing:.02em}
+
+/* ============ header ============ */
+.header{
+  position:sticky;top:0;z-index:70;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1.5px solid var(--line);
+}
+.header .container{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{
+  width:44px;height:44px;border-radius:13px;background:var(--grad-dark);
+  display:grid;place-items:center;box-shadow:var(--sh2);
+}
+.logo-mark svg{width:24px;height:24px}
+.logo-txt .tt{font-weight:900;font-size:20px;color:var(--primary);letter-spacing:-.02em;line-height:1.1}
+.logo-txt .sub{font-size:10.5px;color:var(--soft);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.search{
+  flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:9px 14px;
+  transition:.2s;
+}
+.search:focus-within{border-color:var(--primary-2);box-shadow:0 0 0 4px rgba(11,132,184,.1)}
+.search svg{flex-shrink:0;color:var(--soft)}
+.search input{flex:1;min-width:0;border:none;outline:none;background:none;font-size:14.5px;color:var(--ink)}
+.search input::placeholder{color:#8FA9BC}
+.nav{display:flex;gap:2px;flex-shrink:0}
+.nav a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:14.5px;color:var(--ink);transition:.2s}
+.nav a:hover{background:var(--texture);color:var(--primary)}
+.hd-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cart-btn{
+  position:relative;width:46px;height:46px;border-radius:13px;
+  background:var(--accent-100);display:grid;place-items:center;color:var(--primary);
+  border:1.5px solid #F6D6BC;transition:.2s;
+}
+.cart-btn:hover{transform:translateY(-2px);box-shadow:var(--sh1)}
+.cart-btn .n{
+  position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;
+  border-radius:10px;background:var(--accent-2);color:#2B1600;font-size:11.5px;font-weight:900;
+  display:grid;place-items:center;box-shadow:0 3px 8px rgba(255,122,47,.5);
+}
+
+/* ============ hero ============ */
+.hero{position:relative;padding:56px 0 74px;background:
+  radial-gradient(rgba(11,132,184,.055) 1.2px,transparent 1.3px);
+  background-size:20px 20px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:-160px;right:-180px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(11,197,222,.16),transparent);
+}
+.hero::after{
+  content:"";position:absolute;bottom:-200px;left:-160px;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(5,101,146,.12),transparent);
+}
+.hero .container{display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center;position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;
+  padding:7px 16px;font-size:13px;font-weight:700;color:var(--primary);
+  box-shadow:var(--sh1);margin-bottom:18px;
+}
+.eyebrow .ic{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.hero h1{font-size:clamp(30px,4.4vw,48px);font-weight:900;color:var(--primary);margin-bottom:16px}
+.hl{
+  display:inline-block;background:var(--grad-accent);color:#2B1600;
+  padding:2px 14px;border-radius:10px;transform:rotate(-1.6deg);
+  box-shadow:0 8px 20px rgba(255,122,47,.32);
+}
+.hero .sub{font-size:16.5px;color:var(--soft);max-width:520px;margin-bottom:26px}
+.hero .sub b{color:var(--primary)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:490px}
+.trust .chip{
+  display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;padding:9px 13px;font-size:13.5px;font-weight:700;color:var(--ink);
+  box-shadow:var(--sh1);transition:.2s;
+}
+.trust .chip:hover{transform:translateY(-2px);border-color:#F6D6BC}
+.trust .chip svg{flex-shrink:0;color:var(--ok)}
+.hero-vis{position:relative;min-height:420px}
+.hv-main{
+  width:100%;border-radius:var(--r-l);overflow:hidden;
+  border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 7s ease-in-out infinite;
+}
+.hv-main img{width:100%;height:auto;object-fit:cover;aspect-ratio:1672/941}
+@keyframes float1{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-12px)}}
+@keyframes float2{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-8px)}}
+.hv-badge{
+  position:absolute;top:-10px;right:-4px;z-index:3;
+  background:var(--grad-dark);color:#fff;border-radius:16px;padding:11px 16px;
+  box-shadow:var(--sh2);transform:rotate(2deg);border:1.5px solid rgba(255,255,255,.18);
+  animation:float2 8s ease-in-out infinite;
+}
+.hv-badge .tt{font-weight:900;font-size:14px;color:var(--aqua)}
+.hv-badge .sub{font-size:11px;color:#BFE0EF}
+.hv-stats{
+  position:absolute;left:4%;bottom:-14px;z-index:3;
+  display:flex;gap:0;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--sh2);overflow:hidden;
+}
+.hv-stats .st{padding:12px 18px;text-align:center}
+.hv-stats .st+.st{border-left:1.5px solid var(--line)}
+.hv-stats .tt{font-weight:900;font-size:19px;color:var(--primary)}
+.hv-stats .sub{font-size:11px;color:var(--soft);font-weight:600}
+.hv-tag{
+  position:absolute;top:46%;left:-8px;z-index:3;
+  background:var(--grad-accent);color:#2B1600;font-weight:900;font-size:13.5px;
+  padding:9px 14px;border-radius:12px;transform:rotate(-2deg);box-shadow:0 10px 24px rgba(255,122,47,.42);
+}
+
+/* ============ marquee tape ============ */
+.tape-wrap{background:var(--texture);padding:8px 0 26px;overflow:hidden}
+.tape{
+  background:var(--grad-dark);transform:rotate(-1deg) scale(1.02);
+  padding:13px 0;overflow:hidden;box-shadow:var(--sh2);
+}
+.tape-in{display:flex;gap:44px;width:max-content;animation:tape 30s linear infinite}
+.tape-in span{
+  display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;color:#fff;
+  white-space:nowrap;letter-spacing:.01em;
+}
+.tape-in span::before{content:"";width:9px;height:9px;background:var(--aqua);border-radius:50% 50% 50% 0;transform:rotate(-45deg);flex-shrink:0}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ section chung ============ */
+section{scroll-margin-top:96px}
+.sec{padding:74px 0}
+.sec-tex{background:var(--texture)}
+.sec-head{max-width:680px;margin-bottom:38px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin-bottom:12px;
+}
+.kicker::before{content:"";width:9px;height:9px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--grad-accent)}
+.sec-head h2{font-size:clamp(24px,3.2vw,36px);font-weight:900;color:var(--primary);margin-bottom:10px}
+.sec-head .sub{color:var(--soft);font-size:15.5px}
+
+/* ============ 2 dich vu chu luc ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.svc-card{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-l);
+  overflow:hidden;box-shadow:var(--sh1);display:flex;flex-direction:column;
+  transition:.3s;position:relative;
+}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.svc-media{position:relative;aspect-ratio:16/9;overflow:hidden}
+.svc-media img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.svc-card:hover .svc-media img{transform:scale(1.06)}
+.svc-badge{
+  position:absolute;top:14px;left:14px;background:var(--grad-accent);color:#2B1600;
+  font-size:12px;font-weight:900;padding:6px 12px;border-radius:999px;box-shadow:0 6px 16px rgba(255,122,47,.38);
+}
+.svc-price{
+  position:absolute;right:14px;bottom:14px;background:rgba(3,52,72,.82);backdrop-filter:blur(6px);
+  color:#fff;border-radius:12px;padding:7px 13px;text-align:right;
+}
+.svc-price .tt{font-weight:900;font-size:16px;color:var(--aqua)}
+.svc-price .sub{font-size:10.5px;color:#BFE0EF}
+.svc-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;gap:12px}
+.svc-body h3{font-size:20px;font-weight:900;color:var(--primary)}
+.svc-body ul{list-style:none;display:grid;gap:8px;margin:2px 0 4px}
+.svc-body li{display:flex;gap:9px;font-size:14px;color:var(--soft)}
+.svc-body li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.svc-body .btn{width:100%;margin-top:auto}
+.svc-card.dark{background:var(--grad-dark);border-color:rgba(255,255,255,.14)}
+.svc-card.dark h3{color:#fff}
+.svc-card.dark li{color:#C9E7F5}
+.svc-card.dark li svg{color:var(--aqua)}
+
+/* ============ dai 5 nhom hang ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.strip a{
+  display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);
+  border-radius:14px;padding:13px 15px;font-weight:700;font-size:14px;color:var(--ink);
+  box-shadow:var(--sh1);transition:.25s;
+}
+.strip a:hover{transform:translateY(-4px);border-color:var(--aqua);box-shadow:var(--sh2)}
+.strip .si{
+  width:38px;height:38px;border-radius:11px;background:var(--texture);flex-shrink:0;
+  display:grid;place-items:center;color:var(--primary);
+}
+.strip .arr{margin-left:auto;color:var(--accent-2);font-weight:900}
+
+/* ============ DAC THU 1: chon may theo nguon nuoc ============ */
+.pick-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:stretch}
+.pick-form{
+  background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);background-color:var(--primary);
+}
+.pick-form h3{font-size:21px;font-weight:900;margin-bottom:4px}
+.pick-form .csub{font-size:13.5px;color:#BFE0EF;margin-bottom:18px}
+.pick-lb{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800;color:#BFE0EF;margin-bottom:10px;letter-spacing:.02em}
+.pick-lb .stepn{
+  width:24px;height:24px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--grad-accent);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.pick-lb .stepn b{transform:rotate(45deg);color:#2B1600;font-size:12px}
+.src-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.src-card{
+  background:rgba(3,52,72,.5);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;
+  padding:14px 12px;text-align:left;transition:.2s;color:#E3F3FA;
+}
+.src-card svg{margin-bottom:7px;color:var(--aqua)}
+.src-card b{display:block;font-size:14px;color:#fff;line-height:1.3}
+.src-card span{display:block;font-size:11.5px;color:#9ECBDD;margin-top:3px;line-height:1.4}
+.src-card:hover{border-color:var(--aqua);transform:translateY(-2px)}
+.src-card.on{background:#fff;border-color:var(--aqua);color:var(--ink)}
+.src-card.on b{color:var(--primary)}
+.src-card.on span{color:var(--soft)}
+.src-card.on svg{color:var(--primary-2)}
+.use-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.use-card{
+  background:rgba(3,52,72,.5);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;
+  padding:13px 14px;text-align:left;font-weight:800;font-size:14px;color:#E3F3FA;transition:.2s;
+  display:flex;align-items:center;gap:10px;
+}
+.use-card svg{flex-shrink:0;color:var(--aqua)}
+.use-card:hover{border-color:var(--aqua);transform:translateY(-2px)}
+.use-card.on{background:#fff;border-color:var(--aqua);color:var(--primary)}
+.use-card.on svg{color:var(--primary-2)}
+.pick-result{
+  background:#fff;border-radius:var(--r-l);padding:24px;box-shadow:var(--sh2);
+  display:flex;flex-direction:column;border:1.5px solid var(--line);
+}
+.pr-chip{display:inline-flex;align-items:center;gap:7px;background:#E3F6FA;color:#076E86;font-weight:900;font-size:12px;padding:6px 13px;border-radius:999px;width:fit-content;margin-bottom:12px}
+.pr-chip::before{content:"";width:8px;height:8px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--aqua)}
+.pr-media{border-radius:var(--r-m);overflow:hidden;border:1.5px solid var(--line);margin-bottom:14px}
+.pr-media img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.pr-name{font-size:20px;font-weight:900;color:var(--primary);line-height:1.3}
+.pr-price{display:flex;align-items:baseline;gap:10px;margin:6px 0 10px}
+.pr-price .now{font-size:27px;font-weight:900;color:var(--accent-2)}
+.pr-price .old{font-size:14px;color:#93AABB;text-decoration:line-through}
+.pr-why{list-style:none;display:grid;gap:8px;margin-bottom:14px}
+.pr-why li{display:flex;gap:9px;font-size:13.5px;color:var(--soft)}
+.pr-why li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.pr-acts{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:auto}
+.pr-acts .btn{padding:13px 18px}
+.pr-free{font-size:12px;color:var(--soft);background:var(--texture);border-radius:10px;padding:8px 12px;margin-top:12px;display:flex;gap:8px;align-items:center}
+.pr-free svg{color:var(--ok);flex-shrink:0}
+/* bang nguon nuoc */
+.src-table-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh1);margin-top:30px}
+.src-table{width:100%;border-collapse:collapse;min-width:640px}
+.src-table th,.src-table td{padding:14px 18px;font-size:14px;text-align:left;vertical-align:top}
+.src-table thead th{background:var(--grad-dark);color:#fff;font-weight:800}
+.src-table tbody tr{border-bottom:1.5px solid #E9F3F8}
+.src-table tbody tr:last-child{border-bottom:none}
+.src-table td:first-child{font-weight:900;color:var(--primary);white-space:nowrap}
+.src-table .tds{display:inline-block;background:var(--texture);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;font-weight:800;color:#076E86;white-space:nowrap}
+
+/* ============ KHOI-8: bento 8 san pham — SP noi bat TO hon han the thuong ============ */
+.deal-bar{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:var(--grad-dark);border-radius:var(--r-l);padding:18px 24px;color:#fff;
+  margin-bottom:26px;box-shadow:var(--sh2);position:relative;overflow:hidden;
+}
+.deal-bar::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent 0 22px,rgba(255,255,255,.04) 22px 44px)}
+.deal-t{position:relative;display:flex;align-items:center;gap:12px}
+.deal-t .fl{
+  width:46px;height:46px;border-radius:14px;background:var(--grad-accent);display:grid;place-items:center;
+  color:#2B1600;box-shadow:0 8px 20px rgba(255,122,47,.38);
+}
+.deal-t .tt{font-weight:900;font-size:18px}
+.deal-t .sub{font-size:12.5px;color:#BFE0EF}
+.clock{position:relative;margin-left:auto;display:flex;align-items:center;gap:9px}
+.clock .lb{font-size:12.5px;font-weight:700;color:#BFE0EF}
+.clock .tm{display:flex;gap:6px}
+.clock .tm b{
+  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);
+  border-radius:10px;padding:7px 11px;font-size:17px;font-weight:900;color:var(--aqua);
+  min-width:46px;text-align:center;font-variant-numeric:tabular-nums;
+}
+/*NB93-104-BENTO*/
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pc{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;
+  box-shadow:var(--sh1);position:relative;transition:.3s;display:flex;flex-direction:column;
+}
+.pc:hover{transform:translateY(-6px);box-shadow:var(--sh3)}
+.pc.hide{display:none}
+/*NB93-104-CROP: the thuong dung khung gan vuong (window ~53% ben phai) — chu poster bi cat ngoai khung, may/ky thuat lam chu the*/
+.pc-media{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--texture)}/*NB93-FIX: khung 16/9 dung huong anh nguon 1672x941 (20/21 cu crop mat chu poster)*/
+.pc-media img{width:100%;height:100%;object-fit:cover;object-position:right center;transition:.45s}
+.pc:hover .pc-media img{transform:scale(1.06)}
+.p-spot{position:absolute;inset:0;pointer-events:none;opacity:0;transition:.3s;
+  background:radial-gradient(180px circle at var(--mx,50%) var(--my,50%),rgba(11,197,222,.25),transparent 70%)}
+.pc:hover .p-spot{opacity:1}
+.p-tag{
+  position:absolute;bottom:12px;left:12px;font-size:11.5px;font-weight:900;padding:5px 11px;border-radius:999px;
+  background:rgba(3,52,72,.85);color:#8FE8F6;border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 4px 14px rgba(3,34,48,.38);
+}
+.p-cat{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;color:var(--soft);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(4px);padding:5px 10px;border-radius:999px}
+.p-qa{
+  position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:8px;
+  opacity:0;transform:translateX(8px);transition:.3s;
+}
+.pc:hover .p-qa{opacity:1;transform:none}
+.qa-b{
+  width:40px;height:40px;border-radius:12px;background:var(--grad-dark);color:#fff;
+  display:grid;place-items:center;box-shadow:var(--sh2);transition:.2s;
+}
+.qa-b:hover{background:var(--accent-2);color:#2B1600}
+.pc-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;gap:8px}
+.pc-name{display:block;font-weight:800;font-size:15.5px;color:var(--ink);min-height:46px}
+.pc-price{display:flex;align-items:baseline;gap:9px;margin:2px 0;flex-wrap:wrap}
+.pc-price .now{font-size:20px;font-weight:900;color:var(--primary)}
+.pc-price .old{font-size:13px;color:#93AABB;text-decoration:line-through}
+.p-tier{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ok);
+  background:#E7F6ED;border-radius:999px;padding:4px 10px;margin-bottom:8px;width:fit-content}
+.pc-add{width:100%;padding:11px;border-radius:12px;background:var(--texture);color:var(--primary);
+  font-weight:800;font-size:14px;border:1.5px solid var(--line);transition:.2s;margin-top:auto}
+.pc-add:hover{background:var(--grad-accent);border-color:transparent;color:#2B1600;box-shadow:0 8px 20px rgba(255,122,47,.32)}
+/* the noi bat 1 — TO gap doi, chiem 2x2 o */
+.pf-main{
+  grid-column:span 2;grid-row:span 2;
+  border:2px solid rgba(255,122,47,.55);background:linear-gradient(180deg,#FFFFFF,#FFF8F2);
+  box-shadow:0 18px 44px rgba(255,122,47,.16);
+}
+/*NB93-104-CROP: the noi bat giu nguyen poster theo ti le goc — nhan dien poster day du*/
+.pf-main .pc-media{aspect-ratio:1672/941}
+.pf-main .pc-media img{object-position:center}
+.pf-wide .pc-media{aspect-ratio:16/8.5}
+.pf-wide .pc-media img{object-position:center}
+/*NB93-104-CROP: p4 co title poster dai — khung cao hon de cat het chu, giu nguyen may*/
+.pc[data-id="p4"] .pc-media{aspect-ratio:16/9}/*NB93-FIX
+.pc[data-id="p6"] .pc-media{aspect-ratio:16/9}/*NB93-FIX
+.pf-main .pc-body{padding:22px 24px 24px;gap:10px}
+.pf-main .pc-price{margin-top:auto}
+.pf-main .p-cat{font-size:12px;padding:6px 12px}
+.pf-main .pc-name{font-size:24px;min-height:0;line-height:1.28}
+.pf-main .pc-price .now{font-size:34px}
+.pf-main .pc-price .old{font-size:15px}
+.pf-main ul{list-style:none;display:grid;gap:7px;margin:2px 0 6px}
+.pf-main ul li{display:flex;gap:9px;font-size:14px;color:var(--soft)}
+.pf-main ul li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.pf-main .pc-add{min-height:52px;font-size:16px;background:var(--grad-accent);border-color:transparent;color:#2B1600;box-shadow:0 10px 24px rgba(255,122,47,.4)}
+.pf-main .pc-add:hover{transform:translateY(-2px)}
+.pf-acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.pf-acts .pc-add{margin-top:0}
+.pf-view{width:100%;padding:11px;border-radius:12px;background:#fff;color:var(--primary);
+  font-weight:800;font-size:14px;border:1.5px solid var(--line);transition:.2s}
+.pf-view:hover{border-color:var(--primary-2);transform:translateY(-2px)}
+/* the noi bat 2 — ngang 2 cot, nen dam, khac biet voi the thuong */
+.pf-wide{
+  grid-column:span 2;background:var(--grad-dark);border-color:rgba(255,255,255,.14);
+}
+.pf-wide .pc-name{color:#fff;font-size:20px;min-height:0}
+.pf-wide .pc-price .now{color:var(--aqua);font-size:25px}
+.pf-wide .pc-price .old{color:#8FB4C9}
+.pf-wide .p-tier{background:rgba(255,255,255,.12);color:#8FE8F6}
+.pf-wide .pc-body{padding:18px 20px 20px}
+.pf-wide .p-cat{color:var(--primary-3)}
+.pf-badge{
+  position:absolute;top:14px;left:14px;z-index:2;background:var(--grad-accent);color:#2B1600;
+  font-size:12.5px;font-weight:900;padding:7px 14px;border-radius:999px;
+  box-shadow:0 8px 20px rgba(255,122,47,.45);display:inline-flex;align-items:center;gap:7px;
+}
+.pf-badge svg{flex-shrink:0}
+.pf-wide .pf-badge{top:12px;left:12px}
+
+/* ============ DAC THU 2: thay loi dinh ky — may tu nhac ============ */
+.loi-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch}
+.loi-flow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.loi-stage{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px 16px;
+  box-shadow:var(--sh1);position:relative;transition:.25s;
+}
+.loi-stage:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.loi-stage .lm{
+  display:inline-block;background:#E3F6FA;color:#076E86;font-weight:900;font-size:11.5px;
+  border-radius:999px;padding:4px 11px;margin-bottom:9px;letter-spacing:.02em;
+}
+.loi-stage h4{font-size:14.5px;font-weight:900;color:var(--primary);margin-bottom:5px}
+.loi-stage p{font-size:12.5px;color:var(--soft)}
+.loi-stage::after{
+  content:"";position:absolute;top:50%;right:-15px;width:16px;height:3px;background:var(--aqua);
+}
+.loi-stage:last-child::after{display:none}
+.loi-stage.alert{border:2px dashed #E86A6A;background:#FFF7F6}
+.loi-stage.alert .lm{background:#FDE8E8;color:#C0392B}
+.loi-legend{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px;background:#fff;border:1.5px solid var(--line);
+  border-radius:var(--r-m);padding:13px 18px;box-shadow:var(--sh1);align-items:center;
+}
+.loi-legend .lg{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--soft)}
+.loi-legend .lamp{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.lamp.g{background:#28C76F;box-shadow:0 0 0 4px rgba(40,199,111,.18)}
+.lamp.y{background:#FFB800;box-shadow:0 0 0 4px rgba(255,184,0,.2)}
+.lamp.r{background:#EA5455;box-shadow:0 0 0 4px rgba(234,84,85,.2);animation:pulse 1.6s infinite}
+.loi-legend .lgnote{margin-left:auto;font-size:12.5px;color:#076E86;font-weight:800;background:#E3F6FA;border-radius:10px;padding:7px 12px}
+.loi-est{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);padding:26px}
+.loi-est h3{font-size:19px;font-weight:900;color:var(--primary);margin-bottom:4px}
+.loi-est .csub{font-size:13px;color:var(--soft);margin-bottom:16px}
+.loi-est select{
+  width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid var(--line);
+  background:var(--texture);color:var(--ink);font-weight:700;outline:none;transition:.2s;margin-bottom:14px;
+}
+.loi-est select:focus{border-color:var(--primary-2);box-shadow:0 0 0 4px rgba(11,132,184,.12)}
+.loi-rows{display:grid}
+.loi-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1.5px dashed var(--line);font-size:13.5px}
+.loi-row .k{color:var(--soft);font-weight:600}
+.loi-row .k small{display:block;font-size:11.5px;color:#93AABB}
+.loi-row .v{font-weight:800;color:var(--ink);text-align:right;white-space:nowrap}
+.loi-row.sum{border-bottom:none;background:var(--texture);margin:8px -12px 0;padding:13px;border-radius:12px}
+.loi-row.sum .k{color:var(--primary);font-weight:900}
+.loi-row.sum .v{color:var(--accent-2);font-weight:900;font-size:20px}
+.loi-note{font-size:12.5px;color:var(--soft);background:var(--accent-100);border:1.5px solid #F6D6BC;border-radius:10px;padding:9px 12px;margin:12px 0 14px}
+.loi-note b{color:#8A4400}
+.loi-est .btn{width:100%}
+
+/* ============ benefits ============ */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.benefit{background:#fff;border:1.5px solid rgba(5,101,146,.1);border-radius:16px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:.25s;box-shadow:var(--sh1)}
+.benefit:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:rgba(11,197,222,.5)}
+.benefit .ic{font-size:1.5rem;line-height:1}
+.benefit b{display:block;font-size:.9rem;color:var(--primary);margin-bottom:3px}
+.benefit p{font-size:.78rem;color:var(--soft);line-height:1.5}
+
+/* ============ stats band ============ */
+.stats-band{position:relative;padding:64px 0;color:#fff;overflow:hidden;background:var(--grad-dark)}
+.stats-band::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(255,255,255,.035) 26px 52px)}
+.stats-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center;padding:10px}
+.stat .num{font-size:clamp(30px,4vw,44px);font-weight:900;color:var(--aqua);font-variant-numeric:tabular-nums}
+.stat .num small{font-size:.55em;font-weight:900}
+.stat .lb{font-size:14px;color:#BFE0EF;font-weight:600;margin-top:4px}
+.stat:nth-child(2){border-left:1.5px solid rgba(255,255,255,.14);border-right:1.5px solid rgba(255,255,255,.14)}
+.stat:nth-child(3){border-right:1.5px solid rgba(255,255,255,.14)}
+
+/* ============ so sanh 3 may ============ */
+.cmp-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);overflow:hidden}
+.cmp-top{padding:20px 24px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cmp-top .t{font-weight:900;color:var(--primary);font-size:16px}
+.cmp-chips{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.cmp-chip{
+  padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--texture);
+  font-size:13px;font-weight:800;color:var(--soft);transition:.2s;user-select:none;
+}
+.cmp-chip.on{background:var(--grad-accent);color:#2B1600;border-color:transparent}
+.cmp-scroll{overflow-x:auto}
+.cmp-table{width:100%;border-collapse:collapse;min-width:640px}
+.cmp-table th,.cmp-table td{padding:14px 18px;text-align:left;font-size:14px;vertical-align:top}
+.cmp-table thead th{background:var(--texture);font-weight:900;color:var(--primary);font-size:14.5px;border-bottom:1.5px solid var(--line)}
+.cmp-table tbody tr{border-bottom:1.5px solid #E9F3F8}
+.cmp-table tbody tr:last-child{border-bottom:none}
+.cmp-table td:first-child{font-weight:800;color:var(--soft);white-space:nowrap;background:#FAFDFF}
+.cmp-price{font-weight:900;color:var(--accent-2);font-size:17px}
+.cmp-old{display:block;font-size:12px;color:#93AABB;text-decoration:line-through;font-weight:600}
+.cmp-cta .btn{padding:9px 14px;font-size:12.5px;width:100%}
+
+/* ============ quy trinh ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px 22px;
+  position:relative;box-shadow:var(--sh1);transition:.25s;
+}
+.step:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+/*NB93-104: so buoc hinh GIOAT NUOC — dau nhan rieng cua nghe*/
+.step .sn{
+  width:52px;height:52px;background:var(--grad-accent);color:#2B1600;
+  font-weight:900;font-size:20px;display:grid;place-items:center;margin:6px 0 16px;
+  border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  box-shadow:0 8px 20px rgba(255,122,47,.32);
+}
+.step .sn b{transform:rotate(45deg)}
+.step h4{font-size:16.5px;font-weight:900;color:var(--primary);margin-bottom:7px}
+.step p{font-size:13.5px;color:var(--soft)}
+.step .meta{
+  display:inline-flex;align-items:center;gap:6px;margin-top:13px;font-size:12px;font-weight:800;
+  color:var(--primary);background:var(--texture);border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+}
+.step::after{
+  content:"";position:absolute;top:50px;right:-18px;width:18px;height:3px;background:var(--aqua);
+}
+.step:last-child::after{display:none}
+
+/* ============ about ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:48px;align-items:center}
+.about-vis{position:relative}
+.about-vis .big{
+  border-radius:var(--r-l);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 8s ease-in-out infinite;
+}
+.about-vis .big img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center}/*NB93-FIX: 16/9 dung huong anh nguon, khong crop mat chu
+.about-vis .mini{
+  position:absolute;right:-14px;bottom:-20px;width:46%;border-radius:var(--r-m);overflow:hidden;
+  border:5px solid #fff;box-shadow:var(--sh2);transform:rotate(3deg);
+}
+.about-vis .mini img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.about-exp{
+  position:absolute;left:-10px;top:-16px;background:var(--grad-accent);border-radius:16px;
+  padding:12px 18px;box-shadow:0 12px 28px rgba(255,122,47,.42);transform:rotate(-3deg);z-index:2;
+}
+.about-exp .tt{font-weight:900;font-size:22px;color:#2B1600}
+.about-exp .sub{font-size:11.5px;font-weight:800;color:#7A4000}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.stg{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;
+  box-shadow:var(--sh1);transition:.25s;
+}
+.stg:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:rgba(11,197,222,.45)}
+.stg .ic{
+  width:44px;height:44px;border-radius:13px;background:#E3F6FA;display:grid;place-items:center;
+  color:#076E86;margin-bottom:11px;
+}
+.stg h4{font-size:15.5px;font-weight:900;color:var(--primary);margin-bottom:5px}
+.stg p{font-size:13px;color:var(--soft)}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============ social proof ============ */
+.proof-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:stretch}
+.proof-main{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);
+  padding:32px;display:flex;flex-direction:column;position:relative;overflow:hidden;min-height:320px;
+}
+.proof-main::before{content:"";position:absolute;top:-60px;left:-60px;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(11,197,222,.14),transparent)}
+.proof-quote{font-size:18.5px;font-weight:600;color:var(--ink);line-height:1.65;margin:14px 0 20px;flex:1;position:relative}
+.proof-quote::before{content:"";display:block;width:44px;height:6px;border-radius:3px;background:var(--grad-accent);margin-bottom:16px}
+.proof-who{display:flex;align-items:center;gap:13px}
+.proof-who .av{
+  width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:var(--aqua);
+  display:grid;place-items:center;font-weight:900;font-size:17px;flex-shrink:0;
+}
+.proof-who .tt{font-weight:900;font-size:15px;color:var(--primary)}
+.proof-who .sub{font-size:12.5px;color:var(--soft)}
+.proof-stars{color:var(--accent-2);font-size:15px;letter-spacing:2px;margin-bottom:2px}
+.proof-side{
+  background:var(--grad-dark);border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);
+  display:flex;flex-direction:column;gap:16px;
+}
+.proof-metric{
+  display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 16px;
+}
+.proof-metric .mi{
+  width:40px;height:40px;border-radius:11px;background:rgba(11,197,222,.22);display:grid;place-items:center;flex-shrink:0;
+}
+.proof-metric .mi svg{color:var(--aqua)}
+.proof-metric .tt{font-weight:900;font-size:15px;color:#fff}
+.proof-metric .sub{font-size:12px;color:#BFE0EF}
+.proof-dots{display:flex;gap:7px;margin-top:14px}
+.proof-dots i{width:22px;height:6px;border-radius:3px;background:rgba(255,255,255,.2);transition:.3s;cursor:pointer}
+.proof-dots i.on{background:var(--aqua)}
+.partner-row{margin-top:34px;text-align:center}
+.partner-row .lb{font-size:12.5px;font-weight:800;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.partner-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.partner-chips span{
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;
+  font-weight:800;font-size:13.5px;color:var(--soft);box-shadow:var(--sh1);
+}
+
+/* ============ lien he: card dia chi (KHONG iframe) + form ============ */
+.contact-sec{background:var(--grad-dark);color:#fff;overflow:hidden;position:relative}
+.contact-sec::before{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:22px 22px}
+.contact-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+.addr-card{background:#fff;border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh3);color:var(--ink)}
+/*NB93-104: ban do SVG ve tay mini thay cho iframe*/
+.mini-map{display:block;width:100%;height:auto;background:#DCEFF8}
+.addr-body{padding:20px 22px}
+.addr-item{display:flex;gap:12px;padding:10px 0;border-bottom:1.5px dashed #E2EEF5;font-size:14.5px;color:var(--ink)}
+.addr-item:last-of-type{border-bottom:none}
+.addr-item svg{flex-shrink:0;color:var(--primary-2);margin-top:3px}
+.addr-item b{color:var(--primary)}
+.addr-cta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.addr-cta .btn{flex:1;min-width:150px;padding:12px 16px;font-size:14px}
+.contact-info{padding:0}
+.gform{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:var(--r-l);padding:28px;box-shadow:var(--sh2);
+}
+.gform h3{font-size:21px;font-weight:900;margin-bottom:6px}
+.gform .csub{font-size:13.5px;color:#BFE0EF;margin-bottom:20px}
+.f-row{margin-bottom:16px}
+.f-row label{display:block;font-size:13px;font-weight:800;color:#BFE0EF;margin-bottom:7px;letter-spacing:.02em}
+.f-row select,.f-row input,.gform textarea{
+  width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(3,52,72,.55);color:#fff;font-weight:700;outline:none;transition:.2s;
+}
+.f-row select:focus,.f-row input:focus,.gform textarea:focus{border-color:var(--aqua);box-shadow:0 0 0 4px rgba(11,197,222,.15)}
+.f-row select option{color:var(--ink);background:#fff}
+.f-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gform textarea{font-weight:600;resize:vertical;min-height:84px}
+.gform textarea::placeholder,.f-row input::placeholder{color:#7FA3B8}
+.gform .btn{width:100%;margin-top:6px}
+.secure{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#8FB4C9;margin-top:13px;text-align:center}
+.secure svg{color:#4ADE80;flex-shrink:0}
+
+/* ============ FAQ ============ */
+.faq-wrap{max-width:860px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.faq-search{
+  flex:1;min-width:230px;display:flex;align-items:center;gap:10px;background:#fff;
+  border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--sh1);
+}
+.faq-search svg{color:var(--soft);flex-shrink:0}
+.faq-search input{flex:1;min-width:0;border:none;outline:none;font-size:14.5px;background:none}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.faq-chip{padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:13px;font-weight:700;color:var(--soft);transition:.2s}
+.faq-chip:hover,.faq-chip.on{background:var(--grad-accent);border-color:transparent;color:#2B1600}
+.faq-list{display:grid;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:var(--aqua);box-shadow:var(--sh2)}
+.faq-item.hide{display:none}
+.faq-q{
+  width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:17px 20px;
+  font-weight:800;font-size:15.5px;color:var(--primary);
+}
+.faq-q .qn{
+  width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--texture);display:grid;place-items:center;
+  font-size:13px;font-weight:900;color:var(--primary);flex-shrink:0;
+}
+.faq-q .qn b{transform:rotate(45deg)}
+.faq-q .tg{margin-left:auto;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#E3F6FA;color:#076E86;
+  display:grid;place-items:center;font-weight:900;transition:.3s}
+.faq-item.open .tg{transform:rotate(45deg);background:var(--aqua);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a .in{padding:0 20px 18px 66px;font-size:14.5px;color:var(--soft)}
+.faq-a .in b{color:var(--primary)}
+
+/* ============ footer gon 1 grid + 1 thanh ============ */
+footer{background:var(--primary-3);color:#BFE0EF;padding:52px 0 0}
+.ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr;gap:34px;padding-bottom:34px}
+.ft-brand .logo-txt .tt{color:#fff}
+.ft-brand .logo-txt .sub{color:#8FB4C9}
+.ft-brand p{font-size:13.5px;margin:14px 0 18px;max-width:320px}
+.ft-social{display:flex;gap:10px}
+.ft-social a{
+  width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);
+  display:grid;place-items:center;color:#fff;transition:.2s;
+}
+.ft-social a:hover{background:var(--accent-2);color:#2B1600;transform:translateY(-3px)}
+footer h5{color:#fff;font-size:15px;font-weight:900;margin-bottom:16px}
+.ft-links{list-style:none;display:grid;gap:9px}
+.ft-links a{font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.ft-links a::before{content:"";width:5px;height:5px;background:var(--aqua);border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
+.ft-links a:hover{color:var(--aqua);transform:translateX(3px)}
+.ft-contact{list-style:none;display:grid;gap:12px;font-size:13.5px}
+.ft-contact li{display:flex;gap:10px}
+.ft-contact svg{flex-shrink:0;color:var(--aqua);margin-top:3px}
+.ft-contact b{color:#fff}
+.ft-bot{
+  border-top:1.5px solid rgba(255,255,255,.12);padding:16px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);border-radius:9px;
+  padding:6px 13px;font-size:12px;font-weight:800;color:#E3F3FA;letter-spacing:.03em;
+}
+.ft-copy{font-size:12.5px;color:#8FB4C9}
+.ft-commit{border-top:1.5px solid rgba(255,255,255,.12);padding:14px 0;text-align:center;font-size:12.5px;color:#8FB4C9}
+.ft-commit b{color:#BFE0EF}
+
+/* ============ FAB dock ============ */
+.dock{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;
+  display:flex;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1.5px solid var(--line);border-radius:999px;padding:8px;box-shadow:var(--sh3);
+  transition:.4s;
+}
+.dock.dock-hide{transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none}
+.dock a,.dock button.dk{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;transition:.2s;position:relative;color:var(--primary);
+  background:var(--texture);border:1.5px solid var(--line);
+}
+.dock a:hover,.dock button.dk:hover{transform:translateY(-3px);background:var(--primary);color:#fff}
+.dock .dk-main{background:var(--grad-accent);border-color:transparent;color:#2B1600}
+.dock .dk-main:hover{background:var(--accent-2);color:#2B1600}
+.dock .d-badge{
+  position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;
+  background:var(--accent-2);color:#2B1600;font-size:10.5px;font-weight:900;display:grid;place-items:center;padding:0 4px;
+}
+.dock .dk-lb{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:var(--primary-3);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.dock a:hover .dk-lb,.dock button.dk:hover .dk-lb{opacity:1}
+
+/* ============ drawer gio hang ============ */
+.overlay{position:fixed;inset:0;background:rgba(3,52,72,.55);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:#fff;z-index:95;
+  transform:translateX(105%);transition:.4s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh3);
+}
+.drawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1.5px solid var(--line)}
+.dr-head h3{font-size:18px;font-weight:900;color:var(--primary)}
+.dr-close{margin-left:auto;width:38px;height:38px;border-radius:11px;background:var(--texture);display:grid;place-items:center;font-weight:900;color:var(--soft);transition:.2s}
+.dr-close:hover{background:var(--primary);color:#fff}
+.dr-tier{padding:14px 22px;border-bottom:1.5px solid var(--line);background:var(--texture)}
+.dr-tier .t{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--soft);margin-bottom:7px;gap:10px}
+.dr-tier .t b{color:var(--primary);text-align:right}
+.dr-bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden}
+.dr-bar i{display:block;height:100%;background:var(--grad-accent);border-radius:5px;transition:.4s}
+.dr-items{flex:1;overflow-y:auto;padding:16px 22px;display:grid;gap:12px;align-content:start}
+.dr-item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:10px}
+.dr-item img{width:64px;height:52px;object-fit:cover;object-position:right center;border-radius:9px}
+.dr-item .nm{font-size:13px;font-weight:800;color:var(--ink)}
+.dr-item .pr{font-size:13.5px;font-weight:900;color:var(--accent-2)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:5px}
+.qty button{width:24px;height:24px;border-radius:7px;background:var(--texture);border:1px solid var(--line);font-weight:900;color:var(--primary);display:grid;place-items:center}
+.qty b{min-width:22px;text-align:center;font-size:13.5px}
+.dr-rm{color:#C0392B;font-size:11.5px;font-weight:800;margin-top:5px;display:inline-block}
+.dr-empty{text-align:center;color:var(--soft);padding:50px 20px;font-size:14px}
+.dr-foot{border-top:1.5px solid var(--line);padding:18px 22px;background:#fff}
+.dr-line{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:var(--soft)}
+.dr-line.disc{color:var(--ok);font-weight:800}
+.dr-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;margin-top:6px;border-top:1.5px dashed var(--line)}
+.dr-total .lb{font-weight:900;color:var(--primary)}
+.dr-total .v{font-size:24px;font-weight:900;color:var(--accent-2)}
+.dr-foot .btn{width:100%;margin-top:14px}
+.dr-note{font-size:11.5px;color:var(--soft);text-align:center;margin-top:10px}
+
+/* ============ modal quick view ============ */
+.modal{
+  position:fixed;inset:0;z-index:96;display:grid;place-items:center;padding:20px;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-card{
+  width:min(760px,100%);max-height:92vh;overflow-y:auto;background:#fff;border-radius:var(--r-l);
+  box-shadow:var(--sh3);transform:translateY(24px) scale(.98);transition:.35s;
+}
+.modal.on .modal-card{transform:none}
+.mv-media{position:relative;aspect-ratio:16/7;background:var(--primary-3)}
+.mv-media img{width:100%;height:100%;object-fit:cover}
+.mv-close{
+  position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
+  background:rgba(3,52,72,.7);color:#fff;display:grid;place-items:center;font-weight:900;z-index:2;transition:.2s;
+}
+.mv-close:hover{background:var(--accent-2);color:#2B1600}
+.mv-tag{position:absolute;left:14px;top:14px;background:var(--grad-accent);color:#2B1600;font-size:12px;font-weight:900;padding:6px 13px;border-radius:999px}
+.mv-body{padding:24px 26px 26px}
+.mv-cat{font-size:12px;font-weight:900;color:var(--accent-2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.mv-body h3{font-size:23px;font-weight:900;color:var(--primary);margin-bottom:8px}
+.mv-body .desc{font-size:14px;color:var(--soft);margin-bottom:18px}
+.mv-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:start}
+.tier-table{width:100%;border-collapse:collapse;border:1.5px solid var(--line);font-size:13.5px}
+.tier-table th,.tier-table td{padding:9px 13px;text-align:left;border-bottom:1.5px solid #E9F3F8}
+.tier-table thead th{background:var(--texture);font-weight:900;color:var(--primary);font-size:12.5px}
+.tier-table tr:last-child td{border-bottom:none}
+.tier-table td:last-child{font-weight:900;color:var(--primary);text-align:right}
+.mv-right{display:grid;gap:12px}
+.mv-qty{display:flex;align-items:center;gap:12px}
+.mv-qty .qty button{width:32px;height:32px;font-size:15px}
+.mv-qty .qty b{font-size:15px}
+.mv-sum{display:flex;justify-content:space-between;align-items:baseline;background:var(--texture);border-radius:12px;padding:12px 15px}
+.mv-sum .lb{font-size:13px;font-weight:800;color:var(--soft)}
+.mv-sum .v{font-size:21px;font-weight:900;color:var(--accent-2)}
+.mv-acts{display:grid;gap:9px}
+.mv-acts .btn{padding:12px}
+.mv-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line)}
+.mv-meta span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--soft)}
+.mv-meta svg{color:var(--ok);flex-shrink:0}
+
+/* ============ toast: title + message 2 phan tu rieng ============ */
+.toast{position:fixed;right:22px;bottom:96px;z-index:120;display:grid;gap:10px;pointer-events:none}
+.toast .t-item{
+  display:flex;align-items:flex-start;gap:11px;background:var(--primary-3);color:#fff;
+  border:1.5px solid rgba(255,255,255,.15);border-radius:14px;padding:13px 18px;
+  box-shadow:var(--sh3);font-size:13.5px;font-weight:700;max-width:340px;
+  animation:toastIn .35s cubic-bezier(.22,.8,.3,1);
+}
+.toast .t-item.out{animation:toastOut .3s forwards}
+.toast .t-item .ti{width:30px;height:30px;border-radius:9px;background:var(--grad-accent);color:#2B1600;display:grid;place-items:center;flex-shrink:0}
+.toast .t-item .t-title{display:block;font-size:13.5px;font-weight:900;color:#8FE8F6}
+.toast .t-item .t-msg{display:block;font-size:12.5px;font-weight:600;color:#D9EEF7;margin-top:2px}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px)}}
+
+/* ============ reveal ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ responsive 1080 ============ */
+@media(max-width:1080px){
+  .nav{display:none}
+  .hero .container{grid-template-columns:1fr;gap:40px}
+  .hero-vis{min-height:0;max-width:560px;margin:0 auto;width:100%}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc-card:last-child{grid-column:1/-1}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .pick-grid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .pf-main,.pf-wide{grid-column:span 2}
+  .loi-grid{grid-template-columns:1fr}
+  .loi-flow{grid-template-columns:1fr 1fr}
+  .loi-stage::after{display:none}
+  .about-grid{grid-template-columns:1fr;gap:52px}
+  .about-vis{max-width:520px;margin:0 auto;width:100%}
+  .steps{grid-template-columns:1fr 1fr}
+  .step::after{display:none}
+  .proof-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680px ============ */
+@media(max-width:680px){
+  section{scroll-margin-top:120px}
+  .topbar .container{justify-content:center;gap:16px}
+  .tb-r{display:none}
+  .header .container{flex-wrap:wrap;gap:8px;padding-top:5px;padding-bottom:5px}
+  .logo{order:1}
+  .logo-mark{width:38px;height:38px;border-radius:11px}
+  .logo-mark svg{width:20px;height:20px}
+  .logo-txt .tt{font-size:17px}
+  .logo-txt .sub{display:none}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .btn{display:none}
+  .cart-btn{width:40px;height:40px;border-radius:11px}
+  .search{order:3;flex-basis:100%;padding:6px 12px;border-radius:12px}
+  .hero{padding:34px 0 46px}
+  .hero .container{gap:30px}
+  .hero h1{font-size:1.42rem}
+  .hero .sub{font-size:14.5px;margin-bottom:20px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust .chip{font-size:12px;padding:8px 10px}
+  .hero-vis{min-height:0}
+  .hv-main{transform:none;border-width:4px;animation:none}
+  .hv-badge{top:8px;right:8px;padding:7px 11px;border-radius:12px;transform:none;animation:none}
+  .hv-badge .tt{font-size:13px}
+  .hv-badge .sub{font-size:11px}
+  .hv-tag{display:none}
+  .hv-stats{position:static;margin-top:14px;justify-content:space-between;box-shadow:var(--sh1)}
+  .hv-stats .st{flex:1;padding:10px 6px}
+  .hv-stats .tt{font-size:16px}
+  .hv-stats .sub{font-size:10.5px}
+  .tape-wrap{padding:4px 0 18px}
+  .tape{padding:11px 0}
+  .tape-in span{font-size:13px}
+  .sec{padding:50px 0}
+  .sec-head{margin-bottom:26px}
+  .sec-head h2{font-size:1.42rem}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-card:last-child{grid-column:auto}
+  .strip{grid-template-columns:1fr 1fr;gap:10px}
+  .strip a{padding:11px 12px;font-size:12.5px;flex-direction:column;text-align:center;gap:8px}
+  .strip .arr{display:none}
+  .src-grid{grid-template-columns:1fr}
+  .use-grid{grid-template-columns:1fr}
+  .pick-form,.pick-result,.gform,.loi-est{padding:20px}
+  .pr-acts{grid-template-columns:1fr}
+  .src-table-wrap{border-radius:14px}
+  /*NB93-104-BENTO mobile: the noi bat full width, van TO hon the thuong */
+  .pgrid{grid-template-columns:1fr;gap:14px}
+  .pf-main,.pf-wide{grid-column:auto;grid-row:auto}
+  .pf-main .pc-media{aspect-ratio:1672/941}
+  .pc-media{aspect-ratio:1/1}
+  .pf-main .pc-name{font-size:19px}
+  .pf-main .pc-price .now{font-size:26px}
+  .pf-acts{grid-template-columns:1fr}
+  .loi-flow{grid-template-columns:1fr}
+  .loi-legend{flex-wrap:wrap}
+  .loi-legend .lgnote{margin-left:0;width:100%}
+  .f-2{grid-template-columns:1fr}
+  .deal-bar{padding:16px}
+  .clock{margin-left:0;width:100%;justify-content:space-between}
+  .cmp-top{padding:16px}
+  .cmp-chips{margin-left:0;width:100%}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat:nth-child(n){border:none}
+  .stat{padding:14px 6px}
+  .benefits{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .proof-main{padding:22px}
+  .proof-quote{font-size:15.5px}
+  .faq-a .in{padding:0 16px 16px 60px}
+  .faq-q{font-size:14px;padding:14px 16px}
+  .gform .btn{width:100%}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding-bottom:26px}
+  .ft-bot{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:7px;gap:6px}
+  .dock a,.dock button.dk{width:44px;height:44px}
+  .dock .dk-lb{display:none}
+  .modal-card{max-height:94vh}
+  .mv-grid{grid-template-columns:1fr}
+  .mv-body{padding:18px}
+  .toast{right:12px;left:12px;bottom:86px}
+  .toast .t-item{max-width:none}
+  body{padding-bottom:76px}
+  .chat-fab{bottom:80px}
+  .chat-panel{bottom:140px}
+}
+
+/*NB93-104-MOBILEFIX: chu >=12px, nut >=40px, drawer full-width*/
+@media(max-width:680px){
+  .cart-btn .n{font-size:12px;min-width:21px;height:21px}
+  .d-badge{font-size:12px;min-width:21px;height:21px}
+  .pc-add,.pf-view{min-height:44px}
+  .drawer{width:100%;max-width:100vw}
+}
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+  .faq-chip,.cmp-chip,.use-card,.src-card,.qty button,.mv-close,.dr-close,.cbtn,.faq-chips button,.dock a,.dock button.dk,.qa-b,.chat-chip{min-height:40px!important;min-width:40px!important}
+  .use-card,.src-card{min-height:0!important;min-width:0!important}
+}
+@media(max-width:640px){
+  .btn{min-height:40px!important}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"ThanhThuỷ","telephone":"0901885104","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"ThanhThuỷ đo nước miễn phí tại nhà, chọn đúng máy RO theo nguồn nước máy, giếng khoan hay nước lợ mặn. Lắp đặt tận nhà trong 24h, máy tự nhắc thay lõi, bảo hành","url":"http://127.0.0.1:8174/104-cua-hang-may-loc-nuoc/"}
+</script>
+<style data-nb93fix="104:input40">
+/*NB93-FIX-104:input40 input tim kiem du 40px touch target*/
+@media(max-width:768px){
+  #hdSearch,.hdSearch{min-height:40px;height:auto;box-sizing:border-box}
+  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-l"><span class="dot"></span><span><b>Mở cửa 7:30 – 21:00</b> tất cả các ngày · Đo nước miễn phí tại nhà</span></div>
+    <div class="tb-r">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="hot">0901 885 104</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container">
+    <a class="logo" href="#hero">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8FE8F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/><path d="M9.5 13.5a2.5 2.5 0 0 0 2.5 2.5"/></svg>
+      </span>
+      <span class="logo-txt">
+        <span class="tt">ThanhThuỷ</span>
+        <span class="sub">Nước trong · Nhà khỏe</span>
+      </span>
+    </a>
+    <div class="search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="hdSearch" type="text" placeholder="Tìm máy RO, nóng lạnh, lõi thay thế, bồn lọc…" aria-label="Tìm sản phẩm">
+    </div>
+    <nav class="nav">
+      <a href="#chonmay">Chọn theo nguồn nước</a>
+      <a href="#products">Sản phẩm</a>
+      <a href="#thayloi">Thay lõi</a>
+      <a href="#compare">So sánh máy</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="cart-btn" id="btnCartTop" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+        <span class="n" id="cartCountTop">0</span>
+      </button>
+      <a class="btn btn-a" href="tel:0901885104">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Gọi 0901 885 104
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-left">
+      <span class="eyebrow"><span class="ic"></span>Cửa hàng máy lọc nước &amp; thiết bị xử lý nước — TP. Thủ Đức</span>
+      <h1>
+        <span class="tt">Máy lọc nước <span class="hl">đúng nguồn nước</span></span>
+        <span class="tt">lắp tận nhà trong 24h</span>
+      </h1>
+      <span class="sub">Nước máy, giếng khoan hay nước lợ mặn ven biển — ThanhThuỷ <b>đo nước miễn phí tại nhà</b>, chọn đúng máy RO cho nguồn nhà bạn, lắp trong 24h và <b>máy tự nhắc thay lõi</b> đúng hạn.</span>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#chonmay">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/></svg>
+          Chọn máy theo nguồn nước
+        </a>
+        <a class="btn btn-n" href="#products">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Xem máy &amp; giá hôm nay
+        </a>
+      </div>
+      <div class="trust">
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Đo &amp; test nước miễn phí</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lắp trong 24h nội thành</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy tự nhắc thay lõi</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bảo hành 3-5 năm tận nhà</span>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hv-badge">
+        <span class="tt">Bảo hành 5 năm</span>
+        <span class="sub">kỹ thuật tới nhà, không mang máy đi</span>
+      </div>
+      <div class="hv-main"><img src="assets/img/cover.webp" alt="Cửa hàng máy lọc nước và thiết bị xử lý nước ThanhThuỷ — showroom trưng bày máy RO" width="900" height="507"></div>
+      <div class="hv-tag">Đo nước miễn phí tại nhà</div>
+      <div class="hv-stats">
+        <div class="st"><span class="tt">12+</span><span class="sub">năm lắp đặt</span></div>
+        <div class="st"><span class="tt">28.000+</span><span class="sub">máy đã bán</span></div>
+        <div class="st"><span class="tt">3.200+</span><span class="sub">quán tin dùng</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAPE MARQUEE ================= -->
+<div class="tape-wrap">
+  <div class="tape"><div class="tape-in" id="tapeIn">
+    <span>Nước máy — giếng khoan — nước lợ mặn: đều có máy đúng nguồn</span>
+    <span>Đo &amp; kiểm tra nước miễn phí tại nhà</span>
+    <span>Lắp đặt trong 24h — sạch sẽ gọn gàng</span>
+    <span>Máy tự nhắc thay lõi qua đèn báo</span>
+    <span>Bảo hành tới 5 năm — kỹ thuật tới nhà</span>
+    <span>Lõi chính hãng — thay đúng hạn, nước luôn chuẩn</span>
+  </div></div>
+</div>
+
+<!-- ================= DAC THU 1: CHON MAY THEO NGUON NUOC ================= -->
+<section class="sec" id="chonmay" style="padding-bottom:56px">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Công cụ riêng của ThanhThuỷ</span>
+      <h2>Chọn máy theo nguồn nước nhà bạn</h2>
+      <span class="sub">Cùng một cái máy RO nhưng nguồn nước khác nhau thì cấu hình khác nhau. Chọn 2 bước dưới đây — hệ thống gợi ngay máy đúng nguồn, kèm giá trọn gói.</span>
+    </div>
+    <div class="pick-grid">
+      <form class="pick-form rv" onsubmit="return false">
+        <h3>Nước nhà bạn là nguồn nào?</h3>
+        <span class="csub">Không rõ nguồn? Chọn đại một nguồn rồi gọi — kỹ thuật đo miễn phí để chốt chính xác.</span>
+        <div class="pick-lb"><span class="stepn"><b>1</b></span>NGUỒN NƯỚC ĐANG DÙNG</div>
+        <div class="src-grid" id="srcGrid">
+          <button type="button" class="src-card on" data-src="may">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v2"/><path d="M12 3v.01"/><path d="M5 13a7 7 0 0 1 14 0v3a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3z"/><path d="M9 21h6"/></svg>
+            <b>Nước máy</b>
+            <span>Đường ống city — có clo, mùi, vi sinh tái nhiễm</span>
+          </button>
+          <button type="button" class="src-card" data-src="khoan">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-6 9 6"/><path d="M5 9v11h14V9"/><path d="M12 14v6"/><path d="M9 20h6"/></svg>
+            <b>Giếng khoan</b>
+            <span>Sắt, asen, độ cứng, cặn khoáng cao</span>
+          </button>
+          <button type="button" class="src-card" data-src="man">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 17c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 7c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></svg>
+            <b>Nước lợ mặn</b>
+            <span>Ven biển — độ mặn cao, chloride</span>
+          </button>
+        </div>
+        <div class="pick-lb"><span class="stepn"><b>2</b></span>AI SỬ DỤNG</div>
+        <div class="use-grid" id="useGrid">
+          <button type="button" class="use-card on" data-use="gd">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-6 9 6"/><path d="M5 9v11h14V9"/><path d="M9 14h.01M12 14h.01M15 14h.01M9 18h.01M12 18h.01M15 18h.01"/></svg>
+            Hộ gia đình
+          </button>
+          <button type="button" class="use-card" data-use="quan">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v9"/><path d="M5 2v4"/><path d="M9 2v4"/><path d="M7 11v11"/><path d="M17 2c-1.5 2-2 4-2 6 0 2 1 3 2 3v11"/></svg>
+            Quán ăn, cà phê
+          </button>
+        </div>
+      </form>
+      <div class="pick-result rv" id="pickResult" data-d="1"></div>
+    </div>
+    <div class="src-table-wrap rv">
+      <div class="cmp-scroll"><table class="src-table">
+        <thead><tr><th>Nguồn nước</th><th>Vấn đề thường gặp</th><th>Chỉ số cần đo</th><th>Máy đề xuất</th></tr></thead>
+        <tbody>
+          <tr><td>Nước máy city</td><td>Clo dư, mùi ống cũ, vi sinh tái nhiễm sau đường ống</td><td><span class="tds">TDS 50 – 250 ppm</span></td><td>RO 7-8 lõi siêu mỏng — đủ lọc sâu, gọn gầm bếp</td></tr>
+          <tr><td>Giếng khoan</td><td>Sắt hoà tan, asen, độ cứng, cặn làm hỏng thiết bị</td><td><span class="tds">TDS 300 – 800 ppm</span></td><td>Cụm lọc thô đầu nguồn + RO 9 lõi</td></tr>
+          <tr><td>Nước lợ mặn ven biển</td><td>Độ mặn, chloride ăn mòn màng RO thường</td><td><span class="tds">TDS &gt; 1.000 ppm</span></td><td>RO màng chống mặn chuyên dụng + bồn trữ</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 GIAI PHAP CHU LUC ================= -->
+<section class="sec sec-tex" id="services" style="padding-top:56px">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Giải pháp chủ lực</span>
+      <h2>Hai việc ThanhThuỷ làm tốt nhất</h2>
+      <span class="sub">Từ một chiếc máy gầm bếp cho gia đình đến cả hệ thống nước cho quán ăn — khảo sát, lắp đặt và bảo trì trọn đời máy.</span>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card rv">
+        <div class="svc-media">
+          <img src="assets/img/space.webp" alt="Showroom máy lọc nước ThanhThuỷ trưng bày các dòng máy RO" width="640" height="360">
+          <span class="svc-badge">Bán chạy</span>
+          <div class="svc-price"><span class="tt">từ 4,59 tr</span><span class="sub">máy RO trọn bộ lắp xong</span></div>
+        </div>
+        <div class="svc-body">
+          <h3>Máy RO cho hộ gia đình</h3>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Chọn đúng nguồn: nước máy, giếng khoan hay nước lợ</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lắp trong 24h — khoan đá granite không phụ thu</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy tự nhắc thay lõi qua đèn — không lo quên</li>
+          </ul>
+          <a class="btn btn-d" href="#products">Xem máy trong kho</a>
+        </div>
+      </article>
+      <article class="svc-card dark rv" data-d="1">
+        <div class="svc-media">
+          <img src="assets/img/p4.webp" alt="Hệ máy lọc nước công nghiệp cho quán ăn và kinh doanh" width="640" height="360">
+          <span class="svc-badge">Điểm nhấn</span>
+          <div class="svc-price"><span class="tt">hệ trọn gói từ 24,9 tr</span><span class="sub">100-150 lít/h cho quán</span></div>
+        </div>
+        <div class="svc-body">
+          <h3>Nước sạch cho quán ăn, cà phê</h3>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Công suất 100-150 lít/h — đủ giờ cao điểm</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lọc tổng đầu nguồn cho nấu nướng, đá, máy pha</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bảo trì định kỳ theo lịch — quán không nghỉ giờ</li>
+          </ul>
+          <a class="btn btn-a" href="#chonmay">Chọn giải pháp theo nguồn nước</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAI 5 NHOM HANG ================= -->
+<section class="sec" style="padding:44px 0">
+  <div class="container">
+    <div class="strip rv">
+      <a href="#products"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/></svg></span>Máy RO gia đình<span class="arr">›</span></a>
+      <a href="#products"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M10.4 3.2 6.7 10a6.7 6.7 0 1 0 10.6 0l-3.7-6.8a.7.7 0 0 0-1.2 0z"/></svg></span>Máy nóng lạnh<span class="arr">›</span></a>
+      <a href="#products"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="18" rx="3"/><path d="M11 7h2"/><path d="M10.5 21h3"/></svg></span>Lõi lọc thay thế<span class="arr">›</span></a>
+      <a href="#products"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21a8 8 0 1 1 10 0"/><path d="M12 13a2.5 2.5 0 0 0 2.5-2.5c0-1.4-2.5-4-2.5-4s-2.5 2.6-2.5 4A2.5 2.5 0 0 0 12 13z"/></svg></span>Bồn lọc đầu nguồn<span class="arr">›</span></a>
+      <a href="#products"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg></span>Hệ công nghiệp<span class="arr">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KHOI-8: DEAL + BENTO 8 SAN PHAM (SP NOI BAT TO HON HAN) ================= -->
+<section class="sec sec-tex" id="products">
+  <div class="container">
+    <div class="deal-bar rv">
+      <div class="deal-t">
+        <span class="fl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/></svg></span>
+        <div><span class="tt">Deal lắp hôm nay</span><span class="sub">Giảm tới 1,5 triệu + miễn phí lắp nội thành — chốt đơn hôm nay</span></div>
+      </div>
+      <div class="clock">
+        <span class="lb">Kết thúc sau</span>
+        <div class="tm"><b id="ckH">00</b><b id="ckM">00</b><b id="ckS">00</b></div>
+      </div>
+    </div>
+    <div class="sec-head rv" style="margin-bottom:24px">
+      <span class="kicker">8 dòng máy &amp; dịch vụ</span>
+      <h2 style="margin-bottom:6px">Cả nhà và quán — đủ thứ cho nguồn nước sạch</h2>
+      <span class="sub">Bấm 「Xem nhanh」 để xem chi tiết từng dòng, hoặc thêm thẳng vào giỏ — kỹ thuật gọi xác nhận lịch lắp sau 15 phút.</span>
+    </div>
+
+    <div class="pgrid" id="pgrid">
+      <!-- NOI BAT 1: TO 2x2 -->
+      <article class="pc pf-main rv" data-id="p1" data-name="máy lọc nước ro karofi kaq-u08 8 lõi máy ro gia đình gầm bếp" data-cat="Máy RO gia đình">
+        <span class="pf-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17l-6.1 3.6 1.4-6.8L2.2 9.1l6.9-.8L12 2z"/></svg>NỔI BẬT — BÁN CHẠY NHẤT</span>
+        <div class="pc-media">
+          <img src="assets/img/p1.webp" alt="Máy lọc nước RO Karofi KAQ-U08 8 lõi cho gia đình" width="640" height="420">
+          <span class="p-spot"></span>
+          <span class="p-cat">Máy RO gia đình</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p1" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Máy lọc nước RO Karofi KAQ-U08 — 8 lõi, vòi gầm bếp</span>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>8 lõi lọc sâu — nước đạt QCVN 01-1:2018/BYT, uống trực tiếp</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Đèn trên vòi nhắc thay lõi — xanh, vàng, đỏ rõ ràng</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lắp trong 24h — miễn phí nội thành, khoan đá granite</li>
+          </ul>
+          <div class="pc-price"><span class="now">6.490.000đ</span><span class="old">7.990.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Góp 0%: 541.000đ/tháng × 12 — duyệt 15 phút</span>
+          <div class="pf-acts">
+            <button class="pc-add" data-add="p1">Thêm vào giỏ — lắp trong 24h</button>
+            <button class="pf-view" data-view="p1">Xem nhanh chi tiết</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- NOI BAT 2: ngang 2 cot, nen dam -->
+      <article class="pc pf-wide rv" data-id="p2" data-name="máy lọc nóng lạnh kangaroo kg109hc trụ đứng máy nóng lạnh" data-cat="Máy nóng lạnh trụ đứng">
+        <span class="pf-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z"/></svg>CHO QUÁN &amp; NHÀ ĐÔNG NGƯỜI</span>
+        <div class="pc-media">
+          <img src="assets/img/p2.webp" alt="Máy lọc nước nóng lạnh Kangaroo KG109HC trụ đứng" width="640" height="340">
+          <span class="p-spot"></span>
+          <span class="p-cat">Nóng lạnh trụ đứng</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p2" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Máy lọc nóng lạnh Kangaroo KG109HC — trụ đứng, 3 vòi</span>
+          <div class="pc-price"><span class="now">9.490.000đ</span><span class="old">10.990.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Nóng 90°C tức thì — pha trà, nấu không chờ giờ cao điểm</span>
+          <button class="pc-add" data-add="p2">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <!-- 6 the thuong -->
+      <article class="pc rv" data-id="p3" data-name="bộ lõi lọc thay thế ro chuẩn pp than cto lõi lọc" data-cat="Lõi lọc thay thế">
+        <div class="pc-media">
+          <img src="assets/img/p3.webp" alt="Bộ lõi lọc thay thế RO chuẩn gồm PP, than, CTO" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">Thay đúng hạn</span>
+          <span class="p-cat">Lõi lọc thay thế</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p3" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p3" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Bộ lõi RO chuẩn số 1-2-3 (PP + than + CTO)</span>
+          <div class="pc-price"><span class="now">690.000đ</span><span class="old">890.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mua 5 bộ chỉ 620.000đ/bộ</span>
+          <button class="pc-add" data-add="p3">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="pc rv" data-id="p4" data-name="hệ ro công nghiệp 1400gpd bồn inox quán ăn xuất xưởng" data-cat="Hệ công nghiệp">
+        <div class="pc-media">
+          <img src="assets/img/p4.webp" alt="Hệ máy lọc nước RO công nghiệp 1.400GPD cho quán ăn" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">100-150 lít/h</span>
+          <span class="p-cat">Hệ công nghiệp</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p4" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p4" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Hệ RO công nghiệp 1.400GPD — bồn inox, cho quán ăn</span>
+          <div class="pc-price"><span class="now">24.900.000đ</span><span class="old">27.500.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Khảo sát + lắp trọn gói trong 1 ngày</span>
+          <button class="pc-add" data-add="p4">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="pc rv" data-id="p5" data-name="cụm bồn lọc thô đầu nguồn frp 1054 cả nhà" data-cat="Lọc đầu nguồn">
+        <div class="pc-media">
+          <img src="assets/img/p5.webp" alt="Cụm bồn lọc thô đầu nguồn FRP 1054 cho cả nhà" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">Bảo vệ cả nhà</span>
+          <span class="p-cat">Lọc đầu nguồn</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p5" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p5" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Cụm bồn lọc thô đầu nguồn FRP 1054 — cho cả nhà</span>
+          <div class="pc-price"><span class="now">8.900.000đ</span><span class="old">10.400.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Giảm sắt, cặn — máy RO bền gấp 3</span>
+          <button class="pc-add" data-add="p5">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="pc rv" data-id="p6" data-name="kiểm tra đo chất lượng nước tại nhà tds ph độ cứng" data-cat="Kiểm tra nước">
+        <div class="pc-media">
+          <img src="assets/img/p6.webp" alt="Kỹ thuật viên đo kiểm tra chất lượng nước tại nhà" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">Miễn phí khi lắp</span>
+          <span class="p-cat">Kiểm tra nước</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p6" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p6" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Đo chất lượng nước tại nhà — TDS, pH, độ cứng</span>
+          <div class="pc-price"><span class="now">150.000đ</span><span class="old">250.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>0đ khi đặt lắp máy tại ThanhThuỷ</span>
+          <button class="pc-add" data-add="p6">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="pc rv" data-id="p7" data-name="lắp đặt tận nhà máy mua ngoài tháo dời máy cũ" data-cat="Dịch vụ lắp đặt">
+        <div class="pc-media">
+          <img src="assets/img/p7.webp" alt="Kỹ thuật viên lắp đặt máy lọc nước tận nhà" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">Trong 24h</span>
+          <span class="p-cat">Dịch vụ lắp đặt</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p7" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p7" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Lắp đặt tận nhà — máy mua ngoài / tháo dời máy cũ</span>
+          <div class="pc-price"><span class="now">350.000đ</span><span class="old">500.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gồm khoan đá granite + phụ kiện</span>
+          <button class="pc-add" data-add="p7">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="pc rv" data-id="p8" data-name="bảo trì định kỳ năm vệ sinh máy thay lõi theo lịch nhắc" data-cat="Bảo trì định kỳ">
+        <div class="pc-media">
+          <img src="assets/img/p8.webp" alt="Kỹ thuật viên bảo trì máy lọc nước định kỳ thay lõi" width="480" height="300" loading="lazy">
+          <span class="p-spot"></span>
+          <span class="p-tag">Theo đèn nhắc</span>
+          <span class="p-cat">Bảo trì định kỳ</span>
+          <div class="p-qa">
+            <button class="qa-b" data-view="p8" aria-label="Xem nhanh"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <button class="qa-b" data-add="p8" aria-label="Thêm giỏ"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-name">Bảo trì năm — vệ sinh máy + thay lõi theo lịch nhắc</span>
+          <div class="pc-price"><span class="now">890.000đ</span><span class="old">1.100.000đ</span></div>
+          <span class="p-tier"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kỹ thuật tới nhà trong 48h kể từ hẹn</span>
+          <button class="pc-add" data-add="p8">Thêm vào giỏ</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAC THU 2: THAY LOI DINH KY — MAY TU NHAC ================= -->
+<section class="sec" id="thayloi">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Đặc thù máy lọc nước</span>
+      <h2>Thay lõi đúng hạn — máy tự nhắc, khỏi bạn phải nhớ</h2>
+      <span class="sub">Máy ThanhThuỷ có đèn báo 3 màu ngay trên máy. Đèn đổi màu là tới hạn thay lõi — bấm đặt bộ lõi ở dưới, kỹ thuật mang đến thay tại nhà.</span>
+    </div>
+    <div class="loi-grid">
+      <div class="rv">
+        <div class="loi-legend">
+          <span class="lg"><span class="lamp g"></span>Xanh — nước đạt chuẩn</span>
+          <span class="lg"><span class="lamp y"></span>Vàng — sắp tới hạn (≤ 1 tháng)</span>
+          <span class="lg"><span class="lamp r"></span>Đỏ — thay trong 7 ngày</span>
+          <span class="lgnote">+ Zalo nhắc trước hạn 2 tuần</span>
+        </div>
+        <div class="loi-flow">
+          <div class="loi-stage">
+            <span class="lm">THÁNG 3 – 6</span>
+            <h4>Lõi thô số 1-2-3</h4>
+            <p>PP, than, CTO bắt cặn, clo — thay sớm nhất, giá nhẹ nhất.</p>
+          </div>
+          <div class="loi-stage">
+            <span class="lm">THÁNG 12 – 18</span>
+            <h4>Lõi nâng cao</h4>
+            <p>T33/GAC làm mượt vị nước — thay kèm đợt vệ sinh máy.</p>
+          </div>
+          <div class="loi-stage">
+            <span class="lm">THÁNG 24 – 36</span>
+            <h4>Màng RO</h4>
+            <p>Trái tim của máy — 0,0001 micron, thay 2-3 năm một lần.</p>
+          </div>
+          <div class="loi-stage alert">
+            <span class="lm">ĐÈN ĐỎ</span>
+            <h4>Tới hạn — gọi ngay</h4>
+            <p>Quên thay là nước đi xuống dần: đặt bộ lõi, thợ tới trong 48h.</p>
+          </div>
+        </div>
+      </div>
+      <div class="loi-est rv" data-d="1">
+        <h3>Tính bộ lõi năm đầu cho máy của bạn</h3>
+        <span class="csub">Chọn đúng dòng máy — hệ thống liệt kê lõi theo lịch nhắc của máy và giá trọn bộ.</span>
+        <select id="loiSel" aria-label="Chọn dòng máy">
+          <option value="m1" selected>RO gia đình 7-8 lõi (Karofi, Sunhouse…)</option>
+          <option value="m2">RO 9-10 lõi chống mặn (giếng khoan, ven biển)</option>
+          <option value="m3">Máy nóng lạnh trụ đứng</option>
+        </select>
+        <div class="loi-rows" id="loiOut"></div>
+        <div class="loi-note" id="loiNote"></div>
+        <button class="btn btn-a" id="loiAdd">Thêm bộ lõi năm đầu vào giỏ</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section class="sec sec-tex" style="padding:38px 0">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:22px">
+      <span class="kicker">Cam kết ghi trên phiếu nghiệm thu</span>
+      <h2 style="font-size:1.6rem">Khách nhận được gì khi chọn ThanhThuỷ?</h2>
+    </div>
+    <div class="benefits rv">
+      <div class="benefit"><span class="ic">💧</span><span><b>Nước đạt QCVN 01-1:2018</b><p>test lại nước đầu ra trước khi nghiệm thu</p></span></div>
+      <div class="benefit"><span class="ic">🔧</span><span><b>Lắp trong 24h</b><p>khoan đá granite không phụ thu</p></span></div>
+      <div class="benefit"><span class="ic">💡</span><span><b>Máy tự nhắc thay lõi</b><p>đèn xanh-vàng-đỏ + Zalo trước 2 tuần</p></span></div>
+      <div class="benefit"><span class="ic">🛡️</span><span><b>Bảo hành 3-5 năm</b><p>kỹ thuật tới nhà, không mang máy đi</p></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat rv"><span class="num"><span data-cnt="12">0</span><small>+</small></span><span class="lb">Năm lắp máy lọc nước</span></div>
+      <div class="stat rv" data-d="1"><span class="num"><span data-cnt="28" data-suffix=".000">0</span><small>+</small></span><span class="lb">Máy đã bán &amp; lắp đặt</span></div>
+      <div class="stat rv" data-d="2"><span class="num"><span data-cnt="3200">0</span><small>+</small></span><span class="lb">Quán ăn đang dùng</span></div>
+      <div class="stat rv" data-d="3"><span class="num"><span data-cnt="96">0</span><small>%</small></span><span class="lb">Đơn lắp đúng hẹn 24h</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SO SANH 3 MAY ================= -->
+<section class="sec" id="compare">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Chọn không khổ</span>
+      <h2>So sánh 3 máy bán chạy theo nguồn nước</h2>
+      <span class="sub">Bấm bật/tắt từng dòng thông số để so đúng thứ bạn quan tâm: giá, số lõi, công suất hay nguồn nước phù hợp.</span>
+    </div>
+    <div class="cmp-wrap rv">
+      <div class="cmp-top">
+        <span class="t">Bảng so sánh thông số</span>
+        <div class="cmp-chips" id="cmpChips"></div>
+      </div>
+      <div class="cmp-scroll"><table class="cmp-table" id="cmpTable"></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUY TRINH 4 BUOC ================= -->
+<section class="sec sec-tex">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Quy trình</span>
+      <h2>Từ đo nước đến nước uống được — trong 24 giờ</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="sn"><b>1</b></span><h4>Đo nước miễn phí</h4><p>Kỹ thuật mang máy đo TDS, pH, sắt, độ cứng tới nhà — 20 phút có kết quả.</p><span class="meta">miễn phí</span></div>
+      <div class="step rv" data-d="1"><span class="sn"><b>2</b></span><h4>Chốt máy theo nguồn</h4><p>Đề xuất đúng cấu hình cho nguồn nước + ngân sách, báo giá chốt trước — không phát sinh.</p><span class="meta">báo giá 30 phút</span></div>
+      <div class="step rv" data-d="2"><span class="sn"><b>3</b></span><h4>Lắp đặt trong 24h</h4><p>Khoan đá granite, đi vòi gọn, chạy thử 15 phút — dọn sạch sẽ mới về.</p><span class="meta">60-90 phút</span></div>
+      <div class="step rv" data-d="3"><span class="sn"><b>4</b></span><h4>Bảo hành + nhắc lõi</h4><p>Bảo hành 3-5 năm tận nhà; đèn máy + Zalo nhắc thay lõi trước hạn 2 tuần.</p><span class="meta">trọn đời máy</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-vis rv">
+        <div class="about-exp"><span class="tt">12+ năm</span><span class="sub">xử lý nước</span></div>
+        <div class="big"><img src="assets/img/intro.webp" alt="Tư vấn chọn máy lọc nước tại showroom ThanhThuỷ" width="640" height="700" loading="lazy"></div>
+        <div class="mini"><img src="assets/img/space.webp" alt="Showroom máy lọc nước đa dạng dòng máy" width="320" height="200" loading="lazy"></div>
+      </div>
+      <div class="rv" data-d="1">
+        <span class="kicker">Về ThanhThuỷ</span>
+        <h2 style="font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--primary)">Cửa hàng máy lọc nước của hộ gia đình &amp; quán ăn</h2>
+        <span class="sub" style="color:var(--soft);font-size:15.5px;margin-top:10px">ThanhThuỷ mở từ 2014 tại Thủ Đức, chuyên máy RO và thiết bị xử lý nước cho mọi nguồn: nước máy, giếng khoan, nước lợ mặn. Chúng tôi cam kết bằng phiếu test nước sau lắp — không cam kết bằng lời.</span>
+        <div class="strengths">
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/><path d="m9 13 2 2 4-4"/></svg></span>
+            <h4>Đúng nguồn mới ra nước chuẩn</h4>
+            <p>Nguồn nào cấu hình đó: máy city nhẹ, máy khoan thêm lọc thô, nguồn mặn dùng màng chống mặn riêng.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a5 5 0 1 0-5.4 8.1L8 21h8l-1.3-6.6a5 5 0 0 0 0-8.1z"/><path d="M8 21h8"/></svg></span>
+            <h4>Thợ kỹ thuật riêng, không thầu lại</h4>
+            <p>Đội 6 kỹ thuật chính chủ — khách nào vẫn kỹ thuật viên đó chăm, thay lõi đúng người quen máy.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <h4>Nhắc thay lõi qua máy + Zalo</h4>
+            <p>Đèn máy đổi màu + tin nhắn trước hạn 2 tuần — bạn không cần nhớ lịch, nước luôn trong chuẩn.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h4>Giá niêm yết, không phát sinh</h4>
+            <p>Báo giá chốt trước khi lắp gồm phụ kiện, khoan đá, chạy thử — hóa đơn VAT đầy đủ.</p>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-a" href="#contact">Ghé cửa hàng — mở cửa đến 21:00</a>
+          <a class="btn btn-n" href="tel:0901885104">Gọi tư vấn 0901 885 104</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOCIAL PROOF ================= -->
+<section class="sec sec-tex">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Khách hàng nói gì</span>
+      <h2>5 nhận xét từ nhà và quán đã lắp</h2>
+    </div>
+    <div class="proof-grid rv">
+      <div class="proof-main">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-quote" id="proofQuote"></div>
+        <div class="proof-who">
+          <span class="av" id="proofAv">T</span>
+          <div><span class="tt" id="proofName"></span><span class="sub" id="proofMeta"></span></div>
+        </div>
+        <div class="proof-dots" id="proofDots"></div>
+      </div>
+      <div class="proof-side">
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><span class="tt">96% đơn lắp xong trong 24h</span><span class="sub">cam kết ghi trên phiếu nghiệm thu</span></div>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><span class="tt">0,9% máy lỗi trong năm đầu</span><span class="sub">nhờ đo nước trước + lắp đúng kỹ thuật</span></div>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/></svg></span>
+          <div><span class="tt">6.000+ bộ lõi thay định kỳ</span><span class="sub">khách không phải nhớ — máy nhắc giúp</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="partner-row rv">
+      <span class="lb">Nhà phân phối &amp; thương hiệu chính hãng</span>
+      <div class="partner-chips">
+        <span>Kangaroo</span><span>Karofi</span><span>Sunhouse</span><span>FujiE</span><span>Unie</span><span>Aqua</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIEN HE: CARD DIA CHI (KHONG IFRAME) + FORM ================= -->
+<section class="sec contact-sec" id="contact">
+  <div class="container">
+    <div class="sec-head center rv" style="color:#fff">
+      <span class="kicker" style="color:var(--aqua)">Liên hệ</span>
+      <h2 style="color:#fff">Ghé cửa hàng hoặc hẹn đo nước tại nhà</h2>
+      <span class="sub" style="color:#BFE0EF">Gửi nguồn nước và khu vực — kỹ thuật gọi lại trong 30 phút, hẹn đo nước miễn phí cùng ngày.</span>
+    </div>
+    <div class="contact-grid">
+      <div class="rv">
+        <div class="addr-card">
+          <!--NB93-104: ban do SVG ve tay mini — thay cho iframe Google Maps-->
+          <!--NB93-MAP: 10.8115,106.7138-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.8115,106.7138&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+          <div class="addr-body">
+            <div class="addr-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><b>88 Đường Suối Mát, P. Linh Tây, TP. Thủ Đức, TP.HCM</b> — có chỗ đậu xe trước cửa</span>
+            </div>
+            <div class="addr-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span><b>Mở cửa 7:30 – 21:00</b> tất cả các ngày trong tuần, kể cả Chủ nhật</span>
+            </div>
+            <div class="addr-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>Hotline / Zalo: <b>0901 885 104</b> — nhấc máy trong 1 hồi chuông giờ mở cửa</span>
+            </div>
+            <div class="addr-cta">
+              <a class="btn btn-a" href="https://www.google.com/maps/search/?api=1&amp;query=88+Duong+Suoi+Mat+Linh+Tay+Thu+Duc+Ho+Chi+Minh" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Chỉ đường
+              </a>
+              <a class="btn btn-n" href="tel:0901885104">Gọi cửa hàng</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="gform rv" data-d="1" id="leadForm" onsubmit="return false" novalidate>
+        <h3>Hẹn đo nước miễn phí — báo giá máy đúng nguồn</h3>
+        <span class="csub">Điền 5 dòng, kỹ thuật gọi lại trong 30 phút. Đo nước xong mới báo cấu hình — không bán máy thừa.</span>
+        <div class="f-2">
+          <div class="f-row"><input type="text" id="lfName" placeholder="Họ và tên *" required></div>
+          <div class="f-row"><input type="tel" id="lfPhone" placeholder="Số điện thoại *" required></div>
+        </div>
+        <div class="f-2">
+          <div class="f-row">
+            <select id="lfSrc" aria-label="Nguồn nước đang dùng">
+              <option value="">Nguồn nước đang dùng *</option>
+              <option>Nước máy (đường ống city)</option>
+              <option>Giếng khoan</option>
+              <option>Nước lợ mặn / ven biển</option>
+              <option>Chưa rõ — nhờ đo giúp</option>
+            </select>
+          </div>
+          <div class="f-row">
+            <select id="lfKind" aria-label="Nhu cầu sử dụng">
+              <option value="">Nhu cầu sử dụng *</option>
+              <option>Hộ gia đình</option>
+              <option>Quán ăn / quán cà phê</option>
+              <option>Văn phòng / công ty</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-row"><textarea id="lfNote" placeholder="Ghi chú thêm: khu vực, số người dùng, máy đang dùng hay mong muốn (máy gầm bếp, nóng lạnh, lọc cả nhà)…"></textarea></div>
+        <button class="btn btn-a" type="submit" id="lfSubmit">Hẹn đo nước — nhận báo giá trong 30 phút</button>
+        <span class="secure">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Thông tin chỉ dùng để hẹn đo nước và báo giá — không chia sẻ cho bên thứ ba, không gọi chào hàng.
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ — 8 CAU GON ================= -->
+<section class="sec" id="faq">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Hỏi đáp nhanh</span>
+      <h2>8 câu khách hỏi nhiều nhất</h2>
+    </div>
+    <div class="faq-wrap rv">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm câu hỏi: giếng khoan, thay lõi, lắp đặt, bảo hành…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="faq-chip" data-k="giếng khoan">giếng khoan</button>
+          <button class="faq-chip" data-k="thay lõi">thay lõi</button>
+          <button class="faq-chip" data-k="lắp đặt">lắp đặt</button>
+          <button class="faq-chip" data-k="bảo hành">bảo hành</button>
+          <button class="faq-chip" data-k="mặn">nước mặn</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER GON: 1 grid + 1 thanh ================= -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8FE8F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/><path d="M9.5 13.5a2.5 2.5 0 0 0 2.5 2.5"/></svg>
+          </span>
+          <span class="logo-txt"><span class="tt">ThanhThuỷ</span><span class="sub">Nước trong · Nhà khỏe</span></span>
+        </a>
+        <p>Cửa hàng máy lọc nước &amp; thiết bị xử lý nước từ 2014 — chọn máy theo nguồn nước, lắp tận nhà trong 24h, máy tự nhắc thay lõi.</p>
+        <div class="ft-social">
+          <a href="#hero" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#hero" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 20l1-4.1A8.2 8.2 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4Z"/></svg></a>
+          <a href="#hero" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4c.6 2.5 2.5 4.4 5 5"/></svg></a>
+          <a href="#hero" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Link nhanh</h5>
+        <ul class="ft-links">
+          <li><a href="#chonmay">Chọn máy theo nguồn nước</a></li>
+          <li><a href="#products">Máy RO &amp; nóng lạnh</a></li>
+          <li><a href="#products">Lõi lọc thay thế</a></li>
+          <li><a href="#thayloi">Lịch thay lõi &amp; nhắc máy</a></li>
+          <li><a href="#compare">So sánh máy</a></li>
+          <li><a href="#faq">Hỏi đáp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Cửa hàng ThanhThuỷ</h5>
+        <ul class="ft-contact">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span><b>88 Đường Suối Mát, P. Linh Tây, TP. Thủ Đức, TP.HCM</b></span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><b>0901 885 104</b> — Zalo &amp; gọi ngay</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>7:30 – 21:00 tất cả các ngày</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="pay-chips">
+        <span>Tiền mặt</span><span>Chuyển khoản</span><span>VISA</span><span>MoMo</span><span>ZaloPay</span><span>VNPay</span><span>Trả góp 0%</span>
+      </div>
+      <span class="ft-copy">© 2026 ThanhThuỷ — GPKD số 0316xxxxxx cấp bởi Sở KHĐT TP.HCM</span>
+    </div>
+    <div class="ft-commit">Cam kết của chúng tôi: <b>đo nước miễn phí · lắp trong 24h · máy tự nhắc thay lõi · bảo hành tận nhà 3-5 năm</b></div>
+  </div>
+</footer>
+
+<!-- ================= FAB DOCK ================= -->
+<div class="dock" id="dock">
+  <a class="dk-main" href="tel:0901885104" aria-label="Gọi ngay">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="dk-lb">Gọi 0901 885 104</span>
+  </a>
+  <a href="#contact" aria-label="Zalo tư vấn">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 20l1-4.1A8.2 8.2 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4Z"/></svg>
+    <span class="dk-lb">Chat Zalo tư vấn</span>
+  </a>
+  <a href="#chonmay" aria-label="Chọn máy theo nguồn nước">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.7 10a6.7 6.7 0 1 0 10.6 0L12 2.7z"/></svg>
+    <span class="dk-lb">Chọn máy theo nguồn nước</span>
+  </a>
+  <button class="dk" id="btnCartDock" aria-label="Giỏ hàng">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+    <span class="d-badge" id="cartCountDock">0</span>
+    <span class="dk-lb">Giỏ hàng của bạn</span>
+  </button>
+  <button class="dk" id="btnTop" aria-label="Lên đầu trang">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    <span class="dk-lb">Lên đầu trang</span>
+  </button>
+</div>
+
+<!-- ================= OVERLAY + CART DRAWER ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#056592" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+    <h3>Giỏ hàng</h3>
+    <button class="dr-close" id="drClose" aria-label="Đóng">✕</button>
+  </div>
+  <div class="dr-tier">
+    <div class="t"><span id="tierNow">Mức Lẻ — chưa giảm</span><b id="tierNext">Còn 3.000.000đ → Hộ thân thiết -3%</b></div>
+    <div class="dr-bar"><i id="tierBar" style="width:0%"></i></div>
+  </div>
+  <div class="dr-items" id="drItems"></div>
+  <div class="dr-foot">
+    <div class="dr-line"><span>Tạm tính</span><span id="drSub">0đ</span></div>
+    <div class="dr-line disc"><span>Giảm giá theo mức đơn</span><span id="drDisc">0đ</span></div>
+    <div class="dr-total"><span class="lb">Tổng thanh toán</span><span class="v" id="drTotal">0đ</span></div>
+    <button class="btn btn-a" id="btnCheckout">Đặt máy — kỹ thuật gọi xác nhận lịch lắp</button>
+    <span class="dr-note">Không cần thanh toán trước · Miễn phí lắp nội thành khi mua máy · Đổi trả 7 ngày</span>
+  </div>
+</aside>
+
+<!-- ================= QUICK VIEW MODAL ================= -->
+<div class="modal" id="qvm" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="mv-media">
+      <span class="mv-tag" id="mvTag"></span>
+      <button class="mv-close" id="mvClose" aria-label="Đóng">✕</button>
+      <img id="mvImg" src="assets/img/p1.webp" alt="Xem nhanh sản phẩm" width="760" height="333">
+    </div>
+    <div class="mv-body">
+      <span class="mv-cat" id="mvCat"></span>
+      <h3 id="mvName"></h3>
+      <p class="desc" id="mvDesc"></p>
+      <div class="mv-grid">
+        <div>
+          <table class="tier-table" id="mvTier"></table>
+        </div>
+        <div class="mv-right">
+          <div class="mv-qty">
+            <span style="font-size:13px;font-weight:800;color:var(--soft)">Số lượng</span>
+            <div class="qty">
+              <button id="mvMinus" aria-label="Giảm">−</button>
+              <b id="mvQtyN">1</b>
+              <button id="mvPlus" aria-label="Tăng">+</button>
+            </div>
+          </div>
+          <div class="mv-sum"><span class="lb">Thành tiền</span><span class="v" id="mvSum">0đ</span></div>
+          <div class="mv-acts">
+            <button class="btn btn-a" id="mvAdd">Thêm vào giỏ</button>
+            <button class="btn btn-d" id="mvBuy">Đặt ngay — lắp trong 24h</button>
+          </div>
+        </div>
+      </div>
+      <div class="mv-meta">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Miễn phí lắp nội thành</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Đổi trả trong 7 ngày</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Hóa đơn VAT đỏ</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast"></div>
+
+<script>
+/*NB93-104*/
+/* ================= DATA 8 SAN PHAM (khoi-8 bento) ================= */
+var P={
+ p1:{name:'Máy lọc nước RO Karofi KAQ-U08 — 8 lõi',price:6490000,img:'p1',cat:'Máy RO gia đình',tag:'Bán chạy nhất',
+   desc:'Dành cho nguồn nước máy city: 8 lõi lọc sâu giữ khoáng, siêu mỏng gầm tủ bếp. Đèn trên vòi nhắc thay lõi xanh-vàng-đỏ, lắp xong test nước đầu ra ngay.',
+   rows:[['Trả thẳng','6.490.000đ'],['Góp 0% · 6 tháng','1.082.000đ/tháng'],['Góp 0% · 12 tháng','541.000đ/tháng'],['Bảo hành thân máy','5 năm — kỹ thuật tới nhà']]},
+ p2:{name:'Máy lọc nóng lạnh Kangaroo KG109HC — trụ đứng',price:9490000,img:'p2',cat:'Máy nóng lạnh trụ đứng',tag:'Cho quán & văn phòng',
+   desc:'3 vòi nóng 90°C — lạnh — nước thường, đun tức thì không cần bình áp. Phục vụ 40-60 lượt khách/giờ, hợp quán ăn, cà phê, văn phòng.',
+   rows:[['Trả thẳng','9.490.000đ'],['Góp 0% · 9 tháng','1.055.000đ/tháng'],['Công suất','~30 lít/h nóng + lạnh'],['Bảo hành','3 năm tại nhà']]},
+ p3:{name:'Bộ lõi RO chuẩn số 1-2-3 (PP + than + CTO)',price:690000,img:'p3',cat:'Lõi lọc thay thế',tag:'Thay đúng hạn',
+   desc:'Bộ 3 lõi thô tiêu chuẩn cỡ 10 inch, thay theo đèn nhắc của máy (6-8 tháng/lần). Lõi chính hãng — nước sau thay được test lại miễn phí.',
+   rows:[['Mua lẻ 1-4 bộ','690.000đ/bộ'],['Từ 5 bộ','620.000đ/bộ'],['Từ 20 bộ (đại lý)','490.000đ/bộ'],['Phù hợp','Mọi máy RO lõi tiêu chuẩn 10"']]},
+ p4:{name:'Hệ RO công nghiệp 1.400GPD — bồn inox',price:24900000,img:'p4',cat:'Hệ công nghiệp',tag:'Cho quán ăn',
+   desc:'Hệ trọn gói cho quán 40-60 suất: màng inox 4040 × 2, bơm, bồn trữ 500 lít. Khảo sát — thiết kế — lắp trong 1 ngày, bảo trì theo lịch quán không nghỉ giờ.',
+   rows:[['Trọn hệ gồm','Màng 4040 × 2 + bơm + bồn inox 500L'],['Công suất','100 – 150 lít/h'],['Lắp đặt','Miễn phí nội thành'],['Bảo hành','5 năm thân hệ']]},
+ p5:{name:'Cụm bồn lọc thô đầu nguồn FRP 1054',price:8900000,img:'p5',cat:'Lọc đầu nguồn',tag:'Cho giếng khoan',
+   desc:'Bắt sắt, cặn, độ cứng trước khi vào máy RO và thiết bị nhà. Van điều khiển tự động rửa ngược — sinh hoạt cả nhà dùng nước sạch từ đầu nguồn.',
+   rows:[['Trọn bộ gồm','3 bồn FRP 1054 + van tự động'],['Xử lý','Cặn, sắt, độ cứng đầu nguồn'],['Lắp đặt','Miễn phí nội thành'],['Bảo hành','5 năm bồn']]},
+ p6:{name:'Đo chất lượng nước tại nhà — TDS, pH, độ cứng',price:150000,img:'p6',cat:'Kiểm tra nước',tag:'Đo trước — chốt sau',
+   desc:'Kỹ thuật mang máy đo tới nhà: TDS, pH, độ cứng, sắt — 20 phút có kết quả kèm phiếu đo. Chọn máy đúng nguồn thay vì mua theo cảm tính.',
+   rows:[['Chỉ số đo','TDS · pH · độ cứng · sắt'],['Thời gian','~20 phút tại nhà'],['Khi đặt lắp máy','Miễn phí 100%'],['Kết quả','Phiếu đo + tư vấn cấu hình']]},
+ p7:{name:'Lắp đặt tận nhà — máy mua ngoài / tháo dời',price:350000,img:'p7',cat:'Dịch vụ lắp đặt',tag:'Trong 24h',
+   desc:'Cho máy mua ở nơi khác hoặc cần dời máy cũ: khoan đá granite, phụ kiện trọn gói, chạy thử 15 phút, hướng dẫn dùng và dọn sạch sẽ trước khi về.',
+   rows:[['Gồm','Khoan đá granite + phụ kiện + chạy thử'],['Thời gian','~60-90 phút'],['Máy mua ngoài','350.000đ — gồm phụ kiện'],['Dọn dẹp','Sạch sẽ trước khi về']]},
+ p8:{name:'Bảo trì năm — vệ sinh máy + thay lõi theo nhắc',price:890000,img:'p8',cat:'Bảo trì định kỳ',tag:'Theo đèn nhắc',
+   desc:'Vệ sinh toàn bộ đường nước, thay lõi đúng lịch đèn nhắc của máy, test lại nước đầu ra trước khi nghiệm thu. Đặt trước — kỹ thuật tới trong 48h.',
+   rows:[['Gồm','Vệ sinh máy + thay lõi theo lịch đèn'],['Tần suất','1 lần/năm hoặc theo đèn'],['Phản ứng','Kỹ thuật tới nhà trong 48h'],['Cam kết','Test lại nước trước khi về']]}
+};
+var CHECK='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+function round1k(n){return Math.round(n/1000)*1000}
+
+/* ================= TOAST: title + message 2 phan tu rieng ================= */
+function toast(title,msg){
+  var box=document.getElementById('toast');
+  var el=document.createElement('div');el.className='t-item';
+  el.innerHTML='<span class="ti"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>'+
+    '<span class="tx"><span class="t-title">'+title+'</span><span class="t-msg">'+msg+'</span></span>';
+  box.appendChild(el);
+  setTimeout(function(){el.classList.add('out');setTimeout(function(){el.remove()},320)},3400);
+}
+
+/* ================= spotlight theo con tro tren the SP ================= */
+var pgrid=document.getElementById('pgrid');
+pgrid.addEventListener('pointermove',function(e){
+  var card=e.target.closest('.pc');if(!card)return;
+  var r=card.getBoundingClientRect();
+  var sp=card.querySelector('.p-spot');if(!sp)return;
+  sp.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  sp.style.setProperty('--my',(e.clientY-r.top)+'px');
+});
+
+/* ================= DAC THU 1: chon may theo nguon nuoc ================= */
+var COMBO={
+ 'may-gd':{img:'p1',name:'RO Karofi KAQ-U08 — 8 lõi siêu mỏng',price:6490000,old:7990000,chip:'Nước máy · Hộ gia đình',
+   why:['Nước máy city chỉ cần lọc sâu clo + vi sinh: 8 lõi RO là vừa đủ, không mua máy thừa','Siêu mỏng gầm tủ bếp, vòi riêng — không mất diện tích bếp','Đèn trên vòi nhắc thay lõi — nước luôn chuẩn QCVN 01-1:2018']},
+ 'may-quan':{img:'p2',name:'Nóng lạnh trụ đứng Kangaroo KG109HC',price:9490000,old:10990000,chip:'Nước máy · Quán ăn, cà phê',
+   why:['Nóng 90°C + lạnh tức thì — pha, nấu không chờ giờ cao điểm','Công suất ~30 lít/h phục vụ 40-60 lượt khách/giờ','Trụ đứng sơn tĩnh dễ vệ sinh — hợp quán, văn phòng'],
+   extra:'Nếu quán cần cả nước nấu + đá, ghép thêm lọc tổng đầu nguồn từ 4,9 triệu.'},
+ 'khoan-gd':{img:'p5',name:'Trọn bộ lọc thô đầu nguồn + RO 9 lõi',price:7990000,old:9490000,chip:'Giếng khoan · Hộ gia đình',
+   why:['Cụm FRP bắt sắt, cặn trước — máy RO bền gấp 3 so với lắp thẳng','RO 9 lõi xử lý asen, vi khuẩn — nước uống trực tiếp được','Đo nước tại nhà miễn phí trước khi chốt cấu hình']},
+ 'khoan-quan':{img:'p4',name:'Hệ RO công nghiệp 1.400GPD — bồn inox',price:24900000,old:27500000,chip:'Giếng khoan · Quán ăn',
+   why:['100-150 lít/h — đủ nước nấu + đá cho quán 40-60 suất','Bồn trữ inox + lọc cuối giữ nước sạch đến giờ đóng cửa','Bảo trì định kỳ theo lịch — quán không nghỉ giờ']},
+ 'man-gd':{img:'p1',name:'RO chống mặn Kangaroo KG100MS — 10 lõi',price:8490000,old:9990000,chip:'Nước lợ mặn · Hộ gia đình',
+   why:['Màng RO chuyên mặn + rửa màng tự động — bền ở nguồn chloride cao','TDS ~1.500 về còn dưới 50 — nước lợ ven biển uống trực tiếp','10 lõi kể cả lõi chỉnh vị — hết hẳn vị tanh mặn']},
+ 'man-quan':{img:'p4',name:'Hệ RO chống mặn 1.400GPD + bồn 1.000 lít',price:28900000,old:31900000,chip:'Nước lợ mặn · Quán ăn',
+   why:['Xử lý nguồn mặn lợ cho nấu nướng + làm đá nguyên liệu','Rửa màng tự động định kỳ — không cần ai trực máy','Khảo sát — thiết kế — lắp đặt trọn gói trong 1 ngày']}
+};
+var curSrc='may',curUse='gd';
+function renderPick(){
+  var c=COMBO[curSrc+'-'+curUse];
+  var box=document.getElementById('pickResult');
+  box.innerHTML=
+   '<span class="pr-chip">'+c.chip+'</span>'+
+   '<div class="pr-media"><img src="assets/img/'+c.img+'.webp" alt="'+c.name+'" width="520" height="293"></div>'+
+   '<span class="pr-name">'+c.name+'</span>'+
+   '<div class="pr-price"><span class="now">'+vnd(c.price)+'</span><span class="old">'+vnd(c.old)+'</span></div>'+
+   '<ul class="pr-why">'+c.why.map(function(w){return '<li>'+CHECK+w+'</li>'}).join('')+'</ul>'+
+   (c.extra?'<div class="loi-note" style="margin:0 0 14px">'+c.extra+'</div>':'')+
+   '<div class="pr-acts">'+
+     '<button class="btn btn-a" data-pick-add="'+(curSrc+'-'+curUse)+'">Thêm vào giỏ — lắp trong 24h</button>'+
+     '<a class="btn btn-n" href="tel:0901885104">Gọi tư vấn</a>'+
+   '</div>'+
+   '<span class="pr-free">'+CHECK+'Kèm đo nước miễn phí trước khi lắp — chỉ bán máy đúng nguồn</span>';
+}
+document.getElementById('srcGrid').addEventListener('click',function(e){
+  var b=e.target.closest('.src-card');if(!b)return;
+  document.querySelectorAll('.src-card').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');curSrc=b.dataset.src;renderPick();
+});
+document.getElementById('useGrid').addEventListener('click',function(e){
+  var b=e.target.closest('.use-card');if(!b)return;
+  document.querySelectorAll('.use-card').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');curUse=b.dataset.use;renderPick();
+});
+document.getElementById('pickResult').addEventListener('click',function(e){
+  var b=e.target.closest('[data-pick-add]');if(!b)return;
+  var c=COMBO[b.dataset.pickAdd];
+  addToCart(c.name,c.price,c.img);
+});
+renderPick();
+
+/* ================= COUNTDOWN ================= */
+function tick(){
+  var now=new Date(),end=new Date();end.setHours(23,59,59,999);
+  var s=Math.max(0,Math.floor((end-now)/1000));
+  var h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+  var f=function(x){return (x<10?'0':'')+x};
+  document.getElementById('ckH').textContent=f(h);
+  document.getElementById('ckM').textContent=f(m);
+  document.getElementById('ckS').textContent=f(sec);
+}
+tick();setInterval(tick,1000);
+
+/* ================= DAC THU 2: thay loi dinh ky — estimator ================= */
+var LOI={
+ m1:{label:'RO gia đình 7-8 lõi',items:[
+   ['Bộ lõi thô 1-2-3 (PP + than + CTO)','6-8 tháng/lần',260000,1],
+   ['Lõi nâng cao (T33/GAC)','12-18 tháng',450000,1],
+   ['Màng RO 75GPD','24-36 tháng — năm đầu chưa đến hạn',1150000,0]],
+   note:'<b>Từ năm thứ 2:</b> trung bình 600 – 900k/năm. Máy mua tại ThanhThuỷ tự nhắc qua đèn + Zalo trước hạn 2 tuần.'},
+ m2:{label:'RO 9-10 lõi chống mặn',items:[
+   ['Bộ lõi thô số 1-3','6 tháng/lần × 2 lần',260000,2],
+   ['Lõi chỉnh vị khử mặn','12 tháng',380000,1],
+   ['Màng RO chống mặn 100GPD','24 tháng — năm đầu chưa đến hạn',1450000,0]],
+   note:'<b>Nguồn mặn:</b> máy tự rửa màng mỗi 2 ngày — bộ lõi năm đầu <b>900.000đ</b>, màng bền 24 tháng nhờ rửa tự động.'},
+ m3:{label:'Máy nóng lạnh trụ đứng',items:[
+   ['Bộ lõi 4 cấp','12 tháng',540000,1],
+   ['Vệ sinh đường nước nóng','12 tháng',190000,1]],
+   note:'<b>Giờ cao điểm đông:</b> vệ sinh định kỳ giữ lưu lượng nước nóng đều vòi.'}
+};
+function loiYear1(m){var s=0;m.items.forEach(function(it){s+=it[2]*it[3]});return s}
+function loiRender(){
+  var m=LOI[document.getElementById('loiSel').value];
+  var h='';
+  m.items.forEach(function(it){
+    h+='<div class="loi-row"><span class="k">'+it[0]+'<small>'+it[1]+'</small></span><span class="v">'+(it[3]?vnd(it[2]*it[3]):'—')+'</span></div>';
+  });
+  h+='<div class="loi-row sum"><span class="k">Bộ lõi năm đầu</span><span class="v">'+vnd(loiYear1(m))+'</span></div>';
+  document.getElementById('loiOut').innerHTML=h;
+  document.getElementById('loiNote').innerHTML=m.note;
+}
+var loiCur=function(){return LOI[document.getElementById('loiSel').value]};
+document.getElementById('loiSel').addEventListener('change',loiRender);
+loiRender();
+document.getElementById('loiAdd').onclick=function(){
+  var m=loiCur();
+  addToCart('Bộ lõi năm đầu — '+m.label,loiYear1(m),'p3');
+};
+
+/* ================= SO SANH 3 MAY ================= */
+var CMP={
+ cols:[
+  {k:'price',l:'Giá bán'},
+  {k:'cores',l:'Số lõi & màng'},
+  {k:'flow',l:'Công suất'},
+  {k:'src',l:'Nguồn phù hợp'},
+  {k:'remind',l:'Nhắc thay lõi'},
+  {k:'note',l:'Điểm nhấn'}
+ ],
+ machines:[
+  {n:'Karofi KAQ-U08',price:6490000,old:7990000,img:'p1',
+   cores:'8 lõi + màng RO 75GPD',flow:'~10 lít/h',src:'Nước máy city',
+   remind:'Đèn trên vòi rửa',note:'Siêu mỏng 9cm gầm bếp — nước uống trực tiếp'},
+  {n:'Kangaroo KG109HC',price:9490000,old:10990000,img:'p2',
+   cores:'4 cấp + đun tức thì',flow:'~30 lít/h nóng + lạnh',src:'Nước máy — quán, văn phòng',
+   remind:'Đèn mặt máy',note:'3 vòi: nóng 90°C — lạnh — nước thường'},
+  {n:'Kangaroo KG100MS',price:8490000,old:9990000,img:'p1',
+   cores:'10 lõi + màng chống mặn 100GPD',flow:'~15 lít/h',src:'Giếng khoan, nước lợ mặn',
+   remind:'Đèn mặt máy + Zalo nhắc',note:'Rửa màng tự động — bền ở nguồn chloride cao'}
+ ]
+};
+var cmpOn={price:true,cores:true,flow:true,src:true,remind:true,note:true};
+function cmpChipsRender(){
+  var box=document.getElementById('cmpChips');box.innerHTML='';
+  CMP.cols.forEach(function(c){
+    var b=document.createElement('button');
+    b.className='cmp-chip'+(cmpOn[c.k]?' on':'');
+    b.textContent=c.l;
+    b.onclick=function(){cmpOn[c.k]=!cmpOn[c.k];cmpChipsRender();cmpTableRender()};
+    box.appendChild(b);
+  });
+}
+function cmpTableRender(){
+  var t=document.getElementById('cmpTable');
+  var h='<thead><tr><th>Thông số</th>';
+  CMP.machines.forEach(function(p){h+='<th>'+p.n+'</th>'});
+  h+='</tr></thead><tbody>';
+  var row=function(label,fn){
+    h+='<tr><td>'+label+'</td>';
+    CMP.machines.forEach(function(p){h+='<td>'+fn(p)+'</td>'});
+    h+='</tr>';
+  };
+  if(cmpOn.price)row('Giá bán',function(p){return '<span class="cmp-price">'+vnd(p.price)+'</span><span class="cmp-old">'+vnd(p.old)+'</span>'});
+  if(cmpOn.cores)row('Số lõi & màng',function(p){return p.cores});
+  if(cmpOn.flow)row('Công suất',function(p){return p.flow});
+  if(cmpOn.src)row('Nguồn phù hợp',function(p){return p.src});
+  if(cmpOn.remind)row('Nhắc thay lõi',function(p){return p.remind});
+  if(cmpOn.note)row('Điểm nhấn',function(p){return p.note});
+  h+='<tr><td>Quyền lợi</td>';
+  CMP.machines.forEach(function(p){
+    h+='<td class="cmp-cta"><button class="btn btn-a" data-cmp-add="'+p.n+'" data-cmp-price="'+p.price+'" data-cmp-img="'+p.img+'">Thêm giỏ — lắp trong 24h</button></td>';
+  });
+  h+='</tr></tbody>';
+  t.innerHTML=h;
+}
+cmpChipsRender();cmpTableRender();
+document.getElementById('cmpTable').addEventListener('click',function(e){
+  var b=e.target.closest('[data-cmp-add]');
+  if(b){addToCart(b.dataset.cmpAdd,parseInt(b.dataset.cmpPrice,10),b.dataset.cmpImg)}
+});
+
+/* ================= CART ================= */
+var cart={};
+function cartCount(){var n=0;for(var k in cart)n+=cart[k].qty;return n}
+function cartSub(){var s=0;for(var k in cart)s+=cart[k].price*cart[k].qty;return s}
+var TIERS=[[0,0,'Lẻ'],[3000000,.03,'Hộ thân thiết'],[6000000,.05,'Quán ăn'],[10000000,.07,'Đại lý / Dự án']];
+function tierOf(sub){var t=TIERS[0];TIERS.forEach(function(x){if(sub>=x[0])t=x});return t}
+function nextTier(sub){for(var i=0;i<TIERS.length;i++){if(TIERS[i][0]>sub)return TIERS[i]}return null}
+function addToCart(name,price,img,qty){
+  qty=qty||1;
+  if(!cart[name])cart[name]={name:name,price:price,img:img||'p1',qty:0};
+  cart[name].qty+=qty;
+  renderCart();bump();
+  toast('Đã thêm vào giỏ','"'+name+'" — kỹ thuật gọi xác nhận lịch lắp sau 15 phút');
+}
+function bump(){
+  var n=cartCount();
+  document.getElementById('cartCountTop').textContent=n;
+  document.getElementById('cartCountDock').textContent=n;
+}
+function renderCart(){
+  var box=document.getElementById('drItems');box.innerHTML='';
+  var keys=Object.keys(cart);
+  if(!keys.length){box.innerHTML='<div class="dr-empty">Giỏ đang trống. Thêm máy hoặc bộ lõi — kỹ thuật xác nhận lịch lắp sau 15 phút.</div>'}
+  keys.forEach(function(k){
+    var it=cart[k];
+    var d=document.createElement('div');d.className='dr-item';
+    d.innerHTML='<img src="assets/img/'+it.img+'.webp" alt="" width="64" height="52">'+
+      '<div><span class="nm">'+it.name+'</span><span class="pr">'+vnd(it.price)+'</span>'+
+      '<div class="qty"><button data-dec="'+k+'">−</button><b>'+it.qty+'</b><button data-inc="'+k+'">+</button></div></div>'+
+      '<div style="text-align:right"><button class="dr-rm" data-rm="'+k+'">Xoá</button></div>';
+    box.appendChild(d);
+  });
+  var sub=cartSub(),t=tierOf(sub),disc=Math.round(sub*t[1]),total=sub-disc;
+  document.getElementById('drSub').textContent=vnd(sub);
+  document.getElementById('drDisc').textContent='−'+vnd(disc);
+  document.getElementById('drTotal').textContent=vnd(total);
+  document.getElementById('tierNow').textContent='Mức '+t[2]+(t[1]?(' — giảm '+Math.round(t[1]*100)+'%'):' — chưa giảm');
+  var nx=nextTier(sub);
+  if(nx){
+    document.getElementById('tierNext').textContent='Còn '+vnd(nx[0]-sub)+' → '+nx[2]+' -'+Math.round(nx[1]*100)+'%';
+    document.getElementById('tierBar').style.width=Math.min(100,sub/nx[0]*100)+'%';
+  }else{
+    document.getElementById('tierNext').textContent='Đã đạt mức tối đa Đại lý / Dự án -7%';
+    document.getElementById('tierBar').style.width='100%';
+  }
+}
+document.getElementById('drItems').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.inc){cart[b.dataset.inc].qty++}
+  else if(b.dataset.dec){var k=b.dataset.dec;cart[k].qty--;if(cart[k].qty<1)delete cart[k]}
+  else if(b.dataset.rm){delete cart[b.dataset.rm]}
+  renderCart();bump();
+});
+var overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
+function openDrawer(){drawer.classList.add('on');overlay.classList.add('on')}
+function closeAll(){drawer.classList.remove('on');overlay.classList.remove('on');document.getElementById('qvm').classList.remove('on')}
+document.getElementById('btnCartTop').onclick=openDrawer;
+document.getElementById('btnCartDock').onclick=openDrawer;
+document.getElementById('drClose').onclick=closeAll;
+overlay.onclick=closeAll;
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+document.getElementById('btnCheckout').onclick=function(){
+  if(!cartCount()){toast('Giỏ hàng đang trống','Hãy thêm máy, bộ lõi hoặc dịch vụ trước khi đặt');return}
+  var code='TT'+Math.floor(1000+Math.random()*9000);
+  var total=document.getElementById('drTotal').textContent;
+  cart={};renderCart();bump();closeAll();
+  toast('Đơn '+code+' đã ghi nhận','Tổng '+total+' — kỹ thuật gọi xác nhận lịch lắp trong 15 phút');
+};
+/* nut them gio trong khoi-8 + pick */
+pgrid.addEventListener('click',function(e){
+  var b=e.target.closest('[data-add]');
+  if(b){var p=P[b.dataset.add];addToCart(p.name,p.price,p.img);return}
+  var v=e.target.closest('[data-view]');
+  if(v){openQv(P[v.dataset.view],v.dataset.view)}
+});
+
+/* ================= QUICK VIEW ================= */
+var qvCur=null,qvQty=1;
+function openQv(p,id){
+  qvCur=p;qvQty=1;
+  document.getElementById('mvImg').src='assets/img/'+p.img+'.webp';
+  document.getElementById('mvImg').alt=p.name;
+  document.getElementById('mvTag').textContent=p.tag;
+  document.getElementById('mvCat').textContent=p.cat;
+  document.getElementById('mvName').textContent=p.name;
+  document.getElementById('mvDesc').textContent=p.desc;
+  var h='<thead><tr><th>Chi tiết</th><th>Giá trị</th></tr></thead><tbody>';
+  p.rows.forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'});
+  h+='</tbody>';
+  document.getElementById('mvTier').innerHTML=h;
+  document.getElementById('mvQtyN').textContent='1';
+  qvSum();
+  document.getElementById('qvm').classList.add('on');overlay.classList.add('on');
+}
+function qvSum(){document.getElementById('mvSum').textContent=vnd(qvCur.price*qvQty)}
+document.getElementById('mvPlus').onclick=function(){qvQty++;document.getElementById('mvQtyN').textContent=qvQty;qvSum()};
+document.getElementById('mvMinus').onclick=function(){if(qvQty>1){qvQty--;document.getElementById('mvQtyN').textContent=qvQty;qvSum()}};
+document.getElementById('mvAdd').onclick=function(){addToCart(qvCur.name,qvCur.price,qvCur.img,qvQty);closeAll()};
+document.getElementById('mvBuy').onclick=function(){addToCart(qvCur.name,qvCur.price,qvCur.img,qvQty);closeAll();openDrawer()};
+document.getElementById('mvClose').onclick=closeAll;
+document.getElementById('qvm').addEventListener('click',function(e){if(e.target===this)closeAll()});
+
+/* ================= SOCIAL PROOF ================= */
+var REVIEWS=[
+ {t:'Nước giếng nhà mình vàng ròng, kỹ thuật đo xong chốt thêm cụm lọc thô + RO 9 lõi. Lắp xong nước trong vắt, nấu ăn hết váng — báo giá chốt trước, không phát sinh đồng nào.',n:'Anh Tuấn',m:'Hộ gia đình — Thủ Đức'},
+ {t:'Quán bún 40 suất, giờ cao điểm cần đá và nước nấu liên tục. Hệ RO công nghiệp chạy 4 tháng chưa lỗi lần nào, tới lịch bảo trì là kỹ thuật tự nhắn tới.',n:'Chị Hương',m:'Quán bún bò Huế — Bình Thạnh'},
+ {t:'Nhà ở Cần Giờ nước mặn lợ, máy thường lắp vào vài tháng là màng hỏng. Đổi sang RO chống mặn đúng chuẩn, TDS từ 1.400 xuống còn 40 — đèn máy báo thay lõi rõ ràng.',n:'Chú Sáu Lộc',m:'Hộ gia đình — Cần Giờ'},
+ {t:'Sinh con nên lo nước pha sữa cho bé. Máy có đèn nhắc thay lõi nên khỏi lo quên, sáng nhắn Zalo chiều thợ tới thay — thay xong test nước cho mình xem luôn.',n:'Chị Ngọc Mai',m:'Hộ gia đình — Gò Vấp'},
+ {t:'Quán cà phê 2 máy pha, 9h sáng gọi, 11h trưa hôm sau máy chạy. Thợ khoan đá granite gọn gàng, dọn sạch sẽ mới về — nhìn chuyên nghiệp thật sự.',n:'Anh Khoa',m:'The Coffee Corner — Thủ Đức'}
+];
+var rvIdx=0,rvTimer=null;
+function rvRender(){
+  var r=REVIEWS[rvIdx];
+  document.getElementById('proofQuote').textContent=r.t;
+  document.getElementById('proofName').textContent=r.n;
+  document.getElementById('proofMeta').textContent=r.m;
+  var cleanName=r.n.replace('Chị ','').replace('Anh ','').replace('Chú ','');
+  document.getElementById('proofAv').textContent=cleanName.charAt(0).toUpperCase();
+  var d=document.getElementById('proofDots');d.innerHTML='';
+  REVIEWS.forEach(function(_,i){
+    var s=document.createElement('i');if(i===rvIdx)s.className='on';
+    s.onclick=function(){rvIdx=i;rvRender();rvRestart()};
+    d.appendChild(s);
+  });
+}
+function rvRestart(){clearInterval(rvTimer);rvTimer=setInterval(function(){rvIdx=(rvIdx+1)%REVIEWS.length;rvRender()},6000)}
+rvRender();rvRestart();
+
+/* ================= FAQ — 8 cau gon ================= */
+var FAQ=[
+ {q:'Nhà tôi dùng nước giếng khoan, cần máy gì?',a:'Phải <b>đo nước trước</b> (sắt, asen, độ cứng) — đa số giếng khoan cần <b>cụm lọc thô đầu nguồn + RO 9 lõi</b>; nếu TDS trên 1.000 hoặc vị mặn thì dùng màng chống mặn chuyên dụng. ThanhThuỷ đo miễn phí, đo xong mới báo cấu hình.'},
+ {q:'Bao lâu thì thay lõi 1 lần, ai nhắc tôi?',a:'Lõi thô <b>6-8 tháng</b>, lõi nâng cao <b>12-18 tháng</b>, màng RO <b>24-36 tháng</b>. Máy có đèn xanh-vàng-đỏ + Zalo nhắc trước hạn 2 tuần. Đặt bộ lõi trên web là kỹ thuật mang đến thay tại nhà.'},
+ {q:'Lắp đặt tận nhà có mất phí không?',a:'<b>Miễn phí</b> khi mua máy tại ThanhThuỷ trong nội thành — đã gồm khoan đá granite, phụ kiện, chạy thử và dọn dẹp. Máy mua ngoài hoặc dời máy cũ: <b>350.000đ</b> trọn gói, đặt dịch vụ ngay ở khối sản phẩm.'},
+ {q:'Máy RO có lọc được asen, vi khuẩn không?',a:'Có. Màng RO lỗ lọc <b>0,0001 micron</b> loại được vi khuẩn, asen, kim loại nặng. Nước đầu ra đạt <b>QCVN 01-1:2018/BYT</b> — sau lắp kỹ thuật test lại nước ngay trước mặt bạn và ghi vào phiếu nghiệm thu.'},
+ {q:'Bảo hành thế nào, có phải mang máy đi đâu không?',a:'Thân máy bảo hành <b>3-5 năm tùy model</b> — kỹ thuật tới nhà trong 24-48h, bạn không mang máy đi đâu cả. Lỗi nhà sản xuất trong 7 ngày đầu được <b>đổi mới tương đương</b>.'},
+ {q:'Máy RO có tốn điện không?',a:'Máy RO gia đình chỉ khoảng <b>24-36W</b> — dùng ít hơn bóng đèn quạt trần, có bơm tự ngắt khi đầy bồn. Máy nóng lạnh thêm phần đun tức thì, chi phí điện thực tế khoảng 1.000-1.500đ/ngày dùng thường xuyên.'},
+ {q:'Quán ăn nên dùng công suất bao nhiêu?',a:'Ước <b>2-3 lít nước/người/suất</b> (gồm nấu + đá). Quán dưới 30 suất: máy nóng lạnh trụ đứng là đủ; từ 40 suất trở lên nên dùng <b>hệ RO công nghiệp 1.400GPD</b>. Kỹ thuật khảo sát miễn phí — ước sai không sao.'},
+ {q:'Nước lợ mặn ven biển dùng RO thường được không?',a:'Không nên — chloride ăn mòn màng thường chỉ sau vài tháng. Cần <b>màng chống mặn chuyên dụng + chế độ rửa màng tự động</b> như dòng KG100MS hoặc hệ công nghiệp chống mặn. Khu vực Cần Giờ, Nhà Bè bên mình lắp rất nhiều.'}
+];
+var faqList=document.getElementById('faqList');
+FAQ.forEach(function(f,i){
+  var d=document.createElement('div');d.className='faq-item';
+  d.innerHTML='<button class="faq-q"><span class="qn"><b>'+(i+1)+'</b></span>'+f.q+'<span class="tg">+</span></button>'+
+    '<div class="faq-a"><div class="in">'+f.a+'</div></div>';
+  faqList.appendChild(d);
+});
+faqList.addEventListener('click',function(e){
+  var b=e.target.closest('.faq-q');if(!b)return;
+  var item=b.parentElement,a=item.querySelector('.faq-a'),open=item.classList.contains('open');
+  faqList.querySelectorAll('.faq-item.open').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+});
+var faqSearch=document.getElementById('faqSearch');
+function faqFilter(kw){
+  kw=(kw||'').toLowerCase();
+  faqList.querySelectorAll('.faq-item').forEach(function(it,i){
+    var hit=!kw||FAQ[i].q.toLowerCase().indexOf(kw)>-1||FAQ[i].a.toLowerCase().indexOf(kw)>-1;
+    it.classList.toggle('hide',!hit);
+  });
+}
+faqSearch.addEventListener('input',function(){faqFilter(this.value)});
+document.getElementById('faqChips').addEventListener('click',function(e){
+  var c=e.target.closest('.faq-chip');if(!c)return;
+  document.querySelectorAll('.faq-chip').forEach(function(x){x.classList.remove('on')});
+  c.classList.add('on');faqSearch.value=c.dataset.k;faqFilter(c.dataset.k);
+});
+
+/* ================= HEADER SEARCH loc khoi-8 ================= */
+document.getElementById('hdSearch').addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;
+  var kw=this.value.trim().toLowerCase();
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+  var hits=0;
+  pgrid.querySelectorAll('.pc').forEach(function(c){
+    var show=!kw||c.dataset.name.indexOf(kw)>-1;
+    c.classList.toggle('hide',!show);if(show)hits++;
+  });
+  toast(kw?('Kết quả tìm kiếm'):('Đã hiện lại 8 sản phẩm'),kw?('Tìm thấy '+hits+' sản phẩm & dịch vụ cho "'+kw+'"'):('Cuộn đến khối sản phẩm để xem đầy đủ'));
+});
+
+/* ================= FORM HEN DO NUOC ================= */
+document.getElementById('leadForm').addEventListener('submit',function(e){e.preventDefault()});
+document.getElementById('lfSubmit').addEventListener('click',function(){
+  var n=document.getElementById('lfName').value.trim(),p=document.getElementById('lfPhone').value.trim();
+  var s=document.getElementById('lfSrc').value,k=document.getElementById('lfKind').value;
+  if(!n||!p||!s||!k){toast('Thiếu thông tin','Điền đủ họ tên, SĐT, nguồn nước và nhu cầu — báo giá sẽ chính xác hơn');return}
+  if(!/^[0-9\s+.-]{9,15}$/.test(p)){toast('Số điện thoại chưa hợp lệ','Kiểm tra lại số giúp bạn nhé');return}
+  document.getElementById('leadForm').reset();
+  toast('Đã hẹn thành công','Kỹ thuật gọi lại trong 30 phút để hẹn đo nước miễn phí — cảm ơn '+n);
+});
+
+/* ================= REVEAL + COUNTER + DOCK ================= */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+  });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(!en.isIntersecting)return;
+    var el=en.target,end=parseFloat(el.dataset.cnt),suf=el.dataset.suffix||'',t0=null;
+    function step(ts){
+      if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);k=1-Math.pow(1-k,3);
+      el.textContent=Math.round(end*k).toLocaleString('vi-VN')+suf;
+      if(k<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
+var dock=document.getElementById('dock');
+var heroEl=document.getElementById('hero');
+var dio=new IntersectionObserver(function(es){dock.classList.toggle('dock-hide',es[0].isIntersecting)},{threshold:.15});
+dio.observe(heroEl);
+document.getElementById('btnTop').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+(function(){var t=document.getElementById('tapeIn');t.innerHTML+=t.innerHTML})();
+renderCart();bump();
+</script>
+<script>
+/*NB93-104-FAILSAFE: element reveal bi ket lai tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<!--NB93-104-CHAT: widget chat truc tiep — NGHE-14-BOTFIX: da bo bot mau, chat that do C3 bridge dieu hanh-->
+<button class="chat-fab" id="chatFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="chat-dot"></span>
+</button>
+<div class="chat-panel" id="chatPanel" aria-hidden="true">
+  <div class="chat-head">
+    <div class="chat-ava">💧</div>
+    <div><div class="chat-name">Tư vấn ThanhThuỷ</div><div class="chat-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="chat-x" id="chatClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-inrow">
+    <input id="chatInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="chatSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-104-CHAT*/
+.chat-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#0B84B8,#056592);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(5,101,146,.55);transition:.25s}
+.chat-fab:hover{transform:translateY(-3px) scale(1.04)}
+.chat-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:cPulse 1.6s infinite}
+@keyframes cPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.chat-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(3,52,72,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.chat-panel.show{opacity:1;visibility:visible;transform:none}
+.chat-head{background:linear-gradient(135deg,#056592,#033448);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.chat-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.chat-name{font-weight:800;font-size:.92rem}
+.chat-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.chat-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:cPulse 1.6s infinite}
+.chat-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.chat-x:hover{background:rgba(255,255,255,.3)}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F2F9FC}
+.chat-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:cIn .25s both}
+@keyframes cIn{from{opacity:0;transform:translateY(8px)}}
+.chat-b{align-self:flex-start;background:#fff;border:1px solid rgba(5,101,146,.08);border-bottom-left-radius:4px;color:#152A38}
+.chat-u{align-self:flex-end;background:linear-gradient(135deg,#0B84B8,#056592);color:#fff;border-bottom-right-radius:4px}
+.chat-typing{align-self:flex-start;background:#fff;border:1px solid rgba(5,101,146,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.chat-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:cB 1s infinite}
+.chat-typing i:nth-child(2){animation-delay:.15s}.chat-typing i:nth-child(3){animation-delay:.3s}
+@keyframes cB{50%{transform:translateY(-4px);opacity:.5}}
+.chat-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(5,101,146,.07);flex-shrink:0;scrollbar-width:none}
+.chat-chips::-webkit-scrollbar{display:none}
+.chat-chip{flex-shrink:0;border:1.5px solid rgba(11,132,184,.4);color:#056592;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+.chat-chip:hover{background:#E3F6FA}
+.chat-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(5,101,146,.07);flex-shrink:0}
+.chat-inrow input{flex:1;border:1.5px solid rgba(5,101,146,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.chat-inrow input:focus{border-color:#0B84B8;box-shadow:0 0 0 3px rgba(11,132,184,.13)}
+.chat-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#0B84B8,#056592);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.chat-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.chat-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.chat-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style>
+<script>
+/*NB93-104-CHAT*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

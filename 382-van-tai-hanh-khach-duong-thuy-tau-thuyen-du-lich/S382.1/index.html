@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sóng Xanh Marine — Vận tải hành khách đường thủy, tàu thuyền du lịch | Lên bến, mở lối theo dòng nước</title>
+<meta name="description" content="Sóng Xanh Marine — tàu thuyền du lịch &amp; vận tải đường thủy tại Bến Gió Mắt: tour ngắm cảnh sông, tuyến đảo, tàu riêng theo nhóm, tour hoàng hôn. Chọn tuyến × giờ × số khách, giữ chỗ 30 phút — trả tiền tại bến.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sóng Xanh Marine — Tàu thuyền du lịch & Vận tải","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Bến Gió Mắt, 6 Dường Chân Sóng","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.6295,"longitude":106.7418},"openingHours":"Mo-Su 06:00-21:00","priceRange":"60.000đ-4.500.000đ"}
+</script>
+<style>
+/*NB110-382 — Sóng Xanh Marine: dòng sông + bến đánh số + phao vàng (pattern #14 biến thể bến tàu/tuyến sông) · khay đặt vé tuyến→bến→ngày+giờ→số khách*/
+:root{
+  --navy-1:#0A2E4E; --navy-2:#11507E; --sea:#0F7490; --sea-2:#14919B;
+  --gold:#EFB63D; --gold-2:#F7D488; --cam:#F07E1F;
+  --bg:#F2F8FA; --sand:#FDF6E9; --paper:#FFFFFF; --ink:#12283A; --mut:#5D7488;
+  --line:#D7E5EC; --line-2:#C3D7E2;
+  --ok:#1E9E6A; --bad:#D64545;
+  --sh:0 12px 30px rgba(10,46,78,.12); --sh-2:0 18px 44px rgba(10,46,78,.20);
+  --r:20px;
+  --disp:'Trebuchet MS','Segoe UI',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+section[id],div[id="so-do"]{scroll-margin-top:76px}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+body.dr-open{overflow:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4,.disp{font-family:var(--disp);line-height:1.22;letter-spacing:.2px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:58px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 28px}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--sea);font-weight:800}
+.kicker .w3{flex:none}
+.sec-head h2{font-size:clamp(26px,4vw,36px);margin:8px 0 10px;color:var(--navy-1)}
+.sec-head p{color:var(--mut)}
+.w3{width:34px;height:14px;fill:none;stroke:var(--gold);stroke-width:2.4;stroke-linecap:round}
+.num{font-variant-numeric:tabular-nums}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(242,248,250,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(140deg,var(--navy-2),var(--sea));display:grid;place-items:center;flex:none;color:#FFEFC9}
+.logo b{font-family:var(--disp);font-size:17px;color:var(--navy-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:400;letter-spacing:.4px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--navy-2);white-space:nowrap}
+nav.main a:hover{background:#E3EFF4;color:var(--sea)}
+.hd-right{display:flex;align-items:center;gap:8px;flex:none}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 13px;font-weight:700;font-size:13px;color:var(--navy-1);min-height:42px;white-space:nowrap}
+.hd-ve{display:inline-flex;align-items:center;gap:7px;border:0;background:var(--gold);color:var(--navy-1);border-radius:12px;padding:10px 16px;font-weight:800;font-size:13.5px;min-height:42px;box-shadow:0 6px 14px rgba(239,182,61,.35)}
+.hd-ve:hover{background:var(--cam);color:#fff}
+
+/* ===== NÚT ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-a{background:var(--gold);color:var(--navy-1);box-shadow:0 8px 18px rgba(239,182,61,.35)}
+.btn-a:hover{background:var(--cam);color:#fff}
+.btn-b{background:var(--sea);color:#fff;box-shadow:0 8px 18px rgba(15,116,144,.30)}
+.btn-b:hover{background:var(--navy-2)}
+.btn-g{background:var(--paper);color:var(--navy-1);border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--sea);color:var(--sea)}
+
+/* ===== HERO — cầu tàu tối, poster trong khung cửa tàu ===== */
+.hero{position:relative;background:linear-gradient(150deg,var(--navy-1) 0%,var(--navy-2) 52%,var(--sea) 100%);color:#EAF4F8;overflow:hidden}
+.hero .song-nen{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:90px;opacity:.5;pointer-events:none}
+.hero-g{position:relative;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:40px;align-items:center;padding:54px 0 88px}
+.hero .kicker{color:var(--gold-2)}
+.hero .kicker .w3{stroke:var(--gold-2)}
+.hero h1{font-size:clamp(30px,4.6vw,46px);color:#fff;margin:10px 0 14px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{color:#C4DAE6;font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:20px}
+.hero-stats div b{font-family:var(--disp);font-size:22px;color:var(--gold-2);display:block}
+.hero-stats div span{font-size:12.5px;color:#9FBECE}
+.dep-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 14px;font-size:12.5px;color:#BFD8E4;max-width:520px}
+.dep-strip .lb{font-weight:800;color:#fff;letter-spacing:.4px}
+.dep-chip{border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);color:#fff;border-radius:99px;padding:6px 12px;font-size:12.5px;font-weight:800;min-height:32px}
+.dep-chip i{font-style:normal;display:inline-block;width:7px;height:7px;border-radius:99px;background:#35D07F;margin-right:6px}
+.dep-chip.it i{background:var(--gold)}
+.dep-chip:hover{border-color:var(--gold);color:var(--gold-2)}
+/* khung cửa tàu — poster nguyên khung, không crop */
+.tau-doc{position:relative}
+.tau-khung{position:relative;background:linear-gradient(160deg,#1B6491,#0D3C5F);padding:14px;border-radius:30px;box-shadow:var(--sh-2)}
+.tau-khung::before{content:"";position:absolute;inset:7px;border:1.5px solid rgba(247,212,136,.55);border-radius:24px;pointer-events:none}
+.bien-hieu{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy-1);font-weight:800;font-size:11px;letter-spacing:1.6px;border-radius:99px;padding:6px 16px;white-space:nowrap;box-shadow:0 6px 14px rgba(10,46,78,.35)}
+.tau-khung img{border-radius:18px;width:100%}
+.bolt{position:absolute;width:10px;height:10px;border-radius:99px;background:radial-gradient(circle at 35% 35%,#FFE9AE,#C89334);box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.bolt.b1{top:14px;left:14px}.bolt.b2{top:14px;right:14px}.bolt.b3{bottom:14px;left:14px}.bolt.b4{bottom:14px;right:14px}
+.tau-tem{position:absolute;right:-8px;bottom:-16px;background:var(--paper);color:var(--navy-1);border-radius:14px;padding:10px 14px;display:flex;gap:10px;align-items:center;box-shadow:var(--sh);font-size:12.5px;font-weight:700;border:1px solid var(--line)}
+.tau-tem .dot{width:9px;height:9px;border-radius:99px;background:#35D07F;box-shadow:0 0 0 4px rgba(53,208,127,.22);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(53,208,127,.10)}}
+.poster-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.24);border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:700;color:#EAF4F8}
+.pchip i{font-style:normal;width:24px;height:24px;border-radius:99px;background:rgba(247,212,136,.2);display:grid;place-items:center;font-size:12px}
+.pchip:hover{border-color:var(--gold);color:var(--gold-2)}
+
+/* ===== TIỆN ÍCH BẾN ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 6px 16px rgba(10,46,78,.06)}
+.svc .ic{width:46px;height:46px;flex:none;border-radius:14px;background:linear-gradient(150deg,#E1F1F6,#D2E8EF);display:grid;place-items:center;color:var(--sea)}
+.svc b{display:block;font-size:15px;color:var(--navy-1)}
+.svc span{font-size:13px;color:var(--mut)}
+
+/* ===== KHỐI-8 — DÒNG SÔNG 8 BẾN (pattern #14) ===== */
+.song-sec{background:linear-gradient(180deg,var(--sand) 0%,var(--bg) 100%)}
+.route-stage{background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:16px 18px 14px;box-shadow:var(--sh);margin-bottom:24px}
+.rs-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.rs-head .ma{font-family:var(--disp);font-weight:800;font-size:15px;background:var(--navy-2);color:#FFEFC9;border-radius:10px;padding:6px 12px}
+.rs-head .ten{font-family:var(--disp);font-weight:800;font-size:18px;color:var(--navy-1)}
+.rs-head .meta{font-size:12.5px;color:var(--mut)}
+.rs-cta{margin-left:auto;border:0;background:var(--gold);color:var(--navy-1);font-weight:800;font-size:13px;border-radius:11px;padding:10px 16px;min-height:40px;box-shadow:0 6px 14px rgba(239,182,61,.3)}
+.rs-cta:hover{background:var(--cam);color:#fff}
+.rs-wrap{width:100%}
+.rs-wrap svg{width:100%;height:auto;display:block}
+/* chất liệu dòng sông */
+.sv-bo{fill:none;stroke:#E8C987;stroke-width:2;stroke-dasharray:1 7;stroke-linecap:round;opacity:.9}
+.sv-song{fill:none;stroke:url(#gxNuoc);stroke-width:26;stroke-linecap:round}
+.sv-song-vt{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2.4;stroke-dasharray:10 12;stroke-linecap:round}
+.sv-dan{fill:rgba(255,255,255,.75)}
+.sv-nhanh{fill:none;stroke:var(--sea-2);stroke-width:4;stroke-dasharray:8 7;stroke-linecap:round}
+.sv-dao{fill:rgba(239,182,61,.16);stroke:var(--gold);stroke-width:1.6;stroke-dasharray:5 5}
+.stop{cursor:pointer;pointer-events:bounding-box}
+.stop .pier{fill:#B98A3C;rx:3}
+.stop .phao{fill:var(--gold);stroke:#fff;stroke-width:3;transition:r .2s}
+.stop .pnum{font-family:var(--disp);font-weight:800;font-size:15px;fill:var(--navy-1);text-anchor:middle}
+.stop .s-name{font-family:var(--disp);font-weight:800;font-size:14.5px;fill:var(--navy-1);text-anchor:middle}
+.stop .s-sub{font-size:11.5px;fill:var(--mut);text-anchor:middle}
+.stop.on .phao{fill:var(--cam);r:18}
+.stop.on .s-name{fill:var(--cam)}
+.stop:hover .phao{r:18}
+.stop-list{display:none;margin:10px 0 2px}
+.stop-list button{display:flex;width:100%;align-items:center;gap:10px;padding:11px 12px;border:1.5px solid var(--line);background:var(--bg);border-radius:13px;margin-bottom:8px;font-size:13.5px;font-weight:700;color:var(--navy-1);min-height:44px;text-align:left}
+.stop-list button .phao{width:28px;height:28px;flex:none;border-radius:99px;background:var(--gold);color:var(--navy-1);display:grid;place-items:center;font-size:13px;font-weight:800}
+.stop-list button small{margin-left:auto;color:var(--mut);font-weight:600}
+.stop-list button.on{border-color:var(--cam);background:#FFF3E4}
+.dep-strip2{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px dashed var(--line-2);margin-top:8px;padding-top:12px;font-size:12.5px;color:var(--mut)}
+.dep-strip2 .lb{font-weight:800;color:var(--navy-1)}
+.gchip{border:1.5px solid var(--line-2);background:var(--bg);color:var(--navy-1);border-radius:99px;padding:7px 13px;font-size:12.5px;font-weight:800;min-height:34px}
+.gchip i{font-style:normal;display:inline-block;width:7px;height:7px;border-radius:99px;background:var(--ok);margin-right:6px}
+.gchip.it i{background:var(--gold)}
+.gchip:hover{border-color:var(--sea);color:var(--sea)}
+.dep-strip2 .meta{margin-left:auto;font-size:11.5px;color:var(--mut)}
+/* 8 thẻ bến */
+.ben-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ben{position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.ben::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--sea-2),var(--navy-2));z-index:2}
+.ben:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.ben .ph{overflow:hidden}
+.ben .ph img{width:100%;transition:transform .5s}
+.ben:hover .ph img{transform:scale(1.04)}
+.ben .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ben .route-line{display:flex;align-items:center;gap:8px}
+.rt{font-family:var(--disp);font-weight:800;font-size:11.5px;background:var(--navy-2);color:#FFEFC9;border-radius:7px;padding:3px 8px;letter-spacing:.5px}
+.gio-line{font-size:11.5px;color:var(--mut);font-weight:700}
+.ben h3{font-size:16.5px;color:var(--navy-1)}
+.ben p{font-size:12.6px;color:var(--mut);flex:1}
+.ben .ft{display:flex;align-items:center;gap:10px}
+.pri{font-weight:800;color:var(--cam);font-size:16px;white-space:normal}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.add{margin-left:auto;border:0;background:var(--navy-2);color:#FFEFC9;border-radius:11px;padding:10px 14px;font-weight:700;font-size:12.5px;min-height:40px;white-space:normal;text-align:center}
+.add:hover{background:var(--sea)}
+.phao-so{position:absolute;top:12px;left:16px;z-index:3;width:34px;height:34px;border-radius:99px;background:var(--gold);color:var(--navy-1);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:14px;border:2.5px solid #fff;box-shadow:0 4px 10px rgba(10,46,78,.25)}
+.badge{position:absolute;top:12px;right:12px;z-index:3;background:var(--cam);color:#fff;font-size:10.5px;font-weight:800;border-radius:99px;padding:5px 11px;letter-spacing:.5px;box-shadow:0 4px 10px rgba(240,126,31,.4)}
+/* thẻ nổi bật TO trong khối-8 */
+.ben.feat{grid-column:span 2;border:2px solid var(--gold);background:linear-gradient(180deg,#FFFBEF,#FFFFFF);box-shadow:0 14px 32px rgba(10,46,78,.14)}
+.ben.feat::before{width:8px;background:linear-gradient(180deg,var(--gold),var(--cam))}
+.ben.feat h3{font-size:21px}
+.ben.feat p{font-size:13.2px}
+.ben.feat .pri{font-size:19px}
+.ben.feat .add{background:var(--gold);color:var(--navy-1);font-weight:800;padding:11px 18px}
+.ben.feat .add:hover{background:var(--cam);color:#fff}
+.ben-note{margin-top:16px;text-align:center;font-size:12.5px;color:var(--mut)}
+/* thẻ ngang kín hàng (B7/B8): ảnh trái nguyên khung + chữ phải */
+.ben.wide{grid-column:span 2;flex-direction:row;align-items:stretch}
+.ben.wide::before{width:6px}
+.ben.wide .ph{width:44%;flex:none;display:flex}
+.ben.wide .ph img{width:100%;height:auto;align-self:center}
+.ben.wide .bd{padding:16px 18px}
+.ben.wide h3{font-size:18px}
+
+/* ===== KHUNG NỔI BẬT (P12) ===== */
+.noi-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:18px}
+.noi-main{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);background:linear-gradient(160deg,var(--navy-1),var(--navy-2));border-radius:24px;overflow:hidden;color:#EAF4F8;box-shadow:var(--sh-2);position:relative}
+.noi-main::after{content:"GIỮ CHỔ NHIỀU NHẤT BẾN";position:absolute;top:16px;right:16px;background:var(--gold);color:var(--navy-1);font-size:10.5px;font-weight:800;letter-spacing:.8px;border-radius:99px;padding:6px 12px;z-index:2}
+.noi-main .im img{width:100%;height:auto;display:block}
+.noi-main .bd{padding:24px 26px;display:flex;flex-direction:column;gap:11px}
+.noi-main h3{font-size:24px;color:#fff}
+.noi-main ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#C4DAE6}
+.noi-main ul li::before{content:"✓";color:var(--gold);font-weight:800;margin-right:8px}
+.noi-main .pr{display:flex;align-items:baseline;gap:8px}
+.noi-main .pr b{font-family:var(--disp);font-size:26px;color:var(--gold)}
+.noi-main .pr span{font-size:12.5px;color:#9FBECE}
+.noi-main .btn{margin-top:auto}
+.noi-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
+.noi-sub{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:132px minmax(0,1fr);align-items:center;transition:transform .25s,box-shadow .25s}
+.noi-sub:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.noi-sub .im{align-self:stretch;display:grid}
+.noi-sub .im img{width:100%;height:auto;align-self:center}
+.noi-sub .bd{padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.noi-sub h4{font-size:15px;color:var(--navy-1)}
+.noi-sub .pr{font-size:14.5px;font-weight:800;color:var(--cam)}
+.noi-sub .pr small{color:var(--mut);font-weight:600;font-size:11px}
+.noi-sub .add{margin:6px 0 0;align-self:flex-start}
+
+/* ===== DAC THU — TRA CHUYẾN THEO NHÓM ===== */
+.dark-sec{position:relative;background:linear-gradient(150deg,var(--navy-1) 0%,var(--navy-2) 60%,var(--sea) 130%);color:#EAF4F8;border-radius:28px;padding:44px clamp(18px,4vw,46px);overflow:hidden}
+.dark-sec .kicker{color:var(--gold-2)}
+.dark-sec .kicker .w3{stroke:var(--gold-2)}
+.dark-sec h2{font-size:clamp(24px,3.6vw,34px);margin:8px 0;color:#fff}
+.dark-sec .sub{color:#B9D2DF;max-width:600px;font-size:14.5px;margin-bottom:22px}
+.tra-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:26px;align-items:start}
+.tra-pick label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#9FC2D4;display:block;margin:16px 0 8px}
+.tra-pick label:first-child{margin-top:0}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip-row button{border:1.5px solid rgba(255,255,255,.24);background:rgba(255,255,255,.07);color:#EAF4F8;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:700;min-height:40px}
+.chip-row button.on{background:var(--gold);border-color:var(--gold);color:var(--navy-1)}
+.stepper-row{display:flex;gap:14px;flex-wrap:wrap}
+.stepper-box{flex:1;min-width:150px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 14px}
+.stepper-box span{display:block;font-size:11.5px;color:#9FC2D4;font-weight:700;margin-bottom:4px}
+.stepper{display:flex;align-items:center;gap:12px}
+.stepper button{width:36px;height:38px;border-radius:10px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-weight:800;font-size:17px}
+.stepper b{font-family:var(--disp);font-size:19px;min-width:24px;text-align:center;color:#fff}
+.tra-note{font-size:12px;color:#9FC2D4;margin-top:14px}
+.tra-out{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:20px}
+.tra-out h3{font-size:17px;color:#fff;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tra-out h3 small{color:#9FC2D4;font-weight:600;font-size:12px}
+.tra-kq{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+.tra-kq .rt{font-size:13px;padding:5px 10px}
+.tra-kq b{font-family:var(--disp);font-size:16px;color:var(--gold-2)}
+.tra-lydo{font-size:12.5px;color:#B9D2DF;margin-bottom:10px}
+.tra-out label{font-size:11.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9FC2D4;display:block;margin:12px 0 7px}
+.boong{margin-top:2px}
+.boong svg{width:100%;height:auto;display:block}
+.b-khu{fill:rgba(255,255,255,.10);stroke:rgba(255,255,255,.4);stroke-width:1.4;rx:8;cursor:pointer;transition:fill .2s}
+.b-khu.on{fill:rgba(239,182,61,.42);stroke:var(--gold)}
+.b-lbl{font-size:11.5px;font-weight:800;fill:#EAF4F8;text-anchor:middle;pointer-events:none}
+.b-hull{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2.2}
+.tra-sum{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px dashed rgba(255,255,255,.2);margin-top:14px;padding-top:12px;font-size:13.5px;color:#C4DAE6;flex-wrap:wrap}
+.tra-sum b{font-family:var(--disp);font-size:21px;color:var(--gold)}
+.tra-dat{width:100%;border:0;background:var(--gold);color:var(--navy-1);font-weight:800;border-radius:13px;padding:13px;font-size:14.5px;min-height:46px;margin-top:10px}
+.tra-dat:hover{background:var(--cam);color:#fff}
+.tra-out .tiny{font-size:11.5px;color:#9FC2D4;text-align:center;margin-top:8px}
+
+/* ===== VỀ CHÚNG TÔI — M8: ảnh full + bảng tin gắn ===== */
+.m8{position:relative;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);align-items:center}
+.m8-img{border-radius:24px;overflow:hidden;box-shadow:var(--sh-2);position:relative}
+.m8-img img{width:100%;height:auto;display:block}
+.m8-board{background:var(--paper);border:1.5px solid var(--line);border-radius:22px;box-shadow:var(--sh);padding:26px 28px;margin-left:-70px;position:relative;z-index:2}
+.m8-board h2{font-size:clamp(22px,3.2vw,30px);color:var(--navy-1);margin:8px 0 12px}
+.m8-board p{color:#4E6478;font-size:14px;margin-bottom:10px}
+.m8-board .sign{font-family:var(--disp);font-style:italic;color:var(--sea);font-size:14.5px}
+.board-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.board-stats div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.board-stats b{font-family:var(--disp);font-size:16.5px;color:var(--navy-2);display:block}
+.board-stats span{font-size:11.5px;color:var(--mut)}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 16px rgba(10,46,78,.05)}
+.rev .st{color:var(--gold);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#42596D;flex:1}
+.rev b{font-size:13px;color:var(--navy-1)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ — nền space mờ ===== */
+.ct-sec{position:relative;overflow:clip}
+.ct-sec::before{content:"";position:absolute;inset:0;background:url("assets/img/space.webp") center/cover;filter:blur(22px) saturate(.9);transform:scale(1.12);opacity:.28;pointer-events:none}
+.ct-sec .wrap{position:relative}
+.ct-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.ct-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh)}
+.ct-card h3{font-size:19px;color:var(--navy-1)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#42596D}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:12px;background:#E1F1F6;display:grid;place-items:center;color:var(--sea)}
+.ct-line b{color:var(--navy-1)}
+.ct-card .tel{font-size:21px;font-weight:800;color:var(--cam);font-family:var(--disp)}
+.ct-card iframe{width:100%;height:230px;border:0;border-radius:12px;flex:1;min-height:230px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--navy-1);min-height:48px}
+.qa>button i{font-style:normal;color:var(--sea);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#42596D}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{position:relative;background:var(--navy-1);color:#B9CEDC;margin-top:56px;padding-top:34px}
+.ft-song{display:block;width:100%;height:46px;margin-top:-56px;margin-bottom:6px}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding-bottom:24px}
+.ft-g h4{color:var(--gold-2);font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#B9CEDC;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--gold-2)}
+.ft-brand b{font-family:var(--disp);font-size:17px;color:#fff;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.12);padding:12px 0;text-align:center;font-size:11.5px;color:#7E9BB0}
+
+/* ===== KHAY ĐẶT VÉ (drawer B) ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(7,26,42,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#veDrawer{position:fixed;top:0;right:0;width:410px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(7,26,42,.25)}
+#veDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line);background:linear-gradient(140deg,var(--navy-2),var(--sea));color:#fff}
+.dr-head h3{font-size:16.5px;flex:1;color:#fff}
+.dr-x{border:0;background:rgba(255,255,255,.16);width:38px;height:38px;border-radius:11px;font-size:16px;color:#fff}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:14px 18px}
+.dstep{display:flex;gap:6px;margin-bottom:14px}
+.dstep i{height:5px;flex:1;border-radius:99px;background:var(--line-2)}
+.dstep i.on{background:var(--gold)}
+.drv{display:none;flex-direction:column;gap:9px}
+.drv.on{display:flex}
+.drv>label{font-size:12px;font-weight:800;color:var(--navy-1);letter-spacing:.6px}
+.drv>label:first-of-type{margin-top:2px}
+/* Bước 1 */
+.tuyen-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tuyen-cards button{border:1.5px solid var(--line);background:var(--bg);border-radius:13px;padding:10px 12px;text-align:left;min-height:64px}
+.tuyen-cards button .t{display:flex;align-items:center;gap:7px}
+.tuyen-cards button .rt{flex:none}
+.tuyen-cards button b{font-size:13px;color:var(--navy-1)}
+.tuyen-cards button small{display:block;font-size:11px;color:var(--mut);margin-top:3px}
+.tuyen-cards button.on{border-color:var(--cam);background:#FFF3E4;box-shadow:0 4px 12px rgba(240,126,31,.18)}
+.ben-chips,.day-chips,.gio-chips{display:flex;flex-wrap:wrap;gap:7px}
+.ben-chips button,.day-chips button,.gio-chips button{border:1.5px solid var(--line-2);background:var(--paper);color:var(--navy-1);border-radius:99px;padding:8px 13px;font-size:12.5px;font-weight:700;min-height:37px}
+.ben-chips button small{color:var(--mut);font-weight:600}
+.ben-chips button.on,.day-chips button.on,.gio-chips button.on{background:var(--navy-2);border-color:var(--navy-2);color:#fff}
+.ben-chips button.on small,.gio-chips button.on small{color:#D8E9F2}
+.khach-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.khach-box{border:1.5px solid var(--line);border-radius:13px;padding:9px 12px;background:var(--bg)}
+.khach-box span{display:block;font-size:11px;color:var(--mut);font-weight:700;margin-bottom:3px}
+.khach-box .stepper button{width:32px;height:34px;border-radius:9px;border:1.5px solid var(--line-2);background:var(--paper);color:var(--navy-1);font-weight:800;font-size:16px}
+.khach-box .stepper b{font-family:var(--disp);font-size:17px;color:var(--navy-1);min-width:22px;text-align:center}
+.khach-box .stepper{gap:9px}
+.ve-sum{background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.vs-row{display:flex;justify-content:space-between;gap:10px;font-size:12.8px;color:#42596D}
+.vs-row b{color:var(--navy-1);text-align:right}
+.vs-row.tot{border-top:1px dashed var(--line-2);padding-top:7px;font-size:14px;font-weight:800;color:var(--navy-1)}
+.vs-row.tot b{color:var(--cam);font-size:18px;font-family:var(--disp)}
+.dr-cta{width:100%;margin-top:6px}
+.dr-note{font-size:11.5px;color:var(--mut);text-align:center}
+/* Bước 2 */
+.dr-back{border:0;background:none;color:var(--mut);font-size:13px;padding:4px 0;text-align:left;min-height:34px}
+.dr-back:hover{color:var(--sea)}
+.drv input,.drv select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
+.drv input.err{border-color:var(--bad);background:#FFF5F5}
+.cam-ket{background:#EFF7FA;border:1.5px solid var(--line);border-radius:13px;padding:11px 13px;font-size:12px;color:#42596D}
+.cam-ket b{color:var(--navy-1)}
+/* Bước 3 — vé xác nhận tại trang */
+.ve-done{background:var(--bg);border:1.5px dashed var(--line-2);border-radius:16px;padding:18px 16px;text-align:center;display:flex;flex-direction:column;gap:8px;position:relative}
+.ve-done::before,.ve-done::after{content:"";position:absolute;width:20px;height:20px;border-radius:99px;background:var(--paper);border:1.5px dashed var(--line-2);top:50%;margin-top:-10px}
+.ve-done::before{left:-11px}.ve-done::after{right:-11px}
+.ve-done .ok{width:52px;height:52px;margin:0 auto;border-radius:99px;background:#E5F6EE;color:var(--ok);display:grid;place-items:center}
+.ve-done h4{font-size:17px;color:var(--navy-1)}
+.ve-done .code{font-family:var(--disp);font-size:26px;font-weight:800;letter-spacing:2px;color:var(--cam)}
+.ve-done p{font-size:12.8px;color:#42596D}
+.ve-done p b{color:var(--navy-1)}
+.ve-done .han{background:#FFF3E4;border:1.5px solid #F5CFA0;border-radius:11px;padding:8px 10px;font-size:12.5px;color:#8A5A18}
+.dr-foot{border-top:1px solid var(--line);padding:12px 18px calc(14px + 46px);background:var(--bg);flex-shrink:0;font-size:11.5px;color:var(--mut);text-align:center}
+.dr-foot b{color:var(--navy-1)}
+
+/* ===== FAB VÉ (SVG nét — tàu + vé, KHÔNG icon giỏ) ===== */
+.ve-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--gold);color:var(--navy-1);display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(239,182,61,.5);transition:transform .25s,background .25s}
+.ve-fab:hover{background:var(--cam);color:#fff;transform:translateY(-2px)}
+.ve-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+
+/* ===== CHAT (pkc — không bot) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--navy-2);color:#FFEFC9;font-size:23px;box-shadow:0 10px 24px rgba(17,80,126,.45)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(7,26,42,.25);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:linear-gradient(140deg,var(--navy-2),var(--sea));color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F4FAFC}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--sea);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--navy-1);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--sea);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST (2 phần tử) ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--navy-1);color:#FFEFD9;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:var(--gold-2);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#E4D6C2}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1060px){
+  .ben-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.main a{padding:9px 8px;font-size:12.5px}
+}
+@media (max-width:960px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:38px 0 80px}
+  .hero p.lead{max-width:none}
+  .tau-doc{max-width:560px}
+  .tra-grid{grid-template-columns:1fr}
+  .m8{grid-template-columns:1fr;gap:0}
+  .m8-board{margin:16px 0 0;padding:22px}
+  .rev-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ct-g{grid-template-columns:1fr}
+  .noi-g{grid-template-columns:1fr}
+  nav.main{display:none}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .rs-wrap{display:none}
+  .stop-list{display:block}
+}
+@media (max-width:640px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .call span{display:none}
+  .call{padding:10px 12px}
+  .hd-ve{padding:10px 12px}
+  .svc-g{grid-template-columns:1fr}
+  .ben-g{grid-template-columns:minmax(0,1fr)}
+  .ben.wide,.ben.feat{grid-column:auto}
+  .ben.wide .ph{width:47%}
+  .ben.feat{grid-column:span 1}
+  /*NB110-382 — mobile: thẻ nổi bật THẬT nổi: lên đầu khối + viền cam + CTA to*/
+  .ben.feat{order:-1;border:2px solid var(--cam);box-shadow:0 12px 26px rgba(240,126,31,.2)}
+  .ben.feat .add{width:100%}
+  .rev-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding-bottom:18px}
+  .ft-brand{grid-column:1/-1}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  #veDrawer{width:100vw;max-width:100vw}
+  .noi-main{grid-template-columns:1fr}
+  .noi-main .im{min-height:210px}
+  .rs-head .rs-cta{margin-left:0;width:100%}
+  .tuyen-cards{grid-template-columns:1fr}
+  .khach-row{grid-template-columns:1fr}
+  .tau-tem{right:6px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c1.5 1.4 3 1.4 4.5 0s3-1.4 4.5 0 3 1.4 4.5 0 3-1.4 4.5 0" opacity=".7"/><path d="M4 14h16l-2.2-6.4A2 2 0 0 0 15.9 6H8.1a2 2 0 0 0-1.9 1.6Z"/><path d="M12 6V3M8.5 10h7M9.5 10v2.4M14.5 10v2.4"/></svg></span>
+      <span><b>Sóng Xanh Marine</b><small>Tàu thuyền du lịch &amp; vận tải đường thủy</small></span>
+    </a>
+    <nav class="main">
+      <a href="#lo-trinh">Sơ đồ tuyến &amp; bến</a>
+      <a href="#noibat">Chuyến nổi bật</a>
+      <a href="#tra-chuyen">Tra chuyến theo nhóm</a>
+      <a href="#ve-chung-toi">Về bến</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span class="num">0034567899</span></a>
+      <button class="hd-ve" data-open-ve>🎫 Đặt vé</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Bến Gió Mắt · Sóng Xanh Marine</span>
+      <h1>Lên bến Gió Mắt,<br><em>mở lối theo dòng nước</em></h1>
+      <p class="lead">Tour ngắm cảnh sông, tuyến đảo, tàu riêng cho nhóm và tour hoàng hôn — chạy đúng giờ giấc bến, có hướng dẫn viên trên tàu. Chọn tuyến × giờ × số khách, giữ chỗ 30 phút và trả tiền tại bến.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-open-ve>🎫 Đặt vé giữ chỗ — 30 giây</button>
+        <a class="btn btn-g" style="background:rgba(255,255,255,.10);color:#EAF4F8;border-color:rgba(255,255,255,.3)" href="#lo-trinh">⚓ Xem sơ đồ tuyến</a>
+      </div>
+      <div class="hero-stats">
+        <div><b class="num">4</b><span>tuyến đang chạy</span></div>
+        <div><b class="num">14</b><span>chuyến mỗi ngày</span></div>
+        <div><b class="num">12 năm</b><span>trên dòng sông</span></div>
+        <div><b class="num">230.000+</b><span>lượt khách đưa đón</span></div>
+      </div>
+      <div class="dep-strip">
+        <span class="lb">Tàu kế tiếp từ Bến Gió Mắt:</span>
+        <button class="dep-chip num" data-dep="S1" data-gio="09:00"><i></i>09:00 · S1</button>
+        <button class="dep-chip num it" data-dep="S1" data-gio="10:30"><i></i>10:30 · S1</button>
+        <button class="dep-chip num" data-dep="S2" data-gio="11:00"><i></i>11:00 · S2 đảo</button>
+        <span>bấm giờ — khay đặt vé tự điền giúp bạn</span>
+      </div>
+    </div>
+    <div class="tau-doc rv">
+      <div class="tau-khung">
+        <span class="bien-hieu">SÓNG XANH MARINE · BẾN GIÓ MẮT</span>
+        <img src="assets/img/cover.webp" alt="Tàu thuyền du lịch &amp; vận tải Sóng Xanh Marine — tàu du lịch trên vịnh" width="1152" height="768" fetchpriority="high">
+        <span class="bolt b1"></span><span class="bolt b2"></span><span class="bolt b3"></span><span class="bolt b4"></span>
+        <div class="tau-tem"><span class="dot"></span><span>Sắp khởi hành · <b class="num">09:00</b> — còn nhận khách</span></div>
+      </div>
+      <div class="poster-chips">
+        <a class="pchip" href="#lo-trinh"><i>🌊</i> Tour sông</a>
+        <a class="pchip" href="#lo-trinh"><i>🏝️</i> Tuyến đảo</a>
+        <a class="pchip" href="#noibat"><i>🛥️</i> Thuê tàu riêng</a>
+      </div>
+    </div>
+  </div>
+  <svg class="song-nen" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 52c120-26 240-26 360 0s240 26 360 0 240-26 360 0 240 26 360 0v40H0Z" fill="#F2F8FA"/><path d="M0 64c120-22 240-22 360 0s240 22 360 0 240-22 360 0 240 22 360 0" fill="none" stroke="rgba(247,212,136,.5)" stroke-width="2.5"/></svg>
+</section>
+
+<!-- ===== TIỆN ÍCH BẾN ===== -->
+<section class="sec" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Việc trên bến</span>
+      <h2>Mỗi chuyến đi là một câu chuyện trên nước</h2>
+      <p>Ba việc bến làm chỉnh chu từ lúc bạn lên bến đến khi cập bến — như cam kết in trên tàu.</p>
+    </div>
+    <div class="svc-g">
+      <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 9.5h18M7.5 13.5h3M13.5 13.5h3M7.5 17h3M13.5 17h3"/></svg></div><div><b>Lịch trình rõ — xuất bến đúng giờ</b><span>Bản tin bến công bố giờ chạy từng tuyến; trễ vì tàu thì đổi chuyến sau miễn phí.</span></div></div>
+      <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.2"/><path d="M5 21c.8-4 3.4-6 7-6s6.2 2 7 6"/><path d="M15.5 3.5 17 2M19 6.5l1.8-.6"/></svg></div><div><b>Hướng dẫn viên trên tàu</b><span>Kể chuyện sông nước, chỉ điểm ngắm — đặt kèm tuyến nào cũng có.</span></div></div>
+      <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="13" rx="2.5"/><path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7M9 11.5h6"/></svg></div><div><b>Hỗ trợ hành khách tận bến</b><span>Người già, trẻ nhỏ, hành lý lớn — thang dốc lên tàu, nhân viên dìu từng bước.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8: DÒNG SÔNG 8 BẾN (pattern #14 — bến tàu/tuyến sông) ===== -->
+<section class="sec song-sec" id="lo-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Sơ đồ tuyến &amp; 8 bến trải nghiệm</span>
+      <h2>Dòng nước có 8 bến — mỗi bến một trải nghiệm</h2>
+      <p>Bấm một bến trên dòng Sóng Xanh: khay đặt vé nhớ giúp bạn bến và giờ — không phải gõ lại.</p>
+    </div>
+
+    <div class="route-stage rv" id="so-do">
+      <div class="rs-head">
+        <span class="ma num">S1</span>
+        <span class="ten">Bến Gió Mắt → Cồn Vàng</span>
+        <span class="meta num">75 phút · 6 chuyến/ngày · 4 bến</span>
+        <button class="rs-cta" id="rsCta">🎫 Đặt vé từ bến đã chọn</button>
+      </div>
+      <div class="rs-wrap">
+        <svg viewBox="0 0 1160 244" role="img" aria-label="Sơ đồ tuyến S1 trên dòng sông — 4 bến đánh số, mũi tên dòng nước, nhánh ra đảo">
+          <defs>
+            <linearGradient id="gxNuoc" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#14919B"/><stop offset=".55" stop-color="#11507E"/><stop offset="1" stop-color="#0A2E4E"/>
+            </linearGradient>
+          </defs>
+          <!-- bờ cát 2 bên -->
+          <path class="sv-bo" d="M 40 136 C 130 124, 250 124, 365 124 C 470 124, 550 132, 650 124 C 750 116, 860 82, 940 90 C 1000 96, 1060 114, 1120 124"/>
+          <path class="sv-bo" d="M 40 186 C 130 174, 250 174, 365 174 C 470 174, 550 182, 650 174 C 750 166, 860 132, 940 140 C 1000 146, 1060 164, 1120 174"/>
+          <!-- dòng nước chính S1 -->
+          <path class="sv-song" d="M 40 161 C 130 149, 250 149, 365 149 C 470 149, 550 157, 650 149 C 750 141, 860 107, 940 115 C 1000 121, 1060 139, 1120 149"/>
+          <path class="sv-song-vt" d="M 60 161 C 140 151, 250 151, 365 149 C 470 147, 550 155, 650 149 C 750 141, 860 109, 940 115 C 1000 119, 1060 137, 1112 147"/>
+          <!-- mũi tên dòng nước -->
+          <polygon class="sv-dan" points="-8,-5 9,0 -8,5" transform="translate(210 148) rotate(2)"/>
+          <polygon class="sv-dan" points="-8,-5 9,0 -8,5" transform="translate(520 151) rotate(-2)"/>
+          <polygon class="sv-dan" points="-8,-5 9,0 -8,5" transform="translate(855 119) rotate(-14)"/>
+          <!-- nhánh S2 ra đảo Ngọc Mây -->
+          <path class="sv-nhanh" d="M 940 115 C 990 92, 1030 76, 1078 62"/>
+          <polygon points="-7,-4.5 8,0 -7,4.5" transform="translate(1082 61) rotate(-17)" fill="#14919B"/>
+          <ellipse class="sv-dao" cx="1122" cy="50" rx="34" ry="15"/>
+          <text x="1122" y="47" text-anchor="middle" font-size="11.5" font-weight="800" fill="#11507E" font-family="'Trebuchet MS',Arial">Đảo Ngọc Mây</text>
+          <text x="1122" y="60" text-anchor="middle" font-size="10" fill="#5D7488">S2 · 40 phút/phà</text>
+          <!-- 4 bến đánh số -->
+          <g class="stop" data-ben="0" tabindex="0" role="button" aria-label="Bến 1 — Bến Gió Mắt, bến chính">
+            <rect class="pier" x="50" y="169" width="40" height="6" rx="3"/><rect class="pier" x="56" y="163" width="4" height="12" rx="2"/><rect class="pier" x="80" y="163" width="4" height="12" rx="2"/>
+            <circle class="phao" cx="70" cy="161" r="15"/><text class="pnum" x="70" y="166">1</text>
+            <text class="s-name" x="70" y="112">Bến Gió Mắt</text><text class="s-sub" x="70" y="128">bến chính · 0đ</text>
+          </g>
+          <g class="stop" data-ben="1" tabindex="0" role="button" aria-label="Bến 2 — Bến Chân Sóng, 0 đồng">
+            <rect class="pier" x="345" y="157" width="40" height="6" rx="3"/><rect class="pier" x="351" y="151" width="4" height="12" rx="2"/><rect class="pier" x="375" y="151" width="4" height="12" rx="2"/>
+            <circle class="phao" cx="365" cy="149" r="15"/><text class="pnum" x="365" y="154">2</text>
+            <text class="s-name" x="365" y="200">Bến Chân Sóng</text><text class="s-sub" x="365" y="216">0đ · tuyến đảo</text>
+          </g>
+          <g class="stop" data-ben="2" tabindex="0" role="button" aria-label="Bến 3 — Bến Lồng Đèn, phụ thu 10 nghìn">
+            <rect class="pier" x="630" y="157" width="40" height="6" rx="3"/><rect class="pier" x="636" y="151" width="4" height="12" rx="2"/><rect class="pier" x="660" y="151" width="4" height="12" rx="2"/>
+            <circle class="phao" cx="650" cy="149" r="15"/><text class="pnum" x="650" y="154">3</text>
+            <text class="s-name" x="650" y="112">Bến Lồng Đèn</text><text class="s-sub" x="650" y="128">+10.000đ</text>
+          </g>
+          <g class="stop" data-ben="3" tabindex="0" role="button" aria-label="Bến 4 — Cồn Vàng, phụ thu 20 nghìn">
+            <rect class="pier" x="920" y="123" width="40" height="6" rx="3"/><rect class="pier" x="926" y="117" width="4" height="12" rx="2"/><rect class="pier" x="950" y="117" width="4" height="12" rx="2"/>
+            <circle class="phao" cx="940" cy="115" r="15"/><text class="pnum" x="940" y="120">4</text>
+            <text class="s-name" x="940" y="66">Cồn Vàng</text><text class="s-sub" x="940" y="82">+20.000đ · cuối tuyến</text>
+          </g>
+        </svg>
+      </div>
+      <!-- mobile: danh sách bến dọc -->
+      <div class="stop-list" id="stopList"></div>
+      <div class="dep-strip2">
+        <span class="lb">Bản tin bến — S1 hôm nay:</span>
+        <span id="depChips"></span>
+        <span class="meta">Bấm giờ để giữ chuyến đó · có mặt trước giờ chạy 15 phút</span>
+      </div>
+    </div>
+
+    <div class="ben-g" id="benGrid"></div>
+    <p class="ben-note">Mỗi thẻ là một bến trên dòng Sóng Xanh — bấm “Đặt vé” là khay đặt vé tự điền đúng tuyến của bến đó.</p>
+  </div>
+</section>
+
+<!-- ===== KHUNG NỔI BẬT (P12) ===== -->
+<section class="sec" id="noibat" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Khung riêng · Chuyến khách giữ nhiều</span>
+      <h2>Hai kiểu đi khách giữ chỗ nhiều nhất tuần này</h2>
+      <p>Cùng tàu, cùng bến — chỉ khác nhịp đi: một vòng ngắm cảnh ngắn, hay một buổi tối trọn trên nước.</p>
+    </div>
+    <div class="noi-g">
+      <article class="noi-main rv">
+        <div class="im"><img src="assets/img/p1.webp" alt="Tour tàu ngắm cảnh trên sông Sóng Xanh Marine" width="1024" height="683" loading="lazy"></div>
+        <div class="bd">
+          <span class="rt">S1 · 75 PHÚT</span>
+          <h3>Tour tàu ngắm cảnh trên sông</h3>
+          <ul>
+            <li>Vòng sông 75 phút qua 3 bến — lên xuống thoải mái</li>
+            <li>Mui trống ngắm hoàng hôn + salon máy lạnh</li>
+            <li>Hướng dẫn viên kể chuyện sông trên mỗi chuyến</li>
+          </ul>
+          <div class="pr"><b class="num">120.000đ</b><span>/ người · trẻ em 1–1,3m giá 65%</span></div>
+          <button class="btn btn-a" data-book="S1">🎫 Giữ chỗ tour ngắm cảnh</button>
+        </div>
+      </article>
+      <div class="noi-side">
+        <article class="noi-sub rv">
+          <div class="im"><img src="assets/img/p4.webp" alt="Thuê tàu riêng theo nhóm Sóng Xanh Marine" width="1152" height="768" loading="lazy"></div>
+          <div class="bd">
+            <span class="rt">S4 · TRỌN TÀU</span>
+            <h4>Thuê tàu riêng theo nhóm</h4>
+            <div class="pr num">2.900.000đ <small>/ tàu 3 giờ · tới 25 khách</small></div>
+            <button class="add" data-book="S4">Giữ tàu riêng</button>
+          </div>
+        </article>
+        <article class="noi-sub rv">
+          <div class="im"><img src="assets/img/p6.webp" alt="Tour hoàng hôn và ăn tối trên sông Sóng Xanh Marine" width="1280" height="853" loading="lazy"></div>
+          <div class="bd">
+            <span class="rt">S3 · 2G30</span>
+            <h4>Tour hoàng hôn và ăn tối</h4>
+            <div class="pr num">450.000đ <small>/ người · gồm set dinner</small></div>
+            <button class="add" data-book="S3">Giữ bàn tối</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAC THU: TRA CHUYẾN THEO NHÓM ===== -->
+<section class="sec" id="tra-chuyen">
+  <div class="wrap">
+    <div class="dark-sec rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Công cụ đặc biệt của bến</span>
+      <h2>⚓ Nhóm mình bao nhiêu người, thích gì — tàu nào hợp?</h2>
+      <p class="sub">Chọn kiểu đi, đếm số khách và ngày ra bến — bến gợi tuyến đúng, liệt kê giờ còn nhận khách kèm sơ đồ boong để bạn chọn khu chỗ, rồi giữ chỗ luôn trong 1 nút.</p>
+      <div class="tra-grid">
+        <div class="tra-pick">
+          <label>1 · Kiểu đi hôm nay</label>
+          <div class="chip-row" id="traKieu">
+            <button data-k="canh" class="on">🌊 Ngắm cảnh sông</button>
+            <button data-k="dao">🏝️ Ra đảo</button>
+            <button data-k="hoanghon">🌇 Hoàng hôn &amp; ăn tối</button>
+            <button data-k="rieng">🛥️ Thuê riêng nhóm</button>
+          </div>
+          <label>2 · Số khách</label>
+          <div class="stepper-row">
+            <div class="stepper-box"><span>Người lớn</span><div class="stepper"><button id="traNlTru" aria-label="Bớt người lớn">−</button><b class="num" id="traNl">2</b><button id="traNlCong" aria-label="Thêm người lớn">+</button></div></div>
+            <div class="stepper-box"><span>Trẻ em 1–1,3m</span><div class="stepper"><button id="traTeTru" aria-label="Bớt trẻ em">−</button><b class="num" id="traTe">0</b><button id="traTeCong" aria-label="Thêm trẻ em">+</button></div></div>
+          </div>
+          <label>3 · Ngày ra bến</label>
+          <div class="chip-row" id="traNgay"></div>
+          <p class="tra-note">💡 Trẻ em dưới 1m miễn phí. Từ 10 khách, bến thường khuyên thuê trọn tàu — rẻ hơn mua lẻ và chủ động giờ giấc.</p>
+        </div>
+        <div class="tra-out">
+          <h3><span id="traTen">Gợi ý cho nhóm của bạn</span><small id="traDem"></small></h3>
+          <div class="tra-kq"><span class="rt num" id="traRoute">S1</span><b id="traTuyen">Ngắm cảnh sông — 75 phút</b></div>
+          <p class="tra-lydo" id="traLydo">Vòng sông ngắn, lên xuống thoải mái — hợp nhóm 1–9 khách đi lần đầu.</p>
+          <label>Giờ chạy còn nhận khách</label>
+          <div class="chip-row" id="traGios"></div>
+          <label>Sơ đồ boong — chạm chọn khu chỗ</label>
+          <div class="boong">
+            <svg viewBox="0 0 460 132" role="img" aria-label="Sơ đồ boong tàu với 3 khu chỗ: mui trống, salon máy lạnh, sàn sau">
+              <path class="b-hull" d="M 26 38 L 434 38 L 402 96 Q 230 116 58 96 Z"/>
+              <rect class="b-khu on" data-khu="Mui trống ngắm cảnh" x="52" y="52" width="106" height="38" rx="9"/>
+              <rect class="b-khu" data-khu="Salon máy lạnh" x="176" y="52" width="130" height="38" rx="9"/>
+              <rect class="b-khu" data-khu="Sàn sau + quán nhỏ" x="324" y="52" width="86" height="38" rx="9"/>
+              <text class="b-lbl" x="105" y="75">MUI TRỐNG</text>
+              <text class="b-lbl" x="241" y="75">SALON LẠNH</text>
+              <text class="b-lbl" x="367" y="75">SÀN SAU</text>
+              <text x="230" y="122" text-anchor="middle" font-size="10.5" fill="#9FC2D4">chỗ nghỉ vàng = khu bạn chọn · tất cả khu đều có phao cứu sinh</text>
+            </svg>
+          </div>
+          <div class="tra-sum"><span id="traGiaLbl">Tạm tính chuyến này</span><b class="num" id="traGia">240.000đ</b></div>
+          <button class="tra-dat" id="traDat">🎫 Giữ chỗ 09:00 — mở khay đặt vé</button>
+          <p class="tiny">Giữ chỗ miễn phí 30 phút · trả tiền tại quầy bến · không đặt cọc</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VỀ CHÚNG TÔI (M8) ===== -->
+<section class="sec" id="ve-chung-toi">
+  <div class="wrap m8">
+    <div class="m8-img rv"><img src="assets/img/intro.webp" alt="Hướng dẫn viên Sóng Xanh Marine chăm sóc khách trên boong tàu" width="1536" height="1024" loading="lazy"></div>
+    <div class="m8-board rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Về bến Sóng Xanh</span>
+      <h2>Chỉnh chu từ lúc lên bến đến khi cập bến</h2>
+      <p>Sóng Xanh Marine chạy sông nước 12 năm — từ phà đưa đón hằng ngày tới những buổi tối ánh đèn lung linh. Tàu mình nhỏ vừa đủ ấm: hướng dẫn viên nhớ tên khách, pha trà muối khi gió đổi chiều, và dừng đúng chỗ đàn cá nổi lên vây thuyền.</p>
+      <p>Người đi phà quen thuộc bến như quán nhà: suất 06:30 chở bà ra đảo thăm con, chuyến 17:00 đón dân văn phòng về — hết lịch là có, không chê một chuyến nào.</p>
+      <p class="sign">— Thuyền trưởng Trần Sóng Đông, bến Gió Mắt —</p>
+      <div class="board-stats">
+        <div><b>06:00 – 21:00</b><span>bến mở cửa mỗi ngày</span></div>
+        <div><b>14 chuyến/ngày</b><span>4 tuyến · không nghỉ trưa dài</span></div>
+        <div><b>6 tàu thuyền</b><span>2 tàu 2 tầng · 4 thuyền mui</span></div>
+        <div><b>230.000+ lượt</b><span>khách đưa đón từ 2014</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Du khách &amp; người đi phà nói</span>
+      <h2>Người đi chơi, người đi phà đều quay lại</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đi phà 06:30 ra đảo thăm cháu mỗi tháng, tàu chuẩn giờ chưa lần nào lệch. Sóng to cũng êm, có người dìu cụ lên bậc thang."</p><b>Cô Bé Sáu</b><span>đi phà tuyến đảo · mỗi tháng</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Tour hoàng hôn ăn tối trên boong — đèn lung linh, cá kho tô thơm hết mũi. Ảnh về tới nhà ai cũng xin lại bản gốc."</p><b>Anh Gia Hân</b><span>đi cặp · tour S3</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Nhóm 14 người thuê trọn tàu 3 giờ: sinh nhật giữa sông, mang loa mang bánh cũng được. Thuyền trưởng còn nhường mui cho tụi nhỏ ngắm sao."</p><b>Chị Uyên Thảo</b><span>nhóm 14 khách · thuê riêng</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Khách đoàn công ty 22 người, đặt khay 5 phút là có mã vé cho cả đoàn. Chấm thêm nửa sao nữa nếu bến bán thêm mắm ruốc nhà làng về làm quà."</p><b>Anh Trí Dũng</b><span>công tác đoàn · Q.7</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ (nền space mờ) ===== -->
+<section class="sec ct-sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>⚓ Ghé bến Gió Mắt</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Bến chính</b><br>Bến Gió Mắt, 6 Dường Chân Sóng</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo đặt vé</b><br><a class="tel num" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ bến</b><br>06:00 – 21:00 tất cả các ngày · tàu cuối 19:30</div></div>
+      <div class="ct-line"><div class="ic">🎟</div><div><b>Nhận vé</b><br>Quầy vé đầu cầu — xuất mã giữ chỗ, in vé trong 1 phút</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.6295,106.7418&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới bến</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.6295,106.7418 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.6295,106.7418&z=15&output=embed&hl=vi" title="Bản đồ bến Gió Mắt — Sóng Xanh Marine"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="w3" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 4c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 3)"/><path d="M2 8c3-3 6-3 9 0s6 3 9 0 6-3 9 0" transform="translate(0 2)" opacity=".55"/></svg> Hỏi &amp; đáp</span>
+      <h2>Vài điều khách hay hỏi trước khi lên tàu</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Trời mưa bão, phà và tour có huỷ không?<i>+</i></button><div class="a">An toàn là tuyệt đối: gió mạnh từ cấp 6 hoặc mưa bão, bến dời chuyến và báo cho bạn trước ít nhất 2 giờ. Vé đã giữ được chuyển sang chuyến khác hoặc hoàn 100% tại quầy — không giữ phí nào.</div></div>
+      <div class="qa rv"><button>Trẻ em tính vé thế nào?<i>+</i></button><div class="a">Dưới 1m đi miễn phí (không ghế riêng). Từ 1m đến 1,3m tính 65% giá vé người lớn. Trên 1,3m tính như người lớn. Trẻ em phải có người lớn đi cùng, mỗi người lớn bến khuyên chỉ kèm 2 trẻ dưới 1m.</div></div>
+      <div class="qa rv"><button>Giữ chỗ có mất phí trước không?<i>+</i></button><div class="a">Không. Giữ chỗ trên trang hoặc qua hotline hoàn toàn miễn phí, chỗ được khoá 30 phút. Bạn thanh toán tại quầy bến (tiền mặt, chuyển khoản hoặc quét QR) trước giờ chạy 15 phút.</div></div>
+      <div class="qa rv"><button>Mang hành lý, xe đạp lên tàu được không?<i>+</i></button><div class="a">Balo, túi xách, vali nhỏ miễn phí. Xe đạp tính thêm 15.000đ/chuyến. Xe máy không lên tàu du lịch — tuyến đảo có phà chở xe riêng chạy song song, bạn hỏi quầy vé để được xếp chuyến.</div></div>
+      <div class="qa rv"><button>Muốn đổi giờ chuyến đã giữ thì sao?<i>+</i></button><div class="a">Đổi miễn phí sang bất kỳ chuyến nào còn chỗ, miễn là nhắn bến trước giờ chạy ít nhất 1 giờ qua hotline 0034567899 — chỉ cần nêu mã vé.</div></div>
+      <div class="qa rv"><button>Tàu có máy lạnh không, sóng lớn có say?<i>+</i></button><div class="a">Tàu 2 tầng có salon máy lạnh kín và mui trống thoáng gió; thuyền mui có bạt che mưa. Sông nội địa sóng nhỏ — bạn dễ say thì chọn chỗ salon giữa tàu, bến có sẵn kẹo gừng miễn phí.</div></div>
+      <div class="qa rv"><button>Thuê tàu riêng cần đặt trước bao lâu?<i>+</i></button><div class="a">Trước 1 ngày là chắc chắn; trong ngày bến vẫn cố xen nếu tàu trống. Mỗi tàu nhận tối đa 25 khách — đoàn lớn hơn bến ghép 2 tàu chạy song song, giá tính theo tàu nên càng đông càng rẻ đầu người.</div></div>
+      <div class="qa rv"><button>Người già, người đi khuyết tật có được hỗ trợ lên tàu không?<i>+</i></button><div class="a">Có — bến có thang dốc lên tàu, nhân viên hỗ trợ dìu từ quầy vé tới chỗ ngồi. Khi giữ chỗ, ghi chú "có người cần hỗ trợ" thì đội bến đón bạn tại cổng và sắp hàng ghế gần cửa.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="ft-song" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24c120-18 240-18 360 0s240 18 360 0 240-18 360 0 240 18 360 0v22H0Z" fill="#0A2E4E"/><path d="M0 30c120-14 240-14 360 0s240 14 360 0 240-14 360 0 240 14 360 0" fill="none" stroke="rgba(247,212,136,.45)" stroke-width="2"/></svg>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>⚓ Sóng Xanh Marine</b>
+      <p>Mở lối khám phá theo dòng nước. Tàu thuyền du lịch &amp; vận tải hành khách đường thủy — 4 tuyến, 14 chuyến mỗi ngày từ bến Gió Mắt, 6 Dường Chân Sóng.</p>
+    </div>
+    <div>
+      <h4>Trên tuyến</h4>
+      <a href="#lo-trinh">Sơ đồ tuyến &amp; 8 bến</a>
+      <a href="#noibat">Chuyến khách giữ nhiều</a>
+      <a href="#tra-chuyen">Tra chuyến theo nhóm</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 Bến Gió Mắt, 6 Dường Chân Sóng</p>
+      <p>📞 <a class="num" href="tel:0034567899">0034567899</a></p>
+      <p>🕰 06:00 – 21:00 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Sóng Xanh Marine · Giá vé tham khảo, điều chỉnh theo mùa và lộ trình nhiên liệu</div>
+</footer>
+
+<!-- ===== KHAY ĐẶT VÉ (funnel chính — dạng B) ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="veDrawer" aria-label="Khay đặt vé tàu">
+  <div class="dr-head">
+    <h3>🎫 Khay đặt vé tàu</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng khay đặt vé">✕</button>
+  </div>
+  <div class="dr-body">
+    <div class="dstep" id="dStep"><i class="on"></i><i></i><i></i></div>
+
+    <!-- Bước 1: tuyến → bến → ngày + giờ → số khách -->
+    <div class="drv on" id="dv1">
+      <label>1 · Chọn tuyến</label>
+      <div class="tuyen-cards" id="dTuyens"></div>
+      <label>2 · Bến lên tàu</label>
+      <div class="ben-chips" id="dBens"></div>
+      <label>3 · Ngày ra bến &amp; giờ chạy</label>
+      <div class="day-chips" id="dDays"></div>
+      <div class="gio-chips" id="dGios" style="margin-top:7px"></div>
+      <label>4 · Số khách</label>
+      <div class="khach-row">
+        <div class="khach-box"><span>Người lớn</span><div class="stepper"><button id="dNlTru" aria-label="Bớt người lớn">−</button><b class="num" id="dNl">2</b><button id="dNlCong" aria-label="Thêm người lớn">+</button></div></div>
+        <div class="khach-box"><span>Trẻ em 1–1,3m (65%)</span><div class="stepper"><button id="dTeTru" aria-label="Bớt trẻ em">−</button><b class="num" id="dTe">0</b><button id="dTeCong" aria-label="Thêm trẻ em">+</button></div></div>
+      </div>
+      <div class="ve-sum">
+        <div class="vs-row"><span>Chuyến được giữ</span><b id="sumChuyen">—</b></div>
+        <div class="vs-row"><span>Người lớn</span><b class="num" id="sumNl">—</b></div>
+        <div class="vs-row"><span>Trẻ em 1–1,3m</span><b class="num" id="sumTe">—</b></div>
+        <div class="vs-row"><span>Phụ thu bến lên tàu</span><b class="num" id="sumPhu">—</b></div>
+        <div class="vs-row tot"><span>Tạm tính</span><b class="num" id="sumTong">—</b></div>
+      </div>
+      <button class="btn btn-a dr-cta" id="toStep2">Tiếp tục — giữ chỗ 30 phút</button>
+      <p class="dr-note">Bấm tiếp vẫn <b>chưa mất tiền</b> — vé chốt khi bạn xác nhận ở bước sau</p>
+    </div>
+
+    <!-- Bước 2: danh tính + khu chỗ -->
+    <div class="drv" id="dv2">
+      <button class="dr-back" id="back1">← Xem lại chuyến</button>
+      <label for="dTen">Tên người giữ chỗ *</label>
+      <input id="dTen" type="text" placeholder="VD: Nguyễn Thị Bích" autocomplete="name">
+      <label for="dSdt">Số điện thoại nhận mã vé *</label>
+      <input id="dSdt" type="tel" placeholder="VD: 0901 234 567" autocomplete="tel" inputmode="tel">
+      <label for="dKhu">Khu chỗ trên boong</label>
+      <select id="dKhu">
+        <option>Mui trống ngắm cảnh</option>
+        <option>Salon máy lạnh</option>
+        <option>Sàn sau + quán nhỏ</option>
+      </select>
+      <label for="dNote">Ghi chú (người già, xe đạp, hoá đơn…)</label>
+      <input id="dNote" type="text" placeholder="VD: có cụ 78 tuổi, xếp ghế gần cửa">
+      <div class="cam-ket"><b>Cam kết bến:</b> giữ chỗ 30 phút từ lúc xác nhận · hoàn/huỷ miễn phí nếu thời tiết xấu hoặc đổi ý trước giờ chạy 1 giờ · xuất bến đúng bản tin giờ.</div>
+      <button class="btn btn-b dr-cta" id="dSubmit">✅ Xác nhận giữ chỗ</button>
+      <p class="dr-note">Mã vé hiện ngay tại đây — không cần chờ tin nhắn</p>
+    </div>
+
+    <!-- Bước 3: xác nhận tại trang -->
+    <div class="drv" id="dv3">
+      <div class="ve-done">
+        <div class="ok"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h4>Đã giữ chỗ trên dòng Sóng Xanh!</h4>
+        <div class="code num" id="veCode">SX-S1-0000</div>
+        <p id="veChuyen">—</p>
+        <p class="han">⏳ Chỗ giữ đến <b class="num" id="veHan">—</b> — ra quầy bến trước giờ chạy 15 phút, xuất mã hoặc chỉ cần SĐT.</p>
+        <p>Thanh toán tại quầy (tiền mặt, chuyển khoản, QR) · đổi/huỷ miễn phí trước 1 giờ — gọi <b class="num">0034567899</b>, nhắc mã vé là xong.</p>
+        <button class="btn btn-g dr-cta" id="veAgainBtn">Đặt thêm chuyến khác</button>
+        <button class="dr-back" id="veDoneBtn" style="text-align:center">Đã rõ — đóng khay</button>
+      </div>
+    </div>
+  </div>
+  <div class="dr-foot">Bấm nút trong khay này là <b>chưa mất tiền</b> — vé chỉ chốt khi bạn xác nhận. Hotline <b class="num">0034567899</b> trực bến 06:00–21:00.</div>
+</aside>
+
+<!-- ===== FAB VÉ (SVG nét — icon vé gờ + sóng, KHÔNG icon giỏ) ===== -->
+<button class="ve-fab" id="veFab" data-open-ve aria-label="Mở khay đặt vé">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 8V6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5V8a2.5 2.5 0 0 0 0 5v1.5A2.5 2.5 0 0 1 18.5 17h-13A2.5 2.5 0 0 1 3 14.5V13a2.5 2.5 0 0 0 0-5Z" transform="translate(0 -1.5)"/>
+    <path d="M14 2.8v2.4M14 8.4v2.4M14 14v2.4" stroke-dasharray="0.1 3.4" transform="translate(0 -1.2)"/>
+    <path d="M4.5 20c1.3 1.2 2.6 1.2 3.9 0s2.6-1.2 3.9 0 2.6 1.2 3.9 0" opacity=".85"/>
+  </svg>
+  <span class="pkc-dot"></span>
+</button>
+
+<!-- ===== CHAT (pkc — không bot) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn bến tàu">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">⚓</div>
+    <div><div class="pkc-name">Bến <span data-pkc="brand">Sóng Xanh Marine</span></div><div class="pkc-on"><i></i>Đang trực bến — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🌧 Mưa bão có chạy không?</button>
+    <button class="pkc-chip">🧒 Giá vé trẻ em?</button>
+    <button class="pkc-chip">🛥 Thuê tàu riêng đặt trước?</button>
+    <button class="pkc-chip">🎫 Giữ chỗ có mất phí?</button>
+    <button class="pkc-chip">🧳 Mang xe đạp lên tàu?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho bến…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-382 — Sóng Xanh Marine: khay đặt vé tuyến→bến→ngày+giờ→số khách + sơ đồ bến prefill*/
+'use strict';
+var HOTLINE = '0034567899';
+var TUYEN = {
+  S1:{ten:'S1 · Ngắm cảnh sông',    ngan:'Ngắm cảnh sông',      phut:'75 phút',      gia:120000,  tronTau:false, bens:[['Bến Gió Mắt',0],['Bến Chân Sóng',0],['Bến Lồng Đèn',10000],['Cồn Vàng',20000]], gios:[['07:30',0],['09:00',0],['10:30',1],['13:30',0],['15:30',1],['17:00',0]]},
+  S2:{ten:'S2 · Ra đảo Ngọc Mây',   ngan:'Ra đảo Ngọc Mây',     phut:'40 phút/phà',  gia:90000,   tronTau:false, bens:[['Bến Gió Mắt',0],['Bến Chân Sóng',0]], gios:[['06:30',0],['08:00',0],['09:30',0],['11:00',0],['13:00',0],['14:30',1],['16:00',0],['17:30',0]]},
+  S3:{ten:'S3 · Hoàng hôn & ăn tối',ngan:'Hoàng hôn & ăn tối',  phut:'2 giờ 30',     gia:450000,  tronTau:false, bens:[['Bến Chân Sóng',0]], gios:[['17:30',0],['19:30',1]]},
+  S4:{ten:'S4 · Thuê tàu riêng',    ngan:'Thuê tàu riêng',      phut:'3 giờ · tới 25 khách', gia:2900000, tronTau:true, bens:[['Bến Gió Mắt',0]], gios:[['08:00',0],['10:00',0],['14:00',0],['16:30',0],['Giờ hẹn',0]]}
+};
+var GIA_TE_HE_SO = 0.65;
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+function dayLabel(i){
+  var d = new Date(); d.setDate(d.getDate()+i);
+  var dd = ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2);
+  return i===0 ? 'Hôm nay · '+dd : (i===1 ? 'Mai · '+dd : dd);
+}
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== RENDER KHỐI-8: 8 bến trên dòng sông (2 thẻ nổi bật TO + 6 thẻ thường) ===== */
+var BENS = [
+  {id:'p1', stt:'B1', img:'assets/img/p1.webp', w:1024, h:683, rt:'S1', gio:'07:30 → 17:00 · 6 chuyến', ten:'Tour tàu ngắm cảnh trên sông', gia:'120.000đ', donvi:'/ người · 75 phút', mo:'Vòng sông qua 3 bến, mui trống ngắm hoàng hôn + salon máy lạnh. Hướng dẫn viên kể chuyện sông trên mỗi chuyến.', feat:'BÁN CHẠY NHẤT BẾN', t:'S1'},
+  {id:'p4', stt:'B4', img:'assets/img/p4.webp', w:1152, h:768, rt:'S4', gio:'theo hẹn · 3 giờ/tàu', ten:'Thuê tàu riêng theo nhóm', gia:'2.900.000đ', donvi:'/ tàu 3 giờ · tới 25 khách', mo:'Chủ động giờ đi, lịch trình và tiệc trên boong — sinh nhật, kỷ niệm, đoàn công ty. Đoàn lớn ghép 2 tàu song song.', feat:'CHO NHÓM &amp; SỰ KIỆN', t:'S4'},
+  {id:'p2', stt:'B2', img:'assets/img/p2.webp', w:1024, h:683, rt:'S1+', gio:'chọn lọc · 2 giờ', ten:'Du thuyền tham quan theo tuyến', gia:'260.000đ', donvi:'/ người · 2 giờ', mo:'Du thuyền 2 tầng chạy dài tuyến, dừng điểm chụp đẹp nhất — có nước suối, khăn lạnh.', t:'S1'},
+  {id:'p3', stt:'B3', img:'assets/img/p3.webp', w:1024, h:683, rt:'S2', gio:'06:30 → 17:30 · 8 chuyến', ten:'Tàu đưa đón khách ra đảo', gia:'90.000đ', donvi:'/ người · 40 phút/phà', mo:'Phà đúng giờ ra Đảo Ngọc Mây, hỗ trợ hành lý và xe đạp — người đảo đi mỗi tuần, khách đi chơi đi mỗi ngày.', t:'S2'},
+  {id:'p5', stt:'B5', img:'assets/img/p5.webp', w:1280, h:853, rt:'S1', gio:'chuyến ngắn · 30 phút', ten:'Vé tham quan bằng thuyền', gia:'60.000đ', donvi:'/ người · 30 phút', mo:'Thuyền mui ngắn chạy quanh bến — cho bé lần đầu ngồi thuyền, cho người ít thời gian.', t:'S1'},
+  {id:'p6', stt:'B6', img:'assets/img/p6.webp', w:1280, h:853, rt:'S3', gio:'17:30 · 19:30', ten:'Tour hoàng hôn và ăn tối', gia:'450.000đ', donvi:'/ người · gồm set dinner', mo:'2 giờ 30 trên nước: mặt trời xuống cầu đá, ăn tối món sông dưới đèn.', t:'S3'},
+  {id:'p7', stt:'B7', img:'assets/img/p7.webp', w:1152, h:768, rt:'KÈM', gio:'đặt kèm chuyến', ten:'Hướng dẫn viên trên tàu', gia:'300.000đ', donvi:'/ tuyến · đặt kèm', mo:'Người sông kể chuyện làng chài, cửa sông, cồn bãi — đoàn khách và trường học nên chọn kèm từ lúc đặt vé.', wide:true, t:'S1'},
+  {id:'p8', stt:'B8', img:'assets/img/p8.webp', w:1280, h:853, rt:'BẾN', gio:'từ 06:00 đến 21:00', ten:'Đặt chuyến & hỗ trợ hành khách', gia:'Miễn phí', donvi:'dịch vụ của bến', mo:'Giữ chỗ, dìu người già lên tàu, trông hành lý oversized — quầy bến làm trọn từ lúc bạn gọi đến lúc cập bến.', wide:true, t:''}
+];
+function renderBens(){
+  var g = document.getElementById('benGrid');
+  var html = '';
+  for (var i=0;i<BENS.length;i++){
+    var p = BENS[i];
+    var feat = p.feat ? ' feat' : '';
+    var wide = p.wide ? ' wide' : '';
+    var badge = p.feat ? '<span class="badge">'+p.feat+'</span>' : '';
+    var cta = p.t ? '<button class="add" data-book="'+p.t+'">🎫 Đặt vé</button>'
+                  : '<button class="add" data-book="">Nhắn bến giữ chuyến</button>';
+    html += '<article class="ben'+feat+wide+' rv">'
+      + '<span class="phao-so">'+p.stt+'</span>' + badge
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.ten+' — Sóng Xanh Marine" width="'+p.w+'" height="'+p.h+'" loading="lazy"></div>'
+      + '<div class="bd"><div class="route-line"><span class="rt num">'+p.rt+'</span><span class="gio-line">'+p.gio+'</span></div>'
+      + '<h3>'+p.ten+'</h3><p>'+p.mo+'</p>'
+      + '<div class="ft"><div class="pri num">'+p.gia+'<small>'+p.donvi+'</small></div>'+cta+'</div></div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-book]');
+    if (!btn) return;
+    prefillOpen(btn.getAttribute('data-book'), null, null, null, null);
+  });
+}
+
+/* ===== SƠ ĐỒ BẾN: bấm bến → nhớ bến + prefill khay đặt vé ===== */
+var SO_DO = { t:'S1', ben:0 };
+function selectStop(idx){
+  SO_DO.ben = idx;
+  var stops = document.querySelectorAll('#so-do .stop, #stopList button');
+  for (var i=0;i<stops.length;i++){
+    var v = stops[i].getAttribute('data-ben');
+    stops[i].classList.toggle('on', v === String(idx));
+  }
+  document.getElementById('rsCta').textContent = '🎫 Đặt vé từ ' + TUYEN.S1.bens[idx][0];
+}
+document.getElementById('so-do').addEventListener('click', function(e){
+  var st = e.target.closest('.stop');
+  if (!st) return;
+  selectStop(parseInt(st.getAttribute('data-ben'),10));
+  toast('Đã nhớ bến lên tàu', TUYEN.S1.bens[SO_DO.ben][0] + ' — bấm "Đặt vé từ bến đã chọn" là khay tự điền.');
+});
+document.getElementById('so-do').addEventListener('keydown', function(e){
+  if (e.key!=='Enter' && e.key!==' ') return;
+  var st = e.target.closest('.stop');
+  if (!st) return;
+  e.preventDefault();
+  selectStop(parseInt(st.getAttribute('data-ben'),10));
+});
+function renderStopList(){
+  var wrap = document.getElementById('stopList');
+  var html = '';
+  var subs = ['bến chính · 0đ','0đ · tuyến đảo','+10.000đ','+20.000đ · cuối tuyến'];
+  for (var i=0;i<TUYEN.S1.bens.length;i++){
+    html += '<button data-ben="'+i+'"><span class="phao">'+(i+1)+'</span>'+TUYEN.S1.bens[i][0]+'<small>'+subs[i]+'</small></button>';
+  }
+  wrap.innerHTML = html;
+  wrap.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-ben]');
+    if (!b) return;
+    selectStop(parseInt(b.getAttribute('data-ben'),10));
+    toast('Đã nhớ bến lên tàu', TUYEN.S1.bens[SO_DO.ben][0] + ' — bấm "Đặt vé từ bến đã chọn" là khay tự điền.');
+  });
+}
+document.getElementById('rsCta').addEventListener('click', function(){
+  prefillOpen('S1', SO_DO.ben, 0, null, null);
+});
+
+/* ===== BẢN TIN BẾN: chips giờ S1, bấm là giữ chuyến ===== */
+function renderDepChips(){
+  var wrap = document.getElementById('depChips');
+  var html = '';
+  for (var i=0;i<TUYEN.S1.gios.length;i++){
+    var g = TUYEN.S1.gios[i];
+    html += '<button class="gchip num'+(g[1]?' it':'')+'" data-dep="S1" data-gio="'+g[0]+'"><i></i>'+g[0]+(g[1]?' · ít chỗ':'')+'</button>';
+  }
+  wrap.innerHTML = html;
+}
+
+/* ===== KHAY ĐẶT VÉ (drawer B) ===== */
+var ST = { t:'S1', ben:0, day:0, gioIdx:0, nl:2, te:0, step:1 };
+function openVe(){
+  ST.step = 1; showStep(1);
+  renderDrawer();
+  document.getElementById('veDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeVe(){
+  document.getElementById('veDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function prefillOpen(t, ben, gioIdx, nl, te){
+  if (t && TUYEN[t]) ST.t = t;
+  var T = TUYEN[ST.t];
+  ST.ben = (ben===null || ben===undefined) ? 0 : Math.min(ben, T.bens.length-1);
+  ST.gioIdx = (gioIdx===null || gioIdx===undefined) ? 0 : Math.min(gioIdx, T.gios.length-1);
+  if (nl!==null && nl!==undefined) ST.nl = nl;
+  if (te!==null && te!==undefined) ST.te = te;
+  ST.day = 0;
+  if (ST.nl < 1) ST.nl = 1;
+  selectStop(ST.t==='S1' ? ST.ben : 0);
+  openVe();
+  var names = {S1:'Tour ngắm cảnh sông', S2:'phà ra đảo', S3:'tour hoàng hôn', S4:'tàu riêng'};
+  toast('Khay đặt vé đã điền sẵn', (TUYEN[ST.t].tronTau ? 'Trọn tàu riêng' : names[ST.t] || TUYEN[ST.t].ngan) + ' · ' + TUYEN[ST.t].gios[ST.gioIdx][0] + ' — kiểm tra rồi xác nhận nhé!');
+}
+function teGia(gia){ return Math.round(gia*GIA_TE_HE_SO/5000)*5000; }
+function tongTien(){
+  var T = TUYEN[ST.t];
+  if (T.tronTau) return T.gia;
+  var phu = T.bens[ST.ben][1];
+  return ST.nl*T.gia + ST.te*teGia(T.gia) + (ST.nl+ST.te)*phu;
+}
+function renderDrawer(){
+  var T = TUYEN[ST.t];
+  /* tuyến */
+  var html = '';
+  ['S1','S2','S3','S4'].forEach(function(k){
+    var r = TUYEN[k];
+    html += '<button data-t="'+k+'"'+(k===ST.t?' class="on"':'')+'>'
+      + '<span class="t"><span class="rt num">'+k+'</span><b>'+r.ngan+'</b></span>'
+      + '<small>'+(r.tronTau ? fmt(r.gia)+' / trọn tàu' : 'từ '+fmt(r.gia)+' / người · '+r.phut)+'</small></button>';
+  });
+  document.getElementById('dTuyens').innerHTML = html;
+  /* bến */
+  html = '';
+  for (var i=0;i<T.bens.length;i++){
+    var phu = T.bens[i][1] ? '+'+fmt(T.bens[i][1]) : '0đ';
+    html += '<button data-b="'+i+'"'+(i===ST.ben?' class="on"':'')+'>'+T.bens[i][0]+' <small>'+phu+'</small></button>';
+  }
+  document.getElementById('dBens').innerHTML = html;
+  /* ngày */
+  html = '';
+  for (var d=0;d<3;d++) html += '<button data-day="'+d+'"'+(d===ST.day?' class="on"':'')+'>'+dayLabel(d)+'</button>';
+  document.getElementById('dDays').innerHTML = html;
+  /* giờ */
+  html = '';
+  for (var j=0;j<T.gios.length;j++){
+    html += '<button data-g="'+j+'"'+(j===ST.gioIdx?' class="on"':'')+'>'+T.gios[j][0]+(T.gios[j][1]?' · ít chỗ':'')+'</button>';
+  }
+  document.getElementById('dGios').innerHTML = html;
+  /* khách + tổng */
+  document.getElementById('dNl').textContent = ST.nl;
+  document.getElementById('dTe').textContent = ST.te;
+  document.getElementById('sumChuyen').textContent = ST.t+' · '+dayLabel(ST.day)+' · '+T.gios[ST.gioIdx][0];
+  document.getElementById('sumNl').textContent = ST.nl+' × '+fmt(T.gia);
+  document.getElementById('sumTe').textContent = T.tronTau ? '—' : (ST.te+' × '+fmt(teGia(T.gia)));
+  var phu = T.tronTau ? '—' : (T.bens[ST.ben][1] ? fmt(T.bens[ST.ben][1])+' / người' : '0đ');
+  document.getElementById('sumPhu').textContent = phu;
+  document.getElementById('sumTong').textContent = fmt(tongTien());
+}
+function showStep(n){
+  ST.step = n;
+  var bars = document.getElementById('dStep').children;
+  for (var i=0;i<3;i++) bars[i].classList.toggle('on', i<n);
+  for (var v=1;v<=3;v++){
+    document.getElementById('dv'+v).classList.toggle('on', v===n);
+  }
+}
+document.getElementById('dTuyens').addEventListener('click', function(e){
+  var b = e.target.closest('[data-t]'); if (!b) return;
+  ST.t = b.getAttribute('data-t'); ST.ben = 0; ST.gioIdx = 0;
+  renderDrawer();
+});
+document.getElementById('dBens').addEventListener('click', function(e){
+  var b = e.target.closest('[data-b]'); if (!b) return;
+  ST.ben = parseInt(b.getAttribute('data-b'),10); renderDrawer();
+});
+document.getElementById('dDays').addEventListener('click', function(e){
+  var b = e.target.closest('[data-day]'); if (!b) return;
+  ST.day = parseInt(b.getAttribute('data-day'),10); renderDrawer();
+});
+document.getElementById('dGios').addEventListener('click', function(e){
+  var b = e.target.closest('[data-g]'); if (!b) return;
+  ST.gioIdx = parseInt(b.getAttribute('data-g'),10); renderDrawer();
+});
+function stepKhach(el, n, isNl){
+  var v = parseInt(document.getElementById(el).textContent,10) + n;
+  if (isNl){ if (v<1) v=1; if (v>25) v=25; } else { if (v<0) v=0; if (v>20) v=20; }
+  document.getElementById(el).textContent = v;
+}
+document.getElementById('dNlTru').addEventListener('click', function(){ stepKhach('dNl',-1,true); renderDrawer(); });
+document.getElementById('dNlCong').addEventListener('click', function(){ stepKhach('dNl',1,true); renderDrawer(); });
+document.getElementById('dTeTru').addEventListener('click', function(){ stepKhach('dTe',-1,false); renderDrawer(); });
+document.getElementById('dTeCong').addEventListener('click', function(){ stepKhach('dTe',1,false); renderDrawer(); });
+document.getElementById('toStep2').addEventListener('click', function(){ showStep(2); });
+document.getElementById('back1').addEventListener('click', function(){ showStep(1); });
+document.getElementById('dSubmit').addEventListener('click', function(){
+  var ten = document.getElementById('dTen'), sdt = document.getElementById('dSdt');
+  ten.classList.remove('err'); sdt.classList.remove('err');
+  var ok = true;
+  if (!ten.value.trim()){ ten.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(sdt.value.replace(/[\s.]/g,''))){ sdt.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho bến xin tên và số điện thoại để khoá chỗ nhé — mã vé sẽ hiện ngay sau đó!'); return; }
+  var T = TUYEN[ST.t];
+  var code = 'SX-'+ST.t+'-'+(1000+Math.floor(Math.random()*9000));
+  var h = new Date(Date.now()+30*60000);
+  var han = ('0'+h.getHours()).slice(-2)+':'+('0'+h.getMinutes()).slice(-2);
+  document.getElementById('veCode').textContent = code;
+  document.getElementById('veChuyen').textContent = T.ten+' · '+dayLabel(ST.day)+' · giờ '+T.gios[ST.gioIdx][0]+' · lên tàu tại '+T.bens[ST.ben][0]+' · '+(T.tronTau ? 'trọn tàu, '+ST.nl+'+'+ST.te+' khách' : ST.nl+' lớn + '+ST.te+' em')+' · khu '+document.getElementById('dKhu').value;
+  document.getElementById('veHan').textContent = han;
+  showStep(3);
+  toast('Đã giữ chỗ — mã '+code, T.ten+' · '+dayLabel(ST.day)+' '+T.gios[ST.gioIdx][0]+' · giữ đến '+han+', trả tiền tại quầy bến!');
+});
+document.getElementById('veAgainBtn').addEventListener('click', function(){
+  document.getElementById('dTen').value=''; document.getElementById('dSdt').value='';
+  showStep(1); renderDrawer();
+});
+document.getElementById('veDoneBtn').addEventListener('click', closeVe);
+document.getElementById('drClose').addEventListener('click', closeVe);
+document.getElementById('drMask').addEventListener('click', closeVe);
+document.querySelectorAll('[data-open-ve]').forEach(function(b){
+  b.addEventListener('click', function(){ openVe(); });
+});
+document.getElementById('veFab').addEventListener('click', function(){ openVe(); });
+/* dep chips (hero + bản tin bến) — map giờ chạy sang chỉ số của tuyến */
+document.addEventListener('click', function(e){
+  var d = e.target.closest('[data-dep]');
+  if (!d) return;
+  var t = d.getAttribute('data-dep'), gio = d.getAttribute('data-gio');
+  var idx = 0;
+  for (var i=0;i<TUYEN[t].gios.length;i++){ if (TUYEN[t].gios[i][0]===gio){ idx = i; break; } }
+  prefillOpen(t, 0, idx, null, null);
+});
+
+/* ===== DAC THU: TRA CHUYẾN THEO NHÓM ===== */
+var TRA = { k:'canh', nl:2, te:0, day:0, gioIdx:0, khu:'Mui trống ngắm cảnh' };
+var KIEU_ROUTE = { canh:'S1', dao:'S2', hoanghon:'S3', rieng:'S4' };
+function traRoute(){
+  var r = KIEU_ROUTE[TRA.k];
+  if (r!=='S4' && (TRA.nl+TRA.te)>=10) return 'S4';
+  return r;
+}
+function renderNgayChips(){
+  var html = '';
+  for (var d=0;d<3;d++) html += '<button data-d="'+d+'"'+(d===TRA.day?' class="on"':'')+'>'+dayLabel(d)+'</button>';
+  document.getElementById('traNgay').innerHTML = html;
+}
+function renderTra(){
+  var rk = traRoute(), T = TUYEN[rk];
+  if (T.gios.length-1 < TRA.gioIdx) TRA.gioIdx = 0;
+  var soKhach = TRA.nl + TRA.te;
+  document.getElementById('traRoute').textContent = rk;
+  document.getElementById('traTuyen').textContent = T.ngan + ' — ' + T.phut;
+  var lydo;
+  if (rk==='S4' && TRA.k!=='rieng'){
+    lydo = 'Nhóm '+soKhach+' khách: từ 10 khách thuê trọn tàu thường rẻ hơn mua lẻ và chủ động giờ giấc.';
+  } else if (rk==='S1'){
+    lydo = 'Vòng sông ngắn, lên xuống thoải mái — hợp nhóm đi lần đầu muốn ngắm hết dòng chính.';
+  } else if (rk==='S2'){
+    lydo = 'Phà đảo chạy đều cả ngày — kèm hành lý, xe đạp đều được, đúng tính người đi phà.';
+  } else if (rk==='S3'){
+    lydo = 'Chỉ 2 chuyến mỗi tối — nhóm đông thì nhắn bến ghép bàn hoặc thuê trọn sàn sau.';
+  } else {
+    lydo = 'Trọn tàu tới 25 khách: tự chọn giờ, lịch trình và tiệc trên boong theo ý nhóm.';
+  }
+  document.getElementById('traLydo').textContent = lydo;
+  document.getElementById('traDem').textContent = TRA.nl+' người lớn' + (TRA.te ? ' · '+TRA.te+' trẻ em' : '') + ' · ' + dayLabel(TRA.day);
+  var html = '';
+  for (var j=0;j<T.gios.length;j++){
+    html += '<button data-tg="'+j+'"'+(j===TRA.gioIdx?' class="on"':'')+'>'+T.gios[j][0]+(T.gios[j][1]?' · ít chỗ':'')+'</button>';
+  }
+  document.getElementById('traGios').innerHTML = html;
+  var gia;
+  if (T.tronTau){
+    gia = fmt(T.gia);
+    document.getElementById('traGiaLbl').textContent = 'Trọn tàu 3 giờ — nhóm '+soKhach+' khách';
+  } else {
+    gia = fmt(TRA.nl*T.gia + TRA.te*teGia(T.gia));
+    document.getElementById('traGiaLbl').textContent = 'Tạm tính '+TRA.nl+' lớn' + (TRA.te ? ' + '+TRA.te+' em (65%)' : '');
+  }
+  document.getElementById('traGia').textContent = gia;
+  document.getElementById('traDat').textContent = '🎫 Giữ chỗ '+T.gios[TRA.gioIdx][0]+' — mở khay đặt vé';
+}
+document.getElementById('traKieu').addEventListener('click', function(e){
+  var b = e.target.closest('[data-k]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  TRA.k = b.getAttribute('data-k'); TRA.gioIdx = 0;
+  renderTra();
+});
+document.getElementById('traNgay').addEventListener('click', function(e){
+  var b = e.target.closest('[data-d]'); if (!b) return;
+  TRA.day = parseInt(b.getAttribute('data-d'),10); renderTra();
+});
+document.getElementById('traGios').addEventListener('click', function(e){
+  var b = e.target.closest('[data-tg]'); if (!b) return;
+  TRA.gioIdx = parseInt(b.getAttribute('data-tg'),10); renderTra();
+});
+function traKhach(el, n, isNl){
+  var v = parseInt(document.getElementById(el).textContent,10) + n;
+  if (isNl){ if (v<1) v=1; if (v>25) v=25; } else { if (v<0) v=0; if (v>20) v=20; }
+  document.getElementById(el).textContent = v;
+}
+document.getElementById('traNlTru').addEventListener('click', function(){ stepTra('traNl',-1,true); });
+document.getElementById('traNlCong').addEventListener('click', function(){ stepTra('traNl',1,true); });
+document.getElementById('traTeTru').addEventListener('click', function(){ stepTra('traTe',-1,false); });
+document.getElementById('traTeCong').addEventListener('click', function(){ stepTra('traTe',1,false); });
+function stepTra(el, n, isNl){
+  traKhach(el, n, isNl);
+  TRA.nl = parseInt(document.getElementById('traNl').textContent,10);
+  TRA.te = parseInt(document.getElementById('traTe').textContent,10);
+  renderTra();
+}
+document.querySelectorAll('.b-khu').forEach(function(r){
+  r.addEventListener('click', function(){
+    document.querySelectorAll('.b-khu').forEach(function(x){ x.classList.remove('on'); });
+    r.classList.add('on');
+    TRA.khu = r.getAttribute('data-khu');
+    document.getElementById('dKhu').value = TRA.khu;
+  });
+});
+document.getElementById('traDat').addEventListener('click', function(){
+  prefillOpen(traRoute(), null, TRA.gioIdx, TRA.nl, TRA.te);
+  document.getElementById('dKhu').value = TRA.khu;
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT (pkc — không bot, gửi là lưu local + hẹn chủ bến) ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderBens();
+renderStopList();
+renderDepChips();
+renderNgayChips();
+renderTra();
+renderDrawer();
+initReveal();
+</script>
+</body>
+</html>

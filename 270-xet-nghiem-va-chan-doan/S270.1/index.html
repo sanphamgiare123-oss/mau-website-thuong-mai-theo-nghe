@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Tâm Lab — Xét nghiệm và chẩn đoán | Giữ chỗ lấy mẫu, kết quả 24 giờ qua app/Zalo</title>
+<meta name="description" content="Phòng Xét nghiệm &amp; Chẩn đoán An Tâm Lab — xét nghiệm máu, nước tiểu, siêu âm, X-quang, gói tổng quát định kỳ. Chọn gói theo mục tiêu → giữ chỗ lấy mẫu tại nhà hoặc tại cơ sở → kết quả 24 giờ qua app/Zalo. Đổi/huỷ miễn phí trước 2 giờ. Hotline 0034567899.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalLab","name":"An Tâm Lab — Xét nghiệm và chẩn đoán","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"12 Ngõ Kết Quả Vui, Phường An Tâm Dễ Thợ","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7812,"longitude":106.6861},"openingHours":"Mo-Su 06:30-19:00","priceRange":"60.000đ - 850.000đ"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB110-270 — chất liệu "khay xét nghiệm + ống nghiệm đứng hàng lô": palette theo poster kho (xanh royal · đỏ nắp ống · nền băng) */
+:root{
+  --blue:#0B4DA8; --blue-2:#1265CC; --blue-deep:#0A2F66; --blue-ink:#0D1F3C;
+  --ice:#EFF5FD; --ice-2:#E2EDFA; --paper:#FFFFFF;
+  --ink:#132A44; --mut:#5B7186; --line:#D2E1F3; --line-2:#B9CFE8;
+  --red:#D9364C; --red-2:#B72740; --red-soft:#FCE9EC;
+  --mint:#0E8F76; --mint-soft:#E3F4F0;
+  --mono:'Consolas','Courier New',monospace;
+  --sh:0 10px 26px rgba(10,47,102,.10); --sh-d:0 18px 44px rgba(4,18,44,.5);
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--ice);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,h4{font-family:'Montserrat','Segoe UI',Arial,sans-serif;line-height:1.24;letter-spacing:-.01em}
+.mono{font-family:var(--mono)}
+.num-tab{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--blue-2);font-weight:800;font-family:'Montserrat',Arial,sans-serif}
+.kicker::before{content:"";width:22px;height:2px;background:var(--red);border-radius:2px}
+.kicker::after{content:"";width:22px;height:2px;background:var(--blue-2);border-radius:2px}
+.sec-head h2{font-size:clamp(25px,4vw,35px);margin:10px 0 10px;color:var(--blue-deep)}
+.sec-head p{color:var(--mut)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;font-weight:800;min-height:46px;padding:12px 22px;font-size:14.5px;border:0;font-family:'Montserrat',Arial,sans-serif}
+.btn-a{background:var(--red);color:#fff;box-shadow:0 9px 20px rgba(217,54,76,.32)}
+.btn-a:hover{background:var(--red-2)}
+.btn-b{background:var(--blue);color:#fff;box-shadow:0 9px 20px rgba(11,77,168,.28)}
+.btn-b:hover{background:var(--blue-2)}
+.btn-g{background:var(--paper);color:var(--blue-deep);border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--blue);color:var(--blue)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(239,245,253,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:13px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:12px;background:var(--blue);color:#fff;display:grid;place-items:center;flex:none;box-shadow:inset 0 -6px 10px rgba(4,24,58,.35),0 6px 14px rgba(11,77,168,.3)}
+.logo b{font-family:'Montserrat',Arial,sans-serif;font-size:17px;color:var(--blue-deep);display:block;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;letter-spacing:.4px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:9px;font-size:13.5px;font-weight:700;color:var(--blue-deep);white-space:nowrap}
+nav.main a:hover{background:var(--ice-2)}
+.srch{position:relative}
+.srch input{width:200px;padding:10px 34px 10px 12px;border:1.5px solid var(--line);border-radius:999px;background:var(--paper);font-size:13px;color:var(--ink)}
+.srch input:focus{outline:none;border-color:var(--blue)}
+.srch .s-ic{position:absolute;right:11px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:13px;color:var(--mut);pointer-events:none}
+.s-pop{position:absolute;top:calc(100% + 6px);right:0;left:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh);overflow:hidden;display:none;z-index:70}
+.s-pop.open{display:block}
+.s-pop button{display:flex;width:100%;text-align:left;gap:8px;align-items:center;padding:9px 12px;border:0;background:none;font-size:13px;color:var(--ink)}
+.s-pop button:hover{background:var(--ice)}
+.s-pop button b{color:var(--blue-2);font-size:11px;margin-left:auto;font-family:var(--mono);white-space:nowrap}
+.hd-cta{display:flex;align-items:center;gap:8px}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line-2);background:var(--paper);border-radius:999px;padding:9px 13px;font-weight:800;font-size:13px;color:var(--blue-deep);min-height:42px;white-space:nowrap}
+.hd-book{display:none}
+
+/* ===== HERO ===== */
+.hero{position:relative;background:linear-gradient(180deg,#E4EEFA 0%,var(--ice) 88%);border-bottom:1px solid var(--line);overflow:hidden}
+.hero::before{content:"";position:absolute;right:-40px;top:-30px;width:340px;height:340px;background:
+  radial-gradient(circle 4px at 30px 40px,rgba(11,77,168,.16) 3.6px,transparent 4.4px),
+  radial-gradient(circle 4px at 90px 40px,rgba(11,77,168,.16) 3.6px,transparent 4.4px),
+  radial-gradient(circle 4px at 150px 40px,rgba(11,77,168,.16) 3.6px,transparent 4.4px);
+  background-size:180px 80px;pointer-events:none}
+.hero-g{position:relative;display:grid;grid-template-columns:1.04fr .96fr;gap:40px;align-items:center;padding:50px 0 54px}
+.hero .kicker{margin-bottom:14px}
+.hero h1{font-size:clamp(29px,4.6vw,44px);font-weight:900;color:var(--blue-deep);margin-bottom:13px}
+.hero h1 em{font-style:normal;color:var(--red);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;background:var(--ice-2);z-index:-1;border-radius:4px}
+.hero p.lead{color:#41597A;font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero p.lead b{color:var(--blue-deep)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.trust{display:flex;gap:8px;flex-wrap:wrap}
+.trust span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--blue-deep);background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:7px 12px}
+.trust i{font-style:normal;color:var(--mint);font-weight:900}
+/* poster trên "kẹp phiếu chỉ định" — nguyên khung 1448x1086 */
+.hero-pic{position:relative}
+.khung{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 12px 14px;box-shadow:var(--sh)}
+.khung .clip{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:96px;height:30px;color:#8FA6C4;z-index:2}
+.khung img{border-radius:9px;width:100%;aspect-ratio:1448/1086;object-fit:cover}
+.khung .kv-chip{position:absolute;bottom:26px;left:24px;background:rgba(13,31,60,.82);backdrop-filter:blur(4px);color:#fff;font-size:12.5px;font-weight:700;border-radius:999px;padding:7px 13px;display:inline-flex;gap:7px;align-items:center}
+.khung .kv-chip i{font-style:normal;width:9px;height:9px;border-radius:99px;background:#35D07F;box-shadow:0 0 0 3px rgba(53,208,127,.25)}
+/* 4 ống số liệu */
+.tube-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+.tstat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:9px 10px;display:flex;gap:8px;align-items:center;box-shadow:0 4px 12px rgba(10,47,102,.06)}
+.tstat svg{flex:none}
+.tstat b{font-family:'Montserrat',Arial,sans-serif;font-size:16.5px;color:var(--blue-deep);display:block;line-height:1.1}
+.tstat span{font-size:11px;color:var(--mut);font-weight:600;display:block;line-height:1.25}
+
+/* ===== DẢI CAM KẾT NGANG ===== */
+.vach{background:var(--blue-deep);color:#DCE9F9;padding:14px 0}
+.vach-g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.vach-g div{display:flex;gap:9px;align-items:center;font-size:13px;font-weight:600;min-width:0}
+.vach-g i{font-style:normal;flex:none;width:26px;height:26px;border-radius:99px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:13px;color:#9FE8C8;border:1px solid rgba(255,255,255,.16)}
+.vach-g b{color:#fff}
+
+/* ===== KHUNG NỔI BẬT RIÊNG — 3 LƯỢT GIỮ CHỖ NHIỀU NHẤT ===== */
+.nb-sec{background:linear-gradient(180deg,var(--paper),var(--ice))}
+.nb-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.nb-big{position:relative;background:var(--paper);border:2px solid var(--red);border-radius:16px;padding:18px;display:grid;grid-template-columns:47% 1fr;gap:18px;box-shadow:0 16px 34px rgba(217,54,76,.14)}
+.nb-big .ph{position:relative;border-radius:10px;overflow:hidden;align-self:start}
+.nb-big .ph::after{content:"";position:absolute;inset:0;background:rgba(11,77,168,.14);mix-blend-mode:multiply;pointer-events:none}
+.nb-big .ph img{filter:saturate(.82);transition:transform .5s}
+.nb-big:hover .ph img{transform:scale(1.04)}
+.nb-big .seal{position:absolute;top:10px;right:-8px;background:var(--red);color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:1.2px;border-radius:7px;padding:5px 11px;box-shadow:0 6px 14px rgba(183,39,64,.4);transform:rotate(2deg)}
+.nb-big h3{font-size:22px;color:var(--blue-deep);margin-bottom:8px}
+.nb-big ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#3D5570;margin-bottom:12px}
+.nb-big ul li{display:flex;gap:8px;align-items:baseline}
+.nb-big ul li::before{content:"✓";color:var(--mint);font-weight:900}
+.nb-price{display:flex;align-items:baseline;gap:9px;margin-bottom:12px;flex-wrap:wrap}
+.nb-price b{font-family:'Montserrat',Arial,sans-serif;font-size:25px;color:var(--red)}
+.nb-price s{color:var(--mut);font-size:13.5px}
+.nb-price small{font-size:11.5px;color:var(--mut);font-weight:700;background:var(--ice-2);border-radius:99px;padding:4px 10px}
+.nb-big .btn{width:100%}
+.nb-side{display:grid;grid-template-rows:1fr 1fr;gap:18px;min-width:0}
+.nb-sub{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:13px;align-items:center;transition:.25s;min-width:0}
+.nb-sub:hover{border-color:var(--blue);box-shadow:var(--sh);transform:translateY(-3px)}
+.nb-sub .th{width:104px;height:78px;border-radius:9px;overflow:hidden;flex:none}
+.nb-sub .th img{width:100%;height:100%;object-fit:cover}
+.nb-sub h3{font-size:15.5px;color:var(--blue-deep);margin-bottom:4px}
+.nb-sub p{font-size:12.5px;color:var(--mut)}
+.nb-sub .go{margin-left:auto;flex:none;border:0;background:var(--ice-2);color:var(--blue);font-weight:800;font-size:12.5px;border-radius:999px;padding:9px 13px;min-height:38px;white-space:nowrap}
+.nb-sub .go:hover{background:var(--blue);color:#fff}
+
+/* ===== KHỐI-8: KHAY XÉT NGHIỆM — ỐNG NGHIỆM ĐỨNG HÀNG LÔ (pattern #12 biến thể khay y tế) ===== */
+.khay-sec{background:linear-gradient(180deg,var(--ice),#E4EEFA);padding-bottom:64px}
+.rack{position:relative;background:linear-gradient(170deg,#FBFDFF,#EDF4FC);border:1px solid #C4D6EC;border-radius:18px;padding:26px 22px 22px;box-shadow:var(--sh),inset 0 2px 0 #fff}
+.rack::before{content:"";position:absolute;left:24px;right:24px;top:11px;height:12px;border-radius:99px;
+  background-image:radial-gradient(circle 4.2px at 50% 50%,#B9CFE8 3.6px,transparent 4.6px);
+  background-size:58px 12px;background-repeat:repeat-x;background-position:center}
+.rack-tag{position:absolute;top:-12px;left:26px;background:var(--blue-deep);color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:1.6px;border-radius:6px;padding:5px 12px;display:inline-flex;gap:8px;align-items:center}
+.rack-tag .mono{color:#9CC3F5}
+.rack-bc{position:absolute;bottom:8px;right:20px;display:inline-flex;gap:8px;align-items:center;opacity:.75}
+.rack-bc .bars{width:74px;height:12px;background:repeating-linear-gradient(90deg,#47668C 0 2px,transparent 2px 4px,#47668C 4px 7px,transparent 7px 9px)}
+.rack-bc span{font-family:var(--mono);font-size:9.5px;color:#47668C;letter-spacing:1.5px}
+.rack-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;z-index:1}
+/* 1 ô khay = 1 ống nghiệm + phiếu kết quả */
+.ong{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 13px 13px;display:flex;flex-direction:column;box-shadow:0 4px 14px rgba(10,47,102,.06);transition:transform .25s,box-shadow .25s;min-width:0}
+.ong:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(10,47,102,.14);border-color:var(--line-2)}
+.ong .tube-row{display:flex;align-items:flex-end;gap:9px;height:56px;margin:-6px 0 8px;position:relative;z-index:1}
+.ong .tube-row .tsvg{flex:none}
+.ong .tcode{font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--blue-deep);background:#fff;border:1px dashed var(--line-2);border-radius:5px;padding:2px 7px;transform:rotate(-2deg);box-shadow:0 2px 5px rgba(10,47,102,.08)}
+.ong .tmeta{font-size:10.5px;color:var(--mut);font-weight:600;margin-left:auto;text-align:right;line-height:1.3}
+.ong .ph{border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.ong .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .45s}
+.ong:hover .ph img{transform:scale(1.05)}
+.ong h3{font-size:15.5px;color:var(--blue-deep);margin:10px 2px 4px}
+.ong p{font-size:12px;color:var(--mut);flex:1;margin:0 2px}
+.ong .ft{display:flex;align-items:flex-end;gap:8px;margin-top:11px;flex-wrap:wrap}
+.pri{font-family:'Montserrat',Arial,sans-serif;font-weight:800;color:var(--red);font-size:15px;line-height:1.15}
+.pri small{display:block;font-size:10px;color:var(--mut);font-weight:600;font-family:'Segoe UI',Arial,sans-serif}
+.giu{margin-left:auto;border:0;background:var(--blue);color:#fff;border-radius:999px;padding:9px 14px;font-weight:800;font-size:12.5px;min-height:40px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.giu:hover{background:var(--red)}
+/* ống nổi bật: TO gấp đôi — chiếm 2 ô, nắp đỏ + dấu "GIỮ NHIỀU NHẤT" */
+.ong.feat{grid-column:span 2;flex-direction:row;gap:16px;padding:16px;border:2px solid var(--red);box-shadow:0 16px 32px rgba(217,54,76,.13)}
+.ong.feat .lft{flex:1.04;display:flex;flex-direction:column;min-width:0}
+.ong.feat .rgt{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.ong.feat .ph{flex:none;margin-top:2px}
+.ong.feat h3{font-size:19px;margin-top:10px}
+.ong.feat p{font-size:12.8px}
+.ong.feat .pri{font-size:18px}
+.ong.feat .ft{margin-top:16px}
+.ong.feat .ft .giu{margin-left:0;flex:1;justify-content:center;min-height:44px}
+.ong .hot-tag{position:absolute;top:-11px;right:12px;background:var(--red);color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:9.5px;font-weight:800;letter-spacing:1.3px;border-radius:6px;padding:4px 10px;box-shadow:0 6px 13px rgba(183,39,64,.4);transform:rotate(1.5deg)}
+/* ống "hot": ô thường nhưng viền xanh riêng — vẫn kín lưới 3 cột */
+.ong.hot{border:2px solid var(--blue);box-shadow:0 12px 26px rgba(11,77,168,.13)}
+.ong.hot .hot-tag{background:var(--blue);box-shadow:0 6px 13px rgba(11,77,168,.4)}
+.khay-note{text-align:center;font-size:12.5px;color:var(--mut);margin-top:14px}
+
+/* ===== DACTHU — BỘ CHỌN GÓI THEO MỤC TIÊU (nền tối, quang phòng) ===== */
+.goi-sec{position:relative;background:var(--blue-ink);padding:64px 0;overflow:hidden}
+.goi-sec::before{content:"";position:absolute;inset:-40px;background:url("assets/img/space.webp") center/cover;filter:blur(28px);opacity:.14}
+.goi-sec::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,31,60,.72),rgba(10,47,102,.55) 45%,rgba(13,31,60,.8));pointer-events:none}
+.goi-sec .wrap{position:relative;z-index:2}
+.goi-sec .kicker{color:#9CC3F5}
+.goi-sec .kicker::before{background:var(--red)}
+.goi-sec .kicker::after{background:#9CC3F5}
+.goi-sec .sec-head h2{color:#fff}
+.goi-sec .sec-head p{color:#A9C2E4}
+.goi-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px;align-items:start}
+.goi-pick label{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8FB0DB;display:block;margin:0 0 9px;font-family:'Montserrat',Arial,sans-serif}
+.goi-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.goi-chips button{border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#EAF2FC;border-radius:999px;padding:10px 15px;font-size:13px;font-weight:700;min-height:42px}
+.goi-chips button:hover{border-color:#9CC3F5}
+.goi-chips button.on{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 8px 20px rgba(217,54,76,.4)}
+.goi-chips button small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.home-tog{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;cursor:pointer;user-select:none}
+.home-tog .sw{width:44px;height:25px;border-radius:99px;background:rgba(255,255,255,.18);position:relative;flex:none;transition:.2s}
+.home-tog .sw::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:99px;background:#fff;transition:.2s}
+.home-tog.on .sw{background:var(--mint)}
+.home-tog.on .sw::after{left:22px}
+.home-tog b{color:#fff;font-size:13.5px;display:block}
+.home-tog span{color:#A9C2E4;font-size:11.5px}
+/* khay ống của gói — kết quả chọn */
+.goi-out{background:rgba(255,255,255,.055);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:20px;box-shadow:var(--sh-d)}
+.goi-out .oh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.goi-out .oh .mini-rack{display:flex;gap:3px;flex:none}
+.goi-out .oh .mini-rack i{width:7px;height:16px;border-radius:0 0 4px 4px;background:rgba(255,255,255,.28)}
+.goi-out h3{font-size:17.5px;color:#fff;flex:1}
+.goi-out .oh small{color:#8FB0DB;font-size:11.5px;font-weight:700;white-space:nowrap}
+.tube-list{display:flex;flex-direction:column;margin:10px 0 4px}
+.tube-list .tr{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px dashed rgba(255,255,255,.13);font-size:13.5px;color:#DCE9F9}
+.tube-list .tr:last-child{border-bottom:0}
+.tube-list .cap{width:13px;height:13px;border-radius:4px 4px 3px 3px;flex:none;box-shadow:inset 0 -3px 4px rgba(0,0,0,.25)}
+.tube-list .tr .mono{margin-left:auto;font-size:10.5px;color:#8FB0DB}
+.goi-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
+.goi-facts div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:9px 11px;min-width:0}
+.goi-facts b{display:block;font-size:12.5px;color:#fff;line-height:1.3}
+.goi-facts span{font-size:10.5px;color:#8FB0DB;font-weight:600}
+.goi-total{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 2px 12px}
+.goi-total span{font-size:13px;color:#A9C2E4;font-weight:600}
+.goi-total b{font-family:'Montserrat',Arial,sans-serif;font-size:23px;color:#FFD9A8}
+.goi-out .btn{width:100%}
+.goi-out .tiny{font-size:11.5px;color:#8FB0DB;text-align:center;margin-top:10px;line-height:1.5}
+
+/* ===== QUY TRÌNH 4 BƯỚC ===== */
+.qt-sec{background:var(--paper)}
+.qt-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.qt{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:20px 17px;display:flex;flex-direction:column;gap:8px;position:relative;transition:.25s}
+.qt:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--line-2)}
+.qt .no{width:34px;height:34px;border-radius:99px;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:14px;flex:none}
+.qt:nth-child(4) .no{background:var(--red)}
+.qt b{font-size:15px;color:var(--blue-deep)}
+.qt span{font-size:12.5px;color:var(--mut)}
+.qt .meta{margin-top:auto;align-self:flex-start;font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--blue-2);background:var(--ice-2);border-radius:5px;padding:3px 8px}
+
+/* ===== CAM KẾT + DISCLAIMER ===== */
+.ck-sec{background:linear-gradient(180deg,var(--paper),var(--ice))}
+.ck-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ck{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+.ck::after{content:"";position:absolute;top:12px;right:12px;width:26px;height:34px;border-radius:0 0 12px 12px;background:var(--ice-2);clip-path:polygon(0 0,100% 0,100% 82%,50% 100%,0 82%)}
+.ck b{font-size:14.5px;color:var(--blue-deep)}
+.ck span{font-size:12.5px;color:var(--mut)}
+.disclaimer{margin-top:22px;background:var(--red-soft);border:1.5px dashed #E8A9B3;border-radius:12px;padding:13px 18px;display:flex;gap:11px;align-items:flex-start;font-size:13px;color:#7C2A38;font-weight:600}
+.disclaimer i{font-style:normal;flex:none;font-size:16px}
+.hot-cta{margin-top:20px;background:var(--blue-deep);border-radius:14px;padding:22px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:space-between}
+.hot-cta h3{color:#fff;font-size:19px}
+.hot-cta p{color:#A9C2E4;font-size:13px;margin-top:3px}
+.hot-cta .acts{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ===== GIỚI THIỆU M4 — NỀN MỜ + THẺ NỔI ===== */
+.m4{position:relative;padding:72px 0;overflow:hidden}
+.m4::before{content:"";position:absolute;inset:-60px;background:url("assets/img/space.webp") center/cover;filter:blur(26px);opacity:.5;animation:kb 20s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+.m4::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,31,60,.86),rgba(10,47,102,.78));pointer-events:none}
+.m4 .wrap{position:relative;z-index:2}
+.m4-card{background:rgba(255,255,255,.97);border-radius:18px;padding:22px;display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;box-shadow:var(--sh-d)}
+.m4-card .im{align-self:start;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.m4-card .im img{transition:transform .6s}
+.m4-card .im:hover img{transform:scale(1.04)}
+.m4-card .im figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(13,31,60,.85));color:#fff;font-size:11.5px;font-weight:600;padding:22px 12px 9px;opacity:0;transition:.35s}
+.m4-card .im:hover figcaption{opacity:1}
+.m4-card h2{font-size:clamp(22px,3.4vw,30px);color:var(--blue-deep);margin:8px 0 12px}
+.m4-card .tx p{color:#41597A;font-size:14px;margin-bottom:11px}
+.m4-card .sign{font-family:Georgia,serif;font-style:italic;color:var(--blue-2);font-size:14.5px}
+.m4-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.m4-stats div{background:var(--ice);border:1px solid var(--line);border-radius:10px;padding:10px 8px;text-align:center}
+.m4-stats b{font-family:'Montserrat',Arial,sans-serif;font-size:17px;color:var(--blue-deep);display:block;line-height:1.15}
+.m4-stats span{font-size:10.5px;color:var(--mut);font-weight:600}
+.m4-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* ===== ĐÁNH GIÁ ===== */
+.dg-sec{background:var(--ice)}
+.dg-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:18px;align-items:stretch}
+.dg-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dg{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px;display:flex;flex-direction:column;gap:9px}
+.dg .st{color:#E2A93B;font-size:13px;letter-spacing:2px}
+.dg p{font-size:12.8px;color:#3D5570;flex:1}
+.dg b{font-size:13px;color:var(--blue-deep)}
+.dg span{font-size:11.5px;color:var(--mut)}
+.dg-side{background:var(--blue-deep);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.dg-side .big{font-family:'Montserrat',Arial,sans-serif;font-size:36px;font-weight:900;color:#FFD9A8;line-height:1}
+.dg-side .big small{font-size:13px;color:#A9C2E4;font-weight:700;display:block;margin-top:4px}
+.dg-side .row{font-size:12.5px;color:#DCE9F9;font-weight:600}
+.dg-side .bar{height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:5px}
+.dg-side .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#35D07F,#9CC3F5)}
+.dg-side .row b{color:#9FE8C8;float:right}
+
+/* ===== LIÊN HỆ + MAP ===== */
+.lh-sec{background:var(--paper)}
+.lh-g{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.lh-card{background:var(--ice);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:13px}
+.lh-card h3{font-size:18px;color:var(--blue-deep)}
+.lh-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#41597A}
+.lh-line .ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--ice-2);display:grid;place-items:center;font-size:16px}
+.lh-line b{color:var(--blue-deep)}
+.lh-card .tel{font-family:'Montserrat',Arial,sans-serif;font-size:22px;font-weight:800;color:var(--red)}
+.lh-card iframe{width:100%;height:230px;border:0;border-radius:12px;flex:1;min-height:230px}
+.lh-card .btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 17px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--blue-deep);min-height:48px}
+.qa>button i{font-style:normal;color:var(--red);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 17px 15px;font-size:13.5px;color:#41597A}
+.qa.open .a{display:block}
+.faq-dis{max-width:760px;margin:16px auto 0;text-align:center;font-size:11.5px;color:var(--mut)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--blue-ink);color:#A9C2E4;margin-top:44px}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px;padding:32px 0 22px}
+.ft-g h4{color:#fff;font-size:13px;margin-bottom:10px;letter-spacing:.6px;font-family:'Montserrat',Arial,sans-serif}
+.ft-g p,.ft-g a{font-size:12.5px;color:#A9C2E4;display:block;margin-bottom:6px}
+.ft-g a:hover{color:#FFD9A8}
+.ft-brand b{font-family:'Montserrat',Arial,sans-serif;font-size:16px;color:#fff;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding:13px 0;text-align:center;font-size:11.5px;color:#7E97BC}
+.ft-bot .dis{display:block;margin-top:4px;color:#9A7280}
+
+/* ===== DRAWER ĐẶT LỊCH LẤY MẪU ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(8,20,42,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100vw);background:var(--ice);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-16px 0 44px rgba(4,18,44,.3)}
+#drawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:15px 18px;background:var(--blue-deep);color:#fff}
+.dr-head .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+.dr-head h3{font-size:15.5px;flex:1;line-height:1.3}
+.dr-head h3 small{display:block;font-size:11px;color:#9CC3F5;font-weight:600}
+.dr-x{border:0;background:rgba(255,255,255,.12);width:36px;height:36px;border-radius:10px;font-size:15px;color:#fff}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:15px}
+.dr-lbl{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut);display:flex;justify-content:space-between;gap:8px}
+.dr-lbl em{font-style:normal;color:var(--red);font-family:var(--mono);font-size:10px;text-transform:none;letter-spacing:0}
+.dr-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+.dr-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:700;color:var(--ink);min-height:40px;transition:.15s}
+.dr-chip:hover{border-color:var(--blue)}
+.dr-chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.dr-chip:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.dr-input{width:100%;padding:11px 13px;border:1.5px solid var(--line-2);border-radius:11px;font-size:14px;background:#fff;margin-top:7px}
+.dr-input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--ice-2)}
+.dr-input.err{border-color:var(--red);background:var(--red-soft)}
+.dr-sum{background:#fff;border:1.5px dashed var(--line-2);border-radius:12px;padding:13px 14px;font-size:12.5px;color:var(--mut);display:flex;flex-direction:column;gap:5px}
+.dr-sum b{color:var(--blue-deep)}
+.dr-sub{width:100%;border:0;background:var(--red);color:#fff;border-radius:12px;padding:14px;font-weight:800;font-size:15px;font-family:'Montserrat',Arial,sans-serif;min-height:50px;box-shadow:0 10px 22px rgba(217,54,76,.3)}
+.dr-sub:hover{background:var(--red-2)}
+.dr-call{text-align:center;font-size:12.5px;color:var(--mut)}
+.dr-call a{color:var(--blue);font-weight:800}
+.dr-done{display:none;text-align:center;background:var(--mint-soft);border:1.5px solid rgba(14,143,118,.4);border-radius:14px;padding:18px}
+.dr-done.show{display:block}
+.dr-done .lb{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--mint)}
+.dr-done .code{font-family:var(--mono);font-size:26px;font-weight:800;color:var(--blue-deep);margin:5px 0 3px}
+.dr-done p{font-size:12.5px;color:#41597A;margin-top:4px}
+.dr-done .recap{margin-top:11px;text-align:left;background:#fff;border-radius:10px;padding:11px 13px;font-size:12.5px;color:#41597A;display:flex;flex-direction:column;gap:4px}
+.dr-done .recap b{color:var(--blue-deep)}
+.dr-tiny{font-size:11.5px;color:var(--mut);line-height:1.55}
+.dr-tiny b{color:var(--blue-deep)}
+
+/* ===== FAB ĐẶT LỊCH (SVG nổi — icon lịch + ống nghiệm) + CHAT ===== */
+.book-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--red);color:#fff;display:grid;place-items:center;padding:0;box-shadow:0 12px 26px rgba(217,54,76,.42);transition:transform .2s,background .2s}
+.book-fab:hover{background:var(--red-2);transform:translateY(-3px)}
+.book-fab .pulse{position:absolute;top:3px;right:3px;width:12px;height:12px;border-radius:99px;background:#FFD9A8;border:2.5px solid #fff}
+.book-fab .bl{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--blue-deep);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:6px 11px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.book-fab:hover .bl{opacity:1}
+body.chat-open .book-fab{opacity:0;pointer-events:none}
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px rgba(11,77,168,.4)}
+.pkc-fab:hover{background:var(--blue-2)}
+.pkc-fab .pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:min(336px,calc(100vw - 36px));background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 48px rgba(8,20,42,.3);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--blue-deep);color:#fff}
+.pkc-ava{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:17px;flex:none}
+.pkc-name{font-weight:800;font-size:13.5px}
+.pkc-on{font-size:11px;opacity:.85}
+.pkc-on i{display:inline-block;width:7px;height:7px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:16px;width:32px;height:36px}
+#pkcMsgs{height:240px;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--ice)}
+.mg{max-width:84%;padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 12px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 11px;font-size:11.5px;font-weight:700;color:var(--blue-deep);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:9px 12px;border:1.5px solid var(--line-2);border-radius:10px;font-size:13px;min-height:42px}
+#pkcSend{border:0;background:var(--blue);color:#fff;border-radius:10px;width:44px;min-height:42px;font-size:15px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--blue-ink);color:#EAF2FC;border-radius:13px;padding:12px 16px;box-shadow:0 14px 34px rgba(4,18,44,.4);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:#FFD9A8;margin-bottom:2px}
+.toast span{font-size:12.5px;color:#C9D9EE}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}to{opacity:1}}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:980px){
+  nav.main{display:none}
+  .hd-book{display:inline-flex}
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:38px 0 44px}
+  .hero p.lead{max-width:none}
+  .vach-g{grid-template-columns:1fr 1fr}
+  .nb-grid{grid-template-columns:1fr}
+  .nb-big{grid-template-columns:44% 1fr}
+  .goi-grid{grid-template-columns:1fr}
+  .qt-g{grid-template-columns:1fr 1fr}
+  .ck-g{grid-template-columns:1fr 1fr}
+  .m4-card{grid-template-columns:1fr}
+  .dg-grid{grid-template-columns:1fr}
+  .lh-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  .srch{margin-left:auto}
+}
+/*NB110-270 — khối-8 co về 2 cột từ 1100px xuống (thẻ nổi giữ ô đơn, vẫn kín lưới): ảnh SP giữ TO ở tablet ngang*/
+@media (max-width:1100px){
+  .rack-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ong.feat{grid-column:auto;flex-direction:column}
+  .ong.feat .lft,.ong.feat .rgt{flex:none}
+}
+@media (max-width:700px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-cta{order:2}
+  .srch{order:3;width:100%;margin-left:0}
+  .srch input{width:100%}
+  .call span{display:none}
+  .hero h1{font-size:28px}
+  .hero h1 em{white-space:normal}
+  .tube-stats{grid-template-columns:1fr 1fr}
+  .vach-g{grid-template-columns:1fr;gap:9px}
+  /* khối-8 về 1 cột: ảnh poster giữ TO, dễ đọc chữ trong ảnh; thẻ nổi lên ĐẦU khay */
+  .rack-g{grid-template-columns:1fr}
+  .ong.feat,.ong.hot{order:-1}
+  .ong.feat .lft{flex:none}
+  .nb-big{grid-template-columns:1fr}
+  .nb-sub .th{width:88px;height:66px}
+  .qt-g{grid-template-columns:1fr}
+  .ck-g{grid-template-columns:1fr}
+  .dg-list{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr;gap:16px;padding:26px 0 16px}
+  .btn{white-space:normal;text-align:center}
+  .hot-cta{padding:18px}
+  .hot-cta .acts{width:100%;flex-direction:column}
+  .hot-cta .acts .btn{width:100%}
+  #drawer{width:100vw}
+  .goi-facts{grid-template-columns:1fr 1fr}
+  .m4-stats{grid-template-columns:1fr 1fr}
+  .book-fab{bottom:84px}
+  .pkc-fab{bottom:16px}
+  .pkc-panel{bottom:80px}
+}
+/*MOBILE-TAP40: mục tiêu chạm ≥40px*/
+@media (max-width:700px){
+  .dr-chip,.pkc-chip,.qa>button,.giu,.nb-sub .go{min-height:40px}
+}
+</style>
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="An Tâm Lab">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M9 3h6M10 3v7.5L5.8 17a3.4 3.4 0 0 0 3 5h6.4a3.4 3.4 0 0 0 3-5L14 10.5V3"/><path d="M7.6 14.5h8.8"/></svg>
+      </span>
+      <span><b>An Tâm Lab</b><small>Xét nghiệm &amp; chẩn đoán</small></span>
+    </a>
+    <nav class="main">
+      <a href="#noibat">Giữ nhiều nhất</a>
+      <a href="#khay">Khay xét nghiệm</a>
+      <a href="#chon-goi">Chọn gói</a>
+      <a href="#quytrinh">Quy trình</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="srch">
+      <input id="q" type="text" placeholder="Tìm xét nghiệm, gói…" autocomplete="off" aria-label="Tìm xét nghiệm">
+      <span class="s-ic">🔍</span>
+      <div class="s-pop" id="sPop"></div>
+    </div>
+    <div class="hd-cta">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+      <button class="btn btn-a hd-book" data-giu="Gói tổng quát định kỳ" style="min-height:42px;padding:9px 16px;font-size:13px">🧪 Giữ chỗ lấy mẫu</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO — poster nguyên khung trên "kẹp phiếu chỉ định" ===== -->
+<section class="hero">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">12 Ngõ Kết Quả Vui · An Tâm Lab</span>
+      <h1>Mẫu lấy chuẩn —<br><em>kết quả rõ trong 24 giờ</em></h1>
+      <p class="lead">Xét nghiệm máu, nước tiểu, siêu âm, X-quang và <b>gói tổng quát định kỳ</b> — chọn gói theo mục tiêu, giữ chỗ lấy mẫu <b>tại nhà hoặc tại cơ sở</b>, đổi/huỷ miễn phí trước 2 giờ.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-giu="Gói tổng quát định kỳ">🧪 Giữ chỗ lấy mẫu</button>
+        <a class="btn btn-g" href="#chon-goi">Chọn gói theo mục tiêu</a>
+      </div>
+      <div class="trust">
+        <span><i>✓</i>Một người một mã ống</span>
+        <span><i>✓</i>Máy phân tích tự động</span>
+        <span><i>✓</i>Kết quả qua app/Zalo</span>
+        <span><i>✓</i>Đổi/huỷ miễn phí</span>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="khung">
+        <svg class="clip" viewBox="0 0 96 30" fill="none" aria-hidden="true"><rect x="26" y="2" width="44" height="16" rx="7" fill="#C6D6EA" stroke="#8FA6C4" stroke-width="2"/><rect x="36" y="8" width="24" height="20" rx="5" fill="#E8F0F9" stroke="#8FA6C4" stroke-width="2"/></svg>
+        <img src="assets/img/cover.webp" alt="An Tâm Lab — Xét nghiệm và chẩn đoán, quy trình chỉnh chu, tư vấn tận tâm" fetchpriority="high">
+        <span class="kv-chip"><i></i>Đang nhận mẫu — ca sáng còn chỗ</span>
+      </div>
+      <div class="tube-stats">
+        <div class="tstat"><svg width="17" height="34" viewBox="0 0 26 62" aria-hidden="true"><rect x="7" y="1" width="12" height="9" rx="2.5" fill="#D9364C"/><path d="M8 12h10v36a5 5 0 0 1-10 0Z" fill="rgba(255,255,255,.75)" stroke="#9FB9D8"/><path d="M9.2 34h7.6v14a3.8 3.8 0 0 1-7.6 0Z" fill="#D9364C" opacity=".85"/></svg><div><b>24 giờ</b><span>có kết quả gói định kỳ</span></div></div>
+        <div class="tstat"><svg width="17" height="34" viewBox="0 0 26 62" aria-hidden="true"><rect x="7" y="1" width="12" height="9" rx="2.5" fill="#2E7CD6"/><path d="M8 12h10v36a5 5 0 0 1-10 0Z" fill="rgba(255,255,255,.75)" stroke="#9FB9D8"/><path d="M9.2 34h7.6v14a3.8 3.8 0 0 1-7.6 0Z" fill="#2E7CD6" opacity=".85"/></svg><div><b>6:30</b><span>nhận mẫu sớm nhất</span></div></div>
+        <div class="tstat"><svg width="17" height="34" viewBox="0 0 26 62" aria-hidden="true"><rect x="7" y="1" width="12" height="9" rx="2.5" fill="#7C5CBF"/><path d="M8 12h10v36a5 5 0 0 1-10 0Z" fill="rgba(255,255,255,.75)" stroke="#9FB9D8"/><path d="M9.2 34h7.6v14a3.8 3.8 0 0 1-7.6 0Z" fill="#7C5CBF" opacity=".85"/></svg><div><b>12.000+</b><span>mẫu mỗi năm</span></div></div>
+        <div class="tstat"><svg width="17" height="34" viewBox="0 0 26 62" aria-hidden="true"><rect x="7" y="1" width="12" height="9" rx="2.5" fill="#0E8F76"/><path d="M8 12h10v36a5 5 0 0 1-10 0Z" fill="rgba(255,255,255,.75)" stroke="#9FB9D8"/><path d="M9.2 34h7.6v14a3.8 3.8 0 0 1-7.6 0Z" fill="#0E8F76" opacity=".85"/></svg><div><b>4.8/5</b><span>khách đánh giá</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DẢI CAM KẾT NGANG ===== -->
+<div class="vach">
+  <div class="wrap vach-g">
+    <div><i>🏷</i><span><b>Mã ống riêng từng mẫu</b> — tra được từng bước</span></div>
+    <div><i>⚙️</i><span><b>Máy sinh hóa tự động</b> — ít sai số</span></div>
+    <div><i>📲</i><span><b>Kết quả 24 giờ</b> qua app/Zalo</span></div>
+    <div><i>🏠</i><span><b>Kỹ thuật viên đến nhà</b> ca 6:30–9:30</span></div>
+  </div>
+</div>
+
+<!-- ===== KHUNG NỔI BẬT RIÊNG: 3 LƯỢT GIỮ CHỖ NHIỀU NHẤT ===== -->
+<section class="sec nb-sec" id="noibat">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khung nổi bật tháng này</span>
+      <h2>3 lượt giữ chỗ nhiều nhất</h2>
+      <p>Khách quanh ngõ Kết Quả Vui giữ chỗ nhiều nhất cho ba mục này — giá tham chiếu công khai, không phát sinh ngoài ý biết.</p>
+    </div>
+    <div class="nb-grid">
+      <article class="nb-big rv">
+        <div class="ph">
+          <img src="assets/img/p7.webp" alt="Gói xét nghiệm tổng quát định kỳ — theo dõi sức khỏe chủ động" loading="lazy">
+          <span class="seal">GIỮ NHIỀU NHẤT</span>
+        </div>
+        <div>
+          <h3>Gói xét nghiệm tổng quát định kỳ</h3>
+          <ul>
+            <li>6 ống: huyết học, đường huyết, mỡ máu, gan, thận, nước tiểu</li>
+            <li>Nhịn ăn 8–10 giờ — lấy mẫu ca sáng 6:30–9:30</li>
+            <li>Kết quả sau 24 giờ qua app/Zalo kèm giải thích</li>
+          </ul>
+          <div class="nb-price"><b>690.000đ</b><s>850.000đ</s><small>giá tham chiếu cả gói</small></div>
+          <button class="btn btn-a" data-giu="Gói tổng quát định kỳ">🧪 Giữ chỗ lấy mẫu gói này</button>
+        </div>
+      </article>
+      <div class="nb-side">
+        <article class="nb-sub rv">
+          <span class="th"><img src="assets/img/p8.webp" alt="Lấy mẫu tại nhà — kỹ thuật viên đến tận nơi" loading="lazy"></span>
+          <span><h3>Lấy mẫu tại nhà</h3><p>Phí 0đ cho gói từ 500.000đ — kỹ thuật viên đến ca sáng, thuộc nội thành.</p></span>
+          <button class="go" data-giu="Lấy mẫu tại nhà">Giữ chỗ</button>
+        </article>
+        <article class="nb-sub rv">
+          <span class="th"><img src="assets/img/p5.webp" alt="Xét nghiệm máu cơ bản — chính xác, nhanh chóng" loading="lazy"></span>
+          <span><h3>Xét nghiệm máu</h3><p>Huyết học toàn phần + đường huyết từ 150.000đ — có kết quả trong 4–6 giờ.</p></span>
+          <button class="go" data-giu="Xét nghiệm máu">Giữ chỗ</button>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8: KHAY XÉT NGHIỆM — ỐNG ĐỨNG HÀNG LÔ (pattern #12 biến thể khay y tế) ===== -->
+<section class="sec khay-sec" id="khay">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khay xét nghiệm hôm nay</span>
+      <h2>8 ống trên khay — mỗi mẫu một mã, giữ chỗ là có slot</h2>
+      <p>Bày như khay mẫu trong phòng kính: nắp màu là nhóm xét nghiệm, nhãn mã dán trên ống, phiếu kết quả trả sau 24 giờ qua app/Zalo.</p>
+    </div>
+    <div class="rack rv">
+      <span class="rack-tag">KHAY MẪU · <span class="mono">ATL-270</span></span>
+      <div class="rack-g" id="rackGrid"></div>
+      <span class="rack-bc"><span class="bars"></span><span>ATL·2026·KQV</span></span>
+    </div>
+    <p class="khay-note">Giá là mức <b>giá tham chiếu</b> theo bảng công khai — báo lại chính xác trước khi lấy mẫu; xét nghiệm chuyên sâu theo chỉ định bác sĩ được báo riêng.</p>
+  </div>
+</section>
+
+<!-- ===== DACTHU: BỘ CHỌN GÓI THEO MỤC TIÊU ===== -->
+<section class="goi-sec" id="chon-goi">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Công cụ đặc biệt của An Tâm Lab</span>
+      <h2>Chưa biết bắt đầu từ đâu? Chọn theo mục tiêu</h2>
+      <p>Nghĩ đến việc thật của bạn — định kỳ, lo đường huyết, kiểm tra trước hôn nhân — khay ống của gói hiện ra ngay: gồm gì, chuẩn bị gì, bao nhiêu tiền.</p>
+    </div>
+    <div class="goi-grid">
+      <div class="goi-pick rv">
+        <label>1 · Mục tiêu của bạn?</label>
+        <div class="goi-chips" id="goiChips"></div>
+        <label>2 · Cần kỹ thuật viên đến nhà?</label>
+        <div class="home-tog" id="homeTog" role="switch" aria-checked="false" tabindex="0">
+          <span class="sw"></span>
+          <span><b>Lấy mẫu tại nhà</b><span>Miễn phí với gói từ 500.000đ · ca sáng 6:30–9:30</span></span>
+        </div>
+      </div>
+      <div class="goi-out rv">
+        <div class="oh">
+          <span class="mini-rack" id="miniRack" aria-hidden="true"></span>
+          <h3 id="goiName">Khay ống của gói</h3>
+          <small id="goiCount"></small>
+        </div>
+        <div class="tube-list" id="goiList"></div>
+        <div class="goi-facts">
+          <div><b id="goiAn">Nhịn 8–10 giờ</b><span>chuẩn bị trước lấy mẫu</span></div>
+          <div><b id="goiKq">Sau 24 giờ</b><span>nhận kết quả app/Zalo</span></div>
+          <div><b id="goiPhu">Cả nhà đều làm được</b><span>đối tượng phù hợp</span></div>
+        </div>
+        <div class="goi-total"><span>Giá tham chiếu cả gói</span><b id="goiPrice">—</b></div>
+        <button class="btn btn-a" id="goiBook">🧪 Giữ chỗ lấy mẫu gói này</button>
+        <p class="tiny">Đổi/huỷ miễn phí trước 2 giờ · Kết quả xét nghiệm chỉ mang tính tham khảo — việc chẩn đoán và điều trị tuân theo hướng dẫn bác sĩ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH 4 BƯỚC ===== -->
+<section class="sec qt-sec" id="quytrinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Từ giữ chỗ đến kết quả</span>
+      <h2>Bốn bước — bạn biết trước mình sắp làm gì</h2>
+    </div>
+    <div class="qt-g">
+      <article class="qt rv"><span class="no">1</span><b>Giữ chỗ lấy mẫu</b><span>Chọn gói, ngày và ca trên web hoặc gọi hotline — nhận mã giữ chỗ ngay, không cọc.</span><span class="meta">60 giây</span></article>
+      <article class="qt rv"><span class="no">2</span><b>Lấy mẫu</b><span>Tại nhà ca 6:30–9:30 hoặc đến cơ sở 12 Ngõ Kết Quả Vui. Kỹ thuật viên dặn chuẩn bị trước 1 ngày.</span><span class="meta">~10 phút/người</span></article>
+      <article class="qt rv"><span class="no">3</span><b>Phân tích &amp; duyệt</b><span>Máy sinh hóa tự động chạy từng mã ống — kết quả qua 2 lớp kiểm duyệt trước khi trả.</span><span class="meta">2 lớp kiểm</span></article>
+      <article class="qt rv"><span class="no">4</span><b>Nhận kết quả</b><span>Sau 24 giờ nhận qua app/Zalo kèm bản giấy tại quầy; chỉ số bất thường — bác sĩ gọi giải thích.</span><span class="meta">app/Zalo</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAM KẾT + DISCLAIMER ===== -->
+<section class="sec ck-sec" id="camket">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Cam kết của phòng xét nghiệm</span>
+      <h2>Áp dụng cho mọi mẫu đưa qua khay</h2>
+    </div>
+    <div class="ck-g">
+      <article class="ck rv"><b>⏱ Kết quả đúng hẹn 24 giờ</b><span>Gói định kỳ trả trong 24 giờ qua app/Zalo — trễ thì thông báo lý do và hoàn 50% giá gói.</span></article>
+      <article class="ck rv"><b>🏠 Lấy mẫu tại nhà không phí đi đường</b><span>Miễn phí cho gói từ 500.000đ; kỹ thuật viên có mặt đúng ca đã giữ, dặn chuẩn bị trước 1 ngày.</span></article>
+      <article class="ck rv"><b>🏷 Một người một mã ống</b><span>Ống dán mã riêng, tem niêm phong — tra được mẫu của bạn đang ở khâu nào, không trộn lẫn.</span></article>
+      <article class="ck rv"><b>👩‍⚕️ Bác sĩ đọc kết quả</b><span>Chỉ số lệch chuẩn — bác sĩ gọi giải thích và hẹn khám đúng chuyên khoa, không để bạn đọc một mình.</span></article>
+    </div>
+    <div class="disclaimer rv"><i>⚠️</i><span>Kết quả xét nghiệm chỉ mang tính <b>tham khảo</b> — việc chẩn đoán và điều trị tuân theo hướng dẫn của bác sĩ. Số liệu cần đối chiếu với tình trạng lâm sàng và các lần xét nghiệm trước.</span></div>
+    <div class="hot-cta rv">
+      <div>
+        <h3>Cần lấy mẫu sáng mai?</h3>
+        <p>Giữ chỗ trước 20:00 hôm nay — kỹ thuật viên đến đúng ca 6:30–9:30, dặn nhịn ăn qua Zalo.</p>
+      </div>
+      <div class="acts">
+        <a class="btn btn-a" href="tel:0034567899">📞 Gọi 0034567899</a>
+        <button class="btn btn-g" data-giu="Gói tổng quát định kỳ">🧪 Giữ chỗ online</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIỚI THIỆU — M4: NỀN MỜ + THẺ NỔI ===== -->
+<section class="m4" id="gioi-thieu">
+  <div class="wrap">
+    <div class="m4-card rv">
+      <figure class="im">
+        <img src="assets/img/intro.webp" alt="Giới thiệu An Tâm Lab — tiếp đón chu đáo, lấy mẫu cẩn thận, thông tin rõ ràng" loading="lazy">
+        <figcaption>Phòng tiếp mẫu — quầy nhận ống &amp; trả phiếu hẹn</figcaption>
+      </figure>
+      <div class="tx">
+        <span class="kicker">Về An Tâm Lab</span>
+        <h2>Cái ngõ nhỏ Kết Quả Vui — nơi mỗi ống mẫu có tên riêng</h2>
+        <p>An Tâm Lab mở từ năm 2014 ở số 12 Ngõ Kết Quả Vui. Khởi đầu chỉ là phòng kính 20m² với một máy sinh hóa; nay phòng đã có 3 khu — tiếp mẫu, phòng kính phân tích và khu chẩn đoán hình ảnh siêu âm, X-quang.</p>
+        <p>Thứ mình giữ nguyên từ ngày đầu: mỗi ống mẫu dán mã riêng của từng người, kết quả nào cũng có người đọc lại hai lần trước khi gửi. Xét nghiệm là việc cẩn thận — chỉnh chu từng bước, tư vấn rõ ràng từng chỉ số.</p>
+        <p class="sign">— Trần Thị Hồng An, người lập phòng xét nghiệm —</p>
+        <div class="m4-stats">
+          <div><b>12 năm</b><span>trong nghề</span></div>
+          <div><b>3 khu</b><span>tiếp mẫu · phân tích · hình ảnh</span></div>
+          <div><b>2 lớp</b><span>kiểm duyệt kết quả</span></div>
+          <div><b>15 phút</b><span>gọi xác nhận giữ chỗ</span></div>
+        </div>
+        <div class="m4-cta">
+          <a class="btn btn-b" href="#khay">Xem khay xét nghiệm</a>
+          <button class="btn btn-g" data-giu="Xét nghiệm lẻ">🧪 Giữ chỗ lấy mẫu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ ===== -->
+<section class="sec dg-sec" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khách nói về An Tâm Lab</span>
+      <h2>Người giữ chỗ định kỳ, người lấy mẫu tại nhà đều quay lại</h2>
+    </div>
+    <div class="dg-grid">
+      <div class="dg-list">
+        <article class="dg rv"><div class="st">★★★★★</div><p>"Đặt lấy mẫu tại nhà 21 giờ hôm trước, 6h45 hôm sau kỹ thuật viên có mặt đúng giờ, dặn nhịn ăn rõ ràng qua Zalo. 11 giờ trưa đã thấy kết quả trên app."</p><b>Chị Nguyễn Thị Thu Hà</b><span>phụ huynh 2 con · gói tổng quát định kỳ</span></article>
+        <article class="dg rv"><div class="st">★★★★★</div><p>"Má mình theo dõi đường huyết 3 tháng một lần, toàn giữ chỗ ca sáng rồi đi về kịp nấu cơm trưa. Chỉ số nào lệch là bác sĩ gọi giải thích tới nơi."</p><b>Anh Lê Văn Đức</b><span>con tín · xét nghiệm máu định kỳ</span></article>
+        <article class="dg rv"><div class="st">★★★★☆</div><p>"Khám tiền hôn nhân ở đây nhẹ nhàng, tư vấn không né câu khó. Trừ nửa sao vì phòng chờ hơi đông sáng thứ 7 — nên giữ chỗ trước để đúng lượt."</p><b>Hai bạn Minh &amp; Trâm</b><span>gói sức khỏe tiền hôn nhân</span></article>
+      </div>
+      <aside class="dg-side rv">
+        <div class="big">4.8/5<small>từ đánh giá của khách đã lấy mẫu tại An Tâm Lab</small></div>
+        <div class="row">Đúng hẹn lấy mẫu <b>98%</b><div class="bar"><i style="width:98%"></i></div></div>
+        <div class="row">Kết quả đúng hẹn 24 giờ <b>96%</b><div class="bar"><i style="width:96%"></i></div></div>
+        <div class="row">Khách quay lại định kỳ <b>82%</b><div class="bar"><i style="width:82%"></i></div></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ + MAP ===== -->
+<section class="sec lh-sec" id="lien-he">
+  <div class="wrap lh-g">
+    <div class="lh-card rv">
+      <h3>🏠 Đến lấy mẫu tại cơ sở</h3>
+      <div class="lh-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>12 Ngõ Kết Quả Vui, Phường An Tâm Dễ Thợ</div></div>
+      <div class="lh-line"><div class="ic">📞</div><div><b>Hotline giữ chỗ &amp; tư vấn</b><br><a class="tel num-tab" href="tel:0034567899">0034567899</a></div></div>
+      <div class="lh-line"><div class="ic">🕰</div><div><b>Giờ nhận mẫu</b><br>6:30 – 19:00 tất cả các ngày trong tuần · lấy mẫu tại nhà ca 6:30 – 9:30</div></div>
+      <a class="btn btn-g" href="https://www.google.com/maps?q=10.7812,106.6861&z=16" target="_blank" rel="noopener">🧭 Chỉ đường tới đây</a>
+    </div>
+    <div class="lh-card rv">
+      <!-- NB110-MAP: 10.7812,106.6861 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.7812,106.6861&z=16&output=embed&hl=vi" title="Bản đồ An Tâm Lab"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều khách hay hỏi trước khi lấy mẫu</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Xét nghiệm có phải nhịn ăn không?<i>+</i></button><div class="a">Xét nghiệm đường huyết, mỡ máu, chức năng gan cần nhịn 8–10 giờ (uống nước lọc được, không uống sữa/cà phê). Người đang uống thuốc sáng nên hỏi trước qua hotline để được dặn riêng. Xét nghiệm nước tiểu, siêu âm, X-quang không cần nhịn.</div></div>
+      <div class="qa rv"><button>Bao lâu thì có kết quả?<i>+</i></button><div class="a">Xét nghiệm máu cơ bản: 4–6 giờ, nhận ngay tại quầy hoặc qua app/Zalo. Gói tổng quát định kỳ: sau 24 giờ. Xét nghiệm chuyên sâu (hormone, vi sinh): 24–72 giờ tùy hạng mục — phiếu hẹn ghi rõ ngày trả khi bạn gửi mẫu.</div></div>
+      <div class="qa rv"><button>Lấy mẫu tại nhà hoạt động thế nào?<i>+</i></button><div class="a">Giữ chỗ trước 20:00 hôm trước, kỹ thuật viên đến ca 6:30–9:30 trong ngày đã hẹn (nội thành). Phí đi đường 0đ cho gói từ 500.000đ, các trường hợp khác 60.000đ/lượt. Kỹ thuật viên mang ống mẫu mới, dán mã ngay trước mặt bạn.</div></div>
+      <div class="qa rv"><button>BHYT chi trả được không?<i>+</i></button><div class="a">Trung thực trả lời: xét nghiệm theo yêu cầu (không qua đơn thuốc BHYT) không thuộc phạm vi chi trả. Trường hợp có chỉ định phù hợp quy định, quầy kiểm tra thẻ trực tiếp và báo trước mức áp dụng. Mọi dịch vụ đều có hóa đơn để bạn hoàn tục nếu cần.</div></div>
+      <div class="qa rv"><button>Kết quả có chỉ số bất thường thì sao?<i>+</i></button><div class="a">Bác sĩ của phòng gọi giải thích chỉ số, gợi ý chuyên khoa nên thăm khám — bạn không phải tự đọc một mình. Kết quả xét nghiệm chỉ mang tính tham khảo: việc chẩn đoán và điều trị tuân theo hướng dẫn bác sĩ sau khi khám lâm sàng.</div></div>
+      <div class="qa rv"><button>Trẻ nhỏ và người sợ kim lấy mẫu thế nào?<i>+</i></button><div class="a">Có kỹ thuật viên chuyên lấy mẫu cho trẻ (kim nhỏ, một lần chọc đúng mạch quen thuộc). Người sợ kim nên ghi chú trong phiếu giữ chỗ — được sắp lấy trước, trao đổi nhẹ nhàng và ngồi lấy thay vì nằm.</div></div>
+      <div class="qa rv"><button>Giá đã gồm những gì?<i>+</i></button><div class="a">Giá tham chiếu gồm: lấy mẫu, ống phụ liệu, phí phân tích và phiếu kết quả. Siêu âm, X-quang tính theo vùng khám (bụng, tuyến giáp, ngực…) — báo chính xác trước khi làm, không phát sinh ngoài ý biết.</div></div>
+      <div class="qa rv"><button>Kết quả qua app có bảo mật không?<i>+</i></button><div class="a">Kết quả chỉ gửi đúng số điện thoại đăng ký trong phiếu giữ chỗ; mở kết quả cần mã truy cập in trên phiếu hẹn. Muốn đổi số nhận kết quả, phải xác nhận qua hotline từ số đã đăng ký.</div></div>
+    </div>
+    <p class="faq-dis">Kết quả xét nghiệm chỉ mang tính tham khảo — việc chẩn đoán và điều trị tuân theo hướng dẫn của bác sĩ.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🧪 An Tâm Lab</b>
+      <p>Xét nghiệm &amp; chẩn đoán — mẫu lấy chuẩn, kết quả rõ trong 24 giờ qua app/Zalo. Một người một mã ống, bác sĩ đọc kết quả cùng bạn.</p>
+    </div>
+    <div>
+      <h4>Khám phá</h4>
+      <a href="#khay">Khay xét nghiệm hôm nay</a>
+      <a href="#chon-goi">Chọn gói theo mục tiêu</a>
+      <a href="#quytrinh">Quy trình 4 bước</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 12 Ngõ Kết Quả Vui, Phường An Tâm Dễ Thợ</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 6:30 – 19:00 tất cả các ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 An Tâm Lab — Xét nghiệm và chẩn đoán · Giá tham chiếu, báo giá chính xác trước khi lấy mẫu
+    <span class="dis">Kết quả xét nghiệm chỉ mang tính tham khảo — việc chẩn đoán và điều trị tuân theo hướng dẫn của bác sĩ.</span>
+  </div>
+</footer>
+
+<!-- ===== DRAWER ĐẶT LỊCH LẤY MẪU ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="drawer" aria-hidden="true" aria-label="Phiếu giữ chỗ lấy mẫu">
+  <div class="dr-head">
+    <span class="ic">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M10.5 14.5h3M12 13v3"/></svg>
+    </span>
+    <h3>Giữ chỗ lấy mẫu<small>Chọn gói → ca lấy mẫu → xác nhận · không cọc</small></h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng phiếu giữ chỗ">✕</button>
+  </div>
+  <div class="dr-body">
+    <div>
+      <span class="dr-lbl">Gói / dịch vụ <em id="drTag">chưa chọn</em></span>
+      <div class="dr-chips" id="drGoi"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Hình thức lấy mẫu</span>
+      <div class="dr-chips" id="drHt">
+        <button class="dr-chip on" data-ht="Co so">Tại cơ sở — 12 Ngõ Kết Quả Vui</button>
+        <button class="dr-chip" data-ht="Tai nha">Tại nhà — ca sáng 6:30–9:30</button>
+      </div>
+    </div>
+    <div>
+      <span class="dr-lbl">Ngày lấy mẫu (T2 – CN)</span>
+      <div class="dr-chips" id="drDays"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Ca lấy mẫu</span>
+      <div class="dr-chips" id="drCa">
+        <button class="dr-chip on" data-ca="sang">Sáng · 6:30 – 9:30<small style="display:block;font-weight:600;font-size:10.5px;opacity:.8">gói cần nhịn ăn — nên chọn ca này</small></button>
+        <button class="dr-chip" data-ca="toi">Tối · 17:00 – 19:00<small style="display:block;font-weight:600;font-size:10.5px;opacity:.8">chỉ tại cơ sở · xét nghiệm không nhịn</small></button>
+      </div>
+    </div>
+    <div>
+      <span class="dr-lbl">Liên hệ</span>
+      <input class="dr-input" id="drName" type="text" placeholder="Họ tên *">
+      <input class="dr-input" id="drPhone" type="tel" placeholder="Số điện thoại *">
+      <input class="dr-input" id="drAddr" type="text" placeholder="Địa chỉ lấy mẫu tại nhà (số nhà, đường, phường) *" hidden>
+    </div>
+    <div class="dr-sum" id="drSum">Chọn gói, ngày và ca để thấy tóm tắt giữ chỗ.</div>
+    <button class="dr-sub" id="drSubmit">✅ Xác nhận giữ chỗ lấy mẫu</button>
+    <p class="dr-call">Gấp hơn? <a href="tel:0034567899">Gọi 0034567899</a> — nhân viên xác nhận trong 15 phút · đổi/huỷ miễn phí trước 2 giờ.</p>
+    <div class="dr-done" id="drDone"></div>
+    <p class="dr-tiny"><b>Lưu ý:</b> gói cần nhịn ăn sẽ được dặn chi tiết qua Zalo sau khi giữ chỗ. Kết quả xét nghiệm chỉ mang tính tham khảo — tuân theo hướng dẫn của bác sĩ.</p>
+  </div>
+</aside>
+
+<!-- ===== FAB ĐẶT LỊCH (SVG lịch + ống nghiệm — không icon giỏ) ===== -->
+<button class="book-fab" id="bookFab" aria-label="Mở phiếu giữ chỗ lấy mẫu">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="5" width="18" height="16" rx="2"/>
+    <path d="M3 10h18M8 3v4M16 3v4"/>
+    <path d="M8.5 14.5h2M8.5 17.5h2"/>
+    <path d="M14.5 13v4.2a1.8 1.8 0 0 0 3.6 0V13"/>
+    <path d="M14.5 13h3.6"/>
+  </svg>
+  <span class="pulse"></span>
+  <span class="bl">Giữ chỗ lấy mẫu</span>
+</button>
+
+<!-- ===== CHAT (pkc) — không bot, C3 bridge điều hành ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🧪</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">An Tâm Lab</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip" data-t="Cho mình xin giá gói tổng quát ạ">💰 Gói tổng quát giá bao nhiêu?</button>
+    <button class="pkc-chip" data-t="Xét nghiệm này có phải nhịn ăn không ạ?">🍚 Xét nghiệm này có phải nhịn ăn?</button>
+    <button class="pkc-chip" data-t="Đặt lấy mẫu tại nhà như thế nào ạ?">🏠 Lấy mẫu tại nhà đặt thế nào?</button>
+    <button class="pkc-chip" data-t="Bao lâu thì có kết quả ạ?">⏱ Bao lâu có kết quả?</button>
+    <button class="pkc-chip" data-t="BHYT dùng được ở phòng mình không ạ?">🏥 BHYT dùng được không?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho phòng xét nghiệm…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-270*/
+'use strict';
+var HOTLINE = '0034567899';
+
+/* ===== 8 ỐNG TRÊN KHAY (khối-8) =====
+   Map ảnh theo NỘI DUNG poster kho (tránh "ảnh SP A minh họa SP B" — P10):
+   kho p1=bìa generic · p2=X-quang · p3=chuyên sâu · p4=nước tiểu ·
+   p5=máu · p6=siêu âm · p7=tổng quát · p8=lấy mẫu tại nhà */
+var SV = [
+  {c:'GQ-05', n:'Gói tổng quát định kỳ',     img:'assets/img/p7.webp', pri:'690.000đ',    meta:'nhịn 8–10 giờ\n24 giờ có kết quả', d:'6 ống trọn bộ kiểm tra định kỳ — nên làm 6 tháng/lần, đi cùng người nhà được giảm 5%.', feat:'GIỮ NHIỀU NHẤT', cap:'#D9364C'},
+  {c:'XM-01', n:'Xét nghiệm máu',            img:'assets/img/p5.webp', pri:'từ 150.000đ', meta:'nhịn 8 giờ\n4–6 giờ có kết quả',  d:'Huyết học toàn phần, đường huyết, nhóm máu — ống nắp tím đỏ, lấy 10 phút là xong.'},
+  {c:'NT-02', n:'Xét nghiệm nước tiểu',      img:'assets/img/p4.webp', pri:'từ 60.000đ',  meta:'không nhịn\n60 phút có kết quả',  d:'10 chỉ số viêm – nhiễm – đường niệu; cấp lọ mẫu sạch tại quầy, trả nhanh trong giờ.'},
+  {c:'SA-03', n:'Siêu âm chẩn đoán',         img:'assets/img/p6.webp', pri:'từ 180.000đ', meta:'~20 phút\nkết quả tại chỗ',       d:'Bụng, tuyến giáp, thai kỳ, tiết niệu — hình ảnh in cùng phiếu, bác sĩ đọc ngay.'},
+  {c:'XQ-04', n:'Chụp X-quang',              img:'assets/img/p2.webp', pri:'từ 120.000đ', meta:'~10 phút\n30 phút có phim',        d:'Ngực, cột sống, khớp — máy kỹ thuật số liều thấp, phim gửi thẳng app cho bạn.'},
+  {c:'CS-06', n:'Xét nghiệm chuyên sâu',     img:'assets/img/p3.webp', pri:'từ 250.000đ', meta:'theo chỉ định\n24–72 giờ',         d:'Hormone, vi sinh, ung thư chỉ điểm — làm đúng danh mục bác sĩ đã chỉ định, báo giá trước.'},
+  {c:'TN-07', n:'Lấy mẫu tại nhà',           img:'assets/img/p8.webp', pri:'phí 0đ',      meta:'nội thành\nca 6:30–9:30',          d:'Kỹ thuật viên đến tận nhà với gói từ 500.000đ — dặn chuẩn bị trước 1 ngày qua Zalo.', hot:'CA SÁNG CÒN CHỖ', cap:'#0B4DA8'},
+  {c:'KQ-08', n:'Trả kết quả qua ứng dụng',  img:'assets/img/p1.webp', pri:'miễn phí',    meta:'mã truy cập\nchỉ bạn xem được',    d:'Kết quả mọi xét nghiệm đẩy thẳng app/Zalo đúng số đã đăng ký — kèm bản giấy tại quầy.'}
+];
+var CAPS = ['#D9364C','#E2A93B','#7C5CBF','#64748B','#D9364C','#2E7CD6','#0E8F76','#2E7CD6'];
+
+/* ===== GÓI THEO MỤC TIÊU (dacThu) ===== */
+var GOI = [
+  {id:'dinh-ky',   ten:'Định kỳ hằng năm',      phu:'người 30+ · cả nhà', price:690000, gia:'690.000đ', an:'Nhịn 8–10 giờ', kq:'Sau 24 giờ',
+   tubes:[['Huyết học toàn phần','#7C5CBF'],['Đường huyết lúc đói','#D9364C'],['Mỡ máu (4 chỉ số)','#E2A93B'],['Chức năng gan','#2E7CD6'],['Chức năng thận','#0E8F76'],['Xét nghiệm nước tiểu','#E2A93B']]},
+  {id:'duong',     ten:'Đường huyết – đái tháo đường', phu:'đang theo dõi đường huyết', price:320000, gia:'320.000đ', an:'Nhịn 8 giờ', kq:'Sau 24 giờ',
+   tubes:[['Đường huyết lúc đói','#D9364C'],['HbA1c – trung bình 3 tháng','#7C5CBF'],['Glucose niệu','#E2A93B']]},
+  {id:'gan-than',  ten:'Gan – thận – mỡ máu',   phu:'thường dùng rượu bia · ăn nhiều dầu mỡ', price:380000, gia:'380.000đ', an:'Nhịn 8 giờ', kq:'Sau 24 giờ',
+   tubes:[['Chức năng gan','#2E7CD6'],['Chức năng thận','#0E8F76'],['Mỡ máu (4 chỉ số)','#E2A93B'],['Đường huyết lúc đói','#D9364C']]},
+  {id:'tien-hon-nhan', ten:'Sức khỏe tiền hôn nhân', phu:'trước đám cưới', price:850000, gia:'850.000đ', an:'Không cần nhịn', kq:'Sau 48 giờ',
+   tubes:[['Nhóm máu & Rh','#64748B'],['Viêm gan B, C','#2E7CD6'],['HIV – giang mai','#D9364C'],['Hormone tuyến giáp','#7C5CBF'],['Xét nghiệm nước tiểu','#E2A93B']]},
+  {id:'theo-hen',  ten:'Theo hẹn bác sĩ',       phu:'đang điều trị · tái khám', price:null, gia:'theo chỉ định', an:'Dặn theo toa', kq:'24–72 giờ',
+   tubes:[['Dán mã đúng danh mục chỉ định','#0E8F76'],['Báo giá trước khi lấy mẫu','#64748B']]}
+];
+var PHU_LAY_MAU = 'Phí đi đường 0đ cho gói từ 500.000đ — kỹ thuật viên đến ca 6:30–9:30.';
+
+/* ===== TIỆN ÍCH ===== */
+function $(id){ return document.getElementById(id); }
+function fmt(n){ return n.toLocaleString('vi-VN') + 'đ'; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(title, msg){
+  var zone = $('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3800);
+}
+function tubeSVG(cap, w){
+  w = w || 26;
+  var h = Math.round(w * 62 / 26);
+  return '<svg class="tsvg" width="' + w + '" height="' + h + '" viewBox="0 0 26 62" aria-hidden="true">'
+    + '<rect x="7" y="1" width="12" height="9" rx="2.5" fill="' + cap + '"/>'
+    + '<path d="M8 12h10v36a5 5 0 0 1-10 0Z" fill="rgba(220,232,246,.65)" stroke="#9FB9D8" stroke-width="1.3"/>'
+    + '<path d="M9.2 32h7.6v16a3.8 3.8 0 0 1-7.6 0Z" fill="' + cap + '" opacity=".8"/>'
+    + '<rect x="6.2" y="20" width="13.6" height="7.5" rx="1.5" fill="#fff" stroke="#C9D9EE" stroke-width=".8"/>'
+    + '</svg>';
+}
+
+/* ===== RENDER KHAY 8 Ô (pattern #12: ống đứng hàng lô, nhãn mã, phiếu kết quả) ===== */
+function renderRack(){
+  var g = $('rackGrid'), h = '';
+  for (var i = 0; i < SV.length; i++){
+    var p = SV[i];
+    var cap = p.cap || CAPS[i];
+    var metaHtml = esc(p.meta).replace('\n', '<br>');
+    var tag = (p.feat || p.hot) ? '<span class="hot-tag">' + (p.feat || p.hot) + '</span>' : '';
+    var cls = p.feat ? ' feat' : (p.hot ? ' hot' : '');
+    var body;
+    if (p.feat){
+      body = '<div class="lft">'
+        + '<div class="tube-row">' + tubeSVG(cap) + '<span class="tcode">' + p.c + '</span><span class="tmeta">' + metaHtml + '</span></div>'
+        + '<figure class="ph"><img src="' + p.img + '" alt="' + esc(p.n) + '" loading="lazy"></figure>'
+        + '</div>'
+        + '<div class="rgt"><h3>' + esc(p.n) + '</h3><p>' + esc(p.d) + '</p>'
+        + '<div class="ft"><span class="pri num-tab">' + esc(p.pri) + '<small>giá tham chiếu</small></span>'
+        + '<button class="giu" data-giu="' + esc(p.n) + '">🧪 Giữ chỗ</button></div></div>';
+    } else {
+      body = '<div class="tube-row">' + tubeSVG(cap) + '<span class="tcode">' + p.c + '</span><span class="tmeta">' + metaHtml + '</span></div>'
+        + '<figure class="ph"><img src="' + p.img + '" alt="' + esc(p.n) + '" loading="lazy"></figure>'
+        + '<h3>' + esc(p.n) + '</h3><p>' + esc(p.d) + '</p>'
+        + '<div class="ft"><span class="pri num-tab">' + esc(p.pri) + '<small>giá tham chiếu</small></span>'
+        + '<button class="giu" data-giu="' + esc(p.n) + '">🧪 Giữ chỗ</button></div>';
+    }
+    h += '<article class="ong' + cls + '">' + tag + body + '</article>';
+  }
+  g.innerHTML = h;
+}
+renderRack();
+
+/* ===== DACTHU: CHỌN GÓI THEO MỤC TIÊU ===== */
+var goiSel = 'dinh-ky', homeSel = false;
+function goiData(){ for (var i = 0; i < GOI.length; i++){ if (GOI[i].id === goiSel) return GOI[i]; } return GOI[0]; }
+function renderGoiChips(){
+  var h = '';
+  for (var i = 0; i < GOI.length; i++){
+    var g = GOI[i];
+    h += '<button data-id="' + g.id + '"' + (g.id === goiSel ? ' class="on"' : '') + '>' + esc(g.ten) + '<small>' + esc(g.phu) + '</small></button>';
+  }
+  $('goiChips').innerHTML = h;
+}
+function renderGoiOut(){
+  var g = goiData();
+  $('goiName').textContent = 'Khay ống — ' + g.ten;
+  $('goiCount').textContent = g.tubes.length + ' ống';
+  var rack = '';
+  for (var r = 0; r < g.tubes.length; r++) rack += '<i style="background:' + g.tubes[r][1] + '"></i>';
+  $('miniRack').innerHTML = rack;
+  var h = '';
+  for (var j = 0; j < g.tubes.length; j++){
+    h += '<div class="tr"><span class="cap" style="background:' + g.tubes[j][1] + '"></span>' + esc(g.tubes[j][0]) + '<span class="mono">ống ' + (j + 1) + '/' + g.tubes.length + '</span></div>';
+  }
+  $('goiList').innerHTML = h;
+  $('goiAn').textContent = g.an;
+  $('goiKq').textContent = g.kq;
+  $('goiPhu').textContent = g.phu;
+  $('goiPrice').textContent = g.gia;
+}
+renderGoiChips(); renderGoiOut();
+$('goiChips').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-id]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  goiSel = b.getAttribute('data-id');
+  renderGoiOut();
+});
+function toggleHome(){
+  homeSel = !homeSel;
+  $('homeTog').classList.toggle('on', homeSel);
+  $('homeTog').setAttribute('aria-checked', homeSel ? 'true' : 'false');
+  toast(homeSel ? 'Đã thêm lấy mẫu tại nhà' : 'Đã bỏ lấy mẫu tại nhà',
+        homeSel ? PHU_LAY_MAU : 'Mẫu lấy tại cơ sở 12 Ngõ Kết Quả Vui — 6:30–19:00.');
+}
+$('homeTog').addEventListener('click', toggleHome);
+$('homeTog').addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleHome(); } });
+$('goiBook').addEventListener('click', function(){
+  giuCho(goiData().ten);
+});
+
+/* ===== DRAWER GIỮ CHỎ LẤY MẪU (funnel chính — prefill từ dacThu/khối-8) ===== */
+var WD = ['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+var days = [];
+(function(){
+  var now = new Date();
+  for (var i = 0; i < 7; i++){
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    days.push({ label: i === 0 ? 'Hôm nay' : (i === 1 ? 'Ngày mai' : WD[d.getDay()]), full: d.getDate() + '/' + (d.getMonth() + 1) });
+  }
+})();
+var st = { goi: null, ht: 'Co so', day: null, ca: 'sang' };
+function renderDrGoi(){
+  var names = ['Gói tổng quát định kỳ','Đường huyết – đái tháo đường','Gan – thận – mỡ máu','Sức khỏe tiền hôn nhân','Theo hẹn bác sĩ','Xét nghiệm máu','Xét nghiệm nước tiểu','Siêu âm chẩn đoán','Chụp X-quang','Lấy mẫu tại nhà','Xét nghiệm lẻ'];
+  var h = '';
+  for (var i = 0; i < names.length; i++){
+    h += '<button class="dr-chip' + (st.goi === names[i] ? ' on' : '') + '" data-g="' + esc(names[i]) + '">' + esc(names[i]) + '</button>';
+  }
+  $('drGoi').innerHTML = h;
+}
+function renderDrDays(){
+  var h = '';
+  for (var i = 0; i < days.length; i++){
+    h += '<button class="dr-chip' + (st.day === i ? ' on' : '') + '" data-d="' + i + '">' + days[i].label + '<br><b class="num-tab">' + days[i].full + '</b></button>';
+  }
+  $('drDays').innerHTML = h;
+}
+function syncDr(){
+  renderDrGoi();
+  renderDrDays();
+  $('drTag').textContent = st.goi || 'chưa chọn';
+  document.querySelectorAll('#drHt .dr-chip').forEach(function(x){ x.classList.toggle('on', x.getAttribute('data-ht') === st.ht); });
+  document.querySelectorAll('#drCa .dr-chip').forEach(function(x){ x.classList.toggle('on', x.getAttribute('data-ca') === st.ca); });
+  var tn = st.ht === 'Tai nha';
+  $('drAddr').hidden = !tn;
+  var caToi = document.querySelector('[data-ca="toi"]');
+  if (caToi){ caToi.disabled = tn; if (tn && st.ca === 'toi') st.ca = 'sang'; }
+  var has = st.goi && st.day !== null;
+  $('drSum').innerHTML = has
+    ? '<span>Gói: <b>' + esc(st.goi) + '</b></span>'
+      + '<span>Hình thức: <b>' + (tn ? 'Tại nhà — ca 6:30–9:30' : 'Tại cơ sở — 12 Ngõ Kết Quả Vui') + '</b></span>'
+      + '<span>Thời gian: <b>' + days[st.day].label + ' ' + days[st.day].full + ' · ' + (st.ca === 'sang' ? 'ca sáng 6:30–9:30' : 'ca tối 17:00–19:00') + '</b></span>'
+      + '<span>Phí đi đường: <b>' + (tn ? '0đ với gói từ 500.000đ / 60.000đ' : '0đ') + '</b></span>'
+    : 'Chọn gói, ngày và ca để thấy tóm tắt giữ chỗ.';
+}
+$('drGoi').addEventListener('click', function(e){
+  var b = e.target.closest('[data-g]'); if (!b) return;
+  st.goi = b.getAttribute('data-g'); syncDr();
+});
+$('drHt').addEventListener('click', function(e){
+  var b = e.target.closest('[data-ht]'); if (!b) return;
+  st.ht = b.getAttribute('data-ht'); syncDr();
+});
+$('drDays').addEventListener('click', function(e){
+  var b = e.target.closest('[data-d]'); if (!b) return;
+  st.day = +b.getAttribute('data-d'); syncDr();
+});
+$('drCa').addEventListener('click', function(e){
+  var b = e.target.closest('[data-ca]'); if (!b || b.disabled) return;
+  st.ca = b.getAttribute('data-ca'); syncDr();
+});
+function openDrawer(){
+  syncDr();
+  $('drawer').classList.add('on');
+  $('drMask').classList.add('on');
+  $('drawer').setAttribute('aria-hidden', 'false');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  $('drawer').classList.remove('on');
+  $('drMask').classList.remove('on');
+  $('drawer').setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('dr-open');
+}
+$('bookFab').addEventListener('click', openDrawer);
+$('drClose').addEventListener('click', closeDrawer);
+$('drMask').addEventListener('click', closeDrawer);
+/* prefill: CTA bất kỳ trên trang → đúng gói, mở phiếu */
+function giuCho(ten){
+  st.goi = ten;
+  var map = { 'Gói tổng quát định kỳ':'dinh-ky', 'Đường huyết – đái tháo đường':'duong', 'Gan – thận – mỡ máu':'gan-than', 'Sức khỏe tiền hôn nhân':'tien-hon-nhan', 'Theo hẹn bác sĩ':'theo-hen' };
+  if (map[ten]){ goiSel = map[ten]; renderGoiChips(); renderGoiOut(); }
+  if (homeSel) st.ht = 'Tai nha';
+  openDrawer();
+  toast('Đã chọn "' + ten + '"', 'Chọn ngày và ca lấy mẫu — xác nhận giữ chỗ không cần cọc.');
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-giu]');
+  if (b) giuCho(b.getAttribute('data-giu'));
+});
+/* xác nhận giữ chỗ — kiểm trống + toast */
+$('drSubmit').addEventListener('click', function(){
+  var name = $('drName'), phone = $('drPhone'), addr = $('drAddr');
+  [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
+  var ok = true, miss = [];
+  if (!st.goi){ miss.push('gói xét nghiệm'); }
+  if (st.day === null){ miss.push('ngày lấy mẫu'); }
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; miss.push('họ tên'); }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g, ''))){ phone.classList.add('err'); ok = false; miss.push('số điện thoại'); }
+  if (!$('drAddr').hidden && !addr.value.trim()){ addr.classList.add('err'); ok = false; miss.push('địa chỉ lấy mẫu'); }
+  if (!ok || miss.length){
+    toast('Thiếu thông tin', 'Cho mình xin: ' + miss.join(', ') + ' để giữ chỗ lấy mẫu nhé!');
+    return;
+  }
+  var code = 'AT-' + (1000 + Math.floor(Math.random() * 9000));
+  var tn = st.ht === 'Tai nha';
+  $('drDone').innerHTML = '<span class="lb">Đã giữ chỗ — xác nhận tại trang</span>'
+    + '<div class="code">' + code + '</div>'
+    + '<p>' + esc(name.value.trim()) + ' · ' + esc(phone.value.trim()) + '</p>'
+    + '<div class="recap">'
+    + '<span>Gói: <b>' + esc(st.goi) + '</b></span>'
+    + '<span>Thời gian: <b>' + days[st.day].label + ' ' + days[st.day].full + ' · ' + (tn ? 'tại nhà — ca sáng 6:30–9:30' : 'tại cơ sở · ' + (st.ca === 'sang' ? 'ca sáng 6:30–9:30' : 'ca tối 17:00–19:00')) + '</b></span>'
+    + (tn ? '<span>Kỹ thuật viên đến: <b>' + esc(addr.value.trim()) + '</b></span>' : '')
+    + '</div>'
+    + '<p>Nhân viên gọi xác nhận trong <b>15 phút</b>. Đổi/huỷ miễn phí trước 2 giờ — gọi ' + HOTLINE + '.</p>';
+  $('drDone').classList.add('show');
+  $('drSum').innerHTML = '<span>Đã giữ chỗ <b>' + code + '</b> — xem tóm tắt trong khung xác nhận phía dưới.</span>';
+  toast('Đã giữ chỗ ' + code + ' — cảm ơn ' + name.value.trim() + '!',
+        days[st.day].label + ' ' + days[st.day].full + ' · ' + (tn ? 'kỹ thuật viên đến nhà ca sáng' : 'tại cơ sở') + ' — gọi xác nhận trong 15 phút.');
+  $('drDone').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+/* ===== SEARCH THẬT: typeahead + Enter lọc khay + toast đếm ===== */
+var SIDX = SV.map(function(p){ return { t: p.n, c: p.c }; });
+var qEl = $('q'), pop = $('sPop');
+function sMatch(v){
+  v = v.trim().toLowerCase(); if (!v) return [];
+  var out = [];
+  for (var i = 0; i < SIDX.length; i++){ if (SIDX[i].t.toLowerCase().indexOf(v) >= 0) out.push(SIDX[i]); }
+  return out;
+}
+qEl.addEventListener('input', function(){
+  var r = sMatch(qEl.value);
+  if (!qEl.value.trim() || r.length === 0){ pop.classList.remove('open'); return; }
+  var html = '';
+  for (var i = 0; i < Math.min(r.length, 6); i++) html += '<button data-go="' + r[i].c + '">' + esc(r[i].t) + '<b>' + r[i].c + '</b></button>';
+  pop.innerHTML = html; pop.classList.add('open');
+});
+pop.addEventListener('click', function(e){
+  var b = e.target.closest('[data-go]'); if (!b) return;
+  pop.classList.remove('open');
+  document.getElementById('khay').scrollIntoView({ behavior: 'smooth' });
+});
+document.addEventListener('click', function(e){ if (!e.target.closest('.srch')) pop.classList.remove('open'); });
+qEl.addEventListener('keydown', function(e){
+  if (e.key !== 'Enter') return;
+  e.preventDefault();
+  var v = qEl.value.trim().toLowerCase();
+  var cards = document.querySelectorAll('#rackGrid .ong');
+  var found = 0;
+  for (var i = 0; i < cards.length; i++){
+    var nm = cards[i].querySelector('h3').textContent.toLowerCase();
+    var show = v && nm.indexOf(v) >= 0;
+    cards[i].style.display = (v && !show) ? 'none' : '';
+    if (show) found++;
+  }
+  pop.classList.remove('open');
+  document.getElementById('khay').scrollIntoView({ behavior: 'smooth' });
+  if (!v || found === 0){
+    if (v) toast('Tìm thấy 0 ống', 'Chưa có "' + v + '" trên khay — nhắn hotline ' + HOTLINE + ', mình tra giúp!');
+    toast('Hiện lại cả khay', '8 ống xét nghiệm — chọn theo mục tiêu ở khối "Chọn gói" nếu chưa rõ.');
+  } else {
+    toast('Kết quả trên khay', 'Tìm thấy ' + found + ' ống khớp "' + v + '"');
+  }
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT — không bot, C3 bridge điều hành; chip chỉ điền text ===== */
+(function(){
+  var fab = $('pkcFab'), panel = $('pkcPanel'), inp = $('pkcInput');
+  function toggle(open){
+    panel.classList.toggle('on', open);
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('chat-open', open);
+  }
+  fab.addEventListener('click', function(){ toggle(!panel.classList.contains('on')); });
+  $('pkcClose').addEventListener('click', function(){ toggle(false); });
+  function add(text, who){
+    var msgs = $('pkcMsgs');
+    var d = document.createElement('div');
+    d.className = 'mg ' + who; d.textContent = text;
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function send(){
+    var v = inp.value.trim(); if (!v) return;
+    add(v, 'v'); inp.value = '';
+  }
+  $('pkcSend').addEventListener('click', send);
+  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); send(); } });
+  $('pkcChips').addEventListener('click', function(e){
+    var c = e.target.closest('.pkc-chip'); if (!c) return;
+    inp.value = c.getAttribute('data-t') || c.textContent;
+    inp.focus();
+  });
+})();
+
+/* ===== REVEAL + FAILSAFE ===== */
+(function(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j = 0; j < els.length; j++) els[j].classList.add('in'); }, 3000);
+})();
+</script>
+</body>
+</html>

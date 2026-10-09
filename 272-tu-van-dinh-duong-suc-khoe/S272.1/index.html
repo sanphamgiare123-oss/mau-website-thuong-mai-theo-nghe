@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Nhiên Nutrition — Liệu trình dinh dưỡng theo mục tiêu &amp; thực đơn cá nhân hóa tại TP.HCM</title>
+<meta name="description" content="An Nhiên Nutrition — liệu trình dinh dưỡng 12 tuần theo mục tiêu: giảm cân, tăng cân, ổn định đường huyết, cải thiện gan nhiễm mỡ. Thực đơn cá nhân hóa, theo dõi số đo mỗi tuần (cân, vòng bụng). Buổi tư vấn đầu 0đ — không thuốc, không nhịn ăn, không thay thế điều trị y khoa. Gọi 0901 473 652.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — palette xanh dinh dưỡng & cam ấm — An Nhiên Nutrition — NB93-272 ============ */
+:root{
+  --primary:#1F7A4D;
+  --primary-2:#2E9663;
+  --primary-3:#13513A;
+  --ink:#1B3527;
+  --soft:#5B7568;
+  --texture:#F3FAF5;
+  --texture-2:#E1F2E7;
+  --card:#FFFFFF;
+  --line:#D8EBDF;
+  --line-2:#BFE0CE;
+  --accent:#E07C24;
+  --accent-2:#F09A4B;
+  --accent-deep:#B45E12;
+  --accent-100:#FCEDE0;
+  --water:#2E9663;
+  --water-100:#E3F4EA;
+  --ok:#1E9E6A;
+  --danger:#D8382B;
+  --grad-accent:linear-gradient(135deg,#E07C24,#C96A15);
+  --grad-dark:linear-gradient(140deg,#2E9663,#1F7A4D 52%,#13513A);
+  --sh1:0 2px 10px rgba(19,81,58,.07);
+  --sh2:0 12px 32px rgba(19,81,58,.13);
+  --sh3:0 26px 64px rgba(19,81,58,.24);
+  --r1:10px; --r2:16px; --r3:24px; --r4:32px;
+  --hazard:repeating-linear-gradient(45deg,rgba(46,150,99,.10) 0 16px,transparent 16px 32px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.6;font-size:15.5px;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.block{display:block}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.i.f{fill:currentColor;stroke:none}
+::selection{background:var(--accent-100);color:var(--accent-deep)}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+.sec-title{text-align:center;font-size:2.1rem;font-weight:900;color:var(--primary)}
+.sec-sub{display:block;text-align:center;color:var(--soft);font-size:.98rem;margin-top:8px;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid rgba(224,124,36,.3)}
+.hl{background:var(--grad-accent);color:#fff;padding:2px 12px 4px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block;transform:rotate(-1.2deg)}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ============ NÚT ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;min-height:50px;text-align:center}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 10px 26px rgba(224,124,36,.38)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(224,124,36,.46)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line-2);box-shadow:var(--sh1)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-2px)}
+.btn-hot{background:linear-gradient(135deg,#2E9663,#1F7A4D);color:#fff;box-shadow:0 12px 30px rgba(31,122,77,.4)}
+.btn-hot:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(31,122,77,.5)}
+.btn-hot::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-hot:hover::after{left:130%}
+.btn-xl{font-size:1.18rem;padding:20px 34px;border-radius:18px;min-height:70px}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-3);color:#DFF2E8;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px;flex-wrap:wrap}
+.topbar .tb-l{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-width:0}
+.topbar .tb-l span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar .i{width:15px;height:15px;color:var(--accent-2)}
+.topbar .hot{color:#CDEEDD;font-weight:800;display:inline-flex;gap:6px;align-items:center}
+.topbar .hot b{font-size:1.02em;color:#fff;letter-spacing:.03em}
+
+/* ============ HEADER ============ */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(31,122,77,.35);transform:rotate(-4deg)}
+.logo .mark .i{width:24px;height:24px}
+.logo .lg-t{display:block;font-weight:900;font-size:1.22rem;line-height:1.1;color:var(--primary)}
+.logo .lg-s{display:block;font-size:.68rem;font-weight:700;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:330px;min-width:0}
+.search input{width:100%;padding:11px 14px 11px 40px;border-radius:12px;border:1.5px solid var(--line);background:var(--texture);transition:.2s}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-100)}
+.search .i{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.search .drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:14px;border:1.5px solid var(--line);box-shadow:var(--sh2);overflow:hidden;display:none;z-index:70}
+.search .drop.open{display:block}
+.search .drop button{display:flex;width:100%;gap:10px;align-items:center;padding:11px 14px;font-size:.88rem;font-weight:600;text-align:left;border-bottom:1px solid #EEF7F1}
+.search .drop button:last-child{border-bottom:0}
+.search .drop button:hover{background:var(--accent-100)}
+.search .drop .i{position:static;transform:none;width:16px;height:16px;color:var(--accent)}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{font-weight:700;font-size:.9rem;color:var(--ink);padding:9px 13px;border-radius:10px;transition:.2s}
+nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
+.hd-cta{display:flex;gap:10px;align-items:center}
+.hd-cta .btn{padding:11px 18px;min-height:46px;font-size:.88rem}
+.icon-btn{width:46px;height:46px;border-radius:13px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;color:var(--primary);position:relative;transition:.2s}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent-deep)}
+.icon-btn .dot{position:absolute;top:-5px;right:-5px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:900;width:19px;height:19px;border-radius:50%;display:grid;place-items:center}
+
+/* ============ HERO — NB93-272: poster bìa giữ nguyên nhận diện, khung 4/3 đúng hướng nguồn ============ */
+.hero{position:relative;background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130' viewBox='0 0 130 130'%3E%3Cg fill='none' stroke='%236FC2A0' stroke-width='1.3'%3E%3Cpath d='M8 8h34v30h44V18h36'/%3E%3Cpath d='M8 122h54V88h60'/%3E%3Ccircle cx='42' cy='38' r='4'/%3E%3Ccircle cx='86' cy='18' r='4'/%3E%3Ccircle cx='122' cy='88' r='4'/%3E%3Ccircle cx='62' cy='122' r='4'/%3E%3C/g%3E%3C/svg%3E");opacity:.45}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center}
+.hero .eyebrow{background:rgba(224,124,36,.18);border-color:rgba(240,154,75,.45);color:#FFDDBB}
+.hero h1{font-size:clamp(2.15rem,4.4vw,3.5rem);font-weight:900;margin:18px 0 14px;color:#fff}
+.hero .lead{color:#DFF2E8;font-size:1.03rem;max-width:520px;font-weight:500}
+.hero .lead b{color:#fff}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);padding:8px 13px;border-radius:999px;color:#EAF6F0}
+.trust .i{width:15px;height:15px;color:#9FE8C4}
+.hero-media{position:relative;min-width:0;min-height:520px}
+.hm-main{width:100%;transform:rotate(-2deg);border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh3);overflow:hidden;position:relative;z-index:2;animation:fl1 7s ease-in-out infinite}
+.hm-main img{aspect-ratio:1448/1086;object-fit:cover;width:100%}
+.hm-main .pr-tag{position:absolute;left:16px;bottom:16px;background:rgba(15,38,28,.75);backdrop-filter:blur(6px);color:#fff;font-weight:800;font-size:.85rem;padding:9px 15px;border-radius:12px;display:flex;gap:8px;align-items:center}
+.hm-main .pr-tag .i{width:16px;height:16px;color:var(--accent-2)}
+.hm-badge{position:absolute;right:-8px;top:-12px;z-index:4;background:var(--grad-accent);color:#fff;border-radius:18px;padding:14px 18px;text-align:center;transform:rotate(5deg);box-shadow:0 14px 30px rgba(224,124,36,.45);animation:fl2 7.5s ease-in-out infinite}
+.hm-badge .bt{display:block;font-size:1.5rem;font-weight:900;line-height:1}
+.hm-badge .bs{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.hm-stats{position:absolute;left:-6px;bottom:-12px;z-index:5;display:flex;gap:0;background:rgba(15,38,28,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden}
+.hm-stats div{padding:13px 20px;text-align:center;border-right:1.5px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:0}
+.hm-stats b{display:block;font-size:1.18rem;font-weight:900;color:#FFD9B3}
+.hm-stats span{display:block;font-size:.7rem;font-weight:600;color:#DFF2E8}
+@keyframes fl1{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-1.6deg) translateY(-10px)}}
+@keyframes fl2{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(3.6deg) translateY(-12px)}}
+
+/* ============ TAPE MARQUEE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);margin:-38px 0 0;position:relative;z-index:10;box-shadow:0 14px 34px rgba(224,124,36,.35);overflow:hidden;border-top:3px solid #fff;border-bottom:3px solid #fff}
+.tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
+.tape-track span{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(255,255,255,.4)}
+.tape-track .i{width:17px;height:17px}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION KHUNG ============ */
+section{position:relative}
+.sec{padding:88px 0}
+.sec.alt{background:linear-gradient(180deg,#fff,var(--texture))}
+.sec .head{max-width:680px;margin:0 auto 46px}
+
+/* ============ NB93-272: KHỐI-8 — 3 cột, thẻ nổi bật chiếm 2 cột, grid kín 9 ô ============ */
+.k8-call{background:linear-gradient(135deg,#2E9663,#1F7A4D);color:#fff;border-radius:18px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin:0 0 20px;box-shadow:0 16px 40px rgba(19,81,58,.3)}
+.k8-call .cb{flex:1 1 300px;min-width:0}
+.k8-call .lb{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.88}
+.k8-call .num{font-size:clamp(26px,4.5vw,38px);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-top:3px;font-variant-numeric:tabular-nums}
+.k8-call .st{font-size:13.5px;margin-top:6px;opacity:.95;line-height:1.5}
+.k8-call .big{flex:0 0 auto;min-height:56px;padding:0 24px;border-radius:14px;background:#fff;color:var(--primary);font-size:16px;font-weight:900;display:inline-flex;align-items:center;gap:10px;transition:.2s}
+.k8-call .big:hover{filter:brightness(.95);transform:translateY(-2px)}
+.k8-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;grid-auto-flow:row dense}
+.k8-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh1);transition:.25s;min-width:0;position:relative}
+.k8-card:hover{transform:translateY(-5px);border-color:rgba(46,150,99,.4);box-shadow:var(--sh2)}
+.k8-img{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--texture-2)}
+.k8-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s}
+.k8-card:hover .k8-img img{transform:scale(1.05)}
+.k8-img .badge{position:absolute;top:12px;left:12px;background:var(--grad-accent);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center}
+.k8-img .badge .i{width:13px;height:13px}
+.k8-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.k8-body h3{font-size:1.02rem;font-weight:900;color:var(--primary);line-height:1.32}
+.k8-body .sub{font-size:.8rem;font-weight:600;color:var(--soft);display:flex;gap:7px;align-items:flex-start}
+.k8-body .sub .i{width:15px;height:15px;color:var(--accent);margin-top:2px}
+.k8-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto;padding-top:6px}
+.k8-pr small{display:block;font-size:.66rem;font-weight:700;color:var(--soft)}
+.k8-pr b{display:block;font-size:1.02rem;font-weight:900;color:var(--accent-deep);line-height:1.2}
+.k8-foot .btn{padding:9px 14px;font-size:.8rem;min-height:40px;border-radius:11px;flex:0 0 auto}
+/* Thẻ nổi bật: chiếm 2 cột — ảnh lớn bên trái, tên + giá + CTA to bên phải */
+.k8-feat{grid-column:span 2;flex-direction:row;background:linear-gradient(135deg,#fff,#F4FBF7)}
+.k8-feat .k8-img{width:44%;aspect-ratio:auto;min-height:300px}
+.k8-feat .k8-body{width:56%;padding:22px 24px;gap:12px}
+.k8-feat h3{font-size:1.45rem}
+.k8-feat .k8-pr b{font-size:1.35rem}
+.k8-feat .k8-foot .btn{min-height:50px;font-size:.95rem;padding:12px 20px}
+.k8-feat .ribbon{position:absolute;top:24px;right:-52px;z-index:5;transform:rotate(45deg);background:linear-gradient(135deg,#E07C24,#B45E12);color:#fff;font-weight:900;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 58px;box-shadow:0 10px 24px rgba(180,94,18,.45)}
+/* badge featured xuong day anh — khong de chu tieu de poster */
+.k8-feat .k8-img .badge{top:auto;bottom:12px}
+.k8-note{margin:18px 0 0;font-size:.8rem;color:var(--soft);display:flex;gap:8px;align-items:flex-start}
+.k8-note .i{width:16px;height:16px;color:var(--accent);margin-top:2px;flex:0 0 auto}
+
+/* ============ NB93-272: ĐẶC THÙ — LIỆU TRÌNH THEO MỤC TIÊU + THEO DÕI MỖI TUẦN ============ */
+#mucTieu{background:var(--grad-dark);color:#fff;overflow:clip;position:relative}
+#mucTieu::before{content:'';position:absolute;inset:0;background:var(--hazard);opacity:.5;pointer-events:none}
+#mucTieu .wrap{position:relative}
+#mucTieu .sec-title{color:#fff}
+#mucTieu .sec-sub{color:#DFF2E8}
+.goal-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:34px 0 22px}
+.goal-chip{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:14px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#EAF6F0;font-weight:800;font-size:.94rem;transition:.2s;min-height:48px}
+.goal-chip .i{width:19px;height:19px}
+.goal-chip:hover{border-color:var(--accent-2)}
+.goal-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(224,124,36,.4)}
+.goal-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+.gp-col{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r3);padding:24px;min-width:0}
+.gp-col h3{font-size:1.12rem;font-weight:900;color:#fff;display:flex;gap:10px;align-items:center}
+.gp-col h3 .i{color:var(--accent-2);width:22px;height:22px}
+.gp-sub{font-size:.86rem;color:#DFF2E8;font-weight:500;margin:8px 0 18px}
+.phase{display:grid;grid-template-columns:46px 1fr;gap:14px;padding:14px 0;border-top:1.5px dashed rgba(255,255,255,.14)}
+.phase:first-of-type{border-top:0}
+.phase .ph-n{width:46px;height:46px;border-radius:14px;background:var(--grad-accent);display:grid;place-items:center;font-weight:900;color:#fff;box-shadow:0 8px 18px rgba(224,124,36,.35)}
+.phase .ph-n .i{width:22px;height:22px}
+.phase b{display:block;font-size:.95rem;font-weight:800;color:#fff}
+.phase p{font-size:.8rem;color:#CBE8DA;font-weight:500;margin-top:4px}
+/* Tracker theo dõi mỗi tuần — số liệu cân / vòng bụng / xét nghiệm */
+.trk-legend{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
+.trk-legend span{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);padding:5px 11px;border-radius:999px;color:#EAF6F0}
+.trk-legend span i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.trk-legend span:nth-child(1) i{background:var(--accent-2)}
+.trk-legend span:nth-child(2) i{background:#7FD6A8}
+.trk-row{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;padding:8px 0;border-top:1.5px dashed rgba(255,255,255,.12)}
+.trk-row:first-of-type{border-top:0}
+.trk-row .tw{font-size:.78rem;font-weight:900;color:#9FE8C4}
+.trk-bars{display:flex;flex-direction:column;gap:6px;min-width:0}
+.trk-b{display:grid;grid-template-columns:1fr 84px;gap:10px;align-items:center}
+.trk-b .bar{height:14px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden}
+.trk-b .bar i{display:block;height:100%;border-radius:7px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.trk-b:nth-child(1) .bar i{background:linear-gradient(90deg,#F09A4B,#E07C24)}
+.trk-b:nth-child(2) .bar i{background:linear-gradient(90deg,#7FD6A8,#2E9663)}
+.trk-b b{font-size:.8rem;font-weight:900;color:#fff;text-align:right;white-space:nowrap}
+.trk-delta{margin-top:14px;background:rgba(224,124,36,.14);border:1.5px solid rgba(240,154,75,.4);border-radius:14px;padding:12px 16px;font-size:.86rem;font-weight:800;color:#FFDDBB}
+.trk-fine{margin-top:10px;font-size:.72rem;color:#A9D4BE;line-height:1.55}
+/* Mẫu thực đơn 1 ngày */
+.menu-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.menu-mini .mm{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 14px;min-width:0}
+.menu-mini .mm b{display:flex;gap:7px;align-items:center;font-size:.76rem;font-weight:900;color:#FFDDBB;text-transform:uppercase;letter-spacing:.04em}
+.menu-mini .mm b .i{width:14px;height:14px}
+.menu-mini .mm span{display:block;font-size:.79rem;color:#EAF6F0;font-weight:500;margin-top:5px;line-height:1.5}
+.goal-cta{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+.goal-cta .btn{flex:1;min-width:220px}
+/* Disclaimer y tế — NB93-272: hiển thị rõ, không giấu */
+.disclaim{margin-top:26px;background:rgba(255,255,255,.06);border:1.5px dashed rgba(255,213,150,.55);border-radius:var(--r2);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.disclaim .i{width:22px;height:22px;color:var(--accent-2);flex:0 0 auto;margin-top:2px}
+.disclaim b{color:#FFDDBB;font-size:.86rem;text-transform:uppercase;letter-spacing:.05em}
+.disclaim p{font-size:.8rem;color:#D8EFE3;font-weight:500;margin-top:4px;line-height:1.6}
+
+/* ============ BOOKING CALENDAR ============ */
+#booking{background:linear-gradient(180deg,#124430,var(--primary-3));color:#fff;padding:88px 0;overflow:clip;position:relative}
+#booking .wrap{position:relative}
+#booking .sec-title{color:#fff}
+#booking .sec-sub{color:#DFF2E8}
+.bk-grid{display:grid;grid-template-columns:1.35fr .95fr;gap:28px;margin-top:44px;align-items:start}
+.bk-form{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:26px;min-width:0}
+.bk-step .st-t{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.bk-step .st-n{width:28px;height:28px;border-radius:9px;background:var(--grad-accent);display:grid;place-items:center;font-size:.82rem;font-weight:900;color:#fff;flex:0 0 auto}
+.bk-step .st-t b{font-size:.98rem;font-weight:800;color:#fff}
+.bk-step .st-t small{color:#9CCBB6;font-weight:600;font-size:.76rem;margin-left:auto;display:flex;align-items:center;gap:6px}
+.cat-chips{display:flex;gap:10px;flex-wrap:wrap}
+.cat-chip{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;border-radius:14px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#EAF6F0;font-weight:700;font-size:.9rem;transition:.2s;min-width:0;min-height:46px}
+.cat-chip .i{width:18px;height:18px}
+.cat-chip:hover{border-color:var(--accent-2)}
+.cat-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(224,124,36,.4)}
+.cat-chip small{display:block;font-size:.66rem;font-weight:600;opacity:.85}
+.bk-desc{width:100%;min-height:74px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;color:#fff;padding:13px 15px;resize:vertical;margin-top:12px}
+.bk-desc::placeholder{color:#7FAF9B}
+.bk-desc:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.09)}
+.day-chips{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+.day-chip{border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);border-radius:14px;padding:11px 6px;text-align:center;transition:.2s;color:#EAF6F0;min-width:0}
+.day-chip b{display:block;font-size:.76rem;font-weight:800}
+.day-chip span{display:block;font-size:1.05rem;font-weight:900;margin-top:3px}
+.day-chip small{display:block;font-size:.64rem;color:#9CCBB6;font-weight:600}
+.day-chip:hover{border-color:var(--accent-2)}
+.day-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff}
+.day-chip.sel small{color:#FFE3C9}
+.slot-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.slot-chip{border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);border-radius:14px;padding:13px 10px;text-align:center;transition:.2s;color:#EAF6F0;min-width:0}
+.slot-chip b{display:block;font-size:.85rem;font-weight:800}
+.slot-chip small{display:block;font-size:.68rem;color:#9CCBB6;font-weight:600;margin-top:3px}
+.slot-chip:hover{border-color:var(--accent-2)}
+.slot-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff}
+.slot-chip.sel small{color:#FFE3C9}
+.bk-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bk-inputs .full{grid-column:1/-1}
+.bk-inputs input{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;transition:.2s;min-width:0}
+.bk-inputs input::placeholder{color:#7FAF9B}
+.bk-inputs input:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.bk-note{font-size:.78rem;color:#9CCBB6;display:flex;gap:8px;align-items:flex-start}
+.bk-note .i{width:15px;height:15px;color:#9FE8C4;margin-top:2px}
+.bk-sum{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:26px;position:sticky;top:96px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.bk-sum h3{font-size:1.05rem;font-weight:900;display:flex;gap:10px;align-items:center;color:#fff}
+.bk-sum h3 .i{color:var(--accent-2)}
+.bk-sum .row{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;color:#DFF2E8;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.12);padding-bottom:10px}
+.bk-sum .row b{color:#fff;text-align:right;min-width:0}
+.bk-sum .total{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:#DFF2E8;font-weight:700}
+.bk-sum .total b{font-size:1.2rem;font-weight:900;color:#FFD9B3}
+.bk-sum .fine{font-size:.72rem;color:#9CCBB6;line-height:1.55}
+.bk-call{display:flex;flex-direction:column;gap:10px}
+.bk-call .btn{width:100%}
+.bk-done{display:none;background:rgba(30,158,106,.12);border:1.5px solid rgba(30,158,106,.45);border-radius:var(--r2);padding:22px;text-align:center}
+.bk-done.show{display:block;animation:pop .45s cubic-bezier(.2,.9,.3,1.3)}
+.bk-done .code{font-size:2rem;font-weight:900;letter-spacing:.06em;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bk-done .sub{font-size:.84rem;color:#DFF2E8;margin-top:6px}
+.bk-done .recap{margin-top:14px;text-align:left;font-size:.82rem;color:#EAF6F0;background:rgba(255,255,255,.05);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ============ BẢNG GIÁ 3 TAB ============ */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.tab{padding:12px 24px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-weight:800;font-size:.92rem;color:var(--soft);display:inline-flex;gap:8px;align-items:center;transition:.2s;min-height:46px}
+.tab .i{width:17px;height:17px}
+.tab:hover{border-color:var(--accent)}
+.tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(224,124,36,.35)}
+.pane{display:none}
+.pane.on{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.price-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start}
+.tbl-card{background:#fff;border-radius:var(--r3);border:1.5px solid var(--line);box-shadow:var(--sh1);overflow:hidden;min-width:0}
+.tbl-wrap{overflow-x:auto}
+table.ptbl{width:100%;border-collapse:collapse;min-width:540px}
+.ptbl th{background:var(--primary);color:#fff;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:13px 18px;font-weight:800}
+.ptbl td{padding:14px 18px;border-bottom:1.5px solid #EEF7F1;font-size:.88rem;vertical-align:top}
+.ptbl tr:last-child td{border-bottom:0}
+.ptbl tr:hover td{background:#F4FBF8}
+.ptbl td b{color:var(--primary);font-weight:800}
+.ptbl td .pr{font-weight:900;color:var(--accent-deep);white-space:nowrap}
+.ptbl td small{display:block;color:var(--soft);font-size:.75rem;font-weight:500}
+.ptbl .zero .pr{color:var(--ok)}
+.tbl-foot{background:var(--accent-100);padding:12px 18px;font-size:.78rem;color:var(--accent-deep);font-weight:700;display:flex;gap:8px;align-items:center}
+.tbl-foot .i{width:16px;height:16px}
+.tips{display:flex;flex-direction:column;gap:14px}
+.tip{background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--sh1);min-width:0}
+.tip b{display:flex;gap:9px;align-items:center;font-size:.9rem;color:var(--primary);font-weight:800}
+.tip b .i{width:17px;height:17px;color:var(--accent)}
+.tip p{font-size:.8rem;color:var(--soft);margin-top:6px;font-weight:500}
+
+/* ============ CAM KẾT ============ */
+#commit{background:linear-gradient(180deg,var(--texture),#fff)}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.com-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:hidden;min-width:0}
+.com-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(46,150,99,.35)}
+.com-card .cc-ic{width:54px;height:54px;border-radius:16px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:16px;transition:.3s}
+.com-card:hover .cc-ic{background:var(--grad-accent);color:#fff;transform:rotate(-6deg)}
+.com-card .cc-ic .i{width:25px;height:25px}
+.com-card h3{font-size:1.02rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+.com-card p{font-size:.84rem;color:var(--soft);font-weight:500}
+.com-card .cc-num{position:absolute;right:14px;top:10px;font-size:2.6rem;font-weight:900;color:var(--texture-2);line-height:1;z-index:0}
+.hot-strip{margin-top:34px;background:var(--grad-dark);border-radius:var(--r4);padding:34px 40px;display:flex;align-items:center;gap:26px;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+.hot-strip::before{content:'';position:absolute;inset:0;background:var(--hazard);opacity:.4}
+.hot-strip>*{position:relative}
+.hot-strip .hs-t h3{color:#fff;font-size:1.5rem;font-weight:900}
+.hot-strip .hs-t p{color:#DFF2E8;font-size:.9rem;font-weight:500}
+.hot-strip .hs-acts{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--grad-dark);color:#fff;padding:64px 0;position:relative;overflow:clip}
+.stats::before{content:'';position:absolute;inset:0;background:var(--hazard);opacity:.55}
+.stats .wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat b{font-size:2.7rem;font-weight:900;color:#FFD9B3;display:block;line-height:1.1}
+.stat b em{font-style:normal;font-size:1.4rem}
+.stat span{display:block;font-size:.85rem;font-weight:600;color:#DFF2E8;margin-top:6px}
+
+/* ============ GALLERY KHÔNG GIAN ============ */
+.gal-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;max-width:980px;margin:0 auto}
+.gal-item{border-radius:var(--r3);overflow:hidden;border:5px solid #fff;box-shadow:var(--sh2);background:#fff}
+.gal-item img{aspect-ratio:4/3;object-fit:cover;object-position:center top;width:100%;transition:transform .6s}
+.gal-item:hover img{transform:scale(1.04)}
+.gal-cap{padding:13px 16px;font-size:.85rem;font-weight:700;color:var(--primary);display:flex;gap:9px;align-items:center}
+.gal-cap .i{width:16px;height:16px;color:var(--accent);flex:0 0 auto}
+.gal-cap small{display:block;font-weight:600;color:var(--soft);font-size:.74rem}
+
+/* ============ QUY TRÌNH ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:stp}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:28px 22px;position:relative;box-shadow:var(--sh1);transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .s-ic{width:56px;height:56px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(224,124,36,.35)}
+.step .s-ic .i{width:25px;height:25px}
+.step .s-ic::after{counter-increment:stp;content:counter(stp);position:absolute;top:-6px;right:-6px;width:24px;height:24px;background:var(--primary);color:#fff;font-size:.72rem;font-weight:900;border-radius:50%;display:grid;place-items:center;border:2.5px solid #fff}
+.step h3{font-size:1rem;font-weight:900;color:var(--primary);margin:16px 0 8px}
+.step p{font-size:.82rem;color:var(--soft);font-weight:500}
+.step .meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.step .meta .i{width:13px;height:13px}
+
+/* ============ ABOUT ============ */
+#about .ab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:center}
+.ab-img{position:relative;min-width:0}
+.ab-img img{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh2);transform:rotate(-1.6deg);aspect-ratio:4/3.4;object-fit:cover;object-position:center top;width:100%;animation:fl1 8s ease-in-out infinite}
+.ab-img .ab-tag{position:absolute;bottom:-18px;right:8%;background:var(--grad-accent);color:#fff;border-radius:16px;padding:14px 20px;transform:rotate(2.5deg);box-shadow:0 14px 30px rgba(224,124,36,.4)}
+.ab-img .ab-tag b{display:block;font-size:1.3rem;font-weight:900;line-height:1}
+.ab-img .ab-tag span{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:3px}
+.ab-txt h2{font-size:2rem;font-weight:900;color:var(--primary);margin:16px 0 12px}
+.ab-txt>p{color:var(--soft);font-weight:500;font-size:.95rem}
+.ab-pts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.ab-pt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh1);transition:.25s;min-width:0}
+.ab-pt:hover{border-color:rgba(46,150,99,.4);transform:translateY(-3px)}
+.ab-pt .i{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.ab-pt b{display:block;font-size:.88rem;color:var(--primary);font-weight:800}
+.ab-pt span{display:block;font-size:.75rem;color:var(--soft);font-weight:500}
+.ab-cta{display:flex;gap:13px;margin-top:24px;flex-wrap:wrap}
+
+/* ============ SOCIAL PROOF ============ */
+.rvw-shell{display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:stretch}
+.rvw-view{overflow:hidden;border-radius:var(--r3);min-width:0}
+.rvw-track{display:flex;transition:transform .55s cubic-bezier(.25,.8,.3,1)}
+.rvw-slide{flex:0 0 100%;padding:2px;min-width:0}
+.rvw-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:30px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rvw-card .stars{display:flex;gap:3px;color:var(--accent)}
+.rvw-card .stars .i{width:16px;height:16px}
+.rvw-card p{font-size:.95rem;color:var(--ink);font-weight:500;flex:1}
+.rvw-card .who{display:flex;gap:12px;align-items:center}
+.rvw-card .avt{width:46px;height:46px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.95rem;flex:0 0 auto}
+.rvw-card .who b{display:block;font-size:.9rem;color:var(--primary)}
+.rvw-card .who span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+.rvw-side{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.rvw-side .metric b{display:block;font-size:2.6rem;font-weight:900;color:#FFD9B3;line-height:1}
+.rvw-side .metric span{display:block;font-size:.82rem;color:#DFF2E8;font-weight:600;margin-top:6px}
+.rvw-side .mrow{display:flex;justify-content:space-between;font-size:.8rem;color:#EAF6F0;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.14);padding-bottom:9px}
+.rvw-side .mrow b{color:#9FE8C4}
+.rvw-side h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#9CCBB6;font-weight:800}
+.pchips{display:flex;gap:8px;flex-wrap:wrap}
+.pchips span{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;color:#EAF6F0}
+.rvw-dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.rvw-dots button{width:9px;height:9px;border-radius:99px;background:var(--line-2);transition:.25s;padding:0}
+.rvw-dots button.on{width:26px;background:var(--accent)}
+
+/* ============ MAP + FORM CUỐI ============ */
+#contact{background:var(--grad-dark);color:#fff;overflow:clip}
+#contact::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130' viewBox='0 0 130 130'%3E%3Cg fill='none' stroke='%236FC2A0' stroke-width='1.3'%3E%3Cpath d='M8 8h34v30h44V18h36'/%3E%3Cpath d='M8 122h54V88h60'/%3E%3Ccircle cx='42' cy='38' r='4'/%3E%3Ccircle cx='86' cy='18' r='4'/%3E%3Ccircle cx='122' cy='88' r='4'/%3E%3Ccircle cx='62' cy='122' r='4'/%3E%3C/g%3E%3C/svg%3E");opacity:.4}
+#contact .wrap{position:relative}
+.ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:18px;min-width:0}
+.ct-info .ci-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r2);padding:20px;display:flex;gap:15px;align-items:flex-start;min-width:0}
+.ct-info .ci-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;flex:0 0 auto}
+.ct-info .ci-ic .i{width:21px;height:21px}
+.ct-info b{display:block;font-size:.94rem;font-weight:800}
+.ct-info span{display:block;font-size:.82rem;color:#DFF2E8;font-weight:500;margin-top:3px}
+.map-embed{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.16);min-height:230px}
+.map-embed iframe{width:100%;height:100%;min-height:230px;border:0;display:block}
+.map-btn{margin-top:12px}
+.map-btn .btn{width:100%}
+.ct-form{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;color-scheme:dark}
+.ct-form h3{font-size:1.3rem;font-weight:900;color:#fff}
+.ct-form .fsub{font-size:.84rem;color:#DFF2E8;font-weight:500;margin-top:-6px}
+.ct-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-form .frow .full{grid-column:1/-1}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;min-width:0}
+.ct-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B9C6D8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.ct-form select option{color:var(--ink);background:#fff}
+.ct-form textarea{min-height:70px;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:#7FAF9B}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.ct-form .btn{width:100%;margin-top:4px}
+.ct-form .secure{font-size:.74rem;color:#9CCBB6;display:flex;gap:7px;align-items:center;justify-content:center;font-weight:600}
+.ct-form .secure .i{width:14px;height:14px;color:#9FE8C4}
+
+/* ============ FAQ ============ */
+.faq-shell{max-width:820px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center}
+.faq-search{position:relative;flex:1;max-width:420px;min-width:230px}
+.faq-search input{width:100%;padding:13px 15px 13px 42px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;box-shadow:var(--sh1)}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.faq-search .i{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fchip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:.78rem;font-weight:800;color:var(--soft);transition:.2s;min-height:40px}
+.fchip:hover{border-color:var(--accent)}
+.fchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:rgba(46,150,99,.45)}
+.faq-q{width:100%;display:flex;align-items:center;gap:13px;padding:17px 20px;font-weight:800;font-size:.94rem;color:var(--primary);text-align:left;min-width:0}
+.faq-q .fq-ic{width:34px;height:34px;border-radius:10px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto;transition:.25s}
+.faq-q .fq-ic .i{width:16px;height:16px}
+.faq-item.open .fq-ic{background:var(--grad-accent);color:#fff}
+.faq-q .chev{margin-left:auto;transition:.3s;color:var(--soft)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px 67px;font-size:.87rem;color:var(--soft);font-weight:500}
+.faq-empty{text-align:center;color:var(--soft);font-weight:600;padding:26px;display:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-3);color:#BFE0D2;font-size:.86rem}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:34px;padding:52px 0 36px}
+.ft-grid h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px}
+.ft-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-grid ul a{transition:.2s;font-weight:500}
+.ft-grid ul a:hover{color:var(--accent-2)}
+.ft-brand .lg-t{color:#fff}
+.ft-brand .lg-s{color:#9CCBB6}
+.ft-brand p{margin-top:14px;font-weight:500}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:var(--grad-accent);padding:11px 18px;border-radius:13px;color:#fff;font-weight:900;font-size:1.05rem;box-shadow:0 10px 24px rgba(180,94,18,.4)}
+.ft-hot .i{width:18px;height:18px}
+.ft-disclaim{background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,213,150,.4);border-radius:14px;padding:14px 16px;font-size:.76rem;line-height:1.6;color:#CDE8DA;margin-top:18px}
+.ft-disclaim b{color:#FFDDBB}
+.ft-bar{border-top:1.5px solid rgba(255,255,255,.09);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.76rem;font-weight:600}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:8px;font-weight:700;color:#EAF6F0}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:9px;background:rgba(15,38,28,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.14);padding:9px;border-radius:22px;box-shadow:var(--sh3);transition:.4s}
+.dock.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(90px)}
+.dock button,.dock a{display:flex;align-items:center;gap:8px;border-radius:15px;padding:11px 15px;color:#EAF6F0;font-weight:800;font-size:.8rem;transition:.2s;white-space:nowrap}
+.dock .i{width:19px;height:19px}
+.dock .d-hot{background:var(--grad-accent);color:#fff}
+.dock .d-main{background:var(--grad-accent);color:#fff}
+.dock button:hover,.dock a:hover{transform:translateY(-3px)}
+
+/* ============ DRAWER + MODAL + TOAST ============ */
+.drawer-ov,.modal-ov{position:fixed;inset:0;background:rgba(10,15,24,.62);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.drawer-ov.open,.modal-ov.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,94vw);background:var(--texture);z-index:95;transform:translateX(105%);transition:transform .4s cubic-bezier(.25,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh3)}
+.drawer.open{transform:none}
+.drawer .dr-head{background:var(--grad-dark);color:#fff;padding:20px 22px;display:flex;align-items:center;gap:12px}
+.drawer .dr-head h3{font-size:1.08rem;font-weight:900;flex:1}
+.drawer .dr-head .i{color:var(--accent-2)}
+.drawer .dr-close{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.1);display:grid;place-items:center;color:#fff;transition:.2s}
+.drawer .dr-close:hover{background:var(--accent)}
+.drawer .dr-body{padding:20px 22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:16px}
+.dr-lbl{font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);margin-bottom:8px;display:block}
+.dr-chips{display:flex;gap:8px;flex-wrap:wrap}
+.dr-chip{padding:9px 14px;border-radius:11px;border:1.5px solid var(--line-2);background:#fff;font-size:.8rem;font-weight:800;color:var(--soft);transition:.2s;min-width:0;min-height:40px}
+.dr-chip:hover{border-color:var(--accent)}
+.dr-chip.sel{background:var(--grad-accent);color:#fff;border-color:transparent}
+.dr-input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;min-width:0}
+.dr-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.dr-sum{background:#fff;border:1.5px dashed var(--line-2);border-radius:14px;padding:14px;font-size:.82rem;color:var(--soft);font-weight:600;display:flex;flex-direction:column;gap:6px}
+.dr-sum b{color:var(--primary)}
+.dr-done{display:none;text-align:center;background:#EAF7F0;border:1.5px solid rgba(30,158,106,.4);border-radius:16px;padding:20px}
+.dr-done.show{display:block}
+.dr-done .code{font-size:1.7rem;font-weight:900;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;pointer-events:none}
+.modal.open{pointer-events:auto}
+.modal .m-card{background:#fff;border-radius:var(--r3);max-width:640px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh3);transform:scale(.92) translateY(20px);opacity:0;transition:.35s cubic-bezier(.2,.9,.3,1.2);min-width:0}
+.modal.open .m-card{transform:none;opacity:1}
+.modal .m-img{aspect-ratio:16/7;overflow:hidden;position:relative;min-height:0}
+.modal .m-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.modal .m-img .cat-b{position:absolute;top:14px;left:14px;font-size:.7rem;font-weight:900;padding:6px 13px;border-radius:999px;color:#fff;display:inline-flex;gap:6px;align-items:center;background:var(--grad-accent)}
+.modal .m-img .cat-b .i{width:13px;height:13px}
+.modal .m-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:12px;background:rgba(15,38,28,.7);color:#fff;display:grid;place-items:center;backdrop-filter:blur(5px)}
+.modal .m-close:hover{background:var(--accent)}
+.modal .m-body{padding:24px 26px 26px}
+.modal h3{font-size:1.35rem;font-weight:900;color:var(--primary);margin-bottom:6px}
+.modal .m-desc{font-size:.88rem;color:var(--soft);font-weight:500}
+.modal .m-meta{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.modal .m-meta span{display:inline-flex;gap:6px;align-items:center;font-size:.74rem;font-weight:700;color:var(--soft);background:var(--texture);border:1px solid var(--line);padding:6px 11px;border-radius:999px}
+.modal .m-meta .i{width:13px;height:13px;color:var(--accent)}
+.tier{margin:16px 0;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.tier .t-row{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:.84rem;font-weight:600;color:var(--soft);border-bottom:1.5px solid #EEF7F1}
+.tier .t-row:last-child{border-bottom:0}
+.tier .t-row b{color:var(--accent-deep);font-weight:900;text-align:right}
+.tier .t-row.hot{background:var(--accent-100);color:var(--accent-deep)}
+.modal .m-acts{display:flex;gap:11px;flex-wrap:wrap}
+.modal .m-acts .btn{flex:1;min-width:170px}
+.modal .m-note{font-size:.74rem;color:var(--soft);display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;font-weight:600}
+.modal .m-note span{display:inline-flex;gap:5px;align-items:center}
+.modal .m-note .i{width:13px;height:13px;color:var(--ok)}
+#toasts{position:fixed;right:18px;bottom:96px;z-index:120;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;padding:14px 18px;border-radius:14px;box-shadow:var(--sh3);font-size:.86rem;font-weight:700;display:flex;gap:10px;align-items:center;max-width:340px;animation:toastIn .4s cubic-bezier(.2,.9,.3,1.3);pointer-events:auto}
+.toast .i{width:18px;height:18px;color:#9FE8C4;flex:0 0 auto}
+@keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+
+/* ============ RESPONSIVE 1080px ============ */
+@media(max-width:1080px){
+  nav.main{display:none}
+  .hero .wrap{grid-template-columns:1fr 1fr}
+  .hm-stats{position:static;margin-top:18px;justify-content:flex-start}
+  .hero-media{min-height:auto;display:flex;flex-direction:column}
+  .k8-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .k8-feat{grid-column:1/-1}
+  .k8-card:last-child{grid-column:1/-1}
+  .goal-panel{grid-template-columns:1fr}
+  .bk-grid{grid-template-columns:1fr}
+  .bk-sum{position:static}
+  .price-wrap{grid-template-columns:1fr}
+  .com-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  #about .ab-grid{grid-template-columns:1fr}
+  .rvw-shell{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .slot-chips{grid-template-columns:repeat(2,1fr)}
+  .day-chips{grid-template-columns:repeat(4,1fr)}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .k8-feat{flex-direction:column}
+  .k8-feat .k8-img{width:100%;aspect-ratio:4/3;min-height:0}
+  .k8-feat .k8-body{width:100%}
+  .k8-feat h3{font-size:1.22rem}
+  .k8-feat .ribbon{display:none}
+}
+
+/* ============ MOBILE BRANCH ≤680px — thiết kế riêng ============ */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .sec-title{font-size:1.42rem}
+  .sec .head{margin-bottom:30px}
+  .hd .wrap{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .search{order:3;max-width:none;flex:1 0 100%}
+  .hd-cta .btn-hot,.hd-cta .btn-dark{display:none}
+  .logo .lg-s{display:none}
+  .hero{padding:44px 0 70px}
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .hero h1{font-size:1.72rem}
+  .hero .lead{font-size:.92rem}
+  .hm-badge{right:8px;top:-10px;padding:10px 13px}
+  .hm-badge .bt{font-size:1.15rem}
+  .hm-badge .bs{font-size:.6rem}
+  .hm-main{width:100%;transform:none;border-radius:var(--r2);border-width:4px}
+  .hm-main img{aspect-ratio:1448/1086}
+  .hm-stats{position:static;width:100%;justify-content:space-between;margin-top:14px}
+  .hm-stats div{flex:1;padding:10px 6px}
+  .hm-stats b{font-size:.95rem}
+  .hm-stats span{font-size:.62rem}
+  .hero-media{min-height:auto}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust{gap:7px}
+  .trust span{font-size:.72rem;padding:7px 10px}
+  .tape-track span{font-size:.8rem;padding:0 14px}
+  /* Khối-8: 1 cột, kín ô */
+  .k8-call{padding:20px 18px}
+  .k8-call .big{width:100%;justify-content:center}
+  .k8-grid{grid-template-columns:1fr;gap:14px}
+  .k8-feat{grid-column:auto}
+  .k8-card:last-child{grid-column:auto}
+  .k8-feat .k8-img{aspect-ratio:4/3;min-height:0}
+  .k8-body{padding:14px 15px 16px}
+  .k8-feat .k8-body{padding:16px 15px 18px}
+  .k8-feat h3{font-size:1.12rem}
+  .k8-foot{flex-wrap:wrap;gap:8px}
+  .k8-foot .btn{flex:1 0 100%;min-height:42px}
+  /* Đặc thù: goal + tracker */
+  .goal-chip{padding:11px 14px;font-size:.85rem;min-height:44px}
+  .gp-col{padding:18px 16px}
+  .phase{grid-template-columns:40px 1fr;gap:11px}
+  .phase .ph-n{width:40px;height:40px;border-radius:12px}
+  .menu-mini{grid-template-columns:1fr}
+  .goal-cta{flex-direction:column}
+  .goal-cta .btn{width:100%;min-width:0}
+  /* Booking */
+  .bk-form,.bk-sum{padding:20px 16px}
+  .day-chips{grid-template-columns:repeat(4,1fr);gap:7px}
+  .day-chip{padding:9px 4px}
+  .day-chip b{font-size:.64rem}
+  .day-chip span{font-size:.9rem}
+  .slot-chips{grid-template-columns:1fr 1fr;gap:9px}
+  .cat-chips{gap:8px}
+  .cat-chip{padding:10px 13px;font-size:.82rem;min-height:42px}
+  .bk-inputs{grid-template-columns:1fr}
+  .tab{padding:10px 16px;font-size:.84rem;min-height:42px}
+  .tabs{gap:8px;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .com-grid{grid-template-columns:1fr}
+  .hot-strip{padding:26px 20px;text-align:left}
+  .hot-strip .hs-acts{width:100%;flex-direction:column}
+  .hot-strip .hs-acts .btn{width:100%}
+  .stat b{font-size:2rem}
+  .steps{grid-template-columns:1fr}
+  .ab-pts{grid-template-columns:1fr}
+  .ab-txt h2{font-size:1.42rem}
+  .ab-cta .btn{width:100%}
+  .ct-form .frow{grid-template-columns:1fr}
+  .ct-form{padding:22px 16px}
+  .ct-form .btn{width:100%}
+  .bk-call .btn{width:100%}
+  .faq-a p{padding-left:20px}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:40px 0 26px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:8px;gap:6px;border-radius:20px}
+  .dock button,.dock a{padding:12px;font-size:0;gap:0}
+  .dock .i{width:21px;height:21px}
+  #toasts{right:12px;left:12px;bottom:150px}
+  .toast{max-width:none}
+  .modal .m-acts .btn{min-width:100%}
+  .modal .m-img{aspect-ratio:4/3}
+}
+
+/* ============ NB93-272: mobile — cỡ chữ >=12px, vùng chạm >=40px, đệm đáy cho dock ============ */
+@media(max-width:680px){
+  body{padding-bottom:76px}
+  .trust span{font-size:12px}
+  .hm-stats span{font-size:12px}
+  .hm-badge .bs{font-size:12px}
+  .k8-img .badge{font-size:12px}
+  .k8-pr small{font-size:12px}
+  .k8-body .sub{font-size:12.5px}
+  .k8-foot .btn{min-height:40px}
+  .cat-chip small{font-size:12px}
+  .day-chip b{font-size:12px}
+  .day-chip small{font-size:12px}
+  .slot-chip small{font-size:12px}
+  .bk-sum .fine{font-size:12px}
+  .step .meta{font-size:12px}
+  .ab-tag span{font-size:12px}
+  .rvw-card .who span{font-size:12px}
+  .pchips span{font-size:12px}
+  .ct-form .secure{font-size:12px}
+  .modal .m-meta span{font-size:12px}
+  .modal .m-note{font-size:12px}
+  .modal .m-img .cat-b{font-size:12px}
+  .gal-cap small{font-size:12px}
+  .trk-fine{font-size:12px}
+  .trk-legend span{font-size:12px}
+  .trk-delta{font-size:13px}
+  .menu-mini .mm span{font-size:12.5px}
+  .disclaim p{font-size:12.5px}
+  .bk-note{font-size:12px}
+  .btn{min-height:44px}
+  .bk-inputs input,.bk-desc,.ct-form input,.ct-form select,.ct-form textarea,.dr-input{min-height:44px}
+  .k8-call .big{min-height:48px}
+}
+/*MOBILE-TAP40: dieu khien cam >=40px */
+@media(max-width:640px){
+  .fchip,.faq-q,.tab,.cat-chip,.day-chip,.slot-chip,.dr-chip,.goal-chip,.m-close,.dr-close,.rvw-dots button{min-height:40px!important;min-width:40px!important}
+  .btn{min-height:40px!important}
+}
+/* button:active feedback */
+button:active{transform:scale(.97)}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<style data-nb93fix="272:ghost">
+/*NB93-FIX-272:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .k8-grid > *{grid-column:auto!important}
+}
+</style>
+<style data-nb93fix="272:fab">
+/*NB93-FIX-272:fab CTA day phai tranh fab chat*/
+@media(max-width:768px){
+  .btn-xl{padding-right:64px}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 10-10 3-.5 6 .2 6 .2s-.5 3-1 5c-1.5 6-4 11-8 11.8z"/><path d="M4 21c4-6 8-9 12-11"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M12 7v4M9 11h6"/><path d="M7 8a8 8 0 0 1 10 0"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19.5 13.3 12 20.7l-7.5-7.4a5 5 0 1 1 7.5-6.6 5 5 0 1 1 7.5 6.6z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3.5"/><path d="M6 21c0-3.5 2.5-6 6-6s6 2.5 6 6M8.5 10.5 12 12l3.5-1.5"/></symbol>
+  <symbol id="i-senior" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3.5"/><path d="M7 21v-4l-2-3 3-3 4 2 4-2 3 3-2 3v4"/><path d="M12 12v4"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 10h4M7 13h7"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20 3 12.5z"/><circle cx="7.5" cy="7.5" r="1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8 7.5 21l4.5-2.6L16.5 21l-1.3-7.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6h-6v6H4v-9z"/></symbol>
+  <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24"><path d="M5 3v7a2.5 2.5 0 0 0 5 0V3M7.5 10v11M16 3c-1.7 1.2-2.5 3-2.5 5.5 0 2 .8 3 2.5 3.5v9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4M12 17.2v.1"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2.5"/><path d="M16 10.5 22 7v10l-6-3.5"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+</svg>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg class="i"><use href="#i-clock"/></svg>Tư vấn 7 ngày/tuần — 8:00–20:00, có khung giờ tối</span>
+      <span><svg class="i"><use href="#i-pin"/></svg>TP.HCM • online toàn quốc</span>
+    </div>
+    <div class="tb-l">
+      <span class="hot"><svg class="i"><use href="#i-phone"/></svg>Hotline đặt lịch: <b>0901 473 652</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="An Nhiên Nutrition">
+      <span class="mark"><svg class="i"><use href="#i-leaf"/></svg></span>
+      <span><span class="lg-t">An Nhiên</span><span class="lg-s">Dinh dưỡng &amp; sức khỏe</span></span>
+    </a>
+    <div class="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm dịch vụ: giảm cân, tiểu đường, thực đơn, trẻ em…" autocomplete="off">
+      <div class="drop" id="searchDrop"></div>
+    </div>
+    <nav class="main">
+      <a href="#dichvu8">Dịch vụ</a>
+      <a href="#mucTieu">Liệu trình</a>
+      <a href="#banggia">Bảng giá</a>
+      <a href="#booking">Đặt lịch</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="btn btn-hot" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>0901 473 652</a>
+      <button class="btn btn-dark" id="hdBook" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch tư vấn</button>
+      <button class="icon-btn" id="hdDrawer" title="Phiếu đặt lịch của bạn" aria-label="Mở phiếu đặt lịch tư vấn">
+        <svg class="i"><use href="#i-cal"/></svg><span class="dot" id="hdDot">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="eyebrow"><svg class="i"><use href="#i-leaf"/></svg>Liệu trình dinh dưỡng theo mục tiêu</span>
+      <h1>Đặt mục tiêu — <span class="hl">ăn đúng cách</span> — theo dõi số đo mỗi tuần cho đến khi đạt</h1>
+      <p class="lead">An Nhiên xây dựng <b>liệu trình 12 tuần theo mục tiêu của bạn</b>: giảm cân, tăng cân, ổn định đường huyết hay cải thiện gan nhiễm mỡ — kèm <b>thực đơn cá nhân hóa</b> từ chính món bạn thích và <b>báo cáo số đo mỗi tuần</b> (cân nặng, vòng bụng, chỉ số cơ thể). Không thuốc, không nhịn ăn, không cam kết chữa bệnh.</p>
+      <div class="hero-cta">
+        <button class="btn btn-hot btn-xl quick-book" data-cat="Giảm cân" type="button"><svg class="i" style="width:24px;height:24px"><use href="#i-cal"/></svg>Đặt lịch tư vấn 0đ</button>
+        <a class="btn btn-accent btn-xl" href="#mucTieu"><svg class="i" style="width:22px;height:22px"><use href="#i-trend"/></svg>Xem liệu trình theo mục tiêu</a>
+      </div>
+      <div class="trust">
+        <span><svg class="i"><use href="#i-food"/></svg>Thực đơn từ thực phẩm thường ngày</span>
+        <span><svg class="i"><use href="#i-trend"/></svg>Theo dõi mỗi tuần có số liệu</span>
+        <span><svg class="i"><use href="#i-shield"/></svg>Phối hợp bác sĩ khi đang điều trị bệnh</span>
+        <span><svg class="i"><use href="#i-award"/></svg>Chuyên gia có chứng chỉ dinh dưỡng</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-badge"><span class="bt">0đ</span><span class="bs">buổi tư vấn đầu</span></div>
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="An Nhiên Nutrition — tư vấn dinh dưỡng và sức khỏe theo mục tiêu">
+        <span class="pr-tag"><svg class="i"><use href="#i-scale"/></svg>Đo chỉ số &amp; chốt lộ trình ngay buổi đầu</span>
+      </div>
+      <div class="hm-stats">
+        <div><b>12 năm</b><span>kinh nghiệm</span></div>
+        <div><b>6.800+</b><span>hồ sơ liệu trình</span></div>
+        <div><b>92%</b><span>đi đủ lộ trình</span></div>
+        <div><b>4.9/5</b><span>đánh giá</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE MARQUEE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span><svg class="i"><use href="#i-food"/></svg>Thực đơn cá nhân hóa từ món bạn thích</span>
+    <span><svg class="i"><use href="#i-trend"/></svg>Báo cáo số đo mỗi tuần — cân &amp; vòng bụng</span>
+    <span><svg class="i"><use href="#i-shield"/></svg>Không thuốc — không nhịn ăn — không detox</span>
+    <span><svg class="i"><use href="#i-heart"/></svg>Người bệnh phối hợp theo chỉ định bác sĩ</span>
+    <span><svg class="i"><use href="#i-tag"/></svg>Giá tham chiếu công khai trên web</span>
+    <span><svg class="i"><use href="#i-cal"/></svg>Buổi tư vấn đầu 0đ khi đặt lịch online</span>
+    <span><svg class="i"><use href="#i-lock"/></svg>Hồ sơ sức khỏe bảo mật riêng tư</span>
+  </div>
+</div>
+
+<!-- ============ KHỐI-8: DỊCH VỤ — NB93-272: thẻ nổi bật 2 cột + 7 thẻ thường = 9 ô kín ============ -->
+<section class="sec alt" id="dichvu8" style="padding-top:64px">
+  <div class="wrap">
+    <div class="k8-call rv">
+      <div class="cb">
+        <div class="lb">Tư vấn &amp; đặt lịch · 7 ngày/tuần</div>
+        <div class="num">0901 473 652</div>
+        <div class="st">Chuyên gia tiếp nhận trong 15 phút · buổi tư vấn đầu 0đ khi đặt online · báo lộ trình &amp; phí trước khi bạn quyết định.</div>
+      </div>
+      <a class="big" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>Gọi tư vấn ngay</a>
+    </div>
+    <div class="head rv">
+      <h2 class="sec-title">8 dịch vụ — chọn đúng mục tiêu sức khỏe của bạn</h2>
+      <span class="sec-sub">Mỗi dịch vụ đều bắt đầu bằng đo chỉ số &amp; khai thác tiền sử — giá là mức tham chiếu, chốt trọn gói trước khi bắt đầu</span>
+    </div>
+    <div class="k8-grid">
+      <article class="k8-card k8-feat rv">
+        <span class="ribbon">Liệu trình 12 tuần</span>
+        <div class="k8-img">
+          <img src="assets/img/p1.webp" alt="Tư vấn chế độ ăn giảm cân — liệu trình 12 tuần" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-star"/></svg>Đặt nhiều nhất</span>
+        </div>
+        <div class="k8-body">
+          <h3>Liệu trình giảm cân 12 tuần — ăn no, không nhịn, có người theo dõi mỗi tuần</h3>
+          <span class="sub"><svg class="i"><use href="#i-check"/></svg>Đo chỉ số cơ thể &amp; vòng bụng ngay buổi đầu, đánh giá lại mỗi 4 tuần</span>
+          <span class="sub"><svg class="i"><use href="#i-check"/></svg>Thực đơn no – đủ đạm theo món bạn thích, có danh sách đi chợ</span>
+          <span class="sub"><svg class="i"><use href="#i-check"/></svg>Báo số đo mỗi tuần — chuyên gia chỉnh khẩu phần theo số liệu thật</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu / liệu trình</small><b>từ 2.400.000đ</b></span>
+            <button class="btn btn-accent quick-book" data-cat="Giảm cân" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch tư vấn</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="1">
+        <div class="k8-img"><img src="assets/img/p2.webp" alt="Tư vấn dinh dưỡng cho người bệnh — tiểu đường, gan nhiễm mỡ" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Liệu trình tiểu đường &amp; gan nhiễm mỡ</h3>
+          <span class="sub"><svg class="i"><use href="#i-heart"/></svg>12 tuần · phối hợp kết quả xét nghiệm, tiếp tục thuốc theo phác đồ bác sĩ</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu</small><b>từ 3.200.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Tiểu đường – gan nhiễm mỡ" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="2">
+        <div class="k8-img"><img src="assets/img/p7.webp" alt="Xây dựng thực đơn cá nhân hóa" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Xây dựng thực đơn cá nhân hóa</h3>
+          <span class="sub"><svg class="i"><use href="#i-food"/></svg>Theo sở thích, giờ làm, ngân sách &amp; bệnh nền — kèm cách đổi món tương đương</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu / 4 tuần</small><b>từ 850.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Thực đơn cá nhân hóa" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="0">
+        <div class="k8-img"><img src="assets/img/p3.webp" alt="Thực đơn theo mục tiêu sức khỏe" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Thực đơn theo mục tiêu sức khỏe</h3>
+          <span class="sub"><svg class="i"><use href="#i-trend"/></svg>Giảm – tăng – ổn định: bộ thực đơn 1–4 tuần cho bạn tự áp dụng tại nhà</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu</small><b>từ 650.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Thực đơn theo mục tiêu" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="1">
+        <div class="k8-img"><img src="assets/img/p4.webp" alt="Tư vấn dinh dưỡng trẻ em" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Tư vấn dinh dưỡng trẻ em</h3>
+          <span class="sub"><svg class="i"><use href="#i-child"/></svg>Kén ăn, chậm tăng cân, tuổi dậy thì — theo biểu đồ tăng trưởng chuẩn</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu / lộ trình</small><b>từ 900.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Trẻ em" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="2">
+        <div class="k8-img"><img src="assets/img/p5.webp" alt="Tư vấn dinh dưỡng người cao tuổi" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Tư vấn dinh dưỡng người cao tuổi</h3>
+          <span class="sub"><svg class="i"><use href="#i-senior"/></svg>Ăn mềm dễ tiêu, đủ đạm chống teo cơ, cân bằng thuốc đang dùng</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu / lộ trình</small><b>từ 900.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Người cao tuổi" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="0">
+        <div class="k8-img"><img src="assets/img/p6.webp" alt="Theo dõi chỉ số cơ thể — cân, mỡ, cơ, vòng bụng" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Theo dõi chỉ số cơ thể</h3>
+          <span class="sub"><svg class="i"><use href="#i-scale"/></svg>Đo cân, mỡ, cơ, vòng bụng — in kết quả, là căn cứ chỉnh thực đơn mỗi tuần</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>250.000đ/lượt — miễn phí khi làm liệu trình</small><b>250.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Đo chỉ số cơ thể" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="k8-card rv" data-d="1">
+        <div class="k8-img"><img src="assets/img/p8.webp" alt="Tư vấn dinh dưỡng trực tuyến qua video" loading="lazy"></div>
+        <div class="k8-body">
+          <h3>Tư vấn trực tuyến</h3>
+          <span class="sub"><svg class="i"><use href="#i-video"/></svg>Video 30–45 phút cùng chuyên gia — nhận file thực đơn &amp; biểu mẫu theo dõi</span>
+          <div class="k8-foot">
+            <span class="k8-pr"><small>giá tham chiếu / buổi</small><b>350.000đ</b></span>
+            <button class="btn btn-ghost quick-book" data-cat="Tư vấn trực tuyến" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="k8-note"><svg class="i"><use href="#i-alert"/></svg>Giá trên là <b>giá tham chiếu</b> — sau buổi tư vấn đầu (0đ), chuyên gia báo trọn giá liệu trình theo tình trạng của bạn; không phát sinh chi phí ngoài báo giá.</p>
+  </div>
+</section>
+
+<!-- ============ ĐẶC THÙ: LIỆU TRÌNH THEO MỤC TIÊU + THEO DÕI MỖI TUẦN — NB93-272 ============ -->
+<section id="mucTieu">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Liệu trình theo mục tiêu — lộ trình 12 tuần, số đo mỗi tuần</h2>
+      <span class="sec-sub">Chọn mục tiêu để xem lộ trình, mẫu thực đơn 1 ngày và số liệu theo dõi minh họa — buổi tư vấn đầu sẽ cá nhân hóa lại toàn bộ cho bạn</span>
+    </div>
+    <div class="goal-chips rv" id="goalChips">
+      <button class="goal-chip sel" data-goal="giamcan" type="button"><svg class="i"><use href="#i-scale"/></svg>Giảm cân — mỡ bụng</button>
+      <button class="goal-chip" data-goal="tangcan" type="button"><svg class="i"><use href="#i-trend"/></svg>Tăng cân — cải thiện cơ</button>
+      <button class="goal-chip" data-goal="tieuduong" type="button"><svg class="i"><use href="#i-activity"/></svg>Tiểu đường — ổn định đường huyết</button>
+      <button class="goal-chip" data-goal="gan" type="button"><svg class="i"><use href="#i-heart"/></svg>Gan nhiễm mỡ — cải thiện men gan</button>
+    </div>
+    <div class="goal-panel">
+      <div class="gp-col rv" data-d="0">
+        <h3><svg class="i"><use href="#i-note"/></svg><span id="gpTitle">Lộ trình 12 tuần</span></h3>
+        <p class="gp-sub" id="gpSub">—</p>
+        <div id="gpPhases"></div>
+        <div class="goal-cta">
+          <button class="btn btn-accent quick-book" id="gpBook" data-cat="Giảm cân" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch tư vấn liệu trình này</button>
+          <a class="btn btn-ghost" style="background:rgba(255,255,255,.9)" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>Gọi 0901 473 652</a>
+        </div>
+      </div>
+      <div class="gp-col rv" data-d="1">
+        <h3><svg class="i"><use href="#i-trend"/></svg>Theo dõi mỗi tuần — có số liệu</h3>
+        <p class="gp-sub" id="trkWho">—</p>
+        <div class="trk-legend" id="trkLegend"></div>
+        <div id="trkRows"></div>
+        <div class="trk-delta" id="trkDelta">—</div>
+        <p class="trk-fine" id="trkFine">—</p>
+        <div style="margin-top:18px">
+          <h3 style="font-size:.98rem"><svg class="i"><use href="#i-food"/></svg>Mẫu thực đơn 1 ngày trong liệu trình</h3>
+          <div class="menu-mini" id="gpMenu"></div>
+        </div>
+      </div>
+    </div>
+    <div class="disclaim rv" data-d="1">
+      <svg class="i"><use href="#i-alert"/></svg>
+      <div>
+        <b>Lưu ý chuyên môn y tế</b>
+        <p>An Nhiên Nutrition cung cấp dịch vụ <b>tư vấn dinh dưỡng hỗ trợ cải thiện sức khỏe qua ăn uống và lối sống</b> — không chẩn đoán bệnh, không kê đơn thuốc và <b>không cam kết chữa bệnh</b>. Người đang điều trị bệnh (tiểu đường, gan nhiễm mỡ…) tiếp tục phác đồ của bác sĩ; liệu trình được xây dựng phối hợp với kết quả xét nghiệm và theo dõi y khoa hiện có. Số liệu minh họa trên đây từ khách đã hoàn thành lộ trình — kết quả tùy cơ địa và mức tuân thủ của mỗi người.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING — ĐẶT LỊCH TƯ VẤN ============ -->
+<section id="booking">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Đặt lịch tư vấn — chọn mục tiêu &amp; giờ tiện cho bạn</h2>
+      <span class="sec-sub">Buổi đầu 0đ: đo chỉ số cơ thể, trao đổi tiền sử và nhận lộ trình dự kiến — báo phí trọn gói trước khi bạn quyết định</span>
+    </div>
+    <div class="bk-grid">
+      <div class="bk-form rv">
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">1</span><b>Mục tiêu &amp; mô tả tình trạng</b><small><svg class="i" style="width:13px;height:13px"><use href="#i-clock"/></svg>30 giây</small></div>
+          <div class="cat-chips" id="catChips">
+            <button class="cat-chip" data-cat="Giảm cân"><svg class="i"><use href="#i-scale"/></svg><span>Giảm cân<small>liệu trình 12 tuần</small></span></button>
+            <button class="cat-chip" data-cat="Tăng cân"><svg class="i"><use href="#i-trend"/></svg><span>Tăng cân<small>cải thiện cơ</small></span></button>
+            <button class="cat-chip" data-cat="Tiểu đường – gan nhiễm mỡ"><svg class="i"><use href="#i-activity"/></svg><span>Tiểu đường / gan nhiễm mỡ<small>cùng bác sĩ điều trị</small></span></button>
+            <button class="cat-chip" data-cat="Trẻ em"><svg class="i"><use href="#i-child"/></svg><span>Trẻ em<small>kén ăn, chậm lớn</small></span></button>
+            <button class="cat-chip" data-cat="Người cao tuổi"><svg class="i"><use href="#i-senior"/></svg><span>Người cao tuổi<small>bệnh nền, ăn mềm</small></span></button>
+            <button class="cat-chip" data-cat="Tư vấn trực tuyến"><svg class="i"><use href="#i-video"/></svg><span>Tư vấn online<small>video 30–45 phút</small></span></button>
+          </div>
+          <textarea class="bk-desc" id="bkDesc" placeholder="Mô tả nhanh: chiều cao/cân nặng hiện tại, mục tiêu, bệnh nền (nếu có) — vd “1m62, 68kg, ngồi văn phòng, muốn giảm 5kg, hay ăn khuya”"></textarea>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">2</span><b>Chọn ngày hẹn</b><small>thứ 2 – chủ nhật</small></div>
+          <div class="day-chips" id="dayChips"></div>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">3</span><b>Hình thức &amp; khung giờ</b><small><svg class="i" style="width:13px;height:13px"><use href="#i-video"/></svg>Ở xa — chọn online qua video</small></div>
+          <div class="slot-chips" id="slotChips"></div>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">4</span><b>Liên hệ</b><small>chuyên gia gọi xác nhận</small></div>
+          <div class="bk-inputs">
+            <input id="bkName" type="text" placeholder="Họ tên *">
+            <input id="bkPhone" type="tel" placeholder="Số điện thoại *">
+            <input id="bkAddr" type="text" class="full" placeholder="Khu vực bạn ở (vd: Gò Vấp, TP.HCM) *">
+          </div>
+          <p class="bk-note" style="margin-top:12px"><svg class="i"><use href="#i-lock"/></svg>Thông tin sức khỏe bạn chia sẻ chỉ chuyên gia phụ trách hồ sơ được xem — dùng để chuẩn bị buổi tư vấn, không chia sẻ bên thứ ba.</p>
+        </div>
+        <button class="btn btn-accent" id="bkSubmit" type="button" style="width:100%"><svg class="i"><use href="#i-send"/></svg>Nhận mã hẹn — chuyên gia gọi lại trong 15 phút</button>
+        <div class="bk-done" id="bkDone"></div>
+      </div>
+      <aside class="bk-sum rv" data-d="1">
+        <h3><svg class="i"><use href="#i-list"/></svg>Lịch hẹn của bạn</h3>
+        <div class="row"><span>Mục tiêu</span><b id="sumCat">Chưa chọn</b></div>
+        <div class="row"><span>Ngày hẹn</span><b id="sumDay">—</b></div>
+        <div class="row"><span>Hình thức &amp; giờ</span><b id="sumSlot">—</b></div>
+        <div class="row"><span>Buổi tư vấn &amp; đo chỉ số đầu (đặt online)</span><b style="color:#9FE8C4">0đ</b></div>
+        <div class="total"><span>Chi phí liệu trình dự kiến</span><b id="sumFee">—</b></div>
+        <p class="fine">Mức dự kiến là giá "từ" tham chiếu. Sau buổi tư vấn đầu, chuyên gia báo trọn giá liệu trình theo tình trạng của bạn — hiệu quả tùy cơ địa và mức tuân thủ từng người.</p>
+        <div class="bk-call">
+          <a class="btn btn-hot" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>GỌI ĐẶT LỊCH: 0901 473 652</a>
+          <a class="btn btn-ghost" style="background:rgba(255,255,255,.9)" href="https://zalo.me/0901473652" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Nhắn Zalo tư vấn</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BẢNG GIÁ 3 TAB ============ -->
+<section class="sec" id="banggia">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Bảng giá tham chiếu 2026</h2>
+      <span class="sec-sub">Giá khung công khai để bạn chủ động ngân sách — báo trọn gói chính xác sau buổi tư vấn &amp; đo chỉ số đầu</span>
+    </div>
+    <div class="tabs rv" id="priceTabs">
+      <button class="tab on" data-pane="pLieu" type="button"><svg class="i"><use href="#i-trend"/></svg>Liệu trình theo mục tiêu</button>
+      <button class="tab" data-pane="pGoi" type="button"><svg class="i"><use href="#i-note"/></svg>Gói theo đối tượng</button>
+      <button class="tab" data-pane="pDon" type="button"><svg class="i"><use href="#i-tag"/></svg>Dịch vụ đơn lẻ &amp; chính sách</button>
+    </div>
+    <div class="price-wrap rv" data-d="1">
+      <div class="tbl-card">
+        <div class="pane on" id="pLieu">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Liệu trình 12 tuần</th><th>Giá tham chiếu</th><th>Theo dõi</th></tr></thead>
+              <tbody>
+                <tr><td><b>Giảm cân — giảm mỡ bụng</b><small>Thực đơn no – đủ đạm, giữ cơ khi giảm cân</small></td><td><span class="pr">2.400.000 – 3.600.000đ</span></td><td>báo số đo mỗi tuần</td></tr>
+                <tr><td><b>Tăng cân — cải thiện cơ</b><small>Cho người gầy, ăn kém, sau ốm dậy</small></td><td><span class="pr">2.200.000 – 3.200.000đ</span></td><td>báo số đo mỗi tuần</td></tr>
+                <tr><td><b>Ổn định đường huyết</b><small>Tiểu đường type 2 — cùng phác đồ bác sĩ điều trị</small></td><td><span class="pr">3.200.000 – 4.500.000đ</span></td><td>đường huyết / HbA1c theo chặng</td></tr>
+                <tr><td><b>Cải thiện gan nhiễm mỡ</b><small>Giảm mỡ nội tạng, men gan — kết hợp xét nghiệm theo dõi</small></td><td><span class="pr">3.200.000 – 4.500.000đ</span></td><td>men gan / siêu âm theo chặng</td></tr>
+                <tr><td><b>Gia hạn duy trì 4 tuần</b><small>Sau liệu trình — giữ kết quả, tự chủ ăn uống</small></td><td><span class="pr">800.000đ</span></td><td>theo dõi 2 tuần/lần</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pane" id="pGoi">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Gói theo đối tượng</th><th>Giá tham chiếu</th><th>Lộ trình</th></tr></thead>
+              <tbody>
+                <tr><td><b>Trẻ em — kén ăn, chậm tăng cân</b><small>Theo biểu đồ tăng trưởng, phụ huynh đồng hành từng tuần</small></td><td><span class="pr">900.000 – 1.800.000đ</span></td><td>8–12 tuần</td></tr>
+                <tr><td><b>Người cao tuổi</b><small>Ăn mềm, đủ đạm, cân bằng thuốc đang dùng</small></td><td><span class="pr">900.000 – 1.600.000đ</span></td><td>8–12 tuần</td></tr>
+                <tr><td><b>Thực đơn cá nhân hóa 4 tuần</b><small>Theo sở thích, giờ làm, ngân sách — kèm danh sách đi chợ</small></td><td><span class="pr">từ 850.000đ</span></td><td>1 lần lập + chỉnh</td></tr>
+                <tr><td><b>Thực đơn theo mục tiêu</b><small>Giảm / tăng / ổn định — bộ thực đơn tự áp dụng</small></td><td><span class="pr">từ 650.000đ</span></td><td>1–4 tuần thực đơn</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pane" id="pDon">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Dịch vụ đơn lẻ &amp; chính sách</th><th>Giá tham chiếu</th><th>Ghi chú</th></tr></thead>
+              <tbody>
+                <tr class="zero"><td><b>Buổi tư vấn &amp; đo chỉ số đầu</b><small>Đo cơ thể, khai thác tiền sử, nhận lộ trình dự kiến — khi đặt online</small></td><td><span class="pr">0đ</span></td><td>~45–60 phút</td></tr>
+                <tr><td><b>Đo chỉ số cơ thể từng lượt</b><small>Cân, mỡ, cơ, nội tạng, vòng bụng — in kết quả</small></td><td><span class="pr">250.000đ/lượt</span></td><td>miễn phí trong liệu trình</td></tr>
+                <tr><td><b>Tư vấn trực tuyến</b><small>Video 30–45 phút — file thực đơn &amp; biểu mẫu theo dõi</small></td><td><span class="pr">350.000đ/buổi</span></td><td>toàn quốc</td></tr>
+                <tr><td><b>Buổi tư vấn đơn lẻ tại phòng</b><small>Trao đổi chuyên sâu 1 vấn đề dinh dưỡng</small></td><td><span class="pr">450.000đ/buổi</span></td><td>~45 phút</td></tr>
+                <tr><td><b>Liệu trình dài — thanh toán theo chặng</b><small>Chia 2–3 đợt theo giai đoạn đã chốt trong báo giá</small></td><td><span class="pr">theo báo giá</span></td><td>không thu trọn trước</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tbl-foot"><svg class="i"><use href="#i-tag"/></svg>Mọi giá trên đây đều là <b>giá tham chiếu</b> — báo trọn gói sau buổi tư vấn đầu; hiệu quả tùy cơ địa và mức tuân thủ của mỗi người.</div>
+      </div>
+      <div class="tips">
+        <div class="tip"><b><svg class="i"><use href="#i-cal"/></svg>Đặt lịch trước — không chờ</b><p>Chọn giờ trên web hoặc gọi hotline — chuyên gia xác nhận trong 15 phút. Bận đột xuất vẫn đổi lịch khi báo trước 2 giờ.</p></div>
+        <div class="tip"><b><svg class="i"><use href="#i-wallet"/></svg>Liệu trình dài — trả theo chặng</b><p>Thanh toán chia 2–3 đợt theo giai đoạn đã chốt, không bắt đóng dồn một lần. Nhận tiền mặt, chuyển khoản, VietQR, MoMo.</p></div>
+        <div class="tip"><b><svg class="i"><use href="#i-shield"/></svg>Không bán kèm bắt buộc</b><p>Thực đơn dựng từ thực phẩm chợ/siêu thị. Không bắt mua thực phẩm chức năng hay sản phẩm nào để áp dụng liệu trình.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="commit">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">4 cam kết áp dụng cho mọi liệu trình</h2>
+      <span class="sec-sub">Ghi rõ trong báo giá bạn duyệt trước khi bắt đầu — không phải lời quảng cáo</span>
+    </div>
+    <div class="com-grid">
+      <article class="com-card rv" data-d="0">
+        <span class="cc-num">01</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-user"/></svg></div>
+        <h3>Cá nhân hóa từ số đo của bạn</h3>
+        <p>Không dùng thực đơn mẫu đại trà — mọi khẩu phần dựng từ chỉ số cơ thể, tiền sử, thói quen và món bạn thích.</p>
+      </article>
+      <article class="com-card rv" data-d="1">
+        <span class="cc-num">02</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-trend"/></svg></div>
+        <h3>Theo dõi mỗi tuần có số liệu</h3>
+        <p>Cân nặng, vòng bụng, chỉ số cơ thể báo mỗi tuần — thực đơn chỉnh theo số liệu thật, không theo cảm tính.</p>
+      </article>
+      <article class="com-card rv" data-d="2">
+        <span class="cc-num">03</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-award"/></svg></div>
+        <h3>Chuyên gia có chứng chỉ — hồ sơ bảo mật</h3>
+        <p>Chuyên gia dinh dưỡng có chứng chỉ đào tạo; hồ sơ sức khỏe lưu riêng, chỉ người phụ trách được xem.</p>
+      </article>
+      <article class="com-card rv" data-d="3">
+        <span class="cc-num">04</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-heart"/></svg></div>
+        <h3>Không thay thế y khoa</h3>
+        <p>Không chẩn đoán, không kê thuốc, không cam kết chữa bệnh — người đang điều trị tiếp tục phác đồ của bác sĩ.</p>
+      </article>
+    </div>
+    <div class="hot-strip rv" data-d="1">
+      <div class="hs-t">
+        <h3>Muốn biết lộ trình phù hợp với tình trạng của bạn?</h3>
+        <p>Đặt buổi tư vấn đầu 0đ — đo chỉ số, trao đổi mục tiêu, nhận lộ trình dự kiến trước khi quyết định.</p>
+      </div>
+      <div class="hs-acts">
+        <a class="btn btn-accent btn-xl" href="#booking"><svg class="i" style="width:22px;height:22px"><use href="#i-cal"/></svg>Đặt lịch tư vấn 0đ</a>
+        <a class="btn btn-hot btn-xl" href="tel:0901473652"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>0901 473 652</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat rv" data-d="0"><b><span class="cnt" data-n="12">0</span><em> năm</em></b><span>đồng hành cùng khách hàng Việt</span></div>
+    <div class="stat rv" data-d="1"><b><span class="cnt" data-n="6800">0</span><em>+</em></b><span>hồ sơ liệu trình đã hoàn thành</span></div>
+    <div class="stat rv" data-d="2"><b><span class="cnt" data-n="92">0</span><em>%</em></b><span>khách đi đủ lộ trình 12 tuần</span></div>
+    <div class="stat rv" data-d="3"><b><span class="cnt" data-n="49">0</span><em>/5</em></b><span>điểm hài lòng trung bình</span></div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec" id="quytrinh">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Từ đặt lịch đến chốt mục tiêu 12 tuần</h2>
+      <span class="sec-sub">Mỗi bước minh bạch — bạn biết trước mình sắp làm gì, mất bao lâu và phí bao nhiêu</span>
+    </div>
+    <div class="steps">
+      <article class="step rv" data-d="0">
+        <div class="s-ic"><svg class="i"><use href="#i-cal"/></svg></div>
+        <h3>Đặt lịch tư vấn (0đ)</h3>
+        <p>Chọn mục tiêu &amp; giờ trên web hoặc gọi hotline — nhận mã hẹn ngay, chuyên gia gọi xác nhận trong 15 phút.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Trong 60 giây</span>
+      </article>
+      <article class="step rv" data-d="1">
+        <div class="s-ic"><svg class="i"><use href="#i-scale"/></svg></div>
+        <h3>Buổi đầu: đo chỉ số &amp; khai thác tiền sử</h3>
+        <p>Đo cân, mỡ, cơ, vòng bụng; trao đổi bệnh nền, xét nghiệm (nếu có), thói quen ăn — phân tích ngay tại chỗ.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>45–60 phút</span>
+      </article>
+      <article class="step rv" data-d="2">
+        <div class="s-ic"><svg class="i"><use href="#i-food"/></svg></div>
+        <h3>Nhận liệu trình + thực đơn cá nhân hóa</h3>
+        <p>Lộ trình 12 tuần theo mục tiêu, thực đơn từ món bạn thích kèm danh sách đi chợ — báo trọn phí trước khi bắt đầu.</p>
+        <span class="meta"><svg class="i"><use href="#i-check"/></svg>Báo giá trước</span>
+      </article>
+      <article class="step rv" data-d="3">
+        <div class="s-ic"><svg class="i"><use href="#i-trend"/></svg></div>
+        <h3>Theo dõi mỗi tuần &amp; tái đánh giá</h3>
+        <p>Bạn báo số đo mỗi tuần, chuyên gia chỉnh khẩu phần; tái đánh giá chỉ số tuần 4 – 8 – 12 và chốt kế hoạch duy trì.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Theo lộ trình</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHÔNG GIAN ============ -->
+<section class="sec alt" id="khonggian">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Không gian tư vấn — riêng tư, thoáng, nhẹ nhàng</h2>
+      <span class="sec-sub">Phòng tư vấn riêng từng khách, máy đo chỉ số cơ thể — bạn xem trực tiếp khi đến hẹn</span>
+    </div>
+    <div class="gal-grid rv" data-d="1">
+      <figure class="gal-item">
+        <img src="assets/img/space.webp" alt="Không gian phòng tư vấn dinh dưỡng An Nhiên" loading="lazy">
+        <figcaption class="gal-cap"><svg class="i"><use href="#i-home"/></svg><span>Phòng tư vấn &amp; khu đo chỉ số<small>Hẹn trước — đến đúng giờ, phòng riêng cho từng khách</small></span></figcaption>
+      </figure>
+      <figure class="gal-item">
+        <img src="assets/img/intro.webp" alt="Chuyên gia dinh dưỡng An Nhiên" loading="lazy">
+        <figcaption class="gal-cap"><svg class="i"><use href="#i-user"/></svg><span>Đội chuyên gia dinh dưỡng<small>Chứng chỉ chuyên môn — phụ trách rõ theo từng mục tiêu</small></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div class="ab-img rv">
+        <img src="assets/img/intro.webp" alt="Chuyên gia tư vấn dinh dưỡng và sức khỏe An Nhiên" loading="lazy">
+        <div class="ab-tag"><b>6.800+</b><span>hồ sơ liệu trình</span></div>
+      </div>
+      <div class="ab-txt rv" data-d="1">
+        <span class="eyebrow"><svg class="i"><use href="#i-leaf"/></svg>Về An Nhiên Nutrition</span>
+        <h2>Từ phòng tư vấn nhỏ năm 2014 — nay đồng hành cùng 6.800+ hồ sơ liệu trình</h2>
+        <p>An Nhiên khởi đầu như một phòng tư vấn dinh dưỡng gia đình. 12 năm sau, đội ngũ gồm các chuyên gia có chứng chỉ chuyên môn theo từng mảng — giảm cân, dinh dưỡng bệnh lý, trẻ em, người cao tuổi — kèm máy phân tích thành phần cơ thể và quy trình theo dõi số liệu mỗi tuần. Chúng tôi làm việc cùng số liệu thật của bạn, phối hợp với bác sĩ điều trị khi bạn đang trong phác đồ y khoa — và luôn trung thực: dinh dưỡng hỗ trợ sức khỏe, không phải thuốc chữa bệnh.</p>
+        <div class="ab-pts">
+          <div class="ab-pt"><svg class="i"><use href="#i-user"/></svg><span><b>Chuyên gia rõ chuyên môn</b><span>Giảm cân, bệnh lý, trẻ em, người cao tuổi</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-scale"/></svg><span><b>Máy phân tích cơ thể</b><span>Đo mỡ, cơ, nội tạng — không chỉ cân nặng</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-trend"/></svg><span><b>Theo dõi mỗi tuần</b><span>Số liệu thật — chỉnh thực đơn theo số liệu</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-lock"/></svg><span><b>Hồ sơ bảo mật</b><span>Thông tin sức khỏe chỉ chuyên gia phụ trách xem</span></span></div>
+        </div>
+        <div class="ab-cta">
+          <a class="btn btn-accent" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>Gọi: 0901 473 652</a>
+          <a class="btn btn-ghost" href="#booking"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch tư vấn trong 60 giây</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="sec" id="proof" style="background:var(--texture)">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Khách hàng kể lại hành trình của họ</h2>
+      <span class="sec-sub">Chia sẻ thật sau khi hoàn thành lộ trình — kết quả của bạn vẫn tùy cơ địa và mức tuân thủ mỗi người</span>
+    </div>
+    <div class="rvw-shell rv" data-d="1">
+      <div>
+        <div class="rvw-view">
+          <div class="rvw-track" id="rvwTrack"></div>
+        </div>
+        <div class="rvw-dots" id="rvwDots"></div>
+      </div>
+      <aside class="rvw-side">
+        <div class="metric"><b>4.9/5</b><span>từ đánh giá của khách đã hoàn thành liệu trình tại An Nhiên</span></div>
+        <div class="mrow"><span>Đúng giờ hẹn</span><b>97%</b></div>
+        <div class="mrow"><span>Đi đủ lộ trình 12 tuần</span><b>92%</b></div>
+        <div class="mrow"><span>Khách giới thiệu người thân</span><b>68%</b></div>
+        <div>
+          <h4 style="margin-bottom:10px">Công cụ &amp; dịch vụ chính</h4>
+          <div class="pchips"><span>Máy phân tích cơ thể</span><span>Theo dõi tuần qua Zalo</span><span>Thực đơn cá nhân hóa</span><span>Dinh dưỡng bệnh lý</span><span>Tư vấn video</span><span>Tái đánh giá 4 tuần/lần</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP + FORM CUỐI ============ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Gửi yêu cầu — chuyên gia gọi lại trong 15 phút</h2>
+      <span class="sec-sub">Điền nhanh 4 dòng — nhận lộ trình dự kiến và giờ hẹn thuận tiện cho bạn</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-pin"/></svg></span>
+          <span><b>An Nhiên Nutrition</b><span>48 Đường số 18, Phường 5, Gò Vấp, TP.HCM</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+          <span><b>Hotline đặt lịch: 0901 473 652</b><span>Gọi trực tiếp khi cần hẹn gấp — cả thứ 2 đến chủ nhật</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-clock"/></svg></span>
+          <span><b>Giờ phục vụ</b><span>8:00–20:00 tất cả các ngày trong tuần — có khung giờ tối cho người đi làm</span></span>
+        </div>
+        <div class="map-embed">
+          <iframe title="Bản đồ An Nhiên Nutrition" src="https://www.google.com/maps?q=10.8371,106.6842&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-btn">
+          <a class="btn btn-accent" href="https://www.google.com/maps/dir/?api=1&destination=10.8371,106.6842" target="_blank" rel="noopener"><svg class="i"><use href="#i-pin"/></svg>Chỉ đường đến phòng tư vấn</a>
+        </div>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm">
+        <h3>Phiếu yêu cầu nhanh</h3>
+        <p class="fsub">Chuyên gia trực 7 ngày/tuần — gọi lại trong 15 phút kể từ khi gửi</p>
+        <div class="frow">
+          <input type="text" id="ctName" placeholder="Họ tên *" required>
+          <input type="tel" id="ctPhone" placeholder="Số điện thoại *" required>
+        </div>
+        <div class="frow">
+          <select id="ctService">
+            <option value="">Mục tiêu cần cải thiện…</option>
+            <option>Giảm cân — giảm mỡ bụng</option>
+            <option>Tăng cân — cải thiện cơ</option>
+            <option>Tiểu đường — ổn định đường huyết</option>
+            <option>Gan nhiễm mỡ — cải thiện men gan</option>
+            <option>Dinh dưỡng trẻ em</option>
+            <option>Dinh dưỡng người cao tuổi</option>
+            <option>Thực đơn cá nhân hóa</option>
+            <option>Tư vấn trực tuyến</option>
+          </select>
+          <select id="ctTime">
+            <option value="">Khung giờ mong muốn…</option>
+            <option>Sáng 8:00 – 11:30</option>
+            <option>Chiều 13:30 – 17:00</option>
+            <option>Tối 17:30 – 20:00</option>
+            <option>Online — video 30–45 phút</option>
+          </select>
+        </div>
+        <div class="frow">
+          <input type="text" id="ctAddr" class="full" placeholder="Khu vực bạn ở *">
+        </div>
+        <div class="frow">
+          <textarea class="full" id="ctDesc" placeholder="Tình trạng hiện tại (không bắt buộc): vd “1m60, 65kg, xét nghiệm gan nhiễm mỡ độ 2, đang uống thuốc theo bác sĩ”…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent"><svg class="i"><use href="#i-send"/></svg>Gửi yêu cầu — chuyên gia gọi lại trong 15 phút</button>
+        <p class="secure"><svg class="i"><use href="#i-lock"/></svg>Thông tin chỉ dùng để sắp lịch hẹn tư vấn — không chia sẻ cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Hỏi nhanh — đáp gọn trước khi đặt lịch</h2>
+      <span class="sec-sub">Tìm bằng từ khoá hoặc chạm chip chủ đề bạn quan tâm</span>
+    </div>
+    <div class="faq-shell rv" data-d="1">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg class="i"><use href="#i-search"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: đặt lịch, giảm bao nhiêu kg, tiểu đường, thanh toán…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="fchip" data-k="đặt lịch" type="button">Đặt lịch thế nào</button>
+          <button class="fchip" data-k="bao nhiêu kg" type="button">Giảm được bao nhiêu</button>
+          <button class="fchip" data-k="tiểu đường" type="button">Đang điều trị bệnh</button>
+          <button class="fchip" data-k="thực phẩm" type="button">Có phải mua thêm gì không</button>
+          <button class="fchip" data-k="trẻ" type="button">Trẻ em</button>
+          <button class="fchip" data-k="online" type="button">Tư vấn online</button>
+          <button class="fchip" data-k="thanh toán" type="button">Thanh toán</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0901 473 652 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="mark"><svg class="i"><use href="#i-leaf"/></svg></span>
+          <span><span class="lg-t">An Nhiên</span><span class="lg-s">Dinh dưỡng &amp; sức khỏe</span></span>
+        </a>
+        <p>An Nhiên Nutrition — liệu trình dinh dưỡng theo mục tiêu, thực đơn cá nhân hóa và theo dõi số liệu mỗi tuần tại TP.HCM. Buổi tư vấn đầu 0đ, báo phí trọn gói trước khi bắt đầu.</p>
+        <a class="ft-hot" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>0901 473 652</a>
+        <div class="ft-disclaim">
+          <b>Lưu ý chuyên môn y tế:</b> dịch vụ của An Nhiên là tư vấn dinh dưỡng hỗ trợ cải thiện sức khỏe qua ăn uống và lối sống — không chẩn đoán bệnh, không kê thuốc, không cam kết chữa bệnh. Người đang điều trị bệnh tiếp tục phác đồ của bác sĩ đang theo dõi.
+        </div>
+      </div>
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#dichvu8">Liệu trình giảm cân 12 tuần</a></li>
+          <li><a href="#dichvu8">Tiểu đường &amp; gan nhiễm mỡ</a></li>
+          <li><a href="#dichvu8">Thực đơn cá nhân hóa</a></li>
+          <li><a href="#dichvu8">Dinh dưỡng trẻ em</a></li>
+          <li><a href="#dichvu8">Dinh dưỡng người cao tuổi</a></li>
+          <li><a href="#dichvu8">Theo dõi chỉ số cơ thể</a></li>
+          <li><a href="#dichvu8">Tư vấn trực tuyến</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ trợ khách hàng</h4>
+        <ul>
+          <li><a href="#banggia">Bảng giá tham chiếu 2026</a></li>
+          <li><a href="#mucTieu">Liệu trình theo mục tiêu</a></li>
+          <li><a href="#booking">Đặt lịch tư vấn 0đ</a></li>
+          <li><a href="#quytrinh">Quy trình 4 bước</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+          <li><a href="#contact">Liên hệ &amp; bản đồ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>Phòng tư vấn: 48 Đường số 18, Phường 5, Gò Vấp, TP.HCM</li>
+          <li>Hotline: <b style="color:#fff">0901 473 652</b></li>
+          <li>Zalo tư vấn: 0901 473 652</li>
+          <li>Email: annhien.nutrition@gmail.com</li>
+          <li>8:00–20:00 tất cả các ngày trong tuần</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span>© 2026 An Nhiên Nutrition<!-- FACTORY-NGHE-23: removed platform-level disclaimer (ghi trong Điều khoản nền tảng) --></span>
+      <div class="pay-chips"><span>Tiền mặt</span><span>Chuyển khoản</span><span>VietQR</span><span>Thẻ ATM/VISA</span><span>MoMo</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock hide" id="dock">
+  <a class="d-main" href="#booking"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</a>
+  <a class="d-hot" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>Gọi ngay</a>
+  <a href="https://zalo.me/0901473652" target="_blank" rel="noopener" title="Zalo"><svg class="i"><use href="#i-chat"/></svg>Zalo</a>
+  <a href="#banggia" title="Bảng giá"><svg class="i"><use href="#i-tag"/></svg>Giá</a>
+  <a href="#contact" title="Bản đồ"><svg class="i"><use href="#i-pin"/></svg>Bản đồ</a>
+  <button id="dockTop" title="Lên đầu trang" type="button"><svg class="i"><use href="#i-up"/></svg>Lên đầu</button>
+</div>
+
+<!-- ============ BOOKING DRAWER ============ -->
+<div class="drawer-ov" id="drOv"></div>
+<aside class="drawer" id="drawer">
+  <div class="dr-head">
+    <svg class="i"><use href="#i-cal"/></svg>
+    <h3>Đặt lịch tư vấn</h3>
+    <button class="dr-close" id="drClose" aria-label="Đóng"><svg class="i"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="dr-body">
+    <div>
+      <span class="dr-lbl">Mục tiêu</span>
+      <div class="dr-chips" id="drCats">
+        <button class="dr-chip" data-cat="Giảm cân" type="button">Giảm cân</button>
+        <button class="dr-chip" data-cat="Tăng cân" type="button">Tăng cân</button>
+        <button class="dr-chip" data-cat="Tiểu đường – gan nhiễm mỡ" type="button">Tiểu đường / gan nhiễm mỡ</button>
+        <button class="dr-chip" data-cat="Trẻ em" type="button">Trẻ em</button>
+        <button class="dr-chip" data-cat="Người cao tuổi" type="button">Người cao tuổi</button>
+        <button class="dr-chip" data-cat="Tư vấn trực tuyến" type="button">Tư vấn trực tuyến</button>
+        <button class="dr-chip" data-cat="Đo chỉ số cơ thể" type="button">Đo chỉ số cơ thể</button>
+      </div>
+    </div>
+    <div>
+      <span class="dr-lbl">Ngày hẹn (thứ 2–CN)</span>
+      <div class="dr-chips" id="drDays"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Hình thức &amp; khung giờ</span>
+      <div class="dr-chips" id="drSlots"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Liên hệ</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input class="dr-input" id="drName" type="text" placeholder="Họ tên *">
+        <input class="dr-input" id="drPhone" type="tel" placeholder="Số điện thoại *">
+        <input class="dr-input" id="drAddr" type="text" placeholder="Khu vực bạn ở (vd: Gò Vấp) *">
+      </div>
+    </div>
+    <div class="dr-sum" id="drSum">Chọn mục tiêu, ngày và khung giờ để thấy tóm tắt lịch hẹn tư vấn.</div>
+    <button class="btn btn-accent" id="drSubmit" type="button" style="width:100%"><svg class="i"><use href="#i-send"/></svg>Nhận mã hẹn — gọi lại trong 15 phút</button>
+    <a class="btn btn-hot" href="tel:0901473652" style="width:100%"><svg class="i"><use href="#i-phone"/></svg>Hotline đặt lịch: 0901 473 652</a>
+    <div class="dr-done" id="drDone"></div>
+  </div>
+</aside>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal-ov" id="mdOv"></div>
+<div class="modal" id="qModal">
+  <div class="m-card">
+    <div class="m-img">
+      <img id="mdImg" src="assets/img/p1.webp" alt="Dịch vụ dinh dưỡng An Nhiên">
+      <span class="cat-b" id="mdCatB"><svg class="i"><use href="#i-leaf"/></svg><span id="mdCatT">Dịch vụ</span></span>
+      <button class="m-close" id="mdClose" aria-label="Đóng"><svg class="i"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="m-body">
+      <h3 id="mdName">—</h3>
+      <p class="m-desc" id="mdDesc">—</p>
+      <div class="m-meta" id="mdMeta"></div>
+      <div class="tier">
+        <div class="t-row"><span>Giá tham chiếu</span><b id="mdT1">—</b></div>
+        <div class="t-row"><span>Thời gian lộ trình</span><b id="mdT2">—</b></div>
+        <div class="t-row hot"><span>Buổi tư vấn &amp; đo chỉ số đầu (đặt online)</span><b id="mdT3">0đ</b></div>
+      </div>
+      <div class="m-acts">
+        <button class="btn btn-accent" id="mdBook" type="button"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch dịch vụ này</button>
+        <a class="btn btn-hot" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>0901 473 652</a>
+      </div>
+      <div class="m-note">
+        <span><svg class="i"><use href="#i-check"/></svg>Báo trọn phí trước khi bắt đầu</span>
+        <span><svg class="i"><use href="#i-check"/></svg>Theo dõi số liệu mỗi tuần</span>
+        <span><svg class="i"><use href="#i-check"/></svg>Không thay thế điều trị y khoa</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ================= NB93-272: DỮ LIỆU ================= */
+var HOTLINE = '0901 473 652';
+var SV = [
+  {n:'Liệu trình giảm cân 12 tuần', cat:'Giảm cân', img:'assets/img/p1.webp', prTxt:'từ 2.400.000đ / liệu trình', time:'12 tuần • theo dõi mỗi tuần',
+   d:'Đo chỉ số cơ thể & vòng bụng ngay buổi đầu, thực đơn no – đủ đạm theo món bạn thích, báo số đo mỗi tuần và chỉnh khẩu phần theo số liệu thật. Không nhịn ăn, không thuốc; mục tiêu trung bình −4 đến −6kg — kết quả tùy cơ địa.'},
+  {n:'Liệu trình tiểu đường & gan nhiễm mỡ', cat:'Tiểu đường – gan nhiễm mỡ', img:'assets/img/p2.webp', prTxt:'từ 3.200.000đ / liệu trình', time:'12 tuần • phối hợp bác sĩ',
+   d:'Chế độ ăn kiểm soát đường huyết, giảm mỡ nội tạng — xây dựng cùng kết quả xét nghiệm của bạn. Bạn tiếp tục thuốc theo phác đồ của bác sĩ đang điều trị; theo dõi đường huyết / men gan theo từng chặng 4 tuần.'},
+  {n:'Xây dựng thực đơn cá nhân hóa', cat:'Thực đơn cá nhân hóa', img:'assets/img/p7.webp', prTxt:'từ 850.000đ / 4 tuần', time:'Lập 1 lần + chỉnh theo tuần',
+   d:'Thực đơn riêng từ nguyên liệu chợ/siêu thị, theo giờ làm, khẩu phần gia đình và bệnh nền — kèm danh sách đi chợ, cách nấu và cách đổi món tương đương để không bị ngán.'},
+  {n:'Thực đơn theo mục tiêu sức khỏe', cat:'Thực đơn theo mục tiêu', img:'assets/img/p3.webp', prTxt:'từ 650.000đ', time:'Bộ thực đơn 1–4 tuần',
+   d:'Chọn mục tiêu (giảm cân, tăng cân, ổn định sức khỏe), nhận bộ thực đơn theo mục tiêu đó: khẩu phần từng bữa, cách nấu, thời điểm ăn phụ — đủ để bạn tự áp dụng tại nhà.'},
+  {n:'Tư vấn dinh dưỡng trẻ em', cat:'Trẻ em', img:'assets/img/p4.webp', prTxt:'từ 900.000đ / lộ trình', time:'8–12 tuần • phụ huynh đồng hành',
+   d:'Đánh giá tăng trưởng theo biểu đồ chuẩn, thói quen ăn của bé và bữa ăn gia đình; lộ trình cải thiện kén ăn / chậm tăng cân với phiếu theo dõi từng tuần cho phụ huynh.'},
+  {n:'Tư vấn dinh dưỡng người cao tuổi', cat:'Người cao tuổi', img:'assets/img/p5.webp', prTxt:'từ 900.000đ / lộ trình', time:'8–12 tuần • hẹn linh hoạt',
+   d:'Chế độ ăn mềm dễ tiêu, đủ đạm chống teo cơ, cân bằng với các thuốc đang dùng — lịch hẹn linh hoạt, có thể tư vấn video cho người ở xa hoặc khó di chuyển.'},
+  {n:'Theo dõi chỉ số cơ thể', cat:'Đo chỉ số cơ thể', img:'assets/img/p6.webp', prTxt:'250.000đ / lượt đo', time:'~15 phút / lượt',
+   d:'Đo cân nặng, tỷ lệ mỡ, khối cơ, mỡ nội tạng, vòng bụng bằng máy phân tích cơ thể; in kết quả và chuyên gia giải thích từng chỉ số — miễn phí cho khách đang làm liệu trình.'},
+  {n:'Tư vấn trực tuyến', cat:'Tư vấn trực tuyến', img:'assets/img/p8.webp', prTxt:'350.000đ / buổi 30–45 phút', time:'Video call + file thực đơn',
+   d:'Gặp chuyên gia qua video, khai thác tiền sử và thói quen ăn, nhận file thực đơn và biểu mẫu tự theo dõi — phù hợp khách ở xa hoặc lịch bận, theo dõi tiếp qua Zalo.'}
+];
+var CAT_FEE = {'Giảm cân':2400000,'Tăng cân':2200000,'Tiểu đường – gan nhiễm mỡ':3200000,'Thực đơn cá nhân hóa':850000,'Thực đơn theo mục tiêu':650000,'Trẻ em':900000,'Người cao tuổi':900000,'Đo chỉ số cơ thể':250000,'Tư vấn trực tuyến':350000};
+var SLOTS = [
+  {id:'pk-sang', b:'Tại phòng khám', s:'Sáng 8:00 – 11:30'},
+  {id:'pk-chieu', b:'Tại phòng khám', s:'Chiều 13:30 – 17:00'},
+  {id:'pk-toi', b:'Tại phòng khám', s:'Tối 17:30 – 20:00'},
+  {id:'online', b:'Online', s:'Video 30–45 phút'}
+];
+var WD = ['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+var state = {cat:null, day:null, slot:null};
+var days = [];
+(function(){
+  var now = new Date();
+  for (var i=0;i<7;i++){
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate()+i);
+    days.push({
+      label: i===0?'Hôm nay':(i===1?'Ngày mai':WD[d.getDay()]),
+      num: d.getDate(),
+      mon: (d.getMonth()+1),
+      full: d.getDate()+'/'+(d.getMonth()+1)
+    });
+  }
+})();
+
+/* ================= NB93-272: DỮ LIỆU LIỆU TRÌNH THEO MỤC TIÊU (đặc thù nghề) ================= */
+var GOALS = {
+  giamcan: {
+    title:'Giảm cân — giảm mỡ bụng: 12 tuần, không nhịn ăn',
+    sub:'Mục tiêu an toàn 0,4–0,6kg/tuần bằng ăn no – đủ đạm; số đo cập nhật mỗi tuần, thực đơn chỉnh theo số liệu.',
+    book:'Giảm cân',
+    phases:[
+      {ic:'i-scale', t:'Tuần 1–2 · Đánh giá & làm quen', d:'Đo chỉ số cơ thể, vòng bụng; khai thác tiền sử và thói quen ăn. Thực đơn đầu tiên theo khẩu phần của bạn — chỉnh theo phản hồi từng ngày.'},
+      {ic:'i-trend', t:'Tuần 3–8 · Giảm mỡ, giữ cơ', d:'Báo số đo mỗi tuần, chuyên gia chỉnh tỷ lệ đạm – tinh bột – chất béo; bổ sung vận động vừa sức. Cân giảm đều, cơ không suy giảm.'},
+      {ic:'i-shield', t:'Tuần 9–12 · Duy trì & tự chủ', d:'Nới lỏng có kiểm soát, dạy cách ăn tiệc / đi cộng tác; chốt bộ quy tắc giữ cân và kế hoạch 3 tháng sau liệu trình.'}
+    ],
+    who:'Ví dụ hành trình thật tại An Nhiên — chị Hương (32 tuổi, văn phòng, mục tiêu −5kg)',
+    mlabels:['Cân nặng','Vòng bụng'],
+    track:[
+      {t:'Tuần 0',  a:'68.4 kg', pa:100, b:'84 cm',  pb:100},
+      {t:'Tuần 4',  a:'66.2 kg', pa:97,  b:'81.5 cm', pb:97},
+      {t:'Tuần 8',  a:'64.1 kg', pa:94,  b:'78.5 cm', pb:93},
+      {t:'Tuần 12', a:'62.6 kg', pa:92,  b:'76.5 cm', pb:91}
+    ],
+    delta:'Kết quả 12 tuần: −5.8 kg · vòng bụng −7.5 cm',
+    fine:'Số liệu minh họa từ khách hoàn thành lộ trình — kết quả tùy cơ địa và mức tuân thủ từng người, không cam kết con số cho mọi trường hợp.',
+    menu:[
+      ['Sáng','Trứng luộc 2 quả + 1 lát bánh mì nguyên cám + 1 quả cam'],
+      ['Trưa','Cơm gạo lứt 1 chén nhỏ + cá thu kho cà chua + canh bí đỏ nấu tôm'],
+      ['Tối','Salad ức gà áp chảo trộn dầu ô liu + 1/2 bắp luộc'],
+      ['Phụ (~15h)','Sữa chua không đường hoặc 1 nắm nhỏ hạt điều']
+    ]
+  },
+  tangcan: {
+    title:'Tăng cân — cải thiện cơ: ăn đủ, ăn đúng thời điểm',
+    sub:'Cho người gầy, ăn kém, sau ốm dậy: tăng đạm và năng lượng phân bổ đều từng bữa, kết hợp vận động kháng lực nhẹ.',
+    book:'Tăng cân',
+    phases:[
+      {ic:'i-scale', t:'Tuần 1–2 · Tìm nguyên nhân', d:'Đo chỉ số cơ thể, đánh giá khẩu phần hiện tại, tiêu hóa và giấc ngủ — tìm vì sao ăn nhiều vẫn không lên cân.'},
+      {ic:'i-trend', t:'Tuần 3–8 · Tăng năng lượng từ từ', d:'Thêm bữa phụ đúng giờ, tăng đạm & năng lượng từng bước cho hệ tiêu hóa thích nghi; kết hợp bài tập kháng lực đơn giản tại nhà.'},
+      {ic:'i-shield', t:'Tuần 9–12 · Chốt thói quen', d:'Cố định giờ ăn, khẩu phần bảo dưỡng; hướng dẫn tự điều chỉnh khi bữa ăn thay đổi (đi làm, ôn thi, dịch chuyển).'}
+    ],
+    who:'Ví dụ hành trình thật tại An Nhiên — bạn Minh (22 tuổi, sinh viên, 1m73, ăn kém)',
+    mlabels:['Cân nặng','BMI'],
+    track:[
+      {t:'Tuần 0',  a:'46.2 kg', pa:90,  b:'17.4', pb:90},
+      {t:'Tuần 4',  a:'47.8 kg', pa:93,  b:'18.0', pb:93},
+      {t:'Tuần 8',  a:'49.5 kg', pa:96,  b:'18.8', pb:96},
+      {t:'Tuần 12', a:'51.3 kg', pa:100, b:'19.4', pb:100}
+    ],
+    delta:'Kết quả 12 tuần: +5.1 kg · BMI từ 17.4 lên 19.4',
+    fine:'Số liệu minh họa từ khách hoàn thành lộ trình — tốc độ tăng cân tùy hấp thu, tiêu hóa và mức tuân thủ từng người.',
+    menu:[
+      ['Sáng','Bánh mì trứng ốp la + 1 ly sữa đậu nành đặc + 1 quả chuối'],
+      ['Trưa','Cơm 2 chén + thịt kho trứng + rau xào tỏi + canh bí'],
+      ['Tối','Mì Ý sốt bò bằm + súp kem bí đỏ + 1 hộp sữa chua'],
+      ['Phụ (sau tập)','Sữa hạt + bánh sandwich bơ đậu phộng']
+    ]
+  },
+  tieuduong: {
+    title:'Ổn định đường huyết — ăn đúng carbohydrate, cùng bác sĩ điều trị',
+    sub:'Dành cho tiểu đường type 2: kiểm soát lượng & loại tinh bột, phân bổ đều từng bữa. Bạn tiếp tục thuốc theo phác đồ của bác sĩ — chúng tôi phối hợp, không thay thế.',
+    book:'Tiểu đường – gan nhiễm mỡ',
+    phases:[
+      {ic:'i-doc', t:'Tuần 1–2 · Đánh giá cùng xét nghiệm', d:'Xem kết quả đường huyết, HbA1c, thuốc đang dùng; lập sổ ăn & đo đường huyết — làm điểm chuẩn tuần đầu.'},
+      {ic:'i-activity', t:'Tuần 3–8 · Chỉnh cấu trúc bữa ăn', d:'Đổi tinh bột tinh chế sang gạo lứt / nguyên cám, thêm chất xơ & đạm; theo dõi đường huyết theo từng chặng và chỉnh thực đơn.'},
+      {ic:'i-shield', t:'Tuần 9–12 · Duy trì & phối hợp y khoa', d:'Chốt khẩu phần quen thuộc dễ áp dụng lâu dài; tổng kết số liệu gửi bạn mang đến bác sĩ tái khám.'}
+    ],
+    who:'Ví dụ hành trình thật tại An Nhiên — anh Thành (48 tuổi, tiểu đường type 2, đang uống thuốc theo bác sĩ)',
+    mlabels:['HbA1c (%)','Đường huyết lúc đói'],
+    track:[
+      {t:'Tuần 0',  a:'8.1 %',        pa:100, b:'9.2 mmol/L', pb:100},
+      {t:'Tuần 4',  a:'7.6 %',        pa:94,  b:'8.4 mmol/L', pb:91},
+      {t:'Tuần 8',  a:'7.2 %',        pa:89,  b:'7.6 mmol/L', pb:83},
+      {t:'Tuần 12', a:'6.9 %',        pa:85,  b:'7.0 mmol/L', pb:76}
+    ],
+    delta:'Sau 12 tuần: HbA1c 8.1 → 6.9% · đường huyết lúc đói 9.2 → 7.0 mmol/L (kết hợp thuốc theo bác sĩ)',
+    fine:'Số liệu minh họa — kết quả tùy tình trạng bệnh, mức tuân thủ và phác đồ y khoa hiện có. Chúng tôi không điều trị thay bác sĩ; mọi thay đổi thuốc phải theo chỉ định bác sĩ điều trị.',
+    menu:[
+      ['Sáng','Cháo yến mạch tôm + 1 quả trứng luộc'],
+      ['Trưa','Cơm gạo lứt 2/3 chén + cá hấp gừng + rau luộc + canh râu'],
+      ['Tối','Bún thịt nướng rau sống (ít bún, nhiều rau) + 1/2 chén đậu bắp luộc'],
+      ['Phụ (~15h)','1 hộp sữa chua không đường hoặc vài hạt óc chó']
+    ]
+  },
+  gan: {
+    title:'Gan nhiễm mỡ — giảm mỡ nội tạng, cải thiện men gan',
+    sub:'Chủ lực là giảm cân có kiểm soát và cắt đồ uống có đường / rượu bia; theo dõi men gan & siêu âm theo chặng cùng bác sĩ.',
+    book:'Tiểu đường – gan nhiễm mỡ',
+    phases:[
+      {ic:'i-doc', t:'Tuần 1–2 · Đánh giá & cắt nguồn mỡ', d:'Xem xét nghiệm men gan, siêu âm; loại bỏ nước ngọt, đồ chiên, rượu bia — thay bằng cách nấu lành hơn theo món bạn quen.'},
+      {ic:'i-trend', t:'Tuần 3–8 · Giảm 5–8% cân nặng', d:'Mục tiêu giảm 5–8% trọng lượng — mức đã được nghiên cứu giúp giảm mỡ gan; theo dõi vòng bụng & cân mỗi tuần.'},
+      {ic:'i-shield', t:'Tuần 9–12 · Tái đánh giá xét nghiệm', d:'Xét nghiệm lại men gan so với ban đầu; chốt khẩu phần duy trì và hạn mức đồ uống lâu dài.'}
+    ],
+    who:'Ví dụ hành trình thật tại An Nhiên — anh Hậu (41 tuổi, gan nhiễm mỡ độ 2, vòng bụng 95cm)',
+    mlabels:['Men gan ALT (U/L)','Vòng bụng'],
+    track:[
+      {t:'Tuần 0',  a:'68 U/L', pa:100, b:'95 cm', pb:100},
+      {t:'Tuần 4',  a:'55 U/L', pa:81,  b:'92 cm', pb:97},
+      {t:'Tuần 8',  a:'42 U/L', pa:62,  b:'89.5 cm', pb:94},
+      {t:'Tuần 12', a:'33 U/L', pa:49,  b:'87 cm', pb:92}
+    ],
+    delta:'Sau 12 tuần: ALT 68 → 33 U/L · vòng bụng −8 cm (−6.2kg) — tái khám cùng bác sĩ',
+    fine:'Số liệu minh họa — mức cải thiện men gan tùy tình trạng gan, rượu bia và mức tuân thủ; kết quả xét nghiệm cần bác sĩ chuyên khoa đọc và kết luận.',
+    menu:[
+      ['Sáng','Kem yến mạch chuối + hạt chia (không đường)'],
+      ['Trưa','Ức gà luộc cuốn rau + cơm gạo lứt 1 chén + canh mồng tơi'],
+      ['Tối','Cá diêu hồng hấp + rau củ luộc chấm + 1/2 chén cơm'],
+      ['Phụ (~15h)','1 quả táo xanh hoặc trà xanh không đường']
+    ]
+  }
+};
+function vnd(x){ return x.toLocaleString('vi-VN') + 'đ'; }
+function $(id){ return document.getElementById(id); }
+function toast(msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<svg class="i"><use href="#i-check"/></svg><span>' + msg + '</span>';
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; t.style.transition = '.4s'; }, 3100);
+  setTimeout(function(){ t.remove(); }, 3600);
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ================= REVEAL + COUNTER + DOCK ================= */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+var cio = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, target = +el.getAttribute('data-n'), t0 = performance.now(), dur = 1300;
+    function tick(t){
+      var p = Math.min((t - t0)/dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p,3))).toLocaleString('vi-VN');
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:.4});
+document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
+/* Dock: cuộn xuống >100px → ẩn, cuộn lên → hiện lại */
+var heroEl = $('hero'), heroVis = true, lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+function syncDock(){
+  var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var down = y > lastY + 2, up = y < lastY - 2;
+  $('dock').classList.toggle('hide', heroVis || (y > 100 && down && !up));
+}
+new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; syncDock(); },{threshold:.15}).observe(heroEl);
+window.addEventListener('scroll', function(){ syncDock(); lastY = window.pageYOffset || document.documentElement.scrollTop || 0; }, {passive:true});
+$('dockTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/* ================= TAPE: nhân đôi nội dung để chạy liền mạch ================= */
+$('tapeTrack').innerHTML += $('tapeTrack').innerHTML;
+
+/* ================= NB93-272: ĐẶC THÙ — RENDER LIỆU TRÌNH THEO MỤC TIÊU ================= */
+function renderGoal(key){
+  var g = GOALS[key];
+  if(!g) return;
+  $('gpTitle').textContent = g.title;
+  $('gpSub').textContent = g.sub;
+  var ph = '';
+  g.phases.forEach(function(p, i){
+    ph += '<div class="phase"><span class="ph-n"><svg class="i"><use href="#' + p.ic + '"/></svg></span>' +
+      '<span><b>' + esc(p.t) + '</b><p>' + esc(p.d) + '</p></span></div>';
+  });
+  $('gpPhases').innerHTML = ph;
+  var bk = $('gpBook');
+  bk.setAttribute('data-cat', g.book);
+  /* tracker */
+  $('trkWho').textContent = g.who;
+  var lg = '';
+  g.mlabels.forEach(function(m){
+    lg += '<span><i></i>' + esc(m) + '</span>';
+  });
+  $('trkLegend').innerHTML = lg;
+  var rows = '';
+  g.track.forEach(function(r){
+    rows += '<div class="trk-row"><span class="tw">' + esc(r.t) + '</span>' +
+      '<span class="trk-bars">' +
+      '<span class="trk-b"><span class="bar"><i style="width:' + r.pa + '%"></i></span><b>' + esc(r.a) + '</b></span>' +
+      '<span class="trk-b"><span class="bar"><i style="width:' + r.pb + '%"></i></span><b>' + esc(r.b) + '</b></span>' +
+      '</span></div>';
+  });
+  $('trkRows').innerHTML = rows;
+  $('trkDelta').textContent = g.delta;
+  $('trkFine').textContent = g.fine;
+  /* menu */
+  var mm = '';
+  g.menu.forEach(function(m){
+    mm += '<div class="mm"><b><svg class="i"><use href="#i-food"/></svg>' + esc(m[0]) + '</b><span>' + esc(m[1]) + '</span></div>';
+  });
+  $('gpMenu').innerHTML = mm;
+}
+document.querySelectorAll('#goalChips .goal-chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('#goalChips .goal-chip').forEach(function(x){ x.classList.toggle('sel', x===c); });
+    renderGoal(c.getAttribute('data-goal'));
+  });
+});
+renderGoal('giamcan');
+
+/* ================= BOOKING CALENDAR ================= */
+function renderDays(){
+  var h = '';
+  days.forEach(function(d, i){
+    h += '<button class="day-chip' + (state.day===i?' sel':'') + '" data-i="' + i + '" type="button"><b>' + d.label + '</b><span>' + d.num + '</span><small>thg ' + d.mon + '</small></button>';
+  });
+  $('dayChips').innerHTML = h;
+  $('dayChips').querySelectorAll('.day-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.day = +b.getAttribute('data-i'); renderDays(); refreshSummary(); });
+  });
+  var hd = '';
+  days.forEach(function(d, i){
+    hd += '<button class="dr-chip' + (state.day===i?' sel':'') + '" data-i="' + i + '" type="button">' + d.label + ' ' + d.full + '</button>';
+  });
+  $('drDays').innerHTML = hd;
+  $('drDays').querySelectorAll('.dr-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.day = +b.getAttribute('data-i'); renderDays(); refreshSummary(); });
+  });
+}
+function renderSlots(){
+  var h = '';
+  SLOTS.forEach(function(s){
+    h += '<button class="slot-chip' + (state.slot===s.id?' sel':'') + '" data-id="' + s.id + '" type="button"><b>' + s.b + '</b><small>' + s.s + '</small></button>';
+  });
+  $('slotChips').innerHTML = h;
+  $('slotChips').querySelectorAll('.slot-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.slot = b.getAttribute('data-id'); renderSlots(); refreshSummary(); });
+  });
+  var hd = '';
+  SLOTS.forEach(function(s){
+    hd += '<button class="dr-chip' + (state.slot===s.id?' sel':'') + '" data-id="' + s.id + '" type="button">' + s.b + ' — ' + s.s + '</button>';
+  });
+  $('drSlots').innerHTML = hd;
+  $('drSlots').querySelectorAll('.dr-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.slot = b.getAttribute('data-id'); renderSlots(); refreshSummary(); });
+  });
+}
+function bindCats(containerSel){
+  document.querySelectorAll(containerSel + ' [data-cat]').forEach(function(b){
+    b.addEventListener('click', function(){
+      state.cat = b.getAttribute('data-cat');
+      syncCatChips();
+      refreshSummary();
+    });
+  });
+}
+function syncCatChips(){
+  document.querySelectorAll('#catChips [data-cat]').forEach(function(x){
+    x.classList.toggle('sel', x.getAttribute('data-cat')===state.cat);
+  });
+  document.querySelectorAll('#drCats [data-cat]').forEach(function(x){
+    x.classList.toggle('sel', x.getAttribute('data-cat')===state.cat);
+  });
+}
+function refreshSummary(){
+  $('sumCat').textContent = svcPrefill || state.cat || 'Chưa chọn';
+  $('sumDay').textContent = state.day===null ? '—' : days[state.day].label + ' ' + days[state.day].full;
+  var sl = SLOTS.filter(function(s){ return s.id===state.slot; })[0];
+  $('sumSlot').textContent = sl ? sl.b + ' (' + sl.s + ')' : '—';
+  $('sumFee').textContent = state.cat ? 'từ ' + vnd(CAT_FEE[state.cat]) + ' (tham chiếu)' : '—';
+  var has = state.cat && state.day!==null && state.slot;
+  $('drSum').innerHTML = has
+    ? '<span>Mục tiêu: <b>' + esc(svcPrefill || state.cat) + '</b></span>' +
+      '<span>Thời gian: <b>' + days[state.day].label + ' ' + days[state.day].full + ' • ' + sl.b + '</b></span>' +
+      '<span>Buổi đầu: <b>0đ</b> • liệu trình dự kiến: <b>từ ' + vnd(CAT_FEE[state.cat]) + '</b> (tham chiếu)</span>' +
+      '<span>Báo trọn phí sau buổi tư vấn — không phát sinh ngoài báo giá</span>'
+    : 'Chọn mục tiêu, ngày và khung giờ để thấy tóm tắt lịch hẹn tư vấn.';
+}
+bindCats('#catChips');
+bindCats('#drCats');
+renderDays(); renderSlots(); refreshSummary();
+
+function genCode(){ return 'AN-' + (1000 + Math.floor(Math.random()*9000)); }
+function submitBooking(nameId, phoneId, addrId, doneId, fromDrawer){
+  var name = $(nameId).value.trim(), phone = $(phoneId).value.trim(), addr = $(addrId).value.trim();
+  var desc = fromDrawer ? '' : $('bkDesc').value.trim();
+  if(!state.cat || state.day===null || !state.slot || !name || !phone || !addr){
+    toast('Điền đủ: mục tiêu, ngày, khung giờ, họ tên, SĐT và khu vực nhé!');
+    return;
+  }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ — kiểm tra lại giúp bạn!'); return; }
+  var sl = SLOTS.filter(function(s){ return s.id===state.slot; })[0];
+  var code = genCode();
+  var dayTxt = days[state.day].label + ', ' + days[state.day].full;
+  var html =
+    '<b style="display:block;font-size:.82rem;font-weight:800;color:#1E9E6A;text-transform:uppercase;letter-spacing:.06em">Đã nhận lịch tư vấn</b>' +
+    '<span class="code">' + code + '</span>' +
+    '<p class="sub">' + esc(name) + ' • ' + esc(phone) + '</p>' +
+    '<div class="recap">' +
+    '<span><b>' + esc(svcPrefill || state.cat) + '</b>' + (desc ? ' — ' + esc(desc) : '') + '</span>' +
+    '<span>' + dayTxt + ' • ' + sl.b + ' (' + sl.s + ')</span>' +
+    '<span>' + esc(addr) + '</span>' +
+    '</div>' +
+    '<p class="sub" style="margin-top:12px">Chuyên gia gọi lại <b style="color:#fff">trong 15 phút</b> xác nhận giờ và những gì cần chuẩn bị (kết quả xét nghiệm nếu có). Cần gấp hơn?</p>' +
+    '<a class="btn btn-hot" style="width:100%;margin-top:10px" href="tel:0901473652"><svg class="i"><use href="#i-phone"/></svg>GỌI 0901 473 652 NGAY</a>';
+  $(doneId).innerHTML = html;
+  $(doneId).classList.add('show');
+  $('hdDot').textContent = '1';
+  toast('Đã nhận lịch tư vấn — chuyên gia gọi lại trong 15 phút');
+}
+$('bkSubmit').addEventListener('click', function(){ submitBooking('bkName','bkPhone','bkAddr','bkDone', false); });
+$('drSubmit').addEventListener('click', function(){ submitBooking('drName','drPhone','drAddr','drDone', true); });
+
+/* Đặt lịch nhanh: prefill mục tiêu → mở drawer */
+var svcPrefill = null;
+function quickBookCat(cat, name){
+  state.cat = cat;
+  svcPrefill = name || null;
+  if(name){ var d = $('bkDesc'); if(d && !d.value.trim()) d.value = name; }
+  syncCatChips(); refreshSummary();
+  openDrawer();
+  toast('Đã chọn "' + (name || cat) + '" — chọn ngày và giờ hẹn nhé');
+}
+document.querySelectorAll('.quick-book').forEach(function(b){
+  b.addEventListener('click', function(){ quickBookCat(b.getAttribute('data-cat')); });
+});
+
+/* ================= BẢNG GIÁ TABS ================= */
+$('priceTabs').querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    $('priceTabs').querySelectorAll('.tab').forEach(function(x){ x.classList.toggle('on', x===t); });
+    document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', p.id===t.getAttribute('data-pane')); });
+  });
+});
+
+/* ================= QUICK VIEW MODAL ================= */
+function openQuick(i){
+  var s = SV[i];
+  $('mdImg').src = s.img;
+  $('mdImg').alt = s.n;
+  $('mdName').textContent = s.n;
+  $('mdDesc').textContent = s.d;
+  $('mdCatT').textContent = s.cat;
+  $('mdMeta').innerHTML = '<span><svg class="i"><use href="#i-leaf"/></svg>' + esc(s.cat) + '</span>' +
+    '<span><svg class="i"><use href="#i-clock"/></svg>' + esc(s.time) + '</span>' +
+    '<span><svg class="i"><use href="#i-tag"/></svg>' + esc(s.prTxt) + '</span>';
+  $('mdT1').textContent = s.prTxt + ' (tham chiếu)';
+  $('mdT2').textContent = s.time;
+  $('mdT3').textContent = '0đ';
+  $('mdBook').onclick = function(){ closeQuick(); quickBookCat(s.cat, s.n); };
+  $('mdOv').classList.add('open');
+  $('qModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuick(){
+  $('mdOv').classList.remove('open');
+  $('qModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+$('mdClose').addEventListener('click', closeQuick);
+$('mdOv').addEventListener('click', closeQuick);
+
+/* ================= DRAWER ================= */
+function openDrawer(){ $('drawer').classList.add('open'); $('drOv').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeDrawer(){ $('drawer').classList.remove('open'); $('drOv').classList.remove('open'); document.body.style.overflow = ''; }
+$('hdDrawer').addEventListener('click', openDrawer);
+$('hdBook').addEventListener('click', function(){ document.getElementById('booking').scrollIntoView({behavior:'smooth'}); });
+$('drClose').addEventListener('click', closeDrawer);
+$('drOv').addEventListener('click', closeDrawer);
+
+/* ================= SEARCH HEADER (typeahead thật) ================= */
+$('searchInput').addEventListener('input', function(){
+  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
+  if(!q){ drop.classList.remove('open'); return; }
+  var m = SV.filter(function(s){ return (s.n + ' ' + s.d + ' ' + s.cat).toLowerCase().indexOf(q) !== -1; });
+  if(!m.length){ drop.classList.remove('open'); return; }
+  drop.innerHTML = m.map(function(s){ return '<button data-sv="' + SV.indexOf(s) + '" type="button"><svg class="i"><use href="#i-leaf"/></svg>' + esc(s.n) + '</button>'; }).join('');
+  drop.classList.add('open');
+  drop.querySelectorAll('[data-sv]').forEach(function(b){
+    b.addEventListener('click', function(){ drop.classList.remove('open'); $('searchInput').value = ''; openQuick(+b.getAttribute('data-sv')); });
+  });
+});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search')) $('searchDrop').classList.remove('open');
+});
+
+/* ================= SOCIAL PROOF ================= */
+var RVW = [
+  {t:'72kg xuống 66kg sau 12 tuần, vòng bụng giảm 7cm — mà tuần nào mình cũng ăn cơm bình thường, không nhịn bữa nào. Mỗi Chủ nhật báo cân + số đo vòng bụng, thầy chỉnh thực đơn ngay trong tuần. Có số liệu từng tuần nên mình biết chắc mình đang đi đúng.', n:'Chị Thanh Hương', w:'Thủ Đức — liệu trình giảm cân 12 tuần', i:'TH'},
+  {t:'Đường huyết lúc đói từ 9.0 về khoảng 7.1 sau 3 tháng. Quan trọng nhất là bên đó bắt mình mang kết quả xét nghiệm và vẫn nhắc uống thuốc đúng phác đồ bác sĩ nội tiết, không hề bảo ngừng thuốc để "chữa". Bố mẹ mình giờ cũng làm theo ăn của mình.', n:'Anh Quốc Trung', w:'Bình Thạnh — liệu trình tiểu đường type 2', i:'QT'},
+  {t:'Con trai 6 tuổi kén ăn dữ dội, 4 tháng không tăng cân. Làm lộ trình 10 tuần theo biểu đồ tăng trưởng, tuần nào cô giáo cũng gửi phiếu ghi bữa ăn về cho mình điền. Bé đã chịu ăn bằng cả nhà và tăng được 1.4kg. Mình quay lại làm giai đoạn duy trì thêm 4 tuần.', n:'Chị Bảo Trân', w:'Gò Vấp — dinh dưỡng trẻ em', i:'BT'},
+  {t:'1m73 mà có 47kg, ăn hoài không lớn. Bên An Nhiên cho mình hiểu là ăn sai giờ và thiếu đạm, không phải ăn ít. Sau 12 tuần lên 51.5kg, tập kháng lực đơn giản theo lịch kèm sẵn. Chuyên gia chỉnh thực đơn theo tuần chứ không đưa một file ăn suốt 3 tháng.', n:'Anh Duy Minh', w:'Quận 12 — liệu trình tăng cân', i:'DM'}
+];
+var rvIdx = 0, rvTimer = null;
+function rvRender(){
+  var h = '';
+  RVW.forEach(function(r){
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<svg class="i f"><use href="#i-star"/></svg>';
+    h += '<div class="rvw-slide"><div class="rvw-card"><div class="stars">' + stars + '</div>' +
+      '<p>"' + esc(r.t) + '"</p>' +
+      '<div class="who"><span class="avt">' + esc(r.i) + '</span><span><b>' + esc(r.n) + '</b><span>' + esc(r.w) + '</span></span></div>' +
+      '</div></div>';
+  });
+  $('rvwTrack').innerHTML = h;
+  var d = '';
+  RVW.forEach(function(_, i){ d += '<button data-d="' + i + '" aria-label="Đánh giá ' + (i+1) + '" type="button"></button>'; });
+  $('rvwDots').innerHTML = d;
+  $('rvwDots').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ rvGo(+b.getAttribute('data-d')); rvAuto(); });
+  });
+  rvGo(0);
+}
+function rvGo(i){
+  rvIdx = (i + RVW.length) % RVW.length;
+  $('rvwTrack').style.transform = 'translateX(' + (-rvIdx * 100) + '%)';
+  $('rvwDots').querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===rvIdx); });
+}
+function rvAuto(){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){ rvGo(rvIdx + 1); }, 6000);
+}
+var rvShell = document.querySelector('.rvw-shell');
+rvShell.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+rvShell.addEventListener('mouseleave', rvAuto);
+rvRender(); rvAuto();
+
+/* ================= FORM CUỐI ================= */
+$('ctForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('ctName').value.trim(), phone = $('ctPhone').value.trim(), svc = $('ctService').value, addr = $('ctAddr').value.trim();
+  if(!name || !phone || !svc || !addr){ toast('Điền đủ họ tên, SĐT, mục tiêu và khu vực nhé!'); return; }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ — kiểm tra lại giúp bạn!'); return; }
+  this.reset();
+  toast('Đã gửi yêu cầu — chuyên gia gọi lại trong 15 phút');
+});
+
+/* ================= FAQ (8 câu đúng nỗi lo nghề) ================= */
+var FAQ = [
+  {q:'Liệu trình 12 tuần diễn ra thế nào? Tôi bận có theo nổi không?', k:'đặt lịch liệu trình 12 tuần bận theo dõi zalo',
+   a:'Buổi đầu (~45–60 phút) đo chỉ số và khai thác tiền sử, sau đó tuần nào bạn cũng báo cân & vòng bụng qua Zalo — chuyên gia chỉnh thực đơn ngay trong tuần. Chỉ cần 1 lần hẹn trực tiếp mỗi 4 tuần để tái đánh giá; còn lại làm online được.'},
+  {q:'Giảm được bao nhiêu kg? Có cam kết số liệu không?', k:'bao nhiêu kg cam kết giảm cân kết quả',
+   a:'Trung thực: mức giảm an toàn là 0,4–0,6kg/tuần, khách đi đủ 12 tuần thường đạt −4 đến −6kg — nhưng con số cụ thể tùy cơ địa, điểm xuất phát và mức tuân thủ nên chúng tôi không cam kết "giảm X kg" cho mọi người. Chúng tôi cam kết quy trình: thực đơn cá nhân hóa + theo dõi số liệu mỗi tuần.'},
+  {q:'Tôi đang điều trị tiểu đường / gan nhiễm mỡ — có làm được không?', k:'tiểu đường gan nhiễm mỡ thuốc bác sĩ bệnh lý đang điều trị',
+   a:'Được, đây là nhóm khách chúng tôi phục vụ nhiều nhất. Nguyên tắc: bạn tiếp tục thuốc theo phác đồ của bác sĩ đang điều trị — chúng tôi không thay đổi, không thay thế; liệu trình ăn uống được dựng cùng kết quả xét nghiệm và mọi số liệu sau 12 tuần gửi bạn mang đến bác sĩ tái khám.'},
+  {q:'Có phải mua thêm thực phẩm chức năng hay sản phẩm gì không?', k:'thực phẩm chức năng mua thêm sản phẩm tpcn bán kèm',
+   a:'Không. Thực đơn dựng từ thực phẩm chợ và siêu thị quen thuộc, có danh sách đi chợ và cách đổi món tương đương. Chúng tôi không bán kèm và không bắt mua thực phẩm chức năng nào để áp dụng liệu trình.'},
+  {q:'Bé kén ăn, chậm tăng cân — lộ trình cho trẻ như thế nào?', k:'trẻ em kén ăn chậm tăng cân bé tuổi dậy thì',
+   a:'Bé được đánh giá theo biểu đồ tăng trưởng chuẩn (WHO), phụ huynh nhận phiếu ghi bữa ăn và lộ trình từng tuần điều chỉnh tại nhà — không ép ăn, không dùng sản phẩm tăng cân trôi nổi. Phụ huynh đồng hành cùng chuyên gia 8–12 tuần theo tiến triển của bé.'},
+  {q:'Tôi ở tỉnh xa — tư vấn online có hiệu quả không?', k:'online video tỉnh xa zalo from xa theo dõi',
+   a:'Có. Buổi tư vấn qua video 30–45 phút, đo tại nhà bằng cân sàn + thước dây theo hướng dẫn (khách ở TP.HCM có thể ghé đo máy phân tích cơ thể định kỳ). File thực đơn, biểu mẫu theo dõi và báo số liệu tuần qua Zalo — quy trình y như trực tiếp.'},
+  {q:'Chi phí thế nào? Có phải đóng trọn một lần không?', k:'thanh toán chi phí chuyển khoản momo giá trả góp chặng',
+   a:'Buổi tư vấn & đo chỉ số đầu 0đ khi đặt online; giá liệu trình tham chiếu từ 2.400.000đ (giảm cân) và được báo trọn gói sau buổi đầu. Liệu trình dài chia 2–3 đợt theo giai đoạn đã chốt — nhận tiền mặt, chuyển khoản, VietQR, thẻ và MoMo, xuất hóa đơn khi cần.'},
+  {q:'Thông tin sức khỏe của tôi có được bảo mật?', k:'bảo mật thông tin sức khỏe hồ sơ riêng tư an toàn',
+   a:'Có. Mỗi khách một hồ sơ riêng, chỉ chuyên gia phụ trách liệu trình của bạn được xem; thông tin không chia sẻ cho bên thứ ba, không dùng cho quảng cáo. Bạn có thể yêu cầu xóa hồ sơ bất cứ lúc nào.'}
+];
+function faqRender(list){
+  var h = '';
+  list.forEach(function(f){
+    h += '<div class="faq-item"><button class="faq-q" type="button"><span class="fq-ic"><svg class="i"><use href="#i-chat"/></svg></span>' +
+      '<span>' + esc(f.q) + '</span><svg class="i chev"><use href="#i-chevd"/></svg></button>' +
+      '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  });
+  $('faqList').innerHTML = h;
+  $('faqEmpty').style.display = list.length ? 'none' : 'block';
+  $('faqList').querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.parentElement, body = item.querySelector('.faq-a'), open = item.classList.contains('open');
+      $('faqList').querySelectorAll('.faq-item.open').forEach(function(x){
+        x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+}
+function faqFilter(q){
+  if(!q){ faqRender(FAQ); return; }
+  q = q.toLowerCase();
+  var m = FAQ.filter(function(f){ return (f.q + ' ' + f.a + ' ' + f.k).toLowerCase().indexOf(q) !== -1; });
+  faqRender(m);
+}
+$('faqSearch').addEventListener('input', function(){
+  $('faqChips').querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+  faqFilter(this.value.trim());
+});
+$('faqChips').querySelectorAll('.fchip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var on = c.classList.contains('on');
+    $('faqChips').querySelectorAll('.fchip').forEach(function(x){ x.classList.remove('on'); });
+    $('faqSearch').value = '';
+    if(on){ faqRender(FAQ); } else { c.classList.add('on'); faqFilter(c.getAttribute('data-k')); }
+  });
+});
+faqRender(FAQ);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MedicalBusiness",
+  "name":"An Nhiên Nutrition",
+  "slogan":"Liệu trình dinh dưỡng theo mục tiêu — thực đơn cá nhân hóa — theo dõi số liệu mỗi tuần",
+  "telephone":"0901473652",
+  "address":{"@type":"PostalAddress","streetAddress":"48 Đường số 18, Phường 5","addressLocality":"Gò Vấp, TP.HCM","addressCountry":"VN"},
+  "openingHours":"Mo-Su 08:00-20:00",
+  "priceRange":"0đ - 4.500.000đ",
+  "medicalSpecialty":"Nutrition",
+  "availableService":["Liệu trình giảm cân","Liệu trình tăng cân","Tư vấn dinh dưỡng tiểu đường","Tư vấn gan nhiễm mỡ","Thực đơn cá nhân hóa","Dinh dưỡng trẻ em","Dinh dưỡng người cao tuổi","Theo dõi chỉ số cơ thể","Tư vấn trực tuyến"]
+}
+</script>
+<!-- BULKFIX3-CHAT: widget chat truc tiep — NGHE-14-BOTFIX: da bo bot mau, chat that do C3 bridge dieu hanh -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand"></span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/* NB93-272: widget chat truc tiep */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2E9663,#1F7A4D);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(19,81,58,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1F7A4D,#13513A);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F3FAF5}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,30,.08);border-bottom-left-radius:4px;color:#1B3527}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2E9663,#1F7A4D);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,30,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(14,42,30,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(31,122,77,.4);color:#1F7A4D;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.pkc-chip:hover{background:#E7F6EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(14,42,30,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(14,42,30,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2E9663;box-shadow:0 0 0 3px rgba(46,150,99,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2E9663,#1F7A4D);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:88px;width:52px;height:52px}}
+</style><script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+<script>
+/* BULKFIX4-FAILSAFE: element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+</body>
+</html>

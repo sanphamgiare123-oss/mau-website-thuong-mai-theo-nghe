@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProPOS — Máy POS, in hóa đơn & máy chấm công | Lắp đặt tại quán, cài phần mềm miễn phí</title>
+<meta name="description" content="ProPOS cung cấp máy POS, máy in hóa đơn, máy quét mã vạch, máy chấm công vân tay/khuôn mặt, két đựng tiền cho quán café, cửa hàng, nhà hàng, công ty. Khảo sát – lắp đặt trong 24h, cài phần mềm bán hàng miễn phí, bảo hành tại chỗ 24 tháng, trả góp 0%.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-208*/
+:root{
+  --primary:#123C7E;
+  --primary-2:#1D5AB8;
+  --primary-3:#0A1F4D;
+  --texture:#EFF4FB;
+  --ink:#182335;
+  --soft:#55677D;
+  --accent:#FF7A1E;
+  --accent-2:#C05708;
+  --accent-100:#FFF1E3;
+  --grad-accent:linear-gradient(135deg,#FFA24D,#FF7A1E);
+  --grad-dark:linear-gradient(140deg,#1D5AB8,#123C7E 52%,#0A1F4D);
+  --line:#D8E3F4;
+  --card:#FFFFFF;
+  --ok:#0E7C46;
+  --sh1:0 2px 10px rgba(18,60,126,.08);
+  --sh2:0 12px 34px rgba(18,60,126,.14);
+  --sh3:0 26px 64px rgba(10,31,77,.24);
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--texture);
+  line-height:1.6;
+  font-size:16px;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.container{max-width:1180px;margin:0 auto;padding:0 22px}
+.tt{display:block}.sub{display:block}
+h1,h2,h3,h4,h5{line-height:1.22;letter-spacing:-.01em}
+
+/* ============ nut ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 26px;border-radius:14px;font-weight:800;font-size:15px;
+  transition:.25s;position:relative;overflow:hidden;white-space:nowrap;
+}
+.btn-a{background:var(--grad-accent);color:#3A1B00;box-shadow:0 10px 26px rgba(255,122,30,.42)}
+.btn-a:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(255,122,30,.55)}
+.btn-a::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:translateX(-120%);transition:.6s;
+}
+.btn-a:hover::after{transform:translateX(120%)}
+.btn-n{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh1)}
+.btn-n:hover{border-color:var(--primary-2);transform:translateY(-3px);box-shadow:var(--sh2)}
+.btn-w{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-w:hover{background:rgba(255,255,255,.22);transform:translateY(-3px)}
+.btn-d{background:var(--grad-dark);color:#fff;box-shadow:var(--sh2)}
+.btn-d:hover{transform:translateY(-3px)}
+
+/* ============ topbar ============ */
+.topbar{
+  background:var(--primary-3);color:#C9D9F5;font-size:13px;
+  padding:8px 0;position:relative;z-index:60;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tb-l{display:flex;align-items:center;gap:8px}
+.tb-l .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,122,30,.22);animation:pulse 1.8s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(255,122,30,.28)}50%{box-shadow:0 0 0 6px rgba(255,122,30,.1)}}
+.tb-l b{color:#fff;font-weight:600}
+.tb-r{display:flex;align-items:center;gap:8px;font-weight:700}
+.tb-r .hot{color:var(--accent);font-size:15px;letter-spacing:.02em}
+
+/* ============ header ============ */
+.header{
+  position:sticky;top:0;z-index:70;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1.5px solid var(--line);
+}
+.header .container{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{
+  width:44px;height:44px;border-radius:13px;background:var(--grad-dark);
+  display:grid;place-items:center;box-shadow:var(--sh2);
+}
+.logo-mark svg{width:24px;height:24px}
+.logo-txt .tt{font-weight:900;font-size:20px;color:var(--primary);letter-spacing:-.02em;line-height:1.1}
+.logo-txt .sub{font-size:10.5px;color:var(--soft);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.search{
+  flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:9px 14px;
+  transition:.2s;
+}
+.search:focus-within{border-color:var(--primary-2);box-shadow:0 0 0 4px rgba(29,90,184,.1)}
+.search svg{flex-shrink:0;color:var(--soft)}
+.search input{flex:1;min-width:0;border:none;outline:none;background:none;font-size:14.5px;color:var(--ink)}
+.search input::placeholder{color:#93A5BB}
+.nav{display:flex;gap:2px;flex-shrink:0}
+.nav a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:14.5px;color:var(--ink);transition:.2s}
+.nav a:hover{background:var(--texture);color:var(--primary)}
+.hd-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cart-btn{
+  position:relative;width:46px;height:46px;border-radius:13px;
+  background:var(--accent-100);display:grid;place-items:center;color:var(--primary);
+  border:1.5px solid #F5D9BC;transition:.2s;
+}
+.cart-btn:hover{transform:translateY(-2px);box-shadow:var(--sh1)}
+.cart-btn .n{
+  position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;
+  border-radius:10px;background:var(--accent-2);color:#fff;font-size:11.5px;font-weight:900;
+  display:grid;place-items:center;box-shadow:0 3px 8px rgba(192,87,8,.5);
+}
+
+/* ============ hero ============ */
+.hero{position:relative;padding:56px 0 74px;background:
+  radial-gradient(rgba(29,90,184,.05) 1.2px,transparent 1.3px);
+  background-size:20px 20px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:-160px;right:-180px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,122,30,.16),transparent);
+}
+.hero::after{
+  content:"";position:absolute;bottom:-200px;left:-160px;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(29,90,184,.1),transparent);
+}
+.hero .container{display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center;position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;
+  padding:7px 16px;font-size:13px;font-weight:700;color:var(--primary);
+  box-shadow:var(--sh1);margin-bottom:18px;
+}
+.eyebrow .ic{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0}
+.hero h1{font-size:clamp(30px,4.4vw,49px);font-weight:900;color:var(--primary);margin-bottom:16px}
+.hl{
+  display:inline-block;background:var(--grad-accent);color:#3A1B00;
+  padding:2px 14px;border-radius:10px;transform:rotate(-1.6deg);
+  box-shadow:0 8px 20px rgba(255,122,30,.35);
+}
+.hero .sub{font-size:16.5px;color:var(--soft);max-width:540px;margin-bottom:26px}
+.hero .sub b{color:var(--primary)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:490px}
+.trust .chip{
+  display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;padding:9px 13px;font-size:13.5px;font-weight:700;color:var(--ink);
+  box-shadow:var(--sh1);transition:.2s;
+}
+.trust .chip:hover{transform:translateY(-2px);border-color:#F5D9BC}
+.trust .chip svg{flex-shrink:0;color:var(--ok)}
+.hero-vis{position:relative;min-height:520px}
+.hv-main{
+  width:100%;border-radius:var(--r-l);overflow:hidden;
+  border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 7s ease-in-out infinite;
+}
+.hv-main img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+@keyframes float1{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-12px)}}
+@keyframes float2{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-10px)}}
+.hv-badge{
+  position:absolute;top:-6px;right:2%;z-index:3;
+  background:var(--grad-dark);color:#fff;border-radius:16px;padding:11px 16px;
+  box-shadow:var(--sh2);transform:rotate(2deg);border:1.5px solid rgba(255,255,255,.18);
+  animation:float2 8s ease-in-out infinite;
+}
+.hv-badge .tt{font-weight:900;font-size:14px;color:var(--accent)}
+.hv-badge .sub{font-size:11px;color:#C9D9F5}
+.hv-stats{
+  position:absolute;left:2%;bottom:-6px;z-index:3;
+  display:flex;gap:0;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--sh2);overflow:hidden;
+}
+.hv-stats .st{padding:12px 16px;text-align:center}
+.hv-stats .st+.st{border-left:1.5px solid var(--line)}
+.hv-stats .tt{font-weight:900;font-size:18px;color:var(--primary)}
+.hv-stats .sub{font-size:11px;color:var(--soft);font-weight:600}
+.hv-tag{
+  position:absolute;top:44%;right:-4px;z-index:3;
+  background:var(--grad-accent);color:#3A1B00;font-weight:900;font-size:13.5px;
+  padding:9px 14px;border-radius:12px;transform:rotate(2deg);box-shadow:0 10px 24px rgba(255,122,30,.45);
+}
+
+/* ============ riêm răng cưa hóa đơn ============ */
+.zz{height:12px;background:
+  linear-gradient(-45deg, var(--texture) 6px, transparent 0),
+  linear-gradient(45deg, var(--texture) 6px, transparent 0);
+  background-size:14px 12px;background-repeat:repeat-x;background-position:left bottom;}
+.zz.flip{transform:scaleY(-1)}
+
+/* ============ marquee tape ============ */
+.tape-wrap{background:var(--texture);padding:8px 0 30px;overflow:hidden}
+.tape{
+  background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);
+  padding:13px 0;overflow:hidden;box-shadow:var(--sh2);
+}
+.tape-in{display:flex;gap:44px;width:max-content;animation:tape 30s linear infinite}
+.tape-in span{
+  display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;color:#3A1B00;
+  white-space:nowrap;letter-spacing:.01em;
+}
+.tape-in span::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--primary);flex-shrink:0}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ section chung ============ */
+section{scroll-margin-top:96px}
+.sec{padding:74px 0}
+.sec-white{background:#fff}
+.sec-tex{background:var(--texture)}
+.sec-head{max-width:720px;margin-bottom:38px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin-bottom:12px;
+}
+.kicker::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--grad-accent)}
+.sec-head h2{font-size:clamp(24px,3.2vw,36px);font-weight:900;color:var(--primary);margin-bottom:10px}
+.sec-head .sub{color:var(--soft);font-size:15.5px}
+
+/* ============ dai 5 nhom hang ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:34px}
+.strip a{
+  display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);
+  border-radius:14px;padding:13px 15px;font-weight:700;font-size:14px;color:var(--ink);
+  box-shadow:var(--sh1);transition:.25s;
+}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh2)}
+.strip .si{
+  width:38px;height:38px;border-radius:11px;background:var(--texture);flex-shrink:0;
+  display:grid;place-items:center;color:var(--primary);
+}
+.strip .arr{margin-left:auto;color:var(--accent-2);font-weight:900}
+
+/* ============ khoi-8 san pham (kinh ô) ============ */
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.p-card{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;
+  box-shadow:var(--sh1);position:relative;transition:.3s;display:flex;flex-direction:column;min-width:0;
+}
+.p-card:hover{transform:translateY(-6px);box-shadow:var(--sh3)}
+.p-media{position:relative;overflow:hidden;aspect-ratio:4/3;background:#fff}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:.45s}
+.p-card:hover .p-media img{transform:scale(1.05)}
+.p-cat{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;color:var(--primary);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(4px);padding:5px 10px;border-radius:999px;border:1px solid var(--line)}
+.p-bh{position:absolute;left:12px;bottom:12px;font-size:11.5px;font-weight:900;padding:5px 11px;border-radius:999px;
+  background:rgba(10,31,77,.85);color:#FFD8A8;border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px);box-shadow:0 4px 14px rgba(4,14,30,.38)}
+.p-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.p-name{display:block;font-weight:800;font-size:15.5px;color:var(--ink);min-height:46px}
+.p-price{display:flex;align-items:baseline;gap:9px;margin:8px 0 4px;flex-wrap:wrap}
+.p-price .now{font-size:20px;font-weight:900;color:var(--primary)}
+.p-price .old{font-size:13px;color:#9AACBF;text-decoration:line-through}
+.p-tier{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ok);
+  background:#E8F7EE;border-radius:999px;padding:4px 10px;margin-bottom:12px}
+.p-add{width:100%;padding:11px;border-radius:12px;background:var(--texture);color:var(--primary);
+  font-weight:800;font-size:14px;border:1.5px solid var(--line);transition:.2s;margin-top:auto;white-space:normal}
+.p-add:hover{background:var(--grad-accent);border-color:transparent;color:#3A1B00;box-shadow:0 8px 20px rgba(255,122,30,.35)}
+
+/* the noi bat full-width: anh trai + noi dung phai */
+.p-card.feat{grid-column:1/-1;display:grid;grid-template-columns:1.08fr 1fr;background:var(--grad-dark);border-color:rgba(255,255,255,.14)}
+.p-card.feat .p-media{aspect-ratio:auto;min-height:100%}
+.p-card.feat .p-cat{background:var(--grad-accent);color:#3A1B00;border:none;font-weight:900}
+.p-card.feat .p-body{padding:28px;color:#fff}
+.p-card.feat .p-name{font-size:24px;font-weight:900;color:#fff;min-height:0;margin-bottom:8px}
+.p-card.feat .p-desc{font-size:13.5px;color:#C9D9F5;margin-bottom:12px}
+.p-card.feat ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.p-card.feat li{display:flex;gap:8px;font-size:13.5px;color:#E4EDFC;font-weight:600}
+.p-card.feat li svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.p-card.feat .p-price{margin:0 0 4px}
+.p-card.feat .p-price .now{font-size:32px;color:var(--accent)}
+.p-card.feat .p-price .old{font-size:15px;color:#8FA6CC}
+.p-card.feat .p-save{display:inline-block;background:rgba(255,122,30,.18);color:#FFC48A;font-size:12.5px;font-weight:800;
+  padding:5px 11px;border-radius:999px;margin-bottom:16px}
+.feat-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto}
+.feat-acts .btn{flex:1;min-width:180px}
+
+/* the ngang thu 2 (POS cam tay) */
+.p-card.pwide{grid-column:1/-1;display:grid;grid-template-columns:420px 1fr}
+.p-card.pwide .p-media{aspect-ratio:auto;min-height:100%}
+.p-card.pwide .p-body{padding:24px;justify-content:center}
+.p-card.pwide .p-name{font-size:19px;min-height:0;margin-bottom:6px}
+.p-card.pwide .p-desc{font-size:13.5px;color:var(--soft);margin-bottom:12px}
+.pw-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pw-row .p-price{margin:0}
+.pw-row .p-add{width:auto;min-width:190px;padding:12px 22px;margin-top:0}
+
+/* ============ goi theo quy mo quan (dac thu) ============ */
+.goi-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:start}
+.goi-pick{
+  background:var(--grad-dark);border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);
+  position:sticky;top:110px;
+}
+.goi-pick h3{font-size:21px;font-weight:900;margin-bottom:6px}
+.goi-pick .gsub{font-size:13.5px;color:#C9D9F5;margin-bottom:20px}
+.goi-lb{font-size:12.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#FFC48A;margin:18px 0 10px;display:block}
+.goi-chips{display:flex;gap:9px;flex-wrap:wrap}
+.goi-chip{
+  padding:11px 16px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);color:#E4EDFC;font-weight:800;font-size:13.5px;transition:.2s;white-space:normal;
+}
+.goi-chip:hover{border-color:var(--accent)}
+.goi-chip.on{background:var(--grad-accent);color:#3A1B00;border-color:transparent;box-shadow:0 8px 20px rgba(255,122,30,.35)}
+.goi-note{margin-top:20px;font-size:12.5px;color:#8FA6CC;display:flex;gap:8px;align-items:flex-start}
+.goi-note svg{flex-shrink:0;color:var(--accent);margin-top:2px}
+.goi-res{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);
+  padding:28px;display:flex;flex-direction:column;
+}
+.goi-res .gr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.goi-res h3{font-size:20px;font-weight:900;color:var(--primary)}
+.gr-badge{font-size:12px;font-weight:900;color:var(--accent-2);background:var(--accent-100);padding:6px 13px;border-radius:999px;white-space:nowrap}
+.goi-res .gsub{font-size:13.5px;color:var(--soft);margin-bottom:16px}
+.gr-items{list-style:none;display:grid;gap:10px;margin-bottom:18px}
+.gr-items li{display:flex;gap:10px;font-size:14.5px;color:var(--ink);font-weight:600}
+.gr-items li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.gr-items li .free{margin-left:auto;font-size:11.5px;font-weight:900;color:var(--ok);background:#E8F7EE;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.gr-price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gr-price .now{font-size:32px;font-weight:900;color:var(--accent-2)}
+.gr-price .old{font-size:15px;color:#9AACBF;text-decoration:line-through}
+.gr-save{font-size:12.5px;font-weight:800;color:var(--ok);background:#E8F7EE;border-radius:999px;padding:5px 12px}
+.gr-install{font-size:12.5px;font-weight:700;color:var(--primary);background:var(--texture);border:1.5px dashed var(--line);
+  border-radius:12px;padding:10px 14px;margin:14px 0 6px}
+.gr-install b{color:var(--accent-2)}
+.gr-vgop{font-size:12.5px;color:var(--soft);margin-bottom:16px}
+.gr-vgop b{color:var(--primary)}
+.goi-res .acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto}
+.goi-res .acts .btn{width:100%}
+
+/* ============ quy trinh + cam ket ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px 22px;
+  position:relative;box-shadow:var(--sh1);transition:.25s;
+}
+.step:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.step .sn{
+  width:52px;height:52px;border-radius:50%;background:var(--grad-accent);color:#3A1B00;
+  font-weight:900;font-size:20px;display:grid;place-items:center;margin-bottom:15px;
+  box-shadow:0 8px 20px rgba(255,122,30,.35);
+}
+.step h4{font-size:16.5px;font-weight:900;color:var(--primary);margin-bottom:7px}
+.step p{font-size:13.5px;color:var(--soft)}
+.step .meta{
+  display:inline-flex;align-items:center;gap:6px;margin-top:13px;font-size:12px;font-weight:800;
+  color:var(--primary);background:var(--texture);border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+}
+.step::after{
+  content:"";position:absolute;top:50px;right:-18px;width:18px;height:3px;background:var(--accent-2);
+}
+.step:last-child::after{display:none}
+.board-zone{display:flex;justify-content:center;margin-top:44px}
+.promo-board{position:relative;background:linear-gradient(#FFFCF3,#FBF0DA);border-radius:8px;padding:30px 34px 26px;transform:rotate(-1.3deg);box-shadow:0 20px 44px -16px rgba(60,40,10,.38);font-family:'Caveat',cursive;max-width:680px;width:100%;overflow:visible}
+.promo-board .b-tape{position:absolute;width:96px;height:28px;background:rgba(255,186,120,.75);top:-13px;left:50%;transform:translateX(-50%) rotate(-3deg);border-radius:2px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.promo-board .b-title{font-size:2.1rem;font-weight:700;color:#2A2622;text-align:center;line-height:1.15;margin-bottom:14px}
+.promo-board .b-title em{font-style:normal;color:#D42B1F}
+.promo-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.b-line{display:flex;align-items:center;gap:12px;font-size:1.32rem;font-weight:700;color:#2A2622;line-height:1.15}
+.b-line .dot{width:12px;height:12px;border-radius:50%;border:3px solid #D42B1F;flex-shrink:0}
+.b-line .what{flex:1}
+.b-line .val{color:#D42B1F;position:relative;padding:0 8px;white-space:nowrap}
+.b-line .val::after{content:'';position:absolute;inset:-7px -4px;border:3px solid #D42B1F;border-radius:50% 42% 55% 45%/45% 55% 42% 55%;transform:rotate(-3deg)}
+
+/* ============ about ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:48px;align-items:center}
+.about-vis{position:relative}
+.about-vis .big{
+  border-radius:var(--r-l);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 8s ease-in-out infinite;
+}
+.about-vis .big img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.about-vis .mini{
+  position:absolute;right:-14px;bottom:-20px;width:46%;border-radius:var(--r-m);overflow:hidden;
+  border:5px solid #fff;box-shadow:var(--sh2);transform:rotate(3deg);
+}
+.about-vis .mini img{aspect-ratio:3/2;object-fit:cover;width:100%}
+.about-exp{
+  position:absolute;left:-10px;top:-16px;background:var(--grad-accent);border-radius:16px;
+  padding:12px 18px;box-shadow:0 12px 28px rgba(255,122,30,.45);transform:rotate(-3deg);z-index:2;
+}
+.about-exp .tt{font-weight:900;font-size:22px;color:#3A1B00}
+.about-exp .sub{font-size:11.5px;font-weight:800;color:#7A3A00}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.stg{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;
+  box-shadow:var(--sh1);transition:.25s;
+}
+.stg:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:#F5D9BC}
+.stg .ic{
+  width:44px;height:44px;border-radius:13px;background:var(--accent-100);display:grid;place-items:center;
+  color:var(--accent-2);margin-bottom:11px;
+}
+.stg h4{font-size:15.5px;font-weight:900;color:var(--primary);margin-bottom:5px}
+.stg p{font-size:13px;color:var(--soft)}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============ stats band ============ */
+.stats-band{position:relative;padding:64px 0;color:#fff;overflow:hidden;background:var(--grad-dark)}
+.stats-band::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(255,255,255,.035) 26px 52px)}
+.stats-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center;padding:10px}
+.stat .num{font-size:clamp(30px,4vw,44px);font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .num small{font-size:.55em;font-weight:900}
+.stat .lb{font-size:14px;color:#C9D9F5;font-weight:600;margin-top:4px}
+.stat:nth-child(2){border-left:1.5px solid rgba(255,255,255,.14);border-right:1.5px solid rgba(255,255,255,.14)}
+.stat:nth-child(3){border-right:1.5px solid rgba(255,255,255,.14)}
+.bcode{position:relative;margin-top:34px;display:flex;justify-content:center;gap:18px;align-items:center}
+.bcode .bc{height:26px;width:180px;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 5px,#fff 5px 8px,transparent 8px 10px,#fff 10px 11px,transparent 11px 15px);opacity:.5;border-radius:2px}
+.bcode span{font-size:12px;letter-spacing:.3em;color:#8FA6CC;font-weight:800}
+
+/* ============ social proof ============ */
+.proof-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:stretch}
+.proof-main{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);
+  padding:32px;display:flex;flex-direction:column;position:relative;overflow:hidden;min-height:320px;
+}
+.proof-main::before{content:"";position:absolute;top:-60px;left:-60px;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,122,30,.15),transparent)}
+.proof-quote{font-size:18.5px;font-weight:600;color:var(--ink);line-height:1.65;margin:14px 0 20px;flex:1;position:relative}
+.proof-quote::before{content:"";display:block;width:44px;height:6px;border-radius:3px;background:var(--grad-accent);margin-bottom:16px}
+.proof-who{display:flex;align-items:center;gap:13px}
+.proof-who .av{
+  width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:var(--accent);
+  display:grid;place-items:center;font-weight:900;font-size:17px;flex-shrink:0;
+}
+.proof-who .tt{font-weight:900;font-size:15px;color:var(--primary)}
+.proof-who .sub{font-size:12.5px;color:var(--soft)}
+.proof-stars{color:var(--accent-2);font-size:15px;letter-spacing:2px;margin-bottom:2px}
+.proof-side{
+  background:var(--grad-dark);border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);
+  display:flex;flex-direction:column;gap:16px;
+}
+.proof-metric{
+  display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 16px;
+}
+.proof-metric .mi{
+  width:40px;height:40px;border-radius:11px;background:rgba(14,124,70,.3);display:grid;place-items:center;flex-shrink:0;
+}
+.proof-metric .mi svg{color:#4ADE80}
+.proof-metric .tt{font-weight:900;font-size:15px;color:#fff}
+.proof-metric .sub{font-size:12px;color:#C9D9F5}
+.proof-dots{display:flex;gap:7px;margin-top:14px}
+.proof-dots i{width:22px;height:6px;border-radius:3px;background:rgba(255,255,255,.2);transition:.3s;cursor:pointer}
+.proof-dots i.on{background:var(--grad-accent)}
+.partner-row{margin-top:34px;text-align:center}
+.partner-row .lb{font-size:12.5px;font-weight:800;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.partner-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.partner-chips span{
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;
+  font-weight:800;font-size:13.5px;color:var(--soft);box-shadow:var(--sh1);
+}
+
+/* ============ FAQ ============ */
+.faq-wrap{max-width:860px;margin:0 auto}
+.faq-list{display:grid;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:var(--accent);box-shadow:var(--sh2)}
+.faq-q{
+  width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:17px 20px;
+  font-weight:800;font-size:15.5px;color:var(--primary);white-space:normal;
+}
+.faq-q .qn{
+  width:32px;height:32px;border-radius:10px;background:var(--texture);display:grid;place-items:center;
+  font-size:13px;font-weight:900;color:var(--primary);flex-shrink:0;
+}
+.faq-q .tg{margin-left:auto;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent-100);color:var(--accent-2);
+  display:grid;place-items:center;font-weight:900;transition:.3s}
+.faq-item.open .tg{transform:rotate(45deg);background:var(--grad-accent);color:#3A1B00}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a .in{padding:0 20px 18px 66px;font-size:14.5px;color:var(--soft)}
+.faq-a .in b{color:var(--primary)}
+
+/* ============ lien he: map + form ============ */
+.contact-sec{background:var(--grad-dark);color:#fff;overflow:hidden;position:relative}
+.contact-sec::before{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:22px 22px}
+.contact-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+.map-card{border-radius:var(--r-l);overflow:hidden;border:1.5px solid rgba(255,255,255,.2);box-shadow:var(--sh3);background:#fff}
+.map-card iframe{width:100%;height:320px;border:0;display:block}
+.map-go{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;background:#fff;flex-wrap:wrap}
+.map-go .addr{font-size:13.5px;font-weight:700;color:var(--ink)}
+.map-go .addr small{display:block;font-weight:600;color:var(--soft)}
+.map-go .btn{padding:10px 16px;font-size:13.5px}
+.contact-info{padding:6px 0 18px}
+.contact-info .ct{font-size:15px;font-weight:800;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.contact-item{display:flex;gap:13px;padding:11px 0;border-bottom:1.5px dashed rgba(255,255,255,.16);font-size:14.5px;color:#E4EDFC}
+.contact-item:last-child{border-bottom:none}
+.contact-item svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.contact-item b{color:#fff}
+.gform{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:var(--r-l);padding:28px;box-shadow:var(--sh2);
+}
+.gform h3{font-size:21px;font-weight:900;margin-bottom:6px}
+.gform .csub{font-size:13.5px;color:#C9D9F5;margin-bottom:20px}
+.f-row{margin-bottom:16px}
+.f-row label{display:block;font-size:13px;font-weight:800;color:#C9D9F5;margin-bottom:7px;letter-spacing:.02em}
+.f-row select,.f-row input{
+  width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(10,31,77,.55);color:#fff;font-weight:700;outline:none;transition:.2s;
+}
+.f-row select:focus,.f-row input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,122,30,.15)}
+.f-row select option{color:var(--ink);background:#fff}
+.gform textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(10,31,77,.55);color:#fff;font-weight:600;outline:none;resize:vertical;min-height:84px}
+.gform textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,122,30,.15)}
+.gform textarea::placeholder,.gform input::placeholder{color:#7E93B8}
+.gform .btn{width:100%;margin-top:6px}
+.secure{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#8FA6CC;margin-top:13px;text-align:center}
+.secure svg{color:#4ADE80;flex-shrink:0}
+
+/* ============ footer ============ */
+footer{background:var(--primary-3);color:#C9D9F5;padding:52px 0 0}
+.ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1.15fr;gap:34px;padding-bottom:34px}
+.ft-brand .logo-txt .tt{color:#fff}
+.ft-brand .logo-txt .sub{color:#8FA6CC}
+.ft-brand p{font-size:13.5px;margin:14px 0 18px;max-width:320px}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;background:rgba(255,122,30,.14);border:1.5px solid rgba(255,122,30,.35);
+  color:#FFC48A;border-radius:14px;padding:11px 16px;font-weight:900;font-size:16px}
+footer h5{color:#fff;font-size:15px;font-weight:900;margin-bottom:16px}
+.ft-links{list-style:none;display:grid;gap:9px}
+.ft-links a{font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.ft-links a::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.ft-links a:hover{color:var(--accent);transform:translateX(3px)}
+.ft-contact{list-style:none;display:grid;gap:12px;font-size:13.5px}
+.ft-contact li{display:flex;gap:10px}
+.ft-contact svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.ft-contact b{color:#fff}
+.ft-pay{
+  border-top:1.5px solid rgba(255,255,255,.12);padding:18px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);border-radius:9px;
+  padding:6px 13px;font-size:12px;font-weight:800;color:#E4EDFC;letter-spacing:.03em;
+}
+.ft-copy{font-size:12.5px;color:#7E93B8}
+
+/* ============ FAB dock ============ */
+.dock{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;
+  display:flex;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1.5px solid var(--line);border-radius:999px;padding:8px;box-shadow:var(--sh3);
+  transition:.4s;
+}
+.dock.dock-hide{transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none}
+.dock a,.dock button.dk{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;transition:.2s;position:relative;color:var(--primary);
+  background:var(--texture);border:1.5px solid var(--line);
+}
+.dock a:hover,.dock button.dk:hover{transform:translateY(-3px);background:var(--primary);color:#fff}
+.dock .dk-main{background:var(--grad-accent);border-color:transparent;color:#3A1B00}
+.dock .dk-main:hover{background:var(--accent-2);color:#fff}
+.dock .d-badge{
+  position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;
+  background:var(--accent-2);color:#fff;font-size:10.5px;font-weight:900;display:grid;place-items:center;padding:0 4px;
+}
+.dock .dk-lb{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:var(--primary-3);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.dock a:hover .dk-lb,.dock button.dk:hover .dk-lb{opacity:1}
+.chat-panel{
+  position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(10px);z-index:81;
+  width:min(320px,calc(100vw - 32px));background:#fff;border:1.5px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh3);padding:16px;opacity:0;pointer-events:none;transition:.25s;
+}
+.chat-panel.on{opacity:1;pointer-events:auto;transform:translateX(-50%)}
+.chat-panel h5{font-size:14.5px;font-weight:900;color:var(--primary);margin-bottom:4px}
+.chat-panel p{font-size:12.5px;color:var(--soft);margin-bottom:12px}
+.chat-panel .cp-row{display:grid;gap:8px}
+.chat-panel .cp-row a{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:12px;border:1.5px solid var(--line);
+  font-weight:800;font-size:13.5px;color:var(--primary);background:var(--texture);transition:.2s}
+.chat-panel .cp-row a:hover{border-color:var(--accent);transform:translateY(-2px)}
+
+/* ============ drawer gio hang ============ */
+.overlay{position:fixed;inset:0;background:rgba(10,31,77,.55);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:#fff;z-index:95;
+  transform:translateX(105%);transition:.4s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh3);
+}
+.drawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1.5px solid var(--line)}
+.dr-head h3{font-size:18px;font-weight:900;color:var(--primary)}
+.dr-close{margin-left:auto;width:38px;height:38px;border-radius:11px;background:var(--texture);display:grid;place-items:center;font-weight:900;color:var(--soft);transition:.2s}
+.dr-close:hover{background:var(--primary);color:#fff}
+.dr-tier{padding:14px 22px;border-bottom:1.5px solid var(--line);background:var(--texture)}
+.dr-tier .t{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--soft);margin-bottom:7px;gap:10px}
+.dr-tier .t b{color:var(--primary);text-align:right}
+.dr-bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden}
+.dr-bar i{display:block;height:100%;background:var(--grad-accent);border-radius:5px;transition:.4s}
+.dr-items{flex:1;overflow-y:auto;padding:16px 22px;display:grid;gap:12px;align-content:start}
+.dr-item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:10px}
+.dr-item img{width:64px;height:52px;object-fit:cover;border-radius:9px}
+.dr-item .nm{font-size:13px;font-weight:800;color:var(--ink)}
+.dr-item .pr{font-size:13.5px;font-weight:900;color:var(--accent-2)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:5px}
+.qty button{width:24px;height:24px;border-radius:7px;background:var(--texture);border:1px solid var(--line);font-weight:900;color:var(--primary);display:grid;place-items:center}
+.qty b{min-width:22px;text-align:center;font-size:13.5px}
+.dr-rm{color:#C0392B;font-size:11.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;padding:4px}
+.dr-empty{text-align:center;color:var(--soft);padding:50px 20px;font-size:14px}
+.dr-foot{border-top:1.5px solid var(--line);padding:18px 22px;background:#fff}
+.dr-line{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:var(--soft)}
+.dr-line.disc{color:var(--ok);font-weight:800}
+.dr-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;margin-top:6px;border-top:1.5px dashed var(--line)}
+.dr-total .lb{font-weight:900;color:var(--primary)}
+.dr-total .v{font-size:24px;font-weight:900;color:var(--accent-2)}
+.dr-foot .btn{width:100%;margin-top:14px}
+.dr-note{font-size:11.5px;color:var(--soft);text-align:center;margin-top:10px}
+
+/* ============ toast ============ */
+.toast{
+  position:fixed;right:22px;bottom:96px;z-index:120;display:grid;gap:10px;pointer-events:none;
+}
+.toast .t-item{
+  display:flex;align-items:center;gap:11px;background:var(--primary-3);color:#fff;
+  border:1.5px solid rgba(255,255,255,.15);border-radius:14px;padding:13px 18px;
+  box-shadow:var(--sh3);font-size:13.5px;font-weight:700;max-width:330px;
+  animation:toastIn .35s cubic-bezier(.22,.8,.3,1);
+}
+.toast .t-item.out{animation:toastOut .3s forwards}
+.toast .t-item .ti{width:30px;height:30px;border-radius:9px;background:var(--grad-accent);color:#3A1B00;display:grid;place-items:center;flex-shrink:0}
+.toast .t-body{display:grid}
+.toast .t-body .t-title{font-weight:900;font-size:13.5px}
+.toast .t-body .t-msg{font-weight:500;font-size:12.5px;color:#C9D9F5}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px)}}
+
+/* ============ reveal ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ responsive 1080 ============ */
+@media(max-width:1080px){
+  .nav{display:none}
+  .hero .container{grid-template-columns:1fr;gap:40px}
+  .hero-vis{min-height:0;max-width:560px;margin:0 auto;width:100%}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .p-grid{grid-template-columns:repeat(2,1fr)}
+  .goi-wrap{grid-template-columns:1fr}
+  .goi-pick{position:static}
+  .steps{grid-template-columns:1fr 1fr}
+  .step::after{display:none}
+  .about-grid{grid-template-columns:1fr;gap:52px}
+  .about-vis{max-width:520px;margin:0 auto;width:100%}
+  .proof-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .p-card.feat{grid-template-columns:1fr 1fr}
+  .p-card.pwide{grid-template-columns:340px 1fr}
+}
+
+/* ============ MOBILE ≤680px ============ */
+@media(max-width:680px){
+  section{scroll-margin-top:120px}
+  .topbar .container{justify-content:center;gap:16px;text-align:center}
+  .tb-r{display:none}
+  .header .container{flex-wrap:wrap;gap:8px;padding-top:5px;padding-bottom:5px}
+  .logo{order:1}
+  .logo-mark{width:38px;height:38px;border-radius:11px}
+  .logo-mark svg{width:20px;height:20px}
+  .logo-txt .tt{font-size:17px}
+  .logo-txt .sub{display:none}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .btn{display:none}
+  .cart-btn{width:40px;height:40px;border-radius:11px}
+  .search{order:3;flex-basis:100%;padding:6px 12px;border-radius:12px}
+  .btn{white-space:normal}
+  .hero{padding:34px 0 46px}
+  .hero .container{gap:30px}
+  .hero h1{font-size:1.42rem}
+  .hero .sub{font-size:14.5px;margin-bottom:20px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust .chip{font-size:12px;padding:8px 10px}
+  .hero-vis{min-height:0}
+  .hv-main{transform:none;border-width:4px;animation:none}
+  .hv-main img{aspect-ratio:4/3}
+  .hv-badge{top:8px;right:8px;padding:7px 11px;border-radius:12px;transform:none;animation:none}
+  .hv-badge .tt{font-size:13px}
+  .hv-badge .sub{font-size:12px}
+  .hv-tag{display:none}
+  .hv-stats{position:static;margin-top:14px;justify-content:space-between;transform:none}
+  .hv-stats .st{flex:1;padding:10px 6px}
+  .hv-stats .tt{font-size:16px}
+  .hv-stats .sub{font-size:12px}
+  .tape-wrap{padding:4px 0 18px}
+  .tape{padding:11px 0}
+  .tape-in span{font-size:13px}
+  .sec{padding:50px 0}
+  .sec-head{margin-bottom:26px}
+  .sec-head h2{font-size:1.42rem}
+  .strip{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+  .strip a{padding:11px 12px;font-size:12.5px;flex-direction:column;text-align:center;gap:8px}
+  .strip .arr{display:none}
+  /* khoi-8 mobile: 2 cot, feat + pwide full-width — kin ô */
+  .p-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .p-card.feat{grid-column:1/-1;grid-template-columns:1fr}
+  .p-card.feat .p-media{aspect-ratio:4/3;min-height:0}
+  .p-card.feat .p-body{padding:18px}
+  .p-card.feat .p-name{font-size:19px}
+  .p-card.feat .p-price .now{font-size:26px}
+  .p-card.feat ul{grid-template-columns:1fr}
+  .p-card.pwide{grid-column:1/-1;grid-template-columns:130px 1fr}
+  .p-card.pwide .p-media img{object-position:78% center}
+  .p-card.pwide .p-body{padding:14px}
+  .p-card.pwide .p-name{font-size:14.5px}
+  .p-card.pwide .p-desc{display:none}
+  .pw-row{gap:10px}
+  .pw-row .p-price .now{font-size:16px}
+  .pw-row .p-add{min-width:0;width:100%;padding:10px 8px;font-size:12.5px}
+  .p-name{font-size:13.5px;min-height:0}
+  .p-price .now{font-size:16px}
+  .p-tier{display:none}
+  .p-body{padding:12px 12px 14px}
+  .p-add{padding:10px 8px;font-size:12.5px;min-height:40px}
+  .feat-acts{flex-direction:column}
+  .feat-acts .btn{min-width:0;width:100%}
+  .goi-pick{padding:20px;border-radius:var(--r-m)}
+  .goi-chip{padding:10px 13px;font-size:12.5px}
+  .goi-res{padding:20px;border-radius:var(--r-m)}
+  .goi-res .acts{grid-template-columns:1fr}
+  .gr-price .now{font-size:26px}
+  .steps{grid-template-columns:1fr}
+  .board-zone{margin-top:30px}
+  .promo-board{transform:none;padding:22px 18px}
+  .promo-grid{gap:6px}
+  .b-line{font-size:1.12rem}
+  .b-line .val::after{inset:-5px -3px}
+  .strengths{grid-template-columns:1fr}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat:nth-child(n){border:none}
+  .stat{padding:14px 6px}
+  .proof-main{padding:22px}
+  .proof-quote{font-size:15.5px}
+  .faq-q{font-size:14px;padding:14px 16px}
+  .faq-a .in{padding:0 16px 16px 60px}
+  .contact-sec .f-row{margin-bottom:12px}
+  .map-card iframe{height:240px}
+  .gform{padding:20px}
+  .gform .btn{width:100%}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding-bottom:24px}
+  .ft-pay{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:7px;gap:6px}
+  .dock a,.dock button.dk{width:44px;height:44px}
+  .dock .dk-lb{display:none}
+  .chat-panel{bottom:80px}
+  .drawer{width:100%;max-width:100vw}
+  .toast{right:12px;left:12px;bottom:86px}
+  .toast .t-item{max-width:none}
+  body{padding-bottom:76px}
+}
+
+/*NB93-208-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+  .faq-chip,.chip,.goi-chip,.qty button,.dr-close,.cart-btn,.faq-q .tg,.cbtn,.dr-rm{min-height:40px!important;min-width:40px!important}
+  .btn{min-height:40px!important}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style data-nb93fix="208:input40">
+/*NB93-FIX-208:input40 input tim kiem du 40px touch target*/
+@media(max-width:768px){
+  #hdSearch,.hdSearch{min-height:40px;height:auto;box-sizing:border-box}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-l"><span class="dot"></span><span><b>Showroom 8:00 – 21:00</b> · Kỹ thuật hỗ trợ 24/7 cho quán đang vận hành</span></div>
+    <div class="tb-r">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="hot">0909 208 208</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container">
+    <a class="logo" href="#hero">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF9A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/><path d="M9.5 12.5h5"/></svg>
+      </span>
+      <span class="logo-txt">
+        <span class="tt">ProPOS</span>
+        <span class="sub">Bán hàng · Chấm công</span>
+      </span>
+    </a>
+    <div class="search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="hdSearch" type="text" placeholder="Tìm máy POS, in hóa đơn, chấm công, két tiền…" aria-label="Tìm sản phẩm">
+    </div>
+    <nav class="nav">
+      <a href="#san-pham">Sản phẩm</a>
+      <a href="#goi">Gói theo quán</a>
+      <a href="#quy-trinh">Lắp đặt</a>
+      <a href="#reviews">Đánh giá</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="cart-btn" id="btnCartTop" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+        <span class="n" id="cartCountTop">0</span>
+      </button>
+      <a class="btn btn-a" href="tel:0909208208">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Gọi 0909 208 208
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-left">
+      <span class="eyebrow"><span class="ic"></span>Chuyên POS &amp; máy chấm công cho café · cửa hàng · nhà hàng · công ty</span>
+      <h1>Bán hàng – chấm công <span class="hl">trọn gói</span> cho quán của bạn</h1>
+      <p class="sub">Máy POS, in hóa đơn, quét mã, chấm công vân tay/khuôn mặt, két đựng tiền — <b>khảo sát tận quán, lắp trong 24h, cài phần mềm bán hàng miễn phí, bảo hành ngay tại chỗ</b>. Bạn chỉ việc bấm máy bán hàng từ ngày đầu.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#goi">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Nhận gói theo quy mô quán
+        </a>
+        <a class="btn btn-n" href="tel:0909208208">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Gọi tư vấn ngay
+        </a>
+      </div>
+      <div class="trust">
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lắp đặt tận nơi trong 24h</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cài phần mềm bán hàng free</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bảo hành tại chỗ 24 tháng</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trả góp 0% qua thẻ</span>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hv-main">
+        <img src="assets/img/cover.webp" alt="Showroom ProPOS trưng bày máy POS, máy in hóa đơn và máy chấm công" width="1448" height="1086">
+      </div>
+      <div class="hv-badge">
+        <span class="tt">Gói trọn bộ</span>
+        <span class="sub">từ 2.490.000₫</span>
+      </div>
+      <span class="hv-tag">Lắp xong trong 45 phút</span>
+      <div class="hv-stats">
+        <div class="st"><span class="tt">2.400+</span><span class="sub">điểm bán đã lắp</span></div>
+        <div class="st"><span class="tt">45&#39;</span><span class="sub">lắp xong tại quán</span></div>
+        <div class="st"><span class="tt">24 th</span><span class="sub">bảo hành tại chỗ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- riem rang cua hoa don -->
+<div class="zz" aria-hidden="true"></div>
+
+<!-- ================= TAPE ================= -->
+<div class="tape-wrap">
+  <div class="tape" aria-hidden="true">
+    <div class="tape-in">
+      <span>CÀI PHẦN MỀM BÁN HÀNG MIỄN PHÍ</span><span>LẮP ĐẶT TẠI CHỖ TRONG 24H</span><span>BẢO HÀNH TẠI QUÁN 24 THÁNG</span><span>TRẢ GÓP 0% DUYỆT 15 PHÚT</span><span>ĐÀO TẠO NHÂN VIÊN TỚI THÀNH THẠO</span><span>CHUYỂN DỮ LIỆU TỪ PHẦN MỀM CŨ</span>
+      <span>CÀI PHẦN MỀM BÁN HÀNG MIỄN PHÍ</span><span>LẮP ĐẶT TẠI CHỖ TRONG 24H</span><span>BẢO HÀNH TẠI QUÁN 24 THÁNG</span><span>TRẢ GÓP 0% DUYỆT 15 PHÚT</span><span>ĐÀO TẠO NHÂN VIÊN TỚI THÀNH THẠO</span><span>CHUYỂN DỮ LIỆU TỪ PHẦN MỀM CŨ</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= KHOI-8 SAN PHAM ================= -->
+<section class="sec sec-white" id="san-pham">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Thiết bị chính hãng</span>
+      <h2>Đủ bộ máy bán hàng &amp; chấm công — một chỗ lo từ A–Z</h2>
+      <p class="sub">Mỗi máy đều được ProPOS nạp sẵn phần mềm, thử trực tiếp tại showroom và bảo hành tại chỗ. Đơn từ 8 triệu được <b>miễn phí công lắp đặt tận quán</b>.</p>
+    </div>
+
+    <div class="strip rv">
+      <a href="#san-pham"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="12" rx="2"/><path d="M8 21h8M12 15v6"/></svg></span>Máy POS &amp; màn cảm ứng<span class="arr">›</span></a>
+      <a href="#san-pham"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7" rx="1.5"/><path d="M6 18H3v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6h-3"/></svg></span>In hóa đơn &amp; tem nhãn<span class="arr">›</span></a>
+      <a href="#san-pham"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M12 8h.01M9 12.5 7 21l5-2.5L17 21l-2-8.5"/></svg></span>Chấm công vân tay – khuôn mặt<span class="arr">›</span></a>
+      <a href="#san-pham"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 12v3"/></svg></span>Két tiền &amp; ngăn kéo<span class="arr">›</span></a>
+      <a href="#goi"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6.4 6.4l-5 5V21h3.3l5-5a4.5 4.5 0 0 0 6.4-6.4L15 12l-3-3 2.7-2.7z"/></svg></span>Phần mềm &amp; lắp đặt<span class="arr">›</span></a>
+    </div>
+
+    <div class="p-grid" id="pGrid">
+
+      <!-- the noi bat: bo tron bo -->
+      <article class="p-card feat rv" data-name="Bộ POS trọn bộ quán full set" data-cat="trọn bộ">
+        <div class="p-media">
+          <img src="assets/img/p8.webp" alt="Bộ bán hàng trọn bộ gồm máy POS, máy in hóa đơn, máy quét mã và két đựng tiền" width="1448" height="1086">
+        </div>
+        <div class="p-body">
+          <span class="p-cat">★ BÁN CHẠY NHẤT</span>
+          <h3 class="p-name">Bộ POS trọn bộ quán — Full Set</h3>
+          <p class="p-desc">Một lần lắp là quán chạy trọn quy trình: bấm món – in bill – quét mã – đựng tiền — kèm phần mềm bán hàng cài sẵn.</p>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy POS cảm ứng 15&quot; J2</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy in hóa đơn nhiệt 80mm</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy quét mã vạch 2D</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Két đựng tiền tự đóng</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Phần mềm bán hàng + nạp menu</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lắp đặt + đào tạo tại quán</li>
+          </ul>
+          <div class="p-price"><span class="now">18.500.000₫</span><span class="old">21.900.000₫</span></div>
+          <span class="p-save">Tiết kiệm 3.400.000₫ · đã gồm công lắp đặt</span>
+          <div class="feat-acts">
+            <button class="btn btn-a js-add" data-name="Bộ POS trọn bộ quán — Full Set" data-price="18500000" data-img="assets/img/p8.webp">Thêm trọn bộ vào giỏ</button>
+            <a class="btn btn-w" href="tel:0909208208">Gọi khảo sát quán miễn phí</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 the thuong -->
+      <article class="p-card rv" data-name="Máy POS cảm ứng 15 inch J2" data-cat="máy pos">
+        <div class="p-media">
+          <img src="assets/img/p1.webp" alt="Máy POS cảm ứng 15 inch cho quán café với màn hình bán hàng nước uống" width="1448" height="1086">
+          <span class="p-cat">Máy POS</span>
+          <span class="p-bh">BH 24 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy POS cảm ứng 15&quot; J2 — hợp café, trà sữa</span>
+          <div class="p-price"><span class="now">12.900.000₫</span><span class="old">14.500.000₫</span></div>
+          <span class="p-tier">✓ Cài sẵn phần mềm + nạp menu free</span>
+          <button class="p-add js-add" data-name="Máy POS cảm ứng 15&quot; J2" data-price="12900000" data-img="assets/img/p1.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="p-card rv" data-name="Máy in tem mã vạch TT-365B" data-cat="in tem nhãn">
+        <div class="p-media">
+          <img src="assets/img/p2.webp" alt="Máy in tem mã vạch in tem giá cho cửa hàng và kho" width="1448" height="1086">
+          <span class="p-cat">In tem – nhãn</span>
+          <span class="p-bh">BH 12 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy in tem mã vạch TT-365B — in tem giá, hạn dùng</span>
+          <div class="p-price"><span class="now">2.490.000₫</span><span class="old">2.890.000₫</span></div>
+          <span class="p-tier">✓ Tặng 2 cuộn tem giá gốc</span>
+          <button class="p-add js-add" data-name="Máy in tem mã vạch TT-365B" data-price="2490000" data-img="assets/img/p2.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="p-card rv" data-name="Máy quét mã vạch 2D không dây" data-cat="quét mã">
+        <div class="p-media">
+          <img src="assets/img/p3.webp" alt="Máy quét mã vạch 2D cầm tay quét nhanh tại quầy" width="1448" height="1086">
+          <span class="p-cat">Quét mã</span>
+          <span class="p-bh">BH 12 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy quét mã vạch 2D không dây — quét cả mã QR</span>
+          <div class="p-price"><span class="now">1.190.000₫</span><span class="old">1.390.000₫</span></div>
+          <span class="p-tier">✓ 300 lần/phút · pin 12 giờ</span>
+          <button class="p-add js-add" data-name="Máy quét mã vạch 2D không dây" data-price="1190000" data-img="assets/img/p3.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="p-card rv" data-name="Máy in hóa đơn nhiệt 80mm tự cắt" data-cat="in hóa đơn">
+        <div class="p-media">
+          <img src="assets/img/p4.webp" alt="Máy in hóa đơn nhiệt 80mm in bill nhanh gọn cho quán" width="1448" height="1086">
+          <span class="p-cat">In hóa đơn</span>
+          <span class="p-bh">BH 12 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy in hóa đơn nhiệt 80mm — tự cắt giấy, in bill bếp</span>
+          <div class="p-price"><span class="now">1.650.000₫</span><span class="old">1.850.000₫</span></div>
+          <span class="p-tier">✓ Tặng 5 cuộn giấy nhiệt</span>
+          <button class="p-add js-add" data-name="Máy in hóa đơn nhiệt 80mm" data-price="1650000" data-img="assets/img/p4.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="p-card rv" data-name="Máy chấm công vân tay MC-520" data-cat="chấm công">
+        <div class="p-media">
+          <img src="assets/img/p5.webp" alt="Máy chấm công vân tay quản lý giờ làm cho doanh nghiệp" width="1448" height="1086">
+          <span class="p-cat">Chấm công</span>
+          <span class="p-bh">BH 24 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy chấm công vân tay MC-520 — lưu 3.000 vân tay</span>
+          <div class="p-price"><span class="now">1.890.000₫</span><span class="old">2.150.000₫</span></div>
+          <span class="p-tier">✓ Xuất file công + tính lương free</span>
+          <button class="p-add js-add" data-name="Máy chấm công vân tay MC-520" data-price="1890000" data-img="assets/img/p5.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <article class="p-card rv" data-name="Máy chấm công khuôn mặt FR-05" data-cat="chấm công">
+        <div class="p-media">
+          <img src="assets/img/p6.webp" alt="Máy chấm công khuôn mặt nhận diện không cần chạm" width="1448" height="1086">
+          <span class="p-cat">Chấm công</span>
+          <span class="p-bh">BH 24 tháng</span>
+        </div>
+        <div class="p-body">
+          <span class="p-name">Máy chấm công khuôn mặt FR-05 — nhận diện 0,3 giây</span>
+          <div class="p-price"><span class="now">3.690.000₫</span><span class="old">4.100.000₫</span></div>
+          <span class="p-tier">✓ Chống giả ảnh · kết nối cửa tự động</span>
+          <button class="p-add js-add" data-name="Máy chấm công khuôn mặt FR-05" data-price="3690000" data-img="assets/img/p6.webp">Thêm vào giỏ</button>
+        </div>
+      </article>
+
+      <!-- the ngang thu 2 -->
+      <article class="p-card pwide rv" data-name="Máy POS cầm tay M1 order tại bàn" data-cat="máy pos">
+        <div class="p-media">
+          <img src="assets/img/p7.webp" alt="Nhân viên quán dùng máy POS cầm tay order tại bàn" width="1448" height="1086">
+        </div>
+        <div class="p-body">
+          <span class="p-cat" style="position:static;display:inline-block;margin-bottom:8px">Máy POS</span>
+          <h3 class="p-name">Máy POS cầm tay M1 — order tại bàn, in bill tại chỗ</h3>
+          <p class="p-desc">Nhân viên bấm món ngay bàn khách, in bill tại máy, nhận thanh toán QR/thẻ — không phải chạy qua quầy. Kết nối 4G + wifi, pin cả ca.</p>
+          <div class="pw-row">
+            <div class="p-price"><span class="now">7.900.000₫</span><span class="old">8.700.000₫</span></div>
+            <button class="p-add js-add" data-name="Máy POS cầm tay M1" data-price="7900000" data-img="assets/img/p7.webp">Thêm vào giỏ</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAC THU: GOI THEO QUY MO QUAN ================= -->
+<section class="sec sec-tex" id="goi">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Gói theo quy mô quán</span>
+      <h2>Chọn mô hình — ra ngay gói thiết bị đúng cần, không thừa thiếu</h2>
+      <p class="sub">Giá gói đã rẻ hơn mua lẻ, <b>đã gồm khảo sát – lắp đặt tại quán – cài phần mềm miễn phí – đào tạo nhân viên</b>. Kéo chọn 2 bước là thấy giá.</p>
+    </div>
+    <div class="goi-wrap">
+      <div class="goi-pick rv">
+        <h3>2 bước chọn gói cho quán bạn</h3>
+        <p class="gsub">Kỹ thuật ProPOS ghép sẵn thiết bị theo từng mô hình thực tế.</p>
+        <span class="goi-lb">Bước 1 · Mô hình kinh doanh</span>
+        <div class="goi-chips" id="goiModels">
+          <button class="goi-chip on" data-m="cafe">Quán café / trà sữa</button>
+          <button class="goi-chip" data-m="taphoa">Cửa hàng / tạp hóa</button>
+          <button class="goi-chip" data-m="nhahang">Nhà hàng / quán ăn</button>
+          <button class="goi-chip" data-m="congty">Công ty / văn phòng</button>
+        </div>
+        <span class="goi-lb">Bước 2 · Quy mô</span>
+        <div class="goi-chips" id="goiScales">
+          <button class="goi-chip on" data-s="cb">Cơ bản · 1 quầy</button>
+          <button class="goi-chip" data-s="nc">Nâng cao · 2–3 quầy</button>
+          <button class="goi-chip" data-s="chuoi">Chuỗi · 4+ điểm</button>
+        </div>
+        <p class="goi-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          Chưa rõ mô hình? Gọi <b style="color:#FFC48A;white-space:nowrap">0909 208 208</b> — kỹ thuật khảo sát miễn phí trong 30 phút, tư vấn đúng mức đầu tư.
+        </p>
+      </div>
+      <div class="goi-res rv" id="goiRes">
+        <div class="gr-top">
+          <h3 id="grTitle">Gói Café cơ bản — 1 quầy</h3>
+          <span class="gr-badge" id="grBadge">Rẻ hơn mua lẻ 1.650.000₫</span>
+        </div>
+        <p class="gsub" id="grSub">Phù hợp quán café, trà sữa mới mở, 1 quầy Order + thanh toán.</p>
+        <ul class="gr-items" id="grItems"></ul>
+        <div class="gr-price">
+          <span class="now" id="grNow">13.900.000₫</span>
+          <span class="old" id="grOld">15.550.000₫</span>
+          <span class="gr-save" id="grSave">Tiết kiệm 1.650.000₫</span>
+        </div>
+        <p class="gr-install">✓ Đã gồm: khảo sát – lắp đặt tại quán – <b>cài phần mềm miễn phí</b> – nạp menu/mặt hàng – đào tạo nhân viên</p>
+        <p class="gr-vgop" id="grGop">Hoặc <b>trả góp 0%: ≈ 1.160.000₫/tháng × 12</b> — duyệt trong 15 phút bằng thẻ tín dụng.</p>
+        <div class="acts">
+          <button class="btn btn-a" id="grAdd">Thêm gói vào giỏ</button>
+          <a class="btn btn-n" href="tel:0909208208">Gọi tư vấn gói này</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUY TRINH + CAM KET ================= -->
+<section class="sec sec-white" id="quy-trinh">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Lắp đặt tại chỗ</span>
+      <h2>Từ lúc gọi đến lúc bấm bán hàng — chỉ 1 ngày</h2>
+      <p class="sub">Kỹ thuật viên ProPOS đến tận quán, tự đi dây – gắn máy – cài phần mềm – nạp data. Chủ quán không phải đụng tay gì.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <span class="sn">1</span>
+        <h4>Khảo sát &amp; tư vấn</h4>
+        <p>Gọi hoặc để SĐT — kỹ thuật hỏi 5 phút về mô hình, số quầy, ca làm để ghép gói đúng.</p>
+        <span class="meta">Miễn phí · 30 phút</span>
+      </div>
+      <div class="step">
+        <span class="sn">2</span>
+        <h4>Báo giá gói niêm yết</h4>
+        <p>Báo giá chi tiết từng máy + phần mềm, đúng như web. Không phát sinh chi phí sau đó.</p>
+        <span class="meta">Giá khóa trong 7 ngày</span>
+      </div>
+      <div class="step">
+        <span class="sn">3</span>
+        <h4>Lắp đặt + cài phần mềm</h4>
+        <p>Đến quán ngoài giờ vắng khách: đi dây, dựng máy, cài phần mềm bán hàng free, nạp toàn bộ menu.</p>
+        <span class="meta">45 – 90 phút tại quán</span>
+      </div>
+      <div class="step">
+        <span class="sn">4</span>
+        <h4>Đào tạo &amp; bảo hành tại chỗ</h4>
+        <p>Hướng dẫn nhân viên bán – ca – kho tới thành thạo. Máy lỗi, kỹ thuật đến sửa ngay tại quán.</p>
+        <span class="meta">Hỗ trợ 24/7 · BH 24 tháng</span>
+      </div>
+    </div>
+    <div class="board-zone rv">
+      <div class="promo-board">
+        <span class="b-tape"></span>
+        <p class="b-title">BẢNG CAM KẾT <em>ProPOS</em></p>
+        <div class="promo-grid">
+          <div class="b-line"><span class="dot"></span><span class="what">Cài phần mềm bán hàng</span><span class="val">0₫ — trọn đời</span></div>
+          <div class="b-line"><span class="dot"></span><span class="what">Công lắp đặt (đơn từ 8 triệu)</span><span class="val">0₫</span></div>
+          <div class="b-line"><span class="dot"></span><span class="what">Máy lỗi — sửa ngay tại quán</span><span class="val">không gỡ mang đi</span></div>
+          <div class="b-line"><span class="dot"></span><span class="what">Quán cao điểm bị dừng máy</span><span class="val">cho mượn máy thay</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec sec-tex" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-vis rv">
+        <div class="big">
+          <img src="assets/img/intro.webp" alt="Kỹ thuật ProPOS tư vấn cho khách về thiết bị bán hàng và máy chấm công" width="1448" height="1086">
+        </div>
+        <div class="mini">
+          <img src="assets/img/space.webp" alt="Không gian showroom ProPOS trưng bày máy POS và máy chấm công" width="1536" height="1024">
+        </div>
+        <div class="about-exp">
+          <span class="tt">8+ năm</span>
+          <span class="sub">gắn bó với quán xá</span>
+        </div>
+      </div>
+      <div class="about-body rv">
+        <span class="kicker">Vì sao chủ quán chọn ProPOS</span>
+        <h2 style="font-size:clamp(24px,3.2vw,36px);font-weight:900;color:var(--primary)">Không chỉ bán máy — chúng tôi lo cả cái quán chạy mượt</h2>
+        <p class="sub" style="color:var(--soft);font-size:15.5px;margin-top:10px">Showroom trưng bày máy thật để bạn bấm thử trước khi mua. Đội kỹ thuật 12 người, phủ 12 tỉnh thành, luôn có máy dự phòng cho quán đang cao điểm.</p>
+        <div class="strengths">
+          <div class="stg">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>
+            <h4>Showroom bấm thử máy thật</h4>
+            <p>Mang menu của quán đến, chạy thử quy trình bán thật trước khi quyết.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6.4 6.4l-5 5V21h3.3l5-5a4.5 4.5 0 0 0 6.4-6.4L15 12l-3-3 2.7-2.7z"/></svg></span>
+            <h4>Kỹ thuật tới quán trong 24h</h4>
+            <p>Máy trục trặc là kỹ thuật có mặt — không bắt chủ quán tháo máy mang đi gửi.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+            <h4>Phần mềm Việt dễ dùng</h4>
+            <p>Nhân viên mới 1 buổi là bấm thạo; tặng khóa học lại miễn phí khi thay người.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/></svg></span>
+            <h4>Dữ liệu quán luôn an toàn</h4>
+            <p>Sao lưu tự động lên cloud, mất mạng vẫn bán được, đổi máy không mất doanh thu.</p>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-a" href="#lien-he">Nhận báo giá cho quán</a>
+          <a class="btn btn-n" href="#goi">Xem lại các gói theo quán</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat rv"><span class="num">2.400<small>+</small></span><span class="lb">điểm bán đang chạy máy ProPOS</span></div>
+      <div class="stat rv"><span class="num">45&#39;</span><span class="lb">thời gian lắp trung bình tại quán</span></div>
+      <div class="stat rv"><span class="num">98<small>%</small></span><span class="lb">khách mở điểm mới quay lại lắp tiếp</span></div>
+      <div class="stat rv"><span class="num">24/7</span><span class="lb">hotline kỹ thuật cho quán vận hành</span></div>
+    </div>
+    <div class="bcode" aria-hidden="true"><span>PROPOS</span><i class="bc"></i><span>208-POS</span></div>
+  </div>
+</div>
+
+<!-- ================= REVIEWS ================= -->
+<section class="sec sec-white" id="reviews">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Khách hàng B2B nói gì</span>
+      <h2>Chủ quán, chủ chuỗi và nhà máy tin dùng</h2>
+    </div>
+    <div class="proof-grid rv">
+      <div class="proof-main">
+        <span class="proof-stars" id="pfStars">★★★★★</span>
+        <p class="proof-quote" id="pfQuote"></p>
+        <div class="proof-who">
+          <span class="av" id="pfAv">TH</span>
+          <span>
+            <span class="tt" id="pfName"></span>
+            <span class="sub" id="pfRole"></span>
+          </span>
+        </div>
+        <div class="proof-dots" id="pfDots"></div>
+      </div>
+      <div class="proof-side">
+        <div class="proof-metric">
+          <span class="mi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><span class="tt">0₫ phần mềm</span><span class="sub">cài + cập nhật miễn phí trọn đời máy</span></span>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><span class="tt">2 giờ phản hồi</span><span class="sub">nội thành — kỹ thuật có mặt xử lý tại quán</span></span>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+          <span><span class="tt">-38% thời gian order</span><span class="sub">trung bình sau khi chuyển sang POS cầm tay</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="partner-row rv">
+      <p class="lb">Phục vụ mọi mô hình</p>
+      <div class="partner-chips">
+        <span>Café · Trà sữa</span><span>Nhà hàng · Quán ăn</span><span>Tạp hóa · Minimart</span><span>Văn phòng · Nhà máy</span><span>Shop thời trang · Pharmacy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec sec-tex" id="faq">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Giải đáp nhanh</span>
+      <h2>7 câu chủ quán hay hỏi nhất</h2>
+    </div>
+    <div class="faq-wrap rv">
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">1</span>Phần mềm bán hàng có thật sự miễn phí không?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Có. Bản chuẩn (bán hàng – kho – ca – báo cáo) <b>miễn phí trọn đời máy</b>, cập nhật miễn phí. Sau này cần bản chuỗi/CRM mới nâng cấp, có báo giá rõ ràng trước.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">2</span>Quán tôi đang dùng phần mềm khác, chuyển sang được không?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Được. Kỹ thuật hỗ trợ <b>chuyển dữ liệu mặt hàng, giá bán, khách hàng</b> từ KiotViet, MISA, Sapo… và giữ lịch sử doanh thu. Bạn không phải nhập lại gì.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">3</span>Lắp đặt có phải đóng cửa quán không?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Không cần. Trung bình <b>45–90 phút</b>, kỹ thuật có thể tới ngoài giờ vắng khách hoặc sau giờ đóng cửa. Phần lớn quán lắp buổi chiều vẫn bán buổi tối bình thường.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">4</span>Máy hỏng giữa giờ cao điểm thì xử lý sao?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Gọi hotline kỹ thuật 24/7 — nội thành <b>2 giờ có mặt, sửa ngay tại quán</b>. Trường hợp phải mang về sửa, ProPOS <b>cho quán mượn máy</b> để không ngưng bán hàng.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">5</span>Máy chấm công có tự tính lương được không?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Máy xuất file công theo nhân viên/ca làm việc, phần mềm kèm sẵn <b>bảng tính lương theo giờ, ca, tăng ca</b>; kết xuất Excel hoặc đẩy sang phần mềm lương của kế toán.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">6</span>Có trả góp được không, thủ tục thế nào?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Có — <b>trả góp 0% qua thẻ tín dụng</b> các ngân hàng lớn, duyệt trong 15 phút tại showroom, quẹt tại chỗ. Gói 13.900.000₫ trả trước 0đ chỉ còn khoảng 1.160.000₫/tháng.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qn">7</span>In được hóa đơn điện tử và tem giá không?<span class="tg">+</span></button>
+          <div class="faq-a"><div class="in">Máy in nhiệt 80mm in bill cho khách kèm <b>kết nối hóa đơn điện tử</b> khi bạn có mã số thuế; máy in tem mã vạch in tem giá, tem hạn dùng, tem cân cho tạp hóa và pharmacy.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIEN HE ================= -->
+<section class="sec contact-sec" id="lien-he">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="rv">
+        <div class="contact-info">
+          <p class="ct">Ghé showroom bấm thử máy thật</p>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><b>128 Quang Trung, P.10, Gò Vấp, TP.HCM</b> — có chỗ để xe cho khách đến test máy</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><b>0909 208 208</b> — báo giá · khảo sát · kỹ thuật 24/7</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <span><b>8:00 – 21:00</b> tất cả các ngày · hotline kỹ thuật chạy 24/7</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span><b>baogia@propos.vn</b> — phản hồi trong 2 giờ làm việc</span>
+          </div>
+        </div>
+        <div class="map-card">
+          <iframe loading="lazy" title="Bản đồ showroom ProPOS" src="https://www.google.com/maps?q=10.8165,106.6746&z=15&output=embed"></iframe>
+          <div class="map-go">
+            <span class="addr">128 Quang Trung, P.10, Gò Vấp, TP.HCM<small>5 phút từ vòng xoay Gò Vấp</small></span>
+            <a class="btn btn-a" href="https://www.google.com/maps/dir/?api=1&destination=10.8165,106.6746" target="_blank" rel="noopener">Chỉ đường</a>
+          </div>
+        </div>
+      </div>
+      <form class="gform rv" id="leadForm" novalidate>
+        <h3>Nhận báo giá gói cho quán</h3>
+        <p class="csub">Để lại thông tin — kỹ thuật gọi lại trong 30 phút, tư vấn đúng mức đầu tư, không chèo kéo.</p>
+        <div class="f-row">
+          <label for="lfName">Tên + tên quán / công ty *</label>
+          <input id="lfName" type="text" placeholder="VD: Anh Tuấn — Café Mây" autocomplete="name">
+        </div>
+        <div class="f-row">
+          <label for="lfPhone">Số điện thoại *</label>
+          <input id="lfPhone" type="tel" placeholder="SĐT gọi lại trong 30 phút" autocomplete="tel">
+        </div>
+        <div class="f-row">
+          <label for="lfModel">Mô hình kinh doanh</label>
+          <select id="lfModel">
+            <option>Quán café / trà sữa</option>
+            <option>Cửa hàng / tạp hóa</option>
+            <option>Nhà hàng / quán ăn</option>
+            <option>Công ty / văn phòng (chấm công)</option>
+            <option>Khác</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <label for="lfNeed">Nhu cầu</label>
+          <select id="lfNeed">
+            <option>Cần báo giá gói trọn bộ</option>
+            <option>Mua lẻ 1 vài máy</option>
+            <option>Cần lắp chấm công cho công ty</option>
+            <option>Đang dùng máy cũ — cần hỗ trợ/bảo hành</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <label for="lfNote">Ghi chú thêm</label>
+          <textarea id="lfNote" placeholder="Số quầy, số nhân viên, thời gian cần lắp…"></textarea>
+        </div>
+        <button class="btn btn-a" type="submit">Nhận báo giá miễn phí</button>
+        <p class="secure">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Thông tin chỉ dùng để báo giá — không spam.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF9A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/><path d="M9.5 12.5h5"/></svg>
+          </span>
+          <span class="logo-txt">
+            <span class="tt">ProPOS</span>
+            <span class="sub">Bán hàng · Chấm công</span>
+          </span>
+        </a>
+        <p>Thiết bị bán hàng, POS và máy chấm công cho café, cửa hàng, nhà hàng và doanh nghiệp. Lắp tại chỗ — cài phần mềm miễn phí — bảo hành tại quán.</p>
+        <a class="ft-hot" href="tel:0909208208">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0909 208 208
+        </a>
+      </div>
+      <div>
+        <h5>Link nhanh</h5>
+        <ul class="ft-links">
+          <li><a href="#san-pham">Sản phẩm thiết bị</a></li>
+          <li><a href="#goi">Gói theo quy mô quán</a></li>
+          <li><a href="#quy-trinh">Quy trình lắp đặt</a></li>
+          <li><a href="#reviews">Đánh giá khách hàng</a></li>
+          <li><a href="#faq">Chính sách bảo hành &amp; hỏi đáp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Showroom &amp; hỗ trợ</h5>
+        <ul class="ft-contact">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span><b>128 Quang Trung, P.10, Gò Vấp, TP.HCM</b></span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>8:00 – 21:00 mỗi ngày · kỹ thuật 24/7</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>baogia@propos.vn</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-pay">
+      <div class="pay-chips"><span>TRẢ GÓP 0%</span><span>COD</span><span>CHUYỂN KHOẢN</span><span>VISA / MASTER</span><span>TIỀN MẶT</span></div>
+      <span class="ft-copy">© 2026 ProPOS — Thiết bị bán hàng &amp; máy chấm công.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CHAT PANEL ================= -->
+<div class="chat-panel" id="chatPanel">
+  <h5>Hỗ trợ quán đang cần gấp?</h5>
+  <p>Kỹ thuật ProPOS trực 24/7 — chọn kênh quen thuộc của bạn.</p>
+  <div class="cp-row">
+    <a href="tel:0909208208"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Gọi hotline 0909 208 208</a>
+    <a href="https://zalo.me/0909208208" target="_blank" rel="noopener">Nhắn Zalo kỹ thuật</a>
+    <a href="sms:0909208208">Gửi SMS báo giá</a>
+  </div>
+</div>
+
+<!-- ================= DOCK ================= -->
+<div class="dock" id="dock">
+  <a class="dk-main" href="tel:0909208208" aria-label="Gọi ngay">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="dk-lb">Gọi ngay</span>
+  </a>
+  <a href="https://zalo.me/0909208208" target="_blank" rel="noopener" aria-label="Zalo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.2-.6L4 21l1.3-4a8 8 0 0 1-1.8-5A8.4 8.4 0 0 1 12 3.2a8.4 8.4 0 0 1 9 8.3z"/></svg>
+    <span class="dk-lb">Zalo</span>
+  </a>
+  <button class="dk" id="btnChat" aria-label="Chat hỗ trợ">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="dk-lb">Chat hỗ trợ</span>
+  </button>
+  <button class="dk" id="btnCartDock" aria-label="Giỏ hàng">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+    <span class="d-badge" id="cartCountDock">0</span>
+    <span class="dk-lb">Giỏ hàng</span>
+  </button>
+</div>
+
+<!-- ================= DRAWER GIO HANG ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <h3>Giỏ thiết bị</h3>
+    <button class="dr-close" id="drClose" aria-label="Đóng giỏ">✕</button>
+  </div>
+  <div class="dr-tier">
+    <div class="t"><span id="tierMsg">Đơn từ 8.000.000₫ → <b>miễn phí công lắp đặt tận quán</b></span></div>
+    <div class="dr-bar"><i id="tierBar" style="width:0%"></i></div>
+  </div>
+  <div class="dr-items" id="drItems"></div>
+  <div class="dr-foot">
+    <div class="dr-line"><span>Tạm tính</span><span id="drSub">0₫</span></div>
+    <div class="dr-line disc" id="drDisc">Chưa đạt miễn phí lắp đặt (công lắp 300.000₫)</div>
+    <div class="dr-total"><span class="lb">Tổng cộng</span><span class="v" id="drTotal">0₫</span></div>
+    <button class="btn btn-a" id="drOrder">Đặt hàng — kỹ thuật gọi xác nhận</button>
+    <p class="dr-note">Cài phần mềm bán hàng luôn miễn phí · trả góp 0% nếu cần</p>
+  </div>
+</aside>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"ProPOS","description":"Thiết bị bán hàng, POS và máy chấm công — lắp đặt tại quán, cài phần mềm miễn phí","telephone":"0909208208","address":{"@type":"PostalAddress","streetAddress":"128 Quang Trung, P.10, Go Vap","addressLocality":"TP. Ho Chi Minh","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.8165,"longitude":106.6746},"openingHours":"Mo-Su 08:00-21:00","priceRange":"$$"}
+</script>
+
+<script>
+/*NB93-208*/
+(function(){
+  "use strict";
+  var fmt = function(n){ return n.toLocaleString("vi-VN") + "₫"; };
+
+  /* ---------- toast (title + msg rieng) ---------- */
+  var toastBox = document.getElementById("toast");
+  function toast(title, msg){
+    var el = document.createElement("div");
+    el.className = "t-item";
+    el.innerHTML = "<span class='ti'><svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='#3A1B00' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg></span><span class='t-body'><span class='t-title'></span><span class='t-msg'></span></span>";
+    el.querySelector(".t-title").textContent = title;
+    el.querySelector(".t-msg").textContent = msg;
+    toastBox.appendChild(el);
+    setTimeout(function(){ el.classList.add("out"); }, 3200);
+    setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 3600);
+  }
+
+  /* ---------- gio hang ---------- */
+  var cart = [];
+  var FREE_INSTALL = 8000000, INSTALL_FEE = 300000;
+  var drItems = document.getElementById("drItems");
+  var drSub = document.getElementById("drSub");
+  var drDisc = document.getElementById("drDisc");
+  var drTotal = document.getElementById("drTotal");
+  var tierBar = document.getElementById("tierBar");
+  var tierMsg = document.getElementById("tierMsg");
+  var badgeTop = document.getElementById("cartCountTop");
+  var badgeDock = document.getElementById("cartCountDock");
+
+  function cartCount(){ return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
+  function cartSum(){ return cart.reduce(function(s,i){ return s + i.qty * i.price; }, 0); }
+
+  function renderCart(){
+    badgeTop.textContent = cartCount();
+    badgeDock.textContent = cartCount();
+    if (!cart.length){
+      drItems.innerHTML = "<p class='dr-empty'>Giỏ còn trống.<br>Hãy chọn máy hoặc gói theo quy mô quán.</p>";
+    } else {
+      drItems.innerHTML = "";
+      cart.forEach(function(it, idx){
+        var row = document.createElement("div");
+        row.className = "dr-item";
+        var im = document.createElement("img");
+        im.src = it.img; im.alt = it.name;
+        var mid = document.createElement("div");
+        var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = it.name;
+        var pr = document.createElement("span"); pr.className = "pr"; pr.textContent = fmt(it.price);
+        var qty = document.createElement("div"); qty.className = "qty";
+        var minus = document.createElement("button"); minus.textContent = "−"; minus.setAttribute("aria-label","Giảm");
+        var b = document.createElement("b"); b.textContent = it.qty;
+        var plus = document.createElement("button"); plus.textContent = "+"; plus.setAttribute("aria-label","Tăng");
+        minus.addEventListener("click", function(){ if (it.qty > 1){ it.qty--; renderCart(); } });
+        plus.addEventListener("click", function(){ if (it.qty < 99){ it.qty++; renderCart(); } });
+        qty.appendChild(minus); qty.appendChild(b); qty.appendChild(plus);
+        mid.appendChild(nm); mid.appendChild(pr); mid.appendChild(qty);
+        var right = document.createElement("div");
+        var rm = document.createElement("button"); rm.className = "dr-rm"; rm.textContent = "Xóa";
+        rm.addEventListener("click", function(){ cart.splice(idx,1); renderCart(); });
+        right.appendChild(rm);
+        row.appendChild(im); row.appendChild(mid); row.appendChild(right);
+        drItems.appendChild(row);
+      });
+    }
+    var sum = cartSum();
+    drSub.textContent = fmt(sum);
+    var disc = sum >= FREE_INSTALL;
+    drTotal.textContent = fmt(disc ? sum : sum + (sum > 0 ? INSTALL_FEE : 0));
+    drDisc.textContent = disc ? "✓ Đã miễn phí công lắp đặt tận quán" : "Chưa đạt miễn phí lắp đặt (công lắp 300.000₫)";
+    tierBar.style.width = Math.min(100, sum / FREE_INSTALL * 100) + "%";
+    tierMsg.innerHTML = disc
+      ? "<b>✓ Đơn của bạn đã được miễn phí công lắp đặt tận quán</b>"
+      : "Đơn từ 8.000.000₫ → <b>miễn phí công lắp đặt tận quán</b> (còn " + fmt(Math.max(0, FREE_INSTALL - sum)) + ")";
+  }
+
+  function addToCart(name, price, img){
+    for (var i = 0; i < cart.length; i++){
+      if (cart[i].name === name){ cart[i].qty++; renderCart(); toast("Đã thêm vào giỏ", name + " ×" + cart[i].qty); openDrawer(); return; }
+    }
+    cart.push({ name: name, price: price, img: img, qty: 1 });
+    renderCart();
+    toast("Đã thêm vào giỏ", name);
+    openDrawer();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".js-add"), function(btn){
+    btn.addEventListener("click", function(){
+      addToCart(btn.getAttribute("data-name"), parseInt(btn.getAttribute("data-price"), 10), btn.getAttribute("data-img"));
+    });
+  });
+
+  /* ---------- drawer ---------- */
+  var drawer = document.getElementById("drawer");
+  var overlay = document.getElementById("overlay");
+  function openDrawer(){ drawer.classList.add("on"); overlay.classList.add("on"); document.body.style.overflow = "hidden"; }
+  function closeDrawer(){ drawer.classList.remove("on"); overlay.classList.remove("on"); document.body.style.overflow = ""; }
+  document.getElementById("btnCartTop").addEventListener("click", openDrawer);
+  document.getElementById("btnCartDock").addEventListener("click", openDrawer);
+  document.getElementById("drClose").addEventListener("click", closeDrawer);
+  overlay.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape"){ closeDrawer(); chatPanel.classList.remove("on"); } });
+  document.getElementById("drOrder").addEventListener("click", function(){
+    if (!cart.length){ toast("Giỏ hàng trống", "Hãy thêm máy hoặc gói trước khi đặt hàng nhé."); return; }
+    var n = cartCount();
+    cart = [];
+    renderCart();
+    closeDrawer();
+    toast("Đã nhận đơn của bạn", "Kỹ thuật ProPOS sẽ gọi xác nhận trong 30 phút. Cảm ơn bạn!");
+  });
+
+  /* ---------- goi theo quy mo quan ---------- */
+  var GOI = {
+    cafe: {
+      label: "Café",
+      img: "assets/img/p1.webp",
+      cb: { name: "Gói Café cơ bản — 1 quầy", sub: "Phù hợp quán café, trà sữa mới mở, 1 quầy order + thanh toán.", items: ["Máy POS cảm ứng 15\" J2", "Máy in hóa đơn nhiệt 80mm", "Phần mềm bán hàng + nạp menu"], price: 13900000, old: 15550000 },
+      nc: { name: "Gói Café nâng cao — 2–3 quầy", sub: "Thêm quầy pha + order tại bàn cho quán đông, không dồn quầy giờ cao điểm.", items: ["Máy POS cảm ứng 15\" J2", "Máy POS cầm tay M1 order tại bàn", "Máy in hóa đơn nhiệt 80mm", "Máy quét mã 2D + phần mềm"], price: 21900000, old: 24590000 },
+      chuoi: { name: "Gói Café chuỗi — 4+ điểm", sub: "Quản lý tập trung: doanh thu, menu, công nợ từng điểm trên 1 phần mềm.", items: ["Máy chủ + 3 máy POS cảm ứng", "3 máy in hóa đơn + 2 máy quét mã", "Két đựng tiền cho từng điểm", "Phần mềm quản lý chuỗi + cài đặt"], price: 46900000, old: 53400000 }
+    },
+    taphoa: {
+      label: "Tạp hóa",
+      img: "assets/img/p3.webp",
+      cb: { name: "Gói Tạp hóa cơ bản — 1 quầy", sub: "Quét mã nhanh, in tem giá, kho ra vào rõ ràng — đúng nhu cầu tạp hóa, minimart.", items: ["Máy POS cảm ứng 15\" J2", "Máy quét mã vạch 2D", "Máy in tem mã vạch + 2 cuộn tem", "Phần mềm bán hàng + quản kho"], price: 15400000, old: 17030000 },
+      nc: { name: "Gói Tạp hóa nâng cao — 2–3 quầy", sub: "Thêm cân POS và in bill cho khách mua lẻ số lượng lớn.", items: ["2 máy POS cảm ứng", "Cân điện tử tích hợp POS", "Máy in hóa đơn 80mm + két tiền", "Phần mềm kho + điểm khách hàng"], price: 21500000, old: 24180000 },
+      chuoi: { name: "Gói Tạp hóa chuỗi — 4+ điểm", sub: "Đồng bộ giá bán, khuyến mãi và kho chuyển hàng giữa các cửa hàng.", items: ["Máy chủ + 4 máy POS", "Cân POS + máy in tem cho từng điểm", "Phần mềm chuỗi + chuyển dữ liệu", "Lắp đặt + đào tạo tại từng cửa hàng"], price: 45900000, old: 52100000 }
+    },
+    nhahang: {
+      label: "Nhà hàng",
+      img: "assets/img/p8.webp",
+      cb: { name: "Gói Nhà hàng cơ bản — 1 quầy", sub: "Order tại bàn bằng POS cầm tay, bill chia quầy bếp — phục vụ nhanh gấp đôi.", items: ["Máy POS cảm ứng 15\" J2", "Máy in hóa đơn (quầy + bếp)", "Máy POS cầm tay M1 order tại bàn", "Phần mềm bán hàng + sơ đồ bàn"], price: 20400000, old: 22940000 },
+      nc: { name: "Gói Nhà hàng nâng cao — 2–3 quầy", sub: "Tách khu: quầy thu ngân, bếp, bar riêng — món không lạc, bill không sót.", items: ["2 máy POS cảm ứng", "2 máy POS cầm tay M1", "2 máy in hóa đơn + két tiền", "Phần mềm kho bếp + ca làm việc"], price: 32900000, old: 37240000 },
+      chuoi: { name: "Gói Nhà hàng chuỗi — 4+ điểm", sub: "Menu đồng bộ toàn chuỗi, báo cáo từng chi nhánh realtime về tổng bộ phận.", items: ["Máy chủ + 4 máy POS cảm ứng", "8 máy POS cầm tay order", "Máy in theo quầy/bếp từng điểm", "Phần mềm chuỗi + hợp nhất doanh thu"], price: 58900000, old: 66500000 }
+    },
+    congty: {
+      label: "Công ty",
+      img: "assets/img/p5.webp",
+      cb: { name: "Gói Chấm công cơ bản — 1 cửa", sub: "Cho văn phòng, xưởng dưới 100 nhân viên — chấm công và tính lương tự động.", items: ["Máy chấm công vân tay MC-520", "Phần mềm quản lý công + tính lương", "Lắp đặt + cài tại công ty", "Đào tạo nhân sự dùng máy"], price: 2490000, old: 2890000 },
+      nc: { name: "Gói Chấm công nâng cao — 2–3 cửa", sub: "Chia ca, chia tầng: vân tay cho xưởng, khuôn mặt cho văn phòng.", items: ["Máy chấm công khuôn mặt FR-05", "Máy chấm công vân tay MC-520", "Phần mềm công nhiều ca + phân quyền", "Lắp đặt đồng bộ 2–3 điểm chấm"], price: 6190000, old: 6940000 },
+      chuoi: { name: "Gói Chấm công chuỗi — 4+ địa điểm", sub: "Công của tất cả địa điểm gộp về 1 bộ phận nhân sự, xuất lương 1 lần.", items: ["2 máy khuôn mặt FR-05", "2 máy vân tay MC-520", "Phần mềm chấm công chuỗi", "Lắp đặt + đào tạo tại từng địa điểm"], price: 12900000, old: 14590000 }
+    }
+  };
+  var curM = "cafe", curS = "cb";
+  var grTitle = document.getElementById("grTitle");
+  var grBadge = document.getElementById("grBadge");
+  var grSub = document.getElementById("grSub");
+  var grItems = document.getElementById("grItems");
+  var grNow = document.getElementById("grNow");
+  var grOld = document.getElementById("grOld");
+  var grSave = document.getElementById("grSave");
+  var grGop = document.getElementById("grGop");
+  var grAdd = document.getElementById("grAdd");
+
+  function renderGoi(){
+    var g = GOI[curM][curS];
+    grTitle.textContent = g.name;
+    grSub.textContent = g.sub;
+    grBadge.textContent = "Rẻ hơn mua lẻ " + fmt(g.old - g.price);
+    grItems.innerHTML = "";
+    g.items.forEach(function(t){
+      var li = document.createElement("li");
+      li.innerHTML = "<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>";
+      var sp = document.createElement("span"); sp.textContent = t;
+      li.appendChild(sp);
+      if (t.indexOf("Phần mềm") === 0 || t.indexOf("phần mềm") !== -1){
+        var fr = document.createElement("span"); fr.className = "free"; fr.textContent = "MIỄN PHÍ";
+        li.appendChild(fr);
+      }
+      grItems.appendChild(li);
+    });
+    grNow.textContent = fmt(g.price);
+    grOld.textContent = fmt(g.old);
+    grSave.textContent = "Tiết kiệm " + fmt(g.old - g.price);
+    grGop.innerHTML = "Hoặc <b>trả góp 0%: ≈ " + fmt(Math.round(g.price / 12 / 10000) * 10000) + "/tháng × 12</b> — duyệt trong 15 phút bằng thẻ tín dụng.";
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#goiModels .goi-chip"), function(c){
+    c.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll("#goiModels .goi-chip"), function(x){ x.classList.remove("on"); });
+      c.classList.add("on");
+      curM = c.getAttribute("data-m");
+      renderGoi();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("#goiScales .goi-chip"), function(c){
+    c.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll("#goiScales .goi-chip"), function(x){ x.classList.remove("on"); });
+      c.classList.add("on");
+      curS = c.getAttribute("data-s");
+      renderGoi();
+    });
+  });
+  grAdd.addEventListener("click", function(){
+    var g = GOI[curM][curS];
+    addToCart(g.name, g.price, GOI[curM].img);
+  });
+  renderGoi();
+
+  /* ---------- search that ---------- */
+  var hdSearch = document.getElementById("hdSearch");
+  var cards = document.querySelectorAll("#pGrid .p-card");
+  function filterCards(){
+    var q = hdSearch.value.trim().toLowerCase();
+    if (!q){
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ""; });
+      return;
+    }
+    var n = 0;
+    Array.prototype.forEach.call(cards, function(c){
+      var hay = (c.getAttribute("data-name") + " " + c.getAttribute("data-cat")).toLowerCase();
+      var ok = hay.indexOf(q) !== -1;
+      c.style.display = ok ? "" : "none";
+      if (ok) n++;
+    });
+    toast("Kết quả tìm kiếm", "Tìm thấy " + n + " sản phẩm cho \"" + hdSearch.value.trim() + "\"");
+    document.getElementById("san-pham").scrollIntoView({ behavior: "smooth" });
+  }
+  hdSearch.addEventListener("keydown", function(e){
+    if (e.key === "Enter"){ e.preventDefault(); filterCards(); }
+    if (e.key === "Escape" && hdSearch.value){
+      hdSearch.value = "";
+      filterCards();
+    }
+  });
+  hdSearch.addEventListener("input", function(){
+    if (!hdSearch.value.trim()){
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ""; });
+    }
+  });
+
+  /* ---------- reviews ---------- */
+  var REVIEWS = [
+    { q: "Sáng gọi, chiều kỹ thuật đã có mặt quán. 45 phút sau là nhân viên bấm máy bán được — phần mềm cài sẵn menu hết 118 món. Tháng đầu doanh thu theo dõi rõ từng giờ nên mình chỉnh được ca làm.", name: "Trần Hảo", role: "Chủ quán café Mây — Q. Bình Thạnh", av: "TH" },
+    { q: "3 cửa hàng tạp hóa dùng chung 1 phần mềm, giá bán sửa 1 lần hiện ra cả 3 chỗ. Mất mạng vẫn bán được, có mạng là dữ liệu tự lên. Máy lỗi 1 lần, thợ tới sửa tại cửa hàng luôn, không phải mang đi.", name: "Lê Văn Đệ", role: "Chủ chuỗi tạp hóa Đệ Khoi — Gò Vấp", av: "ĐK" },
+    { q: "Công ty 120 người, 2 xưởng + 1 văn phòng. Lắp máy khuôn mặt cho VP, vân tay cho xưởng, công tự chạy về phòng nhân sự cuối tháng. Không còn tình trạng chấm công hộ như trước.", name: "Phạm Thu Cúc", role: "HR Manager — Công ty bao bì An Phát", av: "PC" }
+  ];
+  var pfQuote = document.getElementById("pfQuote");
+  var pfName = document.getElementById("pfName");
+  var pfRole = document.getElementById("pfRole");
+  var pfAv = document.getElementById("pfAv");
+  var pfDots = document.getElementById("pfDots");
+  var curRev = 0, revTimer = null;
+  function showRev(i){
+    curRev = i;
+    var r = REVIEWS[i];
+    pfQuote.textContent = "“" + r.q + "”";
+    pfName.textContent = r.name;
+    pfRole.textContent = r.role;
+    pfAv.textContent = r.av;
+    Array.prototype.forEach.call(pfDots.children, function(d, j){ d.classList.toggle("on", j === i); });
+  }
+  REVIEWS.forEach(function(_, i){
+    var d = document.createElement("i");
+    d.setAttribute("role", "button");
+    d.setAttribute("tabindex", "0");
+    d.setAttribute("aria-label", "Đánh giá " + (i + 1));
+    d.addEventListener("click", function(){ showRev(i); resetRevTimer(); });
+    pfDots.appendChild(d);
+  });
+  function resetRevTimer(){
+    if (revTimer) clearInterval(revTimer);
+    revTimer = setInterval(function(){ showRev((curRev + 1) % REVIEWS.length); }, 7000);
+  }
+  showRev(0);
+  resetRevTimer();
+
+  /* ---------- FAQ accordion ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".faq-item"), function(item){
+    var q = item.querySelector(".faq-q");
+    var a = item.querySelector(".faq-a");
+    q.addEventListener("click", function(){
+      var open = item.classList.contains("open");
+      Array.prototype.forEach.call(document.querySelectorAll(".faq-item.open"), function(o){
+        o.classList.remove("open");
+        o.querySelector(".faq-a").style.maxHeight = "0px";
+      });
+      if (!open){
+        item.classList.add("open");
+        a.style.maxHeight = a.scrollHeight + "px";
+      }
+    });
+  });
+
+  /* ---------- form lead (novalidate + tu kiem) ---------- */
+  document.getElementById("leadForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("lfName").value.trim();
+    var phone = document.getElementById("lfPhone").value.trim();
+    if (name.length < 2){
+      toast("Thiếu thông tin", "Bạn giúp mình tên + tên quán/công ty để tư vấn cho đúng nhé.");
+      document.getElementById("lfName").focus();
+      return;
+    }
+    if (!/^0\d{8,10}$/.test(phone.replace(/[\s.\-]/g, ""))){
+      toast("Số điện thoại chưa đúng", "Nhập số điện thoại 9–11 số bắt đầu bằng 0 để kỹ thuật gọi lại.");
+      document.getElementById("lfPhone").focus();
+      return;
+    }
+    this.reset();
+    toast("Đã gửi yêu cầu báo giá", "Kỹ thuật ProPOS gọi lại trong 30 phút. Cảm ơn " + name.split(" ").slice(-1)[0] + "!");
+  });
+
+  /* ---------- chat panel ---------- */
+  var chatPanel = document.getElementById("chatPanel");
+  document.getElementById("btnChat").addEventListener("click", function(){ chatPanel.classList.toggle("on"); });
+  document.addEventListener("click", function(e){
+    if (chatPanel.classList.contains("on") && !chatPanel.contains(e.target) && e.target.closest("#btnChat") === null){
+      chatPanel.classList.remove("on");
+    }
+  });
+
+  /* ---------- reveal failsafe ---------- */
+  var rvs = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08 });
+    Array.prototype.forEach.call(rvs, function(el){ io.observe(el); });
+    setTimeout(function(){
+      Array.prototype.forEach.call(rvs, function(el){ el.classList.add("in"); });
+    }, 4000);
+  } else {
+    Array.prototype.forEach.call(rvs, function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- dock an khi o dau trang ---------- */
+  var dock = document.getElementById("dock");
+  var lastY = 0;
+  window.addEventListener("scroll", function(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (y > 120 && y > lastY + 4){ dock.classList.add("dock-hide"); }
+    else if (y < lastY - 4 || y < 120){ dock.classList.remove("dock-hide"); }
+    lastY = y;
+  }, { passive: true });
+
+  renderCart();
+
+/*NGHE-15-CART-EXPOSE: mo bien gio cho C3 bridge (getter — luon trang thai hien tai)*/
+try{Object.defineProperty(window,"cart",{get:function(){return cart;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"CART",{get:function(){return CART;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"P",{get:function(){return P;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"PD",{get:function(){return PD;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"PRODUCTS",{get:function(){return PRODUCTS;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"ITEMS",{get:function(){return ITEMS;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"DRINKS",{get:function(){return DRINKS;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"PROD",{get:function(){return PROD;},configurable:true});}catch(e){}
+try{Object.defineProperty(window,"MENU",{get:function(){return MENU;},configurable:true});}catch(e){}
+})();
+</script>
+<!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

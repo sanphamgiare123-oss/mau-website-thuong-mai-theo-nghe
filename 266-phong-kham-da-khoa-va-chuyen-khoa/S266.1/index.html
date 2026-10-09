@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phòng khám Đa khoa Tâm Phúc — 8 chuyên khoa | Giữ chỗ khám 60 giây, đổi/huỷ miễn phí</title>
+<meta name="description" content="Phòng khám Đa khoa Tâm Phúc — 8 chuyên khoa, 3 khung giờ mỗi ngày. Xem bảng lịch khám theo chuyên khoa, chọn khung giờ trống, giữ chỗ 60 giây. Đổi/huỷ miễn phí trước 2 giờ.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalClinic","name":"Phòng khám Đa khoa Tâm Phúc","slogan":"Sức khỏe hôm nay, cuộc sống tươi sáng ngày mai","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"88 Đường Mây Trắng, Phường Nắng Mai","addressRegion":"TP. An Tâm","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.8021,"longitude":106.6313},"openingHours":"Mo-Su 07:00-20:00","medicalSpecialty":["GeneralPractice","InternalMedicine","Pediatric","Dermatology","Otolaryngologic","DiagnosticImaging"],"availableService":[{"@type":"MedicalProcedure","name":"Khám tổng quát"},{"@type":"MedicalProcedure","name":"Khám nội khoa"},{"@type":"MedicalProcedure","name":"Khám nhi"},{"@type":"MedicalProcedure","name":"Khám da liễu"},{"@type":"MedicalProcedure","name":"Khám tai mũi họng"},{"@type":"MedicalProcedure","name":"Xét nghiệm máu"},{"@type":"MedicalProcedure","name":"Siêu âm"},{"@type":"MedicalProcedure","name":"Tư vấn - tầm soát sức khỏe"}]}
+</script>
+<style>
+/*NB110-266 — chất liệu "giấy bệnh án kẻ ô" + pill giờ khám; palette theo poster: xanh dương · xanh ngọc · san hô (khan)*/
+:root{
+  --blue:#0E63AC; --blue-2:#0A4C86; --blue-deep:#082F52;
+  --teal:#11A08C; --teal-2:#0C8574; --teal-soft:#E1F3EF;
+  --coral:#E4593C; --coral-2:#C74328; --coral-soft:#FCEAE4;
+  --amber:#EFA02F; --amber-soft:#FDF3E2;
+  --bg:#F2F7FB; --paper:#FFFFFF; --ink:#14303F; --mut:#5E7484;
+  --line:#D6E4EF; --line-2:#BFD4E4;
+  --ok:#0C8574; --ok-soft:#E1F3EF;
+  --sh:0 10px 26px rgba(8,47,82,.09); --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4,.disp{font-family:Tahoma,'Segoe UI',Arial,sans-serif;line-height:1.3}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.wrap-w{max-width:1220px;margin:0 auto;padding:0 18px}
+.sec{padding:54px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--teal-2);font-weight:800}
+.kicker::before,.kicker::after{content:"+";color:var(--blue);font-size:14px;font-weight:900}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);margin:8px 0 10px;color:var(--blue-deep)}
+.sec-head p{color:var(--mut)}
+.num-tab{font-variant-numeric:tabular-nums}
+/*NB110-266 — thiết bị hình ảnh riêng: PILL GIỜ KHÁM (viên giờ + chấm trạng thái), lặp ≥3 section*/
+.pill{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--paper);border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:700;color:var(--blue-2);white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:99px;background:var(--teal);flex:none}
+.pill.hot i{background:var(--coral);box-shadow:0 0 0 3px var(--coral-soft)}
+.grid-bg{background-image:linear-gradient(rgba(14,99,172,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(14,99,172,.055) 1px,transparent 1px);background-size:26px 26px}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(242,247,251,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:11px;background:linear-gradient(140deg,var(--blue) 20%,var(--teal));color:#fff;display:grid;place-items:center;flex:none}
+.logo b{font-family:Tahoma,'Segoe UI',sans-serif;font-size:16px;color:var(--blue-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;letter-spacing:-.2px}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:9px;font-size:13.5px;font-weight:700;color:var(--blue-2)}
+nav.main a:hover{background:var(--teal-soft);color:var(--teal-2)}
+.call{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--coral);background:var(--coral-soft);border-radius:99px;padding:9px 14px;font-weight:800;font-size:13.5px;color:var(--coral-2);min-height:42px;white-space:nowrap}
+.call i{width:9px;height:9px;border-radius:99px;background:var(--coral);box-shadow:0 0 0 3px rgba(228,89,60,.25);animation:blink 1.6s infinite;flex:none}
+@keyframes blink{50%{opacity:.35}}
+
+/* ===== HERO — bảng trực treo cạnh biển hiệu ===== */
+.hero{position:relative;background:linear-gradient(180deg,#E5F0F9 0%,var(--bg) 82%);border-bottom:1px solid var(--line);overflow:clip}
+.hero-g{position:relative;display:grid;grid-template-columns:.96fr 1.04fr;gap:36px;align-items:center;padding:50px 0 54px}
+.hero .kick{display:inline-flex;align-items:center;gap:9px;background:var(--paper);border:1.5px solid var(--line);border-radius:99px;padding:8px 15px;font-size:12.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue-2);box-shadow:0 4px 12px rgba(8,47,82,.06)}
+.hero .kick b{color:var(--teal-2)}
+.hero h1{font-size:clamp(28px,4.2vw,42px);color:var(--blue-deep);margin:16px 0 12px;letter-spacing:-.4px}
+.hero h1 em{font-style:normal;color:var(--teal-2);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;background:var(--teal-soft);z-index:-1;border-radius:3px}
+.hero p.lead{color:#3C5566;font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-weight:800;min-height:48px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 8px 18px rgba(17,160,140,.30)}
+.btn-teal:hover{background:var(--teal-2)}
+.btn-coral{background:var(--coral);color:#fff;box-shadow:0 8px 18px rgba(228,89,60,.28)}
+.btn-coral:hover{background:var(--coral-2)}
+.btn-g{background:var(--paper);color:var(--blue-deep);border:1.5px solid var(--line)}
+.btn-g:hover{border-color:var(--teal);color:var(--teal-2)}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+/* biển hiệu + bảng trực */
+.hero-pic{position:relative;min-width:0}
+.sign{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;box-shadow:var(--sh);overflow:hidden}
+.sign-top{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--blue-deep),var(--blue));color:#fff;padding:9px 14px;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.sign-top .plus{color:#8FD9CC;font-size:15px;font-weight:900;letter-spacing:0}
+.sign img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#EDF4FA}
+.today-card{position:absolute;left:-14px;bottom:-20px;width:250px;background:var(--paper);border:1.5px solid var(--line-2);border-radius:13px;box-shadow:0 16px 34px rgba(8,47,82,.18);padding:13px 14px;z-index:3}
+.today-card h3{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue-deep);display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.today-card h3 i{width:8px;height:8px;border-radius:99px;background:var(--coral);animation:blink 1.6s infinite;flex:none}
+.today-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px dashed var(--line);font-size:12.5px;font-weight:700;color:var(--ink)}
+.today-row small{color:var(--mut);font-weight:600;display:block;font-size:10.5px}
+.today-row b{color:var(--teal-2);font-variant-numeric:tabular-nums}
+.today-note{margin-top:8px;font-size:10.5px;color:var(--mut)}
+.hero-tag{position:absolute;right:-6px;top:-14px;background:var(--amber);color:#fff;border-radius:99px;padding:8px 15px;font-size:12px;font-weight:800;box-shadow:0 6px 14px rgba(239,160,47,.35);z-index:3}
+
+/* ===== DẢI KHAN ===== */
+.khan{background:linear-gradient(90deg,var(--coral-2),var(--coral) 55%,#E96A4E);color:#fff;border-radius:16px;padding:16px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 12px 28px rgba(228,89,60,.26)}
+.khan .txt{flex:1;min-width:240px}
+.khan h3{font-size:clamp(15.5px,2.2vw,19px);color:#fff}
+.khan p{font-size:12.8px;color:#FFE1D8}
+.khan .pill{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);color:#fff}
+.khan .pill i{background:#FFD9CC}
+.khan .act{display:flex;gap:9px;flex-wrap:wrap}
+.khan .btn{min-height:42px;font-size:13px;padding:9px 15px}
+.khan .btn-w{background:#fff;color:var(--coral-2)}
+.khan .btn-w:hover{background:#FFE9E1}
+
+/* ===== KHỐI-8: BẢNG LỊCH KHÁM THEO CHUYÊN KHOA (pattern #6 — biến thể bảng trực × khung giờ × bác sĩ) ===== */
+.bd-sec{background:linear-gradient(180deg,var(--bg),#EAF2F9)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:-8px 0 22px;font-size:12.3px;color:var(--mut);font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:4px;flex:none}
+.legend .li{border:1.5px solid var(--teal);background:var(--ok-soft)}
+.legend .lk{border:1.5px solid var(--line-2);background:repeating-linear-gradient(-45deg,#EDF2F7 0 7px,#E2EAF2 7px 14px)}
+.bd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.dv{position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;border-top:4px solid var(--blue)}
+.dv:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.dv .ph{position:relative;padding:10px 10px 0}
+.dv .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+.dv .phong{position:absolute;right:18px;bottom:18px;background:rgba(8,47,82,.82);color:#fff;font-size:11px;font-weight:800;border-radius:7px;padding:4px 10px;letter-spacing:.5px;backdrop-filter:blur(3px);font-variant-numeric:tabular-nums}
+.dv .bdy{padding:11px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dv .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dv .num{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue);background:#E8F1F9;border-radius:99px;padding:3px 10px}
+.dv .gia{font-family:Tahoma,sans-serif;font-weight:900;color:var(--teal-2);font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dv .gia small{display:block;font-size:9.5px;color:var(--mut);font-weight:600;text-align:right;letter-spacing:.3px}
+.dv h3{font-size:17px;color:var(--blue-deep)}
+.dv p{font-size:12.6px;color:var(--mut);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* pill giờ khám — lõi pattern */
+.slots{display:flex;flex-direction:column;gap:6px}
+.slot{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:1.5px solid var(--line);background:#FAFCFE;border-radius:9px;padding:7px 10px;min-height:44px;transition:.16s;min-width:0}
+.slot .kh{flex:none;width:104px}
+.slot .kh b{display:block;font-size:12.5px;color:var(--blue-deep);line-height:1.25}
+.slot .kh small{font-size:10.3px;color:var(--mut);font-weight:600;font-variant-numeric:tabular-nums}
+.slot .bs{flex:1;font-size:12px;font-weight:700;color:#3C5566;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.slot .st{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;border-radius:99px;padding:4px 10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.slot.con{cursor:pointer}
+.slot.con .st{background:var(--ok-soft);color:var(--ok);border:1px solid rgba(12,133,116,.35)}
+.slot.con .st::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--teal)}
+.slot.con:hover{border-color:var(--teal);background:var(--teal-soft);transform:translateY(-1px)}
+.slot.kin{cursor:not-allowed;background:repeating-linear-gradient(-45deg,#F2F5F8 0 8px,#EDF1F5 8px 16px)}
+.slot.kin .kh b,.slot.kin .bs{color:var(--mut)}
+.slot.kin .st{background:#E4E9EE;color:#7A8B99;border:1px solid var(--line-2)}
+.dv-note{display:flex;align-items:center;gap:8px;margin-top:2px;font-size:11.5px;color:var(--mut)}
+.dv-note b{color:var(--coral-2)}
+/* thẻ nổi bật: TO hơn hẳn (2 cột) + huy hiệu riêng + CTA riêng */
+.dv.feat{grid-column:1/-1;display:grid;grid-template-columns:1.02fr .98fr;align-items:stretch;border:2px solid var(--amber);box-shadow:0 14px 30px rgba(239,160,47,.15)}
+.dv.feat-x{border-color:var(--teal);box-shadow:0 14px 30px rgba(17,160,140,.14)}
+.dv.feat-x{grid-template-columns:.98fr 1.02fr}
+.dv.feat .ph{padding:14px 0 14px 14px;display:flex}
+.dv.feat-x .ph{padding:14px 14px 14px 0;order:2}
+.dv.feat .ph img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;background:#EDF4FA;border-radius:10px;border:1px solid var(--line)}
+.dv.feat .bdy{padding:16px 18px 16px;display:flex;flex-direction:column;gap:9px}
+.dv.feat h3{font-size:22px}
+.dv.feat p{-webkit-line-clamp:3;font-size:13.2px}
+.dv.feat .gia{font-size:19px}
+.dv.feat .slot{min-height:48px}
+.dv.feat .bdy{justify-content:center}
+.badge{position:absolute;top:14px;left:14px;z-index:3;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border-radius:99px;padding:6px 13px;box-shadow:0 6px 14px rgba(8,47,82,.22)}
+.badge.amber{background:var(--amber);color:#fff}
+.badge.coral{background:var(--coral);color:#fff}
+.board-note{margin-top:18px;text-align:center;font-size:12.8px;color:var(--mut);font-weight:600}
+.board-note b{color:var(--blue-deep)}
+
+/* ===== DAC-THU: TRA GIỜ TRỐNG 7 NGÀY ===== */
+.tra-g{display:grid;grid-template-columns:1.12fr .88fr;gap:24px;align-items:start}
+.tra-g>*{min-width:0}
+.tra-box{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:22px clamp(16px,2.5vw,24px);box-shadow:var(--sh);max-width:100%}
+.tra-box .k-label{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tra-box .k-label i{font-style:normal;width:22px;height:22px;flex:none;border-radius:7px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid var(--line);background:var(--paper);color:var(--blue-2);border-radius:99px;padding:8px 14px;font-size:12.8px;font-weight:700;min-height:40px}
+.chips button:hover{border-color:var(--teal)}
+.chips button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+/* bảng 7 ngày × 3 khung */
+.week{margin-top:18px;overflow-x:auto;padding-bottom:4px}
+.wk{display:grid;grid-template-columns:96px repeat(7,minmax(88px,1fr));gap:7px;min-width:730px}
+.wk .hd{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--mut);text-align:center;padding:6px 2px;letter-spacing:.4px}
+.wk .hd small{display:block;font-size:10.5px;font-weight:700;color:var(--blue);text-transform:none}
+.wk .hd.today{color:var(--coral-2)}
+.wk .hd.today small{color:var(--coral)}
+.wk .rl{display:flex;flex-direction:column;justify-content:center;background:#F0F6FB;border:1px solid var(--line);border-radius:9px;padding:7px 9px;min-height:52px}
+.wk .rl b{font-size:12.5px;color:var(--blue-deep)}
+.wk .rl small{font-size:10.3px;color:var(--mut);font-weight:600;font-variant-numeric:tabular-nums}
+.cell{border:1.5px solid var(--teal);background:var(--ok-soft);color:var(--ok);border-radius:9px;font-weight:800;font-size:12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:.15s;padding:4px 3px;text-align:center;font-variant-numeric:tabular-nums}
+.cell small{font-size:9.8px;font-weight:600;color:var(--teal-2);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+.cell:hover small{color:#D8F3ED}
+.cell.kin{border:1.5px solid var(--line-2);background:repeating-linear-gradient(-45deg,#F0F3F7 0 7px,#E8EDF3 7px 14px);color:#8A9AA8;cursor:not-allowed;font-size:11.5px}
+.cell.kin small{color:#9DAcB8;color:#9DACB8}
+.tra-side{display:flex;flex-direction:column;gap:14px}
+.tra-info{background:linear-gradient(160deg,var(--blue-deep),var(--blue-2));color:#D8E8F4;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.tra-info h3{font-size:17px;color:#fff}
+.tra-info .row{display:flex;gap:11px;font-size:13px;align-items:flex-start}
+.tra-info .row .ic{width:34px;height:34px;flex:none;border-radius:9px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:16px}
+.tra-info .row b{color:#fff;display:block;font-size:13px}
+.tra-info .hot{font-family:Tahoma,sans-serif;font-size:24px;font-weight:900;color:#FFD9A8}
+.kh-commit{background:var(--paper);border:1.5px dashed var(--teal);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.kh-commit h4{font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal-2)}
+.kh-commit li{list-style:none;position:relative;padding-left:24px;font-size:12.8px;color:#3C5566}
+.kh-commit li::before{content:"✓";position:absolute;left:0;top:1px;width:16px;height:16px;border-radius:5px;background:var(--teal-soft);color:var(--teal-2);font-size:10.5px;font-weight:800;display:grid;place-items:center}
+
+/* ===== QUY TRÌNH 4 BƯỚC ===== */
+.qt-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:qt}
+.qt{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:20px 18px;position:relative;overflow:hidden}
+.qt::before{counter-increment:qt;content:"0" counter(qt);position:absolute;right:12px;top:8px;font-family:Tahoma,sans-serif;font-size:30px;font-weight:900;color:#E3EDF5;line-height:1}
+.qt .ic{width:44px;height:44px;border-radius:11px;background:var(--teal-soft);display:grid;place-items:center;font-size:21px;margin-bottom:12px}
+.qt b{display:block;font-size:14.5px;color:var(--blue-deep);margin-bottom:5px}
+.qt span{font-size:12.6px;color:var(--mut)}
+.qt.hot{border-color:var(--coral);background:linear-gradient(180deg,#FFF6F3,var(--paper))}
+.qt.hot .ic{background:var(--coral-soft)}
+.commit-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+
+/* ===== GIỚI THIỆU + KHÔNG GIAN — M3 collage so le ===== */
+.about{position:relative;overflow:clip}
+.about-g{display:grid;grid-template-columns:1.02fr .98fr;gap:38px;align-items:center}
+.collage{position:relative;padding-bottom:52px}
+.collage .c1{background:var(--paper);padding:10px 10px 14px;border:1.5px solid var(--line);border-radius:12px;box-shadow:var(--sh)}
+.collage .c1 img{aspect-ratio:4/3;object-fit:contain;background:#EDF4FA;border-radius:7px;width:100%}
+.collage .c2{position:absolute;right:-6px;bottom:0;width:46%;background:var(--paper);padding:8px 8px 10px;border:1.5px solid var(--line);border-radius:10px;box-shadow:0 16px 32px rgba(8,47,82,.20);transform:rotate(-2deg)}
+.collage .c2 img{aspect-ratio:4/3;object-fit:contain;background:#EDF4FA;border-radius:6px;width:100%}
+.cap{display:inline-flex;align-items:center;gap:6px;background:var(--blue-deep);color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:5px 11px;margin-top:8px}
+.collage .c2 .cap{position:absolute;left:10px;bottom:-13px;margin:0;transform:rotate(2deg);background:var(--teal-2)}
+.about-txt h2{font-size:clamp(23px,3.4vw,32px);color:var(--blue-deep);margin:8px 0 14px}
+.about-txt>p{color:#3C5566;font-size:14.5px;margin-bottom:12px}
+.about-txt .sign{font-family:Georgia,serif;font-style:italic;color:var(--teal-2);font-size:15px}
+.stat-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
+.stat{background:var(--paper);border:1.5px solid var(--line);border-radius:11px;padding:13px 15px}
+.stat b{font-family:Tahoma,sans-serif;font-size:21px;color:var(--blue);display:block;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--mut);font-weight:600}
+
+/* ===== CẢM NHẬN ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--teal)}
+.rev .st{color:var(--amber);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#3C5566;flex:1}
+.rev b{font-size:13px;color:var(--blue-deep)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ + MAP ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.ct-card{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--sh)}
+.ct-card h3{font-size:19px;color:var(--blue-deep)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#3C5566}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:10px;background:var(--teal-soft);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--blue-deep)}
+.ct-card .tel{font-size:25px;font-weight:900;color:var(--coral-2);font-family:Tahoma,sans-serif;font-variant-numeric:tabular-nums}
+.ct-card iframe{width:100%;height:240px;border:0;border-radius:11px;flex:1;min-height:240px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1.5px solid var(--line);border-radius:11px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--blue-deep);min-height:48px}
+.qa>button i{font-style:normal;color:var(--teal);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#3C5566}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--blue-deep);color:#B9CFE0;margin-top:44px;position:relative}
+footer::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--teal),var(--amber) 50%,var(--teal));opacity:.6}
+.ft-g{display:grid;grid-template-columns:1.35fr 1fr 1fr 1.15fr;gap:26px;padding:34px 0 22px}
+.ft-g h4{color:#fff;font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#B9CFE0;display:block;margin-bottom:7px}
+.ft-g a:hover{color:#FFD9A8}
+.ft-brand b{font-family:Tahoma,sans-serif;font-size:17px;color:#fff;display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.10);padding:14px 0;text-align:center;font-size:11.8px;color:#7E99AF}
+.ft-bot b{color:#C4D8E6;font-weight:600}
+.ft-disc{border-top:0;margin-top:-6px;padding-top:0;font-size:11.5px;color:#6E8CA3}
+
+/* ===== THANH GỌI MOBILE ===== */
+.mbar{display:none}
+
+/* ===== FAB ĐẶT LỊCH (SVG lịch + dấu y tế) ===== */
+.fab{position:fixed;right:18px;bottom:18px;z-index:86;width:60px;height:60px;border-radius:16px;border:0;background:linear-gradient(140deg,var(--teal),var(--teal-2));color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(12,133,116,.42);transition:transform .2s}
+.fab:hover{transform:translateY(-3px) scale(1.03)}
+.fab::after{content:"";position:absolute;inset:-5px;border-radius:20px;border:2px solid rgba(17,160,140,.45);animation:ring 2.2s infinite}
+@keyframes ring{0%{transform:scale(.9);opacity:1}70%{transform:scale(1.18);opacity:0}100%{opacity:0}}
+.fab svg{width:29px;height:29px}
+.fab .fab-dot{position:absolute;top:-4px;right:-4px;background:var(--coral);color:#fff;font-size:10px;font-weight:900;border-radius:99px;padding:3px 7px;border:2px solid #fff;font-variant-numeric:tabular-nums}
+
+/* ===== DRAWER ĐẶT LỊCH ===== */
+.ovl{position:fixed;inset:0;background:rgba(8,47,82,.55);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s}
+.ovl.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100vw);z-index:91;background:var(--bg);box-shadow:-18px 0 44px rgba(8,47,82,.30);transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dw-head{background:linear-gradient(140deg,var(--blue-deep),var(--blue-2));color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.dw-head .mark{width:42px;height:42px;flex:none;border-radius:11px;background:rgba(255,255,255,.14);display:grid;place-items:center}
+.dw-head b{font-family:Tahoma,sans-serif;font-size:15.5px;display:block}
+.dw-head small{font-size:11.5px;opacity:.85;display:block}
+.dw-x{margin-left:auto;border:0;background:rgba(255,255,255,.14);color:#fff;width:36px;height:36px;border-radius:9px;font-size:16px}
+.dw-steps{display:flex;gap:5px;padding:11px 20px;background:var(--paper);border-bottom:1.5px solid var(--line)}
+.dw-step{flex:1;text-align:center;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);padding:5px 2px;border-radius:8px;background:#EFF4F9}
+.dw-step.on{background:var(--teal-soft);color:var(--teal-2)}
+.dw-step.done{background:#E8F1F9;color:var(--blue)}
+.dw-body{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.dw-body label{font-size:12px;font-weight:800;color:var(--blue-deep);display:block;margin-bottom:5px}
+.dw-body label em{color:var(--coral);font-style:normal}
+.dw-body select,.dw-body input{width:100%;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font-size:14px;font-family:inherit;min-height:46px}
+.dw-body select:focus,.dw-body input:focus{outline:none;border-color:var(--teal)}
+.dw-body input.err,.dw-body select.err{border-color:var(--bad,#C74328);background:#FFF6F3}
+.dw-frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gio-chips{display:flex;gap:7px;flex-wrap:wrap}
+.gio-chips button{flex:1;min-width:96px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 6px;font-size:12px;font-weight:800;color:var(--blue-2);min-height:52px;white-space:normal;line-height:1.3}
+.gio-chips button small{display:block;font-size:10px;color:var(--mut);font-weight:600;font-variant-numeric:tabular-nums}
+.gio-chips button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.gio-chips button.on small{color:#D8F3ED}
+.gio-chips button:disabled{opacity:.45;cursor:not-allowed}
+.dw-commit{background:var(--paper);border:1.5px dashed var(--teal);border-radius:12px;padding:13px 15px}
+.dw-commit li{list-style:none;position:relative;padding-left:23px;font-size:12.3px;color:#3C5566;margin-bottom:6px}
+.dw-commit li::before{content:"✓";position:absolute;left:0;top:1px;width:15px;height:15px;border-radius:5px;background:var(--teal-soft);color:var(--teal-2);font-size:10px;font-weight:800;display:grid;place-items:center}
+.dw-sub{border:0;background:var(--teal);color:#fff;font-weight:800;border-radius:11px;padding:14px;font-size:15px;min-height:50px;box-shadow:0 8px 18px rgba(17,160,140,.30)}
+.dw-sub:hover{background:var(--teal-2)}
+.dw-tiny{font-size:11.3px;color:var(--mut);line-height:1.5}
+/* xác nhận tại trang */
+.dw-ok{display:none;flex-direction:column;gap:13px;text-align:center;padding:8px 4px}
+.dw-ok.on{display:flex}
+.dw-ok .ok-ic{width:66px;height:66px;margin:4px auto 0;border-radius:99px;background:var(--teal-soft);display:grid;place-items:center}
+.dw-ok h3{font-size:19px;color:var(--teal-2)}
+.dw-ok .ma{font-family:Tahoma,sans-serif;font-size:26px;font-weight:900;color:var(--blue-deep);letter-spacing:2px;background:#fff;border:2px dashed var(--line-2);border-radius:11px;padding:9px}
+.dw-phieu{text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.dw-phieu .r{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:6px 0;border-bottom:1px dotted var(--line)}
+.dw-phieu .r:last-child{border:0}
+.dw-phieu .r span{color:var(--mut)}
+.dw-phieu .r b{color:var(--blue-deep);text-align:right}
+.dw-acts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.dw-acts .btn-g{min-height:46px}
+
+/* ===== CHAT WIDGET (pkc) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:92px;z-index:80;width:52px;height:52px;border-radius:99px;border:0;background:var(--blue);color:#fff;font-size:22px;box-shadow:0 10px 24px rgba(14,99,172,.42);display:grid;place-items:center}
+.pkc-fab:hover{background:var(--blue-2)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:156px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1.5px solid var(--line);border-radius:16px;box-shadow:0 18px 44px rgba(8,47,82,.26);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--blue-deep);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:240px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F0F6FB}
+.mg{max-width:82%;padding:9px 12px;border-radius:12px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--blue-2);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1.5px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--blue);color:#fff;border-radius:10px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+.toast{background:var(--blue-deep);color:#EAF3FA;border-radius:12px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:#FFD9A8;margin-bottom:2px}
+.toast span{font-size:12.8px;color:#C9DCEA}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1080px){
+  nav.main a{padding:9px 7px;font-size:12.5px}
+}
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:36px 0 46px}
+  nav.main{display:none}
+  .today-card{left:8px;bottom:-16px;width:236px}
+  .hero-tag{right:6px;top:-10px}
+  .tra-g{grid-template-columns:1fr}
+  .collage .c2{right:0}
+  .about-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr 1fr}
+  .ct-g{grid-template-columns:1fr}
+  .qt-g{grid-template-columns:1fr 1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  /* thẻ nổi bật mobile: vẫn TO (ảnh nguyên khung trên, nội dung dưới) */
+  .dv.feat,.dv.feat-x{grid-template-columns:1fr}
+  .dv.feat .ph,.dv.feat-x .ph{padding:12px 12px 0;order:0}
+  .dv.feat .ph img{aspect-ratio:4/3;object-fit:contain}
+  .dv.feat h3{font-size:19px}
+  .dv.feat .bdy{padding:12px 14px 13px;gap:7px}
+  .dv.feat p{-webkit-line-clamp:2}
+  .dv.feat .slot{min-height:42px}
+}
+@media (max-width:640px){
+  .sec{padding:38px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .call{order:2;padding:9px 12px}
+  .call span.num{display:none}
+  .bd-grid{grid-template-columns:1fr}
+  /*NB110-266 — mobile: thẻ nổi bật viền cam + đứng đầu khối (đúng hợp đồng)*/
+  .dv.feat{order:-1;border-color:var(--amber);box-shadow:0 12px 26px rgba(239,160,47,.20)}
+  .dv.feat-x{order:-2}
+  .dv.feat .dv-note{display:none}
+  .khan{flex-direction:column;align-items:flex-start;gap:12px}
+  .rev-g{grid-template-columns:1fr}
+  .qt-g{grid-template-columns:1fr}
+  .stat-g{grid-template-columns:1fr 1fr}
+  .dw-frow{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 18px}
+  .ft-brand{grid-column:1/-1}
+  .ft-col-last{grid-column:1/-1}
+  .btn{white-space:normal;text-align:center}
+  .hero h1{font-size:27px}
+  .collage .c2{width:52%;right:0}
+  .slot .kh{width:92px}
+  .slot .bs{display:none}
+  .slot.con,.slot.kin{padding-right:8px}
+  /*NB110-266 — thanh CTA cố định mobile: gọi + giữ chỗ (mở drawer)*/
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:85;gap:8px;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);box-shadow:0 -6px 18px rgba(8,47,82,.10)}
+  .mbar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:11px;min-height:46px;font-weight:800;font-size:13.5px;white-space:normal;text-align:center}
+  .mbar .m-call{background:var(--coral);color:#fff}
+  .mbar .m-dk{background:var(--teal);color:#fff}
+  body{padding-bottom:74px}
+  .fab{bottom:84px;right:14px;width:54px;height:54px}
+  .pkc-fab{bottom:148px;right:14px}
+  .pkc-panel{bottom:210px}
+  .toast-zone{bottom:92px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M9.2 2.5h5.6v6.7h6.7v5.6h-6.7v6.7H9.2v-6.7H2.5V9.2h6.7z"/></svg></span>
+      <span><b>Phòng khám Đa khoa Tâm Phúc</b><small>Đa khoa &amp; chuyên khoa</small></span>
+    </a>
+    <nav class="main">
+      <a href="#lich-kham">Lịch khám</a>
+      <a href="#tra-gio">Tra giờ trống</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#ve-phong-kham">Về phòng khám</a>
+      <a href="#faq">Hỏi đáp</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <a class="call" href="tel:0034567899" aria-label="Gọi hotline phòng khám"><i></i>📞<span class="num num-tab">0034567899</span></a>
+  </div>
+</header>
+
+<section class="hero grid-bg" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kick">🩺 Sức khỏe hôm nay — <b>cuộc sống tươi sáng ngày mai</b></span>
+      <h1>Thấy ca trống ngay trên bảng lịch,<br><em>giữ chỗ trong 60 giây</em></h1>
+      <p class="lead">Phòng khám Đa khoa Tâm Phúc — 8 chuyên khoa, 3 khung giờ mỗi ngày, bác sĩ trực công khai. <b>Chọn dịch vụ → khung giờ trống → xác nhận giữ chỗ</b>; đổi/huỷ miễn phí trước 2 giờ.</p>
+      <div class="hero-cta">
+        <button class="btn btn-teal" data-open-drawer>🗓 Giữ chỗ khám ngay</button>
+        <a class="btn btn-g" href="#tra-gio">🔎 Tra giờ trống 7 ngày</a>
+      </div>
+      <div class="hero-pills">
+        <span class="pill"><i></i>Sáng 07:00–11:30</span>
+        <span class="pill"><i></i>Chiều 13:30–17:00</span>
+        <span class="pill hot"><i></i>Tối 17:00–20:00</span>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="sign">
+        <div class="sign-top"><span class="plus">＋</span> Phòng khám Tâm Phúc <span style="margin-left:auto;font-weight:600;letter-spacing:.4px;text-transform:none">Khỏe là hạnh phúc</span></div>
+        <img src="assets/img/cover.webp" alt="Phòng khám Đa khoa Tâm Phúc — vì một cuộc sống khỏe mạnh hơn mỗi ngày" width="1448" height="1086" fetchpriority="high">
+      </div>
+      <div class="hero-tag">Mở cửa 7 ngày/tuần</div>
+      <div class="today-card" aria-live="polite">
+        <h3><i></i>Hôm nay còn trống</h3>
+        <div class="today-row"><span>Sáng<small>07:00–11:30</small></span><b id="tcSang">—</b></div>
+        <div class="today-row"><span>Chiều<small>13:30–17:00</small></span><b id="tcChieu">—</b></div>
+        <div class="today-row"><span>Tối<small>17:00–20:00</small></span><b id="tcToi">—</b></div>
+        <div class="today-note">Đếm từ bảng lịch 8 chuyên khoa bên dưới · <b style="color:var(--coral-2)">giữ trước 2 giờ để được đổi/huỷ miễn phí</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="khan-strip" style="padding:26px 0">
+  <div class="wrap">
+    <div class="khan rv">
+      <div class="txt">
+        <h3>⚡ Hôm nay còn <span id="khanCount">…</span> slot giữ chỗ — số slot thay theo từng ca</h3>
+        <p>Giữ chỗ mất 60 giây, không cần đặt cọc. Đổi/huỷ miễn phí trước 2 giờ — báo qua hotline để nhường ca cho người khác.</p>
+      </div>
+      <div class="act">
+        <span class="pill"><i></i>Xác nhận gọi lại trong 15 phút</span>
+        <button class="btn btn-w" data-open-drawer>🗓 Giữ chỗ ngay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bd-sec" id="lich-kham">
+  <div class="wrap-w">
+    <div class="sec-head rv">
+      <span class="kicker">Bảng lịch khám theo chuyên khoa</span>
+      <h2>8 chuyên khoa × 3 khung giờ × bác sĩ trực</h2>
+      <p>Như bảng treo ở sảnh tiếp đón: ô xanh là còn suất — bấm để giữ chỗ luôn; ô kẻ là đã kín, chọn khung khác hoặc ngày khác.</p>
+    </div>
+    <div class="legend rv">
+      <span><i class="li"></i>Còn suất — bấm giữ chỗ</span>
+      <span><i class="lk"></i>Đã kín — chọn khung khác</span>
+      <span>Giá tham khảo · báo đúng khi khám</span>
+    </div>
+    <div class="bd-grid" id="bdGrid"></div>
+    <p class="board-note rv">Bảng lịch cập nhật đầu mỗi ca · Người cao tuổi, trẻ nhỏ, phụ nữ có thai được <b>ưu tiên xếp số tại quầy</b> · Trường hợp khẩn cấp gọi <b>115</b>.</p>
+  </div>
+</section>
+
+<section class="sec" id="tra-gio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Tra giờ trống — giữ chỗ</span>
+      <h2>Chọn dịch vụ → khung giờ trống → xác nhận giữ chỗ</h2>
+      <p>Bảng 7 ngày tới của chuyên khoa bạn chọn. Ô xanh bấm được — phiếu giữ chỗ mở sẵn đúng ngày, giờ và bác sĩ trực.</p>
+    </div>
+    <div class="tra-g">
+      <div class="tra-box rv">
+        <div class="k-label"><i>1</i> Chọn dịch vụ muốn khám</div>
+        <div class="chips" id="traChips"></div>
+        <div class="week"><div class="wk" id="weekGrid"></div></div>
+        <p class="dw-tiny" style="margin-top:10px">Ô xanh = còn suất, bấm để giữ chỗ · Ô kẻ = đã kín · Kết quả xét nghiệm máu basic trong 60–90 phút; xét nghiệm chuyên sâu trả trong 24 giờ.</p>
+      </div>
+      <div class="tra-side">
+        <div class="tra-info rv">
+          <h3>Quầy tiếp đón Tâm Phúc</h3>
+          <a class="hot num-tab" href="tel:0034567899">0034567899</a>
+          <div class="row"><div class="ic">🕰</div><div><b>Giờ khám</b>Sáng 07:00–11:30 · Chiều 13:30–17:00 · Tối 17:00–20:00 — tất cả các ngày trong tuần</div></div>
+          <div class="row"><div class="ic">📍</div><div><b>88 Đường Mây Trắng, Phường Nắng Mai</b>TP. An Tâm — có chỗ đỗ xe cho ô tô</div></div>
+          <div class="row"><div class="ic">🧾</div><div><b>Mang theo</b>CCCD, sổ khám cũ, thuốc đang dùng, kết quả xét nghiệm gần nhất (nếu có)</div></div>
+        </div>
+        <div class="kh-commit rv">
+          <h4>Cam kết khi giữ chỗ</h4>
+          <li>Bảo mật thông tin — chỉ dùng để xác nhận lịch khám</li>
+          <li>Đổi/huỷ miễn phí trước 2 giờ, không đặt cọc</li>
+          <li>Quầy gọi xác nhận trong 15 phút (giờ khám) — xác nhận ngay tại trang</li>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bd-sec" id="quy-trinh" style="padding-top:44px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Quy trình giữ chỗ</span>
+      <h2>4 bước từ màn hình tới ghế chờ</h2>
+    </div>
+    <div class="qt-g">
+      <div class="qt rv"><div class="ic">🗓</div><b>Chọn giờ trống</b><span>Bấm ô xanh trên bảng lịch chuyên khoa hoặc tra 7 ngày tới.</span></div>
+      <div class="qt rv"><div class="ic">📝</div><b>Gửi phiếu giữ chỗ</b><span>Nhập tên + số điện thoại — 60 giây, không cọc, không tài khoản.</span></div>
+      <div class="qt rv"><div class="ic">📞</div><b>Gọi xác nhận 15 phút</b><span>Quầy tiếp đón gọi chốt giờ và bác sĩ trong giờ khám.</span></div>
+      <div class="qt hot rv"><div class="ic">🏥</div><b>Đến khám đúng giờ</b><span>Đến trước 10 phút. Đổi/huỷ miễn phí trước 2 giờ qua hotline.</span></div>
+    </div>
+    <div class="commit-row rv">
+      <span class="pill"><i></i>🔒 Bảo mật thông tin người khám</span>
+      <span class="pill"><i></i>🔁 Đổi/huỷ miễn phí trước 2 giờ</span>
+      <span class="pill hot"><i></i>⚡ Xác nhận tại trang — không chờ email</span>
+      <span class="pill"><i></i>💳 Viện phí báo trước khi làm</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec about grid-bg" id="ve-phong-kham">
+  <div class="wrap about-g">
+    <div class="collage rv">
+      <div class="c1">
+        <img src="assets/img/intro.webp" alt="Giới thiệu Phòng khám Đa khoa Tâm Phúc — đa dạng chuyên khoa, hỗ trợ cần lâm sàng, tư vấn chủ động" width="1448" height="1086">
+        <span class="cap">🩺 Sảnh tư vấn — tầng 1</span>
+      </div>
+      <div class="c2">
+        <img src="assets/img/space.webp" alt="Không gian phòng khám Tâm Phúc — phòng chờ sạch sẽ, hành lang thông tầng" width="1448" height="1086">
+        <span class="cap">Phòng chờ — có wifi &amp; máy lạnh</span>
+      </div>
+    </div>
+    <div class="about-txt rv">
+      <span class="kicker">Về phòng khám</span>
+      <h2>Phòng khám của khu phố — khám sớm được, tối cũng có ca</h2>
+      <p>Tâm Phúc khởi đầu từ một phòng khám đa khoa khu Nắng Mai, nay phục vụ <b>8 chuyên khoa</b> với 24+ bác sĩ, kỹ thuật viên trực theo ca công khai trên bảng lịch. Chúng tôi giữ đúng ba dòng in trên tấm biển của phòng khám: <b>chăm sóc tận tâm · không gian sạch sẽ · quy trình rõ ràng</b>.</p>
+      <p>Giữ chỗ khám nên đơn giản như lấy số: thấy giờ trống, bấm giữ, quầy gọi xác nhận. Đổi kế hoạch? Gọi trước 2 giờ — miễn phí, ca đó nhường cho người cần hơn.</p>
+      <div class="stat-g">
+        <div class="stat"><b class="num-tab">8</b><span>chuyên khoa trong 1 địa chỉ</span></div>
+        <div class="stat"><b class="num-tab">24+</b><span>bác sĩ &amp; kỹ thuật viên trực ca</span></div>
+        <div class="stat"><b class="num-tab">15 phút</b><span>gọi xác nhận sau khi giữ chỗ</span></div>
+        <div class="stat"><b class="num-tab">7 ngày</b><span>mở cửa mỗi tuần, có ca tối</span></div>
+      </div>
+      <p class="sign">— BS. Nguyễn Minh An, Trưởng chuyên môn —</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="cam-nhan">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Người khám kể lại</span>
+      <h2>Bệnh nhân và người nhà đều quay lại</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Bấm giữ chỗ ca tối lúc 16 giờ, 5 phút sau quầy gọi xác nhận. Đi làm về khám được luôn, không phải xin nghỉ sáng."</p><b>Anh Trần Quốc Hùng</b><span>29 tuổi · khám nội khoa, ca tối</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Con tôi sốt, tôi bấm slot sáng cho khám nhi. Bác sĩ thăm khám kỹ, nhắc mốc tái khám — bé không sợ nữa."</p><b>Chị Lê Hải Yến</b><span>mẹ bé 4 tuổi · khám nhi</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Xét nghiệm máu sáng, 9 giờ có kết quả trên tay. Bác sĩ đọc chỉ số từng dòng, không qua loa."</p><b>Cô Nguyễn Thị Bích Thu</b><span>58 tuổi · xét nghiệm &amp; tầm soát</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Đổi giờ 2 lần vì trụ công tác — cả hai lần gọi trước 2 giờ, không mất phí, không bị nhăn nhó. Chấm đủ nếu bãi xe rộng hơn."</p><b>Anh Phạm Đăng Khoa</b><span>35 tuổi · khám tổng quát định kỳ</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bd-sec" id="lien-he">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏥 Đến phòng khám Tâm Phúc</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>88 Đường Mây Trắng, Phường Nắng Mai, TP. An Tâm</div></div>
+      <div class="ct-line"><div class="ic">☎️</div><div><b>Hotline giữ chỗ &amp; tư vấn</b><br><a class="tel num-tab" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ khám</b><br>Sáng 07:00–11:30 · Chiều 13:30–17:00 · Tối 17:00–20:00 — 7 ngày/tuần</div></div>
+      <div class="ct-line"><div class="ic">🚑</div><div><b>Trường hợp khẩn cấp</b><br>Gọi <b>115</b> hoặc đến cơ sở cấp cứu gần nhất — phòng khám phục vụ điều trị ngoại trú.</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.8021,106.6313&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới phòng khám</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.8021,106.6313 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.8021,106.6313&z=15&output=embed&hl=vi" title="Bản đồ Phòng khám Đa khoa Tâm Phúc"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp người khám</span>
+      <h2>Vài điều hay hỏi trước khi giữ chỗ</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Phòng khám có áp dụng BHYT không?<i>+</i></button><div class="a">Tâm Phúc phục vụ <b>khám và điều trị ngoại trú theo yêu cầu (dịch vụ)</b>, không trực tiếp chi trả BHYT. Hoá đơn tài chính phát hành đầy đủ để bạn quyết toán nơi làm việc hoặc bảo hiểm tự nguyện. Nếu trường hợp của bạn cần điều trị theo tuyến BHYT, quầy tiếp đón sẽ hướng dẫn tuyến phù hợp gần nhất.</div></div>
+      <div class="qa rv"><button>Giữ chỗ có mất phí không? Đổi/huỷ thế nào?<i>+</i></button><div class="a">Giữ chỗ <b>miễn phí, không đặt cọc</b>. Cần đổi giờ hoặc huỷ? Gọi <b class="num-tab">0034567899</b> trước <b>2 giờ</b> so với giờ hẹn — miễn phí hoàn toàn, ca đó được nhường cho người khác. Quá 2 giờ vẫn đổi được nếu còn suất, ưu tiên ca chờ.</div></div>
+      <div class="qa rv"><button>Giờ khám thế nào? Có khám tối và cuối tuần không?<i>+</i></button><div class="a">Ba khung giờ mỗi ngày, tất cả các ngày trong tuần: <b>Sáng 07:00–11:30 · Chiều 13:30–17:00 · Tối 17:00–20:00</b>. Khung ít đông là 13:30–15:00. Khám nhi và xét nghiệm lấy mẫu chỉ mở sáng + chiều; da liễu khám ban ngày.</div></div>
+      <div class="qa rv"><button>Xét nghiệm máu có phải nhịn ăn? Bao lâu có kết quả?<i>+</i></button><div class="a">Nên <b>nhịn ăn 8–10 tiếng</b> trước khi lấy mẫu (uống nước lọc được), hạn chế rượu bia 24 giờ trước. Kết quả basic (tổng phân tích, đường, mỡ máu) có trong <b>60–90 phút</b>; nhóm chuyên sâu trả trong 24 giờ — quầy hẹn giờ cụ thể khi lấy mẫu.</div></div>
+      <div class="qa rv"><button>Khám nhi cho bé bao tuổi? Cần chuẩn bị gì?<i>+</i></button><div class="a">Khám nhi nhận bé từ <b>0–15 tuổi</b>, người nhà đi cùng suốt buổi khám. Mang sổ theo dõi sức khoẻ của bé, sổ tiêm chủng và thuốc đang dùng. Bé nên ăn trước 1–2 tiếng (trừ khi bác sĩ hẹn xét nghiệm), mặc đồ dễ cởi để khám.</div></div>
+      <div class="qa rv"><button>Đi siêu âm cần chuẩn bị gì?<i>+</i></button><div class="a">Siêu âm bụng tổng quát: <b>nhịn ăn 4–6 tiếng</b>, giữ bàng quang nhẹ theo hướng dẫn khi hẹn. Siêu âm tuyến giáp, mạch máu không cần nhịn. Mang phim/kết quả siêu âm cũ nếu có để bác sĩ so sánh.</div></div>
+      <div class="qa rv"><button>Thông tin tôi gửi có được bảo mật?<i>+</i></button><div class="a">Có — thông tin trên phiếu giữ chỗ <b>chỉ dùng để xác nhận lịch khám</b> và nhắc giờ qua điện thoại, không chia sẻ cho bên thứ ba. Lưu ý: thông tin trên website mang tính <b>tham khảo — không thay thế chẩn đoán của bác sĩ</b>; triệu chứng cấp tính xin gọi 115 hoặc đến cơ sở cấp cứu.</div></div>
+      <div class="qa rv"><button>Khám không đúng chuyên khoa mình chọn thì sao?<i>+</i></button><div class="a">Không sao — khám tổng quát chính là "cửa vào" cho mọi lộ trình: bác sĩ sẽ chẩn đoán bước đầu và chuyển đúng chuyên khoa ngay trong buổi khám, không thu thêm phí chuyển. Bạn cũng có thể chọn "Chưa rõ — nhờ tư vấn" khi giữ chỗ.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b><svg viewBox="0 0 24 24" width="20" height="20" fill="#8FD9CC" aria-hidden="true"><path d="M9.2 2.5h5.6v6.7h6.7v5.6h-6.7v6.7H9.2v-6.7H2.5V9.2h6.7z"/></svg> Phòng khám Đa khoa Tâm Phúc</b>
+      <p>Sức khỏe hôm nay, cuộc sống tươi sáng ngày mai. 8 chuyên khoa · 3 khung giờ mỗi ngày · giữ chỗ 60 giây, đổi/huỷ miễn phí trước 2 giờ.</p>
+    </div>
+    <div>
+      <h4>Chuyên khoa</h4>
+      <a href="#lich-kham">Khám tổng quát &amp; nội khoa</a>
+      <a href="#lich-kham">Khám nhi · Da liễu · TMH</a>
+      <a href="#lich-kham">Xét nghiệm &amp; siêu âm</a>
+      <a href="#lich-kham">Tầm soát sức khỏe</a>
+    </div>
+    <div>
+      <h4>Người khám</h4>
+      <a href="#tra-gio">Tra giờ trống 7 ngày</a>
+      <a href="#quy-trinh">Quy trình giữ chỗ</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div class="ft-col-last">
+      <h4>Liên hệ</h4>
+      <p>📍 88 Đường Mây Trắng, Phường Nắng Mai, TP. An Tâm</p>
+      <p>☎️ <a class="num-tab" href="tel:0034567899">0034567899</a></p>
+      <p>🕰 Sáng 07:00–11:30 · Chiều 13:30–17:00 · Tối 17:00–20:00</p>
+    </div>
+  </div>
+  <div class="ft-bot"><b>© 2026 Phòng khám Đa khoa Tâm Phúc</b> · Khỏe là hạnh phúc</div>
+  <div class="ft-bot ft-disc">Thông tin trên website chỉ mang tính tham khảo — không thay thế chẩn đoán của bác sĩ. Trường hợp khẩn cấp xin gọi 115.</div>
+</footer>
+
+<!-- ===== THANH CTA MOBILE ===== -->
+<div class="mbar">
+  <a class="m-call" href="tel:0034567899">📞 Gọi giữ chỗ</a>
+  <button class="m-dk" data-open-drawer style="border:0">🗓 Giữ chỗ khám</button>
+</div>
+
+<!-- ===== FAB ĐẶT LỊCH (SVG lịch + dấu cộng y tế) ===== -->
+<button class="fab" id="fabDk" data-open-drawer aria-label="Giữ chỗ khám — mở phiếu đặt lịch">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/>
+    <path d="M3 9.5h18M8 2.8v4M16 2.8v4"/>
+    <path d="M12 12.2v5M9.5 14.7h5" stroke-width="2.2"/>
+  </svg>
+  <span class="fab-dot" id="fabCount">…</span>
+</button>
+
+<!-- ===== DRAWER ĐẶT LỊCH (funnel: chuyên khoa → bác sĩ → ngày + giờ → SĐT) ===== -->
+<div class="ovl" id="ovl"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Phiếu giữ chỗ khám">
+  <div class="dw-head">
+    <span class="mark"><svg viewBox="0 0 24 24" width="22" height="22" fill="#8FD9CC" aria-hidden="true"><path d="M9.2 2.5h5.6v6.7h6.7v5.6h-6.7v6.7H9.2v-6.7H2.5V9.2h6.7z"/></svg></span>
+    <div><b>Giữ chỗ khám — Tâm Phúc</b><small>60 giây · không cọc · xác nhận tại trang</small></div>
+    <button class="dw-x" id="dwClose" aria-label="Đóng phiếu giữ chỗ">✕</button>
+  </div>
+  <div class="dw-steps" id="dwSteps">
+    <span class="dw-step on">1 · Chuyên khoa</span>
+    <span class="dw-step">2 · Bác sĩ</span>
+    <span class="dw-step">3 · Ngày &amp; giờ</span>
+    <span class="dw-step">4 · Xác nhận</span>
+  </div>
+  <div class="dw-body">
+    <form id="dwForm" novalidate>
+      <div>
+        <label for="dBk">1 · Chuyên khoa <em>*</em></label>
+        <select id="dBk"><option value="">— Chọn chuyên khoa —</option></select>
+      </div>
+      <div>
+        <label for="dbs">2 · Bác sĩ trực</label>
+        <select id="dbs"></select>
+      </div>
+      <div class="dw-frow">
+        <div>
+          <label for="dDate">3 · Ngày khám</label>
+          <input id="dDate" type="date">
+        </div>
+        <div>
+          <label>Khung giờ <em>*</em></label>
+          <div class="gio-chips" id="dGio">
+            <button type="button" data-g="Sáng · 07:00–11:30">Sáng<small>07:00–11:30</small></button>
+            <button type="button" data-g="Chiều · 13:30–17:00">Chiều<small>13:30–17:00</small></button>
+            <button type="button" data-g="Tối · 17:00–20:00">Tối<small>17:00–20:00</small></button>
+          </div>
+        </div>
+      </div>
+      <div class="dw-frow">
+        <div>
+          <label for="dName">4 · Họ tên người khám <em>*</em></label>
+          <input id="dName" type="text" placeholder="VD: Nguyễn Thị Bích Hạnh">
+        </div>
+        <div>
+          <label for="dPhone">Số điện thoại <em>*</em></label>
+          <input id="dPhone" type="tel" placeholder="VD: 0901 234 567">
+        </div>
+      </div>
+      <div class="dw-commit">
+        <li>Bảo mật thông tin — chỉ dùng để xác nhận lịch khám</li>
+        <li>Đổi/huỷ miễn phí trước 2 giờ — không đặt cọc</li>
+        <li>Quầy tiếp đón gọi xác nhận trong 15 phút (giờ khám)</li>
+      </div>
+      <button class="dw-sub" type="submit">✅ Xác nhận giữ chỗ</button>
+      <p class="dw-tiny">Giữ chỗ không thu phí. Thông tin trên website mang tính tham khảo — không thay thế chẩn đoán bác sĩ. Khẩn cấp xin gọi <b>115</b>.</p>
+    </form>
+    <div class="dw-ok" id="dwOk">
+      <div class="ok-ic"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#0C8574" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
+      <h3>Đã giữ chỗ — xác nhận tại trang!</h3>
+      <div class="ma num-tab" id="okMa">GC-0000</div>
+      <div class="dw-phieu" id="okPhieu"></div>
+      <p class="dw-tiny">Quầy tiếp đón sẽ gọi <b id="okPhone"></b> xác nhận trong 15 phút (giờ khám). Đổi/huỷ miễn phí trước 2 giờ — gọi <b class="num-tab">0034567899</b>.</p>
+      <div class="dw-acts">
+        <button class="btn btn-g" id="okNew">🗓 Giữ ca khác</button>
+        <button class="btn btn-teal" id="okDone">Đã xong</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== CHAT WIDGET (pkc — không bot) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Nhắn cho quầy tiếp đón">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tiếp đón <span data-pkc="brand">Tâm Phúc</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🗓 Hôm nay còn giờ trống không?</button>
+    <button class="pkc-chip">💰 Giá khám từng chuyên khoa?</button>
+    <button class="pkc-chip">🩸 Xét nghiệm máu có phải nhịn ăn?</button>
+    <button class="pkc-chip">🧒 Khám nhi cho bé mấy tuổi?</button>
+    <button class="pkc-chip">🔁 Đổi giờ khám có mất phí?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho quầy tiếp đón…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-266*/
+'use strict';
+var HOTLINE = '0034567899';
+var KHUNG = [
+  {k:'Sáng',  g:'07:00–11:30'},
+  {k:'Chiều', g:'13:30–17:00'},
+  {k:'Tối',   g:'17:00–20:00'}
+];
+/* 8 dịch vụ theo danh sách kho — img ghép theo ĐÚNG nội dung poster */
+var DICHVU = [
+  {id:'k1', n0:1, ten:'Khám tổng quát', img:'assets/img/p1.webp', gia:'150.000đ', phong:'Phòng 101', feat:1, badge:'MỌI LỘ TRÌNH BẮT ĐẦU Ở ĐÂY',
+   d:'Đánh giá toàn diện: huyết áp, tim phổi, tiêu hoá, cơ xương — bác sĩ chẩn đoán bước đầu và hướng sang đúng chuyên khoa, không thu phí chuyển.',
+   bs:['BS. Nguyễn Thanh Hải','BS. Trần Mỹ Linh','BS. Lê Quốc Duy']},
+  {id:'k2', n0:2, ten:'Khám nội khoa', img:'assets/img/p2.webp', gia:'160.000đ', phong:'Phòng 202',
+   d:'Thăm khám kỹ, chẩn đoán rõ ràng cho các bệnh thường gặp: tiêu hoá, hô hấp, huyết áp, đái tháo đường — tư vấn điều trị dễ hiểu.',
+   bs:['TT.BS. Võ Thị Hồng Nhung','BS. Phạm Văn Tuấn', null]},
+  {id:'k3', n0:3, ten:'Khám nhi', img:'assets/img/p3.webp', gia:'180.000đ', phong:'Phòng 203',
+   d:'Chăm sóc nhẹ nhàng cho bé 0–15 tuổi: theo dõi phát triển, hô hấp, tiêu hoá, tiêm chủng — người nhà đi cùng suốt buổi khám.',
+   bs:['BS.CKI. Đặng Thu Hà','BS. Nguyễn Bảo Trân', null]},
+  {id:'k4', n0:4, ten:'Khám da liễu', img:'assets/img/p4.webp', gia:'200.000đ', phong:'Phòng 304',
+   d:'Thăm khám làn da, tư vấn phù hợp: mụn, dị ứng, nấm, nổi mề đay — soi da trước khi chỉ định, an toàn cho da nhạy cảm.',
+   bs:['BS. Kiều Hà Linh', null, null]},
+  {id:'k5', n0:5, ten:'Khám tai mũi họng', img:'assets/img/p5.webp', gia:'170.000đ', phong:'Phòng 303',
+   d:'Nội soi TMH không đau: viêm mũi, viêm họng, ù tai, khó nghe — xử lý đúng phác đồ, hẹn tái khám rõ ràng.',
+   bs:['BS. Hoàng Minh Đức','BS. Trịnh Hải Đăng','BS. Trịnh Hải Đăng']},
+  {id:'k6', n0:6, ten:'Xét nghiệm máu', img:'assets/img/p6.webp', gia:'từ 90.000đ', phong:'Quầy 105', feat:2, badge:'SÁNG NÀY CÒN SLOT',
+   d:'Lấy mẫu nhanh, vô trùng: tổng phân tích, đường, mỡ máu, gan thận… Kết quả basic trong 60–90 phút, chuyên sâu trong 24 giờ.',
+   bs:['BS. Ngô Thị Bích','BS. Ngô Thị Bích (trả kết quả)', null]},
+  {id:'k7', n0:7, ten:'Siêu âm', img:'assets/img/p7.webp', gia:'từ 220.000đ', phong:'Phòng 305',
+   d:'Máy 4D – hình ảnh rõ nét: bụng tổng quát, tuyến giáp, tim, thai kỳ. Bác sĩ đọc kết quả ngay tại chỗ, in phim đầy đủ.',
+   bs:['BS.CKI. Lâm Chí Cường','BS. Lâm Chí Cường', null]},
+  {id:'k8', n0:8, ten:'Tư vấn - tầm soát sức khỏe', img:'assets/img/p8.webp', gia:'từ 350.000đ', phong:'Phòng 201',
+   d:'Gói tầm soát theo độ tuổi và tiền sử: đọc kết quả cẩn thận, khoanh vùng cần theo dõi — chủ động phòng bệnh, đồng hành dài lâu.',
+   bs:['BS. Nguyễn Minh An','BS. Nguyễn Minh An', null]}
+];
+
+/* ===== dữ liệu lịch: bác sĩ trực + số suất còn (định theo nghề: deterministic) ===== */
+var REM = [0,2,3,2,5,4,3]; /* bảng còn suất theo (n0*5+day*3+slot)%7 — 0 = đã kín */
+function slotInfo(dv, day, slot){
+  var doc = dv.bs[slot];
+  if (!doc) return {kin:true, doc:null};
+  var rem = REM[(dv.n0*5 + day*3 + slot) % 7];
+  return {kin: rem===0, rem: rem, doc: doc};
+}
+function fmtDate(d){
+  var wd = ['CN','T2','T3','T4','T5','T6','T7'];
+  return wd[d.getDay()] + ' ' + ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2);
+}
+function isoDate(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+var NGAY = []; /* 7 ngày tới */
+(function(){ var t = new Date(); for (var i=0;i<7;i++){ var d = new Date(t); d.setDate(t.getDate()+i); NGAY.push(d); } })();
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 4200);
+}
+
+/* ===== KHỐI-8: BẢNG LỊCH KHÁM THEO CHUYÊN KHOA (2 thẻ nổi bật TO + 6 thẻ kín ô) ===== */
+function dvById(id){
+  for (var i=0;i<DICHVU.length;i++){ if (DICHVU[i].id===id) return DICHVU[i]; }
+  return null;
+}
+function slotHtml(dv, slot, day){
+  var info = slotInfo(dv, day, slot);
+  var kh = KHUNG[slot];
+  if (info.kin){
+    return '<div class="slot kin"><span class="kh"><b>'+kh.k+'</b><small>'+kh.g+'</small></span>'
+      + '<span class="bs">'+(info.doc?info.doc:'—')+'</span>'
+      + '<span class="st">Đã kín</span></div>';
+  }
+  return '<button class="slot con" data-dv="'+dv.id+'" data-day="'+day+'" data-slot="'+slot+'" aria-label="Giữ chỗ '+dv.ten+' ca '+kh.k+'">'
+    + '<span class="kh"><b>'+kh.k+'</b><small>'+kh.g+'</small></span>'
+    + '<span class="bs">'+info.doc+'</span>'
+    + '<span class="st">Còn '+info.rem+' suất</span></button>';
+}
+function renderBd(){
+  var g = document.getElementById('bdGrid');
+  var html = '';
+  for (var i=0;i<DICHVU.length;i++){
+    var p = DICHVU[i];
+    var feat = p.feat ? (p.feat===2 ? ' feat feat-x' : ' feat') : '';
+    var badge = p.badge ? '<span class="badge '+(p.feat===2?'coral':'amber')+'">'+p.badge+'</span>' : '';
+    var slots = '';
+    for (var s=0;s<3;s++) slots += slotHtml(p, s, 0);
+    html += '<article class="dv'+feat+' rv">'
+      + badge
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.ten+' — Phòng khám Tâm Phúc" width="1280" height="960"><span class="phong">'+p.phong+'</span></div>'
+      + '<div class="bdy"><div class="top"><span class="num">Chuyên khoa '+('0'+p.n0).slice(-2)+'</span>'
+      + '<span class="gia">'+p.gia+'<small>giá tham khảo</small></span></div>'
+      + '<h3>'+p.ten+'</h3><p>'+p.d+'</p>'
+      + '<div class="slots">'+slots+'</div>'
+      + (p.feat ? '<div class="dv-note">⚡ Bấm ô xanh để giữ chỗ — đổi/huỷ <b>miễn phí trước 2 giờ</b></div>' : '')
+      + '</div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var b = e.target.closest('.slot.con'); if (!b) return;
+    var dv = dvById(b.getAttribute('data-dv'));
+    openDrawer(dv.id, parseInt(b.getAttribute('data-day'),10)||0, parseInt(b.getAttribute('data-slot'),10)||0);
+  });
+}
+
+/* ===== ĐẾM SLOT HÔM NAY — mini-board hero + dải khan + huy hiệu FAB ===== */
+function countToday(){
+  var out = [0,0,0];
+  for (var i=0;i<DICHVU.length;i++){
+    for (var s=0;s<3;s++){
+      var info = slotInfo(DICHVU[i], 0, s);
+      if (!info.kin) out[s] += info.rem;
+    }
+  }
+  return out;
+}
+function renderToday(){
+  var c = countToday();
+  var name = ['tcSang','tcChieu','tcToi'];
+  for (var i=0;i<3;i++) document.getElementById(name[i]).textContent = 'còn ' + c[i] + ' suất';
+  var total = c[0]+c[1]+c[2];
+  document.getElementById('khanCount').textContent = total;
+  document.getElementById('fabCount').textContent = total;
+}
+
+/* ===== DAC-THU: TRA GIỜ TRỐNG 7 NGÀY ===== */
+var traDv = DICHVU[0].id;
+function renderTraChips(){
+  var box = document.getElementById('traChips');
+  var html = '';
+  for (var i=0;i<DICHVU.length;i++){
+    html += '<button data-d="'+DICHVU[i].id+'"'+(DICHVU[i].id===traDv?' class="on"':'')+'>'+DICHVU[i].ten+'</button>';
+  }
+  box.innerHTML = html;
+}
+function renderWeek(){
+  var dv = dvById(traDv);
+  var g = document.getElementById('weekGrid');
+  var html = '<span class="rl"><b>Khung giờ</b><small>bác sĩ trực</small></span>';
+  for (var d=0;d<7;d++){
+    html += '<span class="hd'+(d===0?' today':'')+'">'+(d===0?'Hôm nay':fmtDate(NGAY[d]).split(' ')[0])+'<small>'+fmtDate(NGAY[d]).split(' ')[1]+'</small></span>';
+  }
+  for (var s=0;s<3;s++){
+    var kh = KHUNG[s];
+    html += '<span class="rl"><b>'+kh.k+'</b><small>'+kh.g+'</small></span>';
+    for (var dd=0;dd<7;dd++){
+      var info = slotInfo(dv, dd, s);
+      if (info.kin){
+        html += '<span class="cell kin">Đã kín</span>';
+      } else {
+        html += '<button class="cell" data-dv="'+dv.id+'" data-day="'+dd+'" data-slot="'+s+'" title="'+info.doc+'">'+info.rem+' suất<small>'+info.doc.replace('BS.','').replace('BS.CKI.','').replace('TT.BS.','').trim()+'</small></button>';
+      }
+    }
+  }
+  g.innerHTML = html;
+}
+document.getElementById('traChips').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-d]'); if (!b) return;
+  var all = this.querySelectorAll('button');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('on');
+  b.classList.add('on');
+  traDv = b.getAttribute('data-d');
+  renderWeek();
+});
+document.getElementById('weekGrid').addEventListener('click', function(e){
+  var b = e.target.closest('.cell:not(.kin)'); if (!b) return;
+  openDrawer(b.getAttribute('data-dv'), parseInt(b.getAttribute('data-day'),10)||0, parseInt(b.getAttribute('data-slot'),10)||0);
+});
+
+/* ===== DRAWER ĐẶT LỊCH — funnel chính (B) ===== */
+var drawer = document.getElementById('drawer'), ovl = document.getElementById('ovl');
+var dGioVal = 'Sáng · 07:00–11:30';
+function dwSteps(step){
+  var els = document.querySelectorAll('#dwSteps .dw-step');
+  for (var i=0;i<els.length;i++){
+    els[i].className = 'dw-step' + (i < step ? ' done' : (i === step ? ' on' : ''));
+  }
+}
+function fillBkSelect(){
+  var sel = document.getElementById('dBk');
+  var html = '<option value="">— Chọn chuyên khoa —</option><option value="tro-giup">Chưa rõ — nhờ tư vấn</option>';
+  for (var i=0;i<DICHVU.length;i++) html += '<option value="'+DICHVU[i].id+'">'+DICHVU[i].ten+'</option>';
+  sel.innerHTML = html;
+}
+function fillBsSelect(){
+  var dv = dvById(document.getElementById('dBk').value);
+  var sel = document.getElementById('dbs');
+  var opts = '<option value="">Không chọn — mặc định theo ca</option>';
+  if (dv){
+    for (var s=0;s<3;s++){ if (dv.bs[s]) opts += '<option>'+dv.bs[s]+'</option>'; }
+  }
+  sel.innerHTML = opts;
+}
+function markGio(v){
+  var chips = document.querySelectorAll('#dGio button');
+  for (var i=0;i<chips.length;i++) chips[i].classList.toggle('on', chips[i].getAttribute('data-g')===v);
+  dGioVal = v;
+}
+function openDrawer(dvId, day, slot){
+  document.getElementById('dwForm').style.display = '';
+  document.getElementById('dwOk').classList.remove('on');
+  dwSteps(0);
+  fillBkSelect();
+  if (dvId){
+    document.getElementById('dBk').value = dvId;
+    dwSteps(1);
+  }
+  fillBsSelect();
+  if (dvId && slot !== undefined && dvById(dvId).bs[slot]){
+    document.getElementById('dbs').value = dvById(dvId).bs[slot];
+    dwSteps(2);
+  }
+  var d = NGAY[day || 0];
+  document.getElementById('dDate').min = isoDate(NGAY[0]);
+  document.getElementById('dDate').max = isoDate(NGAY[6]);
+  document.getElementById('dDate').value = isoDate(d);
+  if (slot !== undefined) markGio(KHUNG[slot].k + ' · ' + KHUNG[slot].g); else markGio(dGioVal);
+  drawer.classList.add('on'); ovl.classList.add('on');
+  drawer.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  if (!dvId) setTimeout(function(){ document.getElementById('dBk').focus({preventScroll:true}); }, 350);
+}
+function closeDrawer(){
+  drawer.classList.remove('on'); ovl.classList.remove('on');
+  drawer.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('[data-open-drawer]').forEach(function(b){ b.addEventListener('click', function(){ openDrawer('', undefined, undefined); }); });
+document.getElementById('dwClose').addEventListener('click', closeDrawer);
+ovl.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', function(e){ if (e.key==='Escape') closeDrawer(); });
+document.getElementById('dBk').addEventListener('change', function(){
+  fillBsSelect();
+  var v = this.value;
+  dwSteps(v ? 1 : 0);
+});
+document.getElementById('dbs').addEventListener('change', function(){ dwSteps(2); });
+document.getElementById('dDate').addEventListener('change', function(){ dwSteps(2); });
+document.getElementById('dGio').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-g]'); if (!b || b.disabled) return;
+  markGio(b.getAttribute('data-g'));
+  dwSteps(3);
+});
+document.getElementById('dwForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var bk = document.getElementById('dBk'), name = document.getElementById('dName'), phone = document.getElementById('dPhone');
+  [bk, name, phone].forEach(function(el){ el.classList.remove('err'); });
+  var missing = [];
+  if (!bk.value){ bk.classList.add('err'); missing.push('chuyên khoa'); }
+  if (!name.value.trim()){ name.classList.add('err'); missing.push('họ tên'); }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); missing.push('số điện thoại'); }
+  if (missing.length){
+    toast('Thiếu thông tin', 'Cho phòng khám xin ' + missing.join(', ') + ' để quầy xác nhận đúng ca nhé!');
+    return;
+  }
+  var dv = bk.value==='tro-giup' ? null : dvById(bk.value);
+  var ma = 'GC-' + ('0'+(NGAY[0].getMonth()+1)).slice(-2) + ('0'+NGAY[0].getDate()).slice(-2) + Math.floor(100+Math.random()*900);
+  var dateVal = document.getElementById('dDate').value;
+  var dObj = dateVal ? new Date(dateVal+'T07:00:00') : NGAY[0];
+  document.getElementById('okMa').textContent = ma;
+  var rows = ''
+    + '<div class="r"><span>Người khám</span><b>'+name.value.trim()+'</b></div>'
+    + '<div class="r"><span>Chuyên khoa</span><b>'+(dv?dv.ten:'Nhờ tư vấn')+'</b></div>'
+    + (document.getElementById('dbs').value ? '<div class="r"><span>Bác sĩ trực</span><b>'+document.getElementById('dbs').value+'</b></div>' : '')
+    + '<div class="r"><span>Ngày</span><b>'+fmtDate(dObj)+'</b></div>'
+    + '<div class="r"><span>Khung giờ</span><b>'+dGioVal+'</b></div>'
+    + '<div class="r"><span>Chi phí giữ chỗ</span><b style="color:var(--teal-2)">Miễn phí — không cọc</b></div>';
+  document.getElementById('okPhieu').innerHTML = rows;
+  document.getElementById('okPhone').textContent = phone.value.trim();
+  this.style.display = 'none';
+  document.getElementById('dwOk').classList.add('on');
+  dwSteps(4);
+  toast('Đã giữ chỗ — cảm ơn ' + name.value.trim() + '!',
+    (dv?dv.ten:'Tư vấn') + ' · ' + fmtDate(dObj) + ' · ' + dGioVal + ' — quầy gọi xác nhận trong 15 phút (giờ khám).');
+});
+document.getElementById('okNew').addEventListener('click', function(){ openDrawer('', undefined, undefined); });
+document.getElementById('okDone').addEventListener('click', closeDrawer);
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 1600);
+}
+
+/* ===== INIT ===== */
+renderBd();
+renderToday();
+renderTraChips();
+renderWeek();
+fillBkSelect();
+fillBsSelect();
+initReveal();
+</script>
+</body>
+</html>

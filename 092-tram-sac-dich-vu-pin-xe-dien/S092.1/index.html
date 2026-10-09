@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltWay — Trạm sạc &amp; dịch vụ pin xe điện TP.HCM | Tra trạm, bảng giá kWh, thuê pin</title>
+<meta name="description" content="VoltWay — hệ thống 12 trạm sạc & trạm đổi pin xe điện tại TP.HCM. Trụ DC nhanh 150kW, sạc qua đêm giá tốt, đổi pin 3 phút, gói tài xế, hỗ trợ trên đường 24/7. Tra trạm gần nhất, mở thẻ thành viên online.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1B14'/%3E%3Cpath d='M18 4 8 18h6l-2 10 10-14h-6l2-10z' fill='%232FD97A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-092: design system trạm sạc xe điện — palette xanh năng lượng*/
+:root{
+  --primary:#0E1B14; --primary-2:#14251B; --primary-3:#081109;
+  --ink:#142019; --soft:#55685C;
+  --texture:#F1F7F2; --paper:#FFFFFF; --line:#DCE8DE;
+  --accent:#2FD97A; --accent-2:#8CF3BE; --accent-deep:#0E8A4C; --accent-100:#E4F8EC;
+  --blue:#4FA9EE; --blue-100:#E3F1FD;
+  --amber:#F5B81E; --amber-100:#FDF3D7;
+  --red:#E5372B; --red-100:#FDE6E3;
+  --grad-accent:linear-gradient(135deg,#4BE58F,#14B364);
+  --grad-red:linear-gradient(135deg,#FF6A5B,#DD2B1E);
+  --grad-dark:linear-gradient(140deg,#152A1E 0%,#0E1B14 55%,#081109 100%);
+  --sh-1:0 2px 10px rgba(14,27,20,.07);
+  --sh-2:0 12px 34px rgba(14,27,20,.13);
+  --sh-3:0 26px 60px rgba(14,27,20,.22);
+  --r1:10px; --r2:16px; --r3:24px; --r4:32px;
+  --stripe:repeating-linear-gradient(45deg,var(--accent) 0 13px,var(--primary) 13px 26px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+html,body{overflow-x:clip}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--texture);line-height:1.6;font-size:16px;padding-bottom:0}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:22px}
+.flex{display:flex}.minw0{min-width:0}
+h1,h2,h3,h4{line-height:1.25;letter-spacing:-.01em}
+.s-title{font-size:2.1rem;font-weight:900}
+.s-sub{color:var(--soft);max-width:640px;margin-top:10px}
+.center{text-align:center}.center .s-sub{margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-100);border:1.5px solid rgba(20,179,100,.35);padding:7px 15px;border-radius:999px}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--grad-accent)}
+mark{background:linear-gradient(100deg,transparent 4%,var(--accent-100) 4% 96%,transparent 96%);color:inherit;padding:.04em .18em;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark.gold{color:var(--ink);background:linear-gradient(100deg,transparent 4%,var(--accent) 4% 96%,transparent 96%)}
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:999px;padding:14px 26px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-accent{background:var(--grad-accent);color:var(--primary);box-shadow:0 10px 26px rgba(20,179,100,.38)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(20,179,100,.5)}
+.btn-dark{background:var(--primary);color:#fff;box-shadow:var(--sh-2)}
+.btn-dark:hover{transform:translateY(-2px)}
+.btn-red{background:var(--grad-red);color:#fff;box-shadow:0 10px 26px rgba(229,55,43,.4)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(229,55,43,.5)}
+.btn-ghost{border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent-deep);background:var(--accent-100)}
+.btn-lg{padding:17px 32px;font-size:1.02rem}
+.btn-block{width:100%}
+.btn .sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-120%);transition:transform .6s}
+.btn:hover .sheen{transform:translateX(120%)}
+svg.ic{width:1.15em;height:1.15em;flex:none}
+/* ---------- topbar ---------- */
+.topbar{background:var(--primary-3);color:#c3d2c9;font-size:.83rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:14px}
+.topbar b{color:#fff}
+.topbar .tb-hotline{display:flex;align-items:center;gap:8px;color:var(--accent-2);font-weight:800}
+.topbar .tb-left{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topbar .pulse{width:8px;height:8px;border-radius:50%;background:#3ddc7c;box-shadow:0 0 0 0 rgba(61,220,124,.6);animation:pulse 1.8s infinite;flex:none}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(61,220,124,0)}100%{box-shadow:0 0 0 0 rgba(61,220,124,0)}}
+/* ---------- header ---------- */
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:box-shadow .25s}
+.header.scrolled{box-shadow:var(--sh-2)}
+.header .wrap{display:flex;align-items:center;gap:18px;min-height:72px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.22rem;letter-spacing:-.02em;flex:none}
+.logo .lg-badge{width:44px;height:44px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent);box-shadow:var(--sh-1)}
+.logo .lg-badge svg{width:24px;height:24px}
+.logo small{display:block;font-size:.68rem;font-weight:600;color:var(--soft);letter-spacing:.06em}
+.search{position:relative;flex:1;max-width:340px;min-width:0}
+.search input{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px 10px 42px;font-size:.9rem;outline:none;transition:border .2s,box-shadow .2s}
+.search input:focus{border-color:var(--accent-deep);box-shadow:0 0 0 4px rgba(47,217,122,.16)}
+.search .s-ic{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.search-drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);box-shadow:var(--sh-3);overflow:hidden;display:none;z-index:40}
+.search-drop.open{display:block}
+.search-drop button{display:flex;width:100%;gap:10px;align-items:center;padding:11px 15px;font-size:.88rem;font-weight:600;text-align:left;border-bottom:1px solid #eef4ef}
+.search-drop button:last-child{border-bottom:none}
+.search-drop button:hover{background:var(--accent-100)}
+.search-drop img{width:52px;height:35px;object-fit:cover;border-radius:8px}
+.search-drop .sd-tag{margin-left:auto;font-size:.68rem;font-weight:800;color:var(--accent-deep);background:var(--accent-100);padding:3px 9px;border-radius:99px;flex:none}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{font-weight:700;font-size:.9rem;padding:9px 12px;border-radius:10px;color:var(--ink)}
+.nav a:hover{background:var(--accent-100);color:var(--accent-deep)}
+.hd-cta{flex:none}
+.hd-reg{display:inline-flex;align-items:center;gap:8px;background:var(--grad-accent);color:var(--primary);font-weight:800;border-radius:999px;padding:11px 20px;box-shadow:0 8px 20px rgba(20,179,100,.4);transition:transform .2s}
+.hd-reg:hover{transform:translateY(-2px)}
+.hd-cal{width:46px;height:46px;border-radius:14px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;position:relative;transition:border .2s}
+.hd-cal:hover{border-color:var(--accent-deep)}
+.hd-cal svg{width:21px;height:21px;color:var(--primary)}
+/* ---------- hero ---------- */
+.hero{position:relative;padding:64px 0 92px;background:
+  radial-gradient(900px 420px at 88% -10%,rgba(47,217,122,.15),transparent 60%),
+  radial-gradient(700px 400px at -8% 108%,rgba(14,27,20,.07),transparent 55%),
+  repeating-linear-gradient(115deg,rgba(14,27,20,.026) 0 2px,transparent 2px 26px),var(--texture)}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2rem,4.3vw,3.15rem);font-weight:900;margin:18px 0 16px}
+.hero .lead{color:var(--soft);font-size:1.04rem;max-width:520px}
+.hero-cta{display:flex;gap:13px;margin-top:26px;flex-wrap:wrap}
+.trust-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px}
+.trust-chips span{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.82rem;font-weight:700;box-shadow:var(--sh-1)}
+.trust-chips svg{width:15px;height:15px;color:var(--accent-deep);flex:none}
+.hero-vis{min-width:0}
+.hv-main{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh-3);overflow:hidden;background:#fff}
+.hv-main img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.hv-stats{display:flex;background:var(--grad-dark);border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;box-shadow:var(--sh-2);margin-top:18px}
+.hv-stats div{padding:13px 14px;text-align:center;color:#fff;min-width:0;flex:1}
+.hv-stats div+div{border-left:1px solid rgba(255,255,255,.14)}
+.hv-stats b{display:block;font-size:1.06rem;color:var(--accent-2)}
+.hv-stats span{font-size:.68rem;color:#b9cdc1;font-weight:600;white-space:nowrap}
+/* ---------- tape marquee ---------- */
+.tape{transform:rotate(-1deg);background:var(--primary);color:var(--accent-2);border-block:3px solid var(--accent);overflow:hidden;position:relative;z-index:5;margin:-14px -10px 0;width:calc(100% + 20px)}
+.tape-track{display:flex;gap:0;width:max-content;animation:tapeMove 30s linear infinite}
+.tape span{display:inline-flex;align-items:center;gap:18px;padding:13px 22px;font-weight:800;letter-spacing:.08em;font-size:.88rem;white-space:nowrap}
+.tape .dia{color:var(--accent);font-size:.7rem}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+/* ---------- sections ---------- */
+section{padding:76px 0}
+.sec-head{margin-bottom:38px}
+/* ---------- khoi-8 bento ---------- */
+.grid8-sec{background:var(--paper)}
+.grid8{display:grid;grid-template-columns:repeat(6,1fr);gap:22px;grid-auto-flow:dense}
+.card8{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;position:relative;min-width:0}
+.card8:hover{transform:translateY(-6px);box-shadow:var(--sh-3)}
+.card8::before{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(47,217,122,.16),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+.card8:hover::before{opacity:1}
+.c8-media{aspect-ratio:3/2;overflow:hidden;position:relative}
+.c8-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card8:hover .c8-media img{transform:scale(1.05)}
+.c8-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1;position:relative;z-index:2}
+.c8-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.c8-badge{background:var(--grad-accent);color:var(--primary);font-weight:800;font-size:.74rem;padding:5px 12px;border-radius:999px;box-shadow:0 4px 12px rgba(20,179,100,.3)}
+.c8-badge.kind{background:#fff;color:var(--accent-deep);border:1.5px solid rgba(20,179,100,.4);box-shadow:none}
+.card8.std{grid-column:span 2}
+.card8.std h3{font-size:1.04rem;font-weight:800}
+.c8-desc{font-size:.85rem;color:var(--soft)}
+.c8-meta{display:flex;gap:8px;flex-wrap:wrap}
+.c8-meta span{font-size:.76rem;font-weight:700;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--soft)}
+.c8-meta .p{color:var(--accent-deep);border-color:rgba(20,179,100,.45);background:var(--accent-100)}
+.c8-actions{display:flex;gap:9px;margin-top:auto}
+.c8-actions .b1{flex:1;background:var(--grad-accent);color:var(--primary);font-weight:800;border-radius:999px;padding:10px 8px;text-align:center;font-size:.86rem;box-shadow:0 6px 16px rgba(20,179,100,.3);transition:transform .2s;min-height:40px}
+.c8-actions .b1:hover{transform:translateY(-2px)}
+.c8-actions .b2{width:42px;border-radius:999px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;transition:all .2s;flex:none}
+.c8-actions .b2:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.c8-actions svg{width:17px;height:17px}
+/* theer noi bat: to hon han the thuong */
+.card8.hero8{grid-column:span 3;background:var(--grad-dark);border-color:var(--primary-2);color:#fff}
+.card8.hero8 .c8-body{padding:22px 24px 24px}
+.card8.hero8 h3{font-size:1.5rem;font-weight:900;line-height:1.2}
+.card8.hero8 .c8-desc{color:#b9cdc1;font-size:.94rem}
+.card8.hero8 .c8-badge.kind{background:rgba(255,255,255,.08);color:var(--accent-2);border-color:rgba(140,243,190,.4)}
+.card8.hero8 .c8-meta span{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#d8e6dd}
+.card8.hero8 .c8-meta .p{background:rgba(47,217,122,.14);color:var(--accent-2);border-color:rgba(140,243,190,.45)}
+.card8.hero8 .c8-price{font-size:1.7rem;font-weight:900;color:var(--accent-2);display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.card8.hero8 .c8-price small{font-size:.76rem;font-weight:600;color:#8fa89a}
+.card8.hero8 ul{display:grid;gap:8px;margin-top:2px}
+.card8.hero8 li{display:flex;gap:9px;font-size:.87rem;color:#c9dcd0;font-weight:500}
+.card8.hero8 li svg{width:16px;height:16px;color:var(--accent);flex:none;margin-top:3px}
+/* ---------- ban do tram SVG ---------- */
+.stmap{background:var(--grad-dark);color:#fff;position:relative;overflow:hidden}
+.stmap::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 2px,transparent 2px 30px);pointer-events:none}
+.stmap .eyebrow{background:rgba(47,217,122,.14);color:var(--accent-2);border-color:rgba(140,243,190,.4)}
+.stmap .s-sub{color:#aebfb4}
+.st-chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+.st-chip{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 17px;font-weight:800;font-size:.84rem;color:#dfece4;transition:all .2s;min-height:40px}
+.st-chip:hover{border-color:var(--accent)}
+.st-chip.on{background:var(--grad-accent);color:var(--primary);border-color:transparent;box-shadow:0 8px 20px rgba(47,217,122,.3)}
+.st-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:start}
+.stmapbox{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r3);padding:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.stmapbox svg{width:100%;height:auto;display:block}
+.sv-d{cursor:pointer;transition:fill .2s}
+.sv-d polygon{fill:rgba(255,255,255,.055);stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-linejoin:round;transition:fill .2s,stroke .2s}
+.sv-d:hover polygon{fill:rgba(47,217,122,.12)}
+.sv-d.on polygon{fill:rgba(47,217,122,.22);stroke:var(--accent)}
+.sv-d text{font-size:13px;font-weight:700;fill:#c7dccd;pointer-events:none;text-anchor:middle}
+.sv-d.dim polygon{fill:rgba(255,255,255,.025);stroke:rgba(255,255,255,.1)}
+.sv-d.dim text{fill:#647a6e;font-weight:600}
+.sv-d.on text{fill:#fff;font-weight:900}
+.sv-river{fill:none;stroke:#3FB6C9;stroke-width:11;opacity:.2;stroke-linecap:round}
+.m-dot{stroke:#081109;stroke-width:1.6}
+.m-ring{fill:none;stroke-width:2;opacity:.7;animation:ringPulse 2.2s infinite}
+@keyframes ringPulse{from{opacity:.65;stroke-width:2}to{opacity:0;stroke-width:.4}}
+.st-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.78rem;font-weight:700;color:#b9cdc1}
+.st-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:-1px}
+.st-count{font-size:.82rem;color:#8fa89a;font-weight:600;margin-bottom:12px}
+.st-count b{color:var(--accent-2)}
+.st-list{display:grid;gap:13px;align-content:start;max-height:640px;overflow:auto;padding-right:4px}
+.stn{background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r2);padding:16px 18px;animation:fadeIn .3s}
+.stn-head{display:flex;gap:12px;align-items:flex-start}
+.stn-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.stn-ic svg{width:21px;height:21px}
+.stn-ic.dc{background:rgba(47,217,122,.16);color:var(--accent-2)}
+.stn-ic.mix{background:rgba(79,169,238,.16);color:#a8d4fa}
+.stn-ic.swap{background:rgba(245,184,30,.16);color:var(--amber)}
+.stn-head b{display:block;font-size:.96rem;font-weight:800}
+.stn-head span{display:block;font-size:.78rem;color:#8fa89a;font-weight:600}
+.stn-open{margin-left:auto;background:rgba(61,220,124,.14);color:#7ee9a8;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:99px;white-space:nowrap;flex:none;border:1px solid rgba(61,220,124,.35)}
+.stn-meta{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0 12px}
+.stn-meta span{font-size:.72rem;font-weight:700;border-radius:999px;padding:4px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#c9dcd0}
+.stn-meta .free{color:#7ee9a8;border-color:rgba(61,220,124,.4);background:rgba(61,220,124,.1)}
+.stn-foot{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.stn-foot .maps{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:800;color:var(--accent-2);border:1.5px solid rgba(140,243,190,.4);padding:8px 14px;border-radius:999px;transition:background .2s;min-height:40px}
+.stn-foot .maps:hover{background:rgba(47,217,122,.12)}
+.stn-foot .call{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:800;color:#dfece4;border:1.5px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:999px;min-height:40px}
+.stn-foot .call:hover{background:rgba(255,255,255,.08)}
+.stn-foot small{margin-left:auto;font-size:.72rem;color:#8fa89a;font-weight:600}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* ---------- bang gia tabs ---------- */
+.ptabs{background:var(--texture);position:relative}
+.ptabs-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 22px}
+.ptab{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:14px 16px;text-align:left;color:var(--ink);transition:background .2s,border .2s,transform .2s;min-width:0}
+.ptab:hover{transform:translateY(-2px);border-color:rgba(20,179,100,.55)}
+.ptab.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:0 12px 30px rgba(14,27,20,.35)}
+.ptab b{font-size:1.08rem;font-weight:900;display:block}
+.ptab span{font-size:.76rem;font-weight:600;opacity:.72;display:block}
+.ptab .pt-ic{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent-100);color:var(--accent-deep);margin-bottom:9px}
+.ptab.on .pt-ic{background:rgba(47,217,122,.2);color:var(--accent-2)}
+.ptab .pt-ic svg{width:18px;height:18px}
+.ptab-panel{display:none}
+.ptab-panel.on{display:grid;grid-template-columns:1.55fr 1fr;gap:24px;animation:fadeIn .35s}
+.pgt{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.pgt table{width:100%;border-collapse:collapse;min-width:560px}
+.pgt th{text-align:left;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);padding:13px 16px;border-bottom:1.5px solid var(--line);background:var(--accent-100)}
+.pgt td{padding:12px 16px;font-size:.88rem;border-bottom:1px solid #e8f1ea;vertical-align:top}
+.pgt tr:last-child td{border-bottom:none}
+.pgt td b{font-weight:700}
+.pgt td .pri{white-space:nowrap;font-weight:800;color:var(--accent-deep)}
+.pgt td .t{white-space:nowrap;color:var(--soft);font-size:.8rem}
+.pgt td .free{color:#0f9d58;font-weight:800}
+.pgt-tips{display:grid;gap:12px;align-content:start}
+.pgt-tip{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:15px 17px;font-size:.86rem;color:#33473c}
+.pgt-tip b{display:flex;gap:9px;align-items:center;color:var(--ink);font-size:.92rem;margin-bottom:5px}
+.pgt-tip b svg{width:18px;height:18px;color:var(--accent-deep);flex:none}
+.pgt-total{grid-column:1/-1;display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--grad-dark);color:#fff;border-radius:var(--r2);padding:16px 20px}
+.pgt-total b{font-size:1.2rem;color:var(--accent-2)}
+.pgt-total .btn{margin-left:auto}
+.ptabs-note{margin-top:22px;display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--soft)}
+.ptabs-note svg{width:17px;height:17px;color:var(--accent-deep);flex:none;margin-top:3px}
+/* ---------- may tinh chi phi ---------- */
+.calc{background:var(--paper)}
+.calc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:26px;align-items:stretch}
+.calc-form{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:30px;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.calc-form::after{content:"";position:absolute;right:-46px;bottom:-46px;width:190px;height:190px;background:var(--stripe);opacity:.12;border-radius:50%}
+.calc-form .eyebrow{background:rgba(47,217,122,.14);color:var(--accent-2);border-color:rgba(140,243,190,.4)}
+.calc-form h3{font-size:1.5rem;font-weight:900;margin:14px 0 6px}
+.calc-form>p{color:#aebfb4;font-size:.9rem;margin-bottom:22px}
+.field{margin-bottom:16px;min-width:0}
+.field label{display:block;font-weight:700;font-size:.82rem;margin-bottom:7px;color:#d8e6dd}
+.field select,.field input,.field textarea{width:100%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px;color:#fff;outline:none;transition:border .2s;font-size:.92rem;min-height:44px}
+.field select option{color:var(--ink)}
+.field select:focus,.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.field .hint{font-size:.76rem;color:#8fa89a;margin-top:6px}
+/* slider km/ngay */
+.km-slide{display:flex;align-items:center;gap:14px}
+.km-slide input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--accent) var(--fill,35%),rgba(255,255,255,.16) var(--fill,35%));outline:none;padding:0;border:none;min-height:0}
+.km-slide input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid var(--accent);box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}
+.km-slide input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:5px solid var(--accent);cursor:pointer}
+.km-slide output{background:rgba(47,217,122,.14);border:1.5px solid rgba(140,243,190,.45);color:var(--accent-2);font-weight:900;border-radius:12px;padding:9px 13px;font-size:.9rem;white-space:nowrap;min-width:96px;text-align:center}
+.km-sub{font-size:.78rem;color:#8fa89a;margin-top:7px}
+.calc-result{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:30px;box-shadow:var(--sh-2);display:flex;flex-direction:column;gap:16px;min-width:0}
+.calc-result .pr-name{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.calc-result .pr-name b{font-size:1.2rem;font-weight:900}
+.calc-result .pr-name span{background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;border-radius:999px;padding:6px 13px;border:1.5px solid rgba(20,179,100,.4)}
+.tier-table{border:1.5px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.tier-table .row{display:grid;grid-template-columns:1.25fr .75fr .9fr;gap:8px;padding:11px 16px;font-size:.86rem;border-bottom:1px solid #eef4ef;align-items:center;cursor:pointer;transition:background .15s}
+.tier-table .row:last-child{border-bottom:none}
+.tier-table .row.head{background:var(--texture);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);cursor:default}
+.tier-table .row.head+ .row{border-top:none}
+.tier-table .row.on{background:var(--accent-100)}
+.tier-table .row.on b{color:var(--accent-deep)}
+.tier-table .row:not(.head):hover{background:#f4faf6}
+.calc-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;background:var(--primary);color:#fff;border-radius:var(--r2);padding:17px 20px}
+.calc-total span{font-size:.84rem;color:#aebfb4;font-weight:600;display:block}
+.calc-total b{font-size:1.7rem;font-weight:900;color:var(--accent-2)}
+.calc-save{font-size:.84rem;font-weight:800;color:#0f9d58;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.calc-save svg{width:16px;height:16px;flex:none}
+.calc-save.warn{color:#c77700}
+.calc-ul{display:grid;gap:8px}
+.calc-ul li{display:flex;gap:9px;font-size:.86rem;color:#33473c;font-weight:500}
+.calc-ul li svg{width:16px;height:16px;color:#0f9d58;flex:none;margin-top:3px}
+/* ---------- rescue band hotline tren duong ---------- */
+.rescue-band{background:var(--primary-3);color:#fff;position:relative;overflow:hidden;padding:58px 0}
+.rescue-band::before,.rescue-band::after{content:"";position:absolute;left:0;right:0;height:9px;background:var(--stripe)}
+.rescue-band::before{top:0}.rescue-band::after{bottom:0}
+.rb-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.rb-grid h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900}
+.rb-grid h2 b{color:var(--accent-2)}
+.rb-grid .rb-sub{color:#aebfb4;margin-top:10px;font-size:.95rem}
+.rb-steps{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.rb-steps span{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 16px;font-size:.8rem;font-weight:700}
+.rb-steps span b{color:var(--accent-2)}
+.rb-cta{text-align:center;background:rgba(229,55,43,.1);border:1.5px solid rgba(229,55,43,.4);border-radius:var(--r3);padding:30px}
+.rb-cta small{display:block;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#ffb4ab;font-size:.74rem}
+.rb-cta .rb-num{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:900;color:#fff;margin:8px 0 18px;letter-spacing:.02em}
+.rb-cta .btn{width:100%;padding:18px;font-size:1.08rem}
+.rb-cta p{font-size:.78rem;color:#8fa89a;margin-top:14px}
+/* ---------- process ---------- */
+.proc{background:var(--paper)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.p-card{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r2);padding:24px 20px;position:relative;transition:transform .2s,box-shadow .2s}
+.p-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.p-card .p-n{width:52px;height:52px;border-radius:50%;background:var(--grad-dark);color:var(--accent);display:grid;place-items:center;font-weight:900;font-size:1.2rem;margin-bottom:14px;position:relative}
+.p-card .p-n::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px dashed rgba(20,179,100,.5)}
+.p-card b{display:block;font-size:1rem;font-weight:800;margin-bottom:6px}
+.p-card p{font-size:.85rem;color:var(--soft)}
+.p-card .p-meta{display:inline-flex;margin-top:13px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.74rem;padding:5px 12px;border-radius:999px;border:1.5px solid rgba(20,179,100,.4)}
+/* ---------- stats band ---------- */
+.stats{background:var(--paper);padding:0;position:relative;z-index:2}
+.stats-inner{background:var(--grad-dark);transform:skewY(-1.6deg);margin:26px -20px;padding:56px 20px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;transform:skewY(1.6deg);max-width:1080px;margin-inline:auto}
+.stat{text-align:center;color:#fff;min-width:0}
+.stat b{font-size:2.3rem;font-weight:900;color:var(--accent-2);display:block;line-height:1.1}
+.stat b i{font-style:normal;font-size:1.4rem}
+.stat span{font-size:.86rem;color:#aebfb4;font-weight:600}
+/* ---------- about ---------- */
+.about{background:var(--texture)}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
+.about-vis{display:grid;gap:16px;position:relative}
+.about-vis .av-main{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh-3);overflow:hidden;transform:rotate(-1.2deg)}
+.about-vis .av-main img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.about-vis .av-sub{border-radius:var(--r2);border:5px solid #fff;box-shadow:var(--sh-2);overflow:hidden;transform:rotate(1deg)}
+.about-vis .av-sub img{width:100%;aspect-ratio:16/6.5;object-fit:cover;object-position:50% 58%}
+.about-vis .ab-tag{position:absolute;right:-6px;top:-14px;background:var(--grad-accent);color:var(--primary);font-weight:900;border-radius:14px;padding:12px 18px;box-shadow:var(--sh-2);transform:rotate(2deg);font-size:.9rem;z-index:2}
+.about-vis .ab-tag small{display:block;font-weight:700;font-size:.72rem}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+.ab-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:18px;transition:transform .2s,box-shadow .2s}
+.ab-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.ab-card svg{width:26px;height:26px;color:var(--accent-deep);margin-bottom:10px}
+.ab-card b{display:block;font-size:.95rem;font-weight:800;margin-bottom:4px}
+.ab-card span{font-size:.82rem;color:var(--soft)}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap}
+/* ---------- reviews ---------- */
+.rev{background:var(--grad-dark);color:#fff;overflow:hidden}
+.rev .eyebrow{background:rgba(47,217,122,.14);color:var(--accent-2);border-color:rgba(140,243,190,.4)}
+.rev .s-sub{color:#aebfb4}
+.rev-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:stretch;margin-top:34px}
+.rev-stage{background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r3);padding:30px;position:relative;min-width:0}
+.rev-slide{display:none;animation:fadeIn .4s}
+.rev-slide.on{display:block}
+.rev-slide .stars{color:var(--amber);letter-spacing:.2em;font-size:1rem;margin-bottom:12px}
+.rev-slide p{font-size:1.02rem;color:#e2ece5;line-height:1.75}
+.rev-who{display:flex;gap:13px;align-items:center;margin-top:22px}
+.rev-who .rw-av{width:48px;height:48px;border-radius:50%;background:var(--grad-accent);color:var(--primary);display:grid;place-items:center;font-weight:900;font-size:1.05rem;flex:none}
+.rev-who b{display:block;font-size:.95rem}
+.rev-who span{font-size:.8rem;color:#8fa89a}
+.rev-dots{display:flex;gap:8px;margin-top:24px}
+.rev-dots button{width:26px;height:6px;border-radius:99px;background:rgba(255,255,255,.18);transition:background .3s}
+.rev-dots button.on{background:var(--accent)}
+.rev-side{display:flex;flex-direction:column;gap:16px}
+.rev-metric{background:rgba(47,217,122,.1);border:1.5px solid rgba(140,243,190,.4);border-radius:var(--r3);padding:24px}
+.rev-metric .rm-big{font-size:2.6rem;font-weight:900;color:var(--accent-2);line-height:1}
+.rev-metric .rm-big i{font-style:normal;font-size:1.2rem;color:#8fa89a}
+.rev-metric p{font-size:.85rem;color:#c9dcd0;margin-top:8px}
+.rev-metric .rm-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.14);margin-top:14px;overflow:hidden}
+.rev-metric .rm-bar i{display:block;height:100%;width:97%;background:var(--grad-accent);border-radius:99px}
+.rev-partners{background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r3);padding:20px;flex:1}
+.rev-partners b{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#8fa89a;display:block;margin-bottom:12px}
+.rev-partners .pt{display:flex;flex-wrap:wrap;gap:8px}
+.rev-partners .pt span{border:1.5px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 15px;font-weight:800;font-size:.8rem;color:#dfece4}
+/* ---------- mo the + lien he ---------- */
+.join{background:var(--texture)}
+.join-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:stretch}
+.hq-card{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:0}
+.hq-card::before{content:"";position:absolute;top:0;left:0;right:0;height:7px;background:var(--stripe)}
+.hq-card .eyebrow{background:rgba(47,217,122,.14);color:var(--accent-2);border-color:rgba(140,243,190,.4)}
+.hq-card h3{font-size:1.3rem;font-weight:900;margin:14px 0 8px}
+.hq-card>p{color:#aebfb4;font-size:.88rem}
+.hq-rows{display:grid;gap:12px;margin-top:18px}
+.hq-rows li{display:flex;gap:11px;align-items:flex-start;font-size:.88rem;color:#c9dcd0}
+.hq-rows svg{width:17px;height:17px;color:var(--accent);flex:none;margin-top:3px}
+.hq-rows b{color:#fff}
+.hq-call{margin-top:auto;padding-top:20px}
+.hq-call .btn{width:100%}
+.hq-apps{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.hq-apps span{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:9px 14px;font-size:.78rem;font-weight:700;color:#dfece4}
+.hq-apps svg{width:16px;height:16px;color:var(--accent-2)}
+.c-form{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:32px;box-shadow:var(--sh-2)}
+.c-form h3{font-size:1.4rem;font-weight:900;margin:12px 0 4px}
+.c-form .cf-sub{color:var(--soft);font-size:.88rem;margin-bottom:22px}
+.c-form .field label{color:var(--ink)}
+.c-form .field input,.c-form .field select,.c-form .field textarea{background:var(--texture);border:1.5px solid var(--line);color:var(--ink)}
+.c-form .field input:focus,.c-form .field select:focus,.c-form .field textarea:focus{border-color:var(--accent-deep)}
+.c-form .field select option{color:var(--ink)}
+.c-form .f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.c-form .btn{margin-top:8px}
+.c-secure{display:flex;gap:8px;align-items:center;justify-content:center;font-size:.76rem;color:var(--soft);margin-top:14px;text-align:center}
+.c-secure svg{width:14px;height:14px;flex:none}
+.c-ok{display:none;margin-top:14px;background:rgba(61,220,124,.12);border:1.5px solid rgba(61,220,124,.45);color:#0c7a43;border-radius:12px;padding:13px 16px;font-size:.88rem;font-weight:600;animation:fadeIn .3s}
+.c-ok.show{display:block}
+/* ---------- faq ---------- */
+.faq{background:var(--paper)}
+.faq-search{position:relative;max-width:520px;margin:26px auto 14px}
+.faq-search input{width:100%;border:1.5px solid var(--line);border-radius:999px;padding:14px 20px 14px 48px;font-size:.95rem;outline:none;background:var(--texture);transition:border .2s,box-shadow .2s;min-height:48px}
+.faq-search input:focus{border-color:var(--accent-deep);box-shadow:0 0 0 4px rgba(47,217,122,.16)}
+.faq-search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:19px;height:19px;color:var(--soft)}
+.faq-chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.faq-chip{background:var(--texture);border:1.5px solid var(--line);border-radius:999px;padding:8px 17px;font-weight:700;font-size:.82rem;transition:all .2s;min-height:40px}
+.faq-chip:hover,.faq-chip.on{background:var(--accent-100);border-color:rgba(20,179,100,.5);color:var(--accent-deep)}
+.faq-list{max-width:820px;margin-inline:auto;display:grid;gap:12px}
+.faq-item{border:1.5px solid var(--line);border-radius:var(--r2);background:var(--texture);overflow:hidden;transition:border .2s}
+.faq-item.open{border-color:rgba(20,179,100,.55);background:#fff;box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:17px 20px;font-weight:800;font-size:.98rem;text-align:left}
+.faq-q .chev{width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;flex:none;transition:transform .3s}
+.faq-item.open .chev{transform:rotate(180deg);background:var(--grad-accent);border-color:transparent}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px;color:var(--soft);font-size:.9rem}
+.faq-empty{text-align:center;color:var(--soft);padding:26px;font-weight:600;display:none}
+/* ---------- footer ---------- */
+footer{background:var(--primary-3);color:#c9dcd0;padding:60px 0 0;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--stripe)}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:34px;padding-bottom:40px}
+.ft-brand .logo{color:#fff;margin-bottom:14px}
+.ft-brand p{font-size:.87rem;color:#8fa89a;max-width:300px}
+.ft-social{display:flex;gap:10px;margin-top:18px}
+.ft-social a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:all .2s}
+.ft-social a:hover{background:var(--accent);color:var(--primary)}
+.ft-social svg{width:18px;height:18px}
+.ft-col h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px;letter-spacing:.02em}
+.ft-col ul{display:grid;gap:9px}
+.ft-col a,.ft-col li{font-size:.86rem;color:#8fa89a;transition:color .2s}
+.ft-col a:hover{color:var(--accent-2)}
+.ft-contact li{display:flex;gap:10px;align-items:flex-start}
+.ft-contact svg{width:16px;height:16px;color:var(--accent);flex:none;margin-top:4px}
+.ft-contact b{color:#dfece4}
+.ft-pay{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.ft-pay .pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.ft-pay .pay-chips span{border:1.5px solid rgba(255,255,255,.18);border-radius:9px;padding:6px 13px;font-size:.76rem;font-weight:700;color:#aebfb4}
+.ft-pay .cert{font-size:.78rem;color:#8fa89a;display:flex;gap:8px;align-items:center}
+.ft-pay .cert svg{width:16px;height:16px;color:var(--accent);flex:none}
+.ft-copy{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;font-size:.78rem;color:#697a70;text-align:center}
+/* ---------- FAB dock ---------- */
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:8px;background:rgba(14,27,20,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 12px;box-shadow:var(--sh-3);transition:transform .35s,opacity .35s}
+.dock.hide{transform:translateX(-50%) translateY(120px);opacity:0}
+.dock a,.dock button{display:flex;flex-direction:column;align-items:center;gap:3px;color:#c9dcd0;font-size:.62rem;font-weight:700;padding:7px 12px;border-radius:999px;transition:all .2s;min-width:56px}
+.dock a:hover,.dock button:hover{background:rgba(255,255,255,.1);color:#fff}
+.dock svg{width:20px;height:20px}
+.dock .dk-main{background:var(--grad-accent);color:var(--primary)}
+.dock .dk-main:hover{background:var(--grad-accent);color:var(--primary);transform:translateY(-3px)}
+.dock .dk-red{color:#ff8d80}
+/* ---------- drawer ---------- */
+.drawer-bg{position:fixed;inset:0;background:rgba(8,17,9,.55);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--texture);z-index:95;transform:translateX(105%);transition:transform .38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--sh-3)}
+.drawer.open{transform:none}
+.drawer-head{background:var(--grad-dark);color:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:center}
+.drawer-head b{font-size:1.05rem;font-weight:900}
+.drawer-head small{display:block;font-size:.74rem;color:#aebfb4;font-weight:600}
+.drawer-x{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;transition:background .2s}
+.drawer-x:hover{background:var(--red)}
+.drawer-body{padding:20px 22px;overflow-y:auto;flex:1;display:grid;gap:16px;align-content:start}
+.drawer .dr-field label{display:block;font-weight:800;font-size:.8rem;margin-bottom:7px;color:var(--ink)}
+.drawer select,.drawer input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;background:#fff;outline:none;font-size:.9rem;min-height:44px}
+.drawer input:focus,.drawer select:focus{border-color:var(--accent-deep)}
+.drawer .dr-note{background:var(--accent-100);border:1.5px solid rgba(20,179,100,.4);border-radius:12px;padding:12px 14px;font-size:.8rem;color:#1d4a31}
+.drawer-ok{display:none;background:rgba(61,220,124,.14);border:1.5px solid rgba(61,220,124,.5);border-radius:14px;padding:16px;font-size:.88rem}
+.drawer-ok.show{display:block;animation:fadeIn .3s}
+.drawer-ok b{color:#0c7a43;font-size:1.05rem}
+.drawer .dr-hotline{background:var(--primary-3);color:#fff;border-radius:14px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.drawer .dr-hotline small{display:block;font-size:.7rem;color:#8fa89a;font-weight:700}
+.drawer .dr-hotline b{font-size:1.05rem;color:var(--accent-2)}
+.drawer .dr-hotline a{background:var(--grad-red);border-radius:999px;padding:9px 16px;font-weight:800;font-size:.82rem;color:#fff;flex:none}
+/* ---------- quick view modal ---------- */
+.modal-bg{position:fixed;inset:0;background:rgba(8,17,9,.6);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:var(--r3);max-width:640px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-3);animation:fadeIn .3s}
+.modal-media{aspect-ratio:3/2;overflow:hidden;position:relative;background:var(--texture)}
+.modal-media img{width:100%;height:100%;object-fit:cover}
+.modal-x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(14,27,20,.7);color:#fff;display:grid;place-items:center}
+.modal-body{padding:24px 26px 26px}
+.modal-body h3{font-size:1.35rem;font-weight:900;margin-bottom:6px}
+.modal-body .m-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+.modal-body .m-meta span{font-size:.78rem;font-weight:700;background:var(--accent-100);color:var(--accent-deep);border:1.5px solid rgba(20,179,100,.4);border-radius:999px;padding:5px 13px}
+.modal-body .m-desc{color:var(--soft);font-size:.92rem;margin-bottom:14px}
+.modal-body ul{display:grid;gap:9px;margin-bottom:20px}
+.modal-body ul li{display:flex;gap:9px;font-size:.9rem;font-weight:500;color:#33473c}
+.modal-body ul svg{width:17px;height:17px;color:#0f9d58;flex:none;margin-top:3px}
+.modal-cta{display:grid;grid-template-columns:1.5fr 1fr;gap:10px}
+/* ---------- toast ---------- */
+.toasts{position:fixed;top:18px;right:18px;z-index:120;display:grid;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;border-radius:14px;padding:13px 17px;font-size:.84rem;font-weight:500;box-shadow:var(--sh-3);display:flex;gap:11px;align-items:flex-start;max-width:340px;border-left:4px solid var(--accent);animation:toastIn .35s;pointer-events:auto}
+.toast svg{width:19px;height:19px;color:var(--accent);flex:none;margin-top:2px}
+.toast .tt{display:block;font-weight:800;font-size:.9rem;margin-bottom:2px}
+.toast .tm{display:block;line-height:1.45}
+@keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+/* ---------- 1080 ---------- */
+@media(max-width:1080px){
+  .nav{display:none}
+  .search{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:44px}
+  .card8.hero8{grid-column:span 6}
+  .card8.std{grid-column:span 3}
+  .ptabs-tabs{grid-template-columns:repeat(2,1fr)}
+  .ptab-panel.on{grid-template-columns:1fr}
+  .st-grid{grid-template-columns:1fr}
+  .st-list{max-height:none}
+  .calc-grid,.join-grid,.rb-grid,.about-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+/* ---------- MOBILE 680 ---------- */
+@media(max-width:680px){
+  html{scroll-padding-top:118px}
+  section{padding:50px 0}
+  .s-title{font-size:1.42rem}
+  .wrap{padding-inline:16px}
+  .header .wrap{flex-wrap:wrap;padding-block:10px;row-gap:9px;min-height:0}
+  .logo{order:1;flex:1}
+  .hd-cal{order:2}
+  .hd-reg{order:3;display:none}
+  .search{order:4;display:block;flex:1 0 100%;max-width:none}
+  .topbar .tb-left span.hide-m{display:none}
+  .topbar .wrap{min-height:0;font-size:.78rem;padding-block:7px;flex-wrap:wrap;row-gap:2px}
+  .topbar .tb-hotline b{white-space:nowrap}
+  .hero{padding:36px 0 66px}
+  .hero h1{font-size:1.62rem;margin-top:14px}
+  .hero .lead{font-size:.94rem}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{width:100%;white-space:normal;text-align:center}
+  .hero-cta .btn-lg{padding:15px 22px;font-size:.98rem}
+  .trust-chips{gap:7px}
+  .trust-chips span{padding:7px 11px;font-size:.75rem}
+  .hv-main{border-width:4px}
+  .hv-main img{aspect-ratio:3/2}
+  .hv-stats{margin-top:12px}
+  .hv-stats div{padding:10px 6px}
+  .hv-stats b{font-size:.95rem}
+  .hv-stats span{font-size:.75rem;white-space:normal;line-height:1.3}
+  .tape span{font-size:.76rem;padding:10px 16px}
+  .grid8{grid-template-columns:1fr;gap:16px}
+  .card8.hero8,.card8.std{grid-column:auto}
+  .card8.hero8 h3{font-size:1.3rem}
+  .card8.hero8 .c8-price{font-size:1.45rem}
+  .c8-body{padding:16px 16px 18px}
+  .card8.hero8 .c8-body{padding:18px 16px 20px}
+  .st-chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;justify-content:flex-start}
+  .st-chip{flex:none}
+  .stmapbox{padding:12px}
+  .ptabs-tabs{grid-template-columns:1fr 1fr;gap:9px}
+  .ptab b{font-size:.98rem}
+  .pgt table{min-width:540px}
+  .pgt-total{flex-direction:column;align-items:flex-start}
+  .pgt-total .btn{margin-left:0;width:100%}
+  .calc-form,.calc-result,.c-form{padding:20px 16px}
+  .km-slide{flex-wrap:wrap}
+  .km-slide output{flex:1}
+  .calc-form>p{margin-bottom:16px}
+  .rb-cta{padding:22px 16px}
+  .rb-steps span{font-size:.72rem;padding:7px 12px}
+  .proc-grid{grid-template-columns:1fr}
+  .stats-inner{padding:40px 14px;margin-inline:-16px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:26px}
+  .stat b{font-size:1.7rem}
+  .about-cards{grid-template-columns:1fr 1fr;gap:10px}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .c-form .f2{grid-template-columns:1fr}
+  .modal-cta{grid-template-columns:1fr}
+  .modal-cta .btn{width:100%}
+  .faq-chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;justify-content:flex-start}
+  .faq-chip{flex:none}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-pay{justify-content:center;text-align:center}
+  .dock{bottom:12px;gap:2px;padding:7px 9px}
+  .dock a,.dock button{font-size:0;gap:0;padding:10px 12px;min-width:44px}
+  .tier-table .row{grid-template-columns:1.15fr .7fr .95fr;padding:10px 12px;font-size:.8rem}
+}
+/*NB93-092: dieu khien cam >=40px mobile*/
+@media(max-width:640px){
+  .faq-chip,.st-chip,.ptab,.quiz-opt,.strip-item,.chip,.faq-chips button,.drawer-x,.stn-foot .maps,.stn-foot .call,.c8-actions .b1,.c8-actions .b2,.km-slide input[type=range]{min-height:40px}
+  .btn{min-height:40px}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"VoltWay","telephone":"0901345688","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"VoltWay — hệ thống 12 trạm sạc & trạm đổi pin xe điện tại TP.HCM. Trụ DC nhanh 150kW, sạc qua đêm giá tốt, đổi pin 3 phút, gói tài xế, hỗ trợ trên đường 24/7. T","url":"http://127.0.0.1:8174/092-tram-sac-dich-vu-pin-xe-dien/"}
+</script>
+</head>
+<body>
+<!-- HOTLINE: 0901 345 688 — lặp ở topbar, hero, drawer, band hỗ trợ trên đường, footer, dock -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <span><span class="pulse"></span>&nbsp;Trạm mở 24/7 · kể cả Lễ, Tết</span>
+      <span class="hide-m">Trụ sở: 145 Trường Chinh, P. Tây Thạnh, Q. Tân Phú, TP.HCM</span>
+    </div>
+    <div class="tb-hotline">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+      Hỗ trợ trên đường 24/7: <b>0901 345 688</b>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="lg-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+      <span class="minw0">VoltWay<small>Trạm sạc &amp; pin xe điện · TP.HCM</small></span>
+    </a>
+    <div class="search">
+      <svg class="s-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm trạm, dịch vụ: sạc nhanh, đổi pin…" autocomplete="off">
+      <div class="search-drop" id="searchDrop"></div>
+    </div>
+    <nav class="nav">
+      <a href="#dichvu">Dịch vụ</a>
+      <a href="#tram">Tra trạm</a>
+      <a href="#banggia">Bảng giá</a>
+      <a href="#chiphi">Tính chi phí</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="hd-reg" href="#mo-the">Mở thẻ thành viên
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <button class="hd-cal" data-open-drawer aria-label="Đăng ký nhanh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Hệ thống trạm sạc &amp; pin xe điện · TP.HCM</span>
+      <h1>Tra trạm <mark>gần nhất</mark>, cắm sạc <mark class="gold">đầy pin</mark> — không lo trễ ca.</h1>
+      <p class="lead">VoltWay vận hành 12 trạm sạc &amp; trạm đổi pin từ Q.12 đến Q.7: trụ DC nhanh đến 150&nbsp;kW, sạc qua đêm giá tốt và gói thuê pin riêng cho tài xế. Mở app tra trụ trống, quét QR là sạc — giá niêm yết theo kWh, không phí ẩn.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="#tram"><span class="sheen"></span>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tra trạm gần bạn — bản đồ 10 quận
+        </a>
+        <a class="btn btn-red btn-lg" href="tel:0901345688">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+          Gọi hỗ trợ trên đường 24/7 · 0901 345 688
+        </a>
+      </div>
+      <div class="trust-chips">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trụ DC nhanh đến 150 kW</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Đổi pin trong 3 phút</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Thẻ tháng tiết kiệm đến 25%</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Giá niêm yết theo kWh</span>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hv-main"><img src="assets/img/cover.webp" alt="Trạm sạc và dịch vụ pin xe điện VoltWay — trụ sạc nhanh cho ô tô và xe máy điện, khu dịch vụ pin"></div>
+      <div class="hv-stats">
+        <div><b>12</b><span>Trạm toàn TP</span></div>
+        <div><b>48</b><span>Trụ sạc</span></div>
+        <div><b>150 kW</b><span>Trụ nhanh nhất</span></div>
+        <div><b>24/7</b><span>Hỗ trợ trên đường</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAPE MARQUEE ================= -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span>TRẠM MỞ 24/7 — KỂ CẢ LỄ, TẾT <i class="dia">◆</i></span>
+    <span>ĐỔI PIN 3 PHÚT — ĐẦY 100% <i class="dia">◆</i></span>
+    <span>TRỤ DC NHANH ĐẾN 150 KW <i class="dia">◆</i></span>
+    <span>THẺ THÁNG TIẾT KIỆM ĐẾN 25% <i class="dia">◆</i></span>
+    <span>HỖ TRỢ TRÊN ĐƯỜNG 24/7 — 0901 345 688 <i class="dia">◆</i></span>
+    <span>GIÁ NIÊM YẾT THEO KWH — KHÔNG PHÍ ẨN <i class="dia">◆</i></span>
+  </div>
+</div>
+
+<!-- ================= KHOI-8: 8 DICH VU ================= -->
+<section class="grid8-sec" id="dichvu">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>8 dịch vụ — giá niêm yết rõ ràng</span>
+      <h2 class="s-title">Sạc nhanh, sạc đêm, đổi pin — <mark>một hệ sinh thái VoltWay</mark></h2>
+      <p class="s-sub">Từ trụ siêu nhanh cho ô tô đến tủ đổi pin cho tài xế xe máy: chọn đúng nhu cầu, giá đã gồm VAT, thanh toán không tiền mặt.</p>
+    </div>
+    <div class="grid8">
+      <!-- 2 the noi bat (to hon) -->
+      <article class="card8 hero8 rv">
+        <div class="c8-media"><img src="assets/img/p1.webp" alt="Trạm sạc nhanh DC cho ô tô điện tại VoltWay" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge">Nổi bật nhất</span><span class="c8-badge kind">Ô tô điện</span></div>
+          <h3>Trạm sạc nhanh DC 30–150 kW</h3>
+          <p class="c8-desc">Trụ CCS2 chuẩn quốc tế: quét QR, cắm sạc, theo dõi % pin và chi phí ngay trên app VoltWay. 10→80% chỉ ~30 phút.</p>
+          <div class="c8-price">3.380₫/kWh <small>siêu nhanh 150 kW: 3.880₫/kWh</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Miễn phí 15 phút đỗ sau khi sạc xong</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>App báo trụ trống trước khi tới</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Khu chờ máy lạnh, wifi, nước miễn phí</li>
+          </ul>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Trạm sạc nhanh DC">Đăng ký dùng trụ nhanh</button>
+            <button class="b2" data-view="1" aria-label="Xem nhanh trạm sạc nhanh DC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 hero8 rv">
+        <div class="c8-media"><img src="assets/img/p3.webp" alt="Tủ đổi pin xe máy điện áp trần tại trạm VoltWay" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge">Dành cho tài xế</span><span class="c8-badge kind">Xe máy điện</span></div>
+          <h3>Đổi pin áp trần — 3 phút đầy 100%</h3>
+          <p class="c8-desc">Tủ đổi pin tự động 24/7: rút pin hết, cắm pin đầy. Mỗi lần đổi chạy thêm ~70 km — tài xế không phải chờ sạc bao giờ.</p>
+          <div class="c8-price">27.000₫/lần đổi <small>thuê pin tháng từ 890.000₫</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pin kiểm định SOH trước khi vào tủ</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Quét QR lấy pin, hóa đơn tự động trên app</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gói tài xế: đổi không giới hạn số lần</li>
+          </ul>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Đổi pin xe máy điện">Tìm tủ đổi gần nhất</button>
+            <button class="b2" data-view="3" aria-label="Xem nhanh dịch vụ đổi pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <!-- 6 the thuong -->
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p2.webp" alt="Trạm sạc chậm AC qua đêm cho xe điện" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">Sạc đêm</span></div>
+          <h3>Sạc chậm AC qua đêm</h3>
+          <p class="c8-desc">Trụ AC 3,3 kW tại trạm có bảo vệ — cắm qua đêm, sáng chạy. Giờ đêm giảm 25%.</p>
+          <div class="c8-meta"><span class="p">1.490₫/kWh đêm</span><span>22:00–6:00</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Sạc chậm AC qua đêm">Đăng ký sạc đêm</button>
+            <button class="b2" data-view="2" aria-label="Xem nhanh sạc chậm qua đêm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p4.webp" alt="Kỹ thuật viên đo sức khỏe pin SOH xe điện" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">Kiểm định</span></div>
+          <h3>Đo sức khỏe pin (SOH)</h3>
+          <p class="c8-desc">12 chỉ số dung lượng thực, điện trở, nhiệt độ cell — biết tình trạng pin trước khi mua hoặc bán xe.</p>
+          <div class="c8-meta"><span class="p">99.000₫/lần</span><span>Báo cáo 30 phút</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Đo sức khỏe pin (SOH)">Đăng ký đo SOH</button>
+            <button class="b2" data-view="4" aria-label="Xem nhanh đo SOH pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p5.webp" alt="Bảo dưỡng pin xe điện định kỳ tại VoltWay" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">Giữ bảo hành</span></div>
+          <h3>Bảo dưỡng pin định kỳ</h3>
+          <p class="c8-desc">Vệ sinh khay pin, siết terminal, cân cell, cập nhật BMS — pin giữ dung lượng, chậm xuống cấp.</p>
+          <div class="c8-meta"><span class="p">từ 350.000₫</span><span>90 phút</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Bảo dưỡng pin định kỳ">Đăng ký bảo dưỡng</button>
+            <button class="b2" data-view="5" aria-label="Xem nhanh bảo dưỡng pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p6.webp" alt="Lắp đặt trạm sạc xe điện tại nhà trọn gói" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">Trọn gói</span></div>
+          <h3>Lắp trạm sạc tại nhà</h3>
+          <p class="c8-desc">Trụ AC 7,4 kW + dây chuẩn + app riêng. Khảo sát miễn phí, thi công 4–6 giờ, bảo hành 24 tháng.</p>
+          <div class="c8-meta"><span class="p">từ 4.500.000₫</span><span>Khảo sát free</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Lắp trạm sạc tại nhà">Nhận khảo sát tại nhà</button>
+            <button class="b2" data-view="6" aria-label="Xem nhanh lắp trạm sạc tại nhà"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p7.webp" alt="Phụ kiện sạc xe điện chính hãng: cáp, đầu sạc, hộp đựng" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">Chính hãng</span></div>
+          <h3>Phụ kiện sạc xe điện</h3>
+          <p class="c8-desc">Cá sạc dự phòng, đầu sạc thay thế, hộp đựng, giá treo — đúng chuẩn từng dòng xe điện phổ thông.</p>
+          <div class="c8-meta"><span class="p">từ 250.000₫</span><span>BH 6–12 tháng</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Phụ kiện sạc xe điện">Hỏi phụ kiện cho xe</button>
+            <button class="b2" data-view="7" aria-label="Xem nhanh phụ kiện sạc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="card8 std rv">
+        <div class="c8-media"><img src="assets/img/p8.webp" alt="Hỗ trợ kỹ thuật và cứu sạc xe điện 24/7 trên đường" loading="lazy"></div>
+        <div class="c8-body">
+          <div class="c8-top"><span class="c8-badge kind">24/7</span></div>
+          <h3>Hỗ trợ kỹ thuật trên đường</h3>
+          <p class="c8-desc">Xe sập nguồn, sạc không vào, báo lỗi — bấm "Cần hỗ trợ" trong app, xe kỹ thuật đến tại chỗ 20–40 phút.</p>
+          <div class="c8-meta"><span class="p">Miễn phí thành viên</span><span>Nội thành 20–40 phút</span></div>
+          <div class="c8-actions">
+            <button class="b1" data-open-lead="Hỗ trợ kỹ thuật trên đường">Lưu hotline hỗ trợ</button>
+            <button class="b2" data-view="8" aria-label="Xem nhanh hỗ trợ kỹ thuật 24/7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIEM NHAN 1: BAN DO TRAM SVG THEO QUAN ================= -->
+<section class="stmap" id="tram">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Tra trạm gần nhất</span>
+      <h2 class="s-title">Bản đồ trạm VoltWay — <mark class="gold">chọn quận, thấy trụ trống</mark></h2>
+      <p class="s-sub">Chạm vào quận trên bản đồ hoặc chip bên dưới để lọc trạm. Mỗi trạm hiển thị loại trụ, chỗ trống và giá sạc tại trạm.</p>
+    </div>
+    <div class="st-chips rv" id="stChips" role="tablist">
+      <button class="st-chip on" data-dist="all">Tất cả 10 trạm</button>
+      <button class="st-chip" data-dist="tanphu">Tân Phú</button>
+      <button class="st-chip" data-dist="q1">Quận 1</button>
+      <button class="st-chip" data-dist="binhthanh">Bình Thạnh</button>
+      <button class="st-chip" data-dist="govap">Gò Vấp</button>
+      <button class="st-chip" data-dist="thuduc">Thủ Đức</button>
+      <button class="st-chip" data-dist="tanbinh">Tân Bình</button>
+      <button class="st-chip" data-dist="binhtan">Bình Tân</button>
+      <button class="st-chip" data-dist="q12">Quận 12</button>
+      <button class="st-chip" data-dist="phunhuan">Phú Nhuận</button>
+      <button class="st-chip" data-dist="q7">Quận 7</button>
+    </div>
+    <div class="st-grid">
+      <div class="stmapbox rv">
+        <!--NB93-MAP: 10.7301,106.7183-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.7301,106.7183&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+        <div class="st-legend">
+          <span><i style="background:#2FD97A"></i>Trụ sạc nhanh DC</span>
+          <span><i style="background:#4FA9EE"></i>Trụ sạc chậm AC / qua đêm</span>
+          <span><i style="background:#F5B81E"></i>Tủ đổi pin</span>
+        </div>
+      </div>
+      <div class="rv">
+        <p class="st-count" id="stCount"></p>
+        <div class="st-list" id="stList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIEM NHAN 2: BANG GIA NIEM YET THEO GOI ================= -->
+<section class="ptabs" id="banggia">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Giá niêm yết — gồm VAT</span>
+      <h2 class="s-title">Bảng giá sạc theo kWh — <mark>sạc lẻ hay thẻ tháng đều rõ</mark></h2>
+      <p class="s-sub">Chọn nhóm dịch vụ để xem đơn giá chi tiết. Giá áp dụng đồng nhất tại 12 trạm, thanh toán qua app voltway.vn hoặc QR tại trụ.</p>
+    </div>
+    <div class="ptabs-tabs rv" role="tablist">
+      <button class="ptab on" data-pt="dc" role="tab"><span class="pt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><b>Sạc nhanh DC</b><span>ô tô điện · 30–150 kW</span></button>
+      <button class="ptab" data-pt="ac" role="tab"><span class="pt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><b>Sạc chậm AC / đêm</b><span>xe máy &amp; ô tô · 3,3 kW</span></button>
+      <button class="ptab" data-pt="pin" role="tab"><span class="pt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="11" rx="2.5"/><path d="M22 11v3M7.5 10l-2 3h4l-2 3"/></svg></span><b>Đổi pin &amp; thuê pin</b><span>xe máy điện · áp trần</span></button>
+      <button class="ptab" data-pt="dv" role="tab"><span class="pt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 5.6L3 17.6V21h3.4l5.7-5.7a4.5 4.5 0 0 0 5.6-6L15 12l-2.8-.7L11.5 8.4l3.2-2.1z"/></svg></span><b>Dịch vụ pin &amp; lắp trụ</b><span>SOH · bảo dưỡng · tại nhà</span></button>
+    </div>
+    <div class="ptab-panel on rv" id="pt-dc">
+      <div class="pgt">
+        <table>
+          <thead><tr><th>Hạng mục</th><th>Chi tiết</th><th>Đơn giá</th><th>Thời gian</th></tr></thead>
+          <tbody>
+            <tr><td><b>Trụ DC nhanh 30–60 kW</b></td><td>Ô tô điện chuẩn CCS2 — sạc 10→80%</td><td class="pri">3.380₫/kWh</td><td class="t">~30 phút</td></tr>
+            <tr><td><b>Trụ siêu nhanh 60–150 kW</b></td><td>Dòng xe hỗ trợ sạc cao — 15→80%</td><td class="pri">3.880₫/kWh</td><td class="t">~18 phút</td></tr>
+            <tr><td><b>Trụ nhanh cho xe máy điện</b></td><td>Trụ dùng chấm tại trạm, có mái che</td><td class="pri">5.000₫/15 phút</td><td class="t">Trần 20.000₫/lần</td></tr>
+            <tr><td><b>Đỗ tại trụ sau sạc xong</b></td><td>15 phút đầu miễn phí để rút dây, rời trụ</td><td class="free">Miễn phí</td><td class="t">Sau đó 2.000₫/5 phút</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pgt-tips">
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Sạc nhanh không làm hại pin</b>BMS của xe tự giới hạn dòng khi pin nóng. VoltWay chỉ cấp dòng trong ngưỡng xe cho phép — dùng DC thường xuyên vẫn an toàn.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>App báo trụ trống trước khi đi</b>Mở app VoltWay chọn trạm — hệ thống hiển thị trụ đang trống, tránh tới nơi phải chờ.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Thẻ tháng vẫn dùng được trụ DC</b>Thẻ tháng trừ theo kWh giá ưu đãi — sạc nhanh hay chậm đều cộng dồn vào một tài khoản.</div>
+      </div>
+      <div class="pgt-total">
+        <span>Tham khảo: sạc 10→80% xe pin 50 kWh ≈ <b>118.000₫</b> · ~200 km di chuyển</span>
+        <button class="btn btn-accent" data-reg="Thẻ tháng GREEN — ô tô"><span class="sheen"></span>Mở thẻ dùng trụ nhanh</button>
+      </div>
+    </div>
+    <div class="ptab-panel" id="pt-ac">
+      <div class="pgt">
+        <table>
+          <thead><tr><th>Hạng mục</th><th>Chi tiết</th><th>Đơn giá</th><th>Thời gian</th></tr></thead>
+          <tbody>
+            <tr><td><b>Trụ AC 3,3 kW (ban ngày)</b></td><td>Xe máy &amp; ô tô — cắm tại trạm có mái che</td><td class="pri">1.980₫/kWh</td><td class="t">3–5 giờ đầy</td></tr>
+            <tr><td><b>Giá khung đêm 22:00–6:00</b></td><td>Tự động áp khi cắm trong khung đêm</td><td class="pri">1.490₫/kWh</td><td class="t">Tiết kiệm 25%</td></tr>
+            <tr><td><b>Gửi xe qua đêm + sạc</b></td><td>Khu có bảo vệ, camera — gồm 10 kWh đầu</td><td class="pri">35.000₫/đêm</td><td class="t">Nhận xe từ 6:00</td></tr>
+            <tr><td><b>Khu chờ máy lạnh + wifi</b></td><td>Ghế ngồi, nước uống, làm việc tại trạm</td><td class="free">Miễn phí</td><td class="t">Trong giờ sạc</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pgt-tips">
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Sạc đêm nhẹ nhất cho pin</b>Sạc dòng nhỏ qua đêm giữ nhiệt độ pin thấp — nên duy trì 80–90% đêm, chỉ sạc nhanh khi cần gấp.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Hợp với người để xe nhà chung cư</b>Chưa lắp được trụ tại nhà? Gửi+sạc qua đêm 35.000₫ — sáng lấy xe đầy pin, rẻ hơn gửi xe thuần.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Xe máy sạc chậm chỉ ~15.000₫</b>Pin xe máy ~2,5 kWh: một đêm đầy chỉ tốn khoảng 3.700₫ giá đêm.</div>
+      </div>
+      <div class="pgt-total">
+        <span>Tham khảo: xe máy sạc đêm mỗi ngày ≈ <b>112.000₫/tháng</b> — bằng ~4.000 km chạy</span>
+        <button class="btn btn-accent" data-reg="Thẻ tháng GREEN — xe máy"><span class="sheen"></span>Mở thẻ sạc đêm</button>
+      </div>
+    </div>
+    <div class="ptab-panel" id="pt-pin">
+      <div class="pgt">
+        <table>
+          <thead><tr><th>Hạng mục</th><th>Chi tiết</th><th>Đơn giá</th><th>Thời gian</th></tr></thead>
+          <tbody>
+            <tr><td><b>Đổi pin lẻ</b></td><td>Pin áp trần VoltWay — lấy pin đầy 100%, ~70 km</td><td class="pri">27.000₫/lần</td><td class="t">3 phút</td></tr>
+            <tr><td><b>Thuê pin tháng CƠ BẢN</b></td><td>60 lần đổi/tháng, pin dùng trọn đời gói</td><td class="pri">890.000₫/tháng</td><td class="t">~1.800₫/lần đổi</td></tr>
+            <tr><td><b>Thuê pin tháng TÀI XẾ</b></td><td>Đổi không giới hạn + ưu đãi sạc đêm 50%</td><td class="pri">1.150.000₫/tháng</td><td class="t">Dành cho xe chạy ca</td></tr>
+            <tr><td><b>Thay pin mới chính hãng</b></td><td>Theo dòng xe — bảo hành pin 3 năm</td><td class="pri">từ 6.900.000₫</td><td class="t">Thay trong 60 phút</td></tr>
+            <tr><td><b>Cọc pin thuê</b></td><td>Hoàn 100% khi trả pin, không mất giá trị</td><td class="pri">1.900.000₫</td><td class="t">Một lần</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pgt-tips">
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Thuê pin đỡ lo xuống cấp</b>Pin là tài sản đắt nhất của xe điện. Thuê pin: hỏng đổi mới, xuống cấp đổi pin khác — chi phí vận hành cố định mỗi tháng.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Tài xế nên chọn gói TÀI XẾ</b>Chạy trên 90 km/ngày: đổi thoải mái + sạc đêm giảm 50% — tính ra rẻ hơn gói CƠ BẢN từ tuần thứ hai.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pin nào đổi được?</b>Các dòng xe máy điện dùng khay pin áp trần chuẩn VoltWay. Mang xe tới trạm — kỹ thuật kiểm tra miễn phí 5 phút.</div>
+      </div>
+      <div class="pgt-total">
+        <span>Tài xế chạy ~100 km/ngày: gói TÀI XẾ ≈ <b>38.000₫/ngày</b> — đã gồm pin + điện</span>
+        <button class="btn btn-accent" data-reg="Gói tài xế PRO — thuê pin"><span class="sheen"></span>Đăng ký thuê pin</button>
+      </div>
+    </div>
+    <div class="ptab-panel" id="pt-dv">
+      <div class="pgt">
+        <table>
+          <thead><tr><th>Hạng mục</th><th>Chi tiết</th><th>Đơn giá</th><th>Thời gian</th></tr></thead>
+          <tbody>
+            <tr><td><b>Đo sức khỏe pin (SOH)</b></td><td>12 chỉ số — báo cáo in + lưu trên app</td><td class="pri">99.000₫/lần</td><td class="t">30 phút</td></tr>
+            <tr><td><b>Bảo dưỡng pin định kỳ</b></td><td>Vệ sinh, siết terminal, cân cell, cập nhật BMS</td><td class="pri">từ 350.000₫</td><td class="t">90 phút</td></tr>
+            <tr><td><b>Lắp trạm sạc tại nhà trọn gói</b></td><td>Trụ AC 7,4 kW + dây chuẩn + app — bảo hành 24 tháng</td><td class="pri">từ 4.500.000₫</td><td class="t">Thi công 4–6 giờ</td></tr>
+            <tr><td><b>Khảo sát + tư vấn tại nhà</b></td><td>Miễn phí khi lắp trụ qua VoltWay</td><td class="free">Miễn phí</td><td class="t">Hẹn trong 48 giờ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pgt-tips">
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Mua xe cũ nên đo SOH trước</b>Chi phí 99.000₫ giúp tránh mua phải pin đã xuống cấp — khoản chênh thay pin có thể lên tới cả chục triệu.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Bảo dưỡng mỗi 6 tháng</b>Xe chạy nhiều (tài xế) nên bảo dưỡng pin mỗi 6 tháng hoặc 10.000 km — miễn phí đo SOH kèm theo.</div>
+        <div class="pgt-tip"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Trụ tại nhà cần gì?</b>Chỉ cần chỗ để xe có tường + đường điện riêng. Kỹ thuật khảo sát sẽ báo phương án và giá chốt trước khi thi công.</div>
+      </div>
+      <div class="pgt-total">
+        <span>Khảo sát lắp trụ tại nhà: <b>miễn phí</b> — báo giá chốt trước khi thi công</span>
+        <button class="btn btn-accent" data-reg="Lắp trạm sạc tại nhà"><span class="sheen"></span>Nhận khảo sát miễn phí</button>
+      </div>
+    </div>
+    <p class="ptabs-note rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      Mọi giá trên đã gồm VAT, áp dụng đồng nhất tại 12 trạm. Khách doanh nghiệp &amp; đội xe nhận báo giá hợp đồng riêng — gọi <b>0901 345 688</b> (giờ hành chính).
+    </p>
+  </div>
+</section>
+
+<!-- ================= DIEM NHAN 3: MAY TINH CHI PHI THANG ================= -->
+<section class="calc" id="chiphi">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Tính trước chi phí</span>
+      <h2 class="s-title">Sạc lẻ hay thẻ tháng? — <mark>tính thử 30 giây</mark></h2>
+      <p class="s-sub">Nhập loại xe và số km chạy mỗi ngày, VoltWay soạn ước tính chi phí theo từng gói để bạn chọn gói đúng.</p>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-form rv">
+        <span class="eyebrow"><span class="dot"></span>Máy tính gói sạc</span>
+        <h3>Ước tính chi phí tháng</h3>
+        <p>Kết quả là ước tính theo giá niêm yết — không phát sinh phí ẩn.</p>
+        <div class="field">
+          <label for="cvSel">Phương tiện của bạn</label>
+          <select id="cvSel">
+            <option value="bike" selected>Xe máy điện (pin ~2,5 kWh)</option>
+            <option value="car">Ô tô điện (pin 40–60 kWh)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="kmRange">Số km chạy mỗi ngày</label>
+          <div class="km-slide">
+            <input type="range" id="kmRange" min="15" max="200" step="5" value="40" aria-label="Số km chạy mỗi ngày">
+            <output id="kmOut" for="kmRange">40 km/ngày</output>
+          </div>
+          <p class="hint" id="kmHint">≈ 1.200 km/tháng · tiêu thụ ~36 kWh/tháng</p>
+        </div>
+        <div class="field" style="margin-bottom:4px">
+          <label for="pkgSel2">Gói muốn thử</label>
+          <select id="pkgSel2">
+            <option value="le" selected>Sạc lẻ theo kWh</option>
+            <option value="thang">Thẻ tháng GREEN</option>
+            <option value="taxixe">Gói tài xế PRO</option>
+          </select>
+        </div>
+        <div class="calc-save" style="color:#8CF3BE" id="calcTip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <span>Gợi ý sẽ hiện bên phải sau khi tính.</span>
+        </div>
+      </div>
+      <div class="calc-result rv">
+        <div class="pr-name"><b id="crName">Sạc lẻ theo kWh</b><span id="crTag">Linh hoạt</span></div>
+        <div class="tier-table" id="tierTable">
+          <div class="row head"><span>Gói</span><span>Ưu đãi</span><span>Chi phí/tháng</span></div>
+          <div class="row" data-tier="le" role="button"><span><b>Sạc lẻ</b> — trả theo kWh dùng</span><span>0%</span><span id="tLe">—</span></div>
+          <div class="row" data-tier="thang" role="button"><span><b>Thẻ tháng GREEN</b> — trần giá kWh</span><span id="tThangD">~20%</span><span id="tThang">—</span></div>
+          <div class="row" data-tier="taxixe" role="button"><span><b>Gói tài xế PRO</b> — pin + điện chốt trần</span><span>Chốt trần</span><span id="tTaxi">—</span></div>
+        </div>
+        <div class="calc-total">
+          <span>Chi phí dự kiến của bạn (<span id="crKm">40 km/ngày</span>)</span>
+          <b id="crTotal">—</b>
+        </div>
+        <ul class="calc-ul">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Giá đã gồm VAT — hóa đơn điện tử gửi qua app</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Thẻ tháng dùng chung tại 12 trạm, tự động gia hạn</li>
+        </ul>
+        <button class="btn btn-accent btn-lg btn-block" id="crReg"><span class="sheen"></span>Đăng ký gói này — mở thẻ online</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BAND HO TRO TREN DUONG 24/7 ================= -->
+<section class="rescue-band" id="hotro">
+  <div class="wrap rb-grid">
+    <div class="rv">
+      <h2>Xe sập nguồn giữa đường? <b>Gọi — xe sạc lưu động đến trong 20–40 phút.</b></h2>
+      <p class="rb-sub">Đội hỗ trợ VoltWay trực 24/7 toàn khu vực TP.HCM kể cả Lễ, Tết. Bấm "Cần hỗ trợ" trong app hoặc gọi hotline — xe kỹ thuật mang sạc lưu động đến tận chỗ, sạc đủ chạy về nhà hoặc trạm gần nhất.</p>
+      <div class="rb-steps">
+        <span><b>1.</b> Gọi hotline / bấm app</span>
+        <span><b>2.</b> Gửi vị trí qua Zalo</span>
+        <span><b>3.</b> Xe lưu động đến tại chỗ</span>
+        <span><b>4.</b> Sạc đủ về nhà hoặc trạm</span>
+      </div>
+    </div>
+    <div class="rb-cta rv">
+      <small>Hotline hỗ trợ trên đường — 24/7 kể cả Lễ, Tết</small>
+      <div class="rb-num">0901 345 688</div>
+      <a class="btn btn-red btn-lg" href="tel:0901345688"><span class="sheen"></span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+        Bấm để gọi hỗ trợ ngay
+      </a>
+      <p>Miễn phí cho thẻ tháng &amp; gói tài xế · khách lẻ từ 79.000₫/lần (báo trước khi xuất phát)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUY TRINH 4 BUOC ================= -->
+<section class="proc" id="quytrinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Quy trình 4 bước</span>
+      <h2 class="s-title">Từ tra trạm đến đầy pin — dưới 5 phút chuẩn bị</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="p-card rv"><span class="p-n">1</span><b>Tra trạm trên app / website</b><p>Mở bản đồ VoltWay, chọn quận — thấy ngay trụ trống và giá tại trạm.</p><span class="p-meta">30 giây · realtime</span></div>
+      <div class="p-card rv"><span class="p-n">2</span><b>Quét QR tại trụ</b><p>Quét mã trên trụ hoặc tủ đổi pin — hệ thống nhận diện thẻ/gói của bạn.</p><span class="p-meta">10 giây · không cần thẻ cứng</span></div>
+      <div class="p-card rv"><span class="p-n">3</span><b>Cắm sạc hoặc đổi pin</b><p>Sạc DC 30 phút hoặc đổi pin 3 phút — theo dõi % pin ngay trên app.</p><span class="p-meta">3–30 phút</span></div>
+      <div class="p-card rv"><span class="p-n">4</span><b>Thanh toán tự động</b><p>Trừ theo kWh hoặc theo gói — hóa đơn điện tử gửi vào app, đầy đủ VAT.</p><span class="p-meta">0 thao tác</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-vis rv">
+      <span class="ab-tag">6.500+ lượt sạc<small>mỗi tháng tại 12 trạm</small></span>
+      <div class="av-main"><img src="assets/img/intro.webp" alt="Giới thiệu trạm sạc và dịch vụ pin xe điện VoltWay"></div>
+      <div class="av-sub"><img src="assets/img/space.webp" alt="Không gian trạm VoltWay — khu chờ máy lạnh, tủ đổi pin và khu dịch vụ pin" loading="lazy"></div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow"><span class="dot"></span>Về VoltWay</span>
+      <h2 class="s-title" style="margin-top:14px">Trạm của người <mark>chạy xe mỗi ngày</mark></h2>
+      <p class="s-sub" style="margin-top:12px">VoltWay bắt đầu từ năm 2021 với một trụ sạc ở Tân Phú, giờ là 12 trạm phủ nội thành. Chúng tôi xây trạm theo trải nghiệm người chạy: mái che đầy đủ, khu chờ mát, trụ trống hiển thị trước khi tới và giá niêm yết không đổi giữa trưa nắng.</p>
+      <div class="about-cards">
+        <div class="ab-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <b>Điện ổn định, có dự phòng</b><span>Mỗi trạm có nguồn dự phòng — trụ không "chết" giữa trưa cao điểm</span>
+        </div>
+        <div class="ab-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <b>Pin kiểm định từng viên</b><span>Pin vào tủ đổi đều được đo SOH — pin tệ không tới tay người dùng</span>
+        </div>
+        <div class="ab-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+          <b>Giá niêm yết, không phí ẩn</b><span>Theo kWh rõ ràng, miễn phí 15 phút đỗ — hóa đơn VAT đầy đủ</span>
+        </div>
+        <div class="ab-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <b>Trực trạm 24/7</b><span>Nhân viên trực + hotline hỗ trợ trên đường — kể cả 2 giờ sáng</span>
+        </div>
+      </div>
+      <div class="about-cta">
+        <a class="btn btn-accent btn-lg" href="#tram"><span class="sheen"></span>Tra trạm gần bạn ngay</a>
+        <a class="btn btn-ghost btn-lg" href="#banggia">Xem bảng giá niêm yết</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div class="stat rv"><b><span class="cnt" data-to="12">0</span></b><span>Trạm sạc &amp; trạm đổi pin</span></div>
+      <div class="stat rv"><b><span class="cnt" data-to="48">0</span></b><span>Trụ sạc DC + AC đang chạy</span></div>
+      <div class="stat rv"><b><span class="cnt" data-to="6500">0</span><i>+</i></b><span>Lượt sạc &amp; đổi pin mỗi tháng</span></div>
+      <div class="stat rv"><b><span class="cnt" data-to="99">0</span><i>%</i></b><span>Trụ sẵn sàng — uptime 6 tháng</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="rev" id="review">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Người chạy xe nói gì</span>
+      <h2 class="s-title">Tài xế <mark class="gold">trả ca đủ pin</mark> — người dùng khỏi lo trễ hẹn</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-stage rv">
+        <div id="revSlides"></div>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+      <div class="rev-side rv">
+        <div class="rev-metric">
+          <div class="rm-big">4.8<i>/5</i></div>
+          <p>Từ hơn <b>960 đánh giá</b> trên app VoltWay của người đã sạc &amp; đổi pin tại trạm.</p>
+          <div class="rm-bar"><i></i></div>
+        </div>
+        <div class="rev-partners">
+          <b>Chuẩn kết nối &amp; thanh toán hỗ trợ</b>
+          <div class="pt">
+            <span>CCS2</span><span>Type 2</span><span>GB/T</span><span>Pin áp trần</span><span>OCPP 2.0.1</span><span>QR Banking</span><span>Ví điện tử</span><span>Hóa đơn VAT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MO THE + LIEN HE ================= -->
+<section class="join" id="mo-the">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Mở thẻ thành viên</span>
+      <h2 class="s-title">Đăng ký online — <mark>nhận thẻ trên app trong 15 phút</mark></h2>
+      <p class="s-sub">Điền form bên dưới, nhân viên VoltWay gọi xác nhận trong giờ hành chính. Thẻ tháng kích hoạt từ lần sạc đầu tiên.</p>
+    </div>
+    <div class="join-grid">
+      <div class="hq-card rv">
+        <span class="eyebrow"><span class="dot"></span>Trạm trụ sở</span>
+        <h3>VoltWay Tân Phú — 145 Trường Chinh</h3>
+        <p>Trạm mẫu 16 trụ: 8 trụ DC nhanh, 4 trụ AC, 2 tủ đổi pin và showroom phụ kiện. Mở cửa 24/7, có khu chờ máy lạnh.</p>
+        <ul class="hq-rows">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span><b>145 Trường Chinh, P. Tây Thạnh, Q. Tân Phú, TP.HCM</b><br>cổng xe vào từ đường số 6, rộng 4m</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><b>Mở 24/7</b> — nhân viên trực liên tục<br>Showroom phụ kiện: 8:00–20:00</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg><span>Hotline hỗ trợ trên đường: <b>0901 345 688</b><br>Mở thẻ &amp; hợp đồng đội xe: cùng số</span></li>
+        </ul>
+        <div class="hq-call">
+          <a class="btn btn-red btn-lg" href="tel:0901345688">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+            Gọi VoltWay — 0901 345 688
+          </a>
+          <div class="hq-apps">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg>App VoltWay — iOS</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg>App VoltWay — Android</span>
+          </div>
+        </div>
+      </div>
+      <div class="c-form rv">
+        <span class="eyebrow"><span class="dot"></span>Form đăng ký mở thẻ</span>
+        <h3>Để lại thông tin — VoltWay gọi lại</h3>
+        <p class="cf-sub">Hoặc gọi trực tiếp 0901 345 688 nếu cần hỗ trợ trên đường ngay.</p>
+        <form id="regForm" novalidate>
+          <div class="f2">
+            <div class="field"><label for="rfName">Họ tên *</label><input id="rfName" placeholder="Nguyễn Văn A" autocomplete="name"></div>
+            <div class="field"><label for="rfPhone">Số điện thoại *</label><input id="rfPhone" inputmode="tel" placeholder="09xx xxx xxx" maxlength="12" autocomplete="tel"></div>
+          </div>
+          <div class="f2">
+            <div class="field"><label for="rfVehicle">Phương tiện *</label>
+              <select id="rfVehicle">
+                <option value="">— Chọn phương tiện —</option>
+                <option>Xe máy điện</option>
+                <option>Ô tô điện</option>
+                <option>Cả hai / đội xe</option>
+              </select>
+            </div>
+            <div class="field"><label for="rfNeed">Nhu cầu quan tâm *</label>
+              <select id="rfNeed">
+                <option value="">— Chọn nhu cầu —</option>
+                <option>Thẻ tháng GREEN — xe máy</option>
+                <option>Thẻ tháng GREEN — ô tô</option>
+                <option>Gói tài xế PRO — thuê pin</option>
+                <option>Trạm sạc nhanh DC</option>
+                <option>Sạc chậm AC qua đêm</option>
+                <option>Đổi pin xe máy điện</option>
+                <option>Đo sức khỏe pin (SOH)</option>
+                <option>Bảo dưỡng pin định kỳ</option>
+                <option>Lắp trạm sạc tại nhà</option>
+                <option>Phụ kiện sạc xe điện</option>
+                <option>Hỗ trợ kỹ thuật trên đường</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="rfNote">Ghi chú <span style="font-weight:500;color:var(--soft)">(không bắt buộc)</span></label><textarea id="rfNote" rows="2" placeholder="VD: chạy Grab ca đêm Q.7 — Q.1, muốn tư vấn gói tài xế"></textarea></div>
+          <button class="btn btn-accent btn-lg btn-block" type="submit"><span class="sheen"></span>Gửi đăng ký — nhận thẻ trên app trong 15 phút</button>
+          <div class="c-secure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Thông tin chỉ dùng để kích hoạt thẻ &amp; tư vấn gói — không chia sẻ bên thứ ba.
+          </div>
+          <div class="c-ok" id="cOk">Đã nhận đăng ký! VoltWay sẽ gọi xác nhận trong 30 phút (giờ hành chính). Cần hỗ trợ trên đường — gọi ngay 0901 345 688.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><span class="dot"></span>Hỏi đáp nhanh</span>
+      <h2 class="s-title">Người dùng xe điện hay hỏi VoltWay những gì?</h2>
+    </div>
+    <div class="faq-search rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="faqSearch" type="text" placeholder="Tìm: giá, thẻ tháng, đổi pin, hết pin giữa đường…" autocomplete="off">
+    </div>
+    <div class="faq-chips rv" id="faqChips"></div>
+    <div class="faq-list rv" id="faqList"></div>
+    <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0901 345 688 để được trả lời ngay.</p>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="logo"><span class="lg-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        <span class="minw0">VoltWay<small style="color:#8fa89a">Đầy pin cho mọi hành trình</small></span></span>
+        <p>Hệ thống trạm sạc &amp; dịch vụ pin xe điện tại TP.HCM: trụ DC nhanh, sạc qua đêm, đổi pin áp trần và hỗ trợ trên đường 24/7.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.6-1.6h1.7V4.2c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.4V14h2.7v8h3.4z"/></svg></a>
+          <a href="https://zalo.me/0901345688" target="_blank" rel="noopener" aria-label="Zalo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.4-.7L3 21l1.8-4.4A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.5c-.3-1-1-1.7-2-2C18.9 4 12 4 12 4s-6.9 0-8.5.5c-1 .3-1.7 1-2 2C1 8.2 1 12 1 12s0 3.8.5 5.5c.3 1 1 1.7 2 2 1.6.5 8.5.5 8.5.5s6.9 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.7.5-5.5.5-5.5zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+          <a href="https://maps.google.com/maps?q=145%20Truong%20Chinh%2C%20Tan%20Thanh%2C%20Tan%20Phu%2C%20TP.%20HCM" target="_blank" rel="noopener" aria-label="Chỉ đường tới trạm trụ sở"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Dịch vụ</h4>
+        <ul id="ftServices"></ul>
+      </div>
+      <div class="ft-col">
+        <h4>Khách hàng cần biết</h4>
+        <ul>
+          <li><a href="#tram">Bản đồ trạm theo quận</a></li>
+          <li><a href="#banggia">Bảng giá sạc theo kWh</a></li>
+          <li><a href="#chiphi">Tính chi phí thẻ tháng</a></li>
+          <li><a href="#hotro">Hỗ trợ trên đường 24/7</a></li>
+          <li><a href="#mo-the">Mở thẻ thành viên online</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="ft-col ft-contact">
+        <h4>VoltWay</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span><b>145 Trường Chinh, P. Tây Thạnh, Q. Tân Phú, TP.HCM</b><br>12 trạm từ Q.12 đến Q.7 — xem bản đồ trên trang</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg><span>Hỗ trợ trên đường 24/7: <b>0901 345 688</b><br>Mở thẻ &amp; hợp đồng đội xe: cùng số</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><b>Trạm mở 24/7</b> kể cả Lễ, Tết<br>Showroom phụ kiện: 8:00–20:00</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-pay">
+      <div class="pay-chips"><span>App VoltWay Wallet</span><span>QR Banking</span><span>Thẻ Visa/Master</span><span>Ví điện tử</span><span>Hóa đơn VAT</span></div>
+      <div class="cert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Giá niêm yết gồm VAT · Trụ chuẩn CCS2 / Type 2 / GB-T
+      </div>
+    </div>
+    <div class="ft-copy">© 2026 VoltWay — Trạm sạc &amp; dịch vụ pin xe điện tại TP.HCM. Website mẫu phục vụ mục đích trình bày.</div>
+  </div>
+</footer>
+
+<!-- ================= FAB DOCK ================= -->
+<div class="dock hide" id="dock">
+  <a class="dk-main" href="#mo-the">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg>
+    Mở thẻ
+  </a>
+  <a class="dk-red" href="tel:0901345688">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+    Gọi 24/7
+  </a>
+  <a href="https://zalo.me/0901345688" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.4-.7L3 21l1.8-4.4A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
+    Zalo
+  </a>
+  <a href="#tram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Tra trạm
+  </a>
+  <button id="toTop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    Lên đầu
+  </button>
+</div>
+
+<!-- ================= DRAWER DANG KY NHANH ================= -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Đăng ký nhanh — mở thẻ">
+  <div class="drawer-head">
+    <div><b>Đăng ký nhanh</b><small>Chọn nhu cầu · để SĐT — nhân viên gọi lại</small></div>
+    <button class="drawer-x" id="drawerX" aria-label="Đóng">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="dr-field">
+      <label for="drNeed">Bạn cần gì?</label>
+      <select id="drNeed">
+        <option>Trạm sạc nhanh DC</option>
+        <option>Sạc chậm AC qua đêm</option>
+        <option>Đổi pin xe máy điện</option>
+        <option>Đo sức khỏe pin (SOH)</option>
+        <option>Bảo dưỡng pin định kỳ</option>
+        <option>Lắp trạm sạc tại nhà</option>
+        <option>Phụ kiện sạc xe điện</option>
+        <option>Hỗ trợ kỹ thuật trên đường</option>
+        <option>Thẻ tháng GREEN — xe máy</option>
+        <option>Thẻ tháng GREEN — ô tô</option>
+        <option>Gói tài xế PRO — thuê pin</option>
+      </select>
+    </div>
+    <div class="dr-field">
+      <label for="drPhone">Số điện thoại</label>
+      <input id="drPhone" inputmode="tel" placeholder="09xx xxx xxx" maxlength="12">
+    </div>
+    <div class="dr-note">Đăng ký không mất phí. Nhân viên gọi xác nhận trong 30 phút (giờ hành chính) — thẻ kích hoạt ngay trên app.</div>
+    <button class="btn btn-accent btn-block btn-lg" id="drConfirm"><span class="sheen"></span>Gửi đăng ký — nhận mã ngay</button>
+    <div class="drawer-ok" id="drOk"></div>
+    <div class="dr-hotline">
+      <div><small>SỰ CỐ TRÊN ĐƯỜNG — KHÔNG PHẢI ĐĂNG KÝ</small><b>0901 345 688</b></div>
+      <a href="tel:0901345688">Gọi ngay</a>
+    </div>
+  </div>
+</aside>
+
+<!-- ================= QUICK VIEW MODAL ================= -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-media">
+      <img id="mImg" src="assets/img/p1.webp" alt="Ảnh dịch vụ VoltWay">
+      <button class="modal-x" id="modalX" aria-label="Đóng">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3 id="mName"></h3>
+      <div class="m-meta" id="mMeta"></div>
+      <p class="m-desc" id="mDesc"></p>
+      <ul id="mList"></ul>
+      <div class="modal-cta">
+        <button class="btn btn-accent" id="mReg"><span class="sheen"></span>Đăng ký dịch vụ này</button>
+        <a class="btn btn-ghost" href="tel:0901345688">Gọi VoltWay</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+/*NB93-092: data + logic trạm sạc VoltWay*/
+const SERVICES = [
+  {id:1,name:"Trạm sạc nhanh DC",img:"assets/img/p1.webp",price:"3.380₫/kWh",time:"~30 phút 10→80%",badge:"Nổi bật nhất",
+   desc:"Trụ DC 30–150 kW chuẩn CCS2 cho ô tô điện: quét QR, cắm sạc, theo dõi % pin và chi phí ngay trên app VoltWay.",
+   bullets:["Trụ CCS2 chuẩn quốc tế, đến 150 kW","Theo dõi % pin & chi phí trực tiếp trên app","Miễn phí 15 phút đỗ sau khi sạc xong"]},
+  {id:2,name:"Sạc chậm AC qua đêm",img:"assets/img/p2.webp",price:"1.490₫/kWh đêm",time:"22:00–6:00",badge:"Giá tốt nhất",
+   desc:"Trụ AC 3,3 kW tại trạm có bảo vệ: cắm qua đêm, sáng chạy — nhẹ pin, nhẹ tiền, tốt cho tuổi thọ pin.",
+   bullets:["Giá đêm giảm 25% so với sạc ban ngày","Gửi xe qua đêm 35.000₫ gồm 10 kWh đầu","Sạc dòng nhỏ giữ nhiệt độ pin thấp"]},
+  {id:3,name:"Đổi pin xe máy điện",img:"assets/img/p3.webp",price:"27.000₫/lần đổi",time:"3 phút · đầy 100%",badge:"Dành cho tài xế",
+   desc:"Tủ đổi pin áp trần tự động 24/7: rút pin hết, cắm pin đầy. Mỗi lần đổi chạy thêm ~70 km.",
+   bullets:["Đủ pin ~70 km sau mỗi lần đổi","Quét QR lấy pin — hóa đơn tự động trên app","Pin kiểm định SOH trước khi vào tủ"]},
+  {id:4,name:"Đo sức khỏe pin (SOH)",img:"assets/img/p4.webp",price:"99.000₫/lần",time:"Báo cáo 30 phút",badge:"12 chỉ số",
+   desc:"Đo dung lượng thực, điện trở nội bộ, nhiệt độ cell — biết tình trạng pin trước khi mua hoặc bán xe.",
+   bullets:["12 chỉ số SOH in rõ trên báo cáo","Nên đo định kỳ mỗi 6 tháng","Miễn phí khi làm bảo dưỡng pin"]},
+  {id:5,name:"Bảo dưỡng pin định kỳ",img:"assets/img/p5.webp",price:"từ 350.000₫",time:"90 phút",badge:"Giữ bảo hành",
+   desc:"Vệ sinh khay pin, siết terminal, cân cell, cập nhật BMS — pin giữ dung lượng, chậm xuống cấp.",
+   bullets:["Vệ sinh + tra chống ẩm toàn khay pin","Cân cell, cập nhật phần mềm BMS","Tem bảo hành bảo dưỡng 3 tháng"]},
+  {id:6,name:"Lắp trạm sạc tại nhà",img:"assets/img/p6.webp",price:"từ 4.500.000₫",time:"Thi công 4–6 giờ",badge:"Trọn gói",
+   desc:"Trụ AC 7,4 kW + dây dẫn chuẩn + app riêng: khảo sát miễn phí, thi công sạch gọn, bảo hành 24 tháng.",
+   bullets:["Khảo sát & tư vấn vị trí miễn phí","Chống quá tải, chống rò điện chuẩn PEL","Bảo hành trụ 24 tháng, hỗ trợ trọn đời"]},
+  {id:7,name:"Phụ kiện sạc xe điện",img:"assets/img/p7.webp",price:"từ 250.000₫",time:"Có tại trạm Tân Phú",badge:"Chính hãng",
+   desc:"Cá sạc dự phòng, đầu sạc thay thế, hộp đựng, giá treo — đúng chuẩn từng dòng xe điện phổ thông.",
+   bullets:["Cáp, đầu sạc chuẩn từng dòng xe","Hộp đựng & giá treo gọn gàng","Bảo hành 6–12 tháng"]},
+  {id:8,name:"Hỗ trợ kỹ thuật trên đường",img:"assets/img/p8.webp",price:"Miễn phí cho thành viên",time:"20–40 phút có mặt",badge:"24/7",
+   desc:"Xe sập nguồn, sạc không vào, báo lỗi — gọi hotline hoặc bấm 'Cần hỗ trợ' trong app, xe kỹ thuật đến tại chỗ.",
+   bullets:["Xe sạc lưu động 20–40 phút nội thành","Xử lý tại chỗ: sạc hộ, kiểm tra nhanh","Miễn phí cho thẻ tháng & gói tài xế"]}
+];
+const STATIONS = [
+  {dist:"tanphu",dName:"Tân Phú",name:"VoltWay Tân Phú — Trụ sở",addr:"145 Trường Chinh, P. Tây Thạnh",types:["dc","ac","swap"],pods:"8 trụ DC · 4 AC · 2 tủ đổi pin",free:"7/8 trụ trống",hours:"24/7",priceHint:"DC 3.380₫/kWh",map:"145 Truong Chinh, Tan Thanh, Tan Phu, TP.HCM"},
+  {dist:"q1",dName:"Quận 1",name:"VoltWay Nguyễn Thị Minh Khai",addr:"212 Nguyễn Thị Minh Khai, Q.1",types:["dc","ac"],pods:"6 trụ DC · 2 AC",free:"4/6 trụ trống",hours:"24/7",priceHint:"DC 3.380₫/kWh",map:"212 Nguyen Thi Minh Khai, Quan 1, TP.HCM"},
+  {dist:"binhthanh",dName:"Bình Thạnh",name:"VoltWay Xô Viết Nghệ Tĩnh",addr:"807 Xô Viết Nghệ Tĩnh, Q.Bình Thạnh",types:["dc","swap"],pods:"4 trụ DC · 1 tủ đổi pin",free:"3/4 trụ trống",hours:"24/7",priceHint:"DC 3.380₫/kWh",map:"807 Xo Viet Nghe Tinh, Binh Thanh, TP.HCM"},
+  {dist:"govap",dName:"Gò Vấp",name:"VoltWay Quang Trung",addr:"316 Quang Trung, Q.Gò Vấp",types:["ac","swap"],pods:"6 trụ AC · 1 tủ đổi pin",free:"Sạc đêm còn chỗ",hours:"24/7",priceHint:"Đêm 1.490₫/kWh",map:"316 Quang Trung, Go Vap, TP.HCM"},
+  {dist:"thuduc",dName:"Thủ Đức",name:"VoltWay Kha Vạn Cân",addr:"252 Kha Vạn Cân, TP. Thủ Đức",types:["dc","ac"],pods:"6 trụ DC (2× 150 kW) · 2 AC",free:"5/6 trụ trống",hours:"24/7",priceHint:"150 kW: 3.880₫/kWh",map:"252 Kha Van Can, Thu Duc, TP.HCM"},
+  {dist:"tanbinh",dName:"Tân Bình",name:"VoltWay Cộng Hòa",addr:"568 Cộng Hòa, Q.Tân Bình",types:["ac","swap"],pods:"4 trụ AC · 1 tủ đổi pin · showroom",free:"Sạc đêm còn chỗ",hours:"24/7",priceHint:"Đêm 1.490₫/kWh",map:"568 Cong Hoa, Tan Binh, TP.HCM"},
+  {dist:"binhtan",dName:"Bình Tân",name:"VoltWay Tên Lửa",addr:"37 Tên Lửa, Q.Bình Tân",types:["swap","ac"],pods:"2 tủ đổi pin (12 ô) · 2 AC",free:"Tủ đổi còn 9/12 ô",hours:"24/7",priceHint:"Đổi 27.000₫/lần",map:"37 Ten Lua, Binh Tan, TP.HCM"},
+  {dist:"q12",dName:"Quận 12",name:"VoltWay Q.12 — TX25",addr:"68 Đường TX25, P. Hiệp Thành, Q.12",types:["dc","ac"],pods:"4 trụ DC · 4 AC",free:"6/8 trụ trống",hours:"24/7",priceHint:"DC 3.380₫/kWh",map:"68 Duong TX25, Hiep Thanh, Quan 12, TP.HCM"},
+  {dist:"phunhuan",dName:"Phú Nhuận",name:"VoltWay Phan Xích Long",addr:"409 Phan Xích Long, Q.Phú Nhuận",types:["ac"],pods:"4 trụ AC · khu đo SOH",free:"Còn 3/4 trụ",hours:"24/7",priceHint:"Đêm 1.490₫/kWh",map:"409 Phan Xich Long, Phu Nhuan, TP.HCM"},
+  {dist:"q7",dName:"Quận 7",name:"VoltWay Nguyễn Văn Linh",addr:"102 Nguyễn Văn Linh, Q.7",types:["dc","swap","ac"],pods:"6 trụ DC · 2 tủ đổi pin · 2 AC",free:"5/10 trụ trống",hours:"24/7",priceHint:"DC 3.380₫/kWh",map:"102 Nguyen Van Linh, Quan 7, TP.HCM"}
+];
+const TYPE_LABEL = {dc:"Trụ nhanh DC",ac:"Sạc chậm AC",swap:"Tủ đổi pin"};
+const TYPE_COLOR = {dc:"#2FD97A",ac:"#4FA9EE",swap:"#F5B81E"};
+const DAYS_HOURS = "24/7";
+/* ==================== TOAST (title + message 2 phan tu rieng) ==================== */
+function toast(title,msg){
+  const t=document.createElement("div");t.className="toast";
+  t.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 5-5"/></svg><span class="minw0"><b class="tt"></b><span class="tm"></span></span>';
+  t.querySelector(".tt").textContent=title;
+  t.querySelector(".tm").textContent=msg;
+  document.getElementById("toasts").appendChild(t);
+  setTimeout(()=>{t.style.opacity="0";t.style.transition="opacity .4s";setTimeout(()=>t.remove(),400)},3600);
+}
+/* ==================== TAPE ==================== */
+(()=>{const tr=document.getElementById("tapeTrack");tr.innerHTML+=tr.innerHTML;})();
+/* ==================== HEADER + DOCK ==================== */
+const header=document.getElementById("header"),dock=document.getElementById("dock");
+addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled",scrollY>10);
+  dock.classList.toggle("hide",scrollY<innerHeight*.6);
+},{passive:true});
+document.getElementById("toTop").addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+/* ==================== REVEAL ==================== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+/* ==================== SPOTLIGHT CARDS ==================== */
+document.addEventListener("pointermove",e=>{
+  const c=e.target.closest(".card8");
+  if(c){const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");}
+},{passive:true});
+/* ==================== COUNTERS ==================== */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,to=+el.dataset.to,t0=performance.now();
+  const tick=t=>{const p=Math.min((t-t0)/1400,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString("vi-VN");if(p<1)requestAnimationFrame(tick)};
+  requestAnimationFrame(tick);
+}),{threshold:.5});
+document.querySelectorAll(".cnt").forEach(el=>cio.observe(el));
+/* ==================== BAN DO TRAM: filter theo quan ==================== */
+let curDist="all";
+const stList=document.getElementById("stList"),stCount=document.getElementById("stCount");
+function stationCard(s){
+  const typeTags=s.types.map(t=>`<span><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${TYPE_COLOR[t]};margin-right:5px"></i>${TYPE_LABEL[t]}</span>`).join("");
+  return `<article class="stn">
+    <div class="stn-head">
+      <span class="stn-ic ${s.types.includes("dc")?"dc":s.types.includes("swap")?"swap":"mix"}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+      <div class="minw0"><b>${s.name}</b><span>${s.addr} · Q. ${s.dName}</span></div>
+      <span class="stn-open">${s.hours}</span>
+    </div>
+    <div class="stn-meta">${typeTags}<span>${s.pods}</span><span class="free">${s.free}</span><span>${s.priceHint}</span></div>
+    <div class="stn-foot">
+      <a class="maps" target="_blank" rel="noopener" href="https://maps.google.com/maps?q=${encodeURIComponent(s.map)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Chỉ đường</a>
+      <a class="call" href="tel:0901345688"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>Gọi trạm</a>
+      <small>Cập nhật 2 phút trước</small>
+    </div>
+  </article>`;
+}
+function renderStations(){
+  const list=curDist==="all"?STATIONS:STATIONS.filter(s=>s.dist===curDist);
+  stList.innerHTML=list.map(stationCard).join("");
+  stCount.innerHTML=`Đang xem <b>${list.length}/${STATIONS.length} trạm</b>${curDist==="all"?" — phủ 10 quận có trạm VoltWay":` — quận ${list[0].dName}`}`;
+  document.querySelectorAll(".st-chip").forEach(c=>c.classList.toggle("on",c.dataset.dist===curDist));
+  document.querySelectorAll(".sv-d[data-dist]").forEach(g=>g.classList.toggle("on",g.dataset.dist===curDist));
+}
+document.getElementById("stChips").addEventListener("click",e=>{
+  const c=e.target.closest("[data-dist]");if(!c)return;
+  curDist=c.dataset.dist;renderStations();
+});
+document.querySelectorAll(".sv-d[data-dist]").forEach(g=>{
+  g.addEventListener("click",()=>{curDist=g.dataset.dist;renderStations();});
+  g.setAttribute("tabindex","0");
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();curDist=g.dataset.dist;renderStations();}});
+});
+renderStations();
+/* ==================== BANG GIA TABS ==================== */
+document.querySelectorAll(".ptab").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".ptab").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".ptab-panel").forEach(p=>p.classList.toggle("on",p.id==="pt-"+b.dataset.pt));
+}));
+/* ==================== MAY TINH CHI PHI ==================== */
+const CFG = {
+  bike:{label:"Xe máy điện",whPerKm:30,le:2580,thang:{base:349000,incl:120,over:2180},taxixe:{base:1150000}},
+  car:{label:"Ô tô điện",whPerKm:155,le:3480,thang:{base:1290000,incl:400,over:2880},taxixe:{base:2190000}}
+};
+const PKG_LABEL = {le:"Sạc lẻ theo kWh",thang:"Thẻ tháng GREEN",taxixe:"Gói tài xế PRO"};
+const PKG_TAG = {le:"Linh hoạt",thang:"Phổ biến nhất",taxixe:"Cho xe chạy ca"};
+const fmtN=n=>n.toLocaleString("vi-VN")+"₫";
+function calcRender(){
+  const v=CFG[document.getElementById("cvSel").value];
+  const km=+document.getElementById("kmRange").value;
+  const pkg=document.getElementById("pkgSel2").value;
+  const kwhMonth=km*30*v.whPerKm/1000;
+  document.getElementById("kmOut").textContent=km+" km/ngày";
+  document.getElementById("kmHint").textContent=`≈ ${(km*30).toLocaleString("vi-VN")} km/tháng · tiêu thụ ~${Math.round(kwhMonth)} kWh/tháng`;
+  const r=document.getElementById("kmRange");
+  r.style.setProperty("--fill",((km-15)/(200-15)*100)+"%");
+  const costLe=Math.round(kwhMonth*v.le/1000)*1000;
+  const costThang=Math.round((v.thang.base+Math.max(0,kwhMonth-v.thang.incl)*v.thang.over)/1000)*1000;
+  const costTaxi=v.taxixe.base;
+  const costs={le:costLe,thang:costThang,taxixe:costTaxi};
+  document.getElementById("tLe").textContent=fmtN(costLe);
+  document.getElementById("tThang").textContent=fmtN(costThang);
+  document.getElementById("tThangD").textContent="~"+Math.max(0,Math.round((1-costThang/costLe)*100))+"%";
+  document.getElementById("tTaxi").textContent=fmtN(costTaxi);
+  document.querySelectorAll("#tierTable .row[data-tier]").forEach(row=>{
+    row.classList.toggle("on",row.dataset.tier===pkg);
+  });
+  document.getElementById("crName").textContent=PKG_LABEL[pkg];
+  document.getElementById("crTag").textContent=PKG_TAG[pkg];
+  document.getElementById("crKm").textContent=km+" km/ngày";
+  document.getElementById("crTotal").textContent=fmtN(costs[pkg])+"/tháng";
+  const tip=document.getElementById("calcTip");
+  const best=Object.keys(costs).reduce((a,b)=>costs[a]<=costs[b]?a:b);
+  if(pkg===best){
+    tip.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Gói bạn chọn đang là phương án tiết kiệm nhất với mức chạy này.</span>';
+  }else{
+    const diff=costs[pkg]-costs[best];
+    tip.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg><span>Gợi ý: chuyển sang <b>'+PKG_LABEL[best]+'</b> tiết kiệm thêm ~'+fmtN(diff)+'/tháng.</span>';
+  }
+}
+["cvSel","pkgSel2"].forEach(id=>document.getElementById(id).addEventListener("change",calcRender));
+document.getElementById("kmRange").addEventListener("input",calcRender);
+document.querySelectorAll("#tierTable .row[data-tier]").forEach(row=>{
+  row.addEventListener("click",()=>{document.getElementById("pkgSel2").value=row.dataset.tier;calcRender();});
+});
+calcRender();
+/* Dang ky goi tu may tinh + bang gia -> prefill form mo the */
+function prefillReg(need,vehicle){
+  if(need){
+    const sel=document.getElementById("rfNeed");
+    const opt=[...sel.options].find(o=>o.text===need);
+    if(opt)sel.value=opt.text;
+    const dr=document.getElementById("drNeed");
+    const dopt=[...dr.options].find(o=>o.text===need);
+    if(dopt)dr.value=dopt.text;
+  }
+  if(vehicle==="bike")document.getElementById("rfVehicle").value="Xe máy điện";
+  if(vehicle==="car")document.getElementById("rfVehicle").value="Ô tô điện";
+}
+document.getElementById("crReg").addEventListener("click",()=>{
+  const pkg=PKG_LABEL[document.getElementById("pkgSel2").value];
+  const km=document.getElementById("kmRange").value;
+  prefillReg(pkg==="Sạc lẻ theo kWh"?"Thẻ tháng GREEN — xe máy":pkg);
+  document.getElementById("rfNote").value=`Gói ${pkg} — chạy ~${km} km/ngày (từ máy tính chi phí)`;
+  document.getElementById("mo-the").scrollIntoView({behavior:"smooth"});
+  toast("Đã chọn gói: "+pkg,"Hoàn tất form bên dưới để nhận thẻ trên app trong 15 phút.");
+});
+document.querySelectorAll("[data-reg]").forEach(b=>b.addEventListener("click",()=>{
+  prefillReg(b.dataset.reg);
+  document.getElementById("mo-the").scrollIntoView({behavior:"smooth"});
+  toast("Đã chọn: "+b.dataset.reg,"Điền form mở thẻ — nhân viên gọi xác nhận trong 30 phút.");
+}));
+/* ==================== DRAWER DANG KY NHANH ==================== */
+const drawer=document.getElementById("drawer"),drawerBg=document.getElementById("drawerBg");
+function openDrawer(){drawer.classList.add("open");drawerBg.classList.add("open")}
+function closeDrawer(){drawer.classList.remove("open");drawerBg.classList.remove("open")}
+document.querySelectorAll("[data-open-drawer]").forEach(b=>b.addEventListener("click",openDrawer));
+document.getElementById("drawerX").addEventListener("click",closeDrawer);
+drawerBg.addEventListener("click",closeDrawer);
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();modalBg.classList.remove("open")}});
+document.getElementById("drConfirm").addEventListener("click",()=>{
+  const phone=document.getElementById("drPhone").value.trim();
+  const need=document.getElementById("drNeed").value;
+  if(phone.length<9){toast("Thiếu số điện thoại","Vui lòng nhập SĐT để VoltWay gọi xác nhận đăng ký.");document.getElementById("drPhone").focus();return}
+  const code="VW-"+Math.floor(1000+Math.random()*9000);
+  const el=document.getElementById("drOk");
+  el.innerHTML=`<b>Mã đăng ký ${code}</b><br>Đã ghi nhận nhu cầu "${need}". Nhân viên sẽ gọi xác nhận trong 30 phút (giờ hành chính).`;
+  el.classList.add("show");
+  toast("Đăng ký thành công!","Mã của bạn là "+code+" — gọi xác nhận trong 30 phút.");
+});
+/* nut data-open-lead: mo drawer + prefill */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-open-lead]");
+  if(!b)return;
+  const need=b.dataset.openLead;
+  const dr=document.getElementById("drNeed");
+  const opt=[...dr.options].find(o=>o.text===need);
+  if(opt)dr.value=opt.text;
+  openDrawer();
+  toast("Đã chọn: "+need,"Để lại SĐT trong bảng đăng ký — VoltWay gọi lại trong 30 phút.");
+});
+/* ==================== QUICK VIEW MODAL ==================== */
+const modalBg=document.getElementById("modalBg");
+function openModal(id){
+  const s=SERVICES.find(x=>x.id===+id);if(!s)return;
+  document.getElementById("mImg").src=s.img;
+  document.getElementById("mName").textContent=s.name;
+  document.getElementById("mMeta").innerHTML=`<span>${s.price}</span><span>${s.time}</span><span>Giá gồm VAT</span><span>Niêm yết</span>`;
+  document.getElementById("mDesc").textContent=s.desc;
+  document.getElementById("mList").innerHTML=s.bullets.map(b=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${b}</li>`).join("");
+  document.getElementById("mReg").dataset.openLead=s.name;
+  modalBg.classList.add("open");
+}
+document.getElementById("modalX").addEventListener("click",()=>modalBg.classList.remove("open"));
+modalBg.addEventListener("click",e=>{if(e.target===modalBg)modalBg.classList.remove("open")});
+/* ==================== REVIEWS ==================== */
+const REVS=[
+  {n:"Hoàng Minh",c:"Tài xế Grab — xe máy điện",t:"Chạy ca sáng Q.1 — Q.7, mỗi sáng đổi một pin ở Nguyễn Thị Minh Khai. 3 phút là đi, không phải đứng chờ sạc như hồi dùng trạm khác. Cuối tháng nhìn app biết ngay mình tốn bao nhiêu."},
+  {n:"Thu Trang",c:"VinFast VF 6",t:"Trụ 150 kW ở Thủ Đức đúng như lời đồn: 18 phút là 80%. Khu chờ máy lạnh, có wifi — ngồi uống nước xong xe đã đầy. Giá hiện trên app từng kWh, không lo nhân viên nói lại giá khác."},
+  {n:"Quốc Bảo",c:"Tài xế giao hàng — Be",t:"Tính gói tài xế PRO về xem, đổi pin thoải mái cộng sạc đêm giảm nửa. Chạy ~110 km/ngày mà chi phí cố định 1,15 triệu — tính lại vẫn rẻ hơn xăng gần một nửa."},
+  {n:"Ngọc Hạ",c:"Xe máy điện Yadea",t:"Nhà chung cư không cắm sạc được, giờ gửi sạc qua đêm ở trạm Cộng Hòa. Sáng lấy xe pin đầy, 35k gồm cả tiền gửi. Bảo vệ trực nên rất yên tâm về xe."},
+  {n:"Tấn Phát",c:"VinFast VF e34 — chạy tech",t:"Hết pin 11 giờ đêm trên Nguyễn Văn Linh, gọi hotline 25 phút sau xe kỹ thuật đến sạc hộ tại chỗ. Miễn phí vì đang dùng thẻ tháng. Dịch vụ này là lý do tôi giữ thẻ."}
+];
+let revI=0,revTimer;
+const revSlide=document.getElementById("revSlides"),revDots=document.getElementById("revDots");
+revSlide.innerHTML=REVS.map((r,i)=>`
+  <div class="rev-slide ${i===0?"on":""}">
+    <div class="stars">★★★★★</div>
+    <p>"${r.t}"</p>
+    <div class="rev-who"><span class="rw-av">${r.n.split(" ")[0][0]}</span><div class="minw0"><b>${r.n}</b><span>${r.c}</span></div></div>
+  </div>`).join("");
+revDots.innerHTML=REVS.map((_,i)=>`<button data-rev="${i}" class="${i===0?"on":""}" aria-label="Đánh giá ${i+1}"></button>`).join("");
+function revGo(i){
+  revI=(i+REVS.length)%REVS.length;
+  document.querySelectorAll(".rev-slide").forEach((s,x)=>s.classList.toggle("on",x===revI));
+  document.querySelectorAll("[data-rev]").forEach((d,x)=>d.classList.toggle("on",x===revI));
+}
+function revAuto(){clearInterval(revTimer);revTimer=setInterval(()=>revGo(revI+1),6000)}
+revDots.addEventListener("click",e=>{const b=e.target.closest("[data-rev]");if(b){revGo(+b.dataset.rev);revAuto()}});
+revAuto();
+/* ==================== SEARCH: dich vu + tram ==================== */
+const sInput=document.getElementById("searchInput"),sDrop=document.getElementById("searchDrop");
+sInput.addEventListener("input",()=>{
+  const q=sInput.value.trim().toLowerCase();
+  if(q.length<1){sDrop.classList.remove("open");return}
+  const hits=SERVICES.filter(s=>s.name.toLowerCase().includes(q));
+  const stHits=STATIONS.filter(s=>(s.name+" "+s.addr+" "+s.dName).toLowerCase().includes(q)).slice(0,4);
+  let html="";
+  html+=hits.map(s=>`<button data-view="${s.id}"><img src="${s.img}" alt=""><span class="minw0">${s.name}<br><small style="color:var(--soft);font-weight:600">${s.price} · ${s.time}</small></span><span class="sd-tag">Dịch vụ</span></button>`).join("");
+  html+=stHits.map(s=>`<button data-st="${s.dist}"><span class="stn-ic dc" style="width:44px;height:30px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="minw0">${s.name}<br><small style="color:var(--soft);font-weight:600">${s.addr} · ${s.free}</small></span><span class="sd-tag">Trạm</span></button>`).join("");
+  sDrop.innerHTML=html||`<button disabled style="cursor:default">Không tìm thấy — gọi 0901 345 688 để được tra giúp</button>`;
+  sDrop.classList.add("open");
+});
+document.addEventListener("click",e=>{
+  if(!e.target.closest(".search"))sDrop.classList.remove("open");
+  const st=e.target.closest("[data-st]");
+  if(st){curDist=st.dataset.st;renderStations();sDrop.classList.remove("open");sInput.value="";document.getElementById("tram").scrollIntoView({behavior:"smooth"});toast("Đã lọc bản đồ theo quận","Danh sách trạm bên phải đã cập nhật theo quận bạn chọn.");}
+  const vw=e.target.closest("[data-view]");
+  if(vw){sDrop.classList.remove("open");openModal(+vw.dataset.view);}
+});
+/* ==================== FAQ ==================== */
+const FAQS=[
+  {t:"Sạc nhanh DC có làm hỏng pin xe không?",k:["sạc nhanh","dc","hỏng pin","hại pin"],a:"Không, nếu trụ đúng chuẩn. BMS của xe tự giới hạn dòng khi pin nóng, VoltWay chỉ cấp dòng trong ngưỡng xe cho phép. VoltWay khuyến nghị: dùng DC khi cần gấp, duy trì sạc chậm/đêm cho ~80% các lần sạc trong tuần."},
+  {t:"Giá sạc tính thế nào, có phí vào cổng không?",k:["giá","phí","kWh","niêm yết"],a:"Giá tính theo kWh niêm yết (DC 3.380₫, siêu nhanh 3.880₫, AC 1.980₫, khung đêm 1.490₫), đã gồm VAT. Không có phí vào cổng hay phí đăng ký. Đỗ tại trụ sau khi sạc xong: 15 phút đầu miễn phí."},
+  {t:"Thẻ tháng dùng được ở tất cả trạm không?",k:["thẻ tháng","green","tất cả trạm"],a:"Có. Thẻ tháng GREEN hoạt động tại 12 trạm VoltWay — hệ thống tự cộng dồn kWh đã dùng vào gói, hiển thị trên app. Hết hạn mức thì tự chuyển giá lẻ, không bị ngắt giữa lúc sạc."},
+  {t:"Xe nào dùng được trụ và tủ đổi pin của VoltWay?",k:["xe nào","chuẩn","ccs2","áp trần"],a:"Ô tô điện chuẩn CCS2 / Type 2 / GB-T đều dùng được trụ của VoltWay (VinFast, Wuling, Hyundai…). Tủ đổi pin áp trần dành cho các dòng xe máy điện dùng khay pin chuẩn VoltWay — mang xe tới trạm, kỹ thuật kiểm tra miễn phí 5 phút."},
+  {t:"Xe hết pin giữa đường thì xử lý thế nào?",k:["hết pin","giữa đường","cứu","sập nguồn"],a:"Gọi 0901 345 688 hoặc bấm 'Cần hỗ trợ' trong app — xe sạc lưu động đến trong 20–40 phút nội thành, sạc đủ để bạn về nhà hoặc trạm gần nhất. Miễn phí cho thẻ tháng & gói tài xế; khách lẻ từ 79.000₫ được báo trước khi xuất phát."},
+  {t:"Lắp trạm sạc tại nhà cần điều kiện gì?",k:["lắp","tại nhà","trụ nhà"],a:"Chỉ cần chỗ để xe có tường và đường điện riêng (hộ gia đình thông thường đều đạt). Kỹ thuật khảo sát miễn phí trong 48 giờ, báo giá chốt trước khi thi công — lắp trong 4–6 giờ, bảo hành trụ 24 tháng."},
+  {t:"Thanh toán thế nào, có hóa đơn VAT không?",k:["thanh toán","vat","hóa đơn"],a:"Trừ tự động qua App VoltWay Wallet, QR Banking, ví điện tử hoặc thẻ. Hóa đơn điện tử VAT gửi vào app ngay sau mỗi phiên sạc — tài xế và doanh nghiệp xuất hóa đơn theo đội xe được hỗ trợ gộp tháng."}
+];
+const faqList=document.getElementById("faqList"),faqEmpty=document.getElementById("faqEmpty");
+const faqChips=["giá","thẻ tháng","sạc nhanh","hết pin","xe nào","tại nhà","thanh toán"];
+document.getElementById("faqChips").innerHTML=faqChips.map(c=>`<button class="faq-chip" data-fchip="${c}">${c}</button>`).join("");
+function faqRender(list){
+  faqList.innerHTML=list.length?list.map(f=>`
+    <div class="faq-item">
+      <button class="faq-q"><span class="minw0">${f.t}</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`).join(""):"";
+  faqEmpty.style.display=list.length?"none":"block";
+  faqList.querySelectorAll(".faq-item").forEach(item=>{
+    item.querySelector(".faq-q").addEventListener("click",()=>{
+      const open=item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item.open").forEach(o=>{o.classList.remove("open");o.querySelector(".faq-a").style.maxHeight=null});
+      if(!open){item.classList.add("open");const a=item.querySelector(".faq-a");a.style.maxHeight=a.scrollHeight+"px"}
+    });
+  });
+}
+faqRender(FAQS);
+document.getElementById("faqChips").addEventListener("click",e=>{
+  const c=e.target.closest("[data-fchip]");if(!c)return;
+  document.querySelectorAll(".faq-chip").forEach(x=>x.classList.toggle("on",x===c));
+  const kw=c.dataset.fchip;
+  const filtered=kw?FAQS.filter(f=>f.k.includes(kw)||f.t.toLowerCase().includes(kw)):FAQS;
+  faqRender(filtered);
+  document.getElementById("faqSearch").value=kw||"";
+});
+document.getElementById("faqSearch").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".faq-chip").forEach(x=>x.classList.remove("on"));
+  faqRender(q?FAQS.filter(f=>(f.t+f.k.join()+f.a).toLowerCase().includes(q)):FAQS);
+});
+/* ==================== FORM MO THE ==================== */
+document.getElementById("regForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=document.getElementById("rfName").value.trim();
+  const phone=document.getElementById("rfPhone").value.trim();
+  const vehicle=document.getElementById("rfVehicle").value;
+  const need=document.getElementById("rfNeed").value;
+  if(!name){toast("Thiếu họ tên","Vui lòng điền họ tên để VoltWay gọi xác nhận.");document.getElementById("rfName").focus();return}
+  if(phone.length<9){toast("Thiếu số điện thoại","Vui lòng nhập SĐT hợp lệ (9–11 số).");document.getElementById("rfPhone").focus();return}
+  if(!vehicle){toast("Chưa chọn phương tiện","Chọn xe máy điện / ô tô điện để tư vấn đúng gói.");document.getElementById("rfVehicle").focus();return}
+  if(!need){toast("Chưa chọn nhu cầu","Chọn gói hoặc dịch vụ bạn quan tâm.");document.getElementById("rfNeed").focus();return}
+  document.getElementById("cOk").classList.add("show");
+  toast("Đã gửi đăng ký mở thẻ!","VoltWay gọi xác nhận trong 30 phút (giờ hành chính) — thẻ kích hoạt ngay trên app.");
+  e.target.reset();
+  setTimeout(()=>document.getElementById("cOk").classList.remove("show"),9000);
+});
+/* ==================== FOOTER DICH VU ==================== */
+document.getElementById("ftServices").innerHTML=SERVICES.map(s=>`<li><a href="#dichvu">${s.name}</a></li>`).join("");
+</script>
+<!--NB93-092: chat widget tu van (demo bot)-->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn VoltWay</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-092: chat widget*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2FD97A,#128A4E);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(18,138,78,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#128A4E,#0B5C34);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F1F7F2}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,26,.08);border-bottom-left-radius:4px;color:#142019}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2FD97A,#128A4E);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,26,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(14,42,26,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(18,138,78,.4);color:#128A4E;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:32px}
+.pkc-chip:hover{background:#E4F8EC}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(14,42,26,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(14,42,26,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none;min-width:0}
+.pkc-inrow input:focus{border-color:#2FD97A;box-shadow:0 0 0 3px rgba(47,217,122,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2FD97A,#128A4E);color:#fff;border:none;cursor:pointer;font-size:1rem;flex:none}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:146px;height:min(440px,calc(100vh - 200px))}.pkc-fab{right:12px;bottom:84px;width:52px;height:52px}}
+</style>
+<script>
+/*NB93-092: bot tra loi theo nghe tram sac*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/*NB93-092: failsafe reveal — element bi ket tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<script>
+/*NB93-092: dock tu an khi cuon xuong — khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();
+</script>
+</body>
+</html>

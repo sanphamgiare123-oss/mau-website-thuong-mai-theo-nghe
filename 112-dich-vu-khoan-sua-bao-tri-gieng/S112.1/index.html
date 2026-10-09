@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mạch Nước 24 — Khoan, sửa và bảo trì giếng theo mét sâu, cam kết ra nước</title>
+<meta name="description" content="Mạch Nước 24 — khoan giếng nước mới theo mét sâu, dò mạch nước trước khi khoan, sửa giếng cạn, hút bùn, lắp bơm. Báo giá theo mét chốt trên hợp đồng, không ra nước không thu công, bảo hành 24 tháng. Gọi 0906 36 36 36.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — palette suy từ poster nghề: xanh giếng sâu + vàng đồng + xanh nước  NB93-112 ============ */
+:root{
+  --primary:#0C2D52;
+  --primary-2:#123E6E;
+  --primary-3:#081C36;
+  --ink:#12283E;
+  --soft:#4F6680;
+  --texture:#F3F7FB;
+  --texture-2:#E2ECF5;
+  --card:#FFFFFF;
+  --line:#DCE7F1;
+  --line-2:#C8D9E8;
+  --accent:#D9A428;
+  --accent-2:#E8B33C;
+  --accent-deep:#8F6A12;
+  --accent-100:#FBF0D5;
+  --water:#1F8FC4;
+  --water-100:#E2F2FA;
+  --ok:#1E9E6A;
+  --danger:#D8382B;
+  --grad-accent:linear-gradient(135deg,#E8B33C,#D9A428 55%,#B8881B);
+  --grad-dark:linear-gradient(140deg,#123E6E,#0C2D52 52%,#081C36);
+  --sh1:0 2px 10px rgba(8,28,54,.07);
+  --sh2:0 12px 32px rgba(8,28,54,.13);
+  --sh3:0 26px 64px rgba(8,28,54,.24);
+  --r1:10px; --r2:16px; --r3:24px; --r4:32px;
+  --wave:repeating-linear-gradient(-4deg,rgba(31,143,196,.10) 0 14px,transparent 14px 30px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.6;font-size:15.5px;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.block{display:block}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.i.f{fill:currentColor;stroke:none}
+::selection{background:var(--accent-100);color:var(--accent-deep)}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+.sec-title{text-align:center;font-size:2.1rem;font-weight:900;color:var(--primary)}
+.sec-sub{display:block;text-align:center;color:var(--soft);font-size:.98rem;margin-top:8px;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid rgba(217,164,40,.35)}
+.hl{background:var(--grad-accent);color:#fff;padding:2px 12px 4px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block;transform:rotate(-1.2deg)}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ============ NÚT ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;min-height:50px}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 10px 26px rgba(217,164,40,.38)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(217,164,40,.46)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line-2);box-shadow:var(--sh1)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-2px)}
+.btn-hot{background:linear-gradient(135deg,#E8432F,#C42114);color:#fff;box-shadow:0 12px 30px rgba(216,56,43,.4)}
+.btn-hot:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(216,56,43,.5)}
+.btn-hot::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-hot:hover::after{left:130%}
+.btn-xl{font-size:1.18rem;padding:20px 34px;border-radius:18px;min-height:70px}
+.btn .num{font-size:1.35em;font-weight:900;letter-spacing:.02em;white-space:nowrap}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-3);color:#C4D6E8;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px;flex-wrap:wrap}
+.topbar .tb-l{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-width:0}
+.topbar .tb-l span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar .i{width:15px;height:15px;color:var(--accent-2)}
+.topbar .hot{color:#FFE3B0;font-weight:800;display:inline-flex;gap:6px;align-items:center}
+.topbar .hot b{font-size:1.02em;color:#fff;letter-spacing:.03em}
+
+/* ============ HEADER ============ */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2);box-shadow:0 8px 20px rgba(12,45,82,.35);transform:rotate(-4deg)}
+.logo .mark .i{width:24px;height:24px}
+.logo .lg-t{display:block;font-weight:900;font-size:1.22rem;line-height:1.1;color:var(--primary)}
+.logo .lg-s{display:block;font-size:.68rem;font-weight:700;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:330px;min-width:0}
+.search input{width:100%;padding:11px 14px 11px 40px;border-radius:12px;border:1.5px solid var(--line);background:var(--texture);transition:.2s}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-100)}
+.search .i{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{font-weight:700;font-size:.9rem;color:var(--ink);padding:9px 13px;border-radius:10px;transition:.2s}
+nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
+.hd-cta{display:flex;gap:10px;align-items:center}
+.hd-cta .btn{padding:11px 18px;min-height:46px;font-size:.88rem}
+.icon-btn{width:46px;height:46px;border-radius:13px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;color:var(--primary);position:relative;transition:.2s}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent-deep)}
+.icon-btn .dot{position:absolute;top:-5px;right:-5px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:900;width:19px;height:19px;border-radius:50%;display:grid;place-items:center}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='90' viewBox='0 0 150 90'%3E%3Cg fill='none' stroke='%23304E75' stroke-width='1.4'%3E%3Cpath d='M0 20q18-14 37 0t38 0 38 0 37 0'/%3E%3Cpath d='M0 52q18-14 37 0t38 0 38 0 37 0'/%3E%3Cpath d='M0 84q18-14 37 0t38 0 38 0 37 0'/%3E%3C/g%3E%3C/svg%3E");opacity:.5}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center}
+.hero .eyebrow{background:rgba(217,164,40,.14);border-color:rgba(232,179,60,.42);color:#FFE3B0}
+.hero h1{font-size:clamp(2.15rem,4.4vw,3.5rem);font-weight:900;margin:18px 0 14px;color:#fff}
+.hero .lead{color:#B9CCE0;font-size:1.03rem;max-width:540px;font-weight:500}
+.hero .lead b{color:#fff}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);padding:8px 13px;border-radius:999px;color:#DCE8F4}
+.trust .i{width:15px;height:15px;color:#8FD3A8}
+.hero-media{position:relative;min-width:0}
+.hm-main{width:100%;transform:rotate(-1.6deg);border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh3);overflow:hidden;position:relative;z-index:2;animation:fl1 7s ease-in-out infinite;aspect-ratio:1672/941}
+.hm-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hm-main .pr-tag{position:absolute;right:-8px;bottom:-16px;z-index:3;background:var(--grad-accent);color:#fff;font-weight:800;font-size:.85rem;padding:9px 15px;border-radius:12px;display:flex;gap:8px;align-items:center;box-shadow:0 10px 24px rgba(143,106,18,.4);transform:rotate(-1deg)}
+.hm-main .pr-tag .i{width:16px;height:16px;color:var(--accent-2)}
+.hm-badge{position:absolute;right:-8px;top:-18px;z-index:4;background:var(--grad-accent);color:#fff;border-radius:18px;padding:14px 18px;text-align:center;transform:rotate(5deg);box-shadow:0 14px 30px rgba(217,164,40,.45);animation:fl2 7.5s ease-in-out infinite}
+.hm-badge .bt{display:block;font-size:1.5rem;font-weight:900;line-height:1}
+.hm-badge .bs{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.hm-stats{position:relative;z-index:5;display:flex;gap:0;margin-top:26px;background:rgba(8,28,54,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden}
+.hm-stats div{padding:13px 18px;text-align:center;border-right:1.5px solid rgba(255,255,255,.12);flex:1}
+.hm-stats div:last-child{border-right:0}
+.hm-stats b{display:block;font-size:1.12rem;font-weight:900;color:#FFE3B0}
+.hm-stats span{display:block;font-size:.7rem;font-weight:600;color:#B9CCE0}
+@keyframes fl1{0%,100%{transform:rotate(-1.6deg) translateY(0)}50%{transform:rotate(-1.2deg) translateY(-10px)}}
+@keyframes fl2{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(3deg) translateY(-12px)}}
+
+/* ============ TAPE MARQUEE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);margin:-38px 0 0;position:relative;z-index:10;box-shadow:0 14px 34px rgba(184,136,27,.35);overflow:hidden;border-top:3px solid #fff;border-bottom:3px solid #fff}
+.tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
+.tape-track span{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(255,255,255,.42)}
+.tape-track .i{width:17px;height:17px}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION KHUNG ============ */
+section{position:relative}
+.sec{padding:88px 0}
+.sec.alt{background:linear-gradient(180deg,#fff,var(--texture))}
+.sec .head{max-width:680px;margin:0 auto 46px}
+
+/* ============ 2 THẺ NỔI BẬT ============ */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.fcard{background:#fff;border-radius:var(--r3);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh1);display:flex;flex-direction:column;position:relative;transition:.3s;min-width:0}
+.fcard:hover{transform:translateY(-7px);box-shadow:var(--sh2);border-color:var(--line-2)}
+.fcard .fimg{position:relative;aspect-ratio:1672/941;overflow:hidden;min-height:0}
+.fcard .fimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.fcard:hover .fimg img{transform:scale(1.05)}
+.fcard .badge{position:absolute;top:14px;right:14px;background:var(--grad-accent);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center}
+.fcard .badge.blue{background:linear-gradient(135deg,#2E86B8,#1A5E86)}
+.fcard .badge .i{width:13px;height:13px}
+.fcard .price-ov{position:absolute;bottom:14px;right:14px;background:rgba(8,28,54,.78);backdrop-filter:blur(6px);color:#fff;font-weight:900;font-size:.95rem;padding:8px 14px;border-radius:12px}
+.fcard .price-ov small{font-weight:600;color:#FFE3B0}
+.fcard .fbody{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.fcard h3{font-size:1.22rem;font-weight:900;color:var(--primary)}
+.fcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcard li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--soft);font-weight:500}
+.fcard li .i{width:17px;height:17px;color:var(--ok);margin-top:2px}
+.fcard .btn{width:100%;margin-top:auto}
+.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,179,60,.14),transparent 65%);opacity:0;transition:opacity .3s}
+.spot:hover::after{opacity:1}
+
+/* ============ DẢI 5 HẠNG MỤC GỌN ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.strip a{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 14px;display:flex;align-items:center;gap:12px;transition:.25s;box-shadow:var(--sh1);min-width:0}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh2)}
+.strip .ic{width:42px;height:42px;border-radius:12px;background:var(--water-100);color:#166A94;display:grid;place-items:center;flex:0 0 auto}
+.strip .ic .i{width:21px;height:21px}
+.strip b{display:block;font-size:.86rem;font-weight:800;color:var(--primary);line-height:1.3}
+.strip small{display:block;font-size:.72rem;color:var(--soft);font-weight:600}
+.strip .arr{margin-left:auto;color:var(--line-2);transition:.2s}
+.strip a:hover .arr{color:var(--accent);transform:translateX(3px)}
+
+/* NB93-112 ============ MÁY TÍNH GIÁ KHOAN THEO MÉT SÂU (dacThu) ============ */
+#tinhgia{background:linear-gradient(180deg,var(--texture),#fff)}
+.est-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:26px;align-items:start;margin-top:6px}
+.est-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:26px;display:flex;flex-direction:column;gap:24px;min-width:0}
+.est-step .es-t{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.est-step .es-n{width:28px;height:28px;border-radius:9px;background:var(--grad-dark);color:#FFE3B0;display:grid;place-items:center;font-size:.8rem;font-weight:900;flex:0 0 auto}
+.est-step .es-t b{font-size:.98rem;font-weight:800;color:var(--primary)}
+.est-step .es-t small{color:var(--soft);font-weight:600;font-size:.76rem;margin-left:auto;text-align:right}
+.geo-chips,.pipe-chips,.pump-chips,.zone-chips{display:flex;gap:10px;flex-wrap:wrap}
+.geo-chip,.pipe-chip,.pump-chip,.zone-chip{display:inline-flex;align-items:center;gap:10px;padding:11px 15px;border-radius:14px;border:1.5px solid var(--line-2);background:var(--texture);color:var(--ink);font-weight:700;font-size:.88rem;transition:.2s;min-width:0;text-align:left}
+.geo-chip .gc-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto}
+.gc-set{background:linear-gradient(160deg,#A5794E,#6B4A2C)}
+.gc-soi{background:linear-gradient(160deg,#8B8F96,#565B63)}
+.gc-da{background:linear-gradient(160deg,#5C6E6A,#333F3D)}
+.geo-chip .gc-ic .i{width:19px;height:19px;color:#fff}
+.geo-chip small,.pipe-chip small,.pump-chip small,.zone-chip small{display:block;font-size:.72rem;font-weight:600;color:var(--soft);white-space:nowrap}
+.geo-chip:hover,.pipe-chip:hover,.pump-chip:hover,.zone-chip:hover{border-color:var(--accent)}
+.geo-chip.sel,.pipe-chip.sel,.pump-chip.sel,.zone-chip.sel{border-color:var(--accent);background:var(--accent-100);box-shadow:0 0 0 3px rgba(217,164,40,.18)}
+.geo-chip.sel small,.pipe-chip.sel small,.pump-chip.sel small,.zone-chip.sel small{color:var(--accent-deep)}
+.depth-wrap{background:var(--texture);border:1.5px solid var(--line);border-radius:16px;padding:18px 18px 12px}
+.depth-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.depth-top .dv{font-size:2rem;font-weight:900;color:var(--primary);line-height:1}
+.depth-top .dv em{font-style:normal;font-size:1rem;color:var(--accent-deep)}
+.depth-top small{color:var(--soft);font-weight:600;font-size:.78rem}
+input[type=range].depth{-webkit-appearance:none;appearance:none;width:100%;height:34px;background:transparent;margin-top:8px;cursor:pointer}
+input[type=range].depth::-webkit-slider-runnable-track{height:12px;border-radius:99px;background:repeating-linear-gradient(90deg,var(--water) 0 3px,var(--water-100) 3px 9px),linear-gradient(90deg,#BFE0F2,#8FC6E4);border:1.5px solid var(--line-2)}
+input[type=range].depth::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-9px;border-radius:50%;background:var(--grad-accent);border:3px solid #fff;box-shadow:0 4px 14px rgba(143,106,18,.45)}
+input[type=range].depth::-moz-range-track{height:12px;border-radius:99px;background:linear-gradient(90deg,#BFE0F2,#8FC6E4);border:1.5px solid var(--line-2)}
+input[type=range].depth::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--grad-accent);border:3px solid #fff;box-shadow:0 4px 14px rgba(143,106,18,.45)}
+.depth-scale{display:flex;justify-content:space-between;font-size:.68rem;font-weight:700;color:var(--soft);margin-top:4px}
+.depth-note{display:flex;gap:8px;align-items:flex-start;font-size:.76rem;color:var(--soft);font-weight:600;margin-top:10px}
+.depth-note .i{width:15px;height:15px;color:var(--ok);margin-top:2px}
+.est-sum{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:26px;position:sticky;top:96px;display:flex;flex-direction:column;gap:14px;min-width:0;overflow:hidden}
+.est-sum::before{content:'';position:absolute;inset:0;background:var(--wave);opacity:.5;pointer-events:none}
+.est-sum>*{position:relative}
+.est-sum h3{font-size:1.05rem;font-weight:900;display:flex;gap:10px;align-items:center}
+.est-sum h3 .i{color:var(--accent-2)}
+.est-sum .row{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;color:#B9CCE0;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.12);padding-bottom:10px;align-items:baseline}
+.est-sum .row b{color:#fff;text-align:right;white-space:nowrap}
+.est-sum .row .free{color:#8FD3A8;font-weight:900;white-space:nowrap}
+.est-sum .row .old{color:#7E93AC;text-decoration:line-through;font-weight:600;margin-right:7px;font-size:.78rem}
+.est-sum .total{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:#B9CCE0;font-weight:700;margin-top:2px}
+.est-sum .total b{font-size:1.4rem;font-weight:900;color:#FFE3B0;text-align:right}
+.est-sum .fine{font-size:.74rem;color:#8FA9C4;line-height:1.55}
+.est-sum .row-guar{background:rgba(31,143,196,.14);border:1.5px solid rgba(31,143,196,.4);border-radius:14px;padding:12px 14px;font-size:.8rem;font-weight:700;color:#CDE9F8;display:flex;gap:9px;align-items:flex-start}
+.est-sum .row-guar .i{width:17px;height:17px;color:#8FD3A8;margin-top:2px}
+.est-acts{display:flex;flex-direction:column;gap:10px}
+.est-acts .btn{width:100%}
+
+/* ============ BOOKING CALENDAR ============ */
+#booking{background:var(--grad-dark);color:#fff;padding:88px 0;overflow:clip;position:relative}
+#booking::before{content:'';position:absolute;inset:0;background:var(--wave);opacity:.5;pointer-events:none}
+#booking .wrap{position:relative}
+#booking .sec-title{color:#fff}
+#booking .sec-sub{color:#B9CCE0}
+.bk-grid{display:grid;grid-template-columns:1.35fr .95fr;gap:28px;margin-top:44px;align-items:start}
+.bk-form{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:26px;min-width:0}
+.bk-step .st-t{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.bk-step .st-n{width:28px;height:28px;border-radius:9px;background:var(--grad-accent);display:grid;place-items:center;font-size:.82rem;font-weight:900;color:#fff;flex:0 0 auto}
+.bk-step .st-t b{font-size:.98rem;font-weight:800;color:#fff}
+.bk-step .st-t small{color:#8FA9C4;font-weight:600;font-size:.76rem;margin-left:auto;display:flex;align-items:center;gap:6px}
+.cat-chips{display:flex;gap:10px;flex-wrap:wrap}
+.cat-chip{display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:14px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#DCE8F4;font-weight:700;font-size:.9rem;transition:.2s;min-width:0}
+.cat-chip .i{width:18px;height:18px}
+.cat-chip:hover{border-color:var(--accent-2)}
+.cat-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(217,164,40,.4)}
+.cat-chip small{display:block;font-size:.66rem;font-weight:600;opacity:.85}
+.bk-desc{width:100%;min-height:74px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;color:#fff;padding:13px 15px;resize:vertical;margin-top:12px}
+.bk-desc::placeholder{color:#6E87A5}
+.bk-desc:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.09)}
+.day-chips{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+.day-chip{border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);border-radius:14px;padding:11px 6px;text-align:center;transition:.2s;color:#DCE8F4;min-width:0}
+.day-chip b{display:block;font-size:.76rem;font-weight:800;white-space:nowrap}
+.day-chip span{display:block;font-size:1.05rem;font-weight:900;margin-top:3px}
+.day-chip small{display:block;font-size:.64rem;color:#8FA9C4;font-weight:600}
+.day-chip:hover{border-color:var(--accent-2)}
+.day-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff}
+.day-chip.sel small{color:#FFE9C2}
+.slot-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.slot-chip{position:relative;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);border-radius:14px;padding:13px 10px;text-align:center;transition:.2s;color:#DCE8F4;min-width:0}
+.slot-chip b{display:block;font-size:.85rem;font-weight:800}
+.slot-chip small{display:block;font-size:.68rem;color:#8FA9C4;font-weight:600;margin-top:3px;white-space:nowrap}
+.slot-chip:hover{border-color:var(--accent-2)}
+.slot-chip.sel{background:var(--grad-accent);border-color:transparent;color:#fff}
+.slot-chip.sel small{color:#FFE9C2}
+.slot-chip.gap{border-color:rgba(232,67,47,.65);background:rgba(216,56,43,.12)}
+.slot-chip.gap .gap-b{position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);background:linear-gradient(135deg,#E8432F,#C42114);color:#fff;font-size:.6rem;font-weight:900;letter-spacing:.05em;padding:3px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 5px 14px rgba(216,56,43,.45)}
+.slot-chip.sel.gap{background:linear-gradient(135deg,#E8432F,#C42114)}
+.bk-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bk-inputs .full{grid-column:1/-1}
+.bk-inputs input{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;transition:.2s;min-width:0}
+.bk-inputs input::placeholder{color:#6E87A5}
+.bk-inputs input:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.bk-note{font-size:.78rem;color:#8FA9C4;display:flex;gap:8px;align-items:flex-start}
+.bk-note .i{width:15px;height:15px;color:#8FD3A8;margin-top:2px}
+.bk-sum{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:26px;position:sticky;top:96px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.bk-sum h3{font-size:1.05rem;font-weight:900;display:flex;gap:10px;align-items:center;color:#fff}
+.bk-sum h3 .i{color:var(--accent-2)}
+.bk-sum .row{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;color:#B9CCE0;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.12);padding-bottom:10px}
+.bk-sum .row b{color:#FFE3B0;text-align:right;min-width:0}
+.bk-sum .row b.gapc{color:#FF8E7A}
+.bk-sum .row b[data-empty="1"]{color:#7E93AC;font-weight:600}
+.bk-sum .total{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:#B9CCE0;font-weight:700}
+.bk-sum .total b{font-size:1.3rem;font-weight:900;color:#FFE3B0}
+.bk-sum .fine{font-size:.72rem;color:#8FA9C4;line-height:1.5}
+.bk-call{display:flex;flex-direction:column;gap:10px}
+.bk-call .btn{width:100%}
+.bk-done{display:none;background:rgba(30,158,106,.1);border:1.5px solid rgba(30,158,106,.45);border-radius:var(--r2);padding:22px;text-align:center}
+.bk-done.show{display:block;animation:pop .45s cubic-bezier(.2,.9,.3,1.3)}
+.bk-done .code{font-size:2rem;font-weight:900;letter-spacing:.06em;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bk-done .sub{font-size:.84rem;color:#B9CCE0;margin-top:6px}
+.bk-done .recap{margin-top:14px;text-align:left;font-size:.82rem;color:#DCE8F4;background:rgba(255,255,255,.05);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ============ BẢNG GIÁ 3 TAB ============ */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.tab{padding:12px 24px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-weight:800;font-size:.92rem;color:var(--soft);display:inline-flex;gap:8px;align-items:center;transition:.2s}
+.tab .i{width:17px;height:17px}
+.tab:hover{border-color:var(--accent)}
+.tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(217,164,40,.35)}
+.pane{display:none}
+.pane.on{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.price-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start}
+.tbl-card{background:#fff;border-radius:var(--r3);border:1.5px solid var(--line);box-shadow:var(--sh1);overflow:hidden;min-width:0}
+.tbl-wrap{overflow-x:auto}
+table.ptbl{width:100%;border-collapse:collapse;min-width:540px}
+.ptbl th{background:var(--primary);color:#fff;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:13px 18px;font-weight:800}
+.ptbl td{padding:14px 18px;border-bottom:1.5px solid #EDF3F8;font-size:.88rem;vertical-align:top}
+.ptbl tr:last-child td{border-bottom:0}
+.ptbl tr:hover td{background:#FBF7EC}
+.ptbl td b{color:var(--primary);font-weight:800}
+.ptbl td .pr{font-weight:900;color:var(--accent-deep);white-space:nowrap}
+.ptbl td small{display:block;color:var(--soft);font-size:.75rem;font-weight:500}
+.ptbl .zero .pr{color:var(--ok)}
+.tbl-foot{background:var(--accent-100);padding:12px 18px;font-size:.78rem;color:var(--accent-deep);font-weight:700;display:flex;gap:8px;align-items:center}
+.tbl-foot .i{width:16px;height:16px}
+.tips{display:flex;flex-direction:column;gap:14px}
+.tip{background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--sh1);min-width:0}
+.tip b{display:flex;gap:9px;align-items:center;font-size:.9rem;color:var(--primary);font-weight:800}
+.tip b .i{width:17px;height:17px;color:var(--accent)}
+.tip p{font-size:.8rem;color:var(--soft);margin-top:6px;font-weight:500}
+
+/* ============ CAM KẾT ============ */
+#commit{background:linear-gradient(180deg,var(--texture),#fff)}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.com-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:hidden;min-width:0}
+.com-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(217,164,40,.4)}
+.com-card .cc-ic{width:54px;height:54px;border-radius:16px;background:var(--water-100);color:#166A94;display:grid;place-items:center;margin-bottom:16px;transition:.3s}
+.com-card:hover .cc-ic{background:var(--grad-accent);color:#fff;transform:rotate(-6deg)}
+.com-card .cc-ic .i{width:25px;height:25px}
+.com-card h3{font-size:1.02rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+.com-card p{font-size:.84rem;color:var(--soft);font-weight:500}
+.com-card .cc-num{position:absolute;right:14px;top:10px;font-size:2.6rem;font-weight:900;color:var(--texture-2);line-height:1;z-index:0}
+.com-card.guar{border:2px solid var(--accent);background:linear-gradient(180deg,#FFFDF4,#fff);box-shadow:0 14px 34px rgba(217,164,40,.18)}
+.com-card.guar .cc-ic{background:var(--grad-accent);color:#fff}
+.com-card.guar h3{color:var(--accent-deep)}
+.com-card.guar .cc-badge{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,#E8432F,#C42114);color:#fff;font-size:.62rem;font-weight:900;letter-spacing:.06em;padding:5px 10px;border-radius:999px}
+.hot-strip{margin-top:34px;background:var(--grad-dark);border-radius:var(--r4);padding:34px 40px;display:flex;align-items:center;gap:26px;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+.hot-strip::before{content:'';position:absolute;inset:0;background:var(--wave);opacity:.4}
+.hot-strip>*{position:relative}
+.hot-strip .hs-t h3{color:#fff;font-size:1.5rem;font-weight:900}
+.hot-strip .hs-t p{color:#B9CCE0;font-size:.9rem;font-weight:500}
+.hot-strip .hs-acts{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--grad-dark);color:#fff;padding:64px 0;position:relative;overflow:clip}
+.stats::before{content:'';position:absolute;inset:0;background:var(--wave);opacity:.55}
+.stats .wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat b{font-size:2.7rem;font-weight:900;color:#FFE3B0;display:block;line-height:1.1}
+.stat b em{font-style:normal;font-size:1.4rem}
+.stat span{display:block;font-size:.85rem;font-weight:600;color:#B9CCE0;margin-top:6px}
+
+/* ============ BEFORE / AFTER — mặt cắt giếng ============ */
+.ba-wrap{max-width:860px;margin:0 auto;position:relative;border-radius:var(--r3);overflow:hidden;border:5px solid #fff;box-shadow:var(--sh2);aspect-ratio:16/9;user-select:none;touch-action:none;--cut:50%;background:linear-gradient(150deg,#2B3947,#141C25)}
+.ba-line{position:absolute;top:0;bottom:0;left:var(--cut);width:4px;background:#fff;transform:translateX(-50%);box-shadow:0 0 18px rgba(0,0,0,.4);z-index:3}
+.ba-line .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(143,106,18,.5)}
+.ba-line .knob .i{width:20px;height:20px}
+.ba-tag{position:absolute;top:14px;font-size:.74rem;font-weight:900;letter-spacing:.06em;padding:7px 14px;border-radius:999px;z-index:4;text-transform:uppercase}
+.ba-tag.t1{left:14px;background:rgba(8,28,54,.75);color:#DCE8F4;backdrop-filter:blur(4px)}
+.ba-tag.t2{right:14px;background:var(--grad-accent);color:#fff}
+.ba-cap{text-align:center;font-size:.8rem;color:var(--soft);margin-top:14px;font-weight:600}
+.ba-after-clip{position:absolute;inset:0;clip-path:inset(0 0 0 var(--cut))}
+.bscene{position:relative;width:100%;height:100%;min-height:175px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px;box-sizing:border-box;overflow:hidden}
+.bscene svg{width:min(330px,68%);height:auto;filter:drop-shadow(0 14px 16px rgba(0,0,0,.3))}
+.bs-chip{font-weight:800;font-size:.84rem;padding:8px 18px;border-radius:999px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(6px)}
+.bscene.after .bs-chip{color:#12331F;background:rgba(255,255,255,.82)}
+.bscene.before{background:linear-gradient(150deg,#4A3A2C,#241A10)}
+.bscene.after{background:linear-gradient(150deg,#2C6E8F,#123B52)}
+
+/* ============ QUY TRÌNH ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:stp}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:28px 22px;position:relative;box-shadow:var(--sh1);transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .s-ic{width:56px;height:56px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(217,164,40,.35)}
+.step .s-ic .i{width:25px;height:25px}
+.step .s-ic::after{counter-increment:stp;content:counter(stp);position:absolute;top:-6px;right:-6px;width:24px;height:24px;background:var(--primary);color:#fff;font-size:.72rem;font-weight:900;border-radius:50%;display:grid;place-items:center;border:2.5px solid #fff}
+.step h3{font-size:1rem;font-weight:900;color:var(--primary);margin:16px 0 8px}
+.step p{font-size:.82rem;color:var(--soft);font-weight:500}
+.step .meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.step .meta .i{width:13px;height:13px}
+
+/* NB93-112 ============ LƯỚI 8 HẠNG MỤC — BENTO KÍN Ô ============ */
+.cat-Khoan{background:linear-gradient(135deg,#E8B33C,#B8881B)}
+.cat-Sua{background:linear-gradient(135deg,#D07A1E,#9A5410)}
+.cat-Bom{background:linear-gradient(135deg,#2E9E5B,#177A40)}
+.cat-Baotri{background:linear-gradient(135deg,#2E86B8,#1A5E86)}
+.svx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.svx-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh1);transition:.25s;min-width:0;position:relative}
+.svx-card:hover{transform:translateY(-5px);border-color:rgba(217,164,40,.45);box-shadow:var(--sh2)}
+.svx-hit{display:flex;align-items:center;gap:12px;background:none;border:0;padding:0;text-align:left;cursor:pointer;min-width:0;font:inherit}
+.svx-hit:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:10px}
+.svx-ic{width:48px;height:48px;border-radius:13px;color:#fff;display:grid;place-items:center;flex:0 0 auto;box-shadow:var(--sh1);transition:.25s}
+.svx-ic .i{width:24px;height:24px}
+.svx-card:hover .svx-ic{transform:scale(1.06)}
+.svx-name{display:block;font-size:1rem;font-weight:900;color:var(--primary);line-height:1.3}
+.svx-namewrap{display:block;min-width:0}
+.svx-sub{display:block;font-size:.72rem;font-weight:600;color:var(--soft);margin-top:3px}
+.svx-line{font-size:.8rem;color:var(--soft);font-weight:500;line-height:1.5}
+.svx-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto;flex-wrap:wrap}
+.svx-pr small{display:block;font-size:.66rem;font-weight:600;color:var(--soft)}
+.svx-pr b{display:block;font-size:1.05rem;font-weight:900;color:var(--accent-deep);line-height:1.15}
+.svx-foot .btn{padding:9px 14px;font-size:.8rem;min-height:38px;border-radius:11px;flex:0 0 auto}
+.svx-feat{grid-column:span 2;grid-row:span 2;padding:0;overflow:hidden}
+.svx-feat-img{position:relative;aspect-ratio:1672/941;overflow:hidden;min-height:0}
+.svx-feat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.svx-feat:hover .svx-feat-img img{transform:scale(1.04)}
+.svx-feat-img .badge{position:absolute;top:14px;right:14px;background:var(--grad-accent);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center}
+.svx-feat-img .badge .i{width:13px;height:13px}
+.svx-feat-img .price-ov{position:absolute;bottom:14px;right:14px;background:rgba(8,28,54,.78);backdrop-filter:blur(6px);color:#fff;font-weight:900;font-size:.95rem;padding:8px 14px;border-radius:12px}
+.svx-feat-img .price-ov small{font-weight:600;color:#FFE3B0}
+.svx-feat-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.svx-feat-body h3{font-size:1.3rem;font-weight:900;color:var(--primary);margin-top:2px}
+.svx-feat-body ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.svx-feat-body li{display:flex;gap:8px;align-items:flex-start;font-size:.82rem;color:var(--soft);font-weight:500}
+.svx-feat-body li .i{width:16px;height:16px;color:var(--ok);margin-top:2px}
+.svx-feat-body .svx-foot{margin-top:auto;padding-top:8px}
+.svx-feat-body .svx-pr b{font-size:1.3rem}
+.svx-feat-body .svx-foot .btns{display:flex;gap:9px;flex-wrap:wrap}
+.svx-feat-body .svx-foot .btns .btn{padding:10px 16px;font-size:.84rem;min-height:42px;border-radius:12px}
+.svx-row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.svx-wide{padding:0;overflow:hidden}
+.svx-thumb{position:relative;aspect-ratio:1672/941;overflow:hidden;min-height:0}
+.svx-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.svx-wide:hover .svx-thumb img{transform:scale(1.05)}
+.svx-wide .svx-body{padding:15px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.svx-wide .svx-name{font-size:.98rem}
+.svx-wide .svx-foot{margin-top:auto;padding-top:6px}
+
+/* ============ ABOUT ============ */
+#about .ab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:center}
+.ab-img{position:relative;min-width:0}
+.ab-img .ab-frame{position:relative;border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh2);transform:rotate(-1.6deg);overflow:hidden;aspect-ratio:1672/941;animation:fl1 8s ease-in-out infinite}
+.ab-img .ab-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ab-img .ab-tag{position:absolute;bottom:-18px;right:6%;background:var(--grad-accent);color:#fff;border-radius:16px;padding:14px 20px;transform:rotate(2.5deg);box-shadow:0 14px 30px rgba(217,164,40,.4);z-index:3}
+.ab-img .ab-tag b{display:block;font-size:1.3rem;font-weight:900;line-height:1}
+.ab-img .ab-tag span{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:3px}
+.ab-txt h2{font-size:2rem;font-weight:900;color:var(--primary);margin:16px 0 12px}
+.ab-txt>p{color:var(--soft);font-weight:500;font-size:.95rem}
+.ab-pts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.ab-pt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh1);transition:.25s;min-width:0}
+.ab-pt:hover{border-color:rgba(217,164,40,.4);transform:translateY(-3px)}
+.ab-pt .i{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.ab-pt b{display:block;font-size:.88rem;color:var(--primary);font-weight:800}
+.ab-pt span{display:block;font-size:.75rem;color:var(--soft);font-weight:500}
+.ab-cta{display:flex;gap:13px;margin-top:24px;flex-wrap:wrap}
+
+/* ============ SOCIAL PROOF ============ */
+#proof{background:var(--texture)}
+.rvw-shell{display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:stretch}
+.rvw-view{overflow:hidden;border-radius:var(--r3);min-width:0}
+.rvw-track{display:flex;transition:transform .55s cubic-bezier(.25,.8,.3,1)}
+.rvw-slide{flex:0 0 100%;padding:2px;min-width:0}
+.rvw-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:30px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rvw-card .stars{display:flex;gap:3px;color:#F2A20C}
+.rvw-card .stars .i{width:16px;height:16px}
+.rvw-card p{font-size:.95rem;color:var(--ink);font-weight:500;flex:1}
+.rvw-card .who{display:flex;gap:12px;align-items:center}
+.rvw-card .avt{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:#FFE3B0;display:grid;place-items:center;font-weight:900;font-size:.95rem;flex:0 0 auto}
+.rvw-card .who b{display:block;font-size:.9rem;color:var(--primary)}
+.rvw-card .who span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+.rvw-side{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.rvw-side .metric b{display:block;font-size:2.6rem;font-weight:900;color:#FFE3B0;line-height:1}
+.rvw-side .metric span{display:block;font-size:.82rem;color:#B9CCE0;font-weight:600;margin-top:6px}
+.rvw-side .mrow{display:flex;justify-content:space-between;font-size:.8rem;color:#DCE8F4;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.14);padding-bottom:9px}
+.rvw-side .mrow b{color:#8FD3A8}
+.rvw-side h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#8FA9C4;font-weight:800}
+.pchips{display:flex;gap:8px;flex-wrap:wrap}
+.pchips span{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;color:#DCE8F4}
+.rvw-dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.rvw-dots button{width:9px;height:9px;border-radius:99px;background:var(--line-2);transition:.25s;padding:0}
+.rvw-dots button.on{width:26px;background:var(--accent)}
+
+/* ============ MAP CARD + FORM CUỐI  NB93-112 ============ */
+#contact{background:var(--grad-dark);color:#fff;overflow:clip}
+#contact::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='90' viewBox='0 0 150 90'%3E%3Cg fill='none' stroke='%23304E75' stroke-width='1.4'%3E%3Cpath d='M0 20q18-14 37 0t38 0 38 0 37 0'/%3E%3Cpath d='M0 52q18-14 37 0t38 0 38 0 37 0'/%3E%3Cpath d='M0 84q18-14 37 0t38 0 38 0 37 0'/%3E%3C/g%3E%3C/svg%3E");opacity:.4}
+#contact .wrap{position:relative}
+.ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:16px;min-width:0}
+.mapcard{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r2);overflow:hidden}
+.mapcard .mc-img{position:relative;aspect-ratio:1672/820;overflow:hidden;min-height:0}
+.mapcard .mc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%}
+.mapcard .mc-img .mc-pin{position:absolute;right:12px;bottom:12px;background:rgba(8,28,54,.78);backdrop-filter:blur(6px);color:#fff;font-weight:800;font-size:.78rem;padding:8px 13px;border-radius:11px;display:inline-flex;gap:7px;align-items:center}
+.mapcard .mc-img .mc-pin .i{width:15px;height:15px;color:var(--accent-2)}
+.mapcard .mc-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.mapcard .mc-row{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;font-weight:600;color:#DCE8F4}
+.mapcard .mc-row .i{width:17px;height:17px;color:var(--accent-2);margin-top:2px}
+.mapcard .mc-row b{color:#fff}
+.mapcard .btn{width:100%}
+.ct-info .ci-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r2);padding:18px 20px;display:flex;gap:15px;align-items:flex-start;min-width:0}
+.ct-info .ci-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;flex:0 0 auto}
+.ct-info .ci-ic .i{width:21px;height:21px}
+.ct-info b{display:block;font-size:.94rem;font-weight:800}
+.ct-info span{display:block;font-size:.82rem;color:#B9CCE0;font-weight:500;margin-top:3px}
+.ct-form{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;color-scheme:dark}
+.ct-form h3{font-size:1.3rem;font-weight:900;color:#fff}
+.ct-form .fsub{font-size:.84rem;color:#B9CCE0;font-weight:500;margin-top:-6px}
+.ct-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-form .frow .full{grid-column:1/-1}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;min-width:0}
+.ct-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B9CCE0' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.ct-form select option{color:var(--ink);background:#fff}
+.ct-form textarea{min-height:70px;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:#6E87A5}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.ct-form .btn{width:100%;margin-top:4px}
+.ct-form .secure{font-size:.74rem;color:#8FA9C4;display:flex;gap:7px;align-items:center;justify-content:center;font-weight:600}
+.ct-form .secure .i{width:14px;height:14px;color:#8FD3A8}
+
+/* ============ FAQ ============ */
+.faq-shell{max-width:820px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center}
+.faq-search{position:relative;flex:1;max-width:420px;min-width:230px}
+.faq-search input{width:100%;padding:13px 15px 13px 42px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;box-shadow:var(--sh1)}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.faq-search .i{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fchip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:.78rem;font-weight:800;color:var(--soft);transition:.2s}
+.fchip:hover{border-color:var(--accent)}
+.fchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:rgba(217,164,40,.5)}
+.faq-q{width:100%;display:flex;align-items:center;gap:13px;padding:17px 20px;font-weight:800;font-size:.94rem;color:var(--primary);text-align:left;min-width:0}
+.faq-q .fq-ic{width:34px;height:34px;border-radius:10px;background:var(--water-100);color:#166A94;display:grid;place-items:center;flex:0 0 auto;transition:.25s}
+.faq-q .fq-ic .i{width:16px;height:16px}
+.faq-item.open .fq-ic{background:var(--grad-accent);color:#fff}
+.faq-q .chev{margin-left:auto;transition:.3s;color:var(--soft)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px 67px;font-size:.87rem;color:var(--soft);font-weight:500}
+.faq-empty{text-align:center;color:var(--soft);font-weight:600;padding:26px;display:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-3);color:#9FB6CC;font-size:.86rem}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1.1fr;gap:34px;padding:56px 0 36px}
+.ft-grid h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px}
+.ft-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-grid ul a{transition:.2s;font-weight:500}
+.ft-grid ul a:hover{color:var(--accent-2)}
+.ft-brand .lg-t{color:#fff}
+.ft-brand .lg-s{color:#8FA9C4}
+.ft-brand p{margin-top:14px;font-weight:500}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:linear-gradient(135deg,#E8432F,#C42114);padding:11px 18px;border-radius:13px;color:#fff;font-weight:900;font-size:1.05rem;box-shadow:0 10px 24px rgba(216,56,43,.4)}
+.ft-hot .i{width:18px;height:18px}
+.ft-bar{border-top:1.5px solid rgba(255,255,255,.09);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.76rem;font-weight:600}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:8px;font-weight:700;color:#DCE8F4}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:9px;background:rgba(8,28,54,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.14);padding:9px;border-radius:22px;box-shadow:var(--sh3);transition:.4s}
+.dock.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(90px)}
+.dock button,.dock a{display:flex;align-items:center;gap:8px;border-radius:15px;padding:11px 15px;color:#DCE8F4;font-weight:800;font-size:.8rem;transition:.2s;white-space:nowrap}
+.dock .i{width:19px;height:19px}
+.dock .d-hot{background:linear-gradient(135deg,#E8432F,#C42114);color:#fff}
+.dock .d-main{background:var(--grad-accent);color:#fff}
+.dock button:hover,.dock a:hover{transform:translateY(-3px)}
+
+/* ============ DRAWER + MODAL + TOAST ============ */
+.drawer-ov,.modal-ov{position:fixed;inset:0;background:rgba(6,16,30,.62);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.drawer-ov.open,.modal-ov.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,94vw);background:var(--texture);z-index:95;transform:translateX(105%);transition:transform .4s cubic-bezier(.25,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh3)}
+.drawer.open{transform:none}
+.drawer .dr-head{background:var(--grad-dark);color:#fff;padding:20px 22px;display:flex;align-items:center;gap:12px}
+.drawer .dr-head h3{font-size:1.08rem;font-weight:900;flex:1}
+.drawer .dr-head .i{color:var(--accent-2)}
+.drawer .dr-close{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.1);display:grid;place-items:center;color:#fff;transition:.2s}
+.drawer .dr-close:hover{background:var(--accent)}
+.drawer .dr-body{padding:20px 22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:16px}
+.dr-lbl{font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);margin-bottom:8px;display:block}
+.dr-chips{display:flex;gap:8px;flex-wrap:wrap}
+.dr-chip{padding:9px 14px;border-radius:11px;border:1.5px solid var(--line-2);background:#fff;font-size:.8rem;font-weight:800;color:var(--soft);transition:.2s;min-width:0}
+.dr-chip:hover{border-color:var(--accent)}
+.dr-chip.sel{background:var(--grad-accent);color:#fff;border-color:transparent}
+.dr-input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;min-width:0}
+.dr-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.dr-sum{background:#fff;border:1.5px dashed var(--line-2);border-radius:14px;padding:14px;font-size:.82rem;color:var(--soft);font-weight:600;display:flex;flex-direction:column;gap:6px}
+.dr-sum b{color:var(--primary)}
+.dr-done{display:none;text-align:center;background:#EAF7F0;border:1.5px solid rgba(30,158,106,.4);border-radius:16px;padding:20px}
+.dr-done.show{display:block}
+.dr-done .code{font-size:1.7rem;font-weight:900;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;pointer-events:none}
+.modal.open{pointer-events:auto}
+.modal .m-card{background:#fff;border-radius:var(--r3);max-width:640px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh3);transform:scale(.92) translateY(20px);opacity:0;transition:.35s cubic-bezier(.2,.9,.3,1.2);min-width:0}
+.modal.open .m-card{transform:none;opacity:1}
+.modal .m-img{position:relative;aspect-ratio:1672/941;overflow:hidden;min-height:0}
+.modal .m-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.modal .m-img .cat-b{position:absolute;bottom:14px;right:14px;font-size:.7rem;font-weight:900;padding:6px 13px;border-radius:999px;color:#fff;display:inline-flex;gap:6px;align-items:center}
+.modal .m-img .cat-b .i{width:13px;height:13px}
+.modal .m-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:12px;background:rgba(8,28,54,.7);color:#fff;display:grid;place-items:center;backdrop-filter:blur(5px)}
+.modal .m-close:hover{background:var(--accent)}
+.modal .m-body{padding:24px 26px 26px}
+.modal h3{font-size:1.35rem;font-weight:900;color:var(--primary);margin-bottom:6px}
+.modal .m-desc{font-size:.88rem;color:var(--soft);font-weight:500}
+.modal .m-meta{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.modal .m-meta span{display:inline-flex;gap:6px;align-items:center;font-size:.74rem;font-weight:700;color:var(--soft);background:var(--texture);border:1px solid var(--line);padding:6px 11px;border-radius:999px}
+.modal .m-meta .i{width:13px;height:13px;color:var(--accent)}
+.tier{margin:16px 0;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.tier .t-row{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:.84rem;font-weight:600;color:var(--soft);border-bottom:1.5px solid #EDF3F8}
+.tier .t-row:last-child{border-bottom:0}
+.tier .t-row b{color:var(--accent-deep);font-weight:900;white-space:nowrap}
+.tier .t-row.hot{background:var(--accent-100);color:var(--accent-deep)}
+.modal .m-acts{display:flex;gap:11px;flex-wrap:wrap}
+.modal .m-acts .btn{flex:1;min-width:170px}
+.modal .m-note{font-size:.74rem;color:var(--soft);display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;font-weight:600}
+.modal .m-note span{display:inline-flex;gap:5px;align-items:center}
+.modal .m-note .i{width:13px;height:13px;color:var(--ok)}
+#toasts{position:fixed;right:18px;bottom:96px;z-index:120;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;padding:13px 18px;border-radius:14px;box-shadow:var(--sh3);font-size:.84rem;font-weight:600;display:flex;gap:10px;align-items:center;max-width:340px;animation:toastIn .4s cubic-bezier(.2,.9,.3,1.3);pointer-events:auto}
+.toast .i{width:18px;height:18px;color:#8FD3A8;flex:0 0 auto}
+.toast b{display:block;font-size:.88rem;font-weight:900}
+.toast span{display:block;font-weight:500;color:#C4D6E8;font-size:.78rem}
+@keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+
+/* ============ RESPONSIVE 1080px ============ */
+@media(max-width:1080px){
+  nav.main{display:none}
+  .hero .wrap{grid-template-columns:1fr 1fr}
+  .hero-media{min-height:auto}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .est-grid{grid-template-columns:1fr}
+  .est-sum{position:static}
+  .bk-grid{grid-template-columns:1fr}
+  .bk-sum{position:static}
+  .price-wrap{grid-template-columns:1fr}
+  .com-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .svx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svx-feat{grid-column:1/-1;grid-row:auto}
+  #about .ab-grid{grid-template-columns:1fr}
+  .rvw-shell{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .slot-chips{grid-template-columns:repeat(2,1fr)}
+  .day-chips{grid-template-columns:repeat(4,1fr)}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680px — thiết kế riêng ============ */
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:76px}
+  .topbar .tb-l span{white-space:normal;font-size:12px;line-height:1.4}
+  .sec{padding:52px 0}
+  .sec-title{font-size:1.42rem}
+  .sec .head{margin-bottom:30px}
+  .hd .wrap{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .search{order:3;max-width:none;flex:1 0 100%}
+  .hd-cta .btn-hot,.hd-cta .btn-dark{display:none}
+  .logo .lg-s{display:none}
+  .hero{padding:44px 0 70px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:26px}
+  .hero-txt{min-width:0}
+  .hero h1{font-size:1.72rem}
+  .hero .lead{font-size:.92rem}
+  .hm-badge{display:block;right:10px;top:10px;padding:7px 12px;border-radius:12px}
+  .hm-badge .bt{font-size:1.1rem}
+  .hm-badge .bs{font-size:.6rem}
+  .hm-main{transform:none;border-radius:var(--r2);border-width:4px;animation:none}
+  .hm-stats{margin-top:0;width:100%;flex-wrap:wrap}
+  .hm-stats div{padding:10px 6px;min-width:0}
+  .hm-stats b{font-size:.95rem}
+  .hm-stats span{font-size:12px}
+  .hm-main .pr-tag{right:10px;bottom:10px;max-width:calc(100% - 20px);font-size:.78rem;padding:7px 11px;border-radius:10px;transform:none}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust{gap:7px}
+  .trust span{font-size:.72rem;padding:7px 10px}
+  .tape-track span{font-size:.8rem;padding:0 14px}
+  .feat-grid{grid-template-columns:1fr;gap:18px}
+  .strip{grid-template-columns:1fr;gap:10px}
+  .strip .arr{display:none}
+  .est-card,.est-sum{padding:20px 16px}
+  .geo-chip,.pipe-chip,.pump-chip,.zone-chip{flex:1 1 100%}
+  .depth-top .dv{font-size:1.6rem}
+  .bk-form,.bk-sum{padding:20px 16px}
+  .day-chips{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:2px 2px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(232,179,60,.85) rgba(255,255,255,.16)}
+  .day-chips::-webkit-scrollbar{height:5px}
+  .day-chips::-webkit-scrollbar-track{background:rgba(255,255,255,.16);border-radius:99px}
+  .day-chips::-webkit-scrollbar-thumb{background:rgba(232,179,60,.85);border-radius:99px}
+  .day-chip{flex:0 0 auto;min-width:64px}
+  .day-chip.day-more{display:grid;place-items:center;background:rgba(232,179,60,.14);border:1.5px dashed rgba(232,179,60,.65);color:#FFE3B0;font-size:1.25rem;font-weight:900;min-width:46px;padding:9px 4px}
+  .slot-chips{display:flex;flex-wrap:wrap;gap:9px}
+  .slot-chip{flex:1 1 calc(50% - 5px);min-width:150px}
+  .cat-chips{gap:8px}
+  .cat-chip{padding:10px 13px;font-size:.82rem}
+  .bk-inputs{grid-template-columns:1fr}
+  .tabs{gap:8px;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .tab{padding:10px 16px;font-size:.84rem;flex:0 0 auto}
+  .com-grid{grid-template-columns:1fr}
+  .hot-strip{padding:26px 20px;text-align:left}
+  .hot-strip .hs-acts{width:100%;flex-direction:column}
+  .hot-strip .hs-acts .btn{width:100%}
+  .stat b{font-size:2rem}
+  .ba-wrap{aspect-ratio:16/13;border-width:4px}
+  .ba-tag{font-size:.62rem;padding:5px 10px}
+  .ba-line .knob{width:40px;height:40px}
+  .svx-grid{gap:11px}
+  .svx-feat-img .badge,.fcard .badge{font-size:11px;padding:4px 8px}
+  .svx-feat-img .price-ov,.fcard .price-ov{font-size:.8rem;padding:6px 10px}
+  .svx-card{padding:13px 11px;gap:10px}
+  .svx-ic{width:40px;height:40px;border-radius:11px}
+  .svx-ic .i{width:20px;height:20px}
+  .svx-name{font-size:.9rem}
+  .svx-line{display:none}
+  .svx-pr b{font-size:.95rem}
+  .svx-foot .btn{padding:8px 11px;font-size:.75rem;min-height:40px}
+  .svx-feat-body h3{font-size:1.08rem}
+  .svx-feat-body .svx-foot .btns{width:100%;flex-direction:column}
+  .svx-feat-body .svx-foot .btns .btn{width:100%}
+  .svx-feat-body .svx-foot{width:100%}
+  .svx-feat-body .svx-pr{flex:1}
+  .svx-row3{grid-template-columns:1fr;gap:12px;margin-top:12px}
+  .steps{grid-template-columns:1fr}
+  .ab-pts{grid-template-columns:1fr}
+  .ab-txt h2{font-size:1.42rem}
+  .ab-cta .btn{width:100%}
+  .ct-form .frow{grid-template-columns:1fr}
+  .ct-form{padding:22px 16px}
+  .faq-a p{padding-left:20px}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:44px 0 28px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:8px;gap:6px;border-radius:20px}
+  .dock button,.dock a{padding:12px;font-size:0;gap:0}
+  .dock .i{width:21px;height:21px}
+  #toasts{right:12px;left:12px;bottom:150px}
+  .toast{max-width:none}
+  .modal .m-acts .btn{min-width:100%}
+}
+
+/* MOBILEFIX-112: chữ ≥12px + control ≥40px + input 16px chống zoom iOS */
+@media(max-width:680px){
+  .trust span{font-size:12px}
+  .hm-stats span{font-size:12px}
+  .hm-badge .bs{font-size:12px}
+  .fcard .badge{font-size:12px}
+  .strip small{font-size:12px}
+  .svx-sub{font-size:12px}
+  .svx-pr small{font-size:12px}
+  .cat-chip small{font-size:12px}
+  .day-chip b{font-size:12px}
+  .day-chip small{font-size:12px}
+  .slot-chip small{font-size:12px}
+  .slot-chip .gap-b{font-size:12px}
+  .bk-sum .fine,.est-sum .fine{font-size:12px}
+  .ba-tag{font-size:12px;padding:4px 8px;letter-spacing:.02em}
+  .step .meta{font-size:12px}
+  .ab-tag span{font-size:12px}
+  .rvw-card .who span{font-size:12px}
+  .pchips span{font-size:12px}
+  .ct-form .secure{font-size:12px}
+  .modal .m-meta span{font-size:12px}
+  .modal .m-note{font-size:12px}
+  .mapcard .mc-pin{font-size:12px}
+  .geo-chip small,.pipe-chip small,.pump-chip small,.zone-chip small{font-size:12px}
+  .depth-top small,.depth-scale{font-size:12px}
+  .depth-note{font-size:12px}
+  .geo-chip,.pipe-chip,.pump-chip,.zone-chip,.cat-chip,.day-chip,.slot-chip,.dr-chip{min-height:40px}
+  .btn{min-height:44px}
+  .bk-inputs input,.bk-desc,.ct-form input,.ct-form select,.ct-form textarea,.dr-input{min-height:44px;font-size:16px}
+  .bk-call .btn,.est-acts .btn,#bkSubmit,#drSubmit,.mapcard .btn{min-height:48px}
+  .svx-hit{min-height:44px}
+}
+
+/* MOBILE-TAP40: điều khiển cảm ứng >=40px */
+@media(max-width:640px){
+  .fchip,.tab,.icon-btn,.dr-close,.m-close{min-height:40px!important;min-width:40px!important}
+}
+
+/* NB93-112: nút bấm phản hồi khi nhấn */
+button:active{transform:scale(.97)}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 0 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></symbol>
+  <symbol id="i-well" viewBox="0 0 24 24"><rect x="10" y="2" width="4" height="13" rx="1.5"/><path d="M2.5 19.5q2.4-2.4 4.8 0t4.7 0 4.7 0 4.8 0M6 16.5v3M18 16.5v3M12 15v4.5"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M2.5 12a9.5 9.5 0 0 1 19 0"/><path d="M6.5 12a5.5 5.5 0 0 1 11 0"/><circle cx="12" cy="12" r="1.6"/><path d="M12 13.6 12 21"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="2.5" y="9.5" width="19" height="6" rx="1.5"/><path d="M7 9.5v3M11 9.5v3M15 9.5v3M19 9.5v3"/></symbol>
+  <symbol id="i-pump" viewBox="0 0 24 24"><circle cx="9" cy="10" r="5"/><circle cx="9" cy="10" r="1.6"/><path d="M14 10h6M20 10v7M3 20h18M20 17v3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3h5M10 3v6l-5.2 9A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/></symbol>
+  <symbol id="i-pipe" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="18" rx="2"/><path d="M3 8h3M3 12h3M3 16h3M18 8h3M18 12h3M18 16h3"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20 3 12.5z"/><circle cx="7.5" cy="7.5" r="1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8 7.5 21l4.5-2.6L16.5 21l-1.3-7.2"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 24 24"><path d="M14 3l7 7M11 6.5 17.5 13M12.5 12.5l-1 3.5a10 10 0 0 1-7 7l-1.5-1.5a10 10 0 0 1 7-7l3.5-1z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/></symbol>
+  <symbol id="i-siren" viewBox="0 0 24 24"><path d="M6 20v-6a6 6 0 0 1 12 0v6M4 20h16M12 4V2M5 6 3.5 4.5M19 6l1.5-1.5"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6h-6v6H4v-9z"/></symbol>
+  <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1.5 5.5h13v11h-13zM14.5 9.5h4.2l3.3 3.8v3.2h-7.5"/><circle cx="6" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></symbol>
+</svg>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg class="i"><use href="#i-clock"/></svg>Sửa giếng khẩn 24/7 • khoan mới khảo sát trong 24 giờ</span>
+      <span><svg class="i"><use href="#i-pin"/></svg>TP.HCM — Long An — Bình Dương — Đồng Nai (bán kính 60km)</span>
+    </div>
+    <div class="tb-l">
+      <span class="hot"><svg class="i"><use href="#i-siren"/></svg>Giếng cạn — hỏng bơm: <b>0906 36 36 36</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="Mạch Nước 24">
+      <span class="mark"><svg class="i"><use href="#i-drop"/></svg></span>
+      <span><span class="lg-t">Mạch Nước 24</span><span class="lg-s">Khoan — Sửa — Bảo trì giếng</span></span>
+    </a>
+    <div class="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm: khoan theo mét, hút bùn, dò mạch, thay ống…" autocomplete="off">
+    </div>
+    <nav class="main">
+      <a href="#dichvu">Dịch vụ</a>
+      <a href="#tinhgia">Tính giá</a>
+      <a href="#banggia">Bảng giá</a>
+      <a href="#booking">Đặt lịch</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="btn btn-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>0906 36 36 36</a>
+      <button class="btn btn-dark" id="hdBook"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</button>
+      <button class="icon-btn" id="hdDrawer" title="Phiếu hẹn của bạn" aria-label="Mở phiếu hẹn">
+        <svg class="i"><use href="#i-cal"/></svg><span class="dot" id="hdDot">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="eyebrow"><svg class="i"><use href="#i-siren"/></svg>Giếng cạn — bơm hụt nước? Thợ đến trong 60 phút</span>
+      <h1>Khoan giếng theo mét sâu — dò mạch nước trước, <span class="hl">cam kết ra nước</span></h1>
+      <p class="lead">Mạch Nước 24 khoan — sửa — bảo trì giếng cho <b>hộ nông thôn, nhà vườn, trại chăn nuôi</b> trong bán kính 60km quanh TP.HCM. <b>Dò mạch nước 0đ</b> khi khoan trọn gói, báo giá theo mét chốt trên hợp đồng, <b>không ra nước không thu công khoan</b>.</p>
+      <div class="hero-cta">
+        <a class="btn btn-hot btn-xl" href="tel:0906363636"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>GỌI KỸ THUẬT <span class="num">0906 36 36 36</span></a>
+        <a class="btn btn-accent btn-xl" href="#tinhgia"><svg class="i" style="width:22px;height:22px"><use href="#i-ruler"/></svg>Tính giá khoan theo mét sâu</a>
+      </div>
+      <div class="trust">
+        <span><svg class="i"><use href="#i-radar"/></svg>Dò mạch nước 0đ khi khoan trọn gói</span>
+        <span><svg class="i"><use href="#i-ruler"/></svg>Giá theo mét — chốt trước khi khoan</span>
+        <span><svg class="i"><use href="#i-drop"/></svg>Không ra nước — không thu công</span>
+        <span><svg class="i"><use href="#i-shield"/></svg>Bảo hành giếng 24 tháng</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-badge"><span class="bt">0đ</span><span class="bs">Dò mạch khi khoan</span></div>
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="Dịch vụ khoan, sửa và bảo trì giếng nước Mạch Nước 24">
+        <span class="pr-tag"><svg class="i"><use href="#i-tag"/></svg>Khoan giếng mới — từ 290.000đ/mét sâu</span>
+      </div>
+      <div class="hm-stats">
+        <div><b>12 năm</b><span>trong nghề giếng</span></div>
+        <div><b>3.800+</b><span>giếng đã làm</span></div>
+        <div><b>96%</b><span>ra nước lần đầu</span></div>
+        <div><b>4.9/5</b><span>đánh giá</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE MARQUEE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span><svg class="i"><use href="#i-radar"/></svg>Dò mạch nước trước khi khoan — không khoan mò</span>
+    <span><svg class="i"><use href="#i-ruler"/></svg>Báo giá theo mét sâu — chốt trên hợp đồng</span>
+    <span><svg class="i"><use href="#i-drop"/></svg>KHÔNG RA NƯỚC — KHÔNG THU CÔNG KHOAN</span>
+    <span><svg class="i"><use href="#i-shield"/></svg>Bảo hành giếng 24 tháng bằng hợp đồng</span>
+    <span><svg class="i"><use href="#i-siren"/></svg>Sửa giếng khẩn — thợ đến trong 60 phút</span>
+    <span><svg class="i"><use href="#i-pump"/></svg>Ống — bơm chính hãng, đầy đủ hoá đơn</span>
+    <span><svg class="i"><use href="#i-home"/></svg>Phục vụ hộ nông thôn — nhà vườn — trại</span>
+  </div>
+</div>
+
+<!-- ============ 2 DỊCH VỤ NỔI BẬT ============ -->
+<section class="sec alt" id="noibat">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">2 việc được gọi nhiều nhất mùa nắng</h2>
+      <span class="sec-sub">Khoan giếng mới cho hộ chưa có giếng — cứu giếng cạn cho giếng đã yếu nước</span>
+    </div>
+    <div class="feat-grid">
+      <article class="fcard spot rv" data-d="0">
+        <div class="fimg">
+          <img src="assets/img/p1.webp" alt="Khoan giếng nước mới theo mét sâu" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-well"/></svg>Theo mét sâu</span>
+          <span class="price-ov"><small>từ</small> 290.000đ/m</span>
+        </div>
+        <div class="fbody">
+          <h3>Khoan giếng nước mới</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Dò mạch nước trước khi đặt giàn — khoan đúng chỗ có nước</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Giá công khai theo mét: đất mềm 290k — sỏi 360k — đá 470k/mét</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Cam kết ra nước theo vỉa đã dò — không đạt, không thu công</li>
+          </ul>
+          <button class="btn btn-accent quick-book" data-cat="Khoan giếng mới"><svg class="i"><use href="#i-cal"/></svg>Đặt khảo sát — dò mạch miễn phí</button>
+        </div>
+      </article>
+      <article class="fcard spot rv" data-d="1">
+        <div class="fimg">
+          <img src="assets/img/p2.webp" alt="Sửa giếng khoan cũ bị cạn, yếu nước" loading="lazy">
+          <span class="badge blue"><svg class="i"><use href="#i-siren"/></svg>Khẩn 60 phút</span>
+          <span class="price-ov"><small>từ</small> 1.200.000đ/giếng</span>
+        </div>
+        <div class="fbody">
+          <h3>Sửa giếng khoan cũ — cứu cạn</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Bơm rung, nước đục, lưu lượng tụt — hút bùn, rửa lọc tại chỗ</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Kéo ống — kiểm tra bơm, röle áp, van một chiều</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Khôi phục 80–95% lưu lượng — thử nước trước khi bàn giao</li>
+          </ul>
+          <button class="btn btn-accent quick-book" data-cat="Sửa giếng — cứu cạn"><svg class="i"><use href="#i-cal"/></svg>Gọi thợ khẩn — đến trong 60 phút</button>
+        </div>
+      </article>
+    </div>
+    <div class="strip rv" data-d="1">
+      <a href="#dichvu" data-quick="3"><span class="ic"><svg class="i"><use href="#i-pipe"/></svg></span><span><b>Thay ống giếng</b><small>từ 120.000đ/mét • 3–5 giờ</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-quick="4"><span class="ic"><svg class="i"><use href="#i-pump"/></svg></span><span><b>Lắp máy bơm giếng</b><small>từ 850.000đ công • 2–3 giờ</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-quick="5"><span class="ic"><svg class="i"><use href="#i-flask"/></svg></span><span><b>Kiểm tra chất lượng nước</b><small>600.000đ/mẫu • kết quả trong ngày</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-quick="7"><span class="ic"><svg class="i"><use href="#i-broom"/></svg></span><span><b>Hút bùn — xử lý nghẹt</b><small>từ 250.000đ/m³ • 2–4 giờ</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-quick="6"><span class="ic"><svg class="i"><use href="#i-gauge"/></svg></span><span><b>Bảo trì định kỳ</b><small>từ 1.500.000đ/lượt • gói 6 tháng</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- NB93-112 ============ ĐẶC THÙ: MÁY TÍNH GIÁ KHOAN THEO MÉT SÂU ============ -->
+<section class="sec" id="tinhgia">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Tính giá khoan theo mét sâu — trước cả khi gọi thợ</h2>
+      <span class="sec-sub">Chọn địa chất + kéo độ sâu dự kiến: phiếu tạm tính hiện ngay. Giá chốt trên hợp đồng theo mét khoan thật</span>
+    </div>
+    <div class="est-grid">
+      <div class="est-card rv">
+        <div class="est-step">
+          <div class="es-t"><span class="es-n">1</span><b>Địa chất khu nhà bạn</b><small>đơn giá công khoan / mét</small></div>
+          <div class="geo-chips" id="geoChips">
+            <button class="geo-chip sel" data-geo="set"><span class="gc-ic gc-set"><svg class="i"><use href="#i-well"/></svg></span><span>Đất sét — cát bão<small>290.000đ/mét</small></span></button>
+            <button class="geo-chip" data-geo="soi"><span class="gc-ic gc-soi"><svg class="i"><use href="#i-well"/></svg></span><span>Sỏi — đất cứng<small>360.000đ/mét</small></span></button>
+            <button class="geo-chip" data-geo="da"><span class="gc-ic gc-da"><svg class="i"><use href="#i-well"/></svg></span><span>Đá vôi — đá tảng<small>470.000đ/mét</small></span></button>
+          </div>
+        </div>
+        <div class="est-step">
+          <div class="es-t"><span class="es-n">2</span><b>Độ sâu dự kiến</b><small>miền Nam thường 25–50m</small></div>
+          <div class="depth-wrap">
+            <div class="depth-top"><span class="dv"><span id="depthOut">35</span> <em>mét</em></span><small>≥ 25m mới bám vỉa nước ổn định quanh TP.HCM</small></div>
+            <input type="range" class="depth" id="depthRange" min="20" max="80" step="5" value="35" aria-label="Độ sâu dự kiến của giếng">
+            <div class="depth-scale"><span>20m</span><span>40m</span><span>60m</span><span>80m</span></div>
+            <p class="depth-note"><svg class="i"><use href="#i-check"/></svg>Chỉ tính tiền theo mét sâu khoan thật — khoan ngắn hơn hợp đồng, trừ tiền phần chưa khoan.</p>
+          </div>
+        </div>
+        <div class="est-step">
+          <div class="es-t"><span class="es-n">3</span><b>Ống trụ + lọc nước</b><small>nhựa nguyên sinh — chính hãng</small></div>
+          <div class="pipe-chips" id="pipeChips">
+            <button class="pipe-chip sel" data-pipe="p90"><span>Ống Φ90 + lọc trụ<small>95.000đ/mét</small></span></button>
+            <button class="pipe-chip" data-pipe="p114"><span>Ống Φ114 + lọc trụ<small>135.000đ/mét — trại, tưới lớn</small></span></button>
+          </div>
+        </div>
+        <div class="est-step">
+          <div class="es-t"><span class="es-n">4</span><b>Lắp kèm bơm ngầm</b><small>công lắp đã gồm trong giá bơm</small></div>
+          <div class="pump-chips" id="pumpChips">
+            <button class="pump-chip" data-pump="none"><span>Chưa lắp bơm<small>0đ</small></span></button>
+            <button class="pump-chip" data-pump="hp1"><span>Bơm ngầm 1HP<small>3.400.000đ</small></span></button>
+            <button class="pump-chip sel" data-pump="hp2"><span>Bơm ngầm 2HP + bơm áp<small>5.200.000đ</small></span></button>
+            <button class="pump-chip" data-pump="hp3"><span>Bơm ngầm 3HP cho trại<small>7.800.000đ</small></span></button>
+          </div>
+        </div>
+        <div class="est-step">
+          <div class="es-t"><span class="es-n">5</span><b>Khu vực thi công</b><small>phí chuyển giàn khoan</small></div>
+          <div class="zone-chips" id="zoneChips">
+            <button class="zone-chip sel" data-zone="noi"><span>TP.HCM — vùng ven<small>500.000đ</small></span></button>
+            <button class="zone-chip" data-zone="tinh"><span>Long An — Bình Dương — Đồng Nai<small>900.000đ</small></span></button>
+          </div>
+        </div>
+      </div>
+      <aside class="est-sum rv" data-d="1">
+        <h3><svg class="i"><use href="#i-doc"/></svg>Phiếu tạm tính — giếng khoan trọn gói</h3>
+        <div class="row"><span>Dò mạch nước trước khoan</span><span class="free"><span class="old">800.000đ</span>0đ MIỄN PHÍ</span></div>
+        <div class="row"><span>Công khoan — <b id="estGeoN" style="color:#FFE3B0">Đất sét — cát bão</b></span><b id="estCong">—</b></div>
+        <div class="row"><span>Ống trụ + lọc — <b id="estPipeN" style="color:#FFE3B0">Φ90</b></span><b id="estOng">—</b></div>
+        <div class="row"><span id="estPumpN">Bơm ngầm 2HP + bơm áp</span><b id="estBom">—</b></div>
+        <div class="row"><span>Vận chuyển giàn khoan</span><b id="estVc">—</b></div>
+        <div class="total"><span>Tổng dự kiến</span><b id="estTotal">—</b></div>
+        <div class="row-guar"><svg class="i"><use href="#i-shield"/></svg><span>Khoan đủ sâu mà không ra nước theo vỉa đã dò: <b style="color:#FFE3B0">không thu công khoan</b> — điều khoản in trên hợp đồng.</span></div>
+        <p class="fine">Phiếu tạm tính theo bảng giá công khai 2026. Đội khảo sát xác nhận đúng loại đất và độ sâu vỉa nước rồi mới ký hợp đồng — giá chốt không đội khi thi công. Thanh toán sau nghiệm thu nước.</p>
+        <div class="est-acts">
+          <button class="btn btn-accent" id="estToBooking"><svg class="i"><use href="#i-send"/></svg>Gửi thông số vào phiếu hẹn</button>
+          <a class="btn btn-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>GỌI DÒ MẠCH: 0906 36 36 36</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LƯỚI 8 HẠNG MỤC — BENTO KÍN Ô ============ -->
+<section class="sec alt" id="dichvu">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">8 hạng mục giếng nước — một đội lo từ dò tới khoan</h2>
+      <span class="sec-sub">Giá công khai theo mét sâu và đầu việc — bấm xem chi tiết hoặc đặt lịch luôn</span>
+    </div>
+    <div class="svx-grid rv" data-d="1">
+      <article class="svx-card svx-feat spot">
+        <div class="svx-feat-img">
+          <img src="assets/img/p1.webp" alt="Khoan giếng nước mới" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-well"/></svg>Nổi bật • theo mét sâu</span>
+          <span class="price-ov"><small>từ</small> 290.000đ/mét</span>
+        </div>
+        <div class="svx-feat-body">
+          <span class="svx-sub">Giếng khoan 20–80m • hộ gia đình, nhà vườn, trại</span>
+          <h3>Khoan giếng nước mới</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Dò mạch nước 0đ khi khoan trọn gói — xác định vỉa nước, độ sâu</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Chỉ tính tiền theo mét sâu khoan thật — ghi rõ trên hợp đồng</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Cam kết ra nước: không đạt vỉa đã dò, không thu công khoan</li>
+          </ul>
+          <div class="svx-foot">
+            <span class="svx-pr"><small>giếng 30m đất mềm trọn gói</small><b>từ 15.800.000đ</b></span>
+            <span class="btns"><button type="button" class="btn btn-ghost" data-qv="0">Xem chi tiết</button><button type="button" class="btn btn-accent" data-qb="0">Đặt khoan</button></span>
+          </div>
+        </div>
+      </article>
+      <article class="svx-card spot">
+        <button type="button" class="svx-hit" data-qv="1" title="Xem chi tiết: Sửa giếng khoan cũ">
+          <span class="svx-ic cat-Sua"><svg class="i"><use href="#i-wrench"/></svg></span>
+          <span class="svx-namewrap"><span class="svx-name">Sửa giếng khoan cũ</span><span class="svx-sub">2–4 giờ • BH 6 tháng</span></span>
+        </button>
+        <span class="svx-line">Giếng yếu, nước đục, bơm hụt — kiểm tra toàn bộ từ lọc đến bơm.</span>
+        <div class="svx-foot">
+          <span class="svx-pr"><small>từ</small><b>1.200.000đ</b></span>
+          <button type="button" class="btn btn-accent" data-qb="1">Đặt lịch</button>
+        </div>
+      </article>
+      <article class="svx-card spot">
+        <button type="button" class="svx-hit" data-qv="2" title="Xem chi tiết: Thay ống giếng">
+          <span class="svx-ic cat-Bom"><svg class="i"><use href="#i-pipe"/></svg></span>
+          <span class="svx-namewrap"><span class="svx-name">Thay ống giếng</span><span class="svx-sub">3–5 giờ • ống chính hãng</span></span>
+        </button>
+        <span class="svx-line">Ống đứt, thủng, lọc mòn — tháo cũ, lắp ống mới nguyên sinh.</span>
+        <div class="svx-foot">
+          <span class="svx-pr"><small>từ</small><b>120.000đ/mét</b></span>
+          <button type="button" class="btn btn-accent" data-qb="2">Đặt lịch</button>
+        </div>
+      </article>
+      <article class="svx-card spot">
+        <button type="button" class="svx-hit" data-qv="3" title="Xem chi tiết: Lắp máy bơm giếng">
+          <span class="svx-ic cat-Bom"><svg class="i"><use href="#i-pump"/></svg></span>
+          <span class="svx-namewrap"><span class="svx-name">Lắp máy bơm giếng</span><span class="svx-sub">2–3 giờ • BH 12 tháng</span></span>
+        </button>
+        <span class="svx-line">Bơm ngầm 1–3HP, chỉnh áp, thử lưu lượng trước khi bàn giao.</span>
+        <div class="svx-foot">
+          <span class="svx-pr"><small>công từ</small><b>850.000đ</b></span>
+          <button type="button" class="btn btn-accent" data-qb="3">Đặt lịch</button>
+        </div>
+      </article>
+      <article class="svx-card spot">
+        <button type="button" class="svx-hit" data-qv="6" title="Xem chi tiết: Xử lý giếng nghẹt — hút bùn">
+          <span class="svx-ic cat-Sua"><svg class="i"><use href="#i-broom"/></svg></span>
+          <span class="svx-namewrap"><span class="svx-name">Giếng nghẹt — hút bùn</span><span class="svx-sub">2–4 giờ • khôi phục lưu lượng</span></span>
+        </button>
+        <span class="svx-line">Bùn cát lấp lọc sau 3–5 năm — hút bùn, rửa lọc tại chỗ.</span>
+        <div class="svx-foot">
+          <span class="svx-pr"><small>từ</small><b>250.000đ/m³</b></span>
+          <button type="button" class="btn btn-accent" data-qb="6">Đặt lịch</button>
+        </div>
+      </article>
+    </div>
+    <div class="svx-row3 rv" data-d="1">
+      <article class="svx-card svx-wide spot">
+        <div class="svx-thumb"><img src="assets/img/p5.webp" alt="Kiểm tra chất lượng nước giếng" loading="lazy"></div>
+        <div class="svx-body">
+          <span class="svx-name">Kiểm tra chất lượng nước giếng</span>
+          <span class="svx-sub">40–60 phút • báo kết quả trong ngày</span>
+          <div class="svx-foot">
+            <span class="svx-pr"><small>từ</small><b>600.000đ/mẫu</b></span>
+            <button type="button" class="btn btn-accent" data-qb="4">Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="svx-card svx-wide spot">
+        <div class="svx-thumb"><img src="assets/img/p6.webp" alt="Bảo trì định kỳ giếng khoan" loading="lazy"></div>
+        <div class="svx-body">
+          <span class="svx-name">Bảo trì định kỳ giếng khoan</span>
+          <span class="svx-sub">2–3 giờ • gói kiểm tra 6 tháng/lượt</span>
+          <div class="svx-foot">
+            <span class="svx-pr"><small>từ</small><b>1.500.000đ/lượt</b></span>
+            <button type="button" class="btn btn-accent" data-qb="5">Đặt lịch</button>
+          </div>
+        </div>
+      </article>
+      <article class="svx-card svx-wide spot">
+        <div class="svx-thumb"><img src="assets/img/p8.webp" alt="Khảo sát địa chất — dò mạch nước trước khoan" loading="lazy"></div>
+        <div class="svx-body">
+          <span class="svx-name">Khảo sát — dò mạch nước</span>
+          <span class="svx-sub">45–90 phút • 0đ khi khoan trọn gói</span>
+          <div class="svx-foot">
+            <span class="svx-pr"><small>lẻ</small><b>800.000đ/điểm</b></span>
+            <button type="button" class="btn btn-accent" data-qb="7">Đặt dò</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING CALENDAR ============ -->
+<section id="booking">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Đặt kỹ thuật — xác nhận trong 15 phút</h2>
+      <span class="sec-sub">Sửa giếng — bơm — hút bùn: chọn khung KHẨN, thợ đến trong 60 phút • Khoan mới: hẹn khảo sát + dò mạch trong 24 giờ</span>
+    </div>
+    <div class="bk-grid">
+      <div class="bk-form rv">
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">1</span><b>Hạng mục &amp; mô tả giếng</b><small><svg class="i" style="width:13px;height:13px"><use href="#i-clock"/></svg>30 giây</small></div>
+          <div class="cat-chips" id="catChips">
+            <button class="cat-chip" data-cat="Khoan giếng mới"><svg class="i"><use href="#i-well"/></svg><span>Khoan giếng mới<small>dò mạch • giá theo mét</small></span></button>
+            <button class="cat-chip" data-cat="Sửa giếng — cứu cạn"><svg class="i"><use href="#i-siren"/></svg><span>Sửa giếng — cứu cạn<small>yếu nước • hụt vỉa</small></span></button>
+            <button class="cat-chip" data-cat="Bơm — ống — hút bùn"><svg class="i"><use href="#i-pump"/></svg><span>Bơm — ống — hút bùn<small>lắp bơm, thay ống</small></span></button>
+            <button class="cat-chip" data-cat="Bảo trì — kiểm tra nước"><svg class="i"><use href="#i-flask"/></svg><span>Bảo trì — kiểm tra nước<small>định kỳ • thử nước</small></span></button>
+          </div>
+          <textarea class="bk-desc" id="bkDesc" placeholder="Mô tả giếng: sâu bao nhiêu mét, bơm loại gì, đang bị gì…"></textarea>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">2</span><b>Chọn ngày</b><small>7 ngày tới</small></div>
+          <div class="day-chips" id="dayChips"></div>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">3</span><b>Chọn khung giờ</b><small><svg class="i" style="width:13px;height:13px"><use href="#i-siren"/></svg>Khung KHẨN 60 phút • phụ phí 50.000đ</small></div>
+          <div class="slot-chips" id="slotChips"></div>
+        </div>
+        <div class="bk-step">
+          <div class="st-t"><span class="st-n">4</span><b>Địa chỉ &amp; liên hệ</b><small>kỹ thuật gọi xác nhận</small></div>
+          <div class="bk-inputs">
+            <input id="bkName" type="text" placeholder="Họ tên *">
+            <input id="bkPhone" type="tel" placeholder="Số điện thoại *">
+            <input id="bkAddr" type="text" class="full" placeholder="Địa chỉ giếng — thôn, ấp, xã *">
+          </div>
+          <p class="bk-note" style="margin-top:12px"><svg class="i"><use href="#i-shield"/></svg>Khảo sát — dò mạch 0đ cho khoan trọn gói. Sửa giếng: báo giá tại chỗ trước khi làm, không đúng báo thêm phí.</p>
+        </div>
+        <button class="btn btn-accent" id="bkSubmit" style="width:100%"><svg class="i"><use href="#i-send"/></svg>Nhận mã hẹn — kỹ thuật gọi lại trong 15 phút</button>
+        <div class="bk-done" id="bkDone"></div>
+      </div>
+      <aside class="bk-sum rv" data-d="1">
+        <h3><svg class="i"><use href="#i-list"/></svg>Phiếu hẹn của bạn</h3>
+        <div class="row"><span>Hạng mục</span><b id="sumCat" data-empty="1">Chưa chọn</b></div>
+        <div class="row"><span>Ngày</span><b id="sumDay" data-empty="1">—</b></div>
+        <div class="row"><span>Khung giờ</span><b id="sumSlot" data-empty="1">—</b></div>
+        <div class="row"><span>Khảo sát — dò mạch</span><b style="color:#8FD3A8">0đ khi khoan trọn gói</b></div>
+        <div class="row"><span>Phụ phí khẩn KHẨN</span><b class="gapc" id="sumGap">0đ</b></div>
+        <div class="total"><span>Giá dự kiến</span><b id="sumFee">Chưa chọn</b></div>
+        <p class="fine">Khoan mới: giá chốt theo mét sâu thực tế trên hợp đồng. Sửa — hút bùn: thợ báo giá tại chỗ, bạn duyệt rồi mới làm.</p>
+        <div class="bk-call">
+          <a class="btn btn-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>GỌI KỸ THUẬT: 0906 36 36 36</a>
+          <a class="btn btn-ghost" href="https://zalo.me/0906363636" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Nhắn Zalo điều phối</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BẢNG GIÁ 3 TAB ============ -->
+<section class="sec" id="banggia">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Bảng giá theo mét sâu — niêm yết công khai</h2>
+      <span class="sec-sub">Đơn giá 2026 — mức chính xác chốt trên hợp đồng sau khảo sát, không đội giá khi thi công</span>
+    </div>
+    <div class="tabs rv" id="priceTabs">
+      <button class="tab on" data-pane="pKhoan"><svg class="i"><use href="#i-well"/></svg>Khoan mới — theo mét</button>
+      <button class="tab" data-pane="pSua"><svg class="i"><use href="#i-wrench"/></svg>Sửa — hút bùn</button>
+      <button class="tab" data-pane="pChung"><svg class="i"><use href="#i-list"/></svg>Gói &amp; chung</button>
+    </div>
+    <div class="price-wrap rv" data-d="1">
+      <div class="tbl-card">
+        <div class="pane on" id="pKhoan">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Hạng mục khoan mới</th><th>Giá tham khảo</th><th>Ghi chú</th></tr></thead>
+              <tbody>
+                <tr class="zero"><td><b>Khảo sát tại chỗ — tư vấn vị trí</b><small>Xem lối vào, vị trí đặt giàn, xa giếng hàng xóm</small></td><td><span class="pr">0đ</span></td><td>trong 24 giờ</td></tr>
+                <tr class="zero"><td><b>Dò mạch nước — định vị vỉa nước</b><small>Máy dò địa điện, báo độ sâu + độ dày vỉa</small></td><td><span class="pr">0đ khi khoan trọn gói</span></td><td>lẻ 800.000đ/điểm</td></tr>
+                <tr><td><b>Công khoan — đất sét, cát bão</b><small>Phổ biến nhất khu vệ binh quanh TP.HCM</small></td><td><span class="pr">290.000đ/mét</span></td><td>tính theo mét thật</td></tr>
+                <tr><td><b>Công khoan — sỏi, đất cứng</b><small>Dùng mũi khoan đá, bùn giữ thành đậm đặc</small></td><td><span class="pr">360.000đ/mét</span></td><td>tính theo mét thật</td></tr>
+                <tr><td><b>Công khoan — đá vôi, đá tảng</b><small>Khoan chậm, phí thay mũi đã gồm</small></td><td><span class="pr">470.000đ/mét</span></td><td>tính theo mét thật</td></tr>
+                <tr><td><b>Ống trụ + lọc nước Φ90</b><small>Nhựa nguyên sinh, lọc trụ chống bám bùn</small></td><td><span class="pr">95.000đ/mét</span></td><td>BH 24 tháng</td></tr>
+                <tr><td><b>Ống trụ + lọc nước Φ114</b><small>Cho trại, vườn tưới — lưu lượng lớn</small></td><td><span class="pr">135.000đ/mét</span></td><td>BH 24 tháng</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pane" id="pSua">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Hạng mục sửa — hút bùn</th><th>Giá tham khảo</th><th>Thời gian</th></tr></thead>
+              <tbody>
+                <tr class="zero"><td><b>Khảo sát — báo giá tại chỗ</b><small>Kỹ thuật đến đo, chốt giá rồi mới làm</small></td><td><span class="pr">0đ</span></td><td>60 phút nội vùng</td></tr>
+                <tr><td><b>Cứu giếng cạn — thông lọc bị bít</b><small>Hút bùn, rửa lọc áp lực ngược, khử trùng giếng</small></td><td><span class="pr">từ 1.200.000đ/giếng</span></td><td>2–4 giờ</td></tr>
+                <tr><td><b>Hút bùn — vệ sinh giếng khoan</b><small>Máy hút bùn chuyên dụng, kéo bùn đi xử lý</small></td><td><span class="pr">từ 250.000đ/m³</span></td><td>2–4 giờ</td></tr>
+                <tr><td><b>Thay ống giếng</b><small>Tháo ống cũ + lắp ống mới, kíp nối mới</small></td><td><span class="pr">120.000đ/mét + tiền ống</span></td><td>3–5 giờ</td></tr>
+                <tr><td><b>Lắp máy bơm ngầm 1HP–3HP</b><small>Công lắp, chỉnh áp, thử lưu lượng</small></td><td><span class="pr">850.000 – 2.400.000đ</span></td><td>2–3 giờ</td></tr>
+                <tr><td><b>Sửa bơm — thay röle áp, van một chiều</b><small>Kiểm tra cách điện, dòng le trước khi lắp</small></td><td><span class="pr">từ 450.000đ</span></td><td>1–2 giờ</td></tr>
+                <tr><td><b>Kiểm tra chất lượng nước</b><small>Đo pH — độ đục — sắt, phiếu kết quả</small></td><td><span class="pr">600.000đ/mẫu</span></td><td>40–60 phút</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pane" id="pChung">
+          <div class="tbl-wrap">
+            <table class="ptbl">
+              <thead><tr><th>Gói — chi phí chung</th><th>Giá tham khảo</th><th>Ghi chú</th></tr></thead>
+              <tbody>
+                <tr><td><b>Trọn gói giếng 30m đất mềm</b><small>Kèm ống Φ90, lọc, bơm 1HP — bàn giao ra nước</small></td><td><span class="pr">từ 15.800.000đ</span></td><td>1–2 ngày</td></tr>
+                <tr><td><b>Trọn gói giếng trại Φ114 + bơm 3HP</b><small>Cho vườn tưới, chăn nuôi — thử lưu lượng trước</small></td><td><span class="pr">từ 27.500.000đ</span></td><td>2–3 ngày</td></tr>
+                <tr><td><b>Gói bảo trì định kỳ 6 tháng</b><small>Kéo bơm rửa, đo cách điện, thử áp — lưu lượng</small></td><td><span class="pr">từ 1.500.000đ/lượt</span></td><td>nhà vườn, trại</td></tr>
+                <tr><td><b>Khung KHẨN — thợ đến trong 60 phút</b><small>Giếng cạn, bơm hỏng — bán kính 25km</small></td><td><span class="pr">+50.000đ</span></td><td>24/7 mùa nắng</td></tr>
+                <tr><td><b>Vận chuyển giàn khoan vùng ven — tỉnh</b><small>Theo tuyến, báo trọn trước khi cọc</small></td><td><span class="pr">500.000 – 900.000đ</span></td><td>Long An, BD, DN</td></tr>
+                <tr><td><b>Bảo hành giếng</b><small>Ống — lọc 24 tháng, máy bơm 12 tháng chính hãng</small></td><td><span class="pr">24 tháng</span></td><td>bằng hợp đồng</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tbl-foot"><svg class="i"><use href="#i-tag"/></svg>Chỉ tính tiền theo mét sâu khoan thật — khoan ngắn hơn hợp đồng, trừ tiền phần chưa khoan.</div>
+      </div>
+      <div class="tips">
+        <div class="tip"><b><svg class="i"><use href="#i-drop"/></svg>Không ra nước — không thu công</b><p>Khoan đủ độ sâu theo hợp đồng mà không đạt vỉa nước đã dò: không thu tiền công khoan, kéo giàn về. Điều khoản in thẳng trên hợp đồng.</p></div>
+        <div class="tip"><b><svg class="i"><use href="#i-radar"/></svg>Khoan trọn gói — dò mạch 0đ</b><p>Dò mạch lẻ 800.000đ/điểm, nhưng bạn làm khoan trọn gói thì miễn phí cùng thử nước — nghiệm thu trước khi thanh toán.</p></div>
+        <div class="tip"><b><svg class="i"><use href="#i-wallet"/></svg>Trại — hộ kinh doanh có VAT</b><p>Thanh toán sau nghiệm thu: tiền mặt, chuyển khoản, VietQR. Trại, nhà vườn cần hoá đơn VAT chỉ cần báo khi ký hợp đồng.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec alt" id="quytrinh">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Từ dò mạch đến bầu nước chảy mạnh</h2>
+      <span class="sec-sub">Mỗi bước có mốc thời gian cam kết — giếng nhà bạn luôn biết đang ở khâu nào</span>
+    </div>
+    <div class="steps">
+      <article class="step rv" data-d="0">
+        <div class="s-ic"><svg class="i"><use href="#i-phone"/></svg></div>
+        <h3>Gọi — nhận lịch ngay</h3>
+        <p>Sửa giếng, bơm, hút bùn: thợ lên đường trong 60 phút. Khoan mới: hẹn khảo sát trong 24 giờ.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>60 phút – 24 giờ</span>
+      </article>
+      <article class="step rv" data-d="1">
+        <div class="s-ic"><svg class="i"><use href="#i-radar"/></svg></div>
+        <h3>Dò mạch nước — chọn vị trí</h3>
+        <p>Máy dò địa điện xác định tầng chứa nước ngay trong vườn — khoan đúng chỗ, đúng độ sâu, không khoan mò.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>45–90 phút</span>
+      </article>
+      <article class="step rv" data-d="2">
+        <div class="s-ic"><svg class="i"><use href="#i-doc"/></svg></div>
+        <h3>Chốt giá theo mét — ký hợp đồng</h3>
+        <p>Đơn giá từng loại đất niêm yết. Tiền tính theo mét sâu khoan thật — điều khoản ra nước ghi rõ trên hợp đồng.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Trong ngày</span>
+      </article>
+      <article class="step rv" data-d="3">
+        <div class="s-ic"><svg class="i"><use href="#i-drop"/></svg></div>
+        <h3>Khoan — ra nước — nghiệm thu</h3>
+        <p>Thử nước 30 phút, đo lưu lượng trước khi bàn giao. San lấp, dọn bùn đất sạch sẽ, bảo hành 24 tháng.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>1–2 ngày</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="commit">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">4 cam kết in thẳng vào hợp đồng</h2>
+      <span class="sec-sub">Không phải khẩu hiệu — mỗi điều đều có điều khoản rõ ràng, ký trước khi đặt giàn</span>
+    </div>
+    <div class="com-grid">
+      <article class="com-card spot rv" data-d="0">
+        <span class="cc-num">01</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-radar"/></svg></div>
+        <h3>Dò mạch trước — khoan đúng vỉa</h3>
+        <p>Máy dò định vị mạch nước trước khi đặt giàn. Hết cảnh khoan 40m vẫn hụt nước như những đội thiếu thiết bị dò.</p>
+      </article>
+      <article class="com-card spot rv" data-d="1">
+        <span class="cc-num">02</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-ruler"/></svg></div>
+        <h3>Báo giá theo mét sâu</h3>
+        <p>Đơn giá từng loại đất công khai trên website. Chỉ tính tiền theo mét khoan thật — ngắn hơn hợp đồng, trừ tiền phần chưa khoan.</p>
+      </article>
+      <article class="com-card guar spot rv" data-d="2">
+        <span class="cc-badge">ĐIỀU KHOẢN HỢP ĐỒNG</span>
+        <span class="cc-num">03</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-drop"/></svg></div>
+        <h3>Cam kết ra nước</h3>
+        <p>Không ra nước theo vỉa đã dò: không thu công khoan, kéo giàn về. Điều khoản viết trắng đen — không phải lời hứa miệng.</p>
+      </article>
+      <article class="com-card spot rv" data-d="3">
+        <span class="cc-num">04</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-shield"/></svg></div>
+        <h3>Bảo hành 24 tháng</h3>
+        <p>Ống — lọc bảo hành 24 tháng, máy bơm 12 tháng chính hãng. Giếng yếu bất thường: kỹ thuật quay lại kiểm tra miễn phí.</p>
+      </article>
+    </div>
+    <div class="hot-strip rv" data-d="1">
+      <div class="hs-t">
+        <h3>Giếng đang cạn — bơm rút không lên nước?</h3>
+        <p>Đừng chờ hết nước mới kéo ống. Gọi khẩn — thợ cùng máy dò đến trong 60 phút nội vùng, kể cả chủ nhật.</p>
+      </div>
+      <div class="hs-acts">
+        <a class="btn btn-hot btn-xl" href="tel:0906363636"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>0906 36 36 36 — 24/7</a>
+        <a class="btn btn-accent btn-xl" href="#tinhgia"><svg class="i" style="width:22px;height:22px"><use href="#i-ruler"/></svg>Tính giá khoan mới</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat rv" data-d="0"><b><span class="cnt" data-n="38000">0</span><em>+</em></b><span>mét sâu đã khoan — sửa</span></div>
+    <div class="stat rv" data-d="1"><b><span class="cnt" data-n="2900">0</span><em>+</em></b><span>giếng trọn gói đã bàn giao</span></div>
+    <div class="stat rv" data-d="2"><b><span class="cnt" data-n="96">0</span><em>%</em></b><span>ra nước ngay lần khoan đầu</span></div>
+    <div class="stat rv" data-d="3"><b><span class="cnt" data-n="24">0</span><em> tháng</em></b><span>bảo hành ống — lọc giếng</span></div>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section class="sec alt" id="beforeafter">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Giếng cạn chưa chắc phải khoan lại</h2>
+      <span class="sec-sub">Kéo thanh trượt — mặt cắt một giếng 35m: trước và sau khi hút bùn, thay lọc</span>
+    </div>
+    <div class="ba-wrap rv" data-d="1" id="baWrap">
+      <div class="bscene before">
+        <svg viewBox="0 0 260 150" aria-hidden="true">
+          <rect x="0" y="0" width="260" height="34" fill="#5B4A36"/>
+          <rect x="0" y="34" width="260" height="40" fill="#4A3A2C"/>
+          <rect x="0" y="74" width="260" height="40" fill="#3B2E22"/>
+          <rect x="0" y="114" width="260" height="36" fill="#2E241A"/>
+          <rect x="118" y="6" width="24" height="120" rx="4" fill="#2A2A2E"/>
+          <rect x="124" y="88" width="12" height="34" fill="#5A4A32"/>
+          <circle cx="130" cy="52" r="9" fill="#7A6A50"/>
+          <path d="M139 52h14" stroke="#B04A32" stroke-width="3" stroke-dasharray="4 3"/>
+          <rect x="86" y="120" width="88" height="14" rx="4" fill="#3E6E8C" opacity=".55"/>
+          <path d="M96 126q6-3 12 0t12 0 12 0 12 0 12 0" stroke="#6FA8C8" stroke-width="2" fill="none" opacity=".7"/>
+          <text x="42" y="132" fill="#C89A6A" font-size="11" font-weight="700">bùn lấp lọc</text>
+        </svg>
+        <span class="bs-chip">Giếng cạn — bơm hụt, nước đục</span>
+      </div>
+      <div class="ba-after-clip" id="baClip">
+        <div class="bscene after">
+          <svg viewBox="0 0 260 150" aria-hidden="true">
+            <rect x="0" y="0" width="260" height="34" fill="#3E5C3A"/>
+            <rect x="0" y="34" width="260" height="40" fill="#35503A"/>
+            <rect x="0" y="74" width="260" height="40" fill="#2C4436"/>
+            <rect x="0" y="114" width="260" height="36" fill="#243A34"/>
+            <rect x="118" y="6" width="24" height="120" rx="4" fill="#24527A"/>
+            <rect x="122" y="66" width="16" height="56" fill="#3E86B4"/>
+            <path d="M122 74h16M122 84h16M122 94h16M122 104h16" stroke="#BFE2F4" stroke-width="2"/>
+            <circle cx="130" cy="52" r="9" fill="#8FD3A8"/>
+            <path d="M139 52h16" stroke="#8FD3A8" stroke-width="3"/>
+            <rect x="82" y="96" width="96" height="42" rx="5" fill="#3E86B4" opacity=".85"/>
+            <path d="M92 108q7-4 14 0t14 0 14 0 14 0 14 0" stroke="#CDEAF8" stroke-width="2.4" fill="none"/>
+            <path d="M206 44l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#8FD3A8"/>
+            <text x="36" y="126" fill="#BFE2F4" font-size="11" font-weight="700">nước dồn về đầy giếng</text>
+          </svg>
+          <span class="bs-chip">Hút bùn — thay lọc: nước dồi, áp ổn</span>
+        </div>
+      </div>
+      <span class="ba-tag t1">Trước — bùn lấp lọc</span>
+      <span class="ba-tag t2">Sau — chuẩn Mạch Nước 24</span>
+      <div class="ba-line" id="baLine"><div class="knob"><svg class="i"><use href="#i-left"/></svg><svg class="i" style="margin-left:-4px"><use href="#i-right"/></svg></div></div>
+    </div>
+    <p class="ba-cap rv" data-d="2">Mặt cắt minh hoạ giếng 35m — hút bùn, rửa lọc áp lực ngược và thay lọc trụ khôi phục 80–95% lưu lượng ban đầu.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div class="ab-img rv">
+        <div class="ab-frame"><img src="assets/img/intro.webp" alt="Đội kỹ thuật Mạch Nước 24 bàn giao giếng cho khách" loading="lazy"></div>
+        <div class="ab-tag"><b>4 giàn khoan</b><span>2 xe dò mạch — phủ 60km</span></div>
+      </div>
+      <div class="ab-txt rv" data-d="1">
+        <span class="eyebrow"><svg class="i"><use href="#i-well"/></svg>Về Mạch Nước 24</span>
+        <h2>Từ bãi máy nhỏ ở Vĩnh Lộc — thành đội khoan giếng đáng tin của hộ nông thôn, nhà vườn, trại</h2>
+        <p>Mạch Nước 24 bắt đầu từ một giàn khoan cũ ở Vĩnh Lộc A năm 2014. 12 năm sau, đội có 4 giàn khoan, 2 xe máy dò mạch nước, 18 kỹ thuật có thẻ nghề — phục vụ hộ nông thôn, nhà vườn, trại chăn nuôi trong bán kính 60km quanh TP.HCM: Củ Chi, Bình Chánh, Nhà Bè, Đức Hòa, Bến Lức, Thuận An, Dĩ An, Trảng Bàng… Với chúng tôi, giếng ra nước mới là kết thúc ca — chưa ra nước, chưa thu tiền công.</p>
+        <div class="ab-pts">
+          <div class="ab-pt"><svg class="i"><use href="#i-radar"/></svg><span><b>2 máy dò mạch nước</b><span>Định vị vỉa nước, độ sâu trước khi đặt giàn</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-pump"/></svg><span><b>Ống — bơm chính hãng</b><span>Nhựa Bình Minh, bơm Pentax — Libra, có hoá đơn</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-ruler"/></svg><span><b>Giá công khai theo mét</b><span>Niêm yết từng loại đất — chốt trước khi khoan</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-truck"/></svg><span><b>Khẩn 24/7 mùa nắng</b><span>Giếng cạn, bơm hỏng — thợ đến trong 60 phút</span></span></div>
+        </div>
+        <div class="ab-cta">
+          <a class="btn btn-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>Gọi kỹ thuật: 0906 36 36 36</a>
+          <a class="btn btn-ghost" href="#booking"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch trong 60 giây</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="sec" id="proof">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Chủ giếng kể lại ca của họ</h2>
+      <span class="sec-sub">Đánh giá sau nghiệm thu — kỹ thuật gọi hỏi lại nước dùng ổn không sau 1 tuần</span>
+    </div>
+    <div class="rvw-shell rv" data-d="1">
+      <div>
+        <div class="rvw-view">
+          <div class="rvw-track" id="rvwTrack"></div>
+        </div>
+        <div class="rvw-dots" id="rvwDots"></div>
+      </div>
+      <aside class="rvw-side">
+        <div class="metric"><b>4.9/5</b><span>từ 320+ đánh giá Google của khách TP.HCM — Long An — Bình Dương</span></div>
+        <div class="mrow"><span>Đến đúng giờ hẹn</span><b>97%</b></div>
+        <div class="mrow"><span>Ra nước lần khoan đầu</span><b>96%</b></div>
+        <div class="mrow"><span>Khách giới thiệu hàng xóm</span><b>78%</b></div>
+        <div>
+          <h4 style="margin-bottom:10px">Bơm — ống chính hãng từ</h4>
+          <div class="pchips"><span>Pentax</span><span>Libra</span><span>Hitra</span><span>Nhựa Bình Minh</span><span>Tiền Phong</span><span>An Phú</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP CARD + FORM CUỐI ============ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Gửi phiếu hẹn — xác nhận trong 30 phút</h2>
+      <span class="sec-sub">Điền nhanh 5 dòng, điều phối gọi lại chốt khung giờ và tên kỹ thuật sẽ đến</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="mapcard">
+          <div class="mc-img">
+            <img src="assets/img/space.webp" alt="Giàn khoan tại bãi máy Mạch Nước 24" loading="lazy">
+            <span class="mc-pin"><svg class="i"><use href="#i-pin"/></svg>Bãi giàn khoan &amp; trạm vật tư</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-row"><svg class="i"><use href="#i-pin"/></svg><span><b>88 Quốc lộ 50 (cổng vàng cạnh trạm bơm),</b> Xã Vĩnh Lộc A, Bình Chánh, TP.HCM</span></div>
+            <a class="btn btn-accent" href="https://maps.google.com/?q=Qu%E1%BB%91c%20l%E1%BB%99%2050%20V%C4%A9nh%20L%E1%BB%99c%20A%20B%C3%ACnh%20Ch%C3%A1nh" target="_blank" rel="noopener"><svg class="i"><use href="#i-right"/></svg>Chỉ đường tới bãi máy</a>
+          </div>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+          <span><b>Hotline khẩn 24/7: 0906 36 36 36</b><span>Giếng cạn, bơm hỏng, ống đứt — gọi cả chủ nhật, mùa nắng cao điểm</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-clock"/></svg></span>
+          <span><b>Giờ phục vụ</b><span>Khung thường 6:30–19:00 hàng ngày • Khẩn giếng 24/7</span></span>
+        </div>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm">
+        <h3>Phiếu hẹn nhanh</h3>
+        <p class="fsub">Điều phối trực 24/7 — xác nhận trong 30 phút kể từ khi gửi</p>
+        <div class="frow">
+          <input type="text" id="ctName" placeholder="Họ tên *" required>
+          <input type="tel" id="ctPhone" placeholder="Số điện thoại *" required>
+        </div>
+        <div class="frow">
+          <select id="ctService">
+            <option value="">Chọn hạng mục…</option>
+            <option>Khoan giếng nước mới</option>
+            <option>Sửa giếng khoan cũ — cứu cạn</option>
+            <option>Thay ống giếng</option>
+            <option>Lắp máy bơm giếng</option>
+            <option>Kiểm tra chất lượng nước giếng</option>
+            <option>Bảo trì định kỳ giếng khoan</option>
+            <option>Xử lý giếng nghẹt — hút bùn</option>
+            <option>Khảo sát — dò mạch nước</option>
+          </select>
+          <input type="date" id="ctDate">
+        </div>
+        <div class="frow">
+          <select id="ctTime">
+            <option value="">Giờ mong muốn…</option>
+            <option>KHẨN — thợ đến trong 60 phút (+50K)</option>
+            <option>Sáng 6:30 – 11:00</option>
+            <option>Chiều 13:00 – 17:30</option>
+            <option>Tối 18:00 – 20:00</option>
+          </select>
+          <input type="text" id="ctAddr" placeholder="Thôn / ấp / xã *">
+        </div>
+        <div class="frow">
+          <textarea class="full" id="ctDesc" placeholder="Mô tả giếng — sâu, bơm, đang bị gì (không bắt buộc)"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent"><svg class="i"><use href="#i-send"/></svg>Gửi phiếu hẹn — xác nhận trong 30 phút</button>
+        <p class="secure"><svg class="i"><use href="#i-lock"/></svg>Thông tin chỉ dùng để điều phối kỹ thuật — không chia sẻ cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Hỏi nhanh — đáp gọn trước khi gọi</h2>
+      <span class="sec-sub">Tìm bằng từ khoá hoặc chạm chip chủ đề bạn quan tâm</span>
+    </div>
+    <div class="faq-shell rv" data-d="1">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg class="i"><use href="#i-search"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: dò mạch, mét sâu, ra nước, hút bùn…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="fchip" data-k="dò mạch">Dò mạch nước</button>
+          <button class="fchip" data-k="mét">Giá theo mét</button>
+          <button class="fchip" data-k="ra nước">Cam kết ra nước</button>
+          <button class="fchip" data-k="bùn">Hút bùn — cạn</button>
+          <button class="fchip" data-k="vùng">Phạm vi phục vụ</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0906 36 36 36 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="mark"><svg class="i"><use href="#i-drop"/></svg></span>
+          <span><span class="lg-t">Mạch Nước 24</span><span class="lg-s">Khoan — Sửa — Bảo trì giếng</span></span>
+        </a>
+        <p>Khoan giếng theo mét sâu, dò mạch nước trước, sửa giếng cạn, hút bùn, lắp bơm — cho hộ nông thôn, nhà vườn, trại trong bán kính 60km quanh TP.HCM. Không ra nước — không thu công khoan.</p>
+        <a class="ft-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>0906 36 36 36</a>
+      </div>
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#dichvu">Khoan giếng nước mới</a></li>
+          <li><a href="#dichvu">Sửa giếng — cứu cạn</a></li>
+          <li><a href="#dichvu">Hút bùn — xử lý nghẹt</a></li>
+          <li><a href="#dichvu">Lắp bơm — thay ống</a></li>
+          <li><a href="#dichvu">Dò mạch nước trước khoan</a></li>
+          <li><a href="#dichvu">Bảo trì định kỳ giếng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Khách hàng cần biết</h4>
+        <ul>
+          <li><a href="#tinhgia">Tính giá khoan theo mét sâu</a></li>
+          <li><a href="#banggia">Bảng giá theo mét — gói trọn gói</a></li>
+          <li><a href="#booking">Đặt lịch — khung khẩn 60 phút</a></li>
+          <li><a href="#commit">4 cam kết trên hợp đồng</a></li>
+          <li><a href="#quytrinh">Quy trình dò — khoan — nghiệm thu</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span>© 2026 Mạch Nước 24 — Khoan, sửa và bảo trì giếng. Giá theo mét, cam kết ra nước bằng hợp đồng.</span>
+      <div class="pay-chips"><span>Tiền mặt</span><span>Chuyển khoản</span><span>VietQR</span><span>Hoá đơn VAT</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock hide" id="dock">
+  <a class="d-main" href="#booking"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch</a>
+  <a class="d-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>Gọi thợ</a>
+  <a href="https://zalo.me/0906363636" target="_blank" rel="noopener" title="Zalo"><svg class="i"><use href="#i-chat"/></svg>Zalo</a>
+  <a href="#banggia" title="Bảng giá"><svg class="i"><use href="#i-tag"/></svg>Giá</a>
+  <a href="#contact" title="Bãi máy"><svg class="i"><use href="#i-pin"/></svg>Bãi máy</a>
+  <button id="dockTop" title="Lên đầu trang"><svg class="i"><use href="#i-up"/></svg>Lên đầu</button>
+</div>
+
+<!-- ============ BOOKING DRAWER ============ -->
+<div class="drawer-ov" id="drOv"></div>
+<aside class="drawer" id="drawer">
+  <div class="dr-head">
+    <svg class="i"><use href="#i-cal"/></svg>
+    <h3>Phiếu hẹn nhanh</h3>
+    <button class="dr-close" id="drClose" aria-label="Đóng"><svg class="i"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="dr-body">
+    <div>
+      <span class="dr-lbl">Hạng mục</span>
+      <div class="dr-chips" id="drCats">
+        <button class="dr-chip" data-cat="Khoan giếng mới">Khoan giếng mới</button>
+        <button class="dr-chip" data-cat="Sửa giếng — cứu cạn">Sửa giếng — cứu cạn</button>
+        <button class="dr-chip" data-cat="Bơm — ống — hút bùn">Bơm — ống — hút bùn</button>
+        <button class="dr-chip" data-cat="Bảo trì — kiểm tra nước">Bảo trì — kiểm tra nước</button>
+      </div>
+    </div>
+    <div>
+      <span class="dr-lbl">Ngày</span>
+      <div class="dr-chips" id="drDays"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Khung giờ</span>
+      <div class="dr-chips" id="drSlots"></div>
+    </div>
+    <div>
+      <span class="dr-lbl">Liên hệ</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input class="dr-input" id="drName" type="text" placeholder="Họ tên *">
+        <input class="dr-input" id="drPhone" type="tel" placeholder="Số điện thoại *">
+        <input class="dr-input" id="drAddr" type="text" placeholder="Địa chỉ giếng *">
+      </div>
+    </div>
+    <div class="dr-sum" id="drSum">Chọn hạng mục, ngày và khung giờ để thấy tóm tắt phiếu hẹn.</div>
+    <button class="btn btn-accent" id="drSubmit" style="width:100%"><svg class="i"><use href="#i-send"/></svg>Nhận mã hẹn — gọi lại trong 15 phút</button>
+    <a class="btn btn-hot" href="tel:0906363636" style="width:100%"><svg class="i"><use href="#i-phone"/></svg>Hotline khẩn: 0906 36 36 36</a>
+    <div class="dr-done" id="drDone"></div>
+  </div>
+</aside>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal-ov" id="mdOv"></div>
+<div class="modal" id="qModal">
+  <div class="m-card">
+    <div class="m-img">
+      <img id="mdImg" src="assets/img/p1.webp" alt="Dịch vụ giếng nước">
+      <span class="cat-b" id="mdCat"><svg class="i"><use href="#i-well"/></svg>Khoan</span>
+      <button class="m-close" id="mdClose" aria-label="Đóng"><svg class="i"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="m-body">
+      <h3 id="mdName">—</h3>
+      <p class="m-desc" id="mdDesc">—</p>
+      <div class="m-meta" id="mdMeta"></div>
+      <div class="tier">
+        <div class="t-row"><span>1 hạng mục lẻ — công + khảo sát</span><b id="mdT1">—</b></div>
+        <div class="t-row"><span>2 hạng mục cùng giếng (giảm 10% tiền công)</span><b id="mdT2">—</b></div>
+        <div class="t-row hot"><span>3 hạng mục trở lên (giảm 15% + dò mạch ưu tiên)</span><b id="mdT3">—</b></div>
+      </div>
+      <div class="m-acts">
+        <button class="btn btn-accent" id="mdBook"><svg class="i"><use href="#i-cal"/></svg>Đặt lịch khung này</button>
+        <a class="btn btn-hot" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>0906 36 36 36</a>
+      </div>
+      <div class="m-note">
+        <span><svg class="i"><use href="#i-check"/></svg>Dò mạch 0đ khi khoan trọn gói</span>
+        <span><svg class="i"><use href="#i-check"/></svg>Bảo hành 24 tháng giếng</span>
+        <span><svg class="i"><use href="#i-check"/></svg>VAT cho trại — hộ KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ================= DỮ LIỆU — NB93-112 ================= */
+var HOTLINE = '0906 36 36 36';
+var SV = [
+  {n:'Khoan giếng nước mới', cat:'Khoan giếng mới', img:'assets/img/p1.webp', price:15800000, prTxt:'từ 290.000đ/mét', time:'1–2 ngày', badge:'Nổi bật • theo mét sâu',
+   d:'Khoan 20–80m cho hộ gia đình, nhà vườn, trại. Dò mạch nước 0đ khi trọn gói, chỉ tính tiền theo mét sâu khoan thật, cam kết ra nước theo vỉa đã dò — không đạt không thu công.'},
+  {n:'Sửa giếng khoan cũ — cứu cạn', cat:'Sửa giếng — cứu cạn', img:'assets/img/p2.webp', price:1200000, prTxt:'từ 1.200.000đ/giếng', time:'2–4 giờ', badge:'Khẩn 60 phút',
+   d:'Bơm rung, nước đục, lưu lượng tụt: hút bùn, rửa lọc áp lực ngược, kiểm tra bơm — röle áp — van một chiều. Khôi phục 80–95% lưu lượng, thử nước trước khi bàn giao.'},
+  {n:'Thay ống giếng', cat:'Bơm — ống — hút bùn', img:'assets/img/p3.webp', price:120000, prTxt:'từ 120.000đ/mét', time:'3–5 giờ', badge:'Ống chính hãng',
+   d:'Ống đứt, thủng, lọc mòn làm nước đục: rút cả cột ống, thay ống trụ + lọc nhựa nguyên sinh, kíp nối mới, hạ đúng độ sâu vỉa nước cũ.'},
+  {n:'Lắp máy bơm giếng', cat:'Bơm — ống — hút bùn', img:'assets/img/p4.webp', price:850000, prTxt:'công từ 850.000đ', time:'2–3 giờ', badge:'BH 12 tháng',
+   d:'Bơm ngầm 1–3HP kèm bơm tăng áp, chỉnh áp lực, đo dòng le — cách điện trước khi hạ. Chạy thử và đo lưu lượng tại vòi trước khi bàn giao.'},
+  {n:'Kiểm tra chất lượng nước giếng', cat:'Bảo trì — kiểm tra nước', img:'assets/img/p5.webp', price:600000, prTxt:'600.000đ/mẫu', time:'40–60 phút', badge:'Kết quả trong ngày',
+   d:'Đo pH, độ đục, sắt — phèn bằng máy đo chuyên dụng, có phiếu kết quả. Tư vấn phương án lọc phù hợp nếu nước có sắt hoặc mặn nhẹ.'},
+  {n:'Bảo trì định kỳ giếng khoan', cat:'Bảo trì — kiểm tra nước', img:'assets/img/p6.webp', price:1500000, prTxt:'từ 1.500.000đ/lượt', time:'2–3 giờ', badge:'Gói 6 tháng',
+   d:'Kéo bơm rửa cát, kiểm tra cách điện, thử áp — lưu lượng, vệ sinh ống lọc. Cho nhà vườn, trại cần nước ổn định quanh năm, ghi sổ trạng thái giếng.'},
+  {n:'Xử lý giếng nghẹt — hút bùn', cat:'Bơm — ống — hút bùn', img:'assets/img/p7.webp', price:250000, prTxt:'từ 250.000đ/m³', time:'2–4 giờ', badge:'Khôi phục lưu lượng',
+   d:'Bùn cát lấp phần lọc sau 3–5 năm dùng: máy hút bùn chuyên dụng, rửa lọc ngược áp, khử trùng giếng. Bùn kéo đi xử lý, không đổ vườn.'},
+  {n:'Khảo sát — dò mạch nước', cat:'Khoan giếng mới', img:'assets/img/p8.webp', price:800000, prTxt:'800.000đ/điểm • 0đ khi khoan', time:'45–90 phút', badge:'Máy dò địa điện',
+   d:'Máy dò xác định vị trí, độ sâu, độ dày tầng chứa nước ngay trong vườn. Báo cáo rõ trước khi đặt giàn — 0đ khi bạn làm khoan trọn gói.'}
+];
+var CAT_FEE = {'Khoan giếng mới':15800000, 'Sửa giếng — cứu cạn':1200000, 'Bơm — ống — hút bùn':850000, 'Bảo trì — kiểm tra nước':600000};
+var SLOTS = [
+  {id:'khan', b:'KHẨN — trong 60 phút', s:'giếng cạn • hỏng bơm • +50.000đ', gap:true},
+  {id:'sang', b:'Sáng', s:'6:30 – 11:00', gap:false},
+  {id:'chieu', b:'Chiều', s:'13:00 – 17:30', gap:false},
+  {id:'toi', b:'Tối', s:'18:00 – 20:00', gap:false}
+];
+var WD = ['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+var state = {cat:null, day:null, slot:null};
+var days = [];
+(function(){
+  var now = new Date();
+  for (var i=0;i<7;i++){
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate()+i);
+    days.push({
+      label: i===0?'Hôm nay':(i===1?'Ngày mai':WD[d.getDay()]),
+      num: d.getDate(),
+      mon: (d.getMonth()+1),
+      full: d.getDate()+'/'+(d.getMonth()+1),
+      dt: d
+    });
+  }
+})();
+function vnd(x){ return x.toLocaleString('vi-VN') + 'đ'; }
+function $(id){ return document.getElementById(id); }
+function toast(title, msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<svg class="i"><use href="#i-check"/></svg><span><b>' + title + '</b><span>' + msg + '</span></span>';
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; t.style.transition = '.4s'; }, 3200);
+  setTimeout(function(){ t.remove(); }, 3700);
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ================= REVEAL + SPOTLIGHT + COUNTER + DOCK ================= */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+document.querySelectorAll('.spot').forEach(function(c){
+  c.addEventListener('pointermove', function(ev){
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  });
+});
+var cio = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, target = +el.getAttribute('data-n'), t0 = performance.now(), dur = 1300;
+    function tick(t){
+      var p = Math.min((t - t0)/dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p,3))).toLocaleString('vi-VN');
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:.4});
+document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
+var heroEl = $('hero'), heroVis = true, lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+function syncDock(){
+  var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var down = y > lastY + 2, up = y < lastY - 2;
+  $('dock').classList.toggle('hide', heroVis || (y > 100 && down && !up));
+}
+new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; syncDock(); },{threshold:.15}).observe(heroEl);
+window.addEventListener('scroll', function(){ syncDock(); lastY = window.pageYOffset || document.documentElement.scrollTop || 0; }, {passive:true});
+$('dockTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/* ================= TAPE: nhân đôi nội dung để chạy liền mạch ================= */
+$('tapeTrack').innerHTML += $('tapeTrack').innerHTML;
+
+/* NB93-112 ================= MÁY TÍNH GIÁ KHOAN THEO MÉT SÂU ================= */
+var GEO = {set:{n:'Đất sét — cát bão',pm:290000}, soi:{n:'Sỏi — đất cứng',pm:360000}, da:{n:'Đá vôi — đá tảng',pm:470000}};
+var PIPE = {p90:{n:'Φ90',pm:95000}, p114:{n:'Φ114',pm:135000}};
+var PUMP = {none:{n:'Chưa lắp bơm',fee:0}, hp1:{n:'Bơm ngầm 1HP',fee:3400000}, hp2:{n:'Bơm ngầm 2HP + bơm áp',fee:5200000}, hp3:{n:'Bơm ngầm 3HP cho trại',fee:7800000}};
+var ZONE = {noi:{n:'TP.HCM — vùng ven',fee:500000}, tinh:{n:'Long An — Bình Dương — Đồng Nai',fee:900000}};
+var est = {geo:'set', pipe:'p90', pump:'hp2', zone:'noi', depth:35};
+function bindChips(hostId, attr, key){
+  var host = $(hostId);
+  host.querySelectorAll('[' + attr + ']').forEach(function(b){
+    b.addEventListener('click', function(){
+      est[key] = b.getAttribute(attr);
+      host.querySelectorAll('[' + attr + ']').forEach(function(x){ x.classList.toggle('sel', x === b); });
+      renderEst();
+    });
+  });
+}
+bindChips('geoChips','data-geo','geo');
+bindChips('pipeChips','data-pipe','pipe');
+bindChips('pumpChips','data-pump','pump');
+bindChips('zoneChips','data-zone','zone');
+$('depthRange').addEventListener('input', function(){
+  est.depth = +this.value;
+  $('depthOut').textContent = est.depth;
+  renderEst();
+});
+function renderEst(){
+  var g = GEO[est.geo], p = PIPE[est.pipe], pu = PUMP[est.pump], z = ZONE[est.zone];
+  var cong = g.pm * est.depth, ong = p.pm * est.depth;
+  $('estGeoN').textContent = g.n;
+  $('estPipeN').textContent = p.n;
+  $('estPumpN').textContent = pu.n;
+  $('estCong').textContent = est.depth + 'm × ' + vnd(g.pm) + ' = ' + vnd(cong);
+  $('estOng').textContent = est.depth + 'm × ' + vnd(p.pm) + ' = ' + vnd(ong);
+  $('estBom').textContent = pu.fee ? vnd(pu.fee) : '—';
+  $('estVc').textContent = vnd(z.fee);
+  $('estTotal').textContent = vnd(cong + ong + pu.fee + z.fee);
+}
+renderEst();
+$('estToBooking').addEventListener('click', function(){
+  state.cat = 'Khoan giếng mới';
+  syncCatChips();
+  $('bkDesc').value = 'Ước tính nhanh: giếng ' + est.depth + 'm — ' + GEO[est.geo].n + ' — ống ' + PIPE[est.pipe].n + ' — ' + PUMP[est.pump].n.toLowerCase() + ' — ' + ZONE[est.zone].n;
+  refreshSummary();
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+  toast('Đã gửi thông số giếng vào phiếu hẹn', 'Chọn ngày và khung giờ để nhận mã hẹn nhé');
+});
+
+/* ================= BOOKING CALENDAR ================= */
+function renderDays(){
+  var h = '';
+  days.forEach(function(d, i){
+    h += '<button class="day-chip' + (state.day===i?' sel':'') + '" data-i="' + i + '"><b>' + d.label + '</b><span>' + d.num + '</span><small>thg ' + d.mon + '</small></button>';
+  });
+  h += '<button type="button" class="day-chip day-more" data-more="1" aria-label="Xem thêm tuần">＋</button>';
+  $('dayChips').innerHTML = h;
+  $('dayChips').querySelectorAll('.day-chip[data-i]').forEach(function(b){
+    b.addEventListener('click', function(){ state.day = +b.getAttribute('data-i'); renderDays(); renderSlots(); refreshSummary(); });
+  });
+  var moreB = $('dayChips').querySelector('[data-more]');
+  if(moreB){ moreB.addEventListener('click', extendDays); }
+  var dh = '';
+  days.forEach(function(d, i){
+    dh += '<button class="dr-chip' + (state.day===i?' sel':'') + '" data-di="' + i + '">' + d.label + ' • ' + d.full + '</button>';
+  });
+  $('drDays').innerHTML = dh;
+  $('drDays').querySelectorAll('.dr-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.day = +b.getAttribute('data-di'); renderDays(); renderSlots(); refreshSummary(); });
+  });
+}
+function extendDays(){
+  var last = days[days.length-1].dt;
+  for(var k=1;k<=7;k++){
+    var d = new Date(last.getFullYear(), last.getMonth(), last.getDate()+k);
+    days.push({label: WD[d.getDay()], num: d.getDate(), mon: d.getMonth()+1, full: d.getDate()+'/'+(d.getMonth()+1), dt: d});
+  }
+  renderDays(); renderSlots(); refreshSummary();
+  var el = $('dayChips'); if(el){ el.scrollLeft = el.scrollWidth; }
+}
+function renderSlots(){
+  var h = '';
+  SLOTS.forEach(function(s){
+    h += '<button class="slot-chip' + (s.gap?' gap':'') + (state.slot===s.id?' sel':'') + '" data-id="' + s.id + '">' +
+         (s.gap ? '<span class="gap-b">KHẨN 60 PHÚT</span>' : '') + '<b>' + s.b + '</b><small>' + s.s + '</small></button>';
+  });
+  $('slotChips').innerHTML = h;
+  $('slotChips').querySelectorAll('.slot-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.slot = b.getAttribute('data-id'); renderSlots(); refreshSummary(); });
+  });
+  var sh = '';
+  SLOTS.forEach(function(s){
+    sh += '<button class="dr-chip' + (state.slot===s.id?' sel':'') + '" data-ds="' + s.id + '">' + s.b + ' (' + s.s + ')</button>';
+  });
+  $('drSlots').innerHTML = sh;
+  $('drSlots').querySelectorAll('.dr-chip').forEach(function(b){
+    b.addEventListener('click', function(){ state.slot = b.getAttribute('data-ds'); renderSlots(); refreshSummary(); });
+  });
+}
+function bindCats(containerSel){
+  document.querySelectorAll(containerSel + ' [data-cat]').forEach(function(b){
+    b.addEventListener('click', function(){
+      state.cat = b.getAttribute('data-cat');
+      syncCatChips();
+      refreshSummary();
+    });
+  });
+}
+bindCats('#catChips');
+bindCats('#drCats');
+function syncCatChips(){
+  document.querySelectorAll('#catChips [data-cat]').forEach(function(x){
+    x.classList.toggle('sel', x.getAttribute('data-cat')===state.cat);
+  });
+  document.querySelectorAll('#drCats [data-cat]').forEach(function(x){
+    x.classList.toggle('sel', x.getAttribute('data-cat')===state.cat);
+  });
+}
+function refreshSummary(){
+  $('sumCat').textContent = state.cat || 'Chưa chọn';
+  $('sumCat').setAttribute('data-empty', state.cat ? '0' : '1');
+  $('sumDay').textContent = state.day===null ? 'Chưa chọn' : days[state.day].label + ' ' + days[state.day].full;
+  $('sumDay').setAttribute('data-empty', state.day===null ? '1' : '0');
+  var sl = SLOTS.filter(function(s){ return s.id===state.slot; })[0];
+  $('sumSlot').textContent = sl ? sl.b + ' (' + sl.s + ')' : 'Chưa chọn';
+  $('sumSlot').setAttribute('data-empty', sl ? '0' : '1');
+  var gap = sl && sl.gap;
+  $('sumGap').textContent = gap ? '+50.000đ' : '0đ';
+  $('sumFee').textContent = state.cat ? 'từ ' + vnd(CAT_FEE[state.cat] + (gap?50000:0)) : 'Chưa chọn';
+  $('sumFee').setAttribute('data-empty', state.cat ? '0' : '1');
+  var has = state.cat && state.day!==null && state.slot;
+  $('drSum').innerHTML = has
+    ? '<span>Hạng mục: <b>' + esc(state.cat) + '</b></span>' +
+      '<span>Thời gian: <b>' + days[state.day].label + ' ' + days[state.day].full + ' • ' + sl.b + '</b></span>' +
+      '<span>Giá dự kiến: <b>từ ' + vnd(CAT_FEE[state.cat] + (gap?50000:0)) + '</b>' + (gap ? ' — đã gồm phụ phí KHẨN' : '') + '</span>' +
+      '<span>Khảo sát 0đ • chính xác sau khảo sát</span>'
+    : 'Chọn hạng mục, ngày và khung giờ để thấy tóm tắt phiếu hẹn.';
+}
+renderDays(); renderSlots(); refreshSummary();
+
+function genCode(){ return 'MN-' + (1000 + Math.floor(Math.random()*9000)); }
+function submitBooking(nameId, phoneId, addrId, doneId, fromDrawer){
+  var name = $(nameId).value.trim(), phone = $(phoneId).value.trim(), addr = $(addrId).value.trim();
+  var desc = fromDrawer ? '' : $('bkDesc').value.trim();
+  if(!state.cat || state.day===null || !state.slot || !name || !phone || !addr){
+    toast('Thiếu thông tin', 'Điền đủ: hạng mục, ngày, khung giờ, họ tên, SĐT và địa chỉ nhé!');
+    return;
+  }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ', 'Kiểm tra lại số giúp kỹ thuật dễ gọi lại nhé!'); return; }
+  var sl = SLOTS.filter(function(s){ return s.id===state.slot; })[0];
+  var code = genCode();
+  var dayTxt = days[state.day].label + ', ' + days[state.day].full;
+  var html =
+    '<b style="display:block;font-size:.82rem;font-weight:800;color:#8FD3A8;text-transform:uppercase;letter-spacing:.06em">Đã nhận phiếu hẹn</b>' +
+    '<span class="code">' + code + '</span>' +
+    '<p class="sub">' + esc(name) + ' • ' + esc(phone) + '</p>' +
+    '<div class="recap">' +
+    '<span><b>' + esc(state.cat) + '</b>' + (desc ? ' — ' + esc(desc) : '') + '</span>' +
+    '<span>' + dayTxt + ' • ' + sl.b + ' (' + sl.s + ')</span>' +
+    '<span>' + esc(addr) + '</span>' +
+    (state.cat === 'Khoan giếng mới' ? '<span style="color:#FFE3B0;font-weight:800">Hợp đồng sẽ ghi rõ: không ra nước theo vỉa dò — không thu công khoan</span>' : '') +
+    (sl.gap ? '<span style="color:#FF8E7A;font-weight:800">Cam kết thợ có mặt trong 60 phút (+50.000đ)</span>' : '') +
+    '</div>' +
+    '<p class="sub" style="margin-top:12px">Kỹ thuật gọi lại <b style="color:#fff">trong 15 phút</b> xác nhận lịch. Cần gấp hơn?</p>' +
+    '<a class="btn btn-hot" style="width:100%;margin-top:10px" href="tel:0906363636"><svg class="i"><use href="#i-phone"/></svg>GỌI 0906 36 36 36 NGAY</a>';
+  $(doneId).innerHTML = html;
+  $(doneId).classList.add('show');
+  $('hdDot').textContent = '1';
+  toast('Mã hẹn ' + code + ' đã tạo', 'Kỹ thuật gọi lại xác nhận trong 15 phút');
+}
+$('bkSubmit').addEventListener('click', function(){ submitBooking('bkName','bkPhone','bkAddr','bkDone', false); });
+$('drSubmit').addEventListener('click', function(){ submitBooking('drName','drPhone','drAddr','drDone', true); });
+
+/* Quick-book từ 2 thẻ lớn */
+document.querySelectorAll('.quick-book').forEach(function(b){
+  b.addEventListener('click', function(){
+    state.cat = b.getAttribute('data-cat');
+    syncCatChips(); refreshSummary();
+    document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+    toast('Đã chọn hạng mục ' + state.cat, 'Chọn ngày và khung giờ nhé');
+  });
+});
+
+/* ================= BẢNG GIÁ TABS ================= */
+$('priceTabs').querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    $('priceTabs').querySelectorAll('.tab').forEach(function(x){ x.classList.toggle('on', x===t); });
+    document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', p.id===t.getAttribute('data-pane')); });
+  });
+});
+
+/* ================= BENTO 8 HẠNG MỤC — binds ================= */
+var catIcon = {'Khoan giếng mới':'i-well','Sửa giếng — cứu cạn':'i-siren','Bơm — ống — hút bùn':'i-pump','Bảo trì — kiểm tra nước':'i-flask'};
+var catCls = {'Khoan giếng mới':'cat-Khoan','Sửa giếng — cứu cạn':'cat-Sua','Bơm — ống — hút bùn':'cat-Bom','Bảo trì — kiểm tra nước':'cat-Baotri'};
+function quickBookSv(i){
+  var s = SV[i];
+  state.cat = s.cat;
+  syncCatChips(); refreshSummary();
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+  toast('Đã chọn "' + s.n + '"', 'Chọn ngày và khung giờ nhé');
+}
+document.querySelectorAll('[data-qv]').forEach(function(b){
+  b.addEventListener('click', function(){ openQuick(+b.getAttribute('data-qv')); });
+});
+document.querySelectorAll('[data-qb]').forEach(function(b){
+  b.addEventListener('click', function(){ quickBookSv(+b.getAttribute('data-qb')); });
+});
+
+/* ================= QUICK VIEW MODAL ================= */
+function openQuick(i){
+  var s = SV[i];
+  $('mdImg').src = s.img;
+  $('mdImg').alt = s.n;
+  $('mdCat').innerHTML = '<svg class="i"><use href="#' + catIcon[s.cat] + '"/></svg>' + s.cat;
+  $('mdCat').className = 'cat-b ' + catCls[s.cat];
+  $('mdName').textContent = s.n;
+  $('mdDesc').textContent = s.d;
+  $('mdMeta').innerHTML = '<span><svg class="i"><use href="#i-clock"/></svg>Thời gian: ' + s.time + '</span>' +
+    '<span><svg class="i"><use href="#i-tag"/></svg>' + s.prTxt + '</span>';
+  var p = s.price;
+  $('mdT1').textContent = 'từ ' + vnd(p);
+  $('mdT2').textContent = 'từ ' + vnd(Math.round(p * 0.9 / 1000) * 1000) + ' / hạng mục';
+  $('mdT3').textContent = 'từ ' + vnd(Math.round(p * 0.85 / 1000) * 1000) + ' / hạng mục';
+  $('mdBook').onclick = function(){ closeQuick(); quickBookSv(i); };
+  $('mdOv').classList.add('open');
+  $('qModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuick(){
+  $('mdOv').classList.remove('open');
+  $('qModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+$('mdClose').addEventListener('click', closeQuick);
+$('mdOv').addEventListener('click', closeQuick);
+
+/* ================= STRIP → QUICKVIEW ================= */
+document.querySelectorAll('[data-quick]').forEach(function(a){
+  a.addEventListener('click', function(ev){
+    ev.preventDefault();
+    openQuick(+a.getAttribute('data-quick') - 1);
+  });
+});
+
+/* ================= DRAWER ================= */
+function openDrawer(){ $('drawer').classList.add('open'); $('drOv').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeDrawer(){ $('drawer').classList.remove('open'); $('drOv').classList.remove('open'); document.body.style.overflow = ''; }
+$('hdDrawer').addEventListener('click', openDrawer);
+$('hdBook').addEventListener('click', function(){ document.getElementById('booking').scrollIntoView({behavior:'smooth'}); });
+$('drClose').addEventListener('click', closeDrawer);
+$('drOv').addEventListener('click', closeDrawer);
+
+/* ================= BEFORE / AFTER ================= */
+(function(){
+  var wrap = $('baWrap'), dragging = false;
+  function setCut(clientX){
+    var r = wrap.getBoundingClientRect();
+    var pct = Math.max(4, Math.min(96, (clientX - r.left) / r.width * 100));
+    wrap.style.setProperty('--cut', pct + '%');
+  }
+  wrap.addEventListener('pointerdown', function(e){ dragging = true; wrap.setPointerCapture(e.pointerId); setCut(e.clientX); });
+  wrap.addEventListener('pointermove', function(e){ if(dragging) setCut(e.clientX); });
+  wrap.addEventListener('pointerup', function(){ dragging = false; });
+  wrap.addEventListener('pointercancel', function(){ dragging = false; });
+})();
+
+/* ================= SOCIAL PROOF ================= */
+var RVW = [
+  {t:'Hai tuần trời bơm hụt nước, tưởng giếng chết phải khoan lại. Anh kỹ thuật dò lại phát hiện lọc bị bùn bít, hút bùn rửa lọc xong nước lên ầm ầm. Báo giá từng mục rõ ràng, 3 giờ xong việc.', n:'Anh Văn Tư', w:'Nhà vườn Củ Chi — hút bùn cứu cạn', i:'VT'},
+  {t:'Khoan giếng mới 42m cho nhà vườn. Dò mạch trước nên khoan đúng chỗ, buổi đầu đã ra nước trong. Giá theo mét đúng như hợp đồng, khoan được bao nhiêu tính bấy nhiêu — không phát sinh một đồng.', n:'Chị Bé Sáu', w:'Nhà vườn Đức Hòa, Long An — khoan 42m', i:'BS'},
+  {t:'Trại gà cần 3 mét khối mỗi giờ, đội tư vấn khoan Φ114 + bơm 3HP, thử lưu lượng tại vòi trước khi bàn giao. Có hoá đơn VAT đầy đủ cho trại, chạy nửa năm nay vẫn khỏe.', n:'Anh Hoàng Minh', w:'Trại gà Bến Lức — giếng trọn gói + bơm', i:'HM'},
+  {t:'Nước giếng đục có váng vàng, đội lấy mẫu đo pH và sắt, báo kết quả trong buổi rồi hướng dẫn lắp lọc. Giờ nước trong dùng cả cho quán. Có phiếu kết quả đàng hoàng, yên tâm hơn hẳn.', n:'Anh Quốc Bảo', w:'Quán ăn Củ Chi — kiểm tra nước + lọc', i:'QB'},
+  {t:'Đăng ký gói bảo trì 6 tháng: kéo bơm rửa cát, đo cách điện, thử áp lực lưu lượng. Đúng hẹn, đi giày bọc nilon, rác mang theo — làm nghề có trách nhiệm, hàng xóm hỏi lại mình đưa số luôn.', n:'Chị Thanh Hà', w:'Biệt thự Thủ Đức — bảo trì định kỳ', i:'TH'}
+];
+var rvIdx = 0, rvTimer = null;
+function rvRender(){
+  var h = '';
+  RVW.forEach(function(r){
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<svg class="i f"><use href="#i-star"/></svg>';
+    h += '<div class="rvw-slide"><div class="rvw-card"><div class="stars">' + stars + '</div>' +
+      '<p>"' + esc(r.t) + '"</p>' +
+      '<div class="who"><span class="avt">' + r.i + '</span><span><b>' + esc(r.n) + '</b><span>' + esc(r.w) + '</span></span></div>' +
+      '</div></div>';
+  });
+  $('rvwTrack').innerHTML = h;
+  var d = '';
+  RVW.forEach(function(_, i){ d += '<button data-rd="' + i + '" aria-label="Đánh giá ' + (i+1) + '"></button>'; });
+  $('rvwDots').innerHTML = d;
+  $('rvwDots').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ rvGo(+b.getAttribute('data-rd')); rvAuto(); });
+  });
+  rvGo(0);
+}
+function rvGo(i){
+  rvIdx = (i + RVW.length) % RVW.length;
+  $('rvwTrack').style.transform = 'translateX(' + (-rvIdx * 100) + '%)';
+  $('rvwDots').querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===rvIdx); });
+}
+function rvAuto(){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){ rvGo(rvIdx + 1); }, 6000);
+}
+var rvShell = document.querySelector('.rvw-shell');
+rvShell.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+rvShell.addEventListener('mouseleave', rvAuto);
+rvRender(); rvAuto();
+
+/* ================= FORM CUỐI ================= */
+(function(){
+  var dt = $('ctDate'), now = new Date();
+  dt.min = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+})();
+$('ctForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('ctName').value.trim(), phone = $('ctPhone').value.trim(), svc = $('ctService').value, addr = $('ctAddr').value.trim();
+  if(!name || !phone || !svc || !addr){ toast('Thiếu thông tin', 'Điền đủ họ tên, SĐT, hạng mục và thôn — ấp — xã nhé!'); return; }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ', 'Kiểm tra lại số giúp kỹ thuật dễ gọi lại nhé!'); return; }
+  this.reset();
+  toast('Đã gửi phiếu hẹn', 'Điều phối xác nhận trong 30 phút');
+});
+
+/* ================= FAQ ================= */
+var FAQ = [
+  {q:'Khoan một giếng mất bao lâu — có phải đục phá nhà không?', k:'khoan bao lâu thời gian đục phá giàn lối vào',
+   a:'Giếng hộ gia đình 30–45m: 1–2 ngày kể cả dựng giàn. Giàn dựng trong vườn, sân — không đục sàn nhà; chỉ cần lối vào rộng khoảng 2,5m cho xe chở máy. Xong việc đội san lấp, dọn bùn đất sạch sẽ, không để lại bãi đất lún.'},
+  {q:'Dò mạch nước trước khi khoan là gì — có bắt buộc không?', k:'dò mạch nước định vị vỉa bắt buộc máy dò địa điện miễn phí',
+   a:'Là dùng máy dò địa điện xác định tầng chứa nước và độ sâu trước khi đặt giàn — tránh khoan mò hụt nước. Không bắt buộc, nhưng khuyến nghị mạnh: phí 800.000đ/điểm và MIỄN PHÍ khi bạn làm khoan trọn gói với chúng tôi.'},
+  {q:'Cam kết "không ra nước — không thu công" tính thế nào?', k:'cam kết ra nước không thu công hợp đồng điều khoản',
+   a:'Nếu khoan đủ độ sâu theo hợp đồng mà không đạt vỉa nước đã dò: không thu tiền công khoan, kéo giàn về. Phần ống đã lắp và chi phí vận chuyển hai bên thống nhất ghi trước trên hợp đồng — không phát sinh ngoài ý biết.'},
+  {q:'Giá theo mét sâu gồm những gì — đặt cọc bao nhiêu?', k:'giá theo mét gồm công ống lọc thanh toán cọc 30%',
+   a:'Giá công khoan/mét gồm công + đầu mũi khoan + bùn giữ thành. Ống, lọc, bơm tính riêng theo bảng giá. Cọc 30% khi ký hợp đồng, phần còn lại thanh toán sau khi thử nước — nghiệm thu.'},
+  {q:'Giếng khoan mấy năm thì cạn — có phải hút bùn không?', k:'giếng cạn hút bùn bao lâu vệ sinh định kỳ yếu nước',
+   a:'Sau 3–5 năm, bùn cát lấp dần phần lọc làm giếng yếu đi. Dấu hiệu: bơm rung, nước đục, lưu lượng giảm. Hút bùn — rửa lọc từ 1,5–2 triệu tùy giếng, khôi phục 80–95% lưu lượng ban đầu, chưa chắc phải khoan mới.'},
+  {q:'Nước giếng dùng được cho sinh hoạt không?', k:'nước giếng sinh hoạt kiểm tra chất lượng ph sắt đục lọc',
+   a:'Nhiều vỉa nước khu TP.HCM — Long An dùng được ngay, nhưng nên kiểm tra pH — độ đục — sắt trước (600.000đ/mẫu, kết quả trong ngày). Đội tư vấn phương án lọc phù hợp nếu nước có sắt, phèn hoặc mặn nhẹ.'},
+  {q:'Nhà vườn — trại cần lưu lượng lớn thì làm thế nào?', k:'trại nhà vườn lưu lượng lớn bơm 3hp phi 114 tưới VAT',
+   a:'Trại, vườn tưới nên khoan Φ114 với lọc dài, chọn bơm ngầm 3HP (3–5m³/h). Đội khảo sát nhu cầu nước, tính cột áp và thử lưu lượng tại vòi trước khi bàn giao. Trại cần hoá đơn VAT có sẵn.'},
+  {q:'Có phục vụ ngoài TP.HCM — phí di chuyển thế nào?', k:'vùng phục vụ long an bình dương đồng nai tây ninh phí vận chuyển',
+   a:'Phục vụ bán kính 60km: TP.HCM, Đức Hòa — Bến Lức (Long An), Thuận An — Dĩ An (Bình Dương), Trảng Bàng — Gò Dầu (Tây Ninh), Nhơn Trạch (Đồng Nai). Phí chuyển giàn khoan 500.000–900.000đ, báo trọn trước khi đặt cọc.'}
+];
+function faqRender(list){
+  var h = '';
+  list.forEach(function(f){
+    h += '<div class="faq-item"><button class="faq-q"><span class="fq-ic"><svg class="i"><use href="#i-chat"/></svg></span>' +
+      '<span>' + esc(f.q) + '</span><svg class="i chev"><use href="#i-chevd"/></svg></button>' +
+      '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  });
+  $('faqList').innerHTML = h;
+  $('faqEmpty').style.display = list.length ? 'none' : 'block';
+  $('faqList').querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.parentElement, body = item.querySelector('.faq-a'), open = item.classList.contains('open');
+      $('faqList').querySelectorAll('.faq-item.open').forEach(function(x){
+        x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+}
+function faqFilter(q){
+  if(!q){ faqRender(FAQ); return; }
+  q = q.toLowerCase();
+  var m = FAQ.filter(function(f){ return (f.q + ' ' + f.a + ' ' + f.k).toLowerCase().indexOf(q) !== -1; });
+  faqRender(m);
+}
+$('faqSearch').addEventListener('input', function(){
+  $('faqChips').querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+  faqFilter(this.value.trim());
+});
+$('faqChips').querySelectorAll('.fchip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var on = c.classList.contains('on');
+    $('faqChips').querySelectorAll('.fchip').forEach(function(x){ x.classList.remove('on'); });
+    $('faqSearch').value = '';
+    if(on){ faqRender(FAQ); } else { c.classList.add('on'); faqFilter(c.getAttribute('data-k')); }
+  });
+});
+faqRender(FAQ);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HomeAndConstructionBusiness",
+  "name":"Mạch Nước 24",
+  "slogan":"Khoan giếng theo mét sâu — dò mạch trước, cam kết ra nước",
+  "telephone":"0906363636",
+  "address":{"@type":"PostalAddress","streetAddress":"88 Quốc lộ 50, Vĩnh Lộc A","addressLocality":"Bình Chánh, TP.HCM","addressCountry":"VN"},
+  "openingHours":"Mo-Su 06:30-19:00",
+  "priceRange":"250.000đ/m³ - 27.500.000đ/gói giếng"
+}
+</script>
+
+<script>
+/* NB93-112: reveal failsafe — phần tử bị kẹt tự hiện sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('on');}
+});
+}catch(e){}},1600);})();
+</script>
+
+<style>
+/* SEARCHFIX-112 NB93-112: dropdown gợi ý tìm kiếm header dùng token của site */
+.sfx-drop{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:130;background:var(--card,#fff);border:1.5px solid var(--line);border-radius:14px;box-shadow:var(--sh2);padding:6px;display:none;max-height:min(380px,70vh);overflow:auto}
+.sfx-drop.open{display:block}
+.sfx-item{display:flex;flex-direction:column;gap:2px;width:100%;text-align:left;padding:9px 13px;border:0;background:none;border-radius:10px;cursor:pointer;font-family:inherit;min-height:44px;justify-content:center}
+.sfx-item:hover,.sfx-item:focus-visible{background:var(--accent-100)}
+.sfx-item b{font-size:13.5px;line-height:1.35;font-weight:800;color:var(--primary)}
+.sfx-item small{font-size:12.5px;line-height:1.4;font-weight:600;color:var(--soft);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sfx-item .sfx-pr{color:var(--accent);font-weight:800}
+.sfx-hl{background:var(--accent-100);color:var(--accent-deep);border-radius:4px;padding:0 2px}
+.sfx-none{padding:12px 14px;font-size:13px;line-height:1.5;font-weight:600;color:var(--soft)}
+.sfx-none a{color:var(--accent-deep);font-weight:800;white-space:nowrap}
+@keyframes sfxBlink{0%,100%{outline:3px solid transparent;outline-offset:2px}15%,45%,75%{outline:3px solid var(--accent);outline-offset:2px}30%,60%{outline:3px solid transparent;outline-offset:2px}}
+.sfx-flash{animation:sfxBlink 2s ease}
+@media(max-width:680px){
+  .sfx-drop{left:0;right:0;max-height:62vh}
+  .sfx-item{min-height:44px;padding:10px 13px}
+  .sfx-item b{font-size:14px}
+  .sfx-item small{font-size:12px}
+  .sfx-none{font-size:12.5px}
+}
+</style>
+
+<script>
+/* SEARCHFIX-112 NB93-112: tìm kiếm header quét index từ DOM — typeahead + Enter + flash nhảy tới kết quả */
+(function(){
+  var input=document.getElementById('searchInput');
+  if(!input)return;
+  var host=input.closest('.search')||input.parentElement;
+  if(!host)return;
+  if(window.getComputedStyle&&getComputedStyle(host).position==='static')host.style.position='relative';
+  var drop=document.createElement('div');
+  drop.className='sfx-drop';drop.setAttribute('role','listbox');
+  host.appendChild(drop);
+  var HOT='<a href="tel:0906363636">0906 36 36 36</a>';
+  var cur=[];
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function nrm(s){return String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')}
+  function txt(el){return el?String(el.textContent).replace(/\s+/g,' ').trim():''}
+  function pick(el,sel){return el&&el.querySelector?txt(el.querySelector(sel)):''}
+  function cleanTitle(el,sel){
+    var q=el.querySelector(sel);if(!q)return'';
+    var c=q.cloneNode(true);
+    var junk=c.querySelectorAll('svg,i,em,.fq-ic');
+    for(var i=0;i<junk.length;i++){if(junk[i].parentNode)junk[i].parentNode.removeChild(junk[i])}
+    return txt(c);
+  }
+  function anchorOf(el){
+    var n=el;
+    while(n&&n!==document.body){if(n.id)return '#'+n.id;n=n.parentElement}
+    return '';
+  }
+  var IDX=[];
+  function reg(title,desc,price,el,sec){
+    if(!title)return;
+    var key=nrm(title);
+    for(var i=0;i<IDX.length;i++){if(IDX[i]._k===key)return}
+    IDX.push({title:title,desc:desc||'',price:price||'',anchor:anchorOf(el),el:el,sec:!!sec,
+      _k:key,_t:nrm(title+' '+(price||'')),_d:nrm(desc||'')});
+  }
+  var feat=document.querySelectorAll('#noibat .fcard');
+  for(var i0=0;i0<feat.length;i0++){(function(c){
+    reg(pick(c,'h3'),pick(c,'.fbody li'),pick(c,'.price-ov'),c);
+  })(feat[i0])}
+  var grid=document.querySelectorAll('#dichvu .svx-card');
+  for(var i1=0;i1<grid.length;i1++){(function(c){
+    var pr=c.querySelector('.svx-pr');
+    var price=pr?(txt(pr.querySelector('small'))+' '+txt(pr.querySelector('b'))):'';
+    reg(pick(c,'.svx-name'),pick(c,'.svx-sub')+' '+pick(c,'.svx-line'),price,c);
+  })(grid[i1])}
+  var rows=document.querySelectorAll('#banggia .ptbl tr');
+  for(var i2=0;i2<rows.length;i2++){(function(r){
+    var tds=r.querySelectorAll('td');
+    if(tds.length<3)return;
+    reg(pick(tds[0],'b'),(pick(tds[0],'small')+(txt(tds[2])?' · '+txt(tds[2]):'')),txt(tds[1]),r);
+  })(rows[i2])}
+  var faqs=document.querySelectorAll('#faqList .faq-item');
+  for(var i3=0;i3<faqs.length;i3++){(function(f){
+    reg(cleanTitle(f,'.faq-q'),pick(f,'.faq-a p'),'',f);
+  })(faqs[i3])}
+  [['#tinhgia','Tính giá khoan theo mét sâu'],['#booking','Đặt lịch kỹ thuật giếng nước']].forEach(function(s){
+    var sec=document.querySelector(s[0]);
+    if(sec)reg(s[1],pick(sec,'.sec-sub'),'',sec,true);
+  });
+  function search(q){
+    var nq=nrm(q).replace(/\s+/g,' ').trim();
+    if(!nq)return[];
+    var toks=nq.split(' '),out=[];
+    IDX.forEach(function(it){
+      var sc=0,ok=true;
+      for(var i=0;i<toks.length;i++){
+        var t=toks[i],a=it._t.indexOf(t),b=it._d.indexOf(t);
+        if(a<0&&b<0){ok=false;break}
+        sc+=(a>-1?(a===0?3:2):1);
+      }
+      if(ok)out.push([sc,it]);
+    });
+    out.sort(function(x,y){return y[0]-x[0]});
+    return out.slice(0,6).map(function(x){return x[1]});
+  }
+  function hilite(text,toks){
+    var low=String(text).toLowerCase(),norm='',map=[];
+    for(var i=0;i<low.length;i++){
+      var c=nrm(low.charAt(i));norm+=c;
+      for(var j=0;j<c.length;j++)map.push(i);
+    }
+    var rs=[];
+    toks.forEach(function(t){
+      if(!t)return;
+      var idx=norm.indexOf(t);
+      while(idx>-1&&map.length){
+        rs.push([map[idx],map[Math.min(idx+t.length-1,map.length-1)]+1]);
+        idx=norm.indexOf(t,idx+1);
+      }
+    });
+    if(!rs.length)return esc(text);
+    rs.sort(function(a,b){return a[0]-b[0]});
+    var mg=[rs[0]];
+    for(var k=1;k<rs.length;k++){
+      var L=mg[mg.length-1];
+      if(rs[k][0]<=L[1]){if(rs[k][1]>L[1])L[1]=rs[k][1]}
+      else mg.push(rs[k]);
+    }
+    var out='',pos=0;
+    mg.forEach(function(r){
+      out+=esc(text.slice(pos,r[0]))+'<b class="sfx-hl">'+esc(text.slice(r[0],r[1]))+'</b>';
+      pos=r[1];
+    });
+    return out+esc(text.slice(pos));
+  }
+  function close(){drop.classList.remove('open')}
+  function go(it){
+    if(!it)return;
+    close();
+    var el=it.el;
+    if(!el)return;
+    if(el.classList.contains('faq-item')&&!el.classList.contains('open')){
+      var qb=el.querySelector('.faq-q');
+      if(qb&&qb.click)qb.click();
+    }
+    var target=el;
+    if(it.sec){
+      var hd=el.querySelector('h2')||el.querySelector('h3');
+      if(hd)target=hd;
+    }
+    if(target&&target.scrollIntoView)target.scrollIntoView({behavior:'smooth',block:'center'});
+    el.classList.remove('sfx-flash');
+    void el.offsetWidth;
+    el.classList.add('sfx-flash');
+    clearTimeout(el._sfxT);
+    el._sfxT=setTimeout(function(){el.classList.remove('sfx-flash')},2100);
+  }
+  function render(){
+    var q=(input.value||'').trim();
+    if(!q){close();return}
+    var toks=nrm(q).split(/\s+/);
+    var list=search(q);
+    if(!list.length){
+      cur=[];
+      drop.innerHTML='<div class="sfx-none">Không tìm thấy "'+esc(q)+'" — gọi '+HOT+' để được tư vấn.</div>';
+      drop.classList.add('open');
+      return;
+    }
+    cur=list;
+    var h='';
+    list.forEach(function(it,i){
+      var meta='';
+      if(it.price)meta+='<span class="sfx-pr">'+esc(it.price)+'</span>';
+      if(it.desc)meta+=(meta?' · ':'')+hilite(it.desc,toks);
+      h+='<button type="button" class="sfx-item" data-i="'+i+'">'
+        +'<b>'+hilite(it.title,toks)+'</b>'
+        +(meta?'<small>'+meta+'</small>':'')
+        +'</button>';
+    });
+    drop.innerHTML=h;
+    drop.classList.add('open');
+    var items=drop.querySelectorAll('.sfx-item');
+    var bind=function(b){
+      b.addEventListener('mousedown',function(e){if(e.preventDefault)e.preventDefault()});
+      b.addEventListener('click',function(){go(cur[+b.getAttribute('data-i')])});
+    };
+    for(var i=0;i<items.length;i++)bind(items[i]);
+  }
+  input.addEventListener('input',render);
+  input.addEventListener('focus',function(){if((input.value||'').trim()&&cur.length)drop.classList.add('open')});
+  input.addEventListener('blur',function(){setTimeout(close,120)});
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){close();return}
+    if(e.key==='Enter'&&cur&&cur.length){
+      if(e.preventDefault)e.preventDefault();
+      go(cur[0]);
+    }
+  });
+})();
+</script>
+</body>
+</html>

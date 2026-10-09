@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Lực — Sửa thủy lực, khí nén & truyền động tại chỗ | Xy-lanh, bơm, máy nén khí</title>
+<meta name="description" content="An Lực — đội kỹ thuật sửa thủy lực, khí nén, truyền động TẠI CHỖ trong 45 phút tại TP.HCM. Sửa xy-lanh, bơm, máy nén khí, thay dây curoa cho máy xúc, xe nâng, nhà máy. Kho 2.400 mã phớt-seal sẵn, băng thử 700 bar, bảo hành 6 tháng, tái chế phớt cũ giảm 25%.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-168 — tokens màu suy từ kho ảnh nghề: navy thủy lực + cam khắc dầu + xanh nghiệm thu */
+:root{
+  --primary:#0F3050;
+  --primary-deep:#071E33;
+  --primary-soft:#1F4C74;
+  --ink:#152535;
+  --soft:#4E6377;
+  --texture:#EBF1F7;
+  --texture-2:#F6F9FC;
+  --accent:#F08A1D;
+  --accent-deep:#B25C06;
+  --accent-100:#FDE8CF;
+  --grad-accent:linear-gradient(135deg,#FFA53D,#EE7D12);
+  --grad-dark:linear-gradient(140deg,#1F4C74,#0F3050 52%,#071E33);
+  --line:#D9E3EE;
+  --ok:#1F9D6B;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:32px;
+  --sh-1:0 2px 10px rgba(7,30,51,.08);
+  --sh-2:0 10px 30px rgba(7,30,51,.13);
+  --sh-3:0 24px 60px rgba(7,30,51,.22);
+  --sh-acc:0 10px 26px rgba(240,138,29,.38);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.62;font-size:16px}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+section{position:relative}
+.wrap{width:min(1180px,92%);margin:0 auto;position:relative;z-index:2}
+.block-title{display:block;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.22;letter-spacing:-.4px}
+.block-title .hl{background:linear-gradient(120deg,var(--accent-100),#FFEAD2);padding:.04em .18em;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.block-title .un{position:relative;white-space:nowrap}
+.block-title .un::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.34em;background:var(--accent-100);z-index:-1;border-radius:4px}
+.block-sub{display:block;color:var(--soft);font-size:15.5px;max-width:660px;margin-top:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:8px 16px;border-radius:99px;box-shadow:var(--sh-1)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15.5px;padding:15px 28px;border-radius:14px;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-acc{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.btn-acc::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-acc:hover::after{left:125%}
+.btn-acc:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(240,138,29,.46)}
+.btn-navy{background:var(--primary);color:#fff;box-shadow:var(--sh-2)}
+.btn-navy:hover{background:var(--primary-soft);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--primary);border:1.8px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-lg{padding:18px 34px;font-size:16.5px;border-radius:16px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+/* hoạ tiết nghề: đường dây dẫn thủy lực + nút nối mạch (flow lines & nodes) */
+.pipe{background-image:radial-gradient(rgba(240,138,29,.22) 1.7px,transparent 1.9px),linear-gradient(115deg,rgba(255,255,255,.05) 0 1.5px,transparent 1.5px 34px),linear-gradient(25deg,rgba(255,255,255,.04) 0 1.5px,transparent 1.5px 46px);background-size:150px 116px,auto,auto}
+.pipe-light{background-image:radial-gradient(rgba(15,48,80,.09) 1.7px,transparent 1.9px),linear-gradient(115deg,rgba(15,48,80,.045) 0 1.5px,transparent 1.5px 34px),linear-gradient(25deg,rgba(15,48,80,.035) 0 1.5px,transparent 1.5px 46px);background-size:150px 116px,auto,auto}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#C7D6E8;font-size:13px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}
+.topbar .tb-l,.topbar .tb-r{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.topbar span{display:inline-flex;align-items:center;gap:7px}
+.topbar svg{flex:none;opacity:.85}
+.topbar .hot{color:#FFCE93;font-weight:800;font-size:14.5px;letter-spacing:.4px}
+.topbar .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+
+/* ============ HEADER ============ */
+header.hdr{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:.3s}
+.hdr .wrap{display:flex;align-items:center;gap:20px;padding:13px 0}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo .mark{width:46px;height:46px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.logo .mark::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(240,138,29,.45),transparent 55%)}
+.logo .mark svg{position:relative;z-index:1}
+.logo b{display:block;font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--primary);line-height:1.1}
+.logo small{display:block;font-size:10px;font-weight:700;letter-spacing:1.1px;color:var(--soft);text-transform:uppercase;white-space:nowrap}
+.hsearch{flex:1;min-width:0;max-width:240px;position:relative}
+.hsearch input{width:100%;padding:11px 16px 11px 42px;border:1.6px solid var(--line);border-radius:99px;background:var(--texture-2);outline:none;transition:.25s}
+.hsearch input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(240,138,29,.14);background:#fff}
+.hsearch svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.5}
+nav.mainnav{display:flex;gap:2px;margin-left:auto}
+nav.mainnav a{font-size:14px;font-weight:700;color:var(--ink);padding:9px 11px;border-radius:10px;transition:.2s;white-space:nowrap}
+nav.mainnav a:hover{background:var(--texture);color:var(--primary)}
+.hdr .cta{flex:none}
+.hdr .cta .btn{padding:12px 22px;font-size:14.5px;border-radius:12px}
+.hdr.scrolled{box-shadow:var(--sh-2)}
+
+/* ============ HERO ============ */
+.hero{background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero .eyebrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#FFD9AE}
+.hero h1{display:block;font-size:clamp(2.05rem,4.5vw,3.25rem);font-weight:900;line-height:1.14;letter-spacing:-1px;margin:20px 0 0}
+.hero h1 .hl{background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal}
+.hero .sub{display:block;margin-top:18px;font-size:16.5px;color:#B9C9DE;max-width:530px}
+.hero .sub b{color:#FFCE93}
+.hero .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero .call{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:13px 22px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;backdrop-filter:blur(8px)}
+.hero .call .ic{width:44px;height:44px;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;flex:none;box-shadow:var(--sh-acc);animation:ring 2.6s infinite}
+@keyframes ring{0%,72%,100%{box-shadow:0 0 0 0 rgba(240,138,29,.45)}80%{box-shadow:0 0 0 14px rgba(240,138,29,0)}}
+.hero .call b{display:block;font-size:21px;font-weight:900;letter-spacing:.6px;color:#FFCE93;line-height:1.15}
+.hero .call small{display:block;font-size:12px;color:#9FB2CC}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#DCE6F5;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:99px}
+.chip svg{flex:none}
+/* ảnh hero: poster bìa 4:3 — crop bỏ duy nhất dải số điện thoại/địa chỉ giả trong ảnh (18% đáy),
+   giữ nguyên khối chữ tiêu đề + 3 badge để nhận diện poster; khung ngang đúng hướng nguồn */
+.hero-media{position:relative}
+.hm-frame{border-radius:var(--r-xl);overflow:hidden;border:6px solid rgba(255,255,255,.92);box-shadow:var(--sh-3);transform:rotate(-1.4deg);animation:float1 8s ease-in-out infinite}
+.hm-frame img{width:100%;aspect-ratio:1448/860;object-fit:cover;object-position:50% 0}
+.hm-note{position:absolute;right:2px;top:14px;z-index:3;background:var(--grad-accent);color:#fff;font-weight:800;font-size:13.5px;padding:10px 16px;border-radius:12px;box-shadow:var(--sh-acc);transform:rotate(1.4deg)}
+.hm-stats{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:rgba(13,36,60,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:var(--sh-3);overflow:hidden}
+.hm-stats div{padding:15px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:none}
+.hm-stats b{display:block;font-size:19px;font-weight:900;color:#FFCE93;line-height:1.2}
+.hm-stats small{display:block;font-size:11.5px;color:#AFC1DB;font-weight:600;margin-top:2px}
+@keyframes float1{0%,100%{transform:rotate(-1.4deg) translateY(0)}50%{transform:rotate(-1.4deg) translateY(-10px)}}
+
+/* ============ TAPE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg);width:104%;margin:-38px 0 0 -2%;box-shadow:var(--sh-2);position:relative;z-index:6;overflow:hidden}
+.tape .in{display:flex;gap:0;white-space:nowrap;padding:13px 0;animation:tape 26s linear infinite}
+.tape span{display:inline-flex;align-items:center;gap:16px;color:#fff;font-weight:900;font-size:15px;letter-spacing:1.4px;text-transform:uppercase;padding:0 18px}
+.tape svg{flex:none;opacity:.9}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION HEAD ============ */
+.sec{padding:96px 0}
+.sec-head{margin-bottom:46px}
+.sec-head.center{text-align:center}
+.sec-head.center .block-sub{margin-left:auto;margin-right:auto}
+
+/* ============ 3 TRỤ DỊCH VỤ ============ */
+#nang-luc{background:var(--texture-2)}
+.pill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pill{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:30px 28px 28px;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:.3s;min-width:0;position:relative;overflow:hidden}
+.pill::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--grad-accent);opacity:0;transition:.3s}
+.pill:hover{transform:translateY(-7px);box-shadow:var(--sh-3);border-color:rgba(240,138,29,.4)}
+.pill:hover::after{opacity:1}
+.pill .pi{width:56px;height:56px;border-radius:17px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep);margin-bottom:18px}
+.pill h3{display:block;font-size:19.5px;font-weight:900;letter-spacing:-.3px}
+.pill>p{display:block;font-size:14.5px;color:var(--soft);margin:9px 0 16px}
+.pill-list{list-style:none;display:grid;gap:10px;margin-bottom:22px}
+.pill-list li{display:flex;gap:9px;font-size:14px;font-weight:600;align-items:flex-start}
+.pill-list svg{flex:none;margin-top:3px}
+.pill .ptag{margin-top:auto;display:inline-flex;align-self:flex-start;font-size:12px;font-weight:800;color:var(--primary);background:var(--texture);border:1px solid var(--line);padding:7px 13px;border-radius:99px}
+.pill .ptag em{font-style:normal;color:var(--accent-deep)}
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+.strip a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;transition:.25s;min-width:0}
+.strip a:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(240,138,29,.45)}
+.strip .si{width:40px;height:40px;flex:none;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep)}
+.strip b{display:block;font-size:13.5px;font-weight:800;line-height:1.3}
+.strip small{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.strip .ar{margin-left:auto;color:var(--accent);flex:none;transition:.25s}
+.strip a:hover .ar{transform:translateX(4px)}
+
+/* ============ KHỐI-8 MASTER–DETAIL ============ */
+#dich-vu{background:var(--texture)}
+.md{display:grid;grid-template-columns:.92fr 1.35fr;gap:24px;align-items:stretch}
+.md-list{display:grid;gap:10px;align-content:stretch}
+.md-item{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:15px;padding:13px 15px;transition:.22s;min-width:0;flex:1}
+.md-item .mn{flex:none;width:34px;height:34px;border-radius:10px;background:var(--texture);color:var(--primary);font-size:13.5px;font-weight:900;display:grid;place-items:center;border:1px solid var(--line);transition:.22s}
+.md-item .mt b{display:block;font-size:14.5px;font-weight:800;line-height:1.3;color:var(--ink)}
+.md-item .mt small{display:block;font-size:12px;color:var(--soft);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.md-item .ma{margin-left:auto;flex:none;color:var(--line);transition:.22s}
+.md-item:hover{border-color:rgba(240,138,29,.5);transform:translateX(4px)}
+.md-item.on{background:var(--grad-dark);border-color:transparent;box-shadow:var(--sh-2)}
+.md-item.on .mn{background:var(--grad-accent);color:#fff;border-color:transparent}
+.md-item.on .mt b{color:#fff}
+.md-item.on .mt small{color:#AFC1DB}
+.md-item.on .ma{color:var(--accent)}
+.md-item.dim{opacity:.28;filter:grayscale(1)}
+.md-panel{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-2);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.md-img{position:relative;aspect-ratio:4/3;overflow:hidden;flex:none}
+.md-img img{width:100%;height:100%;object-fit:cover}
+.md-img .cap{position:absolute;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:8px;background:rgba(7,30,51,.82);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:800;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.2);max-width:calc(100% - 28px)}
+.md-img .cap i{width:8px;height:8px;border-radius:50%;background:#3DDC97;flex:none}
+.md-feat{position:absolute;top:14px;left:14px;background:var(--grad-accent);color:#fff;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;box-shadow:var(--sh-acc);letter-spacing:.6px;text-transform:uppercase}
+.md-body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1;min-width:0}
+.md-body h3{display:block;font-size:22px;font-weight:900;letter-spacing:-.4px}
+.md-body .md-desc{display:block;font-size:14.5px;color:var(--soft);margin-top:8px}
+.mtab{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0 14px;border-radius:12px;overflow:hidden;border:1.5px solid var(--line)}
+.mtab th,.mtab td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.mtab tr:last-child th,.mtab tr:last-child td{border-bottom:none}
+.mtab th{background:var(--texture);color:var(--primary);font-weight:800;width:36%}
+.mtab td{font-weight:600;color:var(--ink)}
+.md-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:6px}
+.md-price b{display:block;font-size:21px;font-weight:900;color:var(--accent-deep);letter-spacing:-.3px}
+.md-price small{display:block;font-size:12.5px;color:var(--soft);font-weight:600}
+.md-acts{display:flex;gap:10px;flex-wrap:wrap}
+.md-acts .btn{padding:13px 22px;font-size:14.5px;border-radius:12px}
+.md-anim{animation:fadein .4s}
+@keyframes fadein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============ STATS BAND ============ */
+.stats-band{background:var(--grad-dark);color:#fff;padding:88px 0;overflow:clip;position:relative}
+.stats-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 18px,rgba(240,138,29,.06) 18px 20px)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;z-index:2}
+.stat{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r-l);padding:30px 24px;text-align:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.3s;min-width:0}
+.stat:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(240,138,29,.5)}
+.stat .num{font-size:clamp(2rem,4vw,2.6rem);font-weight:900;color:#FFCE93;line-height:1.1;letter-spacing:-1px}
+.stat .num small{font-size:.55em;font-weight:800;margin-left:2px}
+.stat b{display:block;font-size:15px;font-weight:800;margin-top:9px}
+.stat small{display:block;font-size:12.5px;color:#9FB2CC;margin-top:5px}
+.qc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;position:relative;z-index:2}
+.qc{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.22);border-radius:16px;padding:18px;min-width:0}
+.qc .qi{width:42px;height:42px;flex:none;border-radius:12px;background:rgba(240,138,29,.18);border:1px solid rgba(240,138,29,.4);display:grid;place-items:center;color:#FFCE93}
+.qc b{display:block;font-size:14.5px;font-weight:800}
+.qc small{display:block;font-size:12.5px;color:#AFC1DB;margin-top:3px}
+.partner-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center;position:relative;z-index:2}
+.partner-row .lbl{width:100%;text-align:center;font-size:12px;font-weight:800;letter-spacing:2px;color:#8FA5C4;text-transform:uppercase;margin-bottom:6px}
+.pt{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:99px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);font-size:13.5px;font-weight:700;color:#DCE6F5;transition:.25s}
+.pt:hover{background:rgba(240,138,29,.16);border-color:var(--accent);color:#FFD9AE}
+
+/* ============ DAC THU — TRA SEAL KIT + TÁI CHẾ PHỚT ============ */
+#dac-thu{background:var(--texture-2)}
+.dt-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.finder{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:30px;box-shadow:var(--sh-1);min-width:0}
+.finder h3{display:block;font-size:19px;font-weight:900}
+.finder>p{display:block;font-size:13.5px;color:var(--soft);margin:6px 0 20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:.6px}
+.field select,.field input{padding:13px 15px;border:1.6px solid var(--line);border-radius:12px;background:#fff;outline:none;transition:.2s;width:100%}
+.field select:focus,.field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(240,138,29,.13)}
+.sizerow{display:flex;align-items:center;gap:12px;background:#fff;border:1.6px solid var(--line);border-radius:12px;padding:6px 15px}
+.sizerow input[type=range]{flex:1;min-width:0;border:none;padding:0;background:transparent;accent-color:var(--accent);height:38px}
+.sizerow b{font-size:14px;font-weight:900;color:var(--accent-deep);min-width:82px;text-align:right}
+.mode-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.mode{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;border:1.6px solid var(--line);border-radius:12px;padding:11px 8px;font-size:12.5px;font-weight:800;color:var(--soft);cursor:pointer;transition:.2s;text-align:center}
+.mode input{position:absolute;opacity:0;pointer-events:none}
+.mode small{font-size:11px;font-weight:600;color:var(--soft)}
+.mode.on{border-color:var(--accent);background:var(--accent-100);color:var(--accent-deep)}
+.f-out{margin-top:20px;border-radius:18px;overflow:hidden;border:1.5px solid var(--line)}
+.fo-main{background:var(--grad-dark);color:#fff;padding:20px 22px;position:relative;overflow:hidden}
+.fo-main::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.7px);background-size:64px 52px;pointer-events:none}
+.fo-main .avail{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#7FE0AE;background:rgba(31,157,107,.18);border:1px solid rgba(31,157,107,.5);padding:6px 12px;border-radius:99px}
+.fo-main .avail.amber{color:#FFCE93;background:rgba(240,138,29,.16);border-color:rgba(240,138,29,.5)}
+.fo-price{display:flex;gap:18px;align-items:flex-end;margin-top:14px;position:relative;z-index:1;flex-wrap:wrap}
+.fo-price>div small{display:block;font-size:11.5px;color:#AFC1DB;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+.fo-price>div b{display:block;font-size:19px;font-weight:900;color:#fff;margin-top:3px}
+.fo-price>div.rec b{color:#7FE0AE}
+.fo-save{margin-left:auto;text-align:right}
+.fo-save b{font-size:17px;color:#FFCE93}
+.fo-sub{display:flex;gap:16px;flex-wrap:wrap;background:var(--texture-2);padding:14px 22px;font-size:13px;color:var(--soft);font-weight:600}
+.fo-sub b{color:var(--primary)}
+.fo-cta{display:flex;gap:10px;padding:14px 22px;border-top:1.5px solid var(--line);flex-wrap:wrap;align-items:center}
+.fo-cta .btn{padding:12px 20px;font-size:14px;border-radius:11px}
+.fo-cta small{font-size:12px;color:var(--soft)}
+.dt-side{display:grid;gap:24px;min-width:0}
+.dt-photo{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-1);position:relative}
+.dt-photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.dt-photo .ph-cap{position:absolute;left:14px;bottom:14px;background:rgba(7,30,51,.82);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:800;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.2)}
+.dt-photo .ph-cap b{color:#FFCE93}
+.recyc{background:var(--grad-dark);border-radius:var(--r-xl);padding:28px;color:#fff;position:relative;overflow:hidden;flex:1}
+.recyc .eyebrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#FFD9AE;box-shadow:none}
+.recyc h3{display:block;font-size:19px;font-weight:900;margin-top:14px}
+.recyc>p{display:block;font-size:13.5px;color:#B9C9DE;margin-top:8px}
+.rec-steps{display:grid;gap:12px;margin-top:18px}
+.rec-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;padding:13px 15px}
+.rec-step .ri{flex:none;width:36px;height:36px;border-radius:11px;background:rgba(31,157,107,.2);border:1px solid rgba(31,157,107,.5);display:grid;place-items:center;color:#7FE0AE;font-weight:900;font-size:14px}
+.rec-step b{display:block;font-size:14px;font-weight:800}
+.rec-step small{display:block;font-size:12.5px;color:#AFC1DB;margin-top:2px}
+.rec-note{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13.5px;font-weight:700;color:#FFCE93}
+
+/* ============ QUY TRÌNH 5 BƯỚC ============ */
+#quy-trinh{background:var(--grad-dark);color:#fff;overflow:clip}
+#quy-trinh .block-sub{color:#B9C9DE}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:8px}
+.step{position:relative;background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r-l);padding:26px 16px 22px;text-align:center;transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);border-color:rgba(240,138,29,.55);background:rgba(255,255,255,.09)}
+.step .n{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--grad-accent);color:#fff;font-size:14px;font-weight:900;display:grid;place-items:center;box-shadow:var(--sh-acc)}
+.step .ic{width:54px;height:54px;margin:6px auto 14px;border-radius:17px;background:rgba(240,138,29,.15);border:1px solid rgba(240,138,29,.4);display:grid;place-items:center;color:#FFCE93}
+.step b{display:block;font-size:14.5px;font-weight:800;line-height:1.35}
+.step p{display:block;font-size:12.5px;color:#AFC1DB;margin-top:7px}
+.step .meta{display:inline-flex;margin-top:12px;font-size:12px;font-weight:800;color:#FFCE93;background:rgba(240,138,29,.13);border:1px solid rgba(240,138,29,.35);padding:4px 11px;border-radius:99px;letter-spacing:.4px}
+.flow-note{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-size:14px;color:#C7D6E8;position:relative;z-index:2;text-align:center}
+.flow-note b{color:#FFCE93}
+
+/* ============ SPECS TABS ============ */
+#specs{background:var(--texture)}
+.tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.tab{padding:13px 24px;border-radius:99px;background:#fff;border:1.6px solid var(--line);font-weight:800;font-size:14.5px;color:var(--soft);transition:.25s;display:inline-flex;align-items:center;gap:9px}
+.tab:hover{border-color:var(--accent);color:var(--accent-deep)}
+.tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:var(--sh-acc)}
+.tabpanel{display:none}
+.tabpanel.on{display:block;animation:fadein .45s}
+.spec-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.tblwrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);overflow:hidden}
+.tblwrap .scroll{overflow-x:auto}
+.spec-tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.spec-tbl th,.spec-tbl td{padding:13px 17px;text-align:left;border-bottom:1px solid var(--line)}
+.spec-tbl tr:last-child td{border-bottom:none}
+.spec-tbl thead th{background:var(--primary);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.8px}
+.spec-tbl tbody tr:hover td{background:var(--texture-2)}
+.spec-tbl td b{font-weight:800}
+.spec-tbl .tol{color:var(--accent-deep);font-weight:900}
+.tblwrap .tfoot{padding:14px 17px;font-size:12.5px;color:var(--soft);background:var(--texture-2);border-top:1.5px solid var(--line)}
+.tips{display:grid;gap:16px}
+.tip{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r-m);padding:19px 20px;box-shadow:var(--sh-1)}
+.tip b{display:block;font-size:14.5px;font-weight:900}
+.tip p{display:block;font-size:13px;color:var(--soft);margin-top:5px}
+
+/* ============ REVIEWS ============ */
+#reviews{background:var(--texture-2)}
+.rev-shell{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:stretch}
+.rev-view{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);padding:36px;min-height:280px;min-width:0}
+.rev-item{display:none;animation:fadein .5s}
+.rev-item.on{display:block}
+.rev-item .stars{display:flex;gap:3px;color:#F5A623;margin-bottom:14px}
+.rev-item p{display:block;font-size:15.5px;font-weight:500;color:var(--ink);line-height:1.7}
+.rev-item .who{display:flex;align-items:center;gap:13px;margin-top:22px}
+.rev-item .av{width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:#FFCE93;font-weight:900;font-size:17px;display:grid;place-items:center;flex:none}
+.rev-item .who b{display:block;font-size:15px;font-weight:800}
+.rev-item .who small{display:block;font-size:12.5px;color:var(--soft)}
+.rev-metric{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.rm{background:var(--texture-2);border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;text-align:center}
+.rm b{display:block;font-size:22px;font-weight:900;color:var(--ok)}
+.rm small{display:block;font-size:12px;color:var(--soft);font-weight:600;margin-top:3px}
+.rev-dots{display:flex;gap:8px;margin-top:24px}
+.rev-dots i{width:10px;height:10px;border-radius:50%;background:var(--line);transition:.3s;font-style:normal;cursor:pointer}
+.rev-dots i.on{background:var(--accent);width:28px;border-radius:99px}
+.logo-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center}
+.lg{font-size:13px;font-weight:800;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:11px 19px;border-radius:12px;display:inline-flex;gap:8px;align-items:center;transition:.25s;box-shadow:var(--sh-1)}
+.lg:hover{transform:translateY(-3px);border-color:var(--accent)}
+
+/* ============ FORM BÁO GIÁ (dark) ============ */
+#baogia{background:var(--grad-dark);color:#fff;overflow:clip}
+#baogia .pipe{position:absolute;inset:0;pointer-events:none}
+.bg-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;position:relative;z-index:2}
+.bg-copy .block-title{color:#fff}
+.bg-copy .block-sub{color:#B9C9DE}
+.bg-list{list-style:none;margin-top:24px;display:grid;gap:13px}
+.bg-list li{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+.bg-list svg{flex:none;margin-top:3px}
+.cert-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.cb{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;color:#DCE6F5;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);padding:9px 15px;border-radius:12px}
+.cb svg{color:#FFCE93;flex:none}
+.gform{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r-xl);padding:32px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sh-3);min-width:0}
+.gform h3{display:block;font-size:20px;font-weight:900;color:#fff}
+.gform>p{display:block;font-size:13.5px;color:#AFC1DB;margin:7px 0 20px}
+.gform .fgrid .field label{color:#FFD9AE}
+.gform .field select,.gform .field input,.gform .field textarea{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);color:#fff}
+.gform .field select option{color:var(--ink)}
+.gform .field select:focus,.gform .field input:focus,.gform .field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.13)}
+.gform textarea{resize:vertical;min-height:76px}
+.gform .btn{width:100%;margin-top:4px}
+.gform .secure{display:block;text-align:center;font-size:12px;color:#8FA5C4;margin-top:13px}
+.gform .secure a{color:#FFCE93;font-weight:800}
+
+/* ============ CONTACT — CARD ĐỊA CHỈ (không iframe) ============ */
+#contact{background:var(--texture)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.mapcard{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-2);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.svmap{position:relative;background:linear-gradient(150deg,#DDE9F4,#C8D9EA);aspect-ratio:16/9}
+.svmap svg{position:absolute;inset:0;width:100%;height:100%}
+.svmap .mtag{position:absolute;left:14px;top:14px;z-index:2;background:#fff;border-radius:12px;box-shadow:var(--sh-2);padding:11px 15px;font-size:13px;font-weight:800;color:var(--primary);display:flex;gap:9px;align-items:center;max-width:calc(100% - 28px)}
+.svmap .mtag svg{position:static;width:16px;height:16px;flex:none}
+.map-body{padding:20px 22px 22px;display:grid;gap:12px}
+.map-body .go{display:flex;gap:10px;flex-wrap:wrap}
+.map-body .go .btn{padding:12px 20px;font-size:14px;border-radius:11px}
+.cinfo{display:grid;gap:12px}
+.ci{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 17px}
+.ci .ic{width:40px;height:40px;flex:none;border-radius:11px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center}
+.ci b{display:block;font-size:14px;font-weight:800}
+.ci small{display:block;font-size:13px;color:var(--soft)}
+.ci small a{color:var(--accent-deep);font-weight:800}
+#contact .side{display:grid;gap:18px;align-content:start}
+
+/* ============ FAQ ============ */
+#faq{background:var(--texture-2)}
+.faq-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px;justify-content:center}
+.fchip{font-size:12.5px;font-weight:800;padding:8px 16px;border-radius:99px;background:#fff;border:1.6px solid var(--line);color:var(--soft);transition:.2s}
+.fchip:hover,.fchip.on{background:var(--grad-accent);color:#fff;border-color:transparent}
+.faq-list{display:grid;gap:12px;max-width:880px;margin:0 auto}
+.fitem{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s}
+.fitem.open{border-color:rgba(240,138,29,.5);box-shadow:var(--sh-2)}
+.fitem.hide{display:none}
+.fq{width:100%;display:flex;align-items:center;gap:14px;padding:19px 22px;font-size:15.5px;font-weight:800;color:var(--ink);text-align:left}
+.fq .pm{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;background:var(--texture);display:grid;place-items:center;color:var(--primary);transition:.3s}
+.fitem.open .fq .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.fa p{padding:0 22px 20px;font-size:14.5px;color:var(--soft)}
+.faq-empty{display:none;text-align:center;color:var(--soft);padding:26px;font-size:14.5px}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-deep);color:#AFC1DB;padding:64px 0 0;overflow:clip;position:relative}
+footer .pipe{position:absolute;inset:0;pointer-events:none;opacity:.6}
+.fgrid4{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.15fr;gap:38px;position:relative;z-index:2}
+.fcol h4{display:block;color:#fff;font-size:15px;font-weight:900;margin-bottom:18px;letter-spacing:.4px}
+.fcol .flogo{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.fcol .flogo b{color:#fff;font-size:19px;font-weight:900}
+.fcol p{font-size:13.5px}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#DCE6F5;transition:.25s}
+.socials a:hover{background:var(--grad-accent);border-color:transparent;color:#fff;transform:translateY(-3px)}
+.flinks{list-style:none;display:grid;gap:10px}
+.flinks a{font-size:13.5px;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.flinks a:hover{color:#FFCE93}
+.flinks svg{opacity:.5;flex:none}
+.faddr{display:grid;gap:13px;font-size:13.5px}
+.faddr div{display:flex;gap:11px;align-items:flex-start}
+.faddr svg{flex:none;margin-top:2px;color:#FFCE93}
+.faddr a.hot{color:#FFCE93;font-weight:900;font-size:17px}
+.paybar{margin-top:48px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;position:relative;z-index:2}
+.paybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.paybar small{font-size:12px;color:#8FA5C4}
+.pay-items{display:flex;gap:9px;flex-wrap:wrap}
+.pay-items span{font-size:12px;font-weight:800;color:#C7D6E8;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 11px;background:rgba(255,255,255,.05)}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:150;display:flex;gap:9px;background:rgba(7,30,51,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.16);padding:9px 12px;border-radius:22px;box-shadow:var(--sh-3);transition:.4s}
+.dock.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(80px)}
+.dock a,.dock button{display:flex;flex-direction:column;align-items:center;gap:4px;color:#C7D6E8;font-size:10px;font-weight:700;padding:7px 11px;border-radius:14px;transition:.22s;min-width:62px}
+.dock a:hover,.dock button:hover{background:rgba(240,138,29,.2);color:#FFD9AE}
+.dock .main{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.dock svg{flex:none}
+
+/* ============ TOAST (title + message tách 2 phần tử; pointer-events none toàn khung) ============ */
+.toast{position:fixed;right:22px;bottom:96px;z-index:400;background:var(--primary-deep);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:var(--sh-3);display:flex;gap:12px;align-items:center;max-width:360px;border:1.5px solid rgba(255,255,255,.16);transform:translateX(130%);transition:.45s cubic-bezier(.2,.9,.3,1.2);pointer-events:none}
+.toast.show{transform:none}
+.toast .ti{width:38px;height:38px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center}
+.toast .tx b{display:block;font-size:14px;font-weight:900;line-height:1.35}
+.toast .tx small{display:block;font-size:12.5px;color:#AFC1DB;margin-top:2px;font-weight:600}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media(max-width:1280px){
+  .hsearch{display:none}
+}
+@media(max-width:1080px){
+  nav.mainnav{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:48px}
+  .hero-media{max-width:640px}
+  .pill-grid{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .stats-row,.qc-row{grid-template-columns:1fr 1fr}
+  .md{grid-template-columns:1fr}
+  .md-list{grid-template-columns:1fr 1fr}
+  .dt-grid,.bg-grid,.spec-grid,.rev-shell,.contact-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(3,1fr);row-gap:34px}
+  .fgrid4{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680 — thiết kế riêng, đủ chức năng ============ */
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:96px}
+  .sec{padding:52px 0}
+  .topbar .tb-r{display:none}
+  .topbar .wrap{justify-content:center}
+  header.hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .hsearch{order:3;flex-basis:100%;max-width:none}
+  .hdr .cta .btn{padding:10px 14px;font-size:13px}
+  .hdr .cta .btn .btxt{display:none}
+  .hero{padding:40px 0 70px}
+  .hero h1{font-size:1.66rem}
+  .hero .sub{font-size:14.5px}
+  .hero .cta-row{flex-direction:column;align-items:stretch}
+  .hero .cta-row .btn{width:100%;white-space:normal}
+  .hero .call{width:100%;justify-content:center}
+  .chips{gap:8px}
+  .hero-media{max-width:none}
+  .hm-frame{transform:none;animation:none;border-width:4px}
+  .hm-note{right:10px;top:10px;font-size:12.5px;padding:8px 12px}
+  .hm-stats{grid-template-columns:1fr 1fr}
+  .hm-stats div{border-right:none;border-bottom:1px solid rgba(255,255,255,.12);padding:12px 10px}
+  .hm-stats div:nth-child(3),.hm-stats div:nth-child(4){border-bottom:none}
+  .hm-stats div:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}
+  .tape .in{animation-duration:18s;padding:11px 0}
+  .tape span{font-size:12.5px;letter-spacing:1px}
+  .block-title{font-size:1.42rem}
+  .sec-head{margin-bottom:30px}
+  .strip{grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .md-list{grid-template-columns:1fr 1fr;gap:8px;grid-auto-rows:1fr}
+  .md-item{height:100%}
+  .md-item{padding:11px 12px;gap:10px}
+  .md-item .mt small{display:none}
+  .md-item .ma{display:none}
+  .md-body{padding:20px 18px 22px}
+  .md-body h3{font-size:19px}
+  .md-foot{flex-direction:column;align-items:stretch}
+  .md-acts .btn{flex:1;white-space:normal}
+  .stats-row{gap:12px}
+  .stat{padding:20px 14px}
+  .qc-row{grid-template-columns:1fr;gap:12px;margin-top:26px}
+  .partner-row{margin-top:28px;gap:8px}
+  .flow{grid-template-columns:1fr 1fr;gap:24px 12px;row-gap:32px}
+  .step{padding:22px 12px 18px}
+  .finder,.gform{padding:22px 18px;border-radius:20px}
+  .fgrid{grid-template-columns:1fr}
+  .mode-row{grid-template-columns:1fr}
+  .mode{flex-direction:row;justify-content:flex-start;gap:8px}
+  .fo-price{gap:12px}
+  .fo-save{margin-left:0;text-align:left;width:100%}
+  .dt-grid{gap:16px}
+  .recyc{padding:22px 18px}
+  .ba{aspect-ratio:4/3}
+  .tabs{gap:8px}
+  .tab{padding:10px 16px;font-size:13px}
+  .tblwrap .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .spec-grid{gap:16px}
+  .rev-view{padding:24px 20px;min-height:0}
+  .rev-metric{gap:10px}
+  .contact-grid{gap:16px}
+  .map-body .go .btn{flex:1;white-space:normal}
+  .gform .btn,.fitem .fq{font-size:14.5px}
+  .fq{padding:15px 16px;font-size:14.5px}
+  .fa p{padding:0 16px 16px;font-size:13.5px}
+  footer{padding-top:48px}
+  .fgrid4{grid-template-columns:1fr;gap:30px}
+  .paybar .wrap{justify-content:center;text-align:center}
+  .dock{bottom:12px;gap:2px;padding:7px 8px;border-radius:18px}
+  .dock a,.dock button{min-width:0;padding:7px 9px;font-size:0;gap:0}
+  .toast{right:12px;left:12px;bottom:86px;max-width:none}
+}
+/* MOBILEFIX-168: vùng chạm ≥40px + chữ ≥12px */
+@media(max-width:680px){
+  .hdr .cta .btn{min-height:40px}
+  .chip{min-height:40px}
+  .tab{min-height:40px}
+  .fchip{min-height:40px}
+  .dock a,.dock button{min-height:40px}
+  .md-item{min-height:44px}
+  .mode{min-height:44px}
+  .logo small{font-size:12px}
+  .hm-stats small{font-size:12px}
+  .strip small{font-size:12px}
+  .md-price small{font-size:12px}
+  .fo-cta small{font-size:12px}
+  .rec-step small{font-size:12px}
+  .step .meta{font-size:12px}
+  .pay-items span{font-size:12px}
+  .toast .tx small{font-size:12px}
+}
+/*MOBILE-TAP40: dieu khien cam >=40px */
+@media(max-width:640px){
+  .btn{min-height:40px!important}
+  .mode,.md-item,.fchip,.fq,.tab,.chip,.dock a,.dock button,[class*="search" i] button{min-height:40px!important;min-width:40px!important}
+}
+@media(min-width:681px){
+  button:active{transform:scale(.96)}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"An Lực","telephone":"0908416168","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"An Lực — đội kỹ thuật sửa thủy lực, khí nén, truyền động TẠI CHỖ trong 45 phút tại TP.HCM. Sửa xy-lanh, bơm, máy nén khí, thay dây curoa cho máy xúc, xe nâng, n","url":"http://127.0.0.1:8174/168-dich-vu-thuy-luc-khi-nen-truyen-dong/"}
+</script>
+</head>
+<body id="top">
+
+<!-- ═══════════ TOPBAR ═══════════ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>T2–T7: 7:30–17:30 · Ngoài giờ: đội trực sự cố</span>
+      <span class="dot"></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>KCN Vĩnh Lộc, Bình Chánh, TP.HCM</span>
+    </div>
+    <div class="tb-r">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>baogia@anluc.vn</span>
+      <span class="hot"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Hotline: 0908 416 168</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="An Lực">
+      <span class="mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><circle cx="12" cy="17" r="1.6" fill="#FFCE93"/><path d="M2 21h20"/></svg></span>
+      <span><b>AN LỰC</b><small>Thủy lực · Khí nén · Truyền động</small></span>
+    </a>
+    <div class="hsearch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4E6377" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+      <input id="hsearchInput" type="text" placeholder="Tìm hạng mục: xy-lanh, bơm, máy nén, rò rỉ…" aria-label="Tìm hạng mục dịch vụ">
+    </div>
+    <nav class="mainnav" aria-label="Menu chính">
+      <a href="#dich-vu">8 hạng mục</a>
+      <a href="#dac-thu">Tra seal kit</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#specs">Thiết bị & kho</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="cta"><a href="#baogia" class="btn btn-acc"><span class="btxt">Nhận báo giá</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero pipe" id="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i>Xưởng kỹ thuật thủy lực · KCN Vĩnh Lộc</span>
+      <h1>Sửa <em class="hl">thủy lực – khí nén</em> tại chỗ, máy chạy lại trong ngày</h1>
+      <span class="sub">Xy-lanh, bơm, van, máy nén khí, dây curoa cho <b>máy xúc, xe nâng và dây chuyền nhà máy</b>. Đội kỹ thuật tới hiện trường trong 45 phút, kho 2.400 mã phớt-seal sẵn — không phải kéo máy đi đâu cả.</span>
+      <div class="cta-row">
+        <a href="#baogia" class="btn btn-acc btn-lg">Gửi yêu cầu — kỹ thuật gọi lại 15 phút<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:0908416168" class="btn btn-ghost btn-lg" style="background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)">Gọi ngay 0908 416 168</a>
+      </div>
+      <a class="call" href="tel:0908416168">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span>
+        <span><b>0908 416 168</b><small>Kỹ thuật viên trực — cả T7, CN có đội sự cố</small></span>
+      </a>
+      <div class="chips">
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>45 phút tới hiện trường</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Băng thử 700 bar</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Kho 2.400 mã phớt-seal</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Bảo hành 6 tháng</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-frame"><img src="assets/img/cover.webp" alt="Dịch vụ thủy lực, khí nén và truyền động — sửa chữa, lắp đặt, bảo trì chuyên nghiệp của An Lực"></div>
+      <div class="hm-note">Sửa tại chỗ · Kho seal sẵn</div>
+      <div class="hm-stats">
+        <div><b>2.400+</b><small>mã seal trong kho</small></div>
+        <div><b>700 <span style="font-size:.6em">bar</span></b><small>băng thử xy-lanh</small></div>
+        <div><b>45 <span style="font-size:.6em">phút</span></b><small>phản hồi tại TP.HCM</small></div>
+        <div><b>92%</b><small>case sửa tại chỗ</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TAPE ═══════════ -->
+<div class="tape" aria-hidden="true">
+  <div class="in">
+    <span>Sửa tại chỗ trong 45 phút<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Băng thử 700 bar<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Kho 2.400 mã phớt-seal<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Tái chế phớt cũ — giảm 25%<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Bảo hành 6 tháng<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>2 đội cứu hàng lưu động<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+    <span>Sửa tại chỗ trong 45 phút<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Băng thử 700 bar<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Kho 2.400 mã phớt-seal<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Tái chế phớt cũ — giảm 25%<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Bảo hành 6 tháng<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>2 đội cứu hàng lưu động<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+  </div>
+</div>
+
+<!-- ═══════════ 3 TRỤ NĂNG LỰC ═══════════ -->
+<section class="sec" id="nang-luc">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Năng lực chủ lực</span>
+      <span class="block-title" style="margin-top:16px">3 trụ — <span class="un">máy bạn đứng</span>, chúng tôi lo phần kỹ thuật</span>
+      <span class="block-sub">Từ một cú gọi: chẩn đoán – sửa chữa – cấp phụ tùng – bảo trì phòng ngừa, khép kín trong một đơn vị.</span>
+    </div>
+    <div class="pill-grid">
+      <article class="pill rv" data-d="0">
+        <span class="pi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+        <h3>Sửa chữa & phục hồi</h3>
+        <p>Chẩn đoán rò rỉ, phục hồi trục xy-lanh, sửa bơm — ưu tiên sửa tại chỗ, không tháo dỡ cả hệ thống.</p>
+        <ul class="pill-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>2 đội lưu động 7:30–17:30 + trực sự cố ngoài giờ</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Kéo về xưởng miễn phí trong bán kính 15 km</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo giá minh mục công + phụ tùng trước khi tháo</li>
+        </ul>
+        <span class="ptag">92% case <em>xử lý xong tại chỗ</em></span>
+      </article>
+      <article class="pill rv" data-d="1">
+        <span class="pi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>
+        <h3>Cung cấp & thay thế</h3>
+        <p>Bộ phớt-seal, van, dây cao áp, dây curoa — hàng chính hãng NOK, TTO, SMC, Mitsuboshi, sẵn kho.</p>
+        <ul class="pill-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>2.400 mã phớt-seal cho máy xúc, xe nâng, máy ép</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Bấm nối dây cao áp R1–R4 tại chỗ trong 30 phút</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Giao linh kiện nội thành TP.HCM trong 24 giờ</li>
+        </ul>
+        <span class="ptag">Thay tại chỗ <em>trong ca máy</em></span>
+      </article>
+      <article class="pill rv" data-d="2">
+        <span class="pi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3M13 14h3M8 18h3M13 18h3"/></svg></span>
+        <h3>Bảo trì hợp đồng</h3>
+        <p>Gói bảo trì định kỳ theo giờ máy: kiểm trước hư — thay đúng chu — đỡ đứng máy giữa vụ.</p>
+        <ul class="pill-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Checklist 32 điểm/quý cho cả thủy lực & khí nén</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Khách hợp đồng được ưu tiên cứu hàng đầu tiên</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo cáo hao mòn + dự trù phụ tùng theo quý</li>
+        </ul>
+        <span class="ptag">Tiết kiệm <em>~30% so sửa vụn</em></span>
+      </article>
+    </div>
+    <div class="strip rv" data-d="1">
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 7v10M4 9h16M4 15h16"/></svg></span><span><b>Thủy lực</b><small>xy-lanh · bơm · van</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l5 3"/></svg></span><span><b>Khí nén</b><small>máy nén · FRL · ống</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="12" r="4"/><circle cx="17" cy="12" r="3"/><path d="M2 12h2M12 12h2M20 12h2"/></svg></span><span><b>Truyền động</b><small>dây curoa · bánh răng</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 6.3 6 10a6 6 0 0 1-12 0c0-3.7 6-10 6-10Z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></span><span><b>Rò rỉ & dầu</b><small>siêu âm · UV dye</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></span><span><b>Hợp đồng BK</b><small>checklist 32 điểm</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KHỐI-8 MASTER–DETAIL ═══════════ -->
+<section class="sec" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>8 hạng mục sửa chữa – cung cấp</span>
+      <span class="block-title" style="margin-top:16px">Chọn hạng mục — <span class="hl">xem ngay giá & thời gian</span></span>
+      <span class="block-sub">Giá "từ" là phần công sửa – thay thế tại chỗ; vật tư (phớt, dây, van) tính riêng theo kho — tra nhanh ở mục Tra seal kit. Trường hợp đặc biệt báo giá sau khảo sát, không phát sinh ngầm.</span>
+    </div>
+    <div class="md">
+      <div class="md-list rv" id="mdList" role="tablist" aria-label="Chọn hạng mục"></div>
+      <div class="md-panel rv" data-d="1" id="mdPanel">
+        <div class="md-img" id="mdImgWrap">
+          <img id="mdImg" src="assets/img/p1.webp" alt="Sửa hệ thống thủy lực">
+          <span class="md-feat" id="mdFeat" hidden>Yêu cầu nhiều nhất</span>
+          <span class="cap" id="mdCap"><i></i><span id="mdCapT">Băng thử áp suất sau mọi lần sửa</span></span>
+        </div>
+        <div class="md-body" id="mdBody">
+          <h3 id="mdName">—</h3>
+          <span class="md-desc" id="mdDesc">—</span>
+          <table class="mtab" id="mdTab"></table>
+          <div class="md-foot">
+            <div class="md-price"><b id="mdPrice">—</b><small id="mdLead">—</small></div>
+            <div class="md-acts">
+              <button class="btn btn-acc" id="mdGo" type="button">Nhận báo giá hạng mục này<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <a class="btn btn-ghost" href="tel:0908416168">Gọi 0908 416 168</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS BAND ═══════════ -->
+<section class="stats-band" id="stats">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Năng lực xưởng & đội lưu động</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">Con số <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">kiểm tra được</em> trước khi bạn gọi</span>
+    </div>
+    <div class="stats-row">
+      <div class="stat rv" data-d="0"><span class="num"><span class="cnt" data-count="2400">0</span><small>+</small></span><b>Mã phớt-seal sẵn kho</b><small>NOK · TTO · tương thích OEM</small></div>
+      <div class="stat rv" data-d="1"><span class="num"><span class="cnt" data-count="700">0</span><small>bar</small></span><b>Băng thử xy-lanh</b><small>giữ áp 30 phút trước bàn giao</small></div>
+      <div class="stat rv" data-d="2"><span class="num"><span class="cnt" data-count="45">0</span><small>phút</small></span><b>Đến hiện trường TP.HCM</b><small>2 đội lưu động, tới 21:00</small></div>
+      <div class="stat rv" data-d="3"><span class="num"><span class="cnt" data-count="6">0</span><small>tháng</small></span><b>Bảo hành sau sửa</b><small>tái kiểm miễn phí sau 30 ngày</small></div>
+    </div>
+    <div class="qc-row">
+      <div class="qc rv" data-d="0"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><circle cx="12" cy="17" r="1.6" fill="currentColor"/><path d="M2 21h20"/></svg></span><span><b>Băng thử xy-lanh 0–700 bar</b><small>bơm thủy áp, đồng hồ hiệu chuẩn hằng năm</small></span></div>
+      <div class="qc rv" data-d="1"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/><path d="M12 6V3M12 21v-3M3 12h3M18 12h3M5.6 5.6l2.2 2.2M16.2 16.2l2.2 2.2M18.4 5.6l-2.2 2.2M7.8 16.2l-2.2 2.2"/></svg></span><span><b>Tiện & mài phục hồi trục</b><small>máy tiện 3m, mài tròn ngoài đạt Ra 0,4</small></span></div>
+      <div class="qc rv" data-d="2"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span><span><b>Canh dây curoa bằng laser</b><small>đo căng bằng đồng hồ, giảm hao món vành đai</small></span></div>
+      <div class="qc rv" data-d="3"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8ZM8 7h8l1 5H7ZM7 12h10l1 5H6ZM6 17h12v4H6z"/></svg></span><span><b>Checklist 32 điểm + biên bản</b><small>ảnh trước/sau, số đo thực tế kèm nghiệm thu</small></span></div>
+    </div>
+    <div class="partner-row rv">
+      <span class="lbl">Đang bảo trì thường xuyên cho</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M4 17h16M6 17V9l6-5 6 5v8M9 17v-4h6v4"/></svg>Đội máy xúc – đào đất</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h2M19 11a2 2 0 0 1 2 2v4h-2M7 17a2 2 0 1 0 4 0M13 17a2 2 0 1 0 4 0"/></svg>Cho thuê xe nâng – logistics</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M3 21h18M4 21V8l8-5 8 5v13M9 21v-6h6v6"/></svg>Nhà máy dệt – sợi</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M3 13h18"/></svg>Nhà máy thực phẩm – bao bì</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>Xưởng nhựa – ép khuôn</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M12 3v18M5 8c2-3 12-3 14 0M5 16c2 3 12 3 14 0"/></svg>Xưởng gỗ – ván ép</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DAC THU: TRA SEAL KIT + TÁI CHẾ PHỚT ═══════════ -->
+<section class="sec" id="dac-thu">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Dấu ấn An Lực</span>
+      <span class="block-title" style="margin-top:16px">Tra bộ seal kit trong <span class="hl">30 giây</span> — và phớt cũ không thành rác</span>
+      <span class="block-sub">Công cụ tra kho phớt-seal theo dòng máy & đường kính xy-lanh, kèm chương trình thu hồi phớt cũ độc quyền của xưởng.</span>
+    </div>
+    <div class="dt-grid">
+      <div class="finder rv">
+        <h3>Tra seal kit & ước tính chi phí</h3>
+        <p>Chọn dòng máy + đường kính xy-lanh (bore) — hệ thống đối chiếu kho 2.400 mã.</p>
+        <div class="fgrid">
+          <div class="field full">
+            <label for="fBrand">Dòng máy / thiết bị</label>
+            <select id="fBrand">
+              <option value="1.15">Máy xúc Komatsu</option>
+              <option value="1.10">Máy xúc Hitachi</option>
+              <option value="1.35">Máy xúc Caterpillar (CAT)</option>
+              <option value="0.90">Máy xúc Doosan</option>
+              <option value="1.05">Kobelco / Sumitomo</option>
+              <option value="0.85">Xe nâng Hyundai / Toyota</option>
+              <option value="1.00">Máy ép, xy-lanh công nghiệp khác</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="fBore">Đường kính xy-lanh (bore)</label>
+            <div class="sizerow">
+              <input type="range" id="fBore" min="40" max="320" value="120" step="5">
+              <b id="fBoreLbl">120 mm</b>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="fQty">Số bộ cần thay</label>
+            <select id="fQty">
+              <option value="1">1 bộ</option>
+              <option value="3">2 – 5 bộ</option>
+              <option value="8">6 bộ trở lên</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Loại phớt</label>
+            <div class="mode-row" id="fMode">
+              <label class="mode on"><input type="radio" name="fmode" value="new" checked><span>Phớt mới chuẩn</span><small>NOK / TTO — BH 6 tháng</small></label>
+              <label class="mode"><input type="radio" name="fmode" value="rec"><span>Tương thích tái chế</span><small>tiết kiệm nhất</small></label>
+              <label class="mode"><input type="radio" name="fmode" value="both"><span>So sánh cả hai</span><small>khuyên dùng</small></label>
+            </div>
+          </div>
+        </div>
+        <div class="f-out">
+          <div class="fo-main">
+            <span class="avail" id="foAvail"><i></i>Đang đối chiếu kho…</span>
+            <div class="fo-price">
+              <div id="foNewWrap"><small>Phớt mới chuẩn / bộ</small><b id="foNew">—</b></div>
+              <div class="rec" id="foRecWrap"><small>Tương thích tái chế / bộ</small><b id="foRec">—</b></div>
+              <div class="fo-save" id="foSaveWrap"><small>Tiết kiệm khi tái chế</small><b id="foSave">—</b></div>
+            </div>
+          </div>
+          <div class="fo-sub">
+            <span>Tổng lô: <b id="foTotal">—</b></span>
+            <span>Công thay tại chỗ: <b id="foLabor">—</b></span>
+            <span>Khả dụng: <b id="foLead">—</b></span>
+          </div>
+          <div class="fo-cta">
+            <button class="btn btn-acc" id="foGo" type="button">Gửi yêu cầu bộ này<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+            <small>Giá tham khảo ±10% — chốt sau khi đọc mã phớt cũ.</small>
+          </div>
+        </div>
+      </div>
+      <div class="dt-side">
+        <div class="dt-photo rv" data-d="1">
+          <img src="assets/img/space.webp" alt="Xưởng và kho phớt-seal thủy lực của An Lực với bàn sửa xy-lanh và trạm khí nén" loading="lazy">
+          <span class="ph-cap">Kho phớt-seal & bàn sửa xy-lanh — <b>2.400 mã sẵn</b></span>
+        </div>
+        <div class="recyc rv" data-d="2">
+          <span class="eyebrow"><i></i>Chương trình độc quyền</span>
+          <h3>Tái chế phớt seal cũ — giảm 15–25% bộ kế tiếp</h3>
+          <p>Thu hồi phớt cao su & urethane thải, xử lý dầu bám theo chuẩn môi trường — đổi lấy điểm giảm giá trực tiếp trên hóa đơn.</p>
+          <div class="rec-steps">
+            <div class="rec-step"><span class="ri">1</span><span><b>Tháo phớt cũ — An Lực thu hồi tại chỗ</b><small>Kỹ thuật viên phân loại ngay trên công trường, bạn không phải làm gì thêm.</small></span></div>
+            <div class="rec-step"><span class="ri">2</span><span><b>Tích điểm theo cân nặng & loại phớt</b><small>Có trọng số riêng cho phớt urethane máy xúc — loại đắt nhất thị trường.</small></span></div>
+            <div class="rec-step"><span class="ri">3</span><span><b>Trừ thẳng 15–25% bộ seal kế tiếp</b><small>Ghi nhận trên biên bản, áp dụng mọi lần sau, không giới hạn số lần.</small></span></div>
+          </div>
+          <div class="rec-note"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M7 7l2 2M15 15l2 2M17 7l-2 2M7 17l2-2"/></svg>Kèm chứng nhận xử lý phế phụ trưng dầu — cần cho nhà máy có audit ISO 14001.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUY TRÌNH 5 BƯỚC ═══════════ -->
+<section class="sec pipe" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Quy trình cứu hàng tại chỗ</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">5 bước — từ cú gọi tới <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">máy chạy lại</em></span>
+      <span class="block-sub">Mỗi bước có mốc thời gian cam kết. Bạn biết chính xác xe/máy của mình đang ở khâu nào.</span>
+    </div>
+    <div class="flow">
+      <div class="step rv" data-d="0"><span class="n">1</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span><b>Gọi / Zalo sự cố</b><p>Mô tả hiện tượng, quay clip máy đang chạy — kỹ thuật xác nhận ngay</p><span class="meta">10 phút</span></div>
+      <div class="step rv" data-d="1"><span class="n">2</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h2M19 11a2 2 0 0 1 2 2v4h-2M7 17a2 2 0 1 0 4 0M13 17a2 2 0 1 0 4 0"/></svg></span><b>Đội kỹ thuật tới nơi</b><p>Xe tải đầy dụng cụ + phụ tùng nhanh, đi thẳng hiện trường</p><span class="meta">45 phút TP.HCM</span></div>
+      <div class="step rv" data-d="2"><span class="n">3</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><b>Chẩn đoán + báo giá</b><p>Minh mục công & phụ tùng, chốt xong mới tháo máy</p><span class="meta">tại chỗ</span></div>
+      <div class="step rv" data-d="3"><span class="n">4</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><b>Sửa & băng thử</b><p>Thay phớt, phục hồi trục, giữ áp 700 bar trong 30 phút</p><span class="meta">trong ngày</span></div>
+      <div class="step rv" data-d="4"><span class="n">5</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m4 12 6 6L20 6"/></svg></span><b>Nghiệm thu + BH 6 tháng</b><p>Biên bản, ảnh trước/sau, tái kiểm miễn phí sau 30 ngày</p><span class="meta">ký ngay</span></div>
+    </div>
+    <div class="flow-note rv"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFCE93" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5ZM2 8v8l10 5 10-5V8M12 13v8"/></svg>Hạng mục quá khổ không sửa tại chỗ — <b>kéo về xưởng miễn phí trong 15 km</b>, cam kết trả máy tối đa 3 ngày · phớt cũ được thu hồi tái chế trừ tiền bộ kế tiếp</div>
+  </div>
+</section>
+
+<!-- ═══════════ BẢNG THÔNG SỐ (3 TAB) ═══════════ -->
+<section class="sec" id="specs">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Hồ sơ năng lực</span>
+      <span class="block-title" style="margin-top:16px"><span class="hl">Thiết bị — kho — nghiệm thu</span> mở cho khách xem trực tiếp</span>
+      <span class="block-sub">Số liệu cập nhật 01/2026, sao y sổ hiệu chuẩn thiết bị phục vụ audit nhà máy.</span>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-tab="0" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2"/></svg>Thiết bị năng lực</button>
+      <button class="tab" data-tab="1" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>Kho linh kiện</button>
+      <button class="tab" data-tab="2" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 12 6 6L20 6"/></svg>Nghiệm thu & BH</button>
+    </div>
+    <div class="spec-grid">
+      <div class="tblwrap rv">
+        <div class="scroll">
+          <table class="spec-tbl tabpanel on" data-panel="0">
+            <thead><tr><th>Thiết bị</th><th>Thông số chính</th><th>Dùng cho</th><th>Chuẩn đạt</th></tr></thead>
+            <tbody>
+              <tr><td><b>Băng thử xy-lanh</b> — trạm thủy áp</td><td>0–700 bar, giữ áp 30 phút</td><td>xy-lanh tới bore 400mm</td><td class="tol">tụt ≤2%</td></tr>
+              <tr><td><b>Trạm thử bơm thủy lực</b></td><td>động cơ 45 kW, đo lưu lượng – áp lực</td><td>bơm piston, vane, bánh răng</td><td class="tol">đường đặc trưng OEM</td></tr>
+              <tr><td><b>Máy tiện phục hồi</b> — dài 3 m</td><td>tiện + mài tròn ngoài</td><td>thanh trục, piston xy-lanh</td><td class="tol">Ra 0,4 · thẳng 0,02mm/m</td></tr>
+              <tr><td><b>Máy bấm nối dây cao áp</b></td><td>R1 – R4, chống rò đầu nối</td><td>dây thủy lực máy xúc, xe nâng</td><td class="tol">nổ thử 2× áp làm việc</td></tr>
+              <tr><td><b>Bộ canh dây curoa laser</b></td><td>đo song song rãnh + lực căng</td><td>truyền động quạt, bơm, băng tải</td><td class="tol">lệch ≤0,5mm/m</td></tr>
+              <tr><td><b>Máy dò rò siêu âm + UV dye</b></td><td>bắt tiếng rò 20 kHz + đèn nhuộm</td><td>xy-lanh, van, giắc nhanh</td><td class="tol">phát hiện lỗ ≤0,1mm</td></tr>
+              <tr><td><b>Xe cứu hàng lưu động</b> × 2</td><td>bơm tay 700 bar, bấm dây, phụ tùng nhanh</td><td>sửa tại chỗ toàn TP.HCM</td><td class="tol">45 phút tới nơi</td></tr>
+              <tr><td><b>Đồng hồ so & đo láng</b></td><td>độ phân giải 0,001mm</td><td>nghiệm thu trục, piston</td><td class="tol">hiệu chuẩn hằng năm</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="1">
+            <thead><tr><th>Nhóm linh kiện</th><th>Hãng / chuẩn sẵn kho</th><th>Phạm vi</th><th>Giao hàng</th></tr></thead>
+            <tbody>
+              <tr><td><b>Phớt thủy lực</b></td><td>NOK, TTO, Hallite tương thích</td><td>bore 40 – 400 mm</td><td class="tol">sẵn — trong 24h</td></tr>
+              <tr><td><b>O-ring & backup</b></td><td>chuẩn JIS B2401 / AS568</td><td>full bộ size phổ biến</td><td class="tol">sẵn — trong 24h</td></tr>
+              <tr><td><b>Dây cao áp</b></td><td>R1 – R4, bấm nối tại chỗ</td><td>tới 600 bar</td><td class="tol">làm ngay 30 phút</td></tr>
+              <tr><td><b>Van thủy lực</b></td><td>trừ, tràn, cổng, đảo chục, cân</td><td>NG6 – NG32</td><td class="tol">1 – 3 ngày</td></tr>
+              <tr><td><b>Phụ kiện khí nén</b></td><td>FRL, solenoid, giắc nhanh SMC/KCC</td><td>M5 – G1/2</td><td class="tol">sẵn — trong 24h</td></tr>
+              <tr><td><b>Dây curoa & bánh răng</b></td><td>Mitsuboshi, Optibelt, Gates</td><td>A – SPB, đồng bộ đĩa</td><td class="tol">1 – 2 ngày</td></tr>
+              <tr><td><b>Vòng bi & bướu</b></td><td>NSK, SKF hàng thay thế chính hãng</td><td>đầu xy-lanh, trục bơm</td><td class="tol">1 – 3 ngày</td></tr>
+              <tr><td><b>Dầu & lọc thủy lực</b></td><td>VG46 / VG68, lọc hút – hồi – cao áp</td><td>đổi dầu trọn hệ thống</td><td class="tol">sẵn — trong 24h</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="2">
+            <thead><tr><th>Hạng mục nghiệm thu</th><th>Phương pháp</th><th>Chuẩn đạt</th><th>Ghi chú</th></tr></thead>
+            <tbody>
+              <tr><td><b>Giữ áp xy-lanh</b></td><td>băng thử 700 bar / 30 phút</td><td class="tol">tụt ≤2%</td><td>quay video gửi khách</td></tr>
+              <tr><td><b>Độ thẳng piston</b></td><td>đồng hồ so trên khối V</td><td class="tol">≤0,02 mm/m</td><td>bộ phớt khỏi mòn lệch</td></tr>
+              <tr><td><b>Độ nhám trục sau mài</b></td><td>thử nhám so chuẩn</td><td class="tol">Ra 0,4</td><td>phớt sống gấp 2 lần</td></tr>
+              <tr><td><b>Dò rò sau sửa</b></td><td>siêu âm + UV dye toàn mạch</td><td class="tol">0 điểm rò</td><td>biên bản dò riêng</td></tr>
+              <tr><td><b>Hồ sơ bàn giao</b></td><td>ảnh trước/sau + số đo thực</td><td class="tol">đầy đủ từng hạng mục</td><td>lưu hồ sơ 24 tháng</td></tr>
+              <tr><td><b>Bảo hành</b></td><td>6 tháng công + phụ tùng</td><td class="tol">tái kiểm miễn phí 30 ngày</td><td>khách hợp đồng ưu tiên</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tfoot" id="specFoot">9 thiết bị chính được lập hồ sơ, hiệu chuẩn định kỳ 12 tháng — số liệu sao y sổ tài khoản xưởng An Lực.</div>
+      </div>
+      <div class="tips">
+        <div class="tip rv" data-d="0"><b>Tip 1 — Chụp plate máy trước khi gọi</b><p>Một tấm ảnh tên model + số serial trên thân xy-lanh/bơm giúp kỹ thuật mang đúng bộ phớt ngay lần đầu, cắt nửa thời gian chờ.</p></div>
+        <div class="tip rv" data-d="1"><b>Tip 2 — Đổi phớt theo bộ, đừng theo chiếc</b><p>Một phớt cũ còn lại làm rữa cả bộ mới trong vài trăm giờ. Đổi đồng bộ bore + đầu nối + wiper, tuổi thọ phớt tăng gần gấp đôi.</p></div>
+        <div class="tip rv" data-d="2"><b>Tip 3 — Hợp đồng BK là lãi nhất</b><p>Khách hợp đồng bảo trì 32 điểm/quý giảm ~30% chi phí sửa vụn và đứng máy; được ưu tiên đội cứu hàng đầu tiên khi kẹt đồng thời nhiều máy.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ REVIEWS ═══════════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Khách hàng nói gì</span>
+      <span class="block-title" style="margin-top:16px">Máy chạy lại trong ngày — <span class="hl">câu cảm ơn thật</span> từ xưởng máy</span>
+    </div>
+    <div class="rev-shell">
+      <div class="rev-view rv">
+        <div class="rev-item on">
+          <div class="stars">★★★★★</div>
+          <p>"Chiều thứ sáu, xy-lanh tay máy xúc PC200 chảy dầu, thứ bảy phải giao mặt bằng. An Lực tới trong 40 phút, thay bộ phớt tại bãi, thử 700 bar ngay — chiều hôm đó máy đào bình thường. Trả máy không trễ một tiếng nào."</p>
+          <div class="who"><span class="av">TT</span><span><b>Anh Tuấn</b><small>Tổ trưởng bảo trì — công ty đào đất giao thông</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Máy nén khí 75kW đứng giữa ca, xưởng dệt không khí là chết. Họ gọi lại 8 phút, tới 35 phút, thay van + làm sạch bộ làm lạnh trong ca. Từ đó ký hợp đồng bảo trì — 2 quý rồi không phải gọi cứu hàng lần nào."</p>
+          <div class="who"><span class="av">PH</span><span><b>Chị Hạnh</b><small>Trưởng KP cơ điện — nhà máy dệt nhuộm</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Chương trình thu hồi phớt cũ nghe hơi lạ nhưng có thật: đợt đại tu 6 xy-lanh xe nâng, phớt tái chế giảm 22% hóa đơn, còn có chứng nhận xử lý cho bộ phận ISO 14001 của công ty."</p>
+          <div class="who"><span class="av">QD</span><span><b>Anh Dũng</b><small>Giám đốc vận hành — doanh nghiệp cho thuê xe nâng</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Bơm thủy lực máy ép báo tụt áp suốt 2 tuần, ngoài đó đổ lỗi hết chỗ. An Lực test trên băng thử của họ, chỉ đúng cụm tấm van mòn — phục hồi trong 3 ngày, giá bằng 1/3 bơm thay mới. Máy ép chạy êm lại từ đó."</p>
+          <div class="who"><span class="av">HS</span><span><b>Anh Sơn</b><small>Quầy bảo trì — nhà máy bao bì carton</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Dây curoa băng tải cứ 2 tháng tuột lại một lần. Họ canh laser lại toàn bộ trục, mới biết puly mòn lệch 2mm — thay đĩa + canh đúng căng, 8 tháng nay không đụng tới. Sửa đúng bệnh mới tiết kiệm."</p>
+          <div class="who"><span class="av">NV</span><span><b>Anh Vinh</b><small>Quản lý xưởng — cơ sở chế biến gỗ</small></span></div>
+        </div>
+        <div class="rev-dots" id="revDots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="rv" data-d="1">
+        <div class="rev-metric" style="margin-top:0">
+          <div class="rm"><b>92%</b><small>case xử lý tại chỗ, không kéo máy</small></div>
+          <div class="rm"><b>45 phút</b><small>thời gian tới hiện trường TB</small></div>
+          <div class="rm"><b>6 tháng</b><small>bảo hành công + phụ tùng</small></div>
+          <div class="rm"><b>87%</b><small>khách B2B ký hợp đồng BK sau 2 lần sửa</small></div>
+        </div>
+        <div style="margin-top:22px"><a href="#baogia" class="btn btn-navy" style="width:100%">Đưa máy của bạn vào diện được ưu tiên</a></div>
+      </div>
+    </div>
+    <div class="logo-row rv">
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><path d="M4 17h16M6 17V9l6-5 6 5v8"/></svg>Đào Đất Sài Gòn</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><path d="M5 11h14M7 17a2 2 0 1 0 4 0M13 17a2 2 0 1 0 4 0"/></svg>LiftPro Cho thuê xe nâng</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><path d="M3 21h18M4 21V8l8-5 8 5v13"/></svg>Dệtmay Tân Phong</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>PackArt Bao bì</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>Nhựa Minh Long</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><path d="M12 3v18M5 8c2-3 12-3 14 0M5 16c2 3 12 3 14 0"/></svg>Gỗ Việt Hưng</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FORM BÁO GIÁ (CHÍNH) ═══════════ -->
+<section class="sec" id="baogia">
+  <span class="pipe" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="bg-grid">
+      <div class="bg-copy rv">
+        <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Nhận báo giá & điều đội</span>
+        <span class="block-title" style="margin-top:16px">Điền form — <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">15 phút sau</em> kỹ thuật viên gọi lại</span>
+        <span class="block-sub">Gấp? Gọi thẳng 0908 416 168 — không qua tổng đài, người nghe máy là kỹ thuật trực ca.</span>
+        <ul class="bg-list">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo giá minh mục công + phụ tùng — chốt xong mới tháo máy</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Linh kiện sẵn kho 2.400 mã — không chờ đặt hàng nước ngoài</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Khách nhà máy nhận kèm hồ sơ nghiệm thu phục vụ audit ISO</li>
+        </ul>
+        <div class="cert-badges">
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><path d="M2 21h20"/></svg>Băng thử 700 bar</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Trực sự cố tới 21:00</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>320+ khách nhà máy & bãi máy</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>BH 6 tháng + tái kiểm 30 ngày</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>Giảm dần nhờ tái chế phớt</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 14h4"/></svg>Hóa đơn VAT & hợp đồng B2B</span>
+        </div>
+      </div>
+      <form class="gform rv" data-d="1" id="quoteForm1" data-code="BG" novalidate>
+        <h3>Form yêu cầu báo giá / cứu hàng</h3>
+        <p>Điền 30 giây — đủ để điều đúng đội và mang sẵn phụ tùng.</p>
+        <div class="fgrid">
+          <div class="field"><label for="q1Name">Họ tên *</label><input id="q1Name" type="text" placeholder="Nguyễn Văn A" required></div>
+          <div class="field"><label for="q1Phone">Số điện thoại / Zalo *</label><input id="q1Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+          <div class="field"><label for="q1Cat">Hạng mục</label>
+            <select id="q1Cat">
+              <option>Sửa hệ thống thủy lực</option>
+              <option>Sửa máy nén khí</option>
+              <option>Bảo trì xi-lanh thủy lực</option>
+              <option>Thay dây curoa – bánh răng</option>
+              <option>Sửa bơm thủy lực</option>
+              <option>Kiểm tra rò rỉ – xử lý dầu</option>
+              <option>Lắp đặt hệ thống khí nén</option>
+              <option>Bảo trì định kỳ</option>
+            </select>
+          </div>
+          <div class="field"><label for="q1Urg">Mức khẩn</label>
+            <select id="q1Urg">
+              <option>Gấp — cần hôm nay</option>
+              <option>Trong 1 – 3 ngày</option>
+              <option>Lập kế hoạch / báo giá trước</option>
+            </select>
+          </div>
+          <div class="field full"><label for="q1Area">Khu vực hiện trường</label>
+            <select id="q1Area">
+              <option>TP.HCM — nội thành (Q1–Q12)</option>
+              <option>Bình Chánh – Hóc Môn – Nhà Bè</option>
+              <option>Củ Chi – Bình Tân xa trung tâm</option>
+              <option>Bình Dương – Dĩ An – Thuận An</option>
+              <option>Đồng Nai – Long An</option>
+              <option>Ngoài khu vực trên (báo trước)</option>
+            </select>
+          </div>
+          <div class="field full"><label for="q1Note">Mô tả máy & hiện tượng sự cố</label><textarea id="q1Note" placeholder="Vd: máy xúc PC200, xy-lanh búc chảy dầu, bore 120mm — cần gấp sáng mai…"></textarea></div>
+        </div>
+        <button class="btn btn-acc btn-lg" type="submit">Gửi yêu cầu — nhận cuộc gọi trong 15 phút<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+        <small class="secure"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Thông tin chỉ dùng để điều kỹ thuật — hoặc gọi ngay <a href="tel:0908416168">0908 416 168</a></small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT: CARD ĐỊA CHỈ + FORM GỌN ═══════════ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Ghé xưởng hoặc gọi tới</span>
+      <span class="block-title" style="margin-top:16px">Xưởng mở cửa — <span class="hl">mang máy hỏi trực tiếp</span> không hẹn trước</span>
+      <span class="block-sub">Kho linh kiện và băng thử 700 bar xem được ngay tại xưởng; trường hợp nhẹ sửa luôn thể.</span>
+    </div>
+    <div class="contact-grid">
+      <div class="mapcard rv">
+        <div class="svmap">
+          <span class="mtag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F08A1D" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>Lô D7, Đường số 7, KCN Vĩnh Lộc, Bình Chánh, TP.HCM</span>
+          <!--NB93-MAP: 10.8652,106.6797-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.8652,106.6797&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+        </div>
+        <div class="map-body">
+          <div class="go">
+            <a class="btn btn-acc" href="https://www.google.com/maps/search/?api=1&query=KCN+Vinh+Loc+Binh+Chanh+TP+HCM" target="_blank" rel="noopener">Mở Google Maps — chỉ đường<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-ghost" href="tel:0908416168">Gọi xưởng 0908 416 168</a>
+          </div>
+          <div class="cinfo">
+            <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Giờ nhận khách & máy</b><small>T2–T7: 7:30–17:30 · ngoài giờ: đội trực sự cố tới 21:00</small></span></div>
+            <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg></span><span><b>Email hồ sơ & hình sự cố</b><small>baogia@anluc.vn — đính kèm clip máy chạy để chẩn đoán nhanh hơn</small></span></div>
+            <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><b>Bãi xe & xe tải lớn</b><small>cổng KCN rộng, xe đầu kéo ra vào thoải mái — cạnh trạm cân</small></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="side rv" data-d="1">
+        <form class="gform" id="quoteForm2" data-code="CT" novalidate style="background:var(--grad-dark)">
+          <h3>Gửi nhanh — gọi lại ngay</h3>
+          <p>Không nhớ mã thiết bị? Kể hiện tượng, tự kỹ thuật sẽ hỏi tiếp.</p>
+          <div class="fgrid">
+            <div class="field"><label for="q2Name">Họ tên *</label><input id="q2Name" type="text" placeholder="Nguyễn Văn B" required></div>
+            <div class="field"><label for="q2Phone">Số điện thoại / Zalo *</label><input id="q2Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+            <div class="field full"><label for="q2Note">Máy gì — đang bị gì?</label><textarea id="q2Note" placeholder="Vd: xe nâng 3 tấn chạy yếu, xy-lanh cột nâng tụt áp…"></textarea></div>
+          </div>
+          <button class="btn btn-acc btn-lg" type="submit">Gửi — kỹ thuật gọi lại trong 15 phút<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+          <small class="secure">Gấp thì gọi <a href="tel:0908416168">0908 416 168</a> — có người nghe máy, không tổng đài tự động.</small>
+        </form>
+        <div class="cinfo">
+          <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><path d="M2 21h20"/></svg></span><span><b>Xem băng thử 700 bar tại xưởng</b><small>đón khách xem giữ áp trực tiếp trước khi quyết — miễn phí</small></span></div>
+          <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/></svg></span><span><b>Kho phớt mở kệ</b><small>tra mã trực tiếp, có hàng lấy ngay tại quầy trong 15 phút</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Hỏi & đáp</span>
+      <span class="block-title" style="margin-top:16px">Thắc mắc của đội bảo trì — <span class="hl">trả lời thẳng</span></span>
+    </div>
+    <div class="faq-chips rv" id="faqChips">
+      <button class="fchip on" data-k="">Tất cả</button>
+      <button class="fchip" data-k="tại chỗ">Sửa tại chỗ</button>
+      <button class="fchip" data-k="giá">Giá & báo giá</button>
+      <button class="fchip" data-k="linh kiện">Linh kiện</button>
+      <button class="fchip" data-k="bảo hành">Bảo hành</button>
+      <button class="fchip" data-k="hợp đồng">Hợp đồng</button>
+    </div>
+    <div class="faq-list rv" id="faqList"></div>
+    <p class="faq-empty" id="faqEmpty">Không thấy câu hỏi phù hợp — gọi <a href="tel:0908416168" style="color:var(--accent-deep);font-weight:800">0908 416 168</a> để được trả lời ngay.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <span class="pipe" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="fgrid4">
+      <div class="fcol">
+        <div class="flogo"><span class="mark" style="width:42px;height:42px;border-radius:12px;background:var(--grad-accent);display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-6"/><circle cx="12" cy="17" r="1.6" fill="#fff"/><path d="M2 21h20"/></svg></span><b>AN LỰC</b></div>
+        <p>Xưởng kỹ thuật thủy lực – khí nén – truyền động tại KCN Vĩnh Lộc. Sửa tại chỗ cho máy xúc, xe nâng, dây chuyền nhà máy; kho 2.400 mã phớt-seal, băng thử 700 bar, tái chế phớt cũ — phục vụ 320+ khách B2B.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 8.9 8.9 0 0 1-3.2-.6L4 20l1-4a8 8 0 0 1-1-3.9A8.4 8.4 0 0 1 12.5 4 8.4 8.4 0 0 1 21 11.5Z"/></svg></a>
+          <a href="#top" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#top" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>8 hạng mục</h4>
+        <ul class="flinks">
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Sửa hệ thống thủy lực</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Sửa máy nén khí</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Bảo trì xi-lanh thủy lực</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Thay dây curoa – bánh răng</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Sửa bơm thủy lực</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Kiểm tra rò rỉ – xử lý dầu</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Lắp đặt hệ thống khí nén</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Bảo trì định kỳ</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Hỗ trợ khách hàng</h4>
+        <ul class="flinks">
+          <li><a href="#quy-trinh"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Quy trình cứu hàng 5 bước</a></li>
+          <li><a href="#dac-thu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Tra seal kit nhanh</a></li>
+          <li><a href="#dac-thu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Chương trình tái chế phớt</a></li>
+          <li><a href="#specs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Thiết bị & hồ sơ kho</a></li>
+          <li><a href="#baogia"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Yêu cầu báo giá</a></li>
+          <li><a href="#faq"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Xưởng An Lực</h4>
+        <div class="faddr">
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Lô D7, Đường số 7, KCN Vĩnh Lộc, P. Vĩnh Lộc A, Bình Chánh, TP.HCM</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg><a class="hot" href="tel:0908416168">0908 416 168</a></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg><span>baogia@anluc.vn</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>T2–T7: 7:30–17:30 · đội sự cố tới 21:00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="paybar">
+    <div class="wrap">
+      <small>© 2026 Xưởng Kỹ thuật An Lực Co., Ltd — GPKD 0316xxxxxx · MST 0316xxxxxx</small>
+      <div class="pay-items">
+        <span>Chuyển khoản ngân hàng</span><span>COD theo biên bản</span><span>Công nợ B2B 30 ngày</span><span>Hóa đơn VAT 8–10%</span><span>BH 6 tháng</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ FAB DOCK ═══════════ -->
+<div class="dock" id="dock">
+  <a class="main" href="#baogia"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg>Báo giá</a>
+  <a href="tel:0908416168"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Gọi</a>
+  <a href="#dac-thu"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M8 11h6M11 8v6"/></svg>Tra seal</a>
+  <a href="#dich-vu"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="4" height="4" rx="1"/><rect x="10" y="7" width="4" height="4" rx="1"/><rect x="17" y="7" width="4" height="4" rx="1"/><rect x="3" y="14" width="4" height="4" rx="1"/><rect x="10" y="14" width="4" height="4" rx="1"/><rect x="17" y="14" width="4" height="4" rx="1"/></svg>Dịch vụ</a>
+  <button id="dockTop" type="button"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Lên</button>
+</div>
+
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="ti"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg></span><span class="tx"><b id="toastTitle">—</b><small id="toastMsg">—</small></span></div>
+
+<script>
+/*NB93-168*/
+/* ==================== DATA 8 HẠNG MỤC ==================== */
+const SVC=[
+ {n:"01",img:"assets/img/p1.webp",name:"Sửa hệ thống thủy lực",sub:"máy ép · máy xúc · băng tải",feat:1,cap:"Chẩn đoán + thử áp ngay tại hiện trường",
+  desc:"Chẩn đoán tụt áp, rung giật, quá nhiệt toàn hệ thống thủy lực: xy-lanh, cụm van, bơm, ống dẫn — sửa tại chỗ trên máy xúc, máy ép, băng tải, thuyền sà lan.",
+  tab:[["Phạm vi áp lực","tới 700 bar · băng thử giữ 30 phút"],["Đội xử lý","2 đội lưu động + trực sự cố tới 21:00"],["Tiêu chí xong việc","tụt áp ≤2% · dò siêu âm 0 điểm rò"]],
+  price:"Từ 1.200.000đ / lượt công",lead:"Cứu hàng trong ngày — 92% xử lý tại chỗ",kw:"sua he thong thuy luc may ep may cuc tuot ap rung"},
+ {n:"02",img:"assets/img/p2.webp",name:"Sửa máy nén khí",sub:"trục vít & piston 7,5 – 250 kW",feat:0,cap:"Van, lọc, bộ làm lạnh — thay trong ca máy",
+  desc:"Sửa máy nén trục vít & piston: tụt áp, dầu vào khí, quá nhiệt, máy tự ngắt giữa ca. Kèm dịch toàn bộ đầu nén và cân chỉnh van an toàn theo tiêu chuẩn.",
+  tab:[["Dải công suất","7,5 – 250 kW · áp 7 – 13 bar"],["Vật tư sẵn","kit sửa đầu nén, van, lọc dầu – gió"],["Ngừng máy dự kiến","thay van/lọc trong ca — đầu nén 1–2 ngày"]],
+  price:"Từ 900.000đ / lượt công",lead:"Khẩn trong 24h — ưu tiên nhà máy chạy 3 ca",kw:"sua may nen khi truc vit piston dau nen van loc"},
+ {n:"03",img:"assets/img/p3.webp",name:"Bảo trì xi-lanh thủy lực",sub:"bào mài · thay phớt · thử áp",feat:0,cap:"Đổi phớt theo bộ — thu hồi phớt cũ trừ tiền",
+  desc:"Tháo, bào mài phục hồi piston, thay bộ phớt seal, giũa ống và băng thử giữ áp. Có chương trình thu hồi phớt cũ giảm 15–25% bộ kế tiếp.",
+  tab:[["Bore xử lý","40 – 400 mm · hành trình tới 6 m"],["Độ thẳng piston sau sửa","≤0,02 mm/m · nhám Ra 0,4"],["Nghiệm thu","giữ áp 700 bar / 30 phút, quay video"]],
+  price:"Từ 750.000đ / xy-lanh (chưa phớt)",lead:"Sửa nhẹ tại chỗ — phục hồi xưởng 2 – 4 ngày",kw:"bao tri xi lanh thuy luc phot seal may buc"},
+ {n:"04",img:"assets/img/p4.webp",name:"Thay dây curoa – bánh răng",sub:"canh laser · cân bằng · chống tuột",feat:0,cap:"Canh song song rãnh laser — hết chuyện tuột dây",
+  desc:"Thay dây curoa đồng bộ, đĩa puly, bánh răng truyền động cho quạt, bơm, băng tải, máy nghiền. Canh thẳng bằng laser và đo lực căng bằng đồng hồ chuyên dụng.",
+  tab:[["Loại xử lý","curoa sạch, răng, đồng bộ nhiều dây"],["Canh chỉnh","laser song song rãnh, lệch ≤0,5mm/m"],["Phụ tùng","Mitsuboshi · Optibelt · Gates sẵn kho"]],
+  price:"Từ 450.000đ / trụ truyền động",lead:"Trong ca máy — không dừng sản xuất thêm ca",kw:"thay day curoa banh rang puly truyen dong tuot"},
+ {n:"05",img:"assets/img/p5.webp",name:"Sửa bơm thủy lực",sub:"piston · vane · bánh răng",feat:0,cap:"Test đường đặc trưng trên trạm 45 kW",
+  desc:"Tháo, đo khe hở, mài bề mặt, thay cụm mòn cho bơm piston – vane – bánh răng. Trước khi trả máy, bơm được chạy thử và đối chiếu đường đặc trưng áp-lưu lượng.",
+  tab:[["Công suất xử lý","tới 45 kW · tới 350 bar"],["Bàn giao","kèm biên bản thử áp + lưu lượng"],["Linh kiện","cụm piston, tấm van, trục sẵn/khách đặt"]],
+  price:"Từ 1.500.000đ / cụm bơm",lead:"2 – 5 ngày tại xưởng — có bơm mượn ghép tạm",kw:"sua bom thuy luc piston vane banh rang tuot ap"},
+ {n:"06",img:"assets/img/p6.webp",name:"Kiểm tra rò rỉ – xử lý dầu",sub:"siêu âm · UV dye · thu hồi dầu",feat:0,cap:"Phát hiện lỗ rò tới 0,1mm bằng siêu âm",
+  desc:"Rà toàn mạch thủy lực & khí nén bằng siêu âm + thuốc nhuộm UV: bắt điểm rò, xì giắc nhanh, rò van. Kèm dịch lọc – làm sạch và thu hồi dầu thải đúng quy định.",
+  tab:[["Phương pháp","siêu âm 20 kHz + UV dye toàn mạch"],["Báo cáo","hồ sơ điểm rò + ảnh, phục vụ audit"],["Xử lý dầu","lọc tuần hoàn, thu hồi dầu thải có hóa đơn"]],
+  price:"Từ 600.000đ / hệ thống",lead:"Hoàn thành trong 24h kể từ khi tới hiện trường",kw:"kiem tra ro ri dau siep am uv dye loc dau"},
+ {n:"07",img:"assets/img/p7.webp",name:"Lắp đặt hệ thống khí nén",sub:"ống nhôm · FRL · máy nén trạm",feat:0,cap:"Đo thất thoát áp trước – sau khi bàn giao",
+  desc:"Thiết kế và lắp đặt trạm khí nén trọn gói cho nhà máy: máy nén, bình tích, sấy, FRL, đường ống nhôm/inox ren nhanh. Nghiệm thu bằng đo thất thoát áp thực tế.",
+  tab:[["Quy mô","từ 1 máy nén tới dây chuyền phân phối xưởng"],["Vật liệu","ống nhôm ren nhanh · inox · FRL SMC/KCC"],["Nghiệm thu","biểu đồ sụt áp trước/sau + đào tạo vận hành"]],
+  price:"Từ 3.800.000đ / hệ phân nhánh",lead:"Khảo sát miễn phí — thi công 5 – 15 ngày",kw:"lap dat he thong khi nen ong nhom frl may nen tram"},
+ {n:"08",img:"assets/img/p8.webp",name:"Bảo trì định kỳ",sub:"hợp đồng · checklist 32 điểm",feat:0,cap:"Lịch theo giờ máy — báo trước 48 giờ",
+  desc:"Hợp đồng bảo trì theo quý/năm cho đội xe và nhà máy: kiểm 32 điểm, lấy mẫu dầu, dự trù phụ tùng. Khách hợp đồng được ưu tiên cứu hàng đầu tiên khi kẹt đội.",
+  tab:[["Chu kỳ","1 – 3 tháng/lần, theo giờ máy thực chạy"],["Checklist","32 điểm thủy lực + khí nén + truyền động"],["Báo cáo","hao mòn, mẫu dầu, dự trù phụ tùng theo quý"]],
+  price:"Từ 3.500.000đ / tháng / vị trí",lead:"Ký trong tuần — đợt kiểm đầu sau 7 ngày",kw:"bao tri dinh ky hop dong checklist nha may xe nang"}
+];
+
+/* ==================== FAQ ==================== */
+const FAQ=[
+ {q:"Có sửa tại nhà máy/bãi máy của chúng tôi không, hay phải đem máy đi?",a:"92% case được xử lý tại chỗ: đội kỹ thuật mang bơm thủy áp, dụng cụ và phụ tùng nhanh đến hiện trường trong 45 phút nội thành TP.HCM. Riêng hạng mục cần tiện mài (phục hồi piston, ống xy-lanh quá khổ) sẽ tháo cụm kéo về xưởng — miễn phí vận chuyển trong bán kính 15 km.",k:"tại chỗ quy trình"},
+ {q:"Sửa một xy-lanh máy xúc hết khoảng bao nhiêu?",a:"Công tháo lắp + thay phớt tại chỗ từ 750.000đ/xy-lanh; bộ phớt tính riêng theo bore (máy xúc 120mm thường 900.000 – 2.500.000đ tùy hãng). Kỹ thuật viên báo giá minh mục ngay sau khi đo, chốt xong mới tháo máy — không phát sinh ngầm. Xem ước nhanh ở mục Tra seal kit.",k:"giá xi lanh"},
+ {q:"Có sẵn linh kiện không hay phải chờ đặt hàng?",a:"Kho An Lực có 2.400 mã phớt-seal (NOK, TTO và tương thích OEM), dây cao áp R1–R4 bấm nối tại chỗ trong 30 phút, van và phụ kiện khí nén SMC/KCC phổ biến. Hàng sẵn giao/thay trong 24h; mã đặc chủng đặt 3 – 5 ngày — báo rõ ngày trước khi chốt.",k:"linh kiện kho phớt"},
+ {q:"Phớt 'tương thích tái chế' có bền bằng phớt mới không?",a:"Phớt tái chế trong bảng giá là dòng tương thích sản xuất theo tiêu chuẩn NOK/TTO (hàng mới 100%, không phải phớt cũ), bảo hành như phớt mới. Riêng CHƯƠNG TRÌNH tái chế là phía chúng tôi thu hồi phớt thải của bạn để xử lý môi trường — đổi điểm giảm 15–25% cho bộ kế tiếp, không ảnh hưởng chất lượng bộ bạn đang dùng.",k:"tái chế linh kiện chất lượng"},
+ {q:"Bảo hành sau sửa như thế nào?",a:"6 tháng cho cả công và phụ tùng (lỗi do chế độ vận hành hoặc va đập ngoại lực tính riêng). Sau 30 ngày đội quay lại tái kiểm miễn phí; khách hợp đồng bảo trì được ưu tiên xử lý khiếu nại trong 24h.",k:"bảo hành"},
+ {q:"Có nhận gấp ban đêm, cuối tuần, ngày lễ không?",a:"Có đội trực sự cố tới 21:00 hàng ngày và trực T7/CN theo ca. Khẩn ngoài giờ tính phụ thu công 30–50% (báo trước trên điện thoại, ghi rõ trong biên bản — không 'giá đùng lúc'). Nhà máy chạy 3 ca nên ký hợp đồng để khóa mức phụ thu cố định.",k:"tại chỗ khẩn giờ"},
+ {q:"Xuất hóa đơn VAT, ký hợp đồng và công nợ B2B được không?",a:"Đủ cả ba: hóa đơn VAT 8–10%, hợp đồng sửa chữa – bảo trì kèm phụ lục phụ tùng; khách doanh nghiệp sau 3 lần sửa thành công áp dụng công nợ 30 ngày. Mỗi lần sửa có biên bản nghiệm thu + ảnh trước/sau phục vụ audit nội bộ.",k:"hợp đồng hóa đơn"}
+];
+
+/* ==================== HELPERS ==================== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const vnd=n=>n.toLocaleString("vi-VN")+"đ";
+let toastT;
+function toast(title,msg){const t=$("#toast");$("#toastTitle").textContent=title;$("#toastMsg").textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3600)}
+
+/* ==================== REVEAL + FAILSAFE ==================== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;setTimeout(()=>el.classList.add("on"),(+el.dataset.d||0)*120);io.unobserve(el)}}),{threshold:.12});
+$$(".rv").forEach(el=>io.observe(el));
+setTimeout(()=>$$(".rv").forEach(el=>{if(!el.classList.contains("on"))el.classList.add("on")}),1600);
+
+/* ==================== COUNTERS ==================== */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;cio.unobserve(el);
+  const end=+el.dataset.count,t0=performance.now(),dur=1500;
+  (function step(t){const p=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-p,3);el.textContent=Math.round(end*ease).toLocaleString("vi-VN");if(p<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.5});
+$$(".cnt").forEach(el=>cio.observe(el));
+
+/* ==================== HEADER + DOCK ==================== */
+addEventListener("scroll",()=>$("#hdr").classList.toggle("scrolled",scrollY>10),{passive:true});
+const heroEl=$("#hero");
+const heroIO=new IntersectionObserver(es=>es.forEach(e=>$("#dock").classList.toggle("hidden",e.isIntersecting)),{threshold:.18});
+heroIO.observe(heroEl);
+$("#dockTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+
+/* ==================== KHỐI-8 MASTER–DETAIL ==================== */
+const ICONS=[
+ '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+ '<circle cx="12" cy="12" r="9"/><path d="M12 3v9l5 3"/>',
+ '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 7v10M4 9h16M4 15h16"/>',
+ '<circle cx="8" cy="12" r="4"/><circle cx="17" cy="12" r="3"/><path d="M2 12h2M12 12h2M20 12h2"/>',
+ '<path d="M12 3s6 6.3 6 10a6 6 0 0 1-12 0c0-3.7 6-10 6-10Z"/><path d="M9 14a3 3 0 0 0 3 3"/>',
+ '<path d="M12 3s6 6.3 6 10a6 6 0 0 1-12 0c0-3.7 6-10 6-10Z"/><circle cx="12" cy="13" r="2.6"/>',
+ '<path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-5h6v5"/>',
+ '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>'
+];
+const mdList=$("#mdList");
+mdList.innerHTML=SVC.map((s,i)=>`
+ <button class="md-item${i===0?" on":""}" type="button" role="tab" aria-selected="${i===0}" data-i="${i}" data-name="${s.kw} ${s.name.toLowerCase()}">
+   <span class="mn">${s.n}</span>
+   <span class="mt"><b>${s.name}</b><small>${s.sub}</small></span>
+   <span class="ma"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></span>
+ </button>`).join("");
+let mdIdx=0;
+function showSvc(i){
+  mdIdx=i;const s=SVC[i];
+  $$(".md-item").forEach((el,j)=>{el.classList.toggle("on",j===i);el.setAttribute("aria-selected",j===i)});
+  const wrap=$("#mdImgWrap");
+  wrap.classList.remove("md-anim");$("#mdBody").classList.remove("md-anim");
+  void wrap.offsetWidth;
+  wrap.classList.add("md-anim");$("#mdBody").classList.add("md-anim");
+  const im=$("#mdImg");im.src=s.img;im.alt=s.name;
+  $("#mdFeat").hidden=!s.feat;
+  $("#mdCapT").textContent=s.cap;
+  $("#mdName").textContent=s.name;
+  $("#mdDesc").textContent=s.desc;
+  $("#mdTab").innerHTML=s.tab.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("");
+  $("#mdPrice").textContent=s.price;
+  $("#mdLead").textContent=s.lead;
+}
+mdList.addEventListener("click",e=>{const b=e.target.closest(".md-item");if(b)showSvc(+b.dataset.i)});
+showSvc(0);
+$("#mdGo").onclick=()=>{
+  const sel=$("#q1Cat");sel.value=SVC[mdIdx].name;
+  $("#baogia").scrollIntoView({behavior:"smooth"});
+  toast(`Đã chọn "${SVC[mdIdx].name}"`,"Điền tên + SĐT và gửi — kỹ thuật gọi lại trong 15 phút")};
+
+/* ==================== SEARCH header lọc khối-8 ==================== */
+$("#hsearchInput").addEventListener("keydown",e=>{
+  if(e.key!=="Enter")return;const q=e.target.value.trim().toLowerCase();if(!q)return;
+  let n=0;$$(".md-item").forEach(c=>{const hit=(c.dataset.name+" "+c.textContent.toLowerCase()).includes(q);c.classList.toggle("dim",!hit);if(hit)n++});
+  $("#dich-vu").scrollIntoView({behavior:"smooth"});
+  toast(n?`Tìm thấy ${n} hạng mục khớp "${e.target.value}"`:`Không có hạng mục khớp — thử "xy-lanh", "bơm", "rò rỉ"`);
+  if(!n)setTimeout(()=>$$(".md-item").forEach(c=>c.classList.remove("dim")),2500);
+});
+
+/* ==================== SEAL KIT FINDER ==================== */
+const SEAL_K={1.35:1,1.15:.95,1.10:.9,1.05:.85,.9:.8,.85:.75,1:1};
+function sealCalc(){
+  const brand=+$("#fBrand").value,bore=+$("#fBore").value,qty=+$("#fQty").value;
+  const mode=($("#fMode input:checked")||{}).value||"new";
+  $("#fBoreLbl").textContent=bore+" mm";
+  $$("#fMode .mode").forEach(m=>m.classList.toggle("on",m.querySelector("input").checked));
+  const base=Math.pow(bore/100,1.6)*950000*brand*(1+(bore>260?.25:0));
+  const unitNew=Math.round(base/1000)*1000;
+  const unitRec=Math.round(base*.62/1000)*1000;
+  const qK=qty>=8?.85:qty>1?.93:1;
+  const common=bore>=60&&bore<=260;
+  const avail=$("#foAvail");
+  if(common){avail.classList.remove("amber");avail.innerHTML='<i>●</i>Có sẵn kho — giao/thay trong 24h'}
+  else{avail.classList.add("amber");avail.innerHTML='<i>●</i>Ngoài size chuẩn — đặt 3 – 5 ngày'}
+  const showNew=mode!=="rec",showRec=mode!=="new";
+  $("#foNewWrap").style.display=showNew?"":"none";
+  $("#foRecWrap").style.display=showRec?"":"none";
+  $("#foSaveWrap").style.display=showRec&&showNew?"":"none";
+  const unitSel=showRec&&!showNew?unitRec:unitNew;
+  $("#foNew").textContent=vnd(unitNew);
+  $("#foRec").textContent=vnd(unitRec);
+  $("#foSave").textContent="−"+Math.round((1-unitRec/unitNew)*100)+"% ("+vnd(unitNew-unitRec)+"/bộ)";
+  $("#foTotal").textContent=vnd(Math.round(unitSel*qK)*qty)+" / "+qty+" bộ";
+  $("#foLabor").textContent=bore<=160?"450 – 750k/bộ (tại chỗ)":"khảo sát — xy-lanh quá khổ";
+  $("#foLead").textContent=common?"24 giờ":"3 – 5 ngày";
+  window._seal={brand:$("#fBrand").selectedOptions[0].text,bore,qty,unitNew,unitRec,mode,common};
+}
+["fBrand","fQty"].forEach(id=>$("#"+id).addEventListener("change",sealCalc));
+$("#fBore").addEventListener("input",sealCalc);
+$("#fMode").addEventListener("change",sealCalc);
+sealCalc();
+$("#foGo").onclick=()=>{
+  const s=window._seal;
+  const sel=$("#q1Cat");sel.value="Bảo trì xi-lanh thủy lực";
+  $("#q1Note").value=`Tra seal kit: ${s.brand} · bore ${s.bore}mm · ${s.qty} bộ · loại ${s.mode==="rec"?"tương thích tái chế":s.mode==="both"?"so sánh mới/tái chế":"mới chuẩn"}. Ước ${vnd(Math.round((s.mode==="rec"?s.unitRec:s.unitNew)) )}/bộ.`;
+  $("#baogia").scrollIntoView({behavior:"smooth"});
+  toast("Đã chuyển thông số sang form","Thêm tên + SĐT để khóa bộ phớt trong kho 24 giờ")};
+
+/* ==================== TABS ==================== */
+$$(".tab").forEach(t=>t.onclick=()=>{
+  $$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  $$(".tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.panel===t.dataset.tab));
+  $("#specFoot").textContent=["9 thiết bị chính được lập hồ sơ, hiệu chuẩn định kỳ 12 tháng — số liệu sao y sổ tài khoản xưởng An Lực.",
+   "Kho tồn cập nhật tuần; mã đặc chủng đặt từ đại lý chính hãng 2 – 4 ngày làm việc.",
+   "Nghiệm thu 3 lớp: thợ tự đo → tổ trưởng đo lại → biên bản + video giữ áp gửi khách."][+t.dataset.tab]});
+
+/* ==================== REVIEWS ==================== */
+let rIdx=0;const rItems=$$(".rev-item"),rDots=$$("#revDots i");
+function showRev(i){rIdx=i%rItems.length;rItems.forEach((x,j)=>x.classList.toggle("on",j===rIdx));rDots.forEach((x,j)=>x.classList.toggle("on",j===rIdx))}
+rDots.forEach((d,i)=>d.onclick=()=>{showRev(i);clearInterval(rTimer);rTimer=setInterval(()=>showRev(rIdx+1),6000)});
+let rTimer=setInterval(()=>showRev(rIdx+1),6000);
+
+/* ==================== FAQ ==================== */
+const faqList=$("#faqList");
+faqList.innerHTML=FAQ.map(f=>`<div class="fitem" data-k="${f.k}"><button class="fq" type="button">${f.q}<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="fa"><p>${f.a}</p></div></div>`).join("");
+$$(".fq").forEach(b=>b.onclick=()=>{const it=b.parentElement,open=it.classList.contains("open");
+  $$(".fitem").forEach(x=>{x.classList.remove("open");x.querySelector(".fa").style.maxHeight=null});
+  if(!open){it.classList.add("open");const fa=it.querySelector(".fa");fa.style.maxHeight=fa.scrollHeight+"px"}});
+function faqFilter(k){
+  let n=0;$$(".fitem").forEach(it=>{const hit=k===""?true:it.dataset.k.includes(k);it.classList.toggle("hide",!hit);if(hit)n++});
+  $("#faqEmpty").style.display=n?"none":"block"}
+$$("#faqChips .fchip").forEach(c=>c.onclick=()=>{
+  $$("#faqChips .fchip").forEach(x=>x.classList.remove("on"));c.classList.add("on");faqFilter(c.dataset.k)});
+
+/* ==================== FORMS (CTA chính: submit ra toast) ==================== */
+function bindForm(id){
+  const f=$("#"+id);
+  f.addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=f.querySelector("input[type=text]"),phone=f.querySelector("input[type=tel]");
+    if(!name.value.trim()){toast("Thiếu họ tên","Điền họ tên để kỹ thuật biết gọi anh/chị là ai nhé!");name.focus();return}
+    if(!phone.value.trim()){toast("Thiếu số điện thoại","Cần SĐT/Zalo để gọi lại trong 15 phút!");phone.focus();return}
+    if(!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,""))){toast("Số điện thoại chưa đúng","Ví dụ đúng: 0908 416 168");phone.focus();return}
+    const code=f.dataset.code+"-"+new Date().getFullYear()+"-"+String(Math.floor(1000+Math.random()*9000));
+    const urg=(f.querySelector("select")&&id==="quoteForm1")?$("#q1Urg").value:"";
+    toast("Đã gửi yêu cầu "+code,"Kỹ thuật viên gọi lại trong 15 phút"+(urg?" — mức: "+urg.toLowerCase():"")+". Gấp: 0908 416 168");
+    f.reset();
+  });
+}
+bindForm("quoteForm1");bindForm("quoteForm2");
+$$("[data-strip]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();$("#dich-vu").scrollIntoView({behavior:"smooth"})}));
+</script>
+<style>
+/*NB93-168 — chat FAB tư vấn (mechanism tái dùng từ exemplar, nội dung nghề thủy lực/khí nén) */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(31,122,80,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1F7A50,#145238);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:12px;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F4F7F5}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-bottom-left-radius:4px;color:#152535}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(31,122,80,.4);color:#1F7A50;background:#fff;font-weight:700;font-size:12px;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:36px}
+.pkc-chip:hover{background:#E8F5EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(14,42,71,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2F9E6E;box-shadow:0 0 0 3px rgba(47,158,110,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border:none;cursor:pointer;font-size:1rem}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 130px))}.pkc-fab{right:12px;bottom:84px;width:52px;height:52px}}
+</style>
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn kỹ thuật trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🔧</div>
+    <div><div class="pkc-name">Kỹ thuật An Lực</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Kể hiện tượng máy đang bị…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+<script>
+/*NB93-168 — dock tự hạ khi cuộn xuống để không che CTA/giá */
+(function(){var c=document.getElementById('dock');if(!c)return;var last=window.scrollY;
+window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){c.classList.add('hidden')}else if(y<last){c.classList.remove('hidden')}last=y;},{passive:true});})();
+</script>
+</body>
+</html>

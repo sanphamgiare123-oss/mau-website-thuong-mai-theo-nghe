@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KêKho — Kiểm kê &amp; Quản lý kho thuê ngoài | Kho vận gọn gàng · Số liệu sẵn sàng</title>
+<meta name="description" content="KêKho — đội kiểm kê kho thuê ngoài cho doanh nghiệp có kho hàng và shop online: kiểm đếm 2 vòng độc lập, báo cáo xuất nhập tồn trong 48 giờ, bảo mật dữ liệu NDA. Đặt lịch giữ chỗ, đổi/huỷ miễn phí trước 2 giờ. Hotline 0034567899.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"KêKho — Kiểm kê & Quản lý kho thuê ngoài","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Ngõ Kệ Hàng Ngay Ngắn, Phường Mã Vạch Rõ Ràng","addressLocality":"Thành Phố Tồn Kho Xinh","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.8456,"longitude":106.624},"openingHours":"Mo-Sa 07:00-19:00","priceRange":"từ 4.500đ/SKU"}
+</script>
+<style>
+/*NB110-354*/
+:root{
+  --navy:#0B2C4F; --navy-2:#123A66; --navy-3:#071E38;
+  --or:#F26A17; --or-2:#FF8A3D; --or-deep:#D1550C; --or-100:#FFEFE2;
+  --paper:#F5F8FB; --card:#FFFFFF; --kraft:#FFF9F0;
+  --ink:#132A40; --mut:#5E7188;
+  --line:#D9E3ED; --line-2:#C3D2E0;
+  --ok:#1E9E6A; --gold:#F2C94C;
+  --sh:0 10px 26px rgba(7,30,56,.10);
+  --sh2:0 16px 40px rgba(7,30,56,.16);
+  --r:10px; --r2:14px;
+  --mono:'Courier New',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:15.5px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:14.5px;color:var(--ink)}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+h1,h2,h3,h4{font-family:'Exo 2','Segoe UI',sans-serif;line-height:1.18;letter-spacing:.005em}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.sec{padding:66px 0}
+.sec-head{max-width:660px;margin:0 auto 36px;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:9px;background:var(--or-100);color:var(--or-deep);font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;padding:7px 15px;border-radius:8px;border:1.5px dashed rgba(209,85,12,.35)}
+.kicker .i{width:15px;height:15px}
+.sec-head h2{font-size:clamp(25px,3.6vw,35px);color:var(--navy);margin:14px 0 10px}
+.sec-head p{color:var(--mut);font-size:15px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+::selection{background:var(--or-100);color:var(--or-deep)}
+
+/* ===== NÚT ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:11px;padding:13px 20px;font-size:14.5px;min-height:47px;white-space:nowrap;transition:.22s;position:relative}
+.btn-or{background:var(--or);color:#fff;box-shadow:0 10px 22px rgba(242,106,23,.32)}
+.btn-or:hover{background:var(--or-deep);transform:translateY(-2px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-2);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--or);color:var(--or-deep);transform:translateY(-2px)}
+.btn-line{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold)}
+.btn .i{width:18px;height:18px}
+
+/* ===== HEADER ===== */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(245,248,251,.92);backdrop-filter:blur(10px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:16px;padding:10px 20px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:11px;background:var(--navy);color:var(--gold);display:grid;place-items:center;flex:none;position:relative;border:1.5px solid rgba(242,201,76,.4)}
+.logo .mark::after{content:"";position:absolute;top:5px;left:5px;right:5px;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 3px,transparent 3px 5px);opacity:.7;border-radius:2px}
+.logo .mark .i{width:22px;height:22px}
+.logo .lg-t{display:block;font-family:'Exo 2',sans-serif;font-weight:800;font-size:19px;color:var(--navy);line-height:1.1}
+.logo .lg-s{display:block;font-size:11px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{font-weight:700;font-size:13.8px;color:var(--ink);padding:9px 12px;border-radius:9px;transition:.2s;white-space:nowrap}
+nav.main a:hover{color:var(--or-deep);background:var(--or-100)}
+.hd-cta{display:flex;gap:9px;align-items:center}
+.hd-tel{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:800;font-size:14.5px;color:var(--navy);border:1.5px solid var(--line-2);background:#fff;border-radius:10px;padding:10px 13px;min-height:44px;white-space:nowrap}
+.hd-tel .i{width:16px;height:16px;color:var(--or)}
+.hd-cta .btn{padding:11px 15px;min-height:44px;font-size:13.5px}
+
+/* ===== HERO — PHIẾU KIỂM KÊ KHỔ LỚN (nền sáng, khác hero tối của exemplar) ===== */
+.hero{position:relative;background:linear-gradient(180deg,#EDF3F9,var(--paper) 78%);border-bottom:1.5px solid var(--line);overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;background-image:
+  repeating-linear-gradient(90deg,rgba(11,44,79,.05) 0 1.5px,transparent 1.5px 96px),
+  repeating-linear-gradient(0deg,rgba(11,44,79,.035) 0 1.5px,transparent 1.5px 96px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:42px;align-items:center;padding:54px 20px 60px}
+.hero .kicker{background:#fff}
+.hero h1{font-size:clamp(29px,4.4vw,44px);color:var(--navy);margin:16px 0 14px;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--or);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;background:rgba(242,106,23,.18);z-index:-1;border-radius:3px}
+.hero .lead{color:#42556D;font-size:15.5px;max-width:500px}
+.hero .lead b{color:var(--navy)}
+.hero-cta{display:flex;gap:11px;flex-wrap:wrap;margin:22px 0 20px}
+.hero-cta .btn-xl{font-size:16px;padding:16px 24px;min-height:56px}
+.hero-note{display:inline-flex;align-items:center;gap:8px;font-size:12.8px;font-weight:700;color:var(--mut)}
+.hero-note .i{width:15px;height:15px;color:var(--ok)}
+.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.htag{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:9px 13px;font-size:12.8px;font-weight:800;color:var(--navy);box-shadow:0 3px 8px rgba(7,30,56,.05);position:relative}
+.htag::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--or);flex:none;box-shadow:0 0 0 2.5px var(--or-100)}
+/* poster bìa trong khung "bản dán kho" — nguyên khung, không crop chữ */
+.hero-pic{position:relative;min-width:0}
+.clip-frame{position:relative;background:#fff;border:1.5px solid var(--line-2);border-radius:var(--r2);padding:13px 13px 10px;box-shadow:var(--sh2);transform:rotate(-1.1deg)}
+.clip-frame .clip{position:absolute;top:-11px;left:50%;transform:translateX(-50%);width:96px;height:22px;background:linear-gradient(180deg,var(--navy-2),var(--navy));border-radius:7px;border:1.5px solid var(--navy-3);box-shadow:0 4px 8px rgba(7,30,56,.3)}
+.clip-frame .clip::after{content:"";position:absolute;left:50%;top:6px;transform:translateX(-50%);width:40px;height:7px;border-radius:99px;background:rgba(255,255,255,.22)}
+.clip-frame img{border-radius:7px;width:100%}
+.clip-ft{display:flex;align-items:center;gap:12px;padding:9px 6px 2px}
+.clip-ft .bcode{flex:0 0 auto}
+.clip-ft .cl-code{font-family:var(--mono);font-weight:800;font-size:12.5px;color:var(--mut);letter-spacing:.14em}
+.clip-ft .cl-stamp{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--or);color:var(--or-deep);border-radius:99px;padding:4px 11px;font-family:'Exo 2',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.06em;transform:rotate(-3deg);text-transform:uppercase}
+.bk-badge{position:absolute;right:-10px;top:-16px;background:var(--or);color:#fff;border-radius:12px;padding:10px 15px;text-align:center;transform:rotate(3deg);box-shadow:0 12px 26px rgba(242,106,23,.4);z-index:3}
+.bk-badge b{display:block;font-family:'Exo 2',sans-serif;font-size:19px;line-height:1.05}
+.bk-badge span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+
+/* ===== BĂNG SỐ LIỆU — phiếu đối chiếu (navy, nhịp tối giữa các khối sáng) ===== */
+.sheet{background:linear-gradient(140deg,var(--navy-2),var(--navy) 55%,var(--navy-3));color:#fff;position:relative;overflow:clip}
+.sheet::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 14px,transparent 14px 28px)}
+.sheet .wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:34px 20px}
+.st b{display:block;font-family:var(--mono);font-weight:800;font-size:29px;color:var(--gold);line-height:1.1;letter-spacing:.02em}
+.st b em{font-style:normal;font-size:16px;color:#E8C766}
+.st>span{display:block;font-size:12.8px;font-weight:600;color:#BBD0E6;margin-top:5px}
+.st{border-left:2px solid rgba(255,255,255,.14);padding-left:16px}
+.st:first-child{border-left:0;padding-left:0}
+
+/* ===== KHỐI-8 — TEM KIỂM KÊ KHO (pattern #15 biến thể: tem đếm hàng KH-01…) ===== */
+.tagwall{background:var(--paper);position:relative}
+.tagwall::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(11,44,79,.045) 0 3px,transparent 3px 118px),
+  linear-gradient(180deg,rgba(217,227,237,.5),transparent 140px)}
+.tagwall .wrap{position:relative}
+.rail{display:flex;align-items:center;gap:14px;margin-bottom:8px;font-family:var(--mono);font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--mut)}
+.rail::before,.rail::after{content:"";flex:1;height:0;border-top:2px dashed var(--line-2)}
+.tag-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tag{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;position:relative;box-shadow:0 5px 14px rgba(7,30,56,.07);transition:transform .25s,box-shadow .25s,border-color .25s;min-width:0}
+.tag:nth-child(even){transform:translateY(16px)}
+.tag:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:var(--or-2)}
+.tag:nth-child(even):hover{transform:translateY(11px)}
+/* mép xé tem: hai khuyết tròn + đường cắt nét đứt dưới đáy thẻ */
+.tag-cut{height:14px;margin:auto 14px 0;border-top:2px dashed var(--line-2);position:relative}
+.tag-cut::before,.tag-cut::after{content:"";position:absolute;top:-7px;width:14px;height:14px;border-radius:99px;background:var(--paper);border:1.5px solid var(--line)}
+.tag-cut::before{left:-21px}
+.tag-cut::after{right:-21px}
+.tag-top{display:flex;align-items:center;gap:9px;padding:7px 12px;border-bottom:1.5px solid var(--line)}
+.hole{width:13px;height:13px;border-radius:99px;background:radial-gradient(circle at 40% 35%,#fff 30%,#D6E0EA 70%);box-shadow:inset 0 1.5px 3px rgba(7,30,56,.4),0 1px 0 #fff;border:1px solid var(--line-2);flex:none}
+.tcode{font-family:var(--mono);font-weight:800;font-size:12.5px;color:var(--navy);letter-spacing:.1em;background:var(--or-100);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.tkhu{font-family:var(--mono);font-weight:800;font-size:11px;color:var(--mut);letter-spacing:.12em;white-space:nowrap}
+.tag-top .bcode{margin-left:auto;opacity:.85}
+.tag-ph{position:relative;overflow:hidden;margin:9px 9px 0;border-radius:8px;border:1px solid var(--line)}
+/*NB110-354 — ảnh SP chiếm 5/4 thẻ (cắt nhẹ phần sàn dưới, giữ nguyên banner chữ trên cùng) */
+.tag-ph img{width:100%;aspect-ratio:5/4;object-fit:cover;object-position:center top}
+.tag-ph::after{content:"";position:absolute;left:0;right:0;top:-40%;height:34%;background:linear-gradient(180deg,transparent,rgba(255,138,61,.28),transparent);transform:rotate(0deg);transition:top .5s;pointer-events:none}
+.tag:hover .tag-ph::after{top:110%}
+.tag .badge{position:absolute;top:16px;left:16px;z-index:2;background:var(--or);color:#fff;font-family:'Exo 2',sans-serif;font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:7px;box-shadow:0 6px 14px rgba(242,106,23,.4)}
+.tag .badge.navy{background:var(--navy);box-shadow:0 6px 14px rgba(7,30,56,.4)}
+.tag-bd{padding:11px 13px 9px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tag-bd h3{font-size:16px;color:var(--navy);font-weight:800}
+.tag-bd p{font-size:12.6px;color:var(--mut);flex:1}
+.cnts{display:flex;flex-wrap:wrap;gap:5px}
+.cnts span{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-weight:800;font-size:10.8px;color:var(--navy);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:3px 7px}
+.cnts span.okc::before{content:"✓";color:var(--ok);font-weight:800}
+.cnts span.hic{color:var(--or-deep);background:var(--or-100);border-color:rgba(209,85,12,.25)}
+.tag-ft{display:flex;align-items:center;gap:9px;padding:9px 13px 12px}
+.pri{font-weight:800;color:var(--or-deep);font-size:14.5px;font-family:'Exo 2',sans-serif;line-height:1.2;min-width:0}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:700;font-family:'Segoe UI',sans-serif;white-space:nowrap}
+.add{margin-left:auto;border:0;background:var(--navy);color:#fff;border-radius:9px;padding:9px 12px;font-weight:800;font-size:12.8px;min-height:40px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.add .i{width:15px;height:15px}
+.add:hover{background:var(--or)}
+/* thẻ nổi bật — TO hơn hẳn: span 2 cột, nội dung ngang (ảnh trái + tem phải) */
+.tag.feat{grid-column:span 2;display:grid;grid-template-columns:46% minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"top top" "ph bd" "cut cut";border:2px solid var(--or);background:linear-gradient(180deg,#FFFDF9,#fff);box-shadow:0 14px 34px rgba(242,106,23,.16)}
+.tag.feat:nth-child(even){transform:translateY(0)}
+.tag.feat:hover{transform:translateY(-5px)}
+.tag.feat .tag-top{grid-area:top}
+.tag.feat .tag-ph{grid-area:ph;margin:12px 0 12px 12px}
+.tag.feat .tag-ph img{width:100%;height:100%;object-fit:cover;object-position:center top;aspect-ratio:auto}
+.tag.feat .tag-bd{grid-area:bd}
+.tag.feat .tag-cut{grid-area:cut;margin:0 14px}
+.tag.feat .tag-bd h3{font-size:21px}
+.tag.feat .tag-bd p{font-size:13.4px}
+.tag.feat .cnts span{font-size:11.8px}
+.tag.feat .pri{font-size:19px}
+.tag.feat .add{font-size:13.5px;padding:11px 16px}
+.tag.feat .badge{top:12px;left:12px;right:auto;border-radius:7px}
+.tag.feat .badge.navy{display:none}
+
+/* ===== dacThu — LỊCH KHUNG GIỜ TRỐNG (bảng lịch trực trên giấy kraft) ===== */
+.slot-sec{background:linear-gradient(180deg,var(--kraft),#FBF3E4)}
+.slot-board{background:#fff;border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:clamp(18px,3vw,30px);display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(18px,3vw,30px)}
+.slb-steps{display:flex;flex-direction:column;gap:18px;min-width:0}
+.slb-lb{display:flex;align-items:center;gap:9px;font-family:'Exo 2',sans-serif;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.slb-lb .n{width:24px;height:24px;border-radius:99px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line-2);background:#fff;border-radius:9px;padding:10px 14px;font-weight:700;font-size:13px;color:var(--ink);min-height:42px;transition:.18s;display:inline-flex;align-items:center;gap:7px}
+.chip:hover{border-color:var(--or)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.full{opacity:.42;text-decoration:line-through;cursor:not-allowed;pointer-events:none}
+.chip .st-dot{width:7px;height:7px;border-radius:99px;background:var(--ok);flex:none}
+.chip.full .st-dot{background:var(--bad,#C4453A)}
+.chip.held{background:var(--or);border-color:var(--or);color:#fff}
+/* phiếu giữ chỗ bên phải */
+.slb-out{background:var(--kraft);border:1.5px dashed var(--line-2);border-radius:13px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;position:relative}
+.slb-out::before{content:"";position:absolute;top:14px;left:14px;width:11px;height:11px;border-radius:99px;background:radial-gradient(circle at 40% 35%,#fff 30%,#E3D9C6 70%);box-shadow:inset 0 1.5px 3px rgba(80,60,20,.4)}
+.slb-out h3{font-family:'Exo 2',sans-serif;font-size:16.5px;color:var(--navy)}
+.so-row{display:flex;justify-content:space-between;gap:12px;font-size:13.4px;border-bottom:1px dashed var(--line-2);padding-bottom:8px}
+.so-row span{color:var(--mut);font-weight:600}
+.so-row b{font-family:var(--mono);color:var(--navy);text-align:right}
+.so-row b.hlv{color:var(--or-deep)}
+.slb-out .btn{width:100%}
+.slb-fine{font-size:12px;color:#8A7A5E;display:flex;gap:7px;align-items:center}
+.slb-fine .i{width:14px;height:14px;color:var(--ok)}
+
+/* ===== QUY TRÌNH — thước đo tuyến kiểm (4 bước) ===== */
+.proc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:pv}
+.pv{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:22px 18px;position:relative;transition:.25s;min-width:0}
+.pv:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--or-2)}
+.pv .pv-num{width:44px;height:44px;border-radius:11px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-family:'Exo 2',sans-serif;font-weight:800;font-size:17px;position:relative;box-shadow:0 6px 14px rgba(7,30,56,.25)}
+.pv .pv-num::after{content:"";position:absolute;top:-8px;right:-8px;width:15px;height:15px;border-radius:99px;background:radial-gradient(circle at 40% 35%,#fff 30%,#D6E0EA 70%);box-shadow:inset 0 1.5px 3px rgba(7,30,56,.4);border:1px solid var(--line-2)}
+.pv h3{font-size:16px;color:var(--navy);margin:14px 0 7px}
+.pv p{font-size:12.9px;color:var(--mut)}
+.pv .pv-meta{display:inline-flex;align-items:center;gap:6px;margin-top:11px;background:var(--or-100);color:var(--or-deep);font-family:var(--mono);font-weight:800;font-size:11.4px;padding:5px 10px;border-radius:7px}
+.pv .pv-meta .i{width:13px;height:13px}
+.pv:not(:last-child)::after{content:"";position:absolute;top:44px;right:-14px;width:12px;height:2px;background:repeating-linear-gradient(90deg,var(--line-2) 0 3px,transparent 3px 6px)}
+
+/* ===== CAM KẾT — 4 tem cam kết có mộc ===== */
+.com-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.com{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:22px 18px;position:relative;transition:.25s;min-width:0}
+.com:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.com .com-ic{width:48px;height:48px;border-radius:12px;background:var(--or-100);color:var(--or-deep);display:grid;place-items:center;margin-bottom:13px}
+.com .com-ic .i{width:23px;height:23px}
+.com h3{font-size:15.5px;color:var(--navy);margin-bottom:7px}
+.com p{font-size:12.7px;color:var(--mut)}
+.com .com-stamp{position:absolute;top:14px;right:14px;width:52px;height:52px;border-radius:99px;border:2.5px double var(--line-2);color:var(--line-2);display:grid;place-items:center;font-family:'Exo 2',sans-serif;font-weight:800;font-size:11px;text-align:center;line-height:1.1;transform:rotate(10deg);transition:.3s}
+.com:hover .com-stamp{border-color:var(--or);color:var(--or-deep);transform:rotate(0deg) scale(1.06)}
+.com-strip{margin-top:30px;background:var(--navy);border-radius:16px;padding:26px clamp(18px,3vw,32px);display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;color:#fff;position:relative;overflow:clip}
+.com-strip::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 14px,transparent 14px 28px)}
+.com-strip>*{position:relative}
+.com-strip h3{font-size:19px}
+.com-strip p{color:#BBD0E6;font-size:13.5px}
+.com-strip .acts{display:flex;gap:11px;flex-wrap:wrap}
+
+/* ===== VỀ KÊKHO — M4: nền mờ space + thẻ nổi ===== */
+.ve{position:relative;overflow:clip;color:#fff}
+.ve-bg{position:absolute;inset:-30px;background:url('assets/img/space.webp') center/cover;filter:blur(22px) brightness(.9);transform:scale(1.08)}
+.ve-ov{position:absolute;inset:0;background:linear-gradient(100deg,rgba(7,30,56,.94),rgba(11,44,79,.86))}
+.ve .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:70px 20px}
+.ve .kicker{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:var(--gold)}
+.ve h2{font-size:clamp(24px,3.4vw,33px);margin:14px 0 12px}
+.ve .ve-p{color:#C9D9EA;font-size:14.5px;margin-bottom:12px}
+.ve-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:20px 0 22px}
+.ve-m{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:11px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;backdrop-filter:blur(6px);min-width:0}
+.ve-m .i{width:19px;height:19px;color:var(--gold);margin-top:2px}
+.ve-m b{display:block;font-size:13.6px}
+.ve-m span{display:block;font-size:12px;color:#B9CCE0}
+.ve-cta{display:flex;gap:11px;flex-wrap:wrap}
+.ve-pic{position:relative;min-width:0}
+.ve-pic .clip-frame{transform:rotate(1.2deg);background:rgba(255,255,255,.97)}
+.ve-pic .ve-badge{position:absolute;left:-12px;bottom:-14px;background:var(--or);color:#fff;border-radius:11px;padding:11px 15px;transform:rotate(-3deg);box-shadow:0 12px 26px rgba(242,106,23,.4);z-index:3}
+.ve-pic .ve-badge b{display:block;font-family:'Exo 2',sans-serif;font-size:18px;line-height:1.05}
+.ve-pic .ve-badge span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+/* ===== ĐÁNH GIÁ — panel đối chiếu + 4 phiếu khách ===== */
+.rv-g{display:grid;grid-template-columns:.9fr 1.5fr;gap:20px;align-items:stretch}
+.rv-side{background:var(--navy);color:#fff;border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0;position:relative;overflow:clip}
+.rv-side::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 14px,transparent 14px 28px)}
+.rv-side>*{position:relative}
+.rv-side .big{font-family:'Exo 2',sans-serif;font-size:41px;font-weight:800;color:var(--gold);line-height:1}
+.rv-side .big small{font-size:15px;color:#BBD0E6;font-weight:700}
+.rv-side .cap{font-size:12.8px;color:#BBD0E6;font-weight:600}
+.bar-row{border-top:1.5px dashed rgba(255,255,255,.16);padding-top:12px}
+.bar-row .bt{display:flex;justify-content:space-between;font-size:12.8px;font-weight:700;color:#DCE7F2;margin-bottom:6px}
+.bar-row .bt b{color:var(--gold)}
+.bar{height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--or),var(--gold));width:0;transition:width 1s .3s}
+.rv-side h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:#8FA9C4}
+.rv-side .p-chips{display:flex;flex-wrap:wrap;gap:7px}
+.rv-side .p-chips span{font-size:11.8px;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);padding:6px 11px;border-radius:99px}
+.rv-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;min-width:0}
+.rv-card{background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:17px;display:flex;flex-direction:column;gap:9px;min-width:0;transition:.22s}
+.rv-card:hover{box-shadow:var(--sh);border-color:var(--or-2)}
+.rv-card .stars{color:#EFA82B;letter-spacing:2.5px;font-size:13px}
+.rv-card p{font-size:12.9px;color:#3D5068;flex:1}
+.rv-card b{font-size:13px;color:var(--navy)}
+.rv-card span{font-size:11.6px;color:var(--mut)}
+
+/* ===== LIÊN HỆ + MAP ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:stretch}
+.ct-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.ct-card h3{font-size:18px;color:var(--navy)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:13.8px;color:#3D5068}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:10px;background:var(--or-100);color:var(--or-deep);display:grid;place-items:center}
+.ct-line .ic .i{width:18px;height:18px}
+.ct-line b{color:var(--navy)}
+.ct-line .tel{font-family:var(--mono);font-weight:800;font-size:20px;color:var(--or-deep)}
+.ct-card .btn{align-self:flex-start}
+.map-card{border-radius:14px;overflow:hidden;border:1.5px solid var(--line);min-height:300px;background:#fff}
+.map-card iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+
+/* ===== FAQ ===== */
+.faq-g{display:grid;grid-template-columns:1.55fr .8fr;gap:20px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:10px;min-width:0}
+.qa{background:#fff;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;transition:.2s}
+.qa.open{border-color:var(--or-2)}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 17px;text-align:left;font-weight:800;font-size:14.2px;color:var(--navy);min-height:50px;font-family:'Exo 2',sans-serif}
+.qa>button i{font-style:normal;color:var(--or);font-size:19px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 17px 15px;font-size:13.4px;color:#3D5068}
+.qa.open .a{display:block}
+.faq-side{background:var(--kraft);border:1.5px dashed var(--line-2);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:11px;position:sticky;top:84px}
+.faq-side h3{font-size:16px;color:var(--navy)}
+.faq-side p{font-size:12.9px;color:#6B5C42}
+.faq-side .tel{font-family:var(--mono);font-weight:800;font-size:21px;color:var(--or-deep)}
+.faq-side .btn{width:100%}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-3);color:#AFC4DA;margin-top:0}
+.ft-g{display:grid;grid-template-columns:1.35fr 1fr 1fr 1.15fr;gap:28px;padding:44px 0 26px}
+.ft-g h4{color:#fff;font-size:13.5px;margin-bottom:12px;letter-spacing:.05em;font-family:'Exo 2',sans-serif}
+.ft-g p,.ft-g a{font-size:12.8px;display:block;margin-bottom:7px;color:#AFC4DA}
+.ft-g a:hover{color:var(--or-2)}
+.ft-brand .logo .lg-t{color:#fff}
+.ft-brand .logo .lg-s{color:#7E97B3}
+.ft-brand>p{margin-top:12px}
+.ft-g a.ft-hot{display:inline-flex;align-items:center;gap:9px;margin-top:13px;background:var(--or);color:#fff;padding:10px 16px;border-radius:10px;font-family:var(--mono);font-weight:800;font-size:15px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding:14px 0;text-align:center;font-size:11.8px;color:#7E97B3}
+
+/* ===== FAB ĐẶT LỊCH (SVG lịch/clipboard — KHÔNG icon giỏ) ===== */
+.bk-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:57px;height:57px;border-radius:14px;background:var(--navy);color:var(--gold);display:grid;place-items:center;box-shadow:0 12px 28px rgba(7,30,56,.4);border:1.5px solid rgba(242,201,76,.4);transition:.25s;padding:0}
+.bk-fab:hover{background:var(--or);color:#fff;transform:translateY(-2px)}
+.bk-fab .i{width:26px;height:26px}
+.bk-fab .pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+body.chat-open .bk-fab{opacity:0;pointer-events:none}
+
+/* ===== DRAWER ĐẶT LỊCH KIỂM KÊ (funnel chính) ===== */
+.bk-mask{position:fixed;inset:0;background:rgba(7,24,44,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.bk-mask.on{opacity:1;pointer-events:auto}
+#bkDrawer{position:fixed;top:0;right:0;width:430px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.22)}
+#bkDrawer.on{transform:none}
+.bk-head{display:flex;align-items:center;gap:11px;padding:15px 18px;background:var(--navy);color:#fff;flex:none}
+.bk-head .i{width:22px;height:22px;color:var(--gold)}
+.bk-head h3{font-size:16.5px;flex:1;font-family:'Exo 2',sans-serif}
+.bk-head small{display:block;font-size:11.3px;color:#B9CCE0;font-weight:600}
+.bk-x{border:0;background:rgba(255,255,255,.12);width:38px;height:38px;border-radius:10px;font-size:15px;color:#fff}
+.bk-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 20px;display:flex;flex-direction:column;gap:14px}
+.bk-sec{border:1.5px solid var(--line);border-radius:12px;background:#fff;padding:13px 14px 15px;min-width:0}
+.bk-sec>h4{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:800;font-size:11.5px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase;margin-bottom:10px}
+.bk-sec>h4::before{content:"";width:9px;height:9px;border-radius:99px;background:radial-gradient(circle at 40% 35%,#fff 30%,#D6E0EA 70%);box-shadow:inset 0 1.5px 2px rgba(7,30,56,.4);border:1px solid var(--line-2)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.frow .full{grid-column:1/-1}
+.bk-body label{display:block;font-size:12px;font-weight:800;color:var(--navy);margin:9px 0 5px}
+.bk-body label:first-child{margin-top:0}
+.bk-body input,.bk-body select,.bk-body textarea{width:100%;padding:11px 12px;border:1.5px solid var(--line-2);border-radius:10px;font-size:14px;background:#fff;min-height:44px}
+.bk-body textarea{min-height:58px;resize:vertical}
+.bk-body input:focus,.bk-body select:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px var(--or-100)}
+.bk-body .err{border-color:#C4453A;background:#FFF6F5}
+.bk-sum{background:var(--kraft);border:1.5px dashed var(--line-2);border-radius:11px;padding:12px 14px;font-size:12.8px;color:#6B5C42;display:flex;gap:9px;align-items:flex-start}
+.bk-sum .i{width:16px;height:16px;color:var(--or);margin-top:2px}
+.bk-cta{width:100%;flex:none}
+.bk-fine{font-size:11.8px;color:var(--mut);text-align:center;display:flex;gap:6px;justify-content:center;align-items:center}
+.bk-fine .i{width:13px;height:13px;color:var(--ok)}
+/* xác nhận tại trang */
+.bk-done{display:none;flex-direction:column;align-items:center;text-align:center;gap:11px;padding:26px 12px}
+.bk-done.on{display:flex}
+.bk-done .ok-ic{width:64px;height:64px;border-radius:99px;background:#E7F6EF;color:var(--ok);display:grid;place-items:center}
+.bk-done .ok-ic .i{width:30px;height:30px}
+.bk-done h4{font-family:'Exo 2',sans-serif;font-size:19px;color:var(--navy)}
+.bk-done .code{font-family:var(--mono);font-weight:800;font-size:21px;letter-spacing:.16em;color:var(--or-deep);background:var(--or-100);border:1.5px dashed rgba(209,85,12,.4);border-radius:10px;padding:8px 18px}
+.bk-done dl{width:100%;margin:6px 0;text-align:left;border:1.5px solid var(--line);border-radius:11px;background:#fff;padding:6px 14px}
+.bk-done dl div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.bk-done dl div:last-child{border-bottom:0}
+.bk-done dl dt{color:var(--mut);font-weight:600}
+.bk-done dl dd{font-family:var(--mono);font-weight:800;color:var(--navy);text-align:right}
+
+/* ===== CHAT (pkc — không bot) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:57px;height:57px;border-radius:99px;background:var(--or);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(242,106,23,.4);padding:0}
+.pkc-fab .i{width:24px;height:24px}
+.pkc-fab .pkc-dot{position:absolute;top:4px;right:4px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:86px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:#fff;border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--sh2);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--navy);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+.pkc-ava .i{width:20px;height:20px;color:var(--gold)}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85;font-weight:600}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:230px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:var(--paper)}
+.mg{max-width:84%;padding:9px 12px;border-radius:12px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:700;color:var(--navy);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1.5px solid var(--line);background:#fff}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line-2);border-radius:10px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--or);color:#fff;border-radius:10px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST — 2 phần tử (b + span) ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(440px,92vw)}
+body.bk-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--navy-3);color:#EAF2FA;border-radius:12px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s;border-left:4px solid var(--or)}
+.toast b{display:block;font-size:13.5px;color:var(--gold);margin-bottom:2px}
+.toast span{font-size:12.6px;color:#C9D9EA}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1080px){
+  nav.main{display:none}
+  .tag-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tag:nth-child(even){transform:none}
+  .tag:nth-child(even):hover{transform:translateY(-5px)}
+  /* tablet: thẻ nổi trở lại bố cục dọc, vẫn TO bằng viền cam + badge */
+  .tag.feat{grid-column:span 1;display:flex;flex-direction:column;grid-template-rows:none;grid-template-areas:none}
+  .tag.feat .tag-top{grid-area:auto}
+  .tag.feat .tag-ph{grid-area:auto;margin:9px 9px 0}
+  .tag.feat .tag-ph img{aspect-ratio:5/4;height:auto}
+  .tag.feat .tag-bd{grid-area:auto}
+  .tag.feat .tag-cut{grid-area:auto;margin:auto 14px 0}
+  .sheet .wrap{grid-template-columns:repeat(2,1fr);row-gap:24px}
+  .st:nth-child(3){border-left:0;padding-left:0}
+  .proc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proc .pv:nth-child(2)::after{display:none}
+  .com-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ve .wrap{grid-template-columns:1fr;gap:34px;padding:54px 20px}
+  .rv-g{grid-template-columns:1fr}
+  .faq-g{grid-template-columns:1fr}
+  .faq-side{position:static}
+  .slot-board{grid-template-columns:1fr}
+  .ct-g{grid-template-columns:1fr}
+}
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:34px;padding:40px 20px 48px}
+  .hero .lead{max-width:none}
+  .hero-pic{max-width:560px}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .sec{padding:46px 0}
+  .sec-head{margin-bottom:26px}
+  .hd .wrap{flex-wrap:wrap;gap:8px;padding:9px 14px}
+  .logo{order:1;flex:1;min-width:0}
+  .logo .lg-s{display:none}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-tel{padding:9px 11px}
+  .hd-tel span{display:none}
+  .hd-cta .btn-or{padding:11px 13px;font-size:13px}
+  .hero h1{font-size:28px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .hero-cta .btn-xl{font-size:15px;min-height:52px}
+  .bk-badge{right:6px;top:-12px;padding:8px 11px}
+  .bk-badge b{font-size:15px}
+  .clip-ft .cl-code{display:none}
+  .sheet .wrap{grid-template-columns:repeat(2,1fr);gap:14px;padding:26px 16px}
+  .st{border-left:0;padding-left:0}
+  .st b{font-size:23px}
+  /* khối-8: 1 cột, thẻ nổi TO lên đầu + viền cam */
+  .tag-g{grid-template-columns:1fr;gap:14px}
+  .tag.feat{order:-1;border:2.5px solid var(--or);box-shadow:0 16px 36px rgba(242,106,23,.22)}
+  .tag.feat .tag-ph img{aspect-ratio:3/2}
+  .tag.feat .tag-bd h3{font-size:19px}
+  .tag.feat .pri{font-size:17px}
+  .tag.feat .add{width:100%;justify-content:center}
+  .tag.feat .badge{left:14px;top:14px}
+  .tag .add{width:100%;justify-content:center}
+  .tag-ft{flex-wrap:wrap;row-gap:8px}
+  .proc{grid-template-columns:1fr}
+  .proc .pv::after{display:none}
+  .com-g{grid-template-columns:1fr}
+  .ve-metrics{grid-template-columns:1fr}
+  .rv-list{grid-template-columns:1fr}
+  .rv-side{padding:22px}
+  .frow{grid-template-columns:1fr}
+  #bkDrawer{width:100vw;max-width:100vw}
+  .bk-body{padding-bottom:74px}
+  .ft-g{grid-template-columns:1fr;gap:22px;padding:36px 0 20px}
+  .ft-bot{padding:12px 14px}
+  .toast{max-width:none}
+  .bk-fab{right:14px;bottom:84px}
+  .pkc-fab{right:14px;bottom:16px}
+  .pkc-panel{right:14px;bottom:82px}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 10h6M9 14h6M9 18h3.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15h3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M3 12h18"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 8h13v9H1zM14 11h4l4 3v3h-8"/><circle cx="6" cy="19" r="1.8"/><circle cx="17" cy="19" r="1.8"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="KêKho — kiểm kê và quản lý kho">
+      <span class="mark"><svg class="i"><use href="#i-clip"/></svg></span>
+      <span><span class="lg-t">KêKho</span><span class="lg-s">Kiểm kê &amp; quản lý kho thuê ngoài</span></span>
+    </a>
+    <nav class="main" aria-label="Điều hướng chính">
+      <a href="#goi-dichvu">8 gói dịch vụ</a>
+      <a href="#khung-gio">Khung giờ trống</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#cam-ket">Cam kết</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="hd-tel" href="tel:0034567899"><svg class="i"><use href="#i-phone"/></svg><span>0034567899</span></a>
+      <button class="btn btn-or" data-book-open><svg class="i"><use href="#i-cal"/></svg><span>Đặt lịch kiểm kê</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO — phiếu kiểm kê khổ lớn ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kicker"><svg class="i"><use href="#i-scan"/></svg>Ngõ Kệ Hàng Ngay Ngắn · TP Tồn Kho Xinh</span>
+      <h1>Đếm đúng từng kiện —<br>kho bạn <em>sạch số liệu</em> trong 48 giờ</h1>
+      <p class="lead">KêKho nhận <b>kiểm kê tồn kho và vận hành kho thuê ngoài</b> cho shop online, nhà phân phối và nhà máy: <b>2 tổ đếm độc lập</b> quét từng mã hàng, đối chiếu sổ, gửi <b>báo cáo xuất nhập tồn trong 48 giờ</b> — bạn chỉ cầm số liệu để quyết, không cầm que đếm.</p>
+      <div class="hero-cta">
+        <button class="btn btn-or btn-xl" data-book-open><svg class="i" style="width:20px;height:20px"><use href="#i-cal"/></svg>Đặt lịch kiểm kê — khảo sát 0đ</button>
+        <a class="btn btn-ghost btn-xl" href="#khung-gio"><svg class="i" style="width:19px;height:19px"><use href="#i-clock"/></svg>Xem khung giờ trống</a>
+      </div>
+      <span class="hero-note"><svg class="i"><use href="#i-check"/></svg>Giữ chỗ trước, đổi/huỷ miễn phí trước 2 giờ — không đặt cọc</span>
+      <div class="hero-tags">
+        <span class="htag">2 vòng đếm độc lập</span>
+        <span class="htag">Báo cáo XNT 48h</span>
+        <span class="htag">NDA bảo mật dữ liệu</span>
+        <span class="htag">Làm cả ca đêm</span>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="bk-badge"><b>48H</b><span>báo cáo XNT</span></div>
+      <div class="clip-frame">
+        <span class="clip" aria-hidden="true"></span>
+        <img src="assets/img/cover.webp" alt="KêKho — kiểm kê và quản lý kho thuê ngoài: kho vận gọn gàng, số liệu sẵn sàng" width="1536" height="1024" fetchpriority="high">
+        <div class="clip-ft" aria-hidden="true">
+          <svg class="bcode" width="96" height="22" viewBox="0 0 96 22" preserveAspectRatio="none"><g fill="#132A40"><rect x="0" width="3" height="22"/><rect x="5" width="1.5" height="22"/><rect x="9" width="2" height="22"/><rect x="13" width="4" height="22"/><rect x="19" width="1.5" height="22"/><rect x="23" width="3" height="22"/><rect x="28" width="1.5" height="22"/><rect x="32" width="2.5" height="22"/><rect x="37" width="4" height="22"/><rect x="43" width="1.5" height="22"/><rect x="47" width="2" height="22"/><rect x="51" width="3.5" height="22"/><rect x="57" width="1.5" height="22"/><rect x="61" width="2.5" height="22"/><rect x="66" width="4" height="22"/><rect x="72" width="1.5" height="22"/><rect x="76" width="3" height="22"/><rect x="81" width="1.5" height="22"/><rect x="85" width="2.5" height="22"/><rect x="90" width="4" height="22"/></g></svg>
+          <span class="cl-code">KK-2026-00354</span>
+          <span class="cl-stamp">Đã kiểm 2 vòng</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BĂNG SỐ LIỆU ============ -->
+<section class="sheet" aria-label="Số liệu vận hành">
+  <div class="wrap">
+    <div class="st rv"><b><span class="cnt" data-n="1940">0</span><em>+</em></b><span>kho &amp; đợt kiểm đã thực hiện</span></div>
+    <div class="st rv"><b><span class="cnt" data-n="48">0</span><em> giờ</em></b><span>gửi báo cáo xuất nhập tồn sau đếm</span></div>
+    <div class="st rv"><b><span class="cnt" data-n="2">0</span><em> vòng</em></b><span>kiểm đếm độc lập cho từng mã hàng</span></div>
+    <div class="st rv"><b>≤<span class="cnt" data-n="8">0</span><em>,0%</em></b><span>chênh lệch trung bình với sổ kho</span></div>
+  </div>
+</section>
+
+<!-- ============ KHỐI-8 — TEM KIỂM KÊ (pattern #15 biến thể tem đếm hàng) ============ -->
+<section class="sec tagwall" id="goi-dichvu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-box"/></svg>8 gói dịch vụ trên kệ</span>
+      <h2>Mỗi gói một tem kiểm kê — bấm là giữ chỗ</h2>
+      <p>Tem ghi mã hàng, kệ, số vòng đếm và giá khởi điểm. Đội KêKho khảo sát miễn phí rồi chốt giá cuối theo diện tích và số SKU của kho bạn.</p>
+    </div>
+    <div class="rail rv" aria-hidden="true">KỆ TEM DỊCH VỤ · KHU A–D · CẬP NHẬT 10/2026</div>
+    <div class="tag-g" id="tagGrid"></div>
+  </div>
+</section>
+
+<!-- ============ dacThu — LỊCH KHUNG GIỜ TRỐNG ============ -->
+<section class="sec slot-sec" id="khung-gio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-clock"/></svg>Công cụ giữ chỗ của KêKho</span>
+      <h2>Chọn gói → khung giờ trống → giữ chỗ ngay</h2>
+      <p>Lịch 7 ngày tới của các tổ đếm. Chọn xong, phiếu giữ chỗ tự điền vào form đặt lịch bên cạnh — đổi/huỷ miễn phí trước 2 giờ.</p>
+    </div>
+    <div class="slot-board rv">
+      <div class="slb-steps">
+        <div>
+          <div class="slb-lb"><span class="n">1</span>Chọn gói cần đội</div>
+          <div class="chips" id="pkGoi"></div>
+        </div>
+        <div>
+          <div class="slb-lb"><span class="n">2</span>Chọn ngày kiểm kê</div>
+          <div class="chips" id="pkDay"></div>
+        </div>
+        <div>
+          <div class="slb-lb"><span class="n">3</span>Chọn khung giờ trống</div>
+          <div class="chips" id="pkSlot"></div>
+        </div>
+      </div>
+      <div class="slb-out">
+        <h3>Phiếu giữ chỗ của bạn</h3>
+        <div class="so-row"><span>Gói dịch vụ</span><b id="soGoi">—</b></div>
+        <div class="so-row"><span>Ngày</span><b id="soDay">—</b></div>
+        <div class="so-row"><span>Khung giờ</span><b class="hlv" id="soSlot">—</b></div>
+        <div class="so-row"><span>Phí giữ chỗ</span><b>0đ · không cọc</b></div>
+        <button class="btn btn-or" id="pkHold"><svg class="i"><use href="#i-cal"/></svg>Giữ chỗ — điền vào phiếu đặt lịch</button>
+        <p class="slb-fine"><svg class="i"><use href="#i-refresh"/></svg>Đổi/huỷ miễn phí trước 2 giờ · Khung giờ đội khác giữ sẽ khoá lại</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec" id="quy-trinh" style="background:linear-gradient(180deg,#FBF3E4,var(--paper))">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-gauge"/></svg>Từ khảo sát đến bàn giao</span>
+      <h2>Bốn chặng — kho chạy tiếp, số liệu vẫn về đúng hẹn</h2>
+      <span style="color:var(--mut);font-size:15px">Mỗi chặng có mốc thời gian cam kết trong phiếu công việc gửi trước khi vào kho</span>
+    </div>
+    <div class="proc">
+      <article class="pv rv"><div class="pv-num">1</div><h3>Khảo sát kho &amp; chốt phương pháp</h3><p>Đội trưởng đi vòng kho, phân khu A–D, chốt cách đếm theo SKU hay theo kiện, chuẩn bị tem đếm và mã hàng.</p><span class="pv-meta"><svg class="i"><use href="#i-clock"/></svg>Miễn phí · 1–2 giờ/kho</span></article>
+      <article class="pv rv"><div class="pv-num">2</div><h3>Kiểm đếm 2 vòng độc lập</h3><p>Hai tổ đếm không trùng người quét riêng từng mã hàng. Khác số ở đâu, tổ thứ ba kiểm lại ngay tại kệ — không mang về bàn.</p><span class="pv-meta"><svg class="i"><use href="#i-clock"/></svg>Cả ca ngày &amp; ca đêm</span></article>
+      <article class="pv rv"><div class="pv-num">3</div><h3>Báo cáo xuất nhập tồn</h3><p>Ghép số 2 vòng, đối chiếu sổ kho, nêu bật mã chênh lệch kèm nghi ngờ nguyên nhân — gửi đầy đủ trong 48 giờ.</p><span class="pv-meta"><svg class="i"><use href="#i-clock"/></svg>Cam kết 48 giờ</span></article>
+      <article class="pv rv"><div class="pv-num">4</div><h3>Bàn giao &amp; hiệu chỉnh sổ kho</h3><p>Sit-down cùng kế toán và thủ kho, hiệu chỉnh số sổ theo biên bản, ký xác nhận — chênh lệch &gt;1% kiểm lại miễn phí.</p><span class="pv-meta"><svg class="i"><use href="#i-clock"/></svg>Ngay sau báo cáo</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="cam-ket">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-shield"/></svg>Viết vào hợp đồng, không phải lời hứa</span>
+      <h2>Bốn tem cam kết đóng trên từng đợt kiểm</h2>
+    </div>
+    <div class="com-g">
+      <article class="com rv"><span class="com-stamp">48H<br>ĐÚNG HẸN</span><div class="com-ic"><svg class="i"><use href="#i-doc"/></svg></div><h3>Báo cáo xuất nhập tồn trong 48 giờ</h3><p>Chậm một giờ so với mốc, đợt kiểm đó giảm 20% phí công đếm — mốc ghi thẳng vào hợp đồng.</p></article>
+      <article class="com rv"><span class="com-stamp">2 VÒNG<br>LẬP</span><div class="com-ic"><svg class="i"><use href="#i-user"/></svg></div><h3>Đếm 2 vòng độc lập</h3><p>Hai tổ, hai người, hai thiết bị quét — số chỉ được chốt khi hai vòng khớp nhau hoặc kiểm lần ba tại kệ.</p></article>
+      <article class="com rv"><span class="com-stamp">NDA<br>KÝ TRƯỚC</span><div class="com-ic"><svg class="i"><use href="#i-lock"/></svg></div><h3>Bảo mật dữ liệu kho</h3><p>NDA ký trước ngày đầu, thiết bị riêng không tải ứng dụng lạ, dữ liệu chỉ trả đúng đầu mối bạn chỉ định.</p></article>
+      <article class="com rv"><span class="com-stamp">≤1%<br>KIỂM LẠI</span><div class="com-ic"><svg class="i"><use href="#i-gauge"/></svg></div><h3>Chịu trách nhiệm số dư</h3><p>Chênh lệch cuối &gt;1% so với sổ: tổ kiểm lại toàn khu đó miễn phí và chịu chi phí phát sinh của mình.</p></article>
+    </div>
+    <div class="com-strip rv">
+      <div style="min-width:0">
+        <h3>Cuối tháng đang tới — kho bạn chuẩn bị kiểm chưa?</h3>
+        <p>Giữ khung giờ trước, đội KêKho sắp xếp ca đêm để không chặn xuất nhập trong ngày.</p>
+      </div>
+      <div class="acts">
+        <button class="btn btn-or" data-book-open><svg class="i"><use href="#i-cal"/></svg>Đặt lịch kiểm kê</button>
+        <a class="btn btn-line" href="tel:0034567899"><svg class="i"><use href="#i-phone"/></svg>0034567899</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VỀ KÊKHO — M4 nền mờ + thẻ nổi ============ -->
+<section class="ve" id="ve-kekho">
+  <div class="ve-bg" aria-hidden="true"></div>
+  <div class="ve-ov" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="rv" style="min-width:0">
+      <span class="kicker"><svg class="i"><use href="#i-clip"/></svg>Về đội KêKho</span>
+      <h2>Bảy năm chỉ làm một nghề: đếm cho ra số thật</h2>
+      <p class="ve-p">KêKho khởi đầu từ bốn người quen nhau ở một kho linh kiện mới mở. Nay là 6 tổ đếm cố định phục vụ shop online, nhà phân phối và nhà máy quanh Thành Phố Tồn Kho Xinh — mỗi tổ có tổ trưởng tự ký phiếu công việc, không thuê đắp chăm.</p>
+      <p class="ve-p">Chúng tôi không bán phần mềm, không làm vận tải — chỉ kiểm kê và vận hành kho thuê ngoài, để con số cuối cùng không phải do người bán hàng của chính kho tự đếm.</p>
+      <div class="ve-metrics">
+        <div class="ve-m"><svg class="i"><use href="#i-user"/></svg><span><b>6 tổ đếm cố định</b><span>42 người, lý lịch &amp; NDA đầy đủ</span></span></div>
+        <div class="ve-m"><svg class="i"><use href="#i-clock"/></svg><span><b>Ca đêm 19:00–22:00</b><span>kho không phải dừng xuất nhập</span></span></div>
+        <div class="ve-m"><svg class="i"><use href="#i-doc"/></svg><span><b>1.940+ đợt kiểm</b><span>từ 80 m² đến 12.000 m²</span></span></div>
+        <div class="ve-m"><svg class="i"><use href="#i-shield"/></svg><span><b>Chịu trách nhiệm số dư</b><span>chênh lệch &gt;1% kiểm lại 0đ</span></span></div>
+      </div>
+      <div class="ve-cta">
+        <button class="btn btn-or" data-book-open><svg class="i"><use href="#i-cal"/></svg>Đặt lịch cho kho của bạn</button>
+        <a class="btn btn-line" href="#goi-dichvu"><svg class="i"><use href="#i-box"/></svg>Xem lại 8 gói dịch vụ</a>
+      </div>
+    </div>
+    <div class="ve-pic rv">
+      <div class="clip-frame">
+        <span class="clip" aria-hidden="true"></span>
+        <img src="assets/img/intro.webp" alt="Đội KêKho bàn giao số liệu kiểm kê cho khách doanh nghiệp" width="1536" height="1024" loading="lazy">
+        <div class="clip-ft" aria-hidden="true">
+          <svg class="bcode" width="96" height="22" viewBox="0 0 96 22" preserveAspectRatio="none"><g fill="#132A40"><rect x="0" width="4" height="22"/><rect x="6" width="1.5" height="22"/><rect x="10" width="3" height="22"/><rect x="15" width="2" height="22"/><rect x="19" width="4" height="22"/><rect x="25" width="1.5" height="22"/><rect x="29" width="2.5" height="22"/><rect x="34" width="3" height="22"/><rect x="39" width="1.5" height="22"/><rect x="43" width="4" height="22"/><rect x="49" width="2" height="22"/><rect x="53" width="1.5" height="22"/><rect x="57" width="3" height="22"/><rect x="62" width="2.5" height="22"/><rect x="67" width="1.5" height="22"/><rect x="71" width="4" height="22"/><rect x="77" width="2" height="22"/><rect x="81" width="3" height="22"/><rect x="86" width="1.5" height="22"/><rect x="90" width="3.5" height="22"/></g></svg>
+          <span class="cl-code">KK-INTRO-10</span>
+          <span class="cl-stamp">Đã đối chiếu</span>
+        </div>
+      </div>
+      <div class="ve-badge"><b>2.400+</b><span>người·ngày đếm mỗi quý</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ĐÁNH GIÁ ============ -->
+<section class="sec" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-star"/></svg>Khách là người có kho</span>
+      <h2>Chủ shop, thủ kho và kế toán nói gì sau đợt đếm</h2>
+    </div>
+    <div class="rv-g rv">
+      <aside class="rv-side">
+        <div class="big">4.8<small>/5</small></div>
+        <p class="cap">từ 312 đợt kiểm kê có khảo sát lại sau bàn giao</p>
+        <div class="bar-row"><div class="bt"><span>Báo cáo đúng hẹn 48h</span><b>100%</b></div><div class="bar"><i data-w="100"></i></div></div>
+        <div class="bar-row"><div class="bt"><span>Số đếm khớp sổ sách sau hiệu chỉnh</span><b>96%</b></div><div class="bar"><i data-w="96"></i></div></div>
+        <div class="bar-row"><div class="bt"><span>Khách đặt lại kỳ sau</span><b>82%</b></div><div class="bar"><i data-w="82"></i></div></div>
+        <h4>Kho đang phục vụ</h4>
+        <div class="p-chips"><span>Shop online</span><span>Nhà phân phối</span><span>Nhà máy</span><span>Kho 3PL</span><span>Cửa hàng kinh đô</span></div>
+      </aside>
+      <div class="rv-list">
+        <article class="rv-card rv"><div class="stars">★★★★★</div><p>"2.000 SKU quét trong một đêm, sáng ra số đã nằm trong mail. Sổ kho của tôi khớp 99,7% lần đầu — chưa từng có kỳ nào nhẹ thế."</p><b>Chị Thu Hà</b><span>chủ shop thời trang online · 1.900 SKU</span></article>
+        <article class="rv-card rv"><div class="stars">★★★★★</div><p>"Hai vòng đếm thật sự hai tổ khác nhau, tôi đứng coi cả. Mã nào lệch, họ kéo tôi ra kệ xem hàng thật — minh bạch tới mức không cãi được."</p><b>Anh Quốc Bảo</b><span>trưởng kho phân phối FMCG · 4.100 m²</span></article>
+        <article class="rv-card rv"><div class="stars">★★★★★</div><p>"Báo cáo 48h đúng cam kết, kèm bảng mã sắp hết hạn. Phần này cứu tôi cả trăm triệu hàng cận date mỗi quý."</p><b>Chị Mỹ Linh</b><span>giám đốc chuỗi thực phẩm · 6 kho</span></article>
+        <article class="rv-card rv"><div class="stars">★★★★☆</div><p>"Đội đêm vào 19:00, kho chạy bình thường. Trừ điểm duy nhất: kỳ cuối đội về 22:40 hơi trễ giờ hẹn, họ vẫn báo trước nên chấp nhận."</p><b>Anh Trần Đức</b><span>kế toán trưởng công ty cơ khí</span></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIÊN HỆ + MAP ============ -->
+<section class="sec" id="lien-he" style="background:linear-gradient(180deg,var(--paper),#EDF3F9)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-pin"/></svg>Gặp đội KêKho</span>
+      <h2>Ghé văn phòng hoặc hẹn khảo sát tận kho</h2>
+    </div>
+    <div class="ct-g">
+      <div class="ct-card rv">
+        <h3>Văn phòng KêKho</h3>
+        <div class="ct-line"><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div><b>Địa chỉ</b><br>Ngõ Kệ Hàng Ngay Ngắn, Phường Mã Vạch Rõ Ràng, Thành Phố Tồn Kho Xinh</div></div>
+        <div class="ct-line"><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><div><b>Hotline &amp; Zalo</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+        <div class="ct-line"><span class="ic"><svg class="i"><use href="#i-clock"/></svg></span><div><b>Giờ phục vụ</b><br>07:00 – 19:00 thứ 2 đến thứ 7 · tổ đếm nhận cả ca đêm theo lịch giữ chỗ</div></div>
+        <div class="ct-line"><span class="ic"><svg class="i"><use href="#i-truck"/></svg></span><div><b>Phạm vi</b><br>Nội thành TP Tồn Kho Xinh miễn phí khảo sát · kho tỉnh xa tính thêm di chuyển theo km</div></div>
+        <button class="btn btn-or" data-book-open><svg class="i"><use href="#i-cal"/></svg>Đặt lịch khảo sát kho 0đ</button>
+      </div>
+      <div class="map-card rv">
+        <!-- NB110-MAP: 10.8456,106.624 -->
+        <iframe loading="lazy" src="https://www.google.com/maps?q=10.8456,106.624&z=15&output=embed&hl=vi" title="Bản đồ văn phòng KêKho" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg class="i"><use href="#i-search"/></svg>Hỏi &amp; đáp</span>
+      <h2>Vài điều chủ kho hay hỏi trước khi đặt lịch</h2>
+    </div>
+    <div class="faq-g">
+      <div class="faq-list rv">
+        <div class="qa rv"><button>Kho tôi ở tỉnh xa, các bạn có nhận không?<i>+</i></button><div class="a">Nhận. Nội thành TP Tồn Kho Xinh khảo sát miễn phí; kho tỉnh xa tính thêm chi phí di chuyển theo km, thường nhân lên các kỳ kiểm định kỳ để gọn. Đội có thể ở lại 2–3 ngày với kho trên 3.000 SKU.</div></div>
+        <div class="qa rv"><button>Kho đang dùng phần mềm quản lý kho, các bạn làm việc được không?<i>+</i></button><div class="a">Được — tổ đếm xuất dữ liệu ra file mẫu bạn yêu cầu (Excel, CSV hoặc nhập thẳng bản demo của phần mềm như Misa, Bravo, SAP nếu kho cấp tài khoản tạm). Trước ngày đếm, hai bên thống nhất định nghĩa "SKU" và cách gán mã để số đếm khớp hệ thống.</div></div>
+        <div class="qa rv"><button>Giá tính thế nào — theo SKU hay theo mét vuông?<i>+</i></button><div class="a">Giá khởi điểm niêm yết trên từng tem dịch vụ (từ 4.500đ/SKU hoặc từ 4,2 triệu/đợt với kho nhỏ). Giá cuối chốt sau khảo sát theo diện tích, mật độ kệ và số vòng đếm — không phát sinh ngoài phiếu công việc.</div></div>
+        <div class="qa rv"><button>"Kiểm đếm 2 vòng độc lập" nghĩa là sao?<i>+</i></button><div class="a">Hai tổ đếm khác người, khác thiết bị, quét cùng một khu theo hai lộ trình khác nhau. Hai kết quả khớp là chốt; lệch thì tổ thứ ba đếm lại ngay tại kệ. Nhờ vậy chênh lệch trung bình của chúng tôi với sổ kho chỉ ở mức ≤0,8%.</div></div>
+        <div class="qa rv"><button>Kiểm kê có phải dừng xuất nhập hàng không?<i>+</i></button><div class="a">Không bắt buộc. Nếu kho không thể dừng, chúng tôi chia khu và kiểm theo lô, hoặc làm ca đêm 19:00–22:00. Hàng nhập/trả trong lúc đếm được ghi vào bảng theo dõi riêng để không làm sai số khu đã xong.</div></div>
+        <div class="qa rv"><button>Báo cáo 48 giờ gồm những gì?<i>+</i></button><div class="a">File số liệu từng SKU (sổ kho — vòng 1 — vòng 2 — số chốt — chênh lệch), bảng mã lệch kèm nghi ngờ nguyên nhân, danh mục hàng cận hạn nếu có gói kiểm soát hạn dùng, và biên bản bàn giao để kế toán hiệu chỉnh sổ.</div></div>
+        <div class="qa rv"><button>Dữ liệu kho của tôi có được bảo mật?<i>+</i></button><div class="a">Có. NDA ký trước ngày đầu; thiết bị của đội cài riêng, không qua mạng xã hội; dữ liệu chỉ gửi đúng đầu mối bạn chỉ định và xoá bản lưu của đội sau khi bạn xác nhận nhận đủ, trừ khi hợp đồng yêu cầu lưu trữ.</div></div>
+        <div class="qa rv"><button>Đổi hoặc huỷ lịch đã giữ chỗ thế nào?<i>+</i></button><div class="a">Miễn phí trước 2 giờ so với giờ đã giữ — gọi hoặc nhắn hotline 0034567899. Trễ hơn 2 giờ, đội đã di chuyển thì tính một phần chi phí di chuyển; các kỳ tiếp theo không bị ảnh hưởng.</div></div>
+      </div>
+      <aside class="faq-side rv">
+        <h3>Chưa rõ câu nào?</h3>
+        <p>Gọi trực tiếp đội trưởng điều độ — không qua tổng đài, không chờ máy trả lời. Trường hợp đang trong ca đếm, gọi lại trong 30 phút.</p>
+        <a class="tel" href="tel:0034567899">0034567899</a>
+        <button class="btn btn-or" data-book-open><svg class="i"><use href="#i-cal"/></svg>Đặt lịch kiểm kê</button>
+        <p style="font-size:11.8px;color:#8A7A5E;text-align:center">Khảo sát 0đ · Không cọc · Đổi/huỷ trước 2 giờ</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-g">
+      <div class="ft-brand">
+        <a class="logo" href="#top">
+          <span class="mark"><svg class="i"><use href="#i-clip"/></svg></span>
+          <span><span class="lg-t">KêKho</span><span class="lg-s">Kiểm kê &amp; quản lý kho thuê ngoài</span></span>
+        </a>
+        <p>Kho vận gọn gàng · Số liệu sẵn sàng. Kiểm kê tồn kho, quản lý kho theo hợp đồng và báo cáo xuất nhập tồn cho shop online, nhà phân phối, nhà máy tại Thành Phố Tồn Kho Xinh và các tỉnh lân cận.</p>
+        <a class="ft-hot" href="tel:0034567899"><svg class="i" style="width:17px;height:17px"><use href="#i-phone"/></svg>0034567899</a>
+      </div>
+      <div>
+        <h4>8 gói trên kệ</h4>
+        <a href="#goi-dichvu">Kiểm kê hàng tồn kho</a>
+        <a href="#goi-dichvu">Quản lý kho thuê ngoài</a>
+        <a href="#goi-dichvu">Sắp xếp - tối ưu kho</a>
+        <a href="#goi-dichvu">Báo cáo xuất nhập tồn</a>
+        <a href="#goi-dichvu">Kiểm soát hạn sử dụng</a>
+        <a href="#goi-dichvu">Phần mềm quản lý kho</a>
+      </div>
+      <div>
+        <h4>Khám phá</h4>
+        <a href="#khung-gio">Lịch khung giờ trống</a>
+        <a href="#quy-trinh">Quy trình 4 bước</a>
+        <a href="#cam-ket">4 cam kết hợp đồng</a>
+        <a href="#ve-kekho">Về đội KêKho</a>
+        <a href="#faq">Hỏi &amp; đáp</a>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <p>Ngõ Kệ Hàng Ngay Ngắn,<br>Phường Mã Vạch Rõ Ràng, TP Tồn Kho Xinh</p>
+        <p>Hotline: <a href="tel:0034567899" style="display:inline;color:var(--gold);font-weight:800">0034567899</a></p>
+        <p>07:00 – 19:00 thứ 2 – thứ 7 · ca đêm theo lịch</p>
+        <p>Email: lich@kekho.vn</p>
+      </div>
+    </div>
+    <div class="ft-bot">© 2026 KêKho · Giá khởi điểm tham khảo — chốt sau khảo sát kho · Đổi/huỷ giữ chỗ miễn phí trước 2 giờ</div>
+  </div>
+</footer>
+
+<!-- ===== FAB ĐẶT LỊCH (SVG lịch — không icon giỏ) ===== -->
+<button class="bk-fab" data-book-open aria-label="Mở phiếu đặt lịch kiểm kê">
+  <svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+
+<!-- ===== DRAWER ĐẶT LỊCH KIỂM KÊ ===== -->
+<div class="bk-mask" id="bkMask"></div>
+<aside id="bkDrawer" aria-label="Phiếu đặt lịch kiểm kê">
+  <div class="bk-head">
+    <svg class="i"><use href="#i-clip"/></svg>
+    <h3>Phiếu đặt lịch kiểm kê<small>Kho vận gọn gàng · Số liệu sẵn sàng</small></h3>
+    <button class="bk-x" id="bkClose" aria-label="Đóng phiếu đặt lịch">✕</button>
+  </div>
+  <div class="bk-body">
+    <form id="bkForm" novalidate>
+      <div class="bk-sum">
+        <svg class="i"><use href="#i-scan"/></svg>
+        <span>Khảo sát <b>0đ</b> · không cọc. Đội điều độ gọi lại <b>trong 30 phút</b> giờ hành chính để chốt phương án.</span>
+      </div>
+      <div class="bk-sec">
+        <h4>Phiếu 01 · Kho &amp; quy mô</h4>
+        <label for="bkLoai">Loại kho *</label>
+        <select id="bkLoai">
+          <option value="">Chọn loại kho…</option>
+          <option>Shop online — kho thành phẩm</option>
+          <option>Kho bán buôn / nhà phân phối</option>
+          <option>Nhà máy — kho nguyên vật liệu</option>
+          <option>Nhà máy — kho thành phẩm</option>
+          <option>Kho cho thuê 3PL</option>
+          <option>Kho lạnh / kho cận hạn</option>
+        </select>
+        <div class="frow">
+          <div><label for="bkArea">Diện tích (m²)</label><input id="bkArea" type="number" min="10" placeholder="VD: 850"></div>
+          <div><label for="bkSku">Số SKU ước tính</label>
+            <select id="bkSku">
+              <option value="">Chọn…</option>
+              <option>Dưới 500 SKU</option>
+              <option>500 – 2.000 SKU</option>
+              <option>2.000 – 10.000 SKU</option>
+              <option>Trên 10.000 SKU</option>
+            </select>
+          </div>
+        </div>
+        <label for="bkGoi">Gói dịch vụ</label>
+        <select id="bkGoi">
+          <option>Chưa chắc — tư vấn sau khảo sát</option>
+          <option>Kiểm kê hàng tồn kho (đột xuất)</option>
+          <option>Kiểm kê cuối kỳ (tháng/quý)</option>
+          <option>Quản lý kho theo hợp đồng thuê ngoài</option>
+          <option>Báo cáo xuất nhập tồn định kỳ</option>
+          <option>Kiểm soát hạn sử dụng hàng hóa</option>
+          <option>Sắp xếp - tối ưu không gian kho</option>
+          <option>Đóng gói - chuẩn bị hàng xuất</option>
+          <option>An ninh - giám sát kho</option>
+        </select>
+      </div>
+      <div class="bk-sec">
+        <h4>Phiếu 02 · Lịch kiểm kê</h4>
+        <div class="frow">
+          <div><label for="bkDate">Ngày kiểm kê *</label><input id="bkDate" type="date"></div>
+          <div><label for="bkSlot">Khung giờ</label>
+            <select id="bkSlot">
+              <option>07:00 – 10:00</option>
+              <option>13:30 – 16:30</option>
+              <option>19:00 – 22:00 (ca đêm)</option>
+            </select>
+          </div>
+        </div>
+        <label for="bkAddr">Địa chỉ kho *</label>
+        <input id="bkAddr" type="text" placeholder="Số nhà, đường, phường/xã — kèm ghi chú kệ nếu có">
+      </div>
+      <div class="bk-sec">
+        <h4>Phiếu 03 · Người nhận xác nhận</h4>
+        <div class="frow">
+          <div><label for="bkName">Họ tên *</label><input id="bkName" type="text" placeholder="VD: Nguyễn Thị Bích"></div>
+          <div><label for="bkPhone">Số điện thoại *</label><input id="bkPhone" type="tel" placeholder="VD: 0901 234 567"></div>
+        </div>
+        <label for="bkNote">Ghi chú (hàng cận hạn, sổ kho hiện dùng…)</label>
+        <textarea id="bkNote" placeholder="VD: kho 2 tầng, đang dùng Misa, cần tránh giờ giao hàng 9–11h"></textarea>
+      </div>
+      <button type="submit" class="btn btn-or bk-cta"><svg class="i"><use href="#i-send"/></svg>Gửi phiếu — giữ chỗ khung giờ</button>
+      <p class="bk-fine"><svg class="i"><use href="#i-refresh"/></svg>Đổi/huỷ miễn phí trước 2 giờ · Thông tin chỉ dùng để khảo sát &amp; báo giá</p>
+    </form>
+    <div class="bk-done" id="bkDone">
+      <span class="ok-ic"><svg class="i"><use href="#i-check"/></svg></span>
+      <h4>Đã giữ chỗ — phiếu đang bay tới đội điều độ</h4>
+      <span class="code" id="doneCode">PK-0000</span>
+      <dl id="doneList"></dl>
+      <p style="font-size:12.8px;color:var(--mut)">Đội điều độ gọi xác nhận trong 30 phút giờ hành chính.<br><b style="color:var(--navy)">Đổi/huỷ miễn phí trước 2 giờ</b> — gọi 0034567899.</p>
+      <button class="btn btn-ghost" id="doneClose" style="width:100%">Đóng phiếu</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== CHAT WIDGET (pkc — không bot) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn đội KêKho"><svg class="i"><use href="#i-chat"/></svg><span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <span class="pkc-ava"><svg class="i"><use href="#i-clip"/></svg></span>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">KêKho</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">Giá kiểm kê tính theo SKU?</button>
+    <button class="pkc-chip">Kho ở tỉnh có nhận không?</button>
+    <button class="pkc-chip">2 vòng đếm độc lập là gì?</button>
+    <button class="pkc-chip">Có làm cả ca đêm không?</button>
+    <button class="pkc-chip">Đổi/huỷ lịch giữ chỗ?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho đội KêKho…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-354*/
+'use strict';
+var HOTLINE = '0034567899';
+
+/* ===== DỮ LIỆU 8 TEM (khối-8) — đúng 8 SP/DV của nghề ===== */
+var TEM = [
+  {id:'kiem-ke-ton',    ma:'KH-01', khu:'KỆ A1', feat:'ĐẶT NHIỀU NHẤT',   img:'assets/img/p1.webp',
+   ten:'Kiểm kê hàng tồn kho', d:'Quét 2 vòng độc lập từng mã hàng, đối chiếu sổ, chốt số dư có biên bản.',
+   cnts:[['okc','Vòng 1'],['okc','Vòng 2'],['hic','Lệch ≤0,8%']], gia:'từ 4.500đ', dg:'/SKU'},
+  {id:'quan-ly-kho',    ma:'KH-02', khu:'KỆ A2', feat:'', img:'assets/img/p2.webp',
+   ten:'Quản lý kho theo hợp đồng thuê ngoài', d:'Đội thường trực vận hành kho: nhập xuất, cập nhật biến động, chịu trách nhiệm số dư.',
+   cnts:[['okc','Thường trực'],['','Báo tuần'],['hic','18tr/tháng']], gia:'từ 18 triệu', dg:'/tháng'},
+  {id:'sap-xep-kho',    ma:'KH-03', khu:'KỆ B1', feat:'', img:'assets/img/p3.webp',
+   ten:'Sắp xếp - tối ưu không gian kho', d:'Phân khu A-B-C, dựng lại sơ đồ kệ và luồng lấy hàng cho gọn.',
+   cnts:[['','+18% chỗ'],['','Tìm nhanh'],['','Sơ đồ mới']], gia:'từ 6 triệu', dg:'/lần'},
+  {id:'bao-cao-xnt',    ma:'KH-04', khu:'KỆ B2', feat:'', img:'assets/img/p4.webp',
+   ten:'Báo cáo xuất nhập tồn định kỳ', d:'Ghép số đếm với sổ kho, gửi báo cáo kèm bảng mã lệch trong 48 giờ.',
+   cnts:[['okc','Đúng 48h'],['','Mã lệch'],['','Chốt số dư']], gia:'từ 2,9 triệu', dg:'/báo cáo'},
+  {id:'han-su-dung',    ma:'KH-05', khu:'KỆ C1', feat:'', img:'assets/img/p5.webp',
+   ten:'Kiểm soát hạn sử dụng hàng hóa', d:'Quét lô + ngày sản xuất, dựng danh mục cận hạn 3 mức cảnh báo.',
+   cnts:[['','Quét lô'],['okc','Hẹn 30 ngày'],['','Theo 3 mức']], gia:'từ 3,5 triệu', dg:'/kỳ'},
+  {id:'phan-mem-kho',   ma:'KH-06', khu:'KỆ C2', feat:'', img:'assets/img/p6.webp',
+   ten:'Ứng dụng phần mềm quản lý kho', d:'Khởi tạo dữ liệu SKU lên hệ thống, đào tạo nhân kho trong 3 ngày.',
+   cnts:[['okc','3 ngày'],['','Đào tạo kho'],['','Khớp số']], gia:'từ 5 triệu', dg:'/lần'},
+  {id:'dong-goi-xuat',  ma:'KH-07', khu:'KỆ D1', feat:'', img:'assets/img/p7.webp',
+   ten:'Đóng gói - chuẩn bị hàng xuất', d:'Đóng kiện chuẩn quy cách, kẹp tem đối chiếu từng đơn xuất lẻ.',
+   cnts:[['','120 đơn'],['okc','Tem kẹp đơn'],['','Giảm sai']], gia:'từ 7.500đ', dg:'/đơn'},
+  {id:'an-ninh-kho',    ma:'KH-08', khu:'KỆ D2', feat:'', img:'assets/img/p8.webp',
+   ten:'An ninh - giám sát kho', d:'Camera theo dõi khu hàng giá trị cao, nhật ký ra vào, giao ca có chứng từ.',
+   cnts:[['okc','Cam 24/7'],['','Nhật ký'],['','Sổ giao ca']], gia:'từ 9 triệu', dg:'/tháng'}
+];
+
+/* ===== TOAST: 2 phần tử riêng (b + span) ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 4200);
+}
+
+/* ===== BARCODE SVG sinh theo mã (chất liệu tem) ===== */
+function bcodeSvg(seed, w, h){
+  var x = 0, out = '';
+  for (var i = 0; i < 22; i++){
+    var bw = 1 + ((i * 7 + seed * 13 + 5) % 3);
+    out += '<rect x="' + x + '" width="' + bw + '" height="' + h + '"/>';
+    x += bw + 1.6;
+    if (x > w - 2) break;
+  }
+  return '<svg class="bcode" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" aria-hidden="true"><g fill="#132A40">' + out + '</g></svg>';
+}
+
+/* ===== RENDER KHỐI-8: 1 thẻ nổi TO + 7 tem thường, kín ô (feat span-2) ===== */
+function renderTags(){
+  var g = document.getElementById('tagGrid');
+  var html = '';
+  for (var i = 0; i < TEM.length; i++){
+    var p = TEM[i];
+    var feat = p.feat ? ' feat' : '';
+    var cnts = '';
+    for (var j = 0; j < p.cnts.length; j++){
+      cnts += '<span class="' + p.cnts[j][0] + '">' + p.cnts[j][1] + '</span>';
+    }
+    var badge = p.feat ? '<span class="badge">' + p.feat + '</span>' : '';
+    html += '<article class="tag' + feat + ' rv">'
+      + '<div class="tag-top"><span class="hole" aria-hidden="true"></span>'
+      + '<span class="tcode">' + p.ma + '</span><span class="tkhu">' + p.khu + '</span>'
+      + bcodeSvg(i + 1, 52, 16)
+      + '</div>'
+      + '<div class="tag-ph">' + badge + '<img src="' + p.img + '" alt="' + p.ten + ' — KêKho" width="1280" height="853" loading="lazy"></div>'
+      + '<div class="tag-bd"><h3>' + p.ten + '</h3><p>' + p.d + '</p>'
+      + '<div class="cnts">' + cnts + '</div>'
+      + '<div class="tag-ft"><div class="pri">' + p.gia + '<small>giá khởi điểm ' + p.dg + ' · chốt sau khảo sát</small></div>'
+      + '<button class="add" data-book="' + p.ten + '"><svg class="i"><use href="#i-cal"/></svg>Giữ chỗ</button></div>'
+      + '</div>'
+      + '<div class="tag-cut" aria-hidden="true"></div>'
+      + '</article>';
+  }
+  g.innerHTML = html;
+}
+
+/* ===== DAC THU — LỊCH KHUNG GIỜ TRỐNG (chọn gói → ngày → giờ → giữ chỗ) ===== */
+var GOIS = ['Kiểm kê đột xuất', 'Kiểm kê cuối kỳ', 'Quản lý kho theo tháng'];
+var SLOT_NAMES = ['07:00 – 10:00', '13:30 – 16:30', '19:00 – 22:00 (ca đêm)'];
+var DAY_NAMES = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+var selGoi = 1, selDay = 1, selSlot = 1;
+var days = [];
+function buildDays(){
+  days = [];
+  var d = new Date();
+  for (var i = 1; i <= 7; i++){
+    var t = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
+    var pad = function(n){ return ('0' + n).slice(-2); };
+    days.push({t: t, label: DAY_NAMES[t.getDay()] + ' ' + pad(t.getDate()) + '/' + pad(t.getMonth() + 1), iso: t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate())});
+  }
+}
+function slotFull(dayIdx, slotIdx){
+  /* kín cố định theo lịch — luôn chừa ít nhất 1 slot trống/ngày */
+  if (((dayIdx + 1) * (slotIdx + 2)) % 5 === 0) return true;
+  return false;
+}
+function renderPicker(){
+  var g = document.getElementById('pkGoi');
+  var h = '';
+  for (var i = 0; i < GOIS.length; i++) h += '<button class="chip' + (i === selGoi ? ' on' : '') + '" data-g="' + i + '">' + GOIS[i] + '</button>';
+  g.innerHTML = h;
+  var d = document.getElementById('pkDay');
+  h = '';
+  for (var j = 0; j < days.length; j++) h += '<button class="chip' + (j === selDay ? ' on' : '') + '" data-d="' + j + '">' + days[j].label + '</button>';
+  d.innerHTML = h;
+  var s = document.getElementById('pkSlot');
+  h = '';
+  for (var k = 0; k < SLOT_NAMES.length; k++){
+    var full = slotFull(selDay, k);
+    var held = (k === selSlot && !full) ? ' held' : '';
+    h += '<button class="chip' + (full ? ' full' : held) + '" data-s="' + k + '" ' + (full ? 'disabled aria-disabled="true"' : '') + '><span class="st-dot" aria-hidden="true"></span>' + SLOT_NAMES[k] + (full ? ' · đã kín' : '') + '</button>';
+  }
+  s.innerHTML = h;
+  document.getElementById('soGoi').textContent = GOIS[selGoi];
+  document.getElementById('soDay').textContent = days[selDay].label + ' (năm ' + days[selDay].t.getFullYear() + ')';
+  document.getElementById('soSlot').textContent = SLOT_NAMES[selSlot];
+}
+document.getElementById('pkGoi').addEventListener('click', function(e){
+  var b = e.target.closest('[data-g]'); if (!b) return;
+  selGoi = +b.getAttribute('data-g'); renderPicker();
+});
+document.getElementById('pkDay').addEventListener('click', function(e){
+  var b = e.target.closest('[data-d]'); if (!b) return;
+  selDay = +b.getAttribute('data-d'); selSlot = -1; renderPicker();
+  if (selSlot === -1){ for (var k = 0; k < 3; k++){ if (!slotFull(selDay, k)){ selSlot = k; break; } } renderPicker(); }
+});
+document.getElementById('pkSlot').addEventListener('click', function(e){
+  var b = e.target.closest('[data-s]'); if (!b || b.classList.contains('full')) return;
+  selSlot = +b.getAttribute('data-s'); renderPicker();
+});
+document.getElementById('pkHold').addEventListener('click', function(){
+  openDrawer();
+  setBooking({
+    goiIdx: mapGoi(selGoi),
+    date: days[selDay].iso,
+    slot: SLOT_NAMES[selSlot]
+  });
+  toast('Đã chuyển vào phiếu đặt lịch', GOIS[selGoi] + ' · ' + days[selDay].label + ' · ' + SLOT_NAMES[selSlot] + ' — điền nốt địa chỉ kho rồi gửi nhé!');
+});
+function mapGoi(g){
+  if (g === 0) return 1;
+  if (g === 1) return 2;
+  return 3;
+}
+
+/* ===== DRAWER ĐẶT LỊCH — open/close + PREFILL từ dacThu ===== */
+var bkDrawer = document.getElementById('bkDrawer');
+function openDrawer(){
+  document.getElementById('bkDone').classList.remove('on');
+  document.getElementById('bkForm').style.display = '';
+  bkDrawer.classList.add('on');
+  document.getElementById('bkMask').classList.add('on');
+  document.body.classList.add('bk-open');
+}
+function closeDrawer(){
+  bkDrawer.classList.remove('on');
+  document.getElementById('bkMask').classList.remove('on');
+  document.body.classList.remove('bk-open');
+}
+function setBooking(pre){
+  if (pre.goiIdx !== undefined){
+    var gsel = document.getElementById('bkGoi');
+    gsel.selectedIndex = pre.goiIdx;
+  }
+  if (pre.date) document.getElementById('bkDate').value = pre.date;
+  if (pre.slot){
+    var ss = document.getElementById('bkSlot');
+    for (var i = 0; i < ss.options.length; i++){
+      if (ss.options[i].text === pre.slot){ ss.selectedIndex = i; break; }
+    }
+  }
+}
+document.addEventListener('click', function(e){
+  var op = e.target.closest('[data-book-open]');
+  if (op){ e.preventDefault(); openDrawer(); return; }
+  var bk = e.target.closest('[data-book]');
+  if (bk){
+    var ten = bk.getAttribute('data-book');
+    var gsel = document.getElementById('bkGoi');
+    for (var i = 0; i < gsel.options.length; i++){
+      if (gsel.options[i].text.indexOf(ten) === 0){ gsel.selectedIndex = i; break; }
+    }
+    openDrawer();
+    toast('Chọn gói: ' + ten, 'Phiếu 01 đã điền sẵn — kiểm tra lịch và địa chỉ kho rồi gửi nhé!');
+  }
+});
+document.getElementById('bkClose').addEventListener('click', closeDrawer);
+document.getElementById('bkMask').addEventListener('click', closeDrawer);
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeDrawer();
+});
+
+/* ===== GỬI PHIẾU → XÁC NHẬN TẠI TRANG + TOAST ===== */
+document.getElementById('bkForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var loai = document.getElementById('bkLoai'),
+      date = document.getElementById('bkDate'),
+      addr = document.getElementById('bkAddr'),
+      name = document.getElementById('bkName'),
+      phone = document.getElementById('bkPhone');
+  var els = [loai, date, addr, name, phone];
+  var ok = true;
+  for (var i = 0; i < els.length; i++) els[i].classList.remove('err');
+  if (!loai.value){ loai.classList.add('err'); ok = false; }
+  if (!date.value){ date.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.\-]/g, ''))){ phone.classList.add('err'); ok = false; }
+  if (!ok){
+    toast('Phiếu còn thiếu', 'Cho đội KêKho xin đủ: loại kho, ngày kiểm kê, địa chỉ kho, họ tên và số điện thoại nhé!');
+    return;
+  }
+  var code = 'PK-' + Math.floor(1000 + Math.random() * 9000);
+  var goi = document.getElementById('bkGoi');
+  var slot = document.getElementById('bkSlot');
+  var sku = document.getElementById('bkSku');
+  var area = document.getElementById('bkArea');
+  var dp = date.value.split('-');
+  var fdate = new Date(+dp[0], +dp[1] - 1, +dp[2]);
+  var ftxt = DAY_NAMES[fdate.getDay()] + ' ' + ('0' + fdate.getDate()).slice(-2) + '/' + ('0' + (fdate.getMonth() + 1)).slice(-2) + '/' + fdate.getFullYear();
+  document.getElementById('doneCode').textContent = code;
+  document.getElementById('doneList').innerHTML =
+    '<div><dt>Loại kho</dt><dd>' + esc(loai.value.split('—')[0].trim()) + '</dd></div>'
+    + '<div><dt>Gói dịch vụ</dt><dd>' + esc(goi.value) + '</dd></div>'
+    + '<div><dt>Quy mô</dt><dd>' + esc(area.value ? area.value + ' m²' : 'khảo sát chốt') + (sku.value ? ' · ' + esc(sku.value) : '') + '</dd></div>'
+    + '<div><dt>Lịch</dt><dd>' + ftxt + ' · ' + esc(slot.value) + '</dd></div>'
+    + '<div><dt>Người nhận</dt><dd>' + esc(name.value.trim()) + ' · ' + esc(phone.value.trim()) + '</dd></div>';
+  document.getElementById('bkForm').style.display = 'none';
+  document.getElementById('bkDone').classList.add('on');
+  document.getElementById('bkDrawer').querySelector('.bk-body').scrollTop = 0;
+  toast('Đã giữ chỗ — mã ' + code, goi.value + ' · ' + ftxt + ' · ' + slot.value + '. Đội điều độ gọi lại trong 30 phút!');
+});
+function esc(s){
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+document.getElementById('doneClose').addEventListener('click', closeDrawer);
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT — không bot, gửi là lưu cục bộ + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){ pkcSendMsg(document.getElementById('pkcInput').value); });
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key === 'Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent;
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== SỐ LIỆU CHẠY + THANH % ===== */
+function runCounters(){
+  var els = document.querySelectorAll('.cnt');
+  for (var i = 0; i < els.length; i++){
+    (function(el){
+      var target = +el.getAttribute('data-n'), t0 = null;
+      function step(ts){
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1100, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('vi-VN');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    })(els[i]);
+  }
+  var bars = document.querySelectorAll('.bar i');
+  for (var j = 0; j < bars.length; j++){
+    (function(b){
+      setTimeout(function(){ b.style.width = b.getAttribute('data-w') + '%'; }, 350);
+    })(bars[j]);
+  }
+}
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold: .1, rootMargin: '0px 0px -24px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j = 0; j < els.length; j++) els[j].classList.add('in'); }, 1400);
+}
+
+/* ===== INIT ===== */
+buildDays();
+if (slotFull(selDay, selSlot)) selSlot = 0;
+renderTags();
+renderPicker();
+(function defaultDate(){
+  var t = new Date(Date.now() + 2 * 86400000);
+  document.getElementById('bkDate').value = t.toISOString().slice(0, 10);
+})();
+runCounters();
+initReveal();
+</script>
+</body>
+</html>

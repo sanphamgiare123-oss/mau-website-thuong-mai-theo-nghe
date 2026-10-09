@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chăm Sóc An Tâm — Điều dưỡng &amp; chăm sóc người bệnh tại nhà | Đặt ca 24/24</title>
+<meta name="description" content="Chăm Sóc An Tâm — điều dưỡng viên chứng chỉ y tế trung cấp trở lên tới nhà: chăm sóc người bệnh, tiêm truyền theo y lệnh, thay băng, vật lý trị liệu. Chọn dịch vụ → khung giờ trống → giữ ca, đổi/huỷ miễn phí trước 2 giờ. Báo cáo sức khỏe hằng ngày. Gọi 0034567899.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Chăm Sóc An Tâm","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Ngõ An Tâm, Phường Chăm Sóc Thành Thị","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7965,"longitude":106.6843},"openingHours":"Mo-Su 00:00-23:59","priceRange":"80.000đ-2.050.000đ"}
+</script>
+<style>
+/*NB110-271 — Chăm Sóc An Tâm · nghề 271 điều dưỡng và chăm sóc tại nhà · dạng B (đặt lịch)
+  Khối-8 pattern 3 BIẾN THỂ "KHAY Y TẾ INOX NHÌN TỪ TRÊN": 8 gói dịch vụ như 8 gói dụng cụ
+  đã vô trùng đặt lệch trên khay thép — tem nhãn ca (sáng/chiều/tối/đêm) + đường xé gói.
+  Thiết bị lặp: TEM NHÃN CA (pill có vạch đứt) — hero, khối-8, quy trình, cam kết, drawer.
+  Palette theo poster kho: cổ vịt y tế + cát ấm + đồng đất. Khác 266(#6)·268(#3 bàn thuốc gỗ)·270(#12 khay ống).*/
+:root{
+  --teal:#0F6E80; --teal-2:#12839A; --teal-deep:#093F4B; --teal-ink:#0B2E36;
+  --sand:#F6F0E4; --sand-2:#EFE6D2; --paper:#FFFDF8; --card:#FFFFFF;
+  --copper:#C97B36; --copper-2:#DE9A50; --copper-soft:#F7E7D2; --copper-deep:#A65E22;
+  --green:#5E8C56; --green-soft:#EAF2E4;
+  --ink:#28323A; --mut:#6E7B80; --line:#E3DAC6; --line-2:#CFC4AA;
+  --steel:#C9CFD4; --steel-2:#9FA8AE; --steel-mid:#CBD2D7;
+  --dem:#2C3E5C;
+  --ok:#2F9E6E; --bad:#D64545;
+  --sh1:0 3px 12px rgba(40,50,58,.08);
+  --sh2:0 14px 34px rgba(40,50,58,.16);
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--sand);color:var(--ink);line-height:1.6;font-size:15px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
+h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;line-height:1.26;letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.sec{padding:64px 0}
+.sec-head{max-width:660px;margin:0 auto 34px;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal)}
+.kicker::before,.kicker::after{content:"";width:26px;height:2px;border-radius:2px;background:var(--copper-2)}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);color:var(--teal-deep);margin:10px 0 10px}
+.sec-head p{color:var(--mut)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== TEM NHÃN CA — thiết bị hình ảnh riêng, lặp ≥3 section ===== */
+.tem{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px dashed var(--line-2);border-left:5px solid var(--copper);border-radius:99px;padding:5px 12px 5px 9px;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal-ink);white-space:nowrap}
+.tem i{font-style:normal;width:8px;height:8px;border-radius:99px;background:var(--copper);flex:none}
+.tem.chieu{border-left-color:var(--green)}.tem.chieu i{background:var(--green)}
+.tem.toi{border-left-color:var(--teal-2)}.tem.toi i{background:var(--teal-2)}
+.tem.dem{border-left-color:var(--dem)}.tem.dem i{background:var(--dem)}
+.tem.on-paper{background:var(--paper)}
+
+/* ===== TOPBAR + HEADER ===== */
+.topbar{background:var(--teal-deep);color:#D8ECE9;font-size:12.5px}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding:7px 22px;flex-wrap:wrap}
+.topbar span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar b{color:#FFD9AE}
+.topbar .tb-hot{margin-left:auto;font-weight:800;color:#fff}
+header.hd{position:sticky;top:0;z-index:50;background:rgba(246,240,228,.95);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:14px;padding:10px 22px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:13px;background:linear-gradient(150deg,var(--teal),var(--teal-deep));color:#FFEBD2;display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(9,63,75,.3)}
+.logo b{font-family:'Trebuchet MS',sans-serif;font-size:17.5px;color:var(--teal-deep);display:block;line-height:1.15;white-space:nowrap}
+.logo small{display:block;font-size:10.5px;color:var(--mut);letter-spacing:.5px;text-transform:uppercase;font-weight:700}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:10px;font-size:13.5px;font-weight:700;color:var(--teal-ink)}
+nav.main a:hover{background:var(--sand-2);color:var(--copper-deep)}
+.hd-right{display:flex;gap:8px;align-items:center}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 13px;font-weight:800;font-size:13px;color:var(--teal-deep);white-space:nowrap}
+.call:hover{border-color:var(--copper);color:var(--copper-deep)}
+
+/* ===== HERO — ảnh trái trong "sổ theo dõi", chữ phải (khác 267: chữ trái/ảnh phải nổi) ===== */
+.hero{position:relative;background:
+  radial-gradient(circle at 88% 8%, rgba(15,110,128,.10), transparent 34%),
+  radial-gradient(circle at 6% 92%, rgba(201,123,54,.10), transparent 30%),
+  linear-gradient(180deg,#FBF7EE,var(--sand) 78%);
+  border-bottom:1.5px solid var(--line);overflow:clip}
+.hero-g{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:44px;align-items:center;padding:54px 0 60px}
+.hero h1{font-size:clamp(28px,4.2vw,42px);color:var(--teal-deep);margin:14px 0 14px}
+.hero h1 em{font-style:normal;color:var(--copper);display:inline-block;transform:rotate(-1deg)}
+.hero .lead{color:#4E5E66;font-size:15.5px;max-width:500px}
+.hero .lead b{color:var(--teal-deep)}
+.hero-cta{display:flex;gap:11px;flex-wrap:wrap;margin:22px 0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:14px;font-weight:800;min-height:48px;padding:13px 21px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-cp{background:linear-gradient(135deg,var(--copper-2),var(--copper));color:#fff;box-shadow:0 10px 22px rgba(201,123,54,.35)}
+.btn-cp:hover{filter:brightness(1.05);transform:translateY(-2px)}
+.btn-gh{background:var(--paper);color:var(--teal-deep);border:1.5px solid var(--line-2)}
+.btn-gh:hover{border-color:var(--copper);color:var(--copper-deep)}
+.btn svg{flex:none}
+.hero-trust{display:flex;gap:9px;flex-wrap:wrap}
+.hero-trust .tem{font-size:11.5px}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1.5px dashed var(--line)}
+.hero-stats div b{font-family:'Trebuchet MS',sans-serif;font-size:23px;color:var(--teal-deep);display:block;line-height:1.1}
+.hero-stats div span{font-size:12px;color:var(--mut)}
+/* sổ theo dõi kẹp ảnh */
+.hero-clip{position:relative;background:#fff;border-radius:18px;padding:16px 16px 52px;box-shadow:var(--sh2);transform:rotate(-1.6deg);border:1px solid #EDE4D0}
+.clip-bar{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:150px;height:30px;border-radius:9px;background:linear-gradient(180deg,#DEE3E7,#AFB8BE);box-shadow:0 4px 9px rgba(40,50,58,.28), inset 0 1.5px 0 rgba(255,255,255,.75)}
+.clip-bar::before,.clip-bar::after{content:"";position:absolute;top:11px;width:7px;height:7px;border-radius:99px;background:radial-gradient(circle at 35% 30%,#fff,#8C979E 75%)}
+.clip-bar::before{left:12px}.clip-bar::after{right:12px}
+.hero-clip img{border-radius:10px;width:100%;border:1px solid #EFE8D8}
+.clip-lines{position:absolute;left:16px;right:16px;bottom:12px;height:30px;background:repeating-linear-gradient(180deg,transparent 0 9px,var(--line) 9px 10.5px);opacity:.65}
+.ca-float{position:absolute;background:#fff;border-radius:12px;box-shadow:var(--sh2);padding:10px 14px;display:flex;flex-direction:column;gap:6px;border:1px solid #EDE4D0}
+.ca-float small{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+.ca-float b{font-size:13px;color:var(--teal-deep)}
+.ca-float.f1{left:-14px;top:22px;transform:rotate(-2.4deg)}
+.ca-float.f2{right:-12px;bottom:70px;transform:rotate(2deg)}
+.ca-float .ok-dot{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;color:var(--ok)}
+.ca-float .ok-dot::before{content:"";width:9px;height:9px;border-radius:99px;background:var(--ok)}
+.hero-badge24{position:absolute;right:-6px;top:-20px;background:linear-gradient(140deg,var(--teal-2),var(--teal-deep));color:#fff;border-radius:16px;padding:12px 16px;text-align:center;transform:rotate(4deg);box-shadow:0 12px 26px rgba(9,63,75,.35);z-index:3}
+.hero-badge24 b{display:block;font-family:'Trebuchet MS',sans-serif;font-size:20px;line-height:1}
+.hero-badge24 span{display:block;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-top:3px;color:#FFD9AE}
+
+/* ===== DẢI TIỆN ÍCH ===== */
+.tien-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tien{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:13px;align-items:flex-start;box-shadow:var(--sh1)}
+.tien .ic{width:46px;height:46px;flex:none;border-radius:13px;background:var(--copper-soft);display:grid;place-items:center;font-size:21px}
+.tien b{display:block;font-size:14.5px;color:var(--teal-deep)}
+.tien span{font-size:12.8px;color:var(--mut)}
+
+/* ===== KHỐI-8: KHAY Y TẾ INOX NHÌN TỪ TRÊN (pattern 3 biến thể) ===== */
+.khay-sec{background:linear-gradient(180deg,var(--sand) 0%,#EFE9DB 60%,var(--sand) 100%)}
+.khay-table{position:relative;background:
+  repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 7px),
+  repeating-linear-gradient(90deg, rgba(40,50,58,.03) 0 1px, transparent 1px 27px),
+  linear-gradient(168deg,#E9EDEF 0%,#D6DCE0 42%,#C2CBD1 100%);
+  border:9px solid var(--steel-2);border-radius:26px;padding:clamp(18px,2.6vw,30px);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.55), inset 0 -16px 34px rgba(70,84,92,.16), 0 20px 42px rgba(40,50,58,.2)}
+.vit{position:absolute;width:13px;height:13px;border-radius:99px;background:radial-gradient(circle at 35% 30%,#F2F5F7,#8C979E 72%);box-shadow:inset 0 -1px 2px rgba(40,50,58,.4);z-index:1;pointer-events:none}
+.vit.v1{left:12px;top:12px}.vit.v2{right:12px;top:12px}.vit.v3{left:12px;bottom:12px}.vit.v4{right:12px;bottom:12px}
+.khay-nhan{position:absolute;right:26px;top:-19px;z-index:3;background:var(--teal-deep);color:#fff;border-radius:11px;padding:9px 16px;font-size:11.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;transform:rotate(1.6deg);box-shadow:0 8px 18px rgba(9,63,75,.35);display:flex;align-items:center;gap:8px}
+.khay-nhan i{font-style:normal;width:9px;height:9px;border-radius:99px;background:#7FE0C3;box-shadow:0 0 0 3px rgba(127,224,195,.25)}
+.khay-g{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+/* gói y tế — thẻ SP trên khay */
+.goi{position:relative;background:#fff;border:1px solid #D9DEE2;border-radius:11px;display:flex;flex-direction:column;box-shadow:0 9px 20px rgba(40,50,58,.18);transition:transform .22s,box-shadow .22s;min-width:0}
+.goi:nth-child(odd){transform:rotate(-1.4deg)}
+.goi:nth-child(even){transform:rotate(1.2deg)}
+.goi:nth-child(3n){transform:rotate(.8deg)}
+.goi:hover{transform:rotate(0) translateY(-5px);box-shadow:0 16px 30px rgba(40,50,58,.26);z-index:5}
+/* tem mã gói + đường xé */
+.goi .tem-g{display:flex;align-items:center;gap:8px;padding:8px 11px 6px;border-bottom:2px dashed #E2E6E9;position:relative}
+.goi .tem-g::before,.goi .tem-g::after{content:"";position:absolute;bottom:-7px;width:12px;height:12px;border-radius:99px;background:var(--steel-mid);box-shadow:inset 0 1.5px 3px rgba(40,50,58,.22)}
+.goi .tem-g::before{left:-7px}.goi .tem-g::after{right:-7px}
+.goi .ma{font-size:10px;font-weight:900;letter-spacing:1px;color:#8C979E}
+.goi .nhom{margin-left:auto;font-size:9.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#fff;border-radius:6px;padding:3px 8px}
+.goi .ph{padding:10px 11px 0}
+.goi .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #E7EBEE}
+.goi .bd{padding:9px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.goi h3{font-size:15px;color:var(--teal-deep)}
+.goi p{font-size:12.2px;color:var(--mut);flex:1}
+.goi .ca-tag{font-size:10.5px}
+.goi .ft{display:flex;align-items:flex-end;gap:8px;margin-top:auto}
+.gia{font-weight:800;color:var(--copper-deep);font-size:14.5px;line-height:1.2;font-variant-numeric:tabular-nums}
+.gia small{display:block;font-size:10px;color:var(--mut);font-weight:600}
+.giu{margin-left:auto;border:0;border-radius:9px;background:var(--teal);color:#fff;font-weight:800;font-size:12.5px;padding:9px 13px;min-height:40px;box-shadow:0 4px 10px rgba(15,110,128,.3)}
+.giu:hover{background:var(--copper)}
+/* 2 gói nổi bật TO — cả 2 ngang (ảnh trái): gói A nguyên hàng + gói B rộng đôi */
+.goi.feat{border:2px solid var(--copper);background:linear-gradient(178deg,#FFFDF6,#FBF2E2)}
+.goi.feat-a{grid-column:1/-1;transform:rotate(-.5deg)}
+.goi .lay{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:0;align-items:stretch}
+.goi .lay .ph{padding:12px 6px 12px 13px;display:flex;align-items:center;justify-content:center}
+.goi .lay .ph img{width:100%;height:auto}
+.goi.feat-a h3{font-size:21px}
+.goi.feat-a p{font-size:13px}
+.goi.feat-a .bd{padding:12px 16px 14px;justify-content:center}
+.goi.feat-a .gia{font-size:18px}
+.goi.feat-b{grid-column:3/5;transform:rotate(.7deg)}
+.goi.feat-b h3{font-size:17.5px}
+.goi.feat-b .bd{padding:11px 14px 13px}
+.badge-feat{position:absolute;top:-12px;left:14px;z-index:5;background:var(--copper);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:1px;border-radius:99px;padding:5px 12px;box-shadow:0 5px 12px rgba(201,123,54,.42)}
+.badge-feat.t{background:var(--teal);box-shadow:0 5px 12px rgba(15,110,128,.42)}
+.goi ul.tick{list-style:none;display:flex;flex-direction:column;gap:5px;font-size:12.3px;color:#4E5E66}
+.goi ul.tick li{display:flex;gap:7px;align-items:flex-start}
+.goi ul.tick li::before{content:"✓";color:var(--ok);font-weight:900;flex:none}
+.khay-note{position:relative;z-index:2;margin-top:16px;text-align:center;font-size:12.5px;color:#43535B;background:rgba(255,253,248,.88);border:1.5px dashed var(--steel-2);border-radius:11px;padding:9px 14px}
+.khay-note b{color:var(--copper-deep)}
+
+/* ===== KHUNG NỔI BẬT RIÊNG — 3 CA ĐƯỢC GIỮ NHIỀU NHẤT ===== */
+.noibat{background:var(--paper)}
+.nb-row{max-width:940px;margin:0 auto 20px;position:relative}
+.nb-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);box-shadow:var(--sh1);transition:transform .25s,box-shadow .25s;min-width:0}
+.nb-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.nb-card .nimg{position:relative;display:flex;align-items:center}
+.nb-card .nimg img{width:100%;height:auto}
+.nb-card .nbd{padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.nb-card h3{font-size:17.5px;color:var(--teal-deep)}
+.nb-card ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12.8px;color:#4E5E66}
+.nb-card ul li{display:flex;gap:8px;align-items:flex-start}
+.nb-card ul li::before{content:"✓";color:var(--ok);font-weight:900;flex:none}
+.nb-card .nft{margin-top:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nb-card .gia{font-size:17px}
+.nb-card .giu{margin-left:0;min-height:44px;padding:11px 18px;font-size:13.5px}
+.nb-top{border:2px solid var(--copper);box-shadow:0 14px 32px rgba(201,123,54,.18)}
+.nb-top .nimg::after{content:"ĐƯỢC GIỮ NHIỀU NHẤT";position:absolute;top:14px;left:-8px;background:var(--copper);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:1px;padding:6px 12px;border-radius:8px;transform:rotate(-2deg);box-shadow:0 6px 14px rgba(201,123,54,.4)}
+.nb-top h3{font-size:20px}
+.nb-top .nbd{padding:24px}
+.nb-note{text-align:center;font-size:12.5px;color:var(--mut);max-width:700px;margin:6px auto 0}
+
+/* ===== DAC THU — LẬP CA CHĂM SÓC THEO TÌNH TRẠNG NGƯỜI NHÀ ===== */
+.lapca-sec{background:linear-gradient(160deg,var(--teal-deep),var(--teal-ink));border-radius:26px;padding:42px clamp(18px,4vw,44px);position:relative;overflow:hidden;color:#DFF0ED}
+.lapca-sec::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 34px),
+  radial-gradient(circle at 86% 18%, rgba(222,154,80,.2), transparent 38%);pointer-events:none}
+.lapca-sec>*{position:relative;z-index:2}
+.lapca-sec .kicker{color:var(--copper-2)}
+.lapca-sec .kicker::before,.lapca-sec .kicker::after{background:var(--copper-2)}
+.lapca-sec h2{font-size:clamp(23px,3.4vw,32px);margin:10px 0 8px;color:#fff}
+.lapca-sec .sub{color:#9EC4BE;max-width:600px;font-size:14px;margin-bottom:22px}
+.lapca-g{display:grid;grid-template-columns:1.04fr .96fr;gap:24px;align-items:start}
+.lap-lb{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--copper-2);display:block;margin:16px 0 9px}
+.lap-lb:first-child{margin-top:0}
+.lap-lb small{display:block;letter-spacing:.2px;text-transform:none;color:#9EC4BE;font-weight:500;font-size:12px;margin-top:3px}
+.lap-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lap-chips button{border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#EAF6F2;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:700;min-height:42px;text-align:left;transition:.15s}
+.lap-chips button small{display:block;font-size:11px;color:#9EC4BE;font-weight:500}
+.lap-chips button:hover{border-color:var(--copper-2)}
+.lap-chips button.on{background:var(--copper);border-color:var(--copper);color:#fff}
+.lap-chips button.on small{color:#FFE4C8}
+.lap-out{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;padding:20px;min-height:100%}
+.lap-out h3{font-size:16.5px;color:#fff;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.lap-out h3 .dot{width:9px;height:9px;border-radius:99px;background:#7FE0C3;box-shadow:0 0 0 4px rgba(127,224,195,.16);flex:none}
+.lap-out .lap-sub{font-size:12px;color:#9EC4BE;margin-bottom:12px}
+.ke-row{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1.5px dashed rgba(255,255,255,.14);font-size:13px}
+.ke-row img{width:60px;height:45px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.25);flex:none}
+.ke-row .n{font-weight:700;color:#F1F8F5;line-height:1.3;min-width:0}
+.ke-row .n small{display:block;font-weight:400;color:#9EC4BE;font-size:11.5px}
+.ke-row .g{margin-left:auto;font-weight:800;color:var(--copper-2);white-space:nowrap;font-size:12px}
+.lap-sum{display:flex;gap:20px;flex-wrap:wrap;padding:13px 2px 4px}
+.lap-sum div b{font-family:'Trebuchet MS',sans-serif;font-size:19px;color:var(--copper-2);display:block;line-height:1.15}
+.lap-sum div span{font-size:11px;color:#9EC4BE}
+.lap-cta{width:100%;margin-top:12px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--copper-2),var(--copper));color:#fff;font-weight:900;font-size:14.5px;padding:13px;min-height:48px;box-shadow:0 8px 20px rgba(201,123,54,.35)}
+.lap-cta:hover{filter:brightness(1.06)}
+.lap-tiny{font-size:11.5px;color:#9EC4BE;margin-top:9px}
+.lap-empty{font-size:13.5px;color:#9EC4BE;padding:14px 2px}
+
+/* ===== QUY TRÌNH — trục "giờ thuốc" ===== */
+.qt-rail{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.qt-rail::before{content:"";position:absolute;left:3%;right:3%;top:23px;height:3px;background:repeating-linear-gradient(90deg,var(--copper-2) 0 14px,transparent 14px 24px);border-radius:3px;opacity:.55}
+.qt{position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:20px 16px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--sh1)}
+.qt .gio{align-self:flex-start;background:#fff;border-radius:99px;position:relative;z-index:2}
+.qt b{font-size:14.5px;color:var(--teal-deep)}
+.qt .phut{font-size:11px;font-weight:800;color:var(--copper-deep);letter-spacing:.8px;text-transform:uppercase}
+.qt span{font-size:12.6px;color:var(--mut)}
+
+/* ===== CAM KẾT ===== */
+.camket{background:linear-gradient(180deg,#FFFDF8,var(--sand))}
+.ck-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ck{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:22px 18px;box-shadow:var(--sh1);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.ck:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.ck .ic{width:50px;height:50px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;font-size:23px;margin-bottom:13px}
+.ck b{display:block;font-size:14.5px;color:var(--teal-deep);margin-bottom:6px}
+.ck p{font-size:12.6px;color:var(--mut)}
+.ck .num{position:absolute;right:12px;top:8px;font-family:'Trebuchet MS',sans-serif;font-size:2.4rem;font-weight:900;color:var(--sand-2);line-height:1}
+.disclaim{margin-top:26px;background:#FDF6E8;border:1.5px dashed var(--copper-2);border-radius:14px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;font-size:12.8px;color:#6B5320}
+.disclaim .ic{font-size:20px;flex:none}
+.disclaim b{color:var(--copper-deep)}
+
+/* ===== VỀ CHÚNG TÔI — COLLAGE SO LE (M3) ===== */
+.about-g{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:40px;align-items:center}
+.about-collage{position:relative;padding:10px 0 30px}
+.about-collage figure{position:relative;background:#fff;padding:12px 12px 40px;border-radius:12px;box-shadow:var(--sh2);border:1px solid #EDE4D0;margin:0}
+.about-collage figure figcaption{position:absolute;left:16px;bottom:10px;right:16px;font-size:11.5px;font-weight:700;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.about-collage figure figcaption b{color:var(--teal-deep)}
+.about-collage .fig1{transform:rotate(-1.8deg);width:88%;z-index:2}
+.about-collage .fig1 img{border-radius:7px;width:100%}
+.about-collage .fig2{position:absolute;right:0;bottom:0;width:52%;transform:rotate(2.2deg);z-index:3}
+.about-collage .fig2 img{border-radius:7px;width:100%}
+.ghim{position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:17px;height:17px;border-radius:99px;background:radial-gradient(circle at 35% 30%,#F0A45C,var(--copper-deep) 78%);box-shadow:0 3px 6px rgba(40,50,58,.35);z-index:4}
+.about-txt h2{font-size:clamp(23px,3.4vw,31px);color:var(--teal-deep);margin:10px 0 14px}
+.about-txt p{color:#4E5E66;font-size:14.3px;margin-bottom:12px}
+.about-txt .sign{font-family:Georgia,serif;font-style:italic;color:var(--copper-deep);font-size:14.5px}
+.about-num{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.about-num span{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 14px;font-size:12px;font-weight:800;color:var(--teal-deep);display:inline-flex;align-items:center;gap:7px}
+.about-num span i{font-style:normal;background:var(--green-soft);color:var(--green);border-radius:99px;width:24px;height:24px;display:grid;place-items:center;font-size:12px}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.rev{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sh1)}
+.rev .st{color:var(--copper);font-size:14px;letter-spacing:2px}
+.rev p{font-size:12.8px;color:#4E5E66;flex:1}
+.rev b{font-size:13px;color:var(--teal-deep)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:stretch}
+.ct-card{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--sh1)}
+.ct-card h3{font-size:19px;color:var(--teal-deep)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:13.8px;color:#4E5E66}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--copper-soft);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--teal-deep)}
+.ct-line .tel{font-size:20px;font-weight:800;color:var(--copper-deep);font-family:'Trebuchet MS',sans-serif}
+.ct-card iframe{width:100%;height:240px;border:0;border-radius:12px;flex:1;min-height:240px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border:0;background:none;text-align:left;font-size:14.3px;font-weight:700;color:var(--teal-deep);min-height:48px}
+.qa>button i{font-style:normal;color:var(--copper);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 15px;font-size:13.5px;color:#4E5E66}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--teal-ink);color:#B8D2CE;margin-top:44px}
+.ft-dis{background:var(--teal-deep);border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-dis .wrap{padding:12px 22px;font-size:12px;display:flex;gap:10px;align-items:flex-start;color:#D8ECE9}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:32px 0 22px}
+.ft-g h4{color:#FFE4C8;font-size:13px;margin-bottom:10px;letter-spacing:.6px;text-transform:uppercase}
+.ft-g p,.ft-g a{font-size:12.6px;color:#B8D2CE;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--copper-2)}
+.ft-brand b{font-family:'Trebuchet MS',sans-serif;font-size:17px;color:#FFE4C8;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding:12px 0;text-align:center;font-size:11.5px;color:#7FA6A0}
+
+/* ===== FAB ĐẶT LỊCH (SVG lịch + tim y tế — KHÔNG giỏ) ===== */
+.fab{position:fixed;right:18px;bottom:86px;z-index:80;width:57px;height:57px;border-radius:99px;border:0;background:linear-gradient(150deg,var(--copper-2),var(--copper));color:#fff;display:grid;place-items:center;padding:0;box-shadow:0 10px 26px rgba(201,123,54,.45);transition:transform .22s,filter .22s}
+.fab:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.fab .fab-b{position:absolute;top:-4px;right:-4px;background:var(--teal);color:#fff;border-radius:99px;min-width:21px;height:21px;display:grid;place-items:center;font-size:11px;padding:0 5px;font-weight:800;border:2px solid #fff;font-style:normal}
+
+/* ===== OVERLAY + DRAWER ĐẶT LỊCH ĐIỀU DƯỠNG ===== */
+.ovl{position:fixed;inset:0;background:rgba(11,46,54,.5);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.ovl.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;width:420px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.2)}
+.drawer.on{transform:none}
+.dw-head{display:flex;align-items:center;gap:11px;padding:15px 18px;background:linear-gradient(150deg,var(--teal-deep),var(--teal-ink));color:#fff}
+.dw-head .mk{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.13);display:grid;place-items:center;flex:none}
+.dw-head b{font-size:14.5px;display:block}
+.dw-head small{display:block;font-size:11px;color:#FFD9AE;font-weight:600}
+.dw-x{margin-left:auto;border:0;background:rgba(255,255,255,.14);width:36px;height:36px;border-radius:10px;color:#fff;font-size:15px;flex:none}
+.dw-steps{display:flex;gap:5px;padding:10px 18px;background:var(--sand);border-bottom:1.5px solid var(--line);flex-wrap:wrap}
+.dw-step{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);border:1.5px dashed var(--line-2);border-radius:99px;padding:4px 9px;background:#fff}
+.dw-step.on{background:var(--copper);border:1.5px solid var(--copper);color:#fff}
+.dw-step.done{background:var(--green-soft);border:1.5px solid var(--green);color:var(--green)}
+.dw-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 20px}
+.dw-lb{display:block;font-size:12px;font-weight:800;color:var(--teal-deep);margin:14px 0 7px}
+.dw-lb:first-child{margin-top:0}
+.dw-lb em{color:var(--bad);font-style:normal}
+.dw-sel{width:100%;padding:11px 12px;border-radius:11px;border:1.5px solid var(--line);background:#fff;font-size:13.5px;min-height:44px}
+.dw-sel:focus{outline:none;border-color:var(--teal-2);box-shadow:0 0 0 3px rgba(18,131,154,.14)}
+.ngay-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.ngay-g button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:7px 2px;text-align:center;min-width:0}
+.ngay-g button small{display:block;font-size:9.5px;font-weight:800;color:var(--mut);text-transform:uppercase}
+.ngay-g button b{display:block;font-size:12.5px;color:var(--teal-deep)}
+.ngay-g button:hover{border-color:var(--copper-2)}
+.ngay-g button.on{background:var(--teal);border-color:var(--teal)}
+.ngay-g button.on small,.ngay-g button.on b{color:#fff}
+.ca-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.ca-g button{position:relative;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 9px;text-align:left;min-width:0}
+.ca-g button b{display:block;font-size:12.5px;color:var(--teal-deep)}
+.ca-g button small{display:block;font-size:10.5px;color:var(--mut)}
+.ca-g button:hover{border-color:var(--copper-2)}
+.ca-g button.on{border-color:var(--copper);background:var(--copper-soft);box-shadow:0 3px 9px rgba(201,123,54,.2)}
+.ca-g button:disabled{opacity:.45;cursor:not-allowed;background:var(--sand)}
+.ca-g button:disabled::after{content:"✕ kín";position:absolute;top:6px;right:7px;font-size:9px;font-weight:900;color:var(--bad)}
+.dw-frow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.dw-in{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13.5px;background:#fff;min-height:44px}
+.dw-in:focus{outline:none;border-color:var(--teal-2);box-shadow:0 0 0 3px rgba(18,131,154,.14)}
+.dw-in.err{border-color:var(--bad);background:#FFF5F5}
+.dw-note{width:100%;min-height:56px;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13px;resize:vertical;background:#fff}
+.dw-commit{list-style:none;margin:16px 0 0;background:var(--green-soft);border:1.5px solid #CBE0C2;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.dw-commit li{font-size:12px;color:#3E5C36;position:relative;padding-left:17px}
+.dw-commit li::before{content:"✓";color:var(--green);font-weight:900;position:absolute;left:0;top:0}
+.dw-sub{width:100%;margin-top:13px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--copper-2),var(--copper));color:#fff;font-weight:900;font-size:14.5px;padding:13px;min-height:48px;box-shadow:0 8px 18px rgba(201,123,54,.35)}
+.dw-sub:hover{filter:brightness(1.06)}
+.dw-tiny{font-size:11.3px;color:var(--mut);margin-top:9px}
+.dw-ok{display:none;text-align:center;padding:26px 8px}
+.dw-ok.on{display:block}
+.dw-ok .ok-ic{width:64px;height:64px;border-radius:99px;background:var(--green-soft);display:grid;place-items:center;margin:0 auto 12px}
+.dw-ok h3{font-size:17px;color:var(--teal-deep)}
+.ok-ma{display:inline-block;margin:8px 0 4px;font-family:'Trebuchet MS',sans-serif;font-size:24px;font-weight:900;letter-spacing:2px;color:var(--copper-deep);background:var(--copper-soft);border:1.5px dashed var(--copper-2);border-radius:10px;padding:5px 16px}
+.ok-phieu{margin:14px 0;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:7px}
+.ok-phieu div{display:flex;justify-content:space-between;gap:12px;font-size:12.6px;border-bottom:1.5px dashed var(--line);padding-bottom:7px}
+.ok-phieu div:last-child{border-bottom:0;padding-bottom:0}
+.ok-phieu span{color:var(--mut);flex:none}
+.ok-phieu b{color:var(--teal-deep);text-align:right;min-width:0}
+.dw-acts{display:flex;gap:9px;margin-top:14px}
+.dw-acts .btn{flex:1;padding:11px 10px;font-size:13px;min-height:44px}
+
+/* ===== CHAT (pkc — không bot) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--teal);color:#fff;font-size:22px;box-shadow:0 10px 24px rgba(15,110,128,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1.5px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(11,46,54,.24);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--teal-deep);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:16px;width:32px;height:36px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#FBF7EE}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:12.8px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1.5px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 11px;font-size:11.8px;font-weight:700;color:var(--teal-deep);min-height:34px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1.5px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13px;min-height:42px}
+#pkcSend{border:0;background:var(--copper);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST (2 phần tử: b + span) ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dw-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--teal-ink);color:#EAF4F1;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:#FFD9AE;margin-bottom:2px}
+.toast span{font-size:12.6px;color:#C4DAD6}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1060px){
+  .khay-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .goi.feat-a{grid-column:1/-1}
+  .goi.feat-b{grid-column:1/-1}
+  .rev-g,.ck-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.main{display:none}
+}
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:34px;padding:40px 0 46px}
+  .hero-g .hero-txt{order:-1}
+  .hero .lead{max-width:none}
+  .lapca-g{grid-template-columns:1fr}
+  .about-g{grid-template-columns:1fr}
+  .ct-g{grid-template-columns:1fr}
+  .qt-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qt-rail::before{display:none}
+  .tien-g{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .sec{padding:44px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .call span{display:none}
+  .khay-g{grid-template-columns:1fr}
+  /*NB110-271 — mobile: 2 gói nổi bật lên ĐẦU khay + viền cam (đúng hợp đồng B)*/
+  .goi.feat-a{order:-2;border:2px solid var(--copper)}
+  .goi.feat-b{order:-1;border:2px solid var(--copper)}
+  .goi.feat-a .lay,.goi.feat-b .lay{grid-template-columns:1fr}
+  .goi.feat-a .ph,.goi.feat-b .ph{padding:0}
+  .goi.feat-a .ph img,.goi.feat-b .ph img{border-radius:0}
+  .goi.feat-a .bd{padding:11px 13px 13px}
+  .goi.feat-a p{font-size:12.6px}
+  .goi.feat-a ul.tick{gap:4px}
+  .goi.feat-a ul.tick li{font-size:12px}
+  .goi.feat-a .ph{padding:12px 12px 0}
+  .goi.feat-a h3{font-size:18px}
+  .nb-row{grid-template-columns:1fr;margin-bottom:16px}
+  .nb-card{grid-template-columns:1fr}
+  .nb-card .nimg img{aspect-ratio:4/3;height:auto}
+  .rev-g{grid-template-columns:1fr}
+  .ck-g{grid-template-columns:1fr}
+  .qt-rail{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 18px}
+  .ft-brand{grid-column:1/-1}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  .drawer{width:100vw;max-width:100vw}
+  .dw-body{padding-bottom:64px}
+  .about-collage .fig1{width:100%}
+  .about-collage .fig2{width:58%}
+  .ca-float.f1{left:0}
+  .ca-float.f2{right:0;bottom:54px}
+  .hero-badge24{right:0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>🕰 Nhận ca <b>24/24</b> — kể cả đêm, lễ Tết</span>
+    <span>📍 Ngõ An Tâm, Phường Chăm Sóc Thành Thị</span>
+    <span class="tb-hot">📞 Hotline/Zalo: <b>0034567899</b></span>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6a5.5 5.5 0 0 0-9.8-3.4A5.5 5.5 0 0 0 3.2 8.6c0 5 6.4 9.3 8.8 10.9 2.4-1.6 8.8-5.9 8.8-10.9z"/><path d="M5.5 12h3l1.5-2.5 2 4 1.5-2.5h5"/></svg>
+      </span>
+      <span><b>Chăm Sóc An Tâm</b><small>Điều dưỡng &amp; chăm sóc tại nhà</small></span>
+    </a>
+    <nav class="main">
+      <a href="#khay">Khay dịch vụ</a>
+      <a href="#noibat">Đặt nhiều nhất</a>
+      <a href="#lap-ca">Lập ca chăm sóc</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#ve-chung-toi">Về chúng tôi</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div class="hero-clip rv">
+      <div class="clip-bar"></div>
+      <div class="hero-badge24"><b>24/24</b><span>nhận ca</span></div>
+      <img src="assets/img/cover.webp" alt="Điều dưỡng viên Chăm Sóc An Tâm chăm sóc người cao tuổi tại nhà — chu đáo từng ngày, an tâm tại nhà" width="1408" height="1056" fetchpriority="high">
+      <div class="clip-lines"></div>
+      <div class="ca-float f1">
+        <small>Ca sáng hôm nay</small>
+        <span class="tem on-paper"><i></i>08:00 · ĐÃ NHẬN CA</span>
+      </div>
+      <div class="ca-float f2">
+        <span class="ok-dot">Báo cáo sức khỏe hằng ngày</span>
+        <small style="text-transform:none;font-weight:600;color:#4E5E66">huyết áp · đường huyết · ăn uống · thuốc</small>
+      </div>
+    </div>
+    <div class="hero-txt rv">
+      <span class="kicker">Điều dưỡng viên chứng chỉ trung cấp trở lên</span>
+      <h1>Người thân an tâm tại nhà,<br><em>con cháu an tâm nơi xa</em></h1>
+      <p class="lead">Chọn dịch vụ → xem <b>khung giờ trống</b> → giữ ca trong một nút. Điều dưỡng viên tới tận nhà đúng giờ, <b>đổi/huỷ miễn phí trước 2 giờ</b>, và gửi gia đình báo cáo sức khỏe mỗi tối.</p>
+      <div class="hero-cta">
+        <button class="btn btn-cp" data-open-drawer>
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 13.2v4M10 15.2h4"/></svg>
+          Đặt lịch điều dưỡng
+        </button>
+        <a class="btn btn-gh" href="#khay">Xem khay dịch vụ hôm nay</a>
+      </div>
+      <div class="hero-trust">
+        <span class="tem on-paper"><i></i>Có mặt trong 2 giờ · nội thành</span>
+        <span class="tem chieu on-paper"><i></i>Không đặt cọc</span>
+        <span class="tem dem on-paper"><i></i>Ca đêm 20:00 – 08:00</span>
+      </div>
+      <div class="hero-stats">
+        <div><b>24/24</b><span>nhận ca mọi ngày</span></div>
+        <div><b>2 giờ</b><span>có mặt tại nhà (nội thành)</span></div>
+        <div><b>1.800+</b><span>ca chăm sóc đã thực hiện</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DẢI TIỆN ÍCH ===== -->
+<section class="sec" id="tien-ich" style="padding-bottom:44px">
+  <div class="wrap">
+    <div class="tien-g">
+      <div class="tien rv"><div class="ic">🧰</div><div><b>Khay dụng cụ vô trùng — một khách một bộ</b><span>Chuẩn bị riêng cho từng ca, đem về xử lý theo quy trình y tế.</span></div></div>
+      <div class="tien rv"><div class="ic">📋</div><div><b>Báo cáo sức khỏe hằng ngày</b><span>Sổ theo dõi tại nhà + nhắn tổng hợp cho gia đình mỗi tối qua Zalo.</span></div></div>
+      <div class="tien rv"><div class="ic">🔁</div><div><b>Đổi/huỷ miễn phí trước 2 giờ</b><span>Việc gia đình bận đột xuất — đổi ca không mất phí, không đặt cọc.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8: KHAY Y TẾ INOX (pattern 3 biến thể) ===== -->
+<section class="sec khay-sec" id="khay">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khay dịch vụ hôm nay</span>
+      <h2>8 gói chăm sóc bày trên khay — chọn gói, giữ ca</h2>
+      <p>Mỗi ca một khay dụng cụ chuẩn bị riêng, tem nhãn ca sáng – chiều – tối – đêm dán rõ trên phiếu. Bấm “Giữ ca” là phiếu đặt lịch mở sẵn đúng gói đó.</p>
+    </div>
+    <div class="khay-table rv">
+      <span class="vit v1"></span><span class="vit v2"></span><span class="vit v3"></span><span class="vit v4"></span>
+      <div class="khay-nhan"><i></i>Khay ca · DD-271 · còn nhận</div>
+      <div class="khay-g" id="khayGrid"></div>
+      <p class="khay-note">Giá là mức <b>giá tham khảo</b> công khai — điều dưỡng viên đánh giá tình trạng thực tế tại nhà rồi báo đúng giá trước khi bắt đầu ca. Tiêm truyền/thay băng thực hiện <b>theo y lệnh</b> của bác sĩ đang điều trị.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHUNG NỔI BẬT RIÊNG: 3 CA ĐƯỢC GIỮ NHIỀU NHẤT ===== -->
+<section class="sec noibat" id="noibat">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Gia đình giữ nhiều nhất</span>
+      <h2>3 ca được đặt nhiều nhất tháng này</h2>
+    </div>
+    <div class="nb-row rv">
+      <article class="nb-card nb-top">
+        <div class="nimg"><img src="assets/img/p1.webp" alt="Chăm sóc người bệnh tại nhà — tần tâm, chu đáo, an tâm" loading="lazy" width="1280" height="960"></div>
+        <div class="nbd">
+          <h3>Chăm sóc người bệnh tại nhà — trọn ca 8 giờ</h3>
+          <ul>
+            <li>Vệ sinh cá nhân, xoay trở phòng loét, hỗ trợ vận động an toàn</li>
+            <li>Uống thuốc đúng giờ theo dược đơn nhà bệnh viện cung cấp</li>
+            <li>Ghi sổ theo dõi + nhắn báo cáo cho gia đình mỗi tối</li>
+          </ul>
+          <div class="nft">
+            <div class="gia">850.000đ<small>giá từ · 1 ca 8 giờ · 1 điều dưỡng viên</small></div>
+            <button class="giu" data-dv="cham-soc-nguoi-benh">🗓 Giữ ca này</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="nb-row rv">
+      <article class="nb-card">
+        <div class="nimg"><img src="assets/img/p5.webp" alt="Chăm sóc người sau phẫu thuật — phục hồi nhẹ nhàng, chăm sóc đúng cách" loading="lazy" width="1280" height="960"></div>
+        <div class="nbd">
+          <h3>Chăm sóc người sau phẫu thuật</h3>
+          <ul>
+            <li>Theo dõi vết mổ, hỗ trợ sinh hoạt sau xuất viện</li>
+            <li>Kết hợp thay băng theo y lệnh + tập vận động sớm</li>
+          </ul>
+          <div class="nft">
+            <div class="gia">950.000đ<small>giá từ · ca 8 giờ</small></div>
+            <button class="giu" data-dv="sau-phau-thuat">🗓 Giữ ca này</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="nb-row rv" style="margin-bottom:8px">
+      <article class="nb-card">
+        <div class="nimg"><img src="assets/img/p2.webp" alt="Vật lý trị liệu tại nhà — linh hoạt, hiệu quả, phục hồi bền vững" loading="lazy" width="1280" height="960"></div>
+        <div class="nbd">
+          <h3>Vật lý trị liệu tại nhà</h3>
+          <ul>
+            <li>Tập đúng động tác cho người sau đột quỵ, gãy xương, đau khớp</li>
+            <li>Bài tập cá nhân hoá + đo tiến triển mỗi buổi</li>
+          </ul>
+          <div class="nft">
+            <div class="gia">200.000đ<small>giá từ · mỗi buổi ~60 phút</small></div>
+            <button class="giu" data-dv="vat-ly-tri-lieu">🗓 Giữ ca này</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="nb-note">3 ca trên lấy đúng từ khay dịch vụ — giữ ca trước 2 giờ so với giờ bắt đầu để được <b>đổi/huỷ miễn phí</b>.</p>
+  </div>
+</section>
+
+<!-- ===== DAC THU: LẬP CA CHĂM SÓC THEO TÌNH TRẠNG NGƯỜI NHÀ ===== -->
+<section class="sec" id="lap-ca">
+  <div class="wrap">
+    <div class="lapca-sec rv">
+      <span class="kicker">Công cụ đặc biệt của Chăm Sóc An Tâm</span>
+      <h2>Lập ca chăm sóc cho người nhà bạn — 30 giây</h2>
+      <p class="sub">Nhà bạn trống mấy giờ trong ngày? Người thân đang ở tình trạng nào? Chọn 2 mục bên trái — kế hoạch ca gợi ý kèm chi phí/ngày hiện ngay bên phải, giữ ca luôn một nút.</p>
+      <div class="lapca-g">
+        <div class="lap-pick">
+          <label class="lap-lb">1 · Tình trạng người bệnh<small>Càng đúng tình trạng, gói ca càng sát thực tế</small></label>
+          <div class="lap-chips" id="ttChips"></div>
+          <label class="lap-lb">2 · Khung giờ nhà bạn cần người<small>Chọn lúc gia đình không trực được</small></label>
+          <div class="lap-chips" id="gioChips"></div>
+          <p class="lap-tiny">💡 Đây là kế hoạch tham khảo — điều dưỡng viên khảo sát tại nhà lần đầu sẽ chỉnh cho đúng tình trạng thật rồi mới chốt giá.</p>
+        </div>
+        <div class="lap-out">
+          <h3><span class="dot"></span><span id="lapName">Kế hoạch ca gợi ý</span></h3>
+          <p class="lap-sub" id="lapSub">chọn 1 tình trạng + 1 khung giờ ở bên trái</p>
+          <div id="lapList"><p class="lap-empty">Kế hoạch sẽ hiện ở đây — gồm dịch vụ chính, các việc kèm theo và chi phí ước tính mỗi ngày.</p></div>
+          <div class="lap-sum" id="lapSum" hidden>
+            <div><b id="lapGia">—</b><span>ước tính / ngày</span></div>
+            <div><b id="lapDdv">—</b><span>điều dưỡng viên</span></div>
+            <div><b id="lapPhanhoi">≤ 15′</b><span>phản hồi sau đặt ca</span></div>
+          </div>
+          <button class="lap-cta" id="lapDat" hidden>🗓 Giữ ca này — mở phiếu đặt lịch</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH 4 BƯỚC — trục "giờ thuốc" ===== -->
+<section class="sec" id="quy-trinh" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Quy trình một ca chăm sóc</span>
+      <h2>Từ lúc bạn gọi đến báo cáo tối — rõ từng mốc</h2>
+    </div>
+    <div class="qt-rail">
+      <div class="qt rv"><span class="tem gio on-paper"><i></i>+0 phút</span><span class="phut">Bước 1 · Nhận yêu cầu</span><b>Gọi hoặc gửi phiếu giữ ca</b><span>Điều phối gọi lại trong 15 phút — hỏi tình trạng, chốt dịch vụ và khung giờ trống.</span></div>
+      <div class="qt rv"><span class="tem chieu gio on-paper"><i></i>+2 giờ</span><span class="phut">Bước 2 · Đánh giá tại nhà</span><b>Điều dưỡng viên khảo sát</b><span>Chứng chỉ trung cấp trở lên — đánh giá tình trạng, báo giá đúng trước khi bắt đầu.</span></div>
+      <div class="qt rv"><span class="tem toi gio on-paper"><i></i>Đúng ca</span><span class="phut">Bước 3 · Bắt đầu ca</span><b>Đến nhà đúng giờ hẹn</b><span>Đồng phục, thẻ ĐDV, khay dụng cụ vô trùng chuẩn bị riêng cho ca đó.</span></div>
+      <div class="qt rv"><span class="tem dem gio on-paper"><i></i>21:00 hằng ngày</span><span class="phut">Bước 4 · Báo cáo</span><b>Nhắn báo cáo cho gia đình</b><span>Huyết áp, ăn uống, giấc ngủ, thuốc đã dùng — ghi sổ tại nhà + tổng hợp qua Zalo.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAM KẾT + DISCLAIMER ===== -->
+<section class="sec camket" id="cam-ket">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Cam kết của Chăm Sóc An Tâm</span>
+      <h2>4 điều gia đình kiểm tra được ngay ca đầu</h2>
+    </div>
+    <div class="ck-g">
+      <div class="ck rv"><span class="num">01</span><div class="ic">🎖</div><b>Chứng chỉ y tế trung cấp trở lên</b><p>100% điều dưỡng viên có chứng chỉ — gia đình xem bản gốc trước ca đầu, không đạt không nhận ca.</p></div>
+      <div class="ck rv"><span class="num">02</span><div class="ic">📒</div><b>Báo cáo sức khỏe hằng ngày</b><p>Sổ theo dõi ghi tại nhà, tổng hợp nhắn Zalo mỗi tối — người thân ở xa đọc được như ngồi cạnh.</p></div>
+      <div class="ck rv"><span class="num">03</span><div class="ic">🧴</div><b>Khay vô trùng một khách một bộ</b><p>Dụng cụ mỗi ca chuẩn bị riêng, kim băng đem hủy đúng quy trình — không dùng chung giữa các nhà.</p></div>
+      <div class="ck rv"><span class="num">04</span><div class="ic">🔁</div><b>Đổi/huỷ miễn phí trước 2 giờ</b><p>Không đặt cọc, không phí ẩn. Đổi ca nhắn trước 2 giờ là được — người bệnh không phải chờ.</p></div>
+    </div>
+    <div class="disclaim rv">
+      <span class="ic">⚕️</span>
+      <div><b>Lưu ý quan trọng:</b> dịch vụ điều dưỡng – chăm sóc tại nhà <b>không thay thế điều trị y khoa</b>. Việc tiêm truyền, thay băng thực hiện theo đúng y lệnh của bác sĩ đang điều trị; trường hợp cấp cứu xin gọi <b>115</b> hoặc đến cơ sở y tế gần nhất.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VỀ CHÚNG TÔI — COLLAGE SO LE ===== -->
+<section class="sec" id="ve-chung-toi">
+  <div class="wrap about-g">
+    <div class="about-collage rv">
+      <figure class="fig1">
+        <span class="ghim"></span>
+        <img src="assets/img/intro.webp" alt="Giới thiệu Chăm Sóc An Tâm — hỗ trợ chăm sóc và theo dõi người thân ngay trong không gian quen thuộc" loading="lazy" width="1408" height="1056">
+        <figcaption><b>Buổi đánh giá đầu tiên</b> — điều dưỡng viên ghi sổ theo dõi cùng gia đình</figcaption>
+      </figure>
+      <figure class="fig2">
+        <span class="ghim"></span>
+        <img src="assets/img/space.webp" alt="Ca trực tại nhà — điều dưỡng viên theo dõi người cao tuổi bên giường" loading="lazy" width="1408" height="1056">
+        <figcaption><b>Ca sáng tại nhà</b> — người thân quen thuộc, không xa nhà</figcaption>
+      </figure>
+    </div>
+    <div class="about-txt rv">
+      <span class="kicker">Về chúng tôi</span>
+      <h2>Chăm ngay trong không gian quen thuộc của người thân</h2>
+      <p>Chăm Sóc An Tâm khởi đầu từ một nhóm điều dưỡng viên chạy ca thêm sau giờ bệnh viện, nhận giúp mấy nhà hàng xóm cần người trực đêm. Đến nay là đội 30+ điều dưỡng viên chứng chỉ trung cấp trở lên, trực 24/24 quanh Phường Chăm Sóc Thành Thị.</p>
+      <p>Chúng tôi giữ đúng một nguyên tắc từ ngày đầu: <b>chăm người thân của khách như người thân của mình</b> — đúng giờ, sạch sẽ, ghi sổ đầy đủ, và báo cho gia đình biết mọi thay đổi dù nhỏ.</p>
+      <div class="about-num">
+        <span><i>✓</i>1.800+ ca đã chăm</span>
+        <span><i>✓</i>96% gia đình gia hạn</span>
+        <span><i>✓</i>30+ điều dưỡng viên</span>
+      </div>
+      <p class="sign" style="margin-top:14px">— Hoa Nguyễn, điều dưỡng trưởng —</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Gia đình nói về chúng tôi</span>
+      <h2>Người ở xa nhất lại là người yên tâm nhất</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Mẹ 82 tuổi gãy xương đùi, chị Hằng vào ca sáng xoay trở + tập đứng. Tối nào cũng nhận báo cáo có ảnh — mình ở nước ngoài mà như ngồi bên giường mẹ."</p><b>Anh Quốc Khánh</b><span>con người bệnh · đang ở Mỹ</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đặt ca đêm cho ba mắc suy trí. Có chị trực, ba không còn đi lang nửa đêm, nhà mình ngủ được trọn giấc sau 2 năm."</p><b>Chị Thanh Thảo</b><span>con gái người bệnh · Bình Thạnh</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Tiêm truyền tại nhà theo đúng y lệnh viện, đúng giờ, kim tiêm đem đi hủy có biên lai. Sạch sẽ và rõ ràng hơn mình tưởng."</p><b>Anh Minh Quốc</b><span>chăm cha · Q.3</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Đổi ca 2 lần vì việc đột xuất — đều miễn phí, điều phối nhắc lịch trước 1 ngày. Chấm đủ sao nếu thêm gói cuối tuần ngắn ngày."</p><b>Chị Hải Mai</b><span>chăm mẹ sau đột quỵ · Thủ Đức</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏠 Nhận ca toàn khu Thành Thị</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Văn phòng điều phối</b><br>Ngõ An Tâm, Phường Chăm Sóc Thành Thị</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo — 24/24</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ nhận ca</b><br>Cả ngày lẫn đêm — ca sớm nhất nhận trong 2 giờ kể khi chốt</div></div>
+      <div class="ct-line"><div class="ic">🛵</div><div><b>Khu vực phục vụ</b><br>Nội thành trong 2 giờ · ngoại thành theo hẹn, báo phí đi đường trước</div></div>
+      <a class="btn btn-gh dir-btn" href="https://www.google.com/maps?q=10.7965,106.6843&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới văn phòng</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.7965,106.6843 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.7965,106.6843&z=15&output=embed&hl=vi" title="Bản đồ Chăm Sóc An Tâm"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Gia đình hay hỏi trước khi giữ ca đầu</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>BHYT có chi trả dịch vụ chăm sóc tại nhà không?<i>+</i></button><div class="a">Dịch vụ chăm sóc – điều dưỡng tại nhà <b>chưa thuộc phạm vi chi trả của BHYT</b>, gia đình tự chi trả theo bảng giá công khai. Riêng thuốc, vật tư theo y lệnh của bệnh viện thì người bệnh vẫn hưởng quyền lợi BHYT bình thường — điều dưỡng viên hỗ trợ kê lại hồ sơ, giữ hoá đơn để gia đình hoàn thủ tục.</div></div>
+      <div class="qa rv"><button>Có nhận ca đêm 24/24 không?<i>+</i></button><div class="a">Có — ca đêm <b>20:00 – 08:00</b> có điều dưỡng viên trực tại nhà, hỗ trợ trở mình, vệ sinh đêm, uống thuốc giờ khuya và theo dõi khi có bất thường. Ca đêm nên giữ trước ít nhất 4 giờ để sắp người quen với ca ngày.</div></div>
+      <div class="qa rv"><button>Người bệnh liệt giường, chống loét có chăm được không?<i>+</i></button><div class="a">Đây là nhóm ca phổ biến nhất của chúng tôi: xoay trở đúng tư thế 2 giờ/lần, vệ sinh da, hướng dẫn dùng đệm hơi phòng loét, tránh loét cùng cụt và gót chân. Gia đình được hướng dẫn lại từng động tác để tự làm được giờ không có điều dưỡng viên.</div></div>
+      <div class="qa rv"><button>Tiêm truyền tại nhà có cần gì chuẩn bị?<i>+</i></button><div class="a">Chỉ cần <b>y lệnh của bác sĩ đang điều trị</b> (giấy ra viện, đơn thuốc hoặc tờ hướng dẫn). Điều dưỡng viên không tự ý kê hay đổi thuốc. Trong ca nếu phát hiện dấu hiệu bất thường (sốt cao, khó thở, tụt huyết áp) sẽ xử trí ban đầu và chuyển tuyến ngay — cấp cứu gọi <b>115</b>.</div></div>
+      <div class="qa rv"><button>Đổi/huỷ ca thế nào?<i>+</i></button><div class="a">Nhắn hotline hoặc Zalo <b>trước 2 giờ</b> so với giờ bắt đầu ca: đổi ca hoặc huỷ đều <b>miễn phí</b>. Trong vòng 2 giờ: huỷ mất 30% công ca đã chốt, đổi ca miễn phí nếu còn giờ trống trong ngày.</div></div>
+      <div class="qa rv"><button>Điều dưỡng viên là ai, kiểm tra thế nào?<i>+</i></button><div class="a">Tất cả đều có <b>chứng chỉ trung cấp y tế trở lên</b> (điều dưỡng, y sỹ) và hơn 2 năm lâm sàng. Trước ca đầu, gia đình được xem chứng chỉ + CCCD bản gốc và ký hợp đồng dịch vụ rõ điều khoản. Không ưng người đến ca đầu, đổi người khác miễn phí.</div></div>
+      <div class="qa rv"><button>Phục vụ những khu vực nào, có tính phí đi đường?<i>+</i></button><div class="a">Nội thành: có mặt trong 2 giờ, giá đã gồm đi đường. Ngoại thành và khu vực lân cận: theo hẹn, báo cố định phí đi đường trước khi chốt ca — không phát sinh sau.</div></div>
+      <div class="qa rv"><button>Báo cáo sức khỏe hằng ngày gồm những gì?<i>+</i></button><div class="a">Mỗi tối trước 21:00, gia đình nhận tin nhắn tổng hợp: huyết áp – nhịp tim (nếu đo), ăn uống, giấc ngủ, thuốc đã uống, vết thương/nhuận màu nếu có, kèm ghi chú của điều dưỡng viên. Sổ giấy ghi tại nhà để đối chiếu khi cần.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-dis">
+    <div class="wrap">⚕ Thông tin trên website mang tính tham khảo, không thay thế chẩn đoán và chỉ định của bác sĩ. Dịch vụ tiêm truyền – thay băng thực hiện theo y lệnh. Khẩn cấp gọi <b style="color:#FFD9AE">115</b>.</div>
+  </div>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🩺 Chăm Sóc An Tâm</b>
+      <p>Điều dưỡng &amp; chăm sóc người bệnh tại nhà — chu đáo từng ngày, an tâm tại nhà. Nhận ca 24/24 quanh Phường Chăm Sóc Thành Thị.</p>
+    </div>
+    <div>
+      <h4>Dịch vụ</h4>
+      <a href="#khay">Khay 8 gói chăm sóc</a>
+      <a href="#noibat">3 ca đặt nhiều nhất</a>
+      <a href="#lap-ca">Lập ca chăm sóc</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 Ngõ An Tâm, Phường Chăm Sóc Thành Thị</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a> · Zalo 24/24</p>
+      <p>🕰 Nhận ca cả ngày lẫn đêm</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Chăm Sóc An Tâm · Giá tham khảo, báo đúng sau đánh giá tại nhà</div>
+</footer>
+
+<!-- ===== FAB ĐẶT LỊCH (SVG lịch + tim y tế) ===== -->
+<button class="fab" id="fabOpen" aria-label="Mở phiếu đặt lịch điều dưỡng">
+  <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/>
+    <path d="M3 10h18M8 3v4M16 3v4"/>
+    <path d="M15.6 12.9a2 2 0 0 0-3.6 1.2c0 1.8 2.3 3.3 3.6 4 1.3-.7 3.6-2.2 3.6-4a2 2 0 0 0-3.6-1.2z"/>
+  </svg>
+  <b class="fab-b" id="fabN" hidden>1</b>
+</button>
+
+<!-- ===== DRAWER ĐẶT LỊCH ĐIỀU DƯỠNG (funnel: dịch vụ → ngày + ca → địa chỉ → SĐT) ===== -->
+<div class="ovl" id="ovl"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Phiếu đặt lịch điều dưỡng">
+  <div class="dw-head">
+    <span class="mk">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M15.6 12.9a2 2 0 0 0-3.6 1.2c0 1.8 2.3 3.3 3.6 4 1.3-.7 3.6-2.2 3.6-4a2 2 0 0 0-3.6-1.2z"/></svg>
+    </span>
+    <div><b>Giữ ca điều dưỡng — Chăm Sóc An Tâm</b><small>không cọc · xác nhận tại trang · đổi/huỷ trước 2 giờ</small></div>
+    <button class="dw-x" id="dwClose" aria-label="Đóng phiếu đặt ca">✕</button>
+  </div>
+  <div class="dw-steps" id="dwSteps">
+    <span class="dw-step on">1 · Dịch vụ</span>
+    <span class="dw-step">2 · Ngày &amp; ca</span>
+    <span class="dw-step">3 · Địa chỉ</span>
+    <span class="dw-step">4 · Liên lạc</span>
+  </div>
+  <div class="dw-body">
+    <form id="dwForm" novalidate autocomplete="off">
+      <div>
+        <label class="dw-lb" for="dvSel">1 · Dịch vụ chăm sóc <em>*</em></label>
+        <select class="dw-sel" id="dvSel"></select>
+      </div>
+      <div>
+        <label class="dw-lb">2 · Ngày bắt đầu <em>*</em></label>
+        <div class="ngay-g" id="ngayG"></div>
+        <label class="dw-lb">Khung ca <em>*</em> <small style="font-weight:600;color:var(--mut);text-transform:none;letter-spacing:0">— ô có ✕ là đã kín người</small></label>
+        <div class="ca-g" id="caG">
+          <button type="button" data-ca="0"><b>Ca sáng</b><small>08:00 – 12:00</small></button>
+          <button type="button" data-ca="1"><b>Ca chiều</b><small>12:00 – 16:00</small></button>
+          <button type="button" data-ca="2"><b>Ca tối</b><small>16:00 – 20:00</small></button>
+          <button type="button" data-ca="3"><b>Ca đêm</b><small>20:00 – 08:00</small></button>
+        </div>
+      </div>
+      <div>
+        <label class="dw-lb" for="pAddr">3 · Địa chỉ chăm sóc <em>*</em></label>
+        <input class="dw-in" id="pAddr" type="text" placeholder="Số nhà, đường, phường — ĐDV tới tận nhà">
+      </div>
+      <div class="dw-frow">
+        <div>
+          <label class="dw-lb" for="pName">4 · Họ tên người thân <em>*</em></label>
+          <input class="dw-in" id="pName" type="text" placeholder="VD: Nguyễn Thị Bích Hạnh">
+        </div>
+        <div>
+          <label class="dw-lb" for="pPhone">Số điện thoại <em>*</em></label>
+          <input class="dw-in" id="pPhone" type="tel" placeholder="VD: 0901 234 567">
+        </div>
+      </div>
+      <div>
+        <label class="dw-lb" for="pNote">Tình trạng &amp; ghi chú</label>
+        <textarea class="dw-note" id="pNote" placeholder="VD: mẹ 82 tuổi sau gãy xương đùi, cần xoay trở + tập đứng, nhà lầu có thang máy"></textarea>
+      </div>
+      <ul class="dw-commit">
+        <li>Điều dưỡng viên <b>chứng chỉ y tế trung cấp trở lên</b> — xem chứng chỉ trước ca đầu</li>
+        <li>Báo cáo sức khỏe hằng ngày qua Zalo — sổ theo dõi ghi tại nhà</li>
+        <li>Đổi/huỷ miễn phí trước 2 giờ · không đặt cọc · xác nhận ngay tại trang</li>
+      </ul>
+      <button class="dw-sub" type="submit">✅ Xác nhận giữ ca</button>
+      <p class="dw-tiny">Dịch vụ chăm sóc không thay thế điều trị y khoa — tiêm truyền/thay băng theo y lệnh bác sĩ. Khẩn cấp gọi <b>115</b>.</p>
+    </form>
+    <div class="dw-ok" id="dwOk">
+      <div class="ok-ic">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#2F9E6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg>
+      </div>
+      <h3>Đã giữ ca — xác nhận tại trang!</h3>
+      <span class="ok-ma" id="okMa">DD-0000</span>
+      <div class="ok-phieu" id="okPhieu"></div>
+      <p class="dw-tiny" style="text-align:left">Điều phối gọi <b id="okPhone"></b> xác nhận trong 15 phút. Đổi/huỷ miễn phí trước 2 giờ — gọi <b>0034567899</b>. Ca đầu nhớ chuẩn bị y lệnh/thuốc đang dùng để điều dưỡng viên đối chiếu.</p>
+      <div class="dw-acts">
+        <button class="btn btn-gh" id="okNew">🗓 Giữ ca khác</button>
+        <button class="btn btn-cp" id="okDone">Đã xong</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== CHAT (pkc — không bot) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Nhắn cho điều phối">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Điều phối <span data-pkc="brand">Chăm Sóc An Tâm</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🛏 Có người trực cho bệnh nhân liệt giường không?</button>
+    <button class="pkc-chip">🌙 Ca đêm 20:00–08:00 giá thế nào?</button>
+    <button class="pkc-chip">💳 BHYT có chi trả được không?</button>
+    <button class="pkc-chip">🔁 Đổi ca có mất phí?</button>
+    <button class="pkc-chip">📍 Nhà mình ở ngoại thành có nhận không?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho điều phối…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-271*/
+'use strict';
+var HOTLINE = '0034567899';
+/* 8 dịch vụ ĐÚNG danh sách kho — ảnh ghép đúng poster (p1 Chăm sóc · p2 Vật lý · p3 Tiêm truyền · p4 Dinh dưỡng · p5 Sau phẫu thuật · p6 Thay băng · p7 Theo dõi chỉ số · p8 Chăm sóc ca) */
+var DICHVU = [
+  {id:'cham-soc-nguoi-benh', ten:'Chăm sóc người bệnh tại nhà',   img:'assets/img/p1.webp', gia:'850.000đ', giaNote:'ca 8 giờ',        nhom:'Chăm sóc dài ngày', tem:'sang', dur:'ca 8 giờ',  feat:'A', moTa:'Trọn ca bên giường: vệ sinh cá nhân, xoay trở phòng loét, uống thuốc đúng giờ, ghi sổ theo dõi — báo cáo gia đình mỗi tối.'},
+  {id:'tiem-truyen',         ten:'Tiêm truyền tại nhà',           img:'assets/img/p3.webp', gia:'120.000đ', giaNote:'mỗi lần',          nhom:'Y lệnh – thủ thuật', tem:'chieu', dur:'~30′',   moTa:'Thực hiện đúng y lệnh bác sĩ đang điều trị — vô trùng một kim một người, kim băng đem hủy theo quy trình y tế.'},
+  {id:'thay-bang',           ten:'Thay băng - chăm sóc vết thương',img:'assets/img/p6.webp',gia:'100.000đ', giaNote:'mỗi lần thay',     nhom:'Y lệnh – thủ thuật', tem:'chieu', dur:'~30′',   moTa:'Tháo băng sạch sẽ, rửa vết thương bằng nước muối sinh lý, đánh giá từng lần — theo dõi lành thương và báo ngay khi thấy bất thường.'},
+  {id:'theo-doi-chi-so',     ten:'Theo dõi chỉ số sức khỏe',      img:'assets/img/p7.webp', gia:'80.000đ',  giaNote:'mỗi lần đo + ghi sổ',nhom:'Theo dõi & phục hồi', tem:'sang', dur:'~20′', moTa:'Đo huyết áp, nhịp tim, đường huyết, nhiệt độ — ghi sổ theo dõi và cảnh báo gia đình khi chỉ số lệch khỏi ngưỡng bác sĩ dặn.'},
+  {id:'sau-phau-thuat',      ten:'Chăm sóc người sau phẫu thuật', img:'assets/img/p5.webp', gia:'950.000đ', giaNote:'ca 8 giờ',        nhom:'Chăm sóc dài ngày', tem:'sang', dur:'ca 8 giờ',  moTa:'Giai đoạn vàng sau xuất viện: theo dõi vết mổ, hỗ trợ sinh hoạt, kết hợp thay băng theo y lệnh và tập vận động sớm.'},
+  {id:'vat-ly-tri-lieu',     ten:'Vật lý trị liệu tại nhà',       img:'assets/img/p2.webp', gia:'200.000đ', giaNote:'mỗi buổi ~60′',   nhom:'Theo dõi & phục hồi', tem:'toi',  dur:'~60′',   moTa:'Tập đúng động tác cho người sau đột quỵ, gãy xương, đau khớp — bài tập cá nhân hoá, đo tiến triển mỗi buổi.'},
+  {id:'dinh-duong',          ten:'Hỗ trợ dinh dưỡng người bệnh',  img:'assets/img/p4.webp', gia:'150.000đ', giaNote:'thiết kế thực đơn tuần', nhom:'Theo dõi & phục hồi', tem:'chieu', dur:'~45′', moTa:'Thực đơn theo bệnh nền (tiểu đường, tăng huyết áp, sau mổ) — kèm hướng dẫn chế biến mềm, dễ nuốt cho người già.'},
+  {id:'theo-ca',             ten:'Điều dưỡng theo ca',            img:'assets/img/p8.webp', gia:'250.000đ', giaNote:'ca 4 giờ',        nhom:'Chăm sóc dài ngày', tem:'dem', dur:'4/8/12/24 giờ', feat:'B', moTa:'Linh hoạt theo giờ nhà bạn trống: sáng, chiều, tối, đêm hoặc trực 24/24 luân phiên — cùng một điều dưỡng viên quen mặt.'}
+];
+var TEM_CLS = {sang:'', chieu:' chieu', toi:' toi', dem:' dem'};
+var TEM_LB  = {sang:'Ca sáng · 08:00', chieu:'Ca chiều · 12:00', toi:'Ca tối · 16:00', dem:'Ca đêm · 20:00'};
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3800);
+}
+function byId(id){ for (var i=0;i<DICHVU.length;i++){ if (DICHVU[i].id===id) return DICHVU[i]; } return null; }
+
+/* ===== RENDER KHAY — pattern 3 biến thể: 8 gói y tế đặt lệch trên khay inox ===== */
+function renderKhay(){
+  var g = document.getElementById('khayGrid');
+  var html = '';
+  for (var i=0;i<DICHVU.length;i++){
+    var p = DICHVU[i];
+    var feat = p.feat === 'A' ? ' feat feat-a' : (p.feat === 'B' ? ' feat feat-b' : '');
+    var badge = p.feat === 'A' ? '<span class="badge-feat">ĐƯỢC GIỮ NHIỀU NHẤT</span>'
+              : p.feat === 'B' ? '<span class="badge-feat t">LINH HOẠT THEO GIỜ</span>' : '';
+    var body = '<h3>'+p.ten+'</h3><p>'+p.moTa+'</p>'
+      + (p.feat ? '<ul class="tick"><li>Điều dưỡng viên chứng chỉ trung cấp trở lên</li><li>Khay dụng cụ vô trùng riêng cho ca</li><li>Đổi/huỷ miễn phí trước 2 giờ</li></ul>' : '')
+      + '<div class="ft"><div class="gia">'+p.gia+'<small>giá từ · '+p.giaNote+'</small></div>'
+      + '<button class="giu" data-dv="'+p.id+'">🗓 Giữ ca</button></div>';
+    var inner = '<div class="tem-g"><span class="ma">DD-'+(i+1)+'</span><span class="nhom" style="background:'+(p.feat?'var(--copper)':'var(--teal-2)')+'">'+p.nhom+'</span></div>'
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.ten+'" width="1280" height="960" loading="lazy"></div>'
+      + '<div class="bd">'+body+'</div>';
+    if (p.feat){
+      inner = '<div class="tem-g"><span class="ma">DD-'+(i+1)+'</span><span class="nhom" style="background:var(--copper)">'+p.nhom+'</span></div>'
+        + '<div class="lay"><div class="ph"><img src="'+p.img+'" alt="'+p.ten+'" width="1280" height="960" loading="lazy"></div>'
+        + '<div class="bd">'+body+'</div></div>';
+    }
+    html += '<article class="goi'+feat+'">'+badge+inner+'</article>';
+  }
+  g.innerHTML = html;
+}
+document.getElementById('khayGrid').addEventListener('click', function(e){
+  var btn = e.target.closest('[data-dv]');
+  if (btn) openDrawer(btn.getAttribute('data-dv'), '');
+});
+
+/* ===== DRAWER ĐẶT LỊCH ===== */
+var pick = {dv:'', ngay:-1, ca:-1};
+var ngayChips = [];
+var CA_LABEL = ['Ca sáng 08:00–12:00','Ca chiều 12:00–16:00','Ca tối 16:00–20:00','Ca đêm 20:00–08:00'];
+function buildDvSel(){
+  var nhoms = {};
+  for (var i=0;i<DICHVU.length;i++){
+    if (!nhoms[DICHVU[i].nhom]) nhoms[DICHVU[i].nhom] = [];
+    nhoms[DICHVU[i].nhom].push(DICHVU[i]);
+  }
+  var html = '<option value="">— Chọn gói trên khay —</option>';
+  for (var nh in nhoms){
+    html += '<optgroup label="'+nh+'">';
+    for (var j=0;j<nhoms[nh].length;j++){
+      var p = nhoms[nh][j];
+      html += '<option value="'+p.id+'">'+p.ten+' — từ '+p.gia+'/'+p.giaNote+'</option>';
+    }
+    html += '</optgroup>';
+  }
+  document.getElementById('dvSel').innerHTML = html;
+}
+function buildNgay(){
+  var box = document.getElementById('ngayG');
+  var wd = ['CN','T2','T3','T4','T5','T6','T7'];
+  var html = '';
+  ngayChips = [];
+  var d = new Date();
+  for (var i=0;i<7;i++){
+    var dd = new Date(d.getTime() + i*86400000);
+    html += '<button type="button" data-i="'+i+'"><small>'+wd[dd.getDay()]+'</small><b>'+dd.getDate()+'/'+(dd.getMonth()+1)+'</b></button>';
+    ngayChips.push(wd[dd.getDay()]+' '+dd.getDate()+'/'+(dd.getMonth()+1));
+  }
+  box.innerHTML = html;
+}
+/* ca kín: cố định theo ngày+ca (mô phỏng lịch điều phối), ca đã qua hôm nay cũng kín */
+function caKinh(ngay, ca){
+  if (((ngay*31 + ca*17 + 7) % 10) < 3) return true;
+  if (ngay === 0){
+    var h = new Date().getHours();
+    if (ca === 0 && h >= 11) return true;
+    if (ca === 1 && h >= 15) return true;
+    if (ca === 2 && h >= 19) return true;
+  }
+  return false;
+}
+function renderCa(){
+  var btns = document.querySelectorAll('#caG button');
+  for (var i=0;i<btns.length;i++){
+    var c = +btns[i].getAttribute('data-ca');
+    btns[i].disabled = pick.ngay >= 0 && caKinh(pick.ngay, c);
+    btns[i].classList.toggle('on', pick.ca === c);
+  }
+}
+function stepsUpdate(){
+  var st = document.getElementById('dwSteps').children;
+  var cur = !pick.dv ? 0 : (pick.ngay < 0 || pick.ca < 0) ? 1 : !document.getElementById('pAddr').value.trim() ? 2 : 3;
+  for (var i=0;i<4;i++) st[i].className = 'dw-step' + (i===cur ? ' on' : i<cur ? ' done' : '');
+}
+function openDrawer(dvId, note){
+  var dr = document.getElementById('drawer');
+  document.getElementById('dwOk').classList.remove('on');
+  document.getElementById('dwForm').style.display = '';
+  if (dvId){
+    var p = byId(dvId);
+    if (p){
+      document.getElementById('dvSel').value = dvId;
+      pick.dv = dvId;
+      var fabN = document.getElementById('fabN');
+      fabN.textContent = '1'; fabN.hidden = false;
+    }
+  }
+  if (note) document.getElementById('pNote').value = note;
+  renderCa();
+  stepsUpdate();
+  dr.classList.add('on');
+  dr.setAttribute('aria-hidden','false');
+  document.getElementById('ovl').classList.add('on');
+  document.body.classList.add('dw-open');
+}
+function closeDrawer(){
+  var dr = document.getElementById('drawer');
+  dr.classList.remove('on');
+  dr.setAttribute('aria-hidden','true');
+  document.getElementById('ovl').classList.remove('on');
+  document.body.classList.remove('dw-open');
+}
+document.getElementById('fabOpen').addEventListener('click', function(){ openDrawer(pick.dv || '', ''); });
+document.querySelectorAll('[data-open-drawer]').forEach(function(b){
+  b.addEventListener('click', function(){ openDrawer(pick.dv || '', ''); });
+});
+document.getElementById('dwClose').addEventListener('click', closeDrawer);
+document.getElementById('ovl').addEventListener('click', closeDrawer);
+document.getElementById('dvSel').addEventListener('change', function(){ pick.dv = this.value; stepsUpdate(); });
+document.getElementById('ngayG').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-i]');
+  if (!b) return;
+  var bs = this.querySelectorAll('button');
+  for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  pick.ngay = +b.getAttribute('data-i');
+  pick.ca = -1;
+  renderCa();
+  stepsUpdate();
+});
+document.getElementById('caG').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-ca]');
+  if (!b || b.disabled) return;
+  pick.ca = +b.getAttribute('data-ca');
+  renderCa();
+  stepsUpdate();
+});
+document.getElementById('pAddr').addEventListener('input', stepsUpdate);
+document.getElementById('dwForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('pName'), phone = document.getElementById('pPhone'), addr = document.getElementById('pAddr');
+  var ok = true;
+  name.classList.remove('err'); phone.classList.remove('err'); addr.classList.remove('err');
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.\-]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!pick.dv){ toast('Chưa chọn dịch vụ', 'Chọn 1 gói trên khay ở mục 1 — hoặc bấm "Giữ ca" ngay trên gói bạn cần.'); return; }
+  if (pick.ngay < 0 || pick.ca < 0){ toast('Chưa chọn ngày & ca', 'Chọn ngày bắt đầu và 1 khung ca còn trống (ô có ✕ là đã kín người).'); return; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho mình xin địa chỉ chăm sóc, họ tên người thân và số điện thoại để điều phối gọi xác nhận nhé!'); return; }
+  /* xác nhận tại trang */
+  var p = byId(pick.dv);
+  var ma = 'DD-' + String(1000 + Math.floor(Math.random()*9000));
+  document.getElementById('okMa').textContent = ma;
+  document.getElementById('okPhieu').innerHTML =
+    '<div><span>Dịch vụ</span><b>'+p.ten+'</b></div>'
+    + '<div><span>Giá tham khảo</span><b>từ '+p.gia+'/'+p.giaNote+'</b></div>'
+    + '<div><span>Thời gian</span><b>'+ngayChips[pick.ngay]+' · '+CA_LABEL[pick.ca]+'</b></div>'
+    + '<div><span>Địa chỉ</span><b>'+addr.value.trim()+'</b></div>'
+    + '<div><span>Người thân</span><b>'+name.value.trim()+'</b></div>';
+  document.getElementById('okPhone').textContent = phone.value.trim();
+  document.getElementById('dwForm').style.display = 'none';
+  document.getElementById('dwOk').classList.add('on');
+  var fabN = document.getElementById('fabN');
+  fabN.hidden = true;
+  toast('Đã giữ ca '+ma+' — cảm ơn '+name.value.trim()+'!', ngayChips[pick.ngay]+' · '+CA_LABEL[pick.ca]+' — điều phối gọi xác nhận trong 15 phút.');
+  pick.dv=''; pick.ngay=-1; pick.ca=-1;
+  document.getElementById('dvSel').value = '';
+  document.getElementById('ngayG').querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
+  document.getElementById('pAddr').value = '';
+  renderCa();
+  stepsUpdate();
+});
+document.getElementById('okNew').addEventListener('click', function(){
+  document.getElementById('dwOk').classList.remove('on');
+  document.getElementById('dwForm').style.display = '';
+});
+document.getElementById('okDone').addEventListener('click', closeDrawer);
+
+/* ===== DAC THU — LẬP CA CHĂM SÓC THEO TÌNH TRẠNG NGƯỜI NHÀ ===== */
+var TINHTRANG = [
+  {id:'liet-giuong', ten:'Nằm lâu / liệt giường',      small:'cần xoay trở, chống loét',    main:'cham-soc-nguoi-benh', kem:[['theo-doi-chi-so','2 lần/ngày'],['dinh-duong','thực đơn mềm']], ddv:'1 ĐDV / ca', gia:{0:850000, 1:850000, 2:850000, 3:950000}, lbGia:'ca 8 giờ'},
+  {id:'sau-phau',    ten:'Sau phẫu thuật',             small:'đang phục hồi sau xuất viện', main:'sau-phau-thuat',      kem:[['thay-bang','theo y lệnh'],['vat-ly-tri-lieu','tập vận động sớm']], ddv:'1 ĐDV / ca', gia:{0:950000, 1:950000, 2:950000, 3:1050000}, lbGia:'ca 8 giờ'},
+  {id:'ben-man',     ten:'Bệnh ổn định, cần theo dõi', small:'huyết áp, đường huyết, thuốc', main:'theo-doi-chi-so',    kem:[['cham-soc-nguoi-benh','hỗ trợ sinh hoạt'],['tiem-truyen','theo y lệnh']], ddv:'1 ĐDV / ca', gia:{0:750000, 1:750000, 2:750000, 3:850000}, lbGia:'ca 8 giờ'},
+  {id:'mot-minh',    ten:'Người cao tuổi sống một mình',small:'cần người ghé chăm + nấu ăn', main:'theo-ca',            kem:[['dinh-duong','nấu theo thực đơn'],['theo-doi-chi-so','đo khi ghé']], ddv:'1 ĐDV / lượt', gia:{0:450000, 1:450000, 2:450000, 3:600000}, lbGia:'2 ca 4 giờ/ngày'}
+];
+var KHUNG = [
+  {id:'ngay',  ten:'Ban ngày khi con đi làm', small:'ca sáng + ca chiều',       ca:[0,1], hs:1,    lb:'2 ca × 4 giờ (08:00–16:00)'},
+  {id:'chieu', ten:'Buổi chiều đến tối',      small:'khi nhà mình vắng người',  ca:[1,2], hs:1,    lb:'2 ca × 4 giờ (12:00–20:00)'},
+  {id:'dem',   ten:'Ban đêm cần người trực',  small:'20:00 – 08:00 hôm sau',    ca:[3],   hs:1.1,  lb:'1 ca đêm 12 giờ'},
+  {id:'24',    ten:'Cả ngày lẫn đêm 24/24',   small:'2 ĐDV luân phiên',         ca:[0,1,2,3], hs:2, lb:'trực 24/24 · 2 ĐDV'}
+];
+var ttSel = '', gioSel = '';
+function renderChips(){
+  var a = document.getElementById('ttChips'), b = document.getElementById('gioChips');
+  var h1 = '';
+  for (var i=0;i<TINHTRANG.length;i++) h1 += '<button data-tt="'+TINHTRANG[i].id+'"'+(ttSel===TINHTRANG[i].id?' class="on"':'')+'>'+TINHTRANG[i].ten+'<small>'+TINHTRANG[i].small+'</small></button>';
+  a.innerHTML = h1;
+  var h2 = '';
+  for (var j=0;j<KHUNG.length;j++) h2 += '<button data-g="'+KHUNG[j].id+'"'+(gioSel===KHUNG[j].id?' class="on"':'')+'>'+KHUNG[j].ten+'<small>'+KHUNG[j].small+'</small></button>';
+  b.innerHTML = h2;
+}
+function fmtVnd(n){ return n.toLocaleString('vi-VN') + 'đ'; }
+function renderLap(){
+  var list = document.getElementById('lapList'), sum = document.getElementById('lapSum'), cta = document.getElementById('lapDat');
+  if (!ttSel || !gioSel){
+    document.getElementById('lapName').textContent = 'Kế hoạch ca gợi ý';
+    document.getElementById('lapSub').textContent = 'chọn 1 tình trạng + 1 khung giờ ở bên trái';
+    list.innerHTML = '<p class="lap-empty">Kế hoạch sẽ hiện ở đây — gồm dịch vụ chính, các việc kèm theo và chi phí ước tính mỗi ngày.</p>';
+    sum.hidden = true; cta.hidden = true;
+    return;
+  }
+  var tt = null, gio = null;
+  for (var i=0;i<TINHTRANG.length;i++) if (TINHTRANG[i].id===ttSel) tt = TINHTRANG[i];
+  for (var j=0;j<KHUNG.length;j++) if (KHUNG[j].id===gioSel) gio = KHUNG[j];
+  var main = byId(tt.main);
+  document.getElementById('lapName').textContent = tt.ten + ' · ' + gio.lb;
+  document.getElementById('lapSub').textContent = 'kế hoạch tham khảo — điều dưỡng viên chỉnh lại cho đúng khi khảo sát tại nhà';
+  var html = '<div class="ke-row"><img src="'+main.img+'" alt="" width="60" height="45" loading="lazy">'
+    + '<span class="n">'+main.ten+'<small>dịch vụ chính · '+main.dur+'</small></span><span class="g">từ '+main.gia+'</span></div>';
+  for (var k=0;k<tt.kem.length;k++){
+    var kp = byId(tt.kem[k][0]);
+    if (!kp) continue;
+    html += '<div class="ke-row"><img src="'+kp.img+'" alt="" width="60" height="45" loading="lazy">'
+      + '<span class="n">'+kp.ten+'<small>kèm theo · '+tt.kem[k][1]+'</small></span><span class="g">'+kp.gia.replace('đ','k').replace('.000','')+'+/lần</span></div>';
+  }
+  list.innerHTML = html;
+  var giaNgay = Math.round(tt.gia[0] * gio.hs / 10000) * 10000;
+  document.getElementById('lapGia').textContent = fmtVnd(giaNgay);
+  document.getElementById('lapDdv').textContent = tt.ddv;
+  sum.hidden = false; cta.hidden = false;
+}
+document.getElementById('ttChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-tt]');
+  if (!b) return;
+  ttSel = b.getAttribute('data-tt');
+  renderChips(); renderLap();
+});
+document.getElementById('gioChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-g]');
+  if (!b) return;
+  gioSel = b.getAttribute('data-g');
+  renderChips(); renderLap();
+});
+document.getElementById('lapDat').addEventListener('click', function(){
+  var tt = null, gio = null;
+  for (var i=0;i<TINHTRANG.length;i++) if (TINHTRANG[i].id===ttSel) tt = TINHTRANG[i];
+  for (var j=0;j<KHUNG.length;j++) if (KHUNG[j].id===gioSel) gio = KHUNG[j];
+  var note = 'Lập ca tự động: ' + tt.ten.toLowerCase() + ' · cần người ' + gio.lb.toLowerCase() + '.';
+  openDrawer(tt.main, note);
+  toast('Đã nạp kế hoạch vào phiếu', 'Dịch vụ và ghi chú đã điền sẵn — chọn ngày & ca trống rồi gửi.');
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT — không bot, gửi là lưu local + hẹn điều phối ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+document.getElementById('pkcFab').addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){ pkcSendMsg(document.getElementById('pkcInput').value); });
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -26px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderKhay();
+buildDvSel();
+buildNgay();
+renderCa();
+renderChips();
+renderLap();
+initReveal();
+</script>
+</body>
+</html>

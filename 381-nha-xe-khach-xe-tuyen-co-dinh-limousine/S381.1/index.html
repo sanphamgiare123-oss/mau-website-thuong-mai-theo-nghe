@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bình Minh Express — Nhà xe tuyến cố định &amp; Limousine | Đặt vé giữ chỗ 30 giây</title>
+<meta name="description" content="Bình Minh Express — nhà xe khách tuyến cố định và limousine: tra tuyến, chọn điểm đón × giờ chạy × ghế, đặt vé giữ chỗ 30 phút, hoàn/huỷ miễn phí trước 6 giờ. Đón trả theo điểm hẹn, gửi hàng theo xe.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bình Minh Express — Nhà xe tuyến cố định & Limousine","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Bến Bình Minh, 18 Đường Vê Nha","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7628,"longitude":106.6852},"openingHours":"Mo-Su 04:30-22:00","priceRange":"120.000đ-650.000đ"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*NB110-381 — Bình Minh Express: bảng điện tử bến xe + vé perforation + sơ đồ tuyến (pattern #14 biến thể tuyến/điểm đón)*/
+:root{
+  --pine:#0E4634; --pine-2:#155A43; --pine-deep:#08281E; --pine-ink:#0B3527;
+  --gold:#E4B44C; --gold-2:#F2CE7E; --gold-deep:#8A6414; --gold-soft:#F8ECD2;
+  --cam:#E8792B; --cam-2:#F0954E;
+  --bg:#F6F2E7; --paper:#FFFDF6; --ink:#22312B; --mut:#71837A;
+  --sky:#2F6E8E; --line:#E3DCC9; --line-2:#D5CDB6;
+  --ok:#1F9E63; --bad:#CE4A3A;
+  --disp:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --sh:0 10px 26px rgba(14,70,52,.10);
+  --r:14px; --perf:dash 0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+/*NB110-381 — neo section đích không lọt dưới header sticky*/
+section[id],div[id="so-do"]{scroll-margin-top:74px}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:2.6px;text-transform:uppercase;color:var(--cam)}
+.kicker::before{content:"";width:30px;height:2px;background:repeating-linear-gradient(90deg,var(--cam) 0 6px,transparent 6px 11px)}
+.kicker::after{content:"";width:30px;height:2px;background:repeating-linear-gradient(90deg,var(--cam) 0 6px,transparent 6px 11px)}
+.sec-head h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:.4px;text-transform:uppercase;color:var(--pine);margin:8px 0 10px}
+.sec-head p{color:var(--mut);font-size:15px}
+.disp{font-family:var(--disp);letter-spacing:.4px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(246,242,231,.94);backdrop-filter:blur(8px);border-bottom:2px solid var(--pine)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;flex:none;border-radius:12px;background:var(--pine);display:grid;place-items:center;box-shadow:inset 0 0 0 2px rgba(242,206,126,.5)}
+.logo b{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:.8px;text-transform:uppercase;color:var(--pine);display:block;line-height:1.05;white-space:nowrap}
+.logo small{display:block;font-size:10.5px;color:var(--mut);letter-spacing:1.2px;text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:10px;font-weight:600;font-size:13.5px;color:var(--pine-2);white-space:nowrap}
+nav.main a:hover{background:var(--gold-soft);color:var(--pine)}
+.hd-right{display:flex;align-items:center;gap:8px;flex:none}
+.tel{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line-2);background:var(--paper);border-radius:11px;padding:10px 13px;font-weight:800;font-size:13px;color:var(--pine);min-height:42px;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:normal;text-align:center}
+.btn-a{background:var(--cam);color:#fff;box-shadow:0 8px 18px rgba(232,121,43,.32)}
+.btn-a:hover{background:#D4681D}
+.btn-p{background:var(--pine);color:var(--gold-2)}
+.btn-p:hover{background:var(--pine-2)}
+.btn-g{background:var(--paper);color:var(--pine);border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--cam);color:var(--cam)}
+.btn-sm{min-height:40px;padding:9px 15px;font-size:13px;border-radius:10px}
+.hd-ve{background:var(--cam);color:#fff;border-radius:11px;padding:11px 16px;font-weight:800;font-size:13.5px;min-height:42px;display:inline-flex;align-items:center;gap:7px}
+.hd-ve:hover{background:#D4681D}
+
+/* ===== HERO ===== */
+.hero{position:relative;background:linear-gradient(180deg,#EFF0E2 0%,var(--bg) 88%);border-bottom:1px solid var(--line);overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(560px 260px at 88% 8%,rgba(228,180,76,.16),transparent 65%),
+  repeating-linear-gradient(115deg,transparent 0 120px,rgba(14,70,52,.035) 120px 122px)}
+.hero-g{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:36px;align-items:center;padding:50px 0 54px}
+.hero .kicker{margin-bottom:14px}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5vw,54px);line-height:1.04;text-transform:uppercase;letter-spacing:.6px;color:var(--pine)}
+.hero h1 em{font-style:normal;color:var(--cam);display:inline-block}
+.hero p.lead{color:#4E5F56;font-size:15.5px;max-width:490px;margin:14px 0 20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.trust span{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1.5px solid var(--line-2);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:700;color:var(--pine)}
+.trust svg{color:var(--cam);flex:none}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap;border-top:1px dashed var(--line-2);padding-top:16px}
+.hero-stats div b{font-family:var(--disp);font-weight:800;font-size:26px;color:var(--pine);display:block;line-height:1.1}
+.hero-stats div span{font-size:12.5px;color:var(--mut)}
+/* khung vé cửa quầy — poster nguyên khung 3/2 */
+.ve-out{position:relative}
+.ve-frame{background:var(--pine-deep);border-radius:16px;padding:0;box-shadow:0 18px 40px rgba(8,40,30,.28);overflow:visible}
+.ve-stub{display:flex;align-items:center;gap:10px;padding:11px 16px;color:var(--gold-2);border-bottom:2px dashed rgba(242,206,126,.45);position:relative}
+.ve-stub::before,.ve-stub::after{content:"";position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--bg);transform:translateY(-50%)}
+.ve-stub::before{left:-9px}
+.ve-stub::after{right:-9px}
+.ve-stub .t1{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.ve-stub .t2{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:1px;border:1px solid rgba(242,206,126,.5);border-radius:99px;padding:3px 10px}
+.ve-frame img{width:100%;border-radius:0}
+/* bảng tin bến — thiết bị lặp của nghề */
+.bang-tin{background:var(--pine-deep);border-radius:0 0 16px 16px;padding:12px 16px 15px}
+.bt-head{display:flex;align-items:center;gap:9px;color:var(--gold);font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:8px}
+.bt-head .live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:1.4px;color:#8FD9B4}
+.bt-head .live i{width:8px;height:8px;border-radius:99px;background:#35D07F;animation:nhay 1.6s infinite}
+@keyframes nhay{0%,100%{opacity:1}50%{opacity:.25}}
+.bt-row{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:9px;font-size:13px;color:#CFE2D8}
+.bt-row+.bt-row{margin-top:5px}
+.bt-row .gio{font-family:var(--disp);font-weight:800;font-size:19px;color:var(--gold-2);width:58px}
+.bt-row .xe{flex:1;min-width:0;font-weight:600}
+.bt-row .xe small{display:block;font-size:11px;color:#7FA898;font-weight:500}
+.bt-row .con{font-size:11.5px;font-weight:700;color:#8FD9B4;white-space:nowrap}
+.bt-row.sedang{background:rgba(228,180,76,.13);outline:1px solid rgba(228,180,76,.4)}
+.bt-row.sedang .canh{background:var(--cam);color:#fff;font-size:10px;font-weight:800;letter-spacing:1px;border-radius:6px;padding:3px 8px;animation:nhay 1.6s infinite}
+
+/* ===== SHOWCASE LIMOUSINE (khung nổi bật riêng) ===== */
+.limo{background:radial-gradient(900px 420px at 18% 0%,rgba(228,180,76,.16),transparent 60%),linear-gradient(150deg,var(--pine-2),var(--pine) 45%,var(--pine-deep));color:#EAF3EE;border-radius:24px;padding:clamp(20px,3.4vw,40px);position:relative;overflow:clip}
+.limo::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 130px,rgba(255,255,255,.03) 130px 132px);pointer-events:none}
+.limo-g{display:grid;grid-template-columns:.96fr 1.04fr;gap:32px;align-items:center;position:relative;z-index:2}
+.limo-pic{position:relative}
+.limo-pic::before{content:"";position:absolute;inset:-18px;background:radial-gradient(closest-side,rgba(242,206,126,.30),transparent 72%);z-index:0}
+.limo-pic .gold-ring{position:relative;z-index:1;border-radius:14px;padding:10px;background:linear-gradient(160deg,var(--gold-2),var(--gold) 55%,#B98A24);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.limo-pic img{border-radius:8px;width:100%}
+.limo-crown{position:absolute;top:-14px;left:-10px;z-index:3;background:var(--cam);color:#fff;font-family:var(--disp);font-weight:800;letter-spacing:1.6px;text-transform:uppercase;font-size:14px;padding:8px 16px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.35);transform:rotate(-2.5deg)}
+.limo-txt .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(242,206,126,.14);border:1px solid rgba(242,206,126,.4);color:var(--gold-2);font-family:var(--disp);font-weight:700;letter-spacing:2.2px;text-transform:uppercase;font-size:12.5px;border-radius:99px;padding:7px 15px;margin-bottom:14px}
+.limo-txt h2{font-family:var(--disp);font-weight:800;font-size:clamp(26px,3.4vw,38px);line-height:1.1;text-transform:uppercase;letter-spacing:.5px;color:#fff;margin-bottom:10px}
+.limo-txt .sub{color:#B9D2C6;font-size:14.5px;max-width:520px;margin-bottom:16px}
+.limo-ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;margin-bottom:18px}
+.limo-ul li{display:flex;gap:9px;font-size:13.5px;color:#E4F0E9;align-items:flex-start}
+.limo-ul svg{color:var(--gold-2);flex:none;margin-top:2px}
+.limo-pr{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.limo-pr b{font-family:var(--disp);font-weight:800;font-size:38px;color:var(--gold-2)}
+.limo-pr span{font-size:13px;color:#9FC0B1}
+.limo-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ===== KHỐI-8: SƠ ĐỒ TUYẾN + 8 VÉ DỊCH VỤ (pattern #14 biến thể) ===== */
+#dich-vu{background:linear-gradient(180deg,var(--bg),#EFEAD9 60%,var(--bg))}
+.route-stage{background:var(--paper);border:1.5px solid var(--line-2);border-radius:18px;padding:18px 18px 14px;box-shadow:var(--sh);margin-bottom:22px}
+.rs-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.rs-head .ten{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:.6px;text-transform:uppercase;color:var(--pine)}
+.rs-head .ma{background:var(--pine);color:var(--gold-2);font-family:var(--disp);font-weight:700;letter-spacing:1.4px;border-radius:8px;padding:4px 11px;font-size:14px}
+.rs-head .meta{font-size:12.5px;color:var(--mut)}
+.rs-cta{margin-left:auto}
+.rs-wrap svg{width:100%;height:auto;display:block}
+/* stop trên sơ đồ: trạm đánh số, rê/bấm chọn điểm đón */
+.stop{cursor:pointer}
+.stop .s-ring{fill:var(--paper);stroke:var(--pine);stroke-width:2.5;transition:.22s}
+.stop .s-num{font-family:var(--disp);font-weight:800;font-size:17px;fill:var(--pine);text-anchor:middle;dominant-baseline:central;transition:.22s}
+.stop .s-name{font-size:12.5px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.stop .s-delta{font-size:10.5px;font-weight:700;fill:var(--mut);text-anchor:middle}
+.stop .s-pin{fill:var(--pine);opacity:.85}
+.stop:hover .s-ring,.stop.sel .s-ring{stroke:var(--cam);fill:#FFF4E8}
+.stop:hover .s-num,.stop.sel .s-num{fill:var(--cam)}
+.stop.sel .s-name{fill:var(--cam)}
+.road-main{stroke:var(--pine);stroke-width:7;fill:none;stroke-linecap:round}
+.road-dash{stroke:var(--gold);stroke-width:2.2;fill:none;stroke-dasharray:14 12;stroke-linecap:round}
+.road-km{font-size:10.5px;font-weight:700;fill:var(--mut);text-anchor:middle}
+.road-tick{stroke:var(--line-2);stroke-width:2}
+.dep-strip{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px dashed var(--line-2);margin-top:10px;padding-top:12px}
+.dep-strip .lb{font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--pine)}
+.dep{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line-2);background:#fff;border-radius:10px;padding:7px 11px;font-weight:800;font-size:13.5px;color:var(--pine);min-height:38px}
+.dep small{font-size:10.5px;font-weight:700;color:var(--mut);display:block;line-height:1.1}
+.dep:hover{border-color:var(--cam);color:var(--cam)}
+.dep .lm-tag,.dep .ln-tag{font-size:9.5px;font-weight:800;letter-spacing:.6px;border-radius:5px;padding:2px 6px}
+.lm-tag{background:var(--gold-soft);color:var(--gold-deep)}
+.ln-tag{background:#E2EDE6;color:var(--pine)}
+.stop-list{display:none}
+/* 8 thẻ vé dịch vụ — perforation, khổ vé */
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tk{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;overflow:visible;transition:transform .25s,box-shadow .25s}
+.tk:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.tk .punch{position:relative;height:0;border-top:2px dashed var(--line-2);margin:0 12px}
+.tk .punch::before,.tk .punch::after{content:"";position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:1px solid var(--line);z-index:2}
+.tk .punch::before{left:-21px}
+.tk .punch::after{right:-21px}
+/* phần đầu vé: mã tuyến + loại xe */
+.tk .stub{display:flex;align-items:center;gap:8px;padding:9px 14px}
+.tk .code{font-family:var(--disp);font-weight:800;letter-spacing:1.6px;font-size:14px;color:var(--pine);background:var(--gold-soft);border-radius:7px;padding:3px 9px}
+.tk .loai{margin-left:auto;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border-radius:6px;padding:3px 9px}
+.tk .ph{padding:0 14px}
+.tk .ph img{border-radius:9px;width:100%}
+.tk .bd{padding:12px 15px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tk h3{font-size:15.5px;line-height:1.3;color:var(--pine)}
+.tk p{font-size:12.5px;color:var(--mut);flex:1}
+.tk .ft{display:flex;align-items:flex-end;gap:10px}
+.tk .pri{font-family:var(--disp);font-weight:800;font-size:19px;color:var(--cam);line-height:1.05}
+.tk .pri small{display:block;font-family:'Segoe UI',Arial,sans-serif;font-size:10.5px;color:var(--mut);font-weight:600;letter-spacing:.2px}
+.tk .go{margin-left:auto;border:0;background:var(--pine);color:var(--gold-2);border-radius:10px;padding:10px 14px;font-weight:800;font-size:12.5px;min-height:40px}
+.tk .go:hover{background:var(--cam);color:#fff}
+.tk .go.alt{background:var(--paper);color:var(--pine);border:1.5px solid var(--line-2)}
+.tk .go.alt:hover{border-color:var(--cam);color:var(--cam);background:var(--paper)}
+/* thẻ nổi bật: TO hẳn — vé ngang TRỌN HÀNG, gáy vé dọc bên trái */
+.tk.feat{grid-column:1/-1;flex-direction:row;border:2px solid var(--gold);box-shadow:0 14px 32px rgba(228,180,76,.25)}
+.tk.feat .stub{flex:none;width:54px;flex-direction:column;align-items:center;gap:10px;border-right:2px dashed var(--line-2);padding:16px 0}
+.tk.feat .stub .code{writing-mode:vertical-rl;letter-spacing:2.4px}
+.tk.feat .stub .loai{margin:0}
+.tk.feat .ph{flex:1.08;min-width:0;padding:14px 0 14px 14px}
+.tk.feat .bd{flex:1;padding:16px 20px 18px;justify-content:center;gap:9px}
+.tk.feat .punch{display:none}
+.tk.feat h3{font-size:22px}
+.tk.feat p{font-size:13.5px}
+.tk.feat .pri{font-size:24px}
+.tk.feat .go{min-height:46px;font-size:14px;padding:12px 18px}
+.tk-badge{position:absolute;top:-12px;left:14px;z-index:3;background:var(--cam);color:#fff;font-family:var(--disp);font-weight:800;letter-spacing:1.6px;text-transform:uppercase;font-size:13px;border-radius:9px;padding:6px 14px;box-shadow:0 6px 14px rgba(232,121,43,.4)}
+.tk-badge.gold{background:var(--pine);color:var(--gold-2)}
+
+/* ===== TRA CHUYẾN (dacThu — bảng điện tử) ===== */
+.tra-sec{background:var(--bg)}
+.bang{background:linear-gradient(160deg,var(--pine-deep),#0C3A2B 70%);border-radius:22px;padding:clamp(20px,3.2vw,36px);color:#DCEDE4;position:relative;overflow:clip;box-shadow:0 18px 44px rgba(8,40,30,.25)}
+.bang::before{content:"";position:absolute;inset:10px;border:1.5px solid rgba(242,206,126,.28);border-radius:16px;pointer-events:none}
+.bang .kicker{color:var(--gold-2)}
+.bang .kicker::before,.bang .kicker::after{background:repeating-linear-gradient(90deg,var(--gold-2) 0 6px,transparent 6px 11px)}
+.bang h2{font-family:var(--disp);font-weight:800;font-size:clamp(26px,3.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.6px;color:#fff;margin:8px 0 8px;position:relative}
+.bang .sub{color:#A9C8BA;font-size:14px;max-width:600px;margin-bottom:20px;position:relative}
+.tra-g{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:start;position:relative}
+.tra-pick label{display:block;font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);margin:16px 0 9px}
+.tuyen-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tchips button{border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);color:#DCEDE4;border-radius:99px;padding:9px 15px;font-size:13px;font-weight:700;min-height:40px}
+.tchips button.on{background:var(--gold);border-color:var(--gold);color:var(--pine-deep)}
+.tchips button:hover:not(.on){border-color:var(--gold-2)}
+#traStop{width:100%;padding:11px 12px;border-radius:11px;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.09);color:#fff;font-size:14px;min-height:44px}
+#traStop option{color:#222;background:#fff}
+.tra-note{font-size:12px;color:#9DC0AF;margin-top:12px;border-left:3px solid var(--gold);padding-left:10px}
+.tra-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
+.tra-mini div{background:rgba(255,255,255,.06);border:1px solid rgba(242,206,126,.25);border-radius:11px;padding:10px 8px;text-align:center}
+.tra-mini b{display:block;font-family:var(--disp);font-weight:800;font-size:19px;color:var(--gold-2);line-height:1.15}
+.tra-mini span{font-size:10.5px;color:#9DC0AF}
+.bang-rows{background:rgba(0,0,0,.28);border:1px solid rgba(242,206,126,.22);border-radius:14px;overflow:hidden}
+.brow{display:grid;grid-template-columns:74px 1fr 108px 84px 96px;gap:8px;align-items:center;padding:11px 14px;font-size:13px}
+.brow+.brow{border-top:1px solid rgba(255,255,255,.09)}
+.brow.hd-r{background:rgba(242,206,126,.12);font-family:var(--disp);font-weight:700;letter-spacing:1.6px;text-transform:uppercase;font-size:11.5px;color:var(--gold-2);padding:9px 14px}
+.brow .g{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--gold-2)}
+.brow .x b{display:block;color:#fff;font-size:13.5px}
+.brow .x small{color:#8FB8A5;font-size:11px}
+.brow .gia{font-weight:800;color:#fff;text-align:right}
+.brow .con{font-weight:800;text-align:center;color:#8FD9B4;font-size:12.5px}
+.brow .con.thap{color:var(--cam-2)}
+.brow .dat{border:0;background:var(--cam);color:#fff;font-weight:800;border-radius:9px;padding:9px 6px;font-size:12px;min-height:38px}
+.brow .dat:hover{background:#D4681D}
+.brow.next{background:rgba(228,180,76,.10);outline:1px solid rgba(228,180,76,.35)}
+.next-flag{display:inline-block;background:var(--cam);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;border-radius:5px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+.bang-out{margin-top:12px;font-size:12px;color:#9DC0AF;display:flex;gap:8px;align-items:flex-start}
+.bang-out svg{flex:none;color:var(--gold-2);margin-top:2px}
+
+/* ===== QUY TRÌNH + CAM KẾT ===== */
+.tq{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:6px}
+.tq::before{content:"";position:absolute;top:26px;left:8%;right:8%;height:0;border-top:2.5px dashed var(--line-2)}
+.step{position:relative;text-align:center;padding:0 12px 8px}
+.step .n{width:52px;height:52px;margin:0 auto 12px;border-radius:50%;background:var(--pine);color:var(--gold-2);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:24px;box-shadow:0 0 0 5px var(--bg),inset 0 0 0 2px rgba(242,206,126,.5);position:relative;z-index:1}
+.step h3{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.5px;text-transform:uppercase;color:var(--pine);margin-bottom:5px}
+.step p{font-size:12.8px;color:var(--mut)}
+.step .gio{display:inline-block;margin-top:8px;font-size:11px;font-weight:800;color:var(--cam);background:var(--gold-soft);border-radius:99px;padding:4px 11px}
+.commit-g{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:30px}
+.commit{background:var(--paper);border:1.5px solid var(--line);border-radius:13px;padding:14px 16px;display:flex;gap:11px;align-items:flex-start}
+.commit svg{flex:none;color:var(--cam);margin-top:2px}
+.commit b{display:block;font-size:13.5px;color:var(--pine)}
+.commit span{font-size:12px;color:var(--mut)}
+
+/* ===== HÀNH TRÌNH (M6 — intro+space theo dải hành trình) ===== */
+.jou{background:linear-gradient(180deg,#EFEAD9,var(--bg))}
+.jou-g{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:jou}
+.jou-item{position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.jou-item img{border-radius:10px;width:100%}
+.jou-item .stt{position:absolute;top:-12px;left:12px;z-index:2;background:var(--pine);color:var(--gold-2);font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:1px;border-radius:99px;padding:4px 14px;box-shadow:0 5px 12px rgba(14,70,52,.3)}
+.jou-item h3{font-family:var(--disp);font-weight:700;font-size:16.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--pine)}
+.jou-item p{font-size:12.6px;color:var(--mut);flex:1}
+.jou-item .ph-mui{position:absolute;top:50%;right:-16px;z-index:3;color:var(--cam);transform:translateY(-50%)}
+.jou-item:last-child .ph-mui{display:none}
+.jou-item.txt{background:var(--pine-deep);border-color:var(--pine-deep);color:#D8E9E0;justify-content:center;text-align:center;gap:8px}
+.jou-item.txt .big-ic{font-size:30px}
+.jou-item.txt h3{color:var(--gold-2)}
+.jou-item.txt p{color:#A9C8BA}
+.jou-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.js{background:var(--paper);border-left:4px solid var(--gold);border-radius:11px;padding:14px 18px}
+.js b{display:block;font-family:var(--disp);font-weight:800;font-size:27px;color:var(--pine);line-height:1.1}
+.js span{font-size:12.5px;color:var(--mut)}
+
+/* ===== DỊCH VỤ PHỤ (gửi hàng + thuê đoàn — tách khu riêng, không phải funnel chính) ===== */
+.phu-g{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.phu{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.phu.hot{border-color:var(--gold);background:linear-gradient(180deg,#FDF6E4,var(--paper) 60%)}
+.phu .ph-ic{width:46px;height:46px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center;font-size:22px}
+.phu h3{font-size:18px;color:var(--pine)}
+.phu p{font-size:13.5px;color:var(--mut)}
+.phu ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13px;color:#4E5F56}
+.phu ul li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.phu .pr{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--cam)}
+.phu .pr small{font-family:'Segoe UI',Arial,sans-serif;font-size:11.5px;color:var(--mut);font-weight:600}
+.phu .cta{margin-top:auto;display:flex;gap:9px;flex-wrap:wrap}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
+.rev .st{color:var(--gold);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#4E5F56;flex:1}
+.rev b{font-size:13px;color:var(--pine)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:var(--pine)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#4E5F56}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--gold-soft);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--pine)}
+.ct-card .tel-big{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--cam);letter-spacing:.5px}
+.ct-card iframe{width:100%;height:230px;border:0;border-radius:12px;flex:1;min-height:230px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--pine);min-height:48px}
+.qa>button i{font-style:normal;color:var(--cam);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#4E5F56}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--pine-deep);color:#9FC0B1;margin-top:44px}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:34px 0 22px}
+.ft-g h4{color:var(--gold-2);font-size:13px;margin-bottom:10px;letter-spacing:1.6px;text-transform:uppercase;font-family:var(--disp);font-weight:700}
+.ft-g p,.ft-g a{font-size:12.8px;color:#9FC0B1;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--gold-2)}
+.ft-brand b{font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:1px;text-transform:uppercase;color:var(--gold-2);display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.10);padding:13px 0;text-align:center;font-size:11.5px;color:#6E8F80}
+
+/* ===== DRAWER ĐẶT VÉ (funnel chính dạng B) ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(8,40,30,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+/*NB110-381 — ẩn drawer bằng translateX(105%) như fix của 369: hết ló dải phải ở viewport 421-640px*/
+#veDrawer{position:fixed;top:0;right:0;width:410px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.2)}
+#veDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:15px 18px;background:var(--pine);color:var(--gold-2)}
+.dr-head h3{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:1px;text-transform:uppercase;flex:1}
+.dr-x{border:0;background:rgba(255,255,255,.14);width:38px;height:38px;border-radius:10px;font-size:16px;color:var(--gold-2)}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px}
+.drv{display:none}
+.drv.on{display:block;animation:din .28s}
+@keyframes din{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.dstep{display:flex;gap:7px;margin-bottom:14px}
+.dstep i{height:5px;flex:1;background:var(--line);border-radius:99px}
+.dstep i.on{background:var(--cam)}
+.drv label{display:block;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--pine);margin:13px 0 7px}
+.drv label:first-of-type{margin-top:0}
+.drv select,.drv input[type=text],.drv input[type=tel]{width:100%;padding:11px 12px;border:1.5px solid var(--line-2);border-radius:11px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
+.drv select:focus,.drv input:focus{outline:none;border-color:var(--cam)}
+.drv input.err,.drv select.err{border-color:var(--bad);background:#FFF5F3}
+.day-chips{display:flex;gap:7px}
+.day-chips button{flex:1;border:1.5px solid var(--line-2);background:#fff;border-radius:10px;padding:9px 4px;font-weight:700;font-size:12.5px;color:var(--pine);min-height:44px}
+.day-chips button small{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.day-chips button.on{border-color:var(--cam);background:#FFF4E8;color:var(--cam)}
+.gio-chips{display:flex;flex-wrap:wrap;gap:7px}
+.gio-chips button{display:inline-flex;flex-direction:column;align-items:flex-start;border:1.5px solid var(--line-2);background:#fff;border-radius:10px;padding:7px 11px;min-height:46px}
+.gio-chips button b{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--pine);line-height:1.1}
+.gio-chips button small{font-size:10px;font-weight:700;color:var(--mut)}
+.gio-chips button.on{border-color:var(--cam);background:#FFF4E8}
+.gio-chips button.on b{color:var(--cam)}
+.gio-chips button.het{opacity:.45;pointer-events:none}
+.gio-chips button.het small{color:var(--bad)}
+.stepper{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line-2);border-radius:11px;padding:7px 10px;width:max-content}
+.stepper button{width:36px;height:38px;border-radius:9px;border:0;background:var(--gold-soft);color:var(--gold-deep);font-weight:800;font-size:17px}
+.stepper b{min-width:30px;text-align:center;font-size:16px}
+.ve-sum{margin-top:16px;background:var(--gold-soft);border:1.5px dashed var(--gold);border-radius:12px;padding:13px 15px}
+.vs-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:#5D4A22;padding:3px 0}
+.vs-row b{text-align:right}
+.vs-row.tot{border-top:1px dashed var(--gold);margin-top:7px;padding-top:9px;font-weight:800;color:var(--pine)}
+.vs-row.tot b{font-family:var(--disp);font-size:22px;color:var(--cam)}
+.dr-cta{width:100%;margin-top:13px}
+.dr-back{border:0;background:none;color:var(--mut);font-size:13px;padding:8px 0;text-align:left;min-height:38px;font-weight:700}
+.dr-back:hover{color:var(--cam)}
+.cam-ket{margin-top:12px;font-size:11.8px;color:#5D4A22;background:#FDF6E4;border-radius:10px;padding:10px 12px;border:1px solid var(--gold)}
+.cam-ket b{color:var(--pine)}
+.ve-done{text-align:center;padding:14px 4px}
+.ve-done .ok{width:78px;height:78px;border-radius:50%;background:#E5F7EE;color:var(--ok);display:grid;place-items:center;margin:0 auto 14px;animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.ve-done h4{font-family:var(--disp);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.6px;color:var(--pine)}
+.ve-done .code{display:inline-block;margin:12px 0;background:var(--pine-deep);color:var(--gold-2);font-family:var(--disp);font-weight:800;font-size:26px;letter-spacing:3px;padding:11px 26px;border-radius:12px}
+.ve-done p{font-size:13px;color:var(--mut);max-width:330px;margin:0 auto 8px}
+.ve-done p b{color:var(--pine)}
+.dr-foot{border-top:1px solid var(--line);padding:13px 18px 17px;background:#FDFAF1;flex-shrink:0}
+.dr-note{font-size:11.5px;color:var(--mut);text-align:center;margin-top:8px}
+.dr-note b{color:var(--pine)}
+
+/* ===== FAB VÉ (icon vé SVG — phân biệt FAB giỏ của dạng A) ===== */
+.ve-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--cam);color:#fff;display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(232,121,43,.42);transition:transform .25s,background .25s}
+.ve-fab:hover{background:#D4681D;transform:translateY(-2px)}
+.ve-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.ve-fab[hidden]{display:none}
+
+/* ===== CHAT (pkc — không bot) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--pine);color:var(--gold-2);font-size:23px;box-shadow:0 10px 24px rgba(14,70,52,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(8,40,30,.25);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--pine);color:var(--gold-2)}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:var(--gold-2);font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F4F1E6}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--cam);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--pine);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line-2);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--cam);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST (2 phần tử) ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--pine-deep);color:#DCEDE4;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:var(--gold-2);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#B9D2C6}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1020px){
+  .tk-grid{grid-template-columns:repeat(2,1fr)}
+  /* feat về lại khổ dọc đầy bề ngang */
+  .tk.feat{flex-direction:column}
+  .tk.feat .stub{width:auto;flex-direction:row;align-items:center;border-right:0;border-bottom:2px dashed var(--line-2);padding:9px 14px}
+  .tk.feat .stub .code{writing-mode:horizontal-tb}
+  .tk.feat .stub .loai{margin-left:auto}
+  .tk.feat .ph{padding:0 14px}
+  .tk.feat .punch{display:block}
+  .tra-g{grid-template-columns:1fr}
+  .limo-g{grid-template-columns:1fr;gap:26px}
+  .limo-pic{max-width:560px;margin:0 auto;width:100%}
+  .jou-g{grid-template-columns:1fr 1fr}
+  .jou-item .ph-mui{display:none}
+  .jou-item:nth-child(odd){transform:translateY(0)}
+  .tq{grid-template-columns:1fr 1fr;gap:22px 0}
+  .tq::before{display:none}
+  .commit-g{grid-template-columns:1fr 1fr}
+  .rev-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .brow{grid-template-columns:64px 1fr 96px 84px 88px;padding:10px 10px;font-size:12.5px}
+  .brow .g{font-size:18px}
+}
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:28px;padding:36px 0 40px}
+  .hero p.lead{max-width:none}
+  .ct-g{grid-template-columns:1fr}
+  .phu-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .tel span{display:none}
+  .tel{padding:10px 12px}
+  .hd-ve{order:3}
+  .hero h1{font-size:34px}
+  .hero-stats{gap:16px}
+  .hero-stats div b{font-size:22px}
+  /* sơ đồ SVG nhường chỗ cho danh sách điểm đón dọc (luật pattern #14 mobile) */
+  .rs-wrap{display:none}
+  .stop-list{display:block;border:1.5px dashed var(--line-2);border-radius:13px;padding:6px 12px;margin-top:8px}
+  .stop-list .sl-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:0;padding:10px 4px;font-size:13.5px;font-weight:700;color:var(--ink)}
+  .stop-list .sl-item+.sl-item{border-top:1px dashed var(--line)}
+  .stop-list .sl-item .sn{width:30px;height:30px;flex:none;border-radius:50%;background:var(--pine);color:var(--gold-2);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:14px}
+  .stop-list .sl-item small{margin-left:auto;color:var(--mut);font-weight:600;white-space:nowrap}
+  .stop-list .sl-item.on{color:var(--cam)}
+  .stop-list .sl-item.on .sn{background:var(--cam);color:#fff}
+  .tk-grid{grid-template-columns:1fr}
+  .tk.feat{grid-column:span 1}
+  /*NB110-381 — mobile: thẻ nổi bật thật nổi = lên ĐẦU khối + viền cam + CTA to (chốt chủ project)*/
+  .tk.feat{order:-1;border:2px solid var(--cam);box-shadow:0 12px 26px rgba(232,121,43,.2)}
+  /*NB110-381 — mobile: huy hiệu sang phải, khỏi đè mã vé trên gáy*/
+  .tk-badge{left:auto;right:12px}
+  .limo-ul{grid-template-columns:1fr}
+  .jou-g{grid-template-columns:1fr}
+  .jou-stats{grid-template-columns:1fr 1fr}
+  .commit-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  .tq{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr;gap:14px;padding:26px 0 16px}
+  .brow{grid-template-columns:56px 1fr 78px;row-gap:2px}
+  .brow .con{display:none}
+  .brow .dat{grid-column:3}
+  .brow.hd-r{grid-template-columns:56px 1fr 78px}
+  .brow.hd-r .con,.brow.hd-r .dat{display:none}
+  #veDrawer{width:100vw;max-width:100vw}
+  .dr-foot{padding-bottom:60px}
+  .btn{white-space:normal;text-align:center}
+  .rs-cta{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Bình Minh Express — về đầu trang">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F2CE7E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6Z"/>
+          <path d="M4 10h16"/><path d="M7 16v2"/><path d="M17 16v2"/><path d="M7.5 12.8h.01M16.5 12.8h.01"/>
+        </svg>
+      </span>
+      <span><b>Bình Minh Express</b><small>Tuyến cố định &amp; Limousine</small></span>
+    </a>
+    <nav class="main" aria-label="Menu chính">
+      <a href="#tra-chuyen">Tra chuyến</a>
+      <a href="#dich-vu">Sơ đồ tuyến &amp; dịch vụ</a>
+      <a href="#limousine">Xe Limousine</a>
+      <a href="#hanh-trinh">Hành trình</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="tel" href="tel:0034567899" aria-label="Gọi hotline 0034567899">📞<span class="num">0034567899</span></a>
+      <button class="hd-ve" data-open-ve>🎫 Đặt vé</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">Bến Bình Minh · Nhà xe tuyến cố định</span>
+      <h1>Chạm điểm đón,<br><em>đúng chuyến — đúng giờ</em></h1>
+      <p class="lead">Nhà xe chạy tuyến cố định mỗi ngày: giường nằm chặng dài, limousine 22 ghế cho người bận rộn. Tra điểm đón gần nhà, thấy giờ chạy và chỗ trống ngay — giữ chỗ trước, ra bến sau.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-open-ve>🎫 Đặt vé giữ chỗ — 30 giây</button>
+        <a class="btn btn-g" href="#tra-chuyen">🔎 Tra chuyến kế tiếp</a>
+      </div>
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Giữ chỗ 30 phút</span>
+        <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Hoàn/huỷ trước 6 giờ</span>
+        <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>Xuất bến đúng giờ</span>
+      </div>
+      <div class="hero-stats">
+        <div><b class="num">4</b><span>tuyến cố định</span></div>
+        <div><b class="num">19</b><span>chuyến mỗi ngày</span></div>
+        <div><b class="num">12 năm</b><span>chạy cùng tuyến</span></div>
+      </div>
+    </div>
+    <div class="ve-out rv">
+      <div class="ve-frame">
+        <div class="ve-stub">
+          <span class="t1">Bến Bình Minh · Quầy vé online</span>
+          <span class="t2 num">SỐ VÉ #BM-2026</span>
+        </div>
+        <img src="assets/img/cover.webp" alt="Nhà xe tuyến cố định &amp; limousine Bình Minh Express — xe khách và limousine tại bến" width="1536" height="1024" fetchpriority="high">
+        <div class="bang-tin">
+          <div class="bt-head">Bản tin bến — chuyến kế tiếp <span class="live"><i></i>ĐANG BÁN VÉ</span></div>
+          <div class="bt-row sedang"><span class="gio num">07:30</span><span class="xe">Limousine 22 ghế<small>S1 · TP.HCM → Đà Lạt · đón D2 Ngã tư Vê Nha</small></span><span class="con num">còn 3</span><span class="canh">SẮP CHẠY</span></div>
+          <div class="bt-row"><span class="gio num">10:00</span><span class="xe">Giường nằm 40 chỗ<small>S1 · TP.HCM → Đà Lạt</small></span><span class="con num">còn 11</span></div>
+          <div class="bt-row"><span class="gio num">09:00</span><span class="xe">Limousine 22 ghế<small>S2 · TP.HCM → Phan Thiết</small></span><span class="con num">còn 7</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHUNG NỔI BẬT RIÊNG: XE CHỦ LỰC LIMOUSINE (dùng lại đúng SP khối-8: p2) ===== -->
+<section class="sec" id="limousine">
+  <div class="wrap">
+    <div class="limo rv">
+      <div class="limo-g">
+        <div class="limo-pic">
+          <span class="limo-crown">★ Xe chủ lực</span>
+          <div class="gold-ring">
+            <img src="assets/img/p2.webp" alt="Xe limousine cao cấp 22 ghế của Bình Minh Express" width="1280" height="853" loading="lazy">
+          </div>
+        </div>
+        <div class="limo-txt">
+          <span class="eyebrow">Khung riêng · Limousine tuyến cố định</span>
+          <h2>Xe limousine 22 ghế — riêng tư trên từng chặng</h2>
+          <p class="sub">Chỉ 22 khách mỗi chuyến, tài chính rõ trên vé: giá đã gồm điểm đón bạn chọn. Đi công tác sáng đi tối về, ghế vẫn êm như giờ đầu.</p>
+          <ul class="limo-ul">
+            <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Ghế da ngả 45°, chăn gối lạnh</li>
+            <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Nước suối + khăn lạnh từng khách</li>
+            <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Cổng sạc USB — wifi trên xe</li>
+            <li><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Tre luggage: 1 vali + 1 balo/khách</li>
+          </ul>
+          <div class="limo-pr"><b class="num">từ 240.000đ</b><span>/ vé · đã gồm phí điểm đón · giữ chỗ 30 phút</span></div>
+          <div class="limo-cta">
+            <button class="btn btn-a" data-open-ve data-pf-type="lm" data-pf-tuyen="sg-dl">🎫 Đặt vé limousine</button>
+            <a class="btn btn-w" style="border:1.5px solid rgba(255,255,255,.4);color:#fff;background:rgba(255,255,255,.08)" href="tel:0034567899">☎ Thuê trọn xe đoàn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8: SƠ ĐỒ TUYẾN/ĐIỂM ĐÓN (pattern #14 biến thể) + 8 THẺ VÉ DỊCH VỤ ===== -->
+<section class="sec" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Sơ đồ tuyến &amp; 8 dịch vụ</span>
+      <h2>Một tuyến — chạm điểm đón là có vé</h2>
+      <p>Sơ đồ dưới đây là tuyến S1 chạy hằng ngày. Bấm vào điểm đón gần bạn: hệ thống nhớ giúp, mở khay đặt vé là sẵn — không phải gõ lại.</p>
+    </div>
+
+    <div class="route-stage rv" id="so-do">
+      <div class="rs-head">
+        <span class="ma num">S1</span>
+        <span class="ten">TP.HCM → Đà Lạt</span>
+        <span class="meta num">310 km · 4g30p · 6 chuyến/ngày</span>
+        <button class="btn btn-p btn-sm rs-cta" id="rsCta">🎫 Đặt vé từ điểm đã chọn</button>
+      </div>
+      <div class="rs-wrap">
+        <svg viewBox="0 0 1180 240" role="img" aria-label="Sơ đồ tuyến S1 với 6 điểm đón đánh số">
+          <!-- đường chạy chính + vạch tim đường -->
+          <path class="road-main" d="M 55 128 C 300 96, 880 160, 1125 122"/>
+          <path class="road-dash" d="M 55 128 C 300 96, 880 160, 1125 122"/>
+          <!-- ticks km -->
+          <line class="road-tick" x1="55" y1="176" x2="55" y2="188"/><text class="road-km" x="55" y="206">0 km</text>
+          <line class="road-tick" x1="269" y1="176" x2="269" y2="188"/><text class="road-km" x="269" y="206">12 km</text>
+          <line class="road-tick" x1="483" y1="176" x2="483" y2="188"/><text class="road-km" x="483" y="206">45 km</text>
+          <line class="road-tick" x1="697" y1="176" x2="697" y2="188"/><text class="road-km" x="697" y="206">70 km</text>
+          <line class="road-tick" x1="911" y1="176" x2="911" y2="188"/><text class="road-km" x="911" y="206">245 km</text>
+          <line class="road-tick" x1="1125" y1="176" x2="1125" y2="188"/><text class="road-km" x="1125" y="206">310 km</text>
+          <!-- 6 điểm đón đánh số (JS gắn trạng thái chọn) -->
+          <g class="stop" data-stop="0" tabindex="0" role="button" aria-label="Điểm đón 1: Bến Bình Minh, phụ thu 0">
+            <circle class="s-pin" cx="55" cy="128" r="4"/><circle class="s-ring" cx="55" cy="128" r="17"/><text class="s-num" x="55" y="129">1</text>
+            <text class="s-name" x="55" y="78">Bến Bình Minh</text><text class="s-delta" x="55" y="94">đầu tuyến · 0đ</text>
+          </g>
+          <g class="stop" data-stop="1" tabindex="0" role="button" aria-label="Điểm đón 2: Ngã tư Vê Nha, phụ thu 0">
+            <circle class="s-pin" cx="269" cy="113" r="4"/><circle class="s-ring" cx="269" cy="113" r="17"/><text class="s-num" x="269" y="114">2</text>
+            <text class="s-name" x="269" y="62">Ngã tư Vê Nha</text><text class="s-delta" x="269" y="78">đón lối · 0đ</text>
+          </g>
+          <g class="stop" data-stop="2" tabindex="0" role="button" aria-label="Điểm đón 3: Sài Gòn Xa lộ, phụ thu 10 nghìn">
+            <circle class="s-pin" cx="483" cy="118" r="4"/><circle class="s-ring" cx="483" cy="118" r="17"/><text class="s-num" x="483" y="119">3</text>
+            <text class="s-name" x="483" y="168">Sài Gòn Xa lộ</text><text class="s-delta" x="483" y="184">+10.000đ</text>
+          </g>
+          <g class="stop" data-stop="3" tabindex="0" role="button" aria-label="Điểm đón 4: Trạm Dầu Giây, phụ thu 20 nghìn">
+            <circle class="s-pin" cx="697" cy="134" r="4"/><circle class="s-ring" cx="697" cy="134" r="17"/><text class="s-num" x="697" y="135">4</text>
+            <text class="s-name" x="697" y="82">Trạm Dầu Giây</text><text class="s-delta" x="697" y="98">+20.000đ</text>
+          </g>
+          <g class="stop" data-stop="4" tabindex="0" role="button" aria-label="Điểm đón 5: Chợ Phú Thịnh, phụ thu 30 nghìn">
+            <circle class="s-pin" cx="911" cy="143" r="4"/><circle class="s-ring" cx="911" cy="143" r="17"/><text class="s-num" x="911" y="144">5</text>
+            <text class="s-name" x="911" y="68">Chợ Phú Thịnh</text><text class="s-delta" x="911" y="84">+30.000đ</text>
+          </g>
+          <g class="stop" data-stop="5" tabindex="0" role="button" aria-label="Điểm đón 6: Bến xe Đà Lạt, phụ thu 0">
+            <circle class="s-pin" cx="1125" cy="122" r="4"/><circle class="s-ring" cx="1125" cy="122" r="17"/><text class="s-num" x="1125" y="123">6</text>
+            <text class="s-name" x="1125" y="72">Bến xe Đà Lạt</text><text class="s-delta" x="1125" y="88">cuối tuyến · 0đ</text>
+          </g>
+        </svg>
+      </div>
+      <!-- mobile: danh sách điểm đón dọc -->
+      <div class="stop-list" id="stopList"></div>
+      <div class="dep-strip">
+        <span class="lb">Giờ chạy hôm nay</span>
+        <span id="depChips"></span>
+        <span class="meta" style="margin-left:auto;font-size:11.5px;color:var(--mut)">Bấm giờ để đặt vé chuyến đó — đón trước giờ chạy 10 phút</span>
+      </div>
+    </div>
+
+    <div class="tk-grid" id="tkGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TRA CHUYẾN (dacThu): điểm đón × giờ chạy × chỗ trống ===== -->
+<section class="sec tra-sec" id="tra-chuyen">
+  <div class="wrap">
+    <div class="bang rv">
+      <div style="text-align:center">
+        <span class="kicker">Công cụ của bến — tra trước khi ra bến</span>
+        <h2>Chuyến kế tiếp của bạn là mấy giờ?</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Chọn tuyến và điểm đón: bảng điện tử nhà xe liệt kê các chuyến còn bán trong hôm nay, giá đã tính đúng từ điểm đón của bạn — bấm "Đặt vé" là giữ chỗ.</p>
+      </div>
+      <div class="tra-g">
+        <div class="tra-pick">
+          <label>1 · Bạn đi tuyến nào?</label>
+          <div class="tuyen-chips tchips" id="traTuyen"></div>
+          <label for="traStop">2 · Điểm đón của bạn</label>
+          <select id="traStop" aria-label="Chọn điểm đón"></select>
+          <p class="tra-note">💡 Giá hiển thị = vé gốc + phụ thu đúng điểm bạn đón. Điểm gần đầu tuyến rẻ hơn — phần mềm tự tính, khỏi hỏi lại.</p>
+          <div class="tra-mini">
+            <div><b class="num">4</b><span>tuyến</span></div>
+            <div><b class="num">19</b><span>chuyến/ngày</span></div>
+            <div><b class="num">4:30–22:00</b><span>giờ bán vé</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="bang-rows" id="bangRows"></div>
+          <p class="bang-out">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01"/></svg>
+            <span>Chỗ trống cập nhật lúc mở trang — vé bấm giữ chỗ được <b style="color:var(--gold-2)">giữ 30 phút</b>, đủ thời gian ra quầy hoặc chuyển khoản. Quá 30 phút tự nhả ghế cho khách sau.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH + CAM KẾT ===== -->
+<section class="sec" id="cach-mua" style="padding-top:14px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Đặt vé kiểu nhà xe</span>
+      <h2>Bốn bước — vé nằm trong tay</h2>
+    </div>
+    <div class="tq rv">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Chọn điểm đón &amp; giờ</h3>
+        <p>Sơ đồ tuyến hoặc tra chuyến — thấy chỗ trống thật, giá thật.</p>
+        <span class="gio num">30 giây</span>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Nhận mã giữ chỗ</h3>
+        <p>Mã vé hiện ngay tại trang kèm giờ đón ở đúng điểm của bạn.</p>
+        <span class="gio num">giữ 30 phút</span>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Thanh toán</h3>
+        <p>Tại quầy Bến Bình Minh, chuyển khoản, hoặc trả tài xế khi lên xe.</p>
+        <span class="gio num">trước giờ chạy</span>
+      </div>
+      <div class="step">
+        <div class="n">4</div>
+        <h3>Lên xe — khởi hành</h3>
+        <p>Có mặt trước 10 phút, steward kiểm vé và sắp hành lý ký gửi.</p>
+        <span class="gio num">đúng giờ</span>
+      </div>
+    </div>
+    <div class="commit-g">
+      <div class="commit rv"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Giữ chỗ 30 phút</b><span>Quá 30 phút tự nhả ghế, không mất phí</span></div></div>
+      <div class="commit rv"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><div><b>Hoàn/huỷ trước 6 giờ</b><span>Miễn phí 100% — nhắn Zalo là xong</span></div></div>
+      <div class="commit rv"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg><div><b>Xuất bến đúng giờ</b><span>Trễ từ phía nhà xe: đổi vé chuyến sau miễn phí</span></div></div>
+      <div class="commit rv"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><div><b>Hành lý ký gửi 20kg</b><span>Miễn phí 1 kiện — gửi thêm theo bảng bến</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HÀNH TRÌNH CỦA HÀNH KHÁCH (M6 — intro + space theo dải hành trình) ===== -->
+<section class="sec jou" id="hanh-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hành trình của bạn</span>
+      <h2>Từ quầy vé tới điểm trả — cả chặng có người lo</h2>
+      <p>Hai hình dưới chụp đúng quầy vé và phòng chờ Bến Bình Minh — nơi bạn sẽ đứng, không phải ảnh mô phỏng.</p>
+    </div>
+    <div class="jou-g">
+      <div class="jou-item rv">
+        <span class="stt num">Chặng 1 · Ở quầy</span>
+        <img src="assets/img/intro.webp" alt="Quầy vé Bình Minh Express — chọn chuyến, chọn chỗ, hỗ trợ đổi vé" width="1536" height="1024" loading="lazy">
+        <h3>Mua vé / giữ chỗ</h3>
+        <p>Đặt online nhận mã giữ chỗ, hoặc ghé quầy vé 1 — bán từ 4:30 sáng. Đổi giờ chuyến ngay tại quầy trong 1 phút.</p>
+        <span class="ph-mui"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="jou-item rv">
+        <span class="stt num">Chặng 2 · Ở bến</span>
+        <img src="assets/img/space.webp" alt="Phòng chờ Bến Bình Minh — ghế ngồi mát, nhìn ra sân bến" width="1536" height="1024" loading="lazy">
+        <h3>Phòng chờ &amp; lên xe</h3>
+        <p>Phòng chờ máy lạnh, nước uống miễn phí. Xe vào lô 10 phút trước giờ chạy, steward hô điểm đón theo tên tuyến.</p>
+        <span class="ph-mui"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="jou-item txt rv">
+        <span class="big-ic">🚌</span>
+        <h3>Trên xe</h3>
+        <p>Giường nằm 40 chỗ cho chặng đêm, limousine 22 ghế cho chặng sáng. Nước lạnh, chăn màn, dừng nghỉ giữa tuyến đúng 15 phút.</p>
+      </div>
+      <div class="jou-item txt rv">
+        <span class="big-ic">📍</span>
+        <h3>Tới nơi</h3>
+        <p>Trả khách đúng điểm ghi trên vé — hoặc điểm hẹn trong nội thị. Gửi hàng theo xe xuống cùng lô, nhắn người nhận lấy trong ngày.</p>
+      </div>
+    </div>
+    <div class="jou-stats">
+      <div class="js rv"><b class="num">4</b><span>tuyến cố định chạy hằng ngày</span></div>
+      <div class="js rv"><b class="num">19 chuyến</b><span>mỗi ngày, từ 4:30 tới 21:00</span></div>
+      <div class="js rv"><b class="num">98%</b><span>chuyến xuất bến đúng giờ (năm qua)</span></div>
+      <div class="js rv"><b class="num">30 phút</b><span>giữ chỗ miễn phí cho vé đặt online</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIỆC KHÁC TRÊN TUYẾN (dịch vụ phụ — tách khu, không đụng funnel đặt vé) ===== -->
+<section class="sec" id="phu" style="padding-top:26px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Việc khác trên tuyến</span>
+      <h2>Gửi hàng &amp; thuê cả xe đoàn</h2>
+    </div>
+    <div class="phu-g">
+      <div class="phu hot rv">
+        <div class="ph-ic">📦</div>
+        <h3>Gửi hàng theo xe khách</h3>
+        <p>Hàng lên cùng chuyến, tới trong ngày — nhanh nhất cho giấy tờ, linh kiện, quà bánh tuyến tỉnh.</p>
+        <ul>
+          <li>Nhận tại bến đến 30 phút trước giờ chạy</li>
+          <li>Người nhận lấy tại bến đích, xuất biên nhận</li>
+          <li>Thông tin người nhận ghi rõ trên thùng — nhắn Zalo theo dõi</li>
+        </ul>
+        <div class="pr num">từ 35.000đ <small>/ kiện tới 5kg · quá 5kg tính 6.000đ/kg</small></div>
+        <div class="cta">
+          <a class="btn btn-p btn-sm" href="tel:0034567899">☎ Nhắn giá gửi hàng</a>
+          <a class="btn btn-g btn-sm" href="https://zalo.me/0034567899" target="_blank" rel="noopener">Zalo bến</a>
+        </div>
+      </div>
+      <div class="phu rv">
+        <div class="ph-ic">🚍</div>
+        <h3>Thuê xe hợp đồng du lịch</h3>
+        <p>Cả đoàn một lịch trình: xe 29–45 chỗ hoặc limousine 18–22 ghế, tài xế quen đường tỉnh, hoá đơn đầy đủ.</p>
+        <ul>
+          <li>Báo giá theo lịch trình trong 30 phút</li>
+          <li>Chủ động giờ giấc — không ghép khách lạ</li>
+          <li>Hợp đồng + biên bản giao xe cho công ty, trường học</li>
+        </ul>
+        <div class="pr num">Báo giá riêng <small>theo số ngày · số km · loại xe</small></div>
+        <div class="cta">
+          <a class="btn btn-p btn-sm" href="tel:0034567899">☎ Nhận báo giá đoàn</a>
+          <a class="btn btn-g btn-sm" href="#lien-he">Ghé bến trao trực tiếp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hành khách kể lại</span>
+      <h2>Người đi tuyến, người gửi hàng đều quay lại</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đặt vé lúc 6 giờ sáng đang nằm nhà, ra Ngã tư Vê Nha đúng 7:20 là lên xe. Giữ chỗ 30 phút đúng là cho người đi vội."</p><b>Anh Quốc Bảo</b><span>đi Đà Lạt mỗi tháng · Gò Vấp</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Limousine 22 chỗ ngồi êm, được chăn nước lạnh. Mình ngủ một mạch tới Dầu Giây vẫn kịp họp 8 giờ."</p><b>Chị Thu Ngọc</b><span>công tác tuần 2 chuyến · Q.1</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Gửi hộp bánh về cho bà ngoại, trưa gửi chiều tới đúng bến. Mẹ bảo bánh còn nguyên mép, không xóc."</p><b>Bé Hải Đăng</b><span>gửi quà tuyến S2 · Bình Thạnh</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Mẹ già đi một mình, chú tài xế xuống đỡ vali, dẫn tới ghế số 3. Mình chấm đủ sao vì hôm mưa xe về trễ 15 phút."</p><b>Anh Thành Nhân</b><span>con người thân đi Vũng Tàu · Q.7</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ + MAP ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🚏 Ghé bến Bình Minh</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ bến</b><br>Bến Bình Minh, 18 Đường Vê Nha</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo đặt vé</b><br><a class="tel-big num" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ bán vé tại bến</b><br>04:30 – 22:00 tất cả các ngày trong tuần</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.7628,106.6852&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới bến</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.7628,106.6852 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.7628,106.6852&z=15&output=embed&hl=vi" title="Bản đồ Bến Bình Minh — Bình Minh Express"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp hành khách</span>
+      <h2>Vài điều hay hỏi trước khi lên xe</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Giữ chỗ 30 phút là thế nào, có mất phí không?<i>+</i></button><div class="a">Khi bấm đặt vé, hệ thống chốt ghế cho bạn kèm mã vé và giờ hết hạn (30 phút từ lúc đặt). Trong 30 phút đó, ghế không bán cho ai khác. Bạn thanh toán tại quầy, chuyển khoản hoặc trả tài xế khi lên xe — không đặt cọc, không phí giữ chỗ.</div></div>
+      <div class="qa rv"><button>Muốn đổi giờ hoặc huỷ vé, có bị mất tiền không?<i>+</i></button><div class="a">Hoàn/huỷ miễn phí 100% nếu nhắn trước giờ chạy ít nhất 6 giờ. Trong vòng 6 giờ, nhà xe giữ lại 20% tiền vé để bù chỗ trống. Đổi sang chuyến khác cùng tuyến được miễn phí khi còn chỗ.</div></div>
+      <div class="qa rv"><button>Hành lý ký gửi bao nhiêu thì free?<i>+</i></button><div class="a">Mỗi vé được ký 1 kiện tới 20kg miễn phí. Kiện thứ hai tính 30.000đ. Đồ giá trị, dễ vỡ nên mang lên xe và báo steward niêm phong ký gửi riêng tại quầy bến.</div></div>
+      <div class="qa rv"><button>Limousine 22 ghế khác giường nằm chỗ nào, nên đi xe nào?<i>+</i></button><div class="a">Limousine 22 ghế ngồi da ngả 45°, phục vụ nước lạnh — hợp chặng ban ngày, người công tác. Giường nằm 40 chỗ có chăn màn nằm thẳng — hợp chuyến đêm 20:00–21:00. Cùng tuyến, limousine đắt hơn khoảng 90.000đ/vé.</div></div>
+      <div class="qa rv"><button>Đi với trẻ nhỏ hoặc người già có cần lưu ý gì?<i>+</i></button><div class="a">Trẻ dưới 6 tuổi đi cùng miễn phí (không giường riêng), 6–11 tuổi tính 75% vé. Người già, phụ nữ mang thai: nhắn trước qua hotline, nhà xe sắp ghế gần cửa và steward hỗ trợ xuống xe tại điểm trả.</div></div>
+      <div class="qa rv"><button>Xe có đón tận nơi không hay phải ra điểm đón?<i>+</i></button><div class="a">Tuyến cố định đón tại 6 điểm ghi trên sơ đồ — đến trước giờ chạy 10 phút. Cần đón tận nhà trong nội thị, thêm mục "đưa đón sân bay &amp; bến xe" hoặc gọi hotline để xếp xe nối 9–15 chỗ đón kèm.</div></div>
+      <div class="qa rv"><button>Gửi hàng theo xe khách phải làm gì?<i>+</i></button><div class="a">Gói kiện chặt, ghi tên + số điện thoại người nhận ra thùng, mang tới quầy gửi hàng trước giờ chạy 30 phút. Giá từ 35.000đ/kiện tới 5kg. Người nhận xuất biên nhận tại bến đích trong ngày — nhắn Zalo theo mã kiện nếu cần.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🚌 Bình Minh Express</b>
+      <p>Nhà xe khách tuyến cố định &amp; limousine — Kết nối mọi hành trình. 4 tuyến · 19 chuyến mỗi ngày từ Bến Bình Minh, 18 Đường Vê Nha.</p>
+    </div>
+    <div>
+      <h4>Trên tuyến</h4>
+      <a href="#dich-vu">Sơ đồ tuyến &amp; điểm đón</a>
+      <a href="#tra-chuyen">Tra chuyến kế tiếp</a>
+      <a href="#limousine">Xe limousine 22 ghế</a>
+      <a href="#phu">Gửi hàng &amp; thuê đoàn</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 Bến Bình Minh, 18 Đường Vê Nha</p>
+      <p>📞 <a class="num" href="tel:0034567899">0034567899</a></p>
+      <p>🕰 Bán vé 04:30 – 22:00 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Bình Minh Express · Giá vé tham khảo theo tuyến, điều chỉnh theo đợt giá nhiên liệu · Hoàn/huỷ theo quy định trên vé</div>
+</footer>
+
+<!-- ===== DRAWER ĐẶT VÉ (funnel chính) ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="veDrawer" aria-label="Đặt vé giữ chỗ">
+  <div class="dr-head">
+    <h3>🎫 Đặt vé giữ chỗ</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng khay đặt vé">✕</button>
+  </div>
+  <div class="dr-body">
+    <div class="dstep" id="dStep"><i class="on"></i><i></i><i></i></div>
+
+    <!-- Bước 1: tuyến → điểm đón → ngày → giờ → ghế -->
+    <div class="drv on" id="dv1">
+      <label for="dTuyen">Tuyến chạy</label>
+      <select id="dTuyen" aria-label="Chọn tuyến"></select>
+      <label for="dStop">Điểm đón của bạn</label>
+      <select id="dStop" aria-label="Chọn điểm đón"></select>
+      <label>Ngày đi</label>
+      <div class="day-chips" id="dDay"></div>
+      <label>Giờ chạy &amp; loại xe</label>
+      <div class="gio-chips" id="dGio"></div>
+      <label>Số vé</label>
+      <div class="stepper">
+        <button id="dTru" aria-label="Bớt một vé">−</button><b class="num" id="dSoVe">1</b><button id="dCong" aria-label="Thêm một vé">+</button>
+      </div>
+      <div class="ve-sum">
+        <div class="vs-row"><span>Chuyến được giữ</span><b class="num" id="sumChuyen">—</b></div>
+        <div class="vs-row"><span>Giá / vé (gồm điểm đón)</span><b class="num" id="sumGia">—</b></div>
+        <div class="vs-row tot"><span>Tạm tính</span><b class="num" id="sumTong">—</b></div>
+      </div>
+      <button class="btn btn-a dr-cta" id="toStep2">Tiếp tục — giữ chỗ 30 phút</button>
+      <p class="dr-note">Ghế được chốt ngay khi bạn xác nhận ở bước sau · không đặt cọc</p>
+    </div>
+
+    <!-- Bước 2: xác nhận danh tính -->
+    <div class="drv" id="dv2">
+      <button class="dr-back" id="back1">← Xem lại chuyến</button>
+      <label for="dTen">Tên người đi *</label>
+      <input id="dTen" type="text" placeholder="VD: Nguyễn Thị Bích" autocomplete="name">
+      <label for="dSdt">Số điện thoại nhận mã vé *</label>
+      <input id="dSdt" type="tel" placeholder="VD: 0901 234 567" autocomplete="tel" inputmode="tel">
+      <label for="dNote">Ghi chú (đón người già, gửi kiện, hoá đơn…)</label>
+      <input id="dNote" type="text" placeholder="VD: có cụ 78 tuổi, sắp ghế gần cửa">
+      <div class="cam-ket"><b>Cam kết nhà xe:</b> giữ ghế 30 phút từ lúc xác nhận · hoàn/huỷ miễn phí trước giờ chạy 6 giờ · xuất bến đúng giờ, trễ do nhà xe thì đổi chuyến sau miễn phí.</div>
+      <button class="btn btn-p dr-cta" id="dSubmit">✅ Xác nhận giữ chỗ</button>
+      <p class="dr-note">Mã vé hiện ngay tại đây — không cần chờ tin nhắn</p>
+    </div>
+
+    <!-- Bước 3: mã vé -->
+    <div class="drv" id="dv3">
+      <div class="ve-done">
+        <div class="ok"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h4>Đã giữ chỗ!</h4>
+        <div class="code num" id="veCode">BM-000</div>
+        <p id="veChuyen">—</p>
+        <p><b>Giữ chỗ đến <span class="num" id="veHan">—</span></b> (30 phút). Thanh toán tại quầy, chuyển khoản hoặc trả tài xế.</p>
+        <p>Đổi/huỷ miễn phí trước 6 giờ — gọi <b class="num">0034567899</b>, nhắc mã vé là xong.</p>
+        <button class="btn btn-g dr-cta" id="veDoneBtn">Đã rõ — đóng khay</button>
+      </div>
+    </div>
+  </div>
+  <div class="dr-foot">
+    <p class="dr-note">Bấm nút ở khay này là <b>chưa mất tiền</b> — vé chỉ chốt khi bạn xác nhận. Hotline <b class="num">0034567899</b> trả lời 4:30–22:00.</p>
+  </div>
+</aside>
+
+<!-- ===== FAB VÉ (SVG nét — không emoji) ===== -->
+<button class="ve-fab" id="veFab" data-open-ve aria-label="Mở khay đặt vé">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2.5 2.5 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2.5 2.5 0 0 0 0-6Z"/>
+    <path d="M13 5v2M13 11v2M13 17v2" stroke-dasharray="0.1 3.6"/>
+  </svg>
+  <span class="pkc-dot"></span>
+</button>
+
+<!-- ===== CHAT (pkc — không bot) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn nhà xe">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🚌</div>
+    <div><div class="pkc-name">Bến <span data-pkc="brand">Bình Minh Express</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🎫 Chuyến kế tiếp từ điểm tôi?</button>
+    <button class="pkc-chip">🔁 Đổi vé sang chuyến sau?</button>
+    <button class="pkc-chip">📦 Gửi hàng theo xe</button>
+    <button class="pkc-chip">⭐ Limousine 22 ghế có gì?</button>
+    <button class="pkc-chip">🧳 Hành lý ký gửi bao nhiêu kg?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho bến…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-381*/
+'use strict';
+/* ===== DỮ LIỆU TUYẾN (hư cấu nhất quán — đổi là dùng kinh doanh thật được) ===== */
+var XE = {
+  ln:{ten:'Giường nằm 40 chỗ', tag:'LN'},
+  lm:{ten:'Limousine 22 ghế', tag:'LM 22'}
+};
+var TUYEN = {
+  'sg-dl':{name:'TP.HCM → Đà Lạt', code:'S1', meta:'310 km · 4g30p',
+    stops:[['Bến Bình Minh',0],['Ngã tư Vê Nha',0],['Sài Gòn Xa lộ',10],['Trạm Dầu Giây',20],['Chợ Phú Thịnh',30],['Bến xe Đà Lạt',0]],
+    base:{ln:320000, lm:410000},
+    trips:[['05:00','ln',6],['07:30','lm',3],['10:00','ln',11],['13:30','ln',18],['16:00','lm',8],['21:00','ln',14]]},
+  'sg-pt':{name:'TP.HCM → Phan Thiết', code:'S2', meta:'200 km · 3g15p',
+    stops:[['Bến Bình Minh',0],['Ngã tư Vê Nha',0],['Ngã ba Vũng Tàu — QL51',10],['Chợ Phan Thiết',0]],
+    base:{ln:180000, lm:270000},
+    trips:[['05:30','ln',9],['09:00','lm',7],['14:00','ln',16],['20:30','ln',20]]},
+  'sg-vt':{name:'TP.HCM → Vũng Tàu', code:'S3', meta:'125 km · 2g10p',
+    stops:[['Bến Bình Minh',0],['Ngã tư Vê Nha',0],['Cầu Dinh — Bà Rịa',10],['Bến Vũng Tàu',0]],
+    base:{ln:150000, lm:240000},
+    trips:[['06:00','lm',5],['09:30','ln',13],['15:00','lm',10],['18:30','ln',17]]},
+  'sg-ct':{name:'TP.HCM → Cần Thơ', code:'S4', meta:'170 km · 2g45p',
+    stops:[['Bến Bình Minh',0],['Ngã tư Vê Nha',0],['Cầu Cần Thơ — QL1A',10],['Bến xe Cần Thơ',0]],
+    base:{ln:130000, lm:220000},
+    trips:[['05:00','ln',12],['07:00','lm',6],['11:00','ln',15],['15:30','ln',19],['20:00','lm',4]]}
+};
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+function tuyenOf(id){ return TUYEN[id] || null; }
+function giaVe(tid, stopIdx, loai){
+  var t = tuyenOf(tid);
+  return t.base[loai] + (t.stops[stopIdx][1] * 1000);
+}
+
+/* ===== TOAST: title + message — 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3800);
+}
+
+/* ===== KHỐI-8: 8 THẺ VÉ DỊCH VỤ (2 vé nổi bật TRỌN HÀNG đứng trước, 6 vé thường liền 2 hàng kín ô) ===== */
+var DV = [
+  {id:'limousine',  code:'V2', loai:'lm',  img:'assets/img/p2.webp', ten:'Xe limousine cao cấp 22 ghế', mota:'Ghế da ngả 45°, nước lạnh, wifi — chuyến sáng cho người bận rộn.', gia:'từ 240.000đ', giaSmall:'/ vé · đã gồm điểm đón', cta:'ve', pfType:'lm', feat:'XE CHỦ LỰC', featGold:true},
+  {id:'gui-hang',   code:'V7', loai:null, img:'assets/img/p7.webp', ten:'Gửi hàng theo xe khách', mota:'Hàng lên cùng chuyến, tới trong ngày. Người nhận lấy tại bến đích.', gia:'từ 35.000đ', giaSmall:'/ kiện tới 5kg', cta:'hang', feat:'GỬI NHIỀU NHẤT'},
+  {id:'giuong-nam', code:'V1', loai:'ln',  img:'assets/img/p1.webp', ten:'Xe khách giường nằm tuyến cố định', mota:'Chuyến đêm 20:00–21:00, giường 40 chỗ có chăn màn.', gia:'từ 320.000đ', giaSmall:'/ vé tuyến S1', cta:'ve', pfType:'ln'},
+  {id:'ve-lien-tinh', code:'V3', loai:null, img:'assets/img/p3.webp', ten:'Vé xe khách liên tỉnh', mota:'Chọn tuyến, chọn chỗ trên sơ đồ — giá rõ từ điểm đón.', gia:'từ 130.000đ', giaSmall:'/ vé chặng ngắn', cta:'ve'},
+  {id:'don-tra',    code:'V4', loai:null, img:'assets/img/p4.webp', ten:'Đón trả khách theo điểm hẹn', mota:'Trả đúng điểm ghi trên vé; nội thị có xe nối.', gia:'0đ', giaSmall:'điểm trong tuyến', cta:'ve'},
+  {id:'thue-doan',  code:'V5', loai:null, img:'assets/img/p5.webp', ten:'Thuê xe hợp đồng du lịch', mota:'Xe 29–45 chỗ hoặc limousine đoàn, hoá đơn đủ.', gia:'Báo giá', giaSmall:'theo ngày · km · xe', cta:'tel'},
+  {id:'san-bay',    code:'V6', loai:null, img:'assets/img/p6.webp', ten:'Đưa đón sân bay và bến xe', mota:'Xe nối 9–15 chỗ đón tận hẻm, đúng giờ chuyến bay.', gia:'từ 180.000đ', giaSmall:'/ chuyến nội thành', cta:'tel'},
+  {id:'ho-tro',     code:'V8', loai:null, img:'assets/img/p8.webp', ten:'Đặt vé và hỗ trợ hành khách', mota:'Quầy bán 4:30–22:00, steward hỗ trợ người già, trẻ nhỏ.', gia:'Miễn phí', giaSmall:'dịch vụ kèm vé', cta:'tra'}
+];
+function renderTk(){
+  var g = document.getElementById('tkGrid');
+  var html = '';
+  for (var i=0;i<DV.length;i++){
+    var d = DV[i];
+    var badge = d.feat ? '<span class="tk-badge'+(d.featGold?' gold':'')+'">★ '+d.feat+'</span>' : '';
+    var ctaHtml = '';
+    if (d.cta === 've') ctaHtml = '<button class="go" data-dv="'+i+'">🎫 Đặt vé</button>';
+    else if (d.cta === 'tel') ctaHtml = '<a class="go alt" href="tel:0034567899">☎ Nhận báo giá</a>';
+    else if (d.cta === 'hang') ctaHtml = '<a class="go alt" href="tel:0034567899">☎ Nhắn giá gửi</a>';
+    else ctaHtml = '<button class="go alt" data-tra>🔎 Tra chuyến</button>';
+    html += '<article class="tk'+(d.feat?' feat':'')+' rv">'
+      + badge
+      + '<div class="stub"><span class="code num">'+d.code+'</span><span class="loai '+(d.loai==='lm'?'lm-tag':'ln-tag')+'" style="'+(d.loai?'':'visibility:hidden')+'">'+(d.loai?XE[d.loai].tag:'—')+'</span></div>'
+      + '<div class="ph"><img src="'+d.img+'" alt="'+d.ten+'" width="1280" height="853" loading="lazy"></div>'
+      + '<div class="punch"></div>'
+      + '<div class="bd"><h3>'+d.ten+'</h3><p>'+d.mota+'</p>'
+      + '<div class="ft"><span class="pri num">'+d.gia+'<small>'+d.giaSmall+'</small></span>'+ctaHtml+'</div></div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    if (e.target.closest('[data-tra]')){ document.getElementById('tra-chuyen').scrollIntoView({behavior:'smooth'}); return; }
+    var b = e.target.closest('[data-dv]');
+    if (!b) return;
+    var d = DV[parseInt(b.getAttribute('data-dv'),10)];
+    openVe({type:d.pfType || null});
+  });
+}
+
+/* ===== SƠ ĐỒ TUYẾN: chọn điểm đón + chip giờ chạy ===== */
+var SD_TUYEN = 'sg-dl';
+var SD_STOP = 1;
+function fmtStop(i){ return 'D' + (i+1); }
+function stopLabel(tid, i){
+  var t = tuyenOf(tid);
+  var phu = t.stops[i][1];
+  return t.stops[i][0] + (phu ? ' (+' + phu + 'k)' : '');
+}
+function renderStopList(){
+  var t = tuyenOf(SD_TUYEN);
+  var el = document.getElementById('stopList');
+  var html = '';
+  for (var i=0;i<t.stops.length;i++){
+    html += '<button class="sl-item'+(i===SD_STOP?' on':'')+'" data-stop="'+i+'"><span class="sn num">'+(i+1)+'</span>'+t.stops[i][0]+'<small>'+(t.stops[i][1] ? '+'+fmt(t.stops[i][1]*1000) : 'không phụ thu')+'</small></button>';
+  }
+  el.innerHTML = html;
+}
+function selectStop(i, hoi){
+  SD_STOP = i;
+  var svgStops = document.querySelectorAll('#so-do .stop');
+  for (var k=0;k<svgStops.length;k++){
+    svgStops[k].classList.toggle('sel', k===i);
+  }
+  renderStopList();
+  renderDepChips();
+  if (hoi){
+    var t = tuyenOf(SD_TUYEN);
+    toast('Đã nhớ điểm đón D' + (i+1) + ' · ' + t.stops[i][0], 'Bấm "Đặt vé từ điểm đã chọn" — khay đặt vé mở sẵn điểm này.');
+  }
+}
+function renderDepChips(){
+  var t = tuyenOf(SD_TUYEN);
+  var box = document.getElementById('depChips');
+  var html = '';
+  for (var i=0;i<t.trips.length;i++){
+    var tr = t.trips[i];
+    html += ' <button class="dep num" data-gio="'+tr[0]+'">'+tr[0]+' <span class="'+(tr[1]==='lm'?'lm-tag':'ln-tag')+'">'+XE[tr[1]].tag+'</span><small>còn '+tr[2]+'</small></button>';
+  }
+  box.innerHTML = html;
+}
+document.getElementById('depChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-gio]');
+  if (!b) return;
+  openVe({tuyen:SD_TUYEN, stop:SD_STOP, gio:b.getAttribute('data-gio')});
+});
+document.getElementById('so-do').addEventListener('click', function(e){
+  var s = e.target.closest('.stop');
+  if (s) selectStop(parseInt(s.getAttribute('data-stop'),10), true);
+  var sl = e.target.closest('.sl-item');
+  if (sl) selectStop(parseInt(sl.getAttribute('data-stop'),10), true);
+});
+document.getElementById('so-do').addEventListener('keydown', function(e){
+  var s = e.target.closest('.stop');
+  if (s && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); selectStop(parseInt(s.getAttribute('data-stop'),10), true); }
+});
+document.getElementById('rsCta').addEventListener('click', function(){
+  openVe({tuyen:SD_TUYEN, stop:SD_STOP});
+});
+
+/* ===== TRA CHUYẾN (dacThu) ===== */
+var TRA_TUYEN = 'sg-dl';
+function renderTraTuyen(){
+  var box = document.getElementById('traTuyen');
+  var html = '';
+  for (var key in TUYEN){
+    html += '<button data-t="'+key+'"'+(key===TRA_TUYEN?' class="on"':'')+'>'+TUYEN[key].name+'</button>';
+  }
+  box.innerHTML = html;
+}
+function renderTraStop(){
+  var t = tuyenOf(TRA_TUYEN);
+  var sel = document.getElementById('traStop');
+  var html = '';
+  for (var i=0;i<t.stops.length;i++){
+    html += '<option value="'+i+'">D'+(i+1)+' · '+t.stops[i][0]+'</option>';
+  }
+  sel.innerHTML = html;
+  sel.value = '0';
+}
+function renderBang(){
+  var t = tuyenOf(TRA_TUYEN);
+  var si = parseInt(document.getElementById('traStop').value || '0', 10);
+  var rows = '<div class="brow hd-r"><span>Giờ</span><span>Xe</span><span style="text-align:right">Giá/vé</span><span style="text-align:center">Chỗ</span><span></span></div>';
+  var nextFound = false;
+  for (var i=0;i<t.trips.length;i++){
+    var tr = t.trips[i];
+    var con = tr[2];
+    var isNext = !nextFound && con > 0;
+    if (isNext) nextFound = true;
+    rows += '<div class="brow'+(isNext?' next':'')+'">'
+      + '<span class="g num">'+tr[0]+(isNext?'<span class="next-flag">KẾ TIẾP</span>':'')+'</span>'
+      + '<span class="x"><b>'+XE[tr[1]].ten+'</b><small>'+t.code+' · '+t.meta+'</small></span>'
+      + '<span class="gia num">'+fmt(giaVe(TRA_TUYEN, si, tr[1]))+'</span>'
+      + '<span class="con num'+(con<=5?' thap':'')+'">'+(con>0? 'còn '+con : 'hết')+'</span>'
+      + '<button class="dat" data-tra-ve="'+i+'"'+(con===0?' disabled style="opacity:.45"':'')+'>Đặt vé</button>'
+      + '</div>';
+  }
+  document.getElementById('bangRows').innerHTML = rows;
+}
+document.getElementById('traTuyen').addEventListener('click', function(e){
+  var b = e.target.closest('[data-t]');
+  if (!b) return;
+  TRA_TUYEN = b.getAttribute('data-t');
+  renderTraTuyen();
+  renderTraStop();
+  renderBang();
+});
+document.getElementById('traStop').addEventListener('change', renderBang);
+document.getElementById('bangRows').addEventListener('click', function(e){
+  var b = e.target.closest('[data-tra-ve]');
+  if (!b || b.disabled) return;
+  var i = parseInt(b.getAttribute('data-tra-ve'),10);
+  var tr = tuyenOf(TRA_TUYEN).trips[i];
+  openVe({tuyen:TRA_TUYEN, stop:parseInt(document.getElementById('traStop').value,10), gio:tr[0], type:tr[1]});
+});
+
+/* ===== DRAWER ĐẶT VÉ ===== */
+var VE = {tuyen:'sg-dl', stop:0, day:0, gio:null, soVe:1, type:null, lockType:false};
+var DAYS = [];
+(function(){
+  var th = ['CN','T2','T3','T4','T5','T6','T7'];
+  for (var i=0;i<3;i++){
+    var d = new Date(); d.setDate(d.getDate()+i);
+    DAYS.push({n: i===0?'Hôm nay':(i===1?'Ngày mai':'Ngày kia'), s: th[d.getDay()] + ' ' + d.getDate() + '/' + (d.getMonth()+1)});
+  }
+})();
+function openVe(pf){
+  /* lockType: chỉ khoá loại xe khi CTA đích định rõ (vd "Đặt vé limousine") —
+     mặc định để khách chọn tự do mọi chuyến, không mờ chip nhầm lẫn */
+  VE.lockType = !!(pf && pf.type);
+  if (pf){
+    if (pf.tuyen){ VE.tuyen = pf.tuyen; }
+    if (pf.stop !== undefined && pf.stop !== null){ VE.stop = pf.stop; }
+    if (pf.gio){ VE.gio = pf.gio; }
+    if (pf.type){ VE.type = pf.type; VE.gio = pf.gio || timGioTheoLoai(VE.tuyen, pf.type); }
+  }
+  showStep(1);
+  renderDrawer();
+  document.getElementById('veDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeVe(){
+  document.getElementById('veDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function timGioTheoLoai(tid, loai){
+  var tr = tuyenOf(tid).trips;
+  for (var i=0;i<tr.length;i++){ if (tr[i][1]===loai) return tr[i][0]; }
+  return null;
+}
+function showStep(n){
+  var vs = document.querySelectorAll('.drv');
+  for (var i=0;i<vs.length;i++) vs[i].classList.remove('on');
+  document.getElementById('dv'+n).classList.add('on');
+  var bars = document.querySelectorAll('#dStep i');
+  for (var j=0;j<bars.length;j++) bars[j].classList.toggle('on', j < n);
+}
+function renderDrawer(){
+  /* tuyến */
+  var selT = document.getElementById('dTuyen');
+  var html = '';
+  for (var key in TUYEN){ html += '<option value="'+key+'">'+TUYEN[key].code+' · '+TUYEN[key].name+' — '+TUYEN[key].meta+'</option>'; }
+  selT.innerHTML = html;
+  selT.value = VE.tuyen;
+  /* điểm đón */
+  var t = tuyenOf(VE.tuyen);
+  if (VE.stop >= t.stops.length) VE.stop = 0;
+  var selS = document.getElementById('dStop');
+  var h2 = '';
+  for (var i=0;i<t.stops.length;i++){ h2 += '<option value="'+i+'">D'+(i+1)+' · '+t.stops[i][0]+(t.stops[i][1]? ' (+'+fmt(t.stops[i][1]*1000)+')':'')+'</option>'; }
+  selS.innerHTML = h2;
+  selS.value = String(VE.stop);
+  /* ngày */
+  var dbox = document.getElementById('dDay');
+  var h3 = '';
+  for (var d=0;d<DAYS.length;d++){ h3 += '<button data-day="'+d+'"'+(d===VE.day?' class="on"':'')+'>'+DAYS[d].n+'<small class="num">'+DAYS[d].s+'</small></button>'; }
+  dbox.innerHTML = h3;
+  /* giờ + loại xe */
+  renderGio();
+  renderSum();
+}
+function renderGio(){
+  var t = tuyenOf(VE.tuyen);
+  var box = document.getElementById('dGio');
+  var html = '';
+  var picked = false;
+  for (var i=0;i<t.trips.length;i++){
+    var tr = t.trips[i];
+    var on = VE.gio === tr[0];
+    if (on) picked = true;
+    var matchType = (VE.lockType && VE.type) ? tr[1]===VE.type : true;
+    var het = (!matchType || tr[2]===0);
+    var cls = on ? 'on' : '';
+    if (het) cls += (cls ? ' ' : '') + 'het';
+    html += '<button data-gio="'+tr[0]+'" data-type="'+tr[1]+'" class="'+cls+'"'+(het?' data-het="1"':'')+'>'
+      + '<b class="num">'+tr[0]+'</b><small>'+XE[tr[1]].tag+' · '+(tr[2]>0? 'còn '+tr[2] : 'hết chỗ')+'</small></button>';
+  }
+  box.innerHTML = html;
+  if (!picked){
+    /* mặc định: chuyến kế tiếp còn chỗ (khớp loại xe nếu có ràng buộc) */
+    for (var j=0;j<t.trips.length;j++){
+      var tr2 = t.trips[j];
+      if (tr2[2] > 0 && (!VE.type || tr2[1] === VE.type)){ VE.gio = tr2[0]; VE.type = tr2[1]; break; }
+    }
+    var bs = box.querySelectorAll('button');
+    for (var k=0;k<bs.length;k++){
+      if (bs[k].getAttribute('data-gio') === VE.gio) bs[k].classList.add('on');
+    }
+  }
+  /* số vé tối đa theo chỗ */
+  var tr3 = gioHienTai();
+  var max = tr3 ? Math.min(tr3[2], 6) : 1;
+  if (VE.soVe > max) VE.soVe = Math.max(1, max);
+  document.getElementById('dSoVe').textContent = VE.soVe;
+}
+function gioHienTai(){
+  var t = tuyenOf(VE.tuyen);
+  for (var i=0;i<t.trips.length;i++){ if (t.trips[i][0] === VE.gio) return t.trips[i]; }
+  return t.trips[0];
+}
+function renderSum(){
+  var t = tuyenOf(VE.tuyen);
+  var tr = gioHienTai();
+  if (!tr){ return; }
+  VE.type = tr[1];
+  var gia = giaVe(VE.tuyen, VE.stop, tr[1]);
+  document.getElementById('sumChuyen').textContent = t.code + ' · ' + DAYS[VE.day].s + ' · ' + tr[0] + ' · ' + XE[tr[1]].tag;
+  document.getElementById('sumGia').textContent = fmt(gia);
+  document.getElementById('sumTong').textContent = fmt(gia * VE.soVe);
+}
+document.getElementById('dTuyen').addEventListener('change', function(){
+  VE.tuyen = this.value; VE.stop = 0; VE.gio = null; VE.type = null; VE.soVe = 1;
+  renderDrawer();
+});
+document.getElementById('dStop').addEventListener('change', function(){
+  VE.stop = parseInt(this.value,10);
+  renderSum();
+});
+document.getElementById('dDay').addEventListener('click', function(e){
+  var b = e.target.closest('[data-day]');
+  if (!b) return;
+  VE.day = parseInt(b.getAttribute('data-day'),10);
+  renderDrawer();
+});
+document.getElementById('dGio').addEventListener('click', function(e){
+  var b = e.target.closest('[data-gio]');
+  if (!b || b.hasAttribute('data-het')) return;
+  VE.gio = b.getAttribute('data-gio');
+  VE.type = b.getAttribute('data-type');
+  renderDrawer();
+});
+document.getElementById('dTru').addEventListener('click', function(){ if (VE.soVe > 1){ VE.soVe--; document.getElementById('dSoVe').textContent = VE.soVe; renderSum(); } });
+document.getElementById('dCong').addEventListener('click', function(){
+  var tr = gioHienTai();
+  var max = tr ? Math.min(tr[2], 6) : 1;
+  if (VE.soVe < max){ VE.soVe++; document.getElementById('dSoVe').textContent = VE.soVe; renderSum(); }
+  else toast('Đủ số chỗ trống rồi', 'Chuyến này còn '+max+' ghế — cần đoàn đông hơn, gọi 0034567899 chờ chuyến kế tiếp.');
+});
+document.getElementById('toStep2').addEventListener('click', function(){
+  if (!VE.gio){ toast('Chọn giờ chạy đã nhé', 'Bấm vào một khung giờ có chỗ trống ở trên.'); return; }
+  showStep(2);
+});
+document.getElementById('back1').addEventListener('click', function(){ showStep(1); });
+document.getElementById('dSubmit').addEventListener('click', function(){
+  var ten = document.getElementById('dTen'), sdt = document.getElementById('dSdt');
+  ten.classList.remove('err'); sdt.classList.remove('err');
+  var ok = true;
+  if (!ten.value.trim()){ ten.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(sdt.value.replace(/[\s.\-]/g,''))){ sdt.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin giữ chỗ', 'Cho bến xin tên người đi và số điện thoại nhận mã vé nhé!'); return; }
+  var t = tuyenOf(VE.tuyen);
+  var tr = gioHienTai();
+  var code = 'BM-' + t.code + '-' + Math.floor(100 + Math.random()*900);
+  var han = new Date(); han.setMinutes(han.getMinutes() + 30);
+  var ph = function(x){ return (x<10?'0':'') + x; };
+  document.getElementById('veCode').textContent = code;
+  document.getElementById('veChuyen').textContent = DAYS[VE.day].s + ' · ' + t.name + ' · ' + tr[0] + ' · ' + XE[tr[1]].ten + ' · đón D' + (VE.stop+1) + ' ' + t.stops[VE.stop][0] + ' · ' + VE.soVe + ' vé';
+  document.getElementById('veHan').textContent = ph(han.getHours()) + ':' + ph(han.getMinutes());
+  showStep(3);
+  VE.soVe = 1; /* vé mới bắt đầu lại từ 1 sau khi chốt giữ chỗ */
+  toast('Đã giữ chỗ — mã ' + code, 'Xin ' + ten.value.trim() + ' lưu mã vé. Ghế được giữ tới ' + ph(han.getHours()) + ':' + ph(han.getMinutes()) + '.');
+});
+document.getElementById('veDoneBtn').addEventListener('click', closeVe);
+document.getElementById('drClose').addEventListener('click', closeVe);
+document.getElementById('drMask').addEventListener('click', closeVe);
+document.getElementById('veFab').addEventListener('click', function(){ openVe(); });
+var openBtns = document.querySelectorAll('[data-open-ve]');
+for (var ob=0; ob<openBtns.length; ob++){
+  openBtns[ob].addEventListener('click', function(e){
+    var type = this.getAttribute('data-pf-type');
+    var tid = this.getAttribute('data-pf-tuyen');
+    if (type || tid){ openVe({type: type || undefined, tuyen: tid || undefined}); }
+    else openVe();
+  });
+}
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT — không bot, nhắn là lưu + hẹn bến trả lời ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+document.getElementById('pkcFab').addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){ pkcSendMsg(document.getElementById('pkcInput').value); });
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip');
+  if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderTk();
+selectStop(SD_STOP, false);
+renderTraTuyen();
+renderTraStop();
+renderBang();
+renderDrawer();
+initReveal();
+</script>
+</body>
+</html>

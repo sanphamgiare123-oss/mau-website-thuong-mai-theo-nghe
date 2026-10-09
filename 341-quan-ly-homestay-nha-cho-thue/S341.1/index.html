@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Trú Việt — Quản lý Homestay &amp; Nhà cho thuê ngắn hạn tại Đà Lạt</title>
+<meta name="description" content="An Trú Việt — vận hành trọn gói homestay, căn hộ, nhà cho thuê ngắn hạn cho CHỦ NHÀ: đăng phòng OTA (Airbnb, Booking, Agoda), đón khách, vệ sinh giữa khách theo checklist 42 điểm, chăm khách 24/7, báo cáo doanh thu đầu tháng. Phí theo % doanh thu từng phòng — nhà trống không mất phí. Hotline: 0905 341 668.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-341*/
+/* ============ TOKENS — xanh rừng & cam đất & kem trạch — nghề quản lý homestay/nhà cho thuê ============ */
+:root{
+  --primary:#14432F;
+  --primary-2:#1B5E43;
+  --primary-deep:#0C2E20;
+  --ink:#1F3529;
+  --soft:#5C7266;
+  --texture:#F7F4EC;
+  --texture-2:#EAEDE0;
+  --card:#FFFFFF;
+  --line:#E0E4D6;
+  --line-2:#CBD3BF;
+  --accent:#D97B29;
+  --accent-2:#E8A54B;
+  --accent-deep:#A85A14;
+  --accent-100:#FBF0E0;
+  --ok:#1E9E6A;
+  --danger:#C0392B;
+  --grad-accent:linear-gradient(135deg,#E8A54B,#D97B29);
+  --grad-dark:linear-gradient(140deg,#1B5E43,#14432F 52%,#0C2E20);
+  --sh1:0 2px 10px rgba(18,48,35,.08);
+  --sh2:0 12px 32px rgba(18,48,35,.14);
+  --sh3:0 26px 64px rgba(18,48,35,.24);
+  --r1:10px; --r2:16px; --r3:24px; --r4:32px;
+  --leafpat:repeating-linear-gradient(-45deg,rgba(232,165,75,.08) 0 14px,transparent 14px 28px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.6;font-size:15.5px;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.block{display:block}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.i.f{fill:currentColor;stroke:none}
+::selection{background:var(--accent-100);color:var(--accent-deep)}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+.sec-title{text-align:center;font-size:2.1rem;font-weight:900;color:var(--primary)}
+.sec-sub{display:block;text-align:center;color:var(--soft);font-size:.98rem;margin-top:8px;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid rgba(217,123,41,.25)}
+.hl{background:var(--grad-accent);color:#3B2308;padding:2px 12px 4px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ============ NÚT ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;min-height:50px}
+.btn-accent{background:var(--grad-accent);color:#3B2308;box-shadow:0 10px 26px rgba(217,123,41,.32)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(217,123,41,.42)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line-2);box-shadow:var(--sh1)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-2px)}
+.btn-hot{background:var(--grad-dark);color:#fff;box-shadow:0 12px 30px rgba(12,46,32,.38)}
+.btn-hot:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(12,46,32,.48)}
+.btn-hot::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-hot:hover::after{left:130%}
+.btn-line{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn-line:hover{border-color:var(--accent-2);color:var(--accent-2);transform:translateY(-2px)}
+.btn-xl{font-size:1.18rem;padding:20px 34px;border-radius:18px;min-height:70px}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#CBDCD2;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px;flex-wrap:wrap}
+.topbar .tb-l{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-width:0}
+.topbar .tb-l span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar .i{width:15px;height:15px;color:var(--accent-2)}
+.topbar .hot{color:#F3D9B4;font-weight:800;display:inline-flex;gap:6px;align-items:center}
+.topbar .hot b{font-size:1.02em;color:#fff;letter-spacing:.03em}
+
+/* ============ HEADER ============ */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2);box-shadow:0 8px 20px rgba(12,46,32,.35);border:1.5px solid rgba(232,165,75,.5);transform:rotate(-3deg)}
+.logo .mark .i{width:24px;height:24px}
+.logo .lg-t{display:block;font-weight:900;font-size:1.22rem;line-height:1.1;color:var(--primary)}
+.logo .lg-s{display:block;font-size:.68rem;font-weight:700;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:300px;min-width:170px}
+.search input{width:100%;padding:11px 14px 11px 40px;border-radius:12px;border:1.5px solid var(--line);background:var(--texture);transition:.2s}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-100)}
+.search .i{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.search .drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:14px;border:1.5px solid var(--line);box-shadow:var(--sh2);overflow:hidden;display:none;z-index:70}
+.search .drop.open{display:block}
+.search .drop button{display:flex;width:100%;gap:10px;align-items:center;padding:11px 14px;font-size:.88rem;font-weight:600;text-align:left;border-bottom:1px solid #EEF1E7}
+.search .drop button:last-child{border-bottom:0}
+.search .drop button:hover{background:var(--accent-100)}
+.search .drop .i{position:static;transform:none;width:16px;height:16px;color:var(--accent)}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{font-weight:700;font-size:.86rem;color:var(--ink);padding:9px 11px;border-radius:10px;transition:.2s;white-space:nowrap}
+nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
+.hd-cta{display:flex;gap:10px;align-items:center}
+.hd-cta .btn{padding:11px 18px;min-height:46px;font-size:.88rem}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%232A6B4C' stroke-width='1.3'%3E%3Cpath d='M12 30c14-16 30-18 44-8-10 14-26 18-44 8z'/%3E%3Cpath d='M76 96h34l24-24v34a8 8 0 0 1-8 8H84a8 8 0 0 1-8-8z'/%3E%3Ccircle cx='112' cy='32' r='9'/%3E%3Cpath d='M112 18v-6M112 52v-6M98 32h-6M132 32h-6'/%3E%3C/g%3E%3C/svg%3E");opacity:.5}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center}
+.hero .eyebrow{background:rgba(232,165,75,.14);border-color:rgba(232,165,75,.4);color:#F3C888}
+.hero h1{font-size:clamp(2.05rem,4.3vw,3.4rem);font-weight:900;margin:18px 0 14px;color:#fff}
+.hero .lead{color:#CBDCD2;font-size:1.03rem;max-width:540px;font-weight:500}
+.hero .lead b{color:#fff}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);padding:8px 13px;border-radius:999px;color:#DCEAE1}
+.trust .i{width:15px;height:15px;color:#F3C888}
+.hero-media{position:relative;min-width:0;min-height:520px}
+.hm-main{width:100%;transform:rotate(-1.4deg);border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh3);overflow:hidden;position:relative;z-index:2;animation:fl1 7s ease-in-out infinite}
+.hm-main img{aspect-ratio:16/12;object-fit:cover;width:100%}
+.hm-badge{position:absolute;right:-8px;top:-12px;z-index:4;background:var(--grad-accent);color:#3B2308;border-radius:18px;padding:14px 18px;text-align:center;transform:rotate(4deg);box-shadow:0 14px 30px rgba(217,123,41,.42);animation:fl2 7.5s ease-in-out infinite}
+.hm-badge .bt{display:block;font-size:1.5rem;font-weight:900;line-height:1}
+.hm-badge .bs{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.hm-stats{position:absolute;left:-6px;bottom:-12px;z-index:5;display:flex;gap:0;background:rgba(12,46,32,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden}
+.hm-stats div{padding:13px 20px;text-align:center;border-right:1.5px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:0}
+.hm-stats b{display:block;font-size:1.18rem;font-weight:900;color:#F3C888}
+.hm-stats span{display:block;font-size:.7rem;font-weight:600;color:#CBDCD2}
+@keyframes fl1{0%,100%{transform:rotate(-1.4deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-10px)}}
+@keyframes fl2{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(3deg) translateY(-12px)}}
+
+/* ============ TAPE MARQUEE — cam đất ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);margin:-38px 0 0;position:relative;z-index:10;box-shadow:0 14px 34px rgba(217,123,41,.35);overflow:hidden;border-top:3px solid var(--primary-deep);border-bottom:3px solid var(--primary-deep)}
+.tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
+.tape-track span{display:inline-flex;align-items:center;gap:10px;color:var(--primary-deep);font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(12,46,32,.35)}
+.tape-track .i{width:17px;height:17px}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION KHUNG ============ */
+section{position:relative}
+.sec{padding:88px 0}
+.sec.alt{background:linear-gradient(180deg,#fff,var(--texture))}
+.sec .head{max-width:680px;margin:0 auto 46px}
+
+/* ============ 3 GÓI PHÍ — THẺ NỔI BẬT ============ */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.fcard{background:#fff;border-radius:var(--r3);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh1);display:flex;flex-direction:column;position:relative;transition:.3s;min-width:0}
+.fcard:hover{transform:translateY(-7px);box-shadow:var(--sh2);border-color:var(--line-2)}
+.fcard .fimg{position:relative;aspect-ratio:4/3;overflow:hidden;min-height:0}
+.fcard .fimg img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s}
+.fcard:hover .fimg img{transform:scale(1.05)}
+.fcard .badge{position:absolute;top:14px;left:14px;background:var(--grad-dark);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center;border:1.5px solid rgba(232,165,75,.45)}
+.fcard .badge .i{width:13px;height:13px;color:var(--accent-2)}
+.fcard .price-ov{position:absolute;bottom:14px;right:14px;background:rgba(12,46,32,.82);backdrop-filter:blur(6px);color:#fff;font-weight:900;font-size:.95rem;padding:8px 14px;border-radius:12px}
+.fcard .price-ov small{font-weight:600;color:#F3C888}
+.fcard .fbody{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.fcard h3{font-size:1.22rem;font-weight:900;color:var(--primary)}
+.fcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcard li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--soft);font-weight:500}
+.fcard li .i{width:17px;height:17px;color:var(--ok);margin-top:2px}
+.fcard .btn{width:100%;margin-top:auto}
+.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,165,75,.18),transparent 65%);opacity:0;transition:opacity .3s}
+.spot:hover::after{opacity:1}
+/* thẻ 1 — to nhất, ribbon CSS */
+.fcard.fbig{grid-column:1/-1}
+.fcard.fbig h3{font-size:1.7rem;letter-spacing:.02em}
+.fcard.fbig .fbody{padding:26px 28px}
+.fcard.fbig ul{display:grid;grid-template-columns:repeat(2,1fr);column-gap:26px}
+.fcard.fbig .price-ov{font-size:1.05rem;padding:10px 18px}
+.fcard .ribbon{position:absolute;top:24px;right:-52px;z-index:5;transform:rotate(45deg);background:var(--grad-accent);color:#3B2308;font-weight:900;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 58px;box-shadow:0 10px 24px rgba(168,90,20,.4)}
+/*NB93-341: fbig 2 cot — anh poster 4/3 ben trai, noi dung ben phai*/
+.fcard.fbig{display:grid;grid-template-columns:44% 1fr;align-items:stretch}
+.fcard.fbig .fimg{aspect-ratio:auto!important;height:100%;min-height:340px}
+.fcard.fbig .fimg img{width:100%;height:100%;object-fit:cover;object-position:center top}
+@media(max-width:900px){.fcard.fbig{grid-template-columns:1fr}.fcard.fbig .fimg{aspect-ratio:4/3!important;min-height:0}}
+
+/* ============ DẢI 5 HẠNG MỤC NHANH ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.strip a{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 14px;display:flex;align-items:center;gap:12px;transition:.25s;box-shadow:var(--sh1);min-width:0}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh2)}
+.strip .ic{width:42px;height:42px;border-radius:12px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto}
+.strip .ic .i{width:21px;height:21px}
+.strip b{display:block;font-size:.86rem;font-weight:800;color:var(--primary);line-height:1.3}
+.strip small{display:block;font-size:.72rem;color:var(--soft);font-weight:600}
+.strip .arr{margin-left:auto;color:var(--line-2);transition:.2s}
+.strip a:hover .arr{color:var(--accent);transform:translateX(3px)}
+
+/* ============ MASTER–DETAIL 8 HẠNG MỤC (M4) ============ */
+.md-grid{display:grid;grid-template-columns:350px minmax(0,1fr);gap:24px;align-items:start}
+.md-list{display:flex;flex-direction:column;gap:9px;position:sticky;top:92px}
+.md-item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left;transition:.2s;min-height:58px;box-shadow:var(--sh1);min-width:0}
+.md-item:hover{border-color:var(--accent);transform:translateX(4px)}
+.md-item .mi-ic{width:42px;height:42px;border-radius:11px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2);flex:0 0 auto;transition:.2s}
+.md-item .mi-ic .i{width:21px;height:21px}
+.md-item .mi-tw{min-width:0}
+.md-item b{display:block;font-size:.92rem;font-weight:800;color:var(--ink);line-height:1.25}
+.md-item small{display:block;font-size:.72rem;color:var(--soft);font-weight:600;margin-top:2px}
+.md-item .mi-arr{margin-left:auto;color:var(--line-2);width:17px;height:17px}
+.md-item[aria-selected="true"]{border-color:var(--accent);background:var(--accent-100);box-shadow:0 0 0 3px rgba(217,123,41,.14)}
+.md-item[aria-selected="true"] b{color:var(--accent-deep)}
+.md-item[aria-selected="true"] .mi-ic{background:var(--grad-accent);color:#3B2308}
+.md-item:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px}
+.md-panel{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh2);min-width:0}
+.md-panel.fadein{animation:mdFade .45s ease}
+@keyframes mdFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mdp-img{position:relative;aspect-ratio:4/3;overflow:hidden;min-height:0}
+.mdp-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.mdp-img .cat-b{position:absolute;top:14px;left:14px;background:var(--grad-dark);border:1.5px solid rgba(232,165,75,.5);color:#fff;font-size:.72rem;font-weight:900;padding:6px 13px;border-radius:999px;display:inline-flex;gap:6px;align-items:center;letter-spacing:.03em}
+.mdp-img .cat-b .i{width:13px;height:13px;color:var(--accent-2)}
+.mdp-img .sla-ov{position:absolute;bottom:14px;right:14px;background:var(--grad-accent);color:#3B2308;font-weight:900;font-size:.9rem;padding:8px 14px;border-radius:12px;display:inline-flex;gap:7px;align-items:center}
+.mdp-img .sla-ov .i{width:15px;height:15px}
+.mdp-body{padding:24px 26px 26px}
+.mdp-body h3{font-size:1.45rem;font-weight:900;color:var(--primary)}
+.mdp-body .mdp-desc{font-size:.92rem;color:var(--soft);font-weight:500;margin-top:8px}
+.mdp-tbl{display:flex;flex-direction:column;margin:18px 0 20px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.mdp-row{display:grid;grid-template-columns:200px 1fr;gap:12px;padding:11px 16px;border-bottom:1.5px solid #EEF1E7;align-items:center}
+.mdp-row:last-child{border-bottom:0}
+.mdp-row .k{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--soft);display:inline-flex;align-items:center;gap:7px}
+.mdp-row .k .i{width:14px;height:14px;color:var(--accent)}
+.mdp-row .v{font-weight:700;color:var(--ink);font-size:.88rem}
+.mdp-row.hot{background:var(--accent-100)}
+.mdp-row.hot .v{color:var(--accent-deep);font-weight:800}
+.mdp-acts{display:flex;gap:12px;flex-wrap:wrap}
+.mdp-acts .btn{flex:1;min-width:200px}
+.mdp-fine{font-size:.76rem;color:var(--soft);font-weight:600;margin-top:12px;display:flex;gap:7px;align-items:center}
+.mdp-fine .i{width:14px;height:14px;color:var(--ok)}
+
+/* ============ MÔ HÌNH PHÍ + MÁY TÍNH DOANH THU (dacThu — NB93-341) ============ */
+#phi{background:linear-gradient(180deg,var(--texture),#fff)}
+.phi-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:stretch}
+.phi-model{display:flex;flex-direction:column;gap:14px}
+.fee-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:20px 22px;display:flex;gap:16px;align-items:flex-start;box-shadow:var(--sh1);flex:1;min-width:0}
+.fee-card .fc-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-dark);color:var(--accent-2);display:grid;place-items:center;flex:0 0 auto}
+.fee-card .fc-ic .i{width:22px;height:22px}
+.fee-card b{display:block;font-size:.95rem;font-weight:900;color:var(--primary)}
+.fee-card .fc-rate{display:inline-block;margin:4px 0 6px;background:var(--accent-100);color:var(--accent-deep);font-weight:900;font-size:.86rem;padding:3px 10px;border-radius:8px}
+.fee-card span{display:block;font-size:.8rem;color:var(--soft);font-weight:500}
+.fee-note{background:var(--grad-dark);color:#fff;border-radius:var(--r2);padding:16px 20px;font-size:.82rem;font-weight:600;display:flex;gap:10px;align-items:center}
+.fee-note .i{width:20px;height:20px;color:#F3C888;flex:0 0 auto}
+.calc{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh2);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.calc h3{font-size:1.2rem;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:10px}
+.calc h3 .i{width:22px;height:22px;color:var(--accent)}
+.calc-sub{font-size:.82rem;color:var(--soft);font-weight:500;margin-top:-8px}
+.cr{display:flex;flex-direction:column;gap:6px}
+.cr-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.84rem;font-weight:700;color:var(--ink)}
+.cr-top output{color:var(--accent-deep);font-weight:900;font-variant-numeric:tabular-nums}
+.cr input[type=range]{width:100%;accent-color:var(--accent);min-height:40px;background:transparent}
+.calc-out{border:1.5px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.co-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 16px;border-bottom:1.5px solid #EEF1E7;font-size:.86rem;font-weight:600;color:var(--soft)}
+.co-row:last-child{border-bottom:0}
+.co-row b{color:var(--ink);font-variant-numeric:tabular-nums;font-size:.95rem}
+.co-row.up{background:#EAF6EF}
+.co-row.up b{color:var(--ok);font-weight:900}
+.co-row.fee b{color:var(--accent-deep)}
+.co-bar{padding:4px 16px 14px}
+.co-bar small{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--soft);margin-bottom:5px}
+.co-bar small b{color:var(--ink)}
+.co-track{height:12px;border-radius:99px;background:var(--texture-2);overflow:hidden;margin-bottom:8px}
+.co-fill{height:100%;border-radius:99px;background:var(--line-2);transition:width .5s ease}
+.co-fill.win{background:var(--grad-accent)}
+.calc-fine{font-size:12px;color:var(--soft);font-weight:600;display:flex;gap:7px;align-items:center}
+.calc-fine .i{width:14px;height:14px;color:var(--ok)}
+
+/* ============ DẢI GỌI SỰ CỐ 24/7 ============ */
+#sucov{padding:26px 0 10px}
+.sucov-box{background:linear-gradient(135deg,#B36117,#8A4510);color:#fff;border-radius:18px;padding:22px 26px;display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;box-shadow:0 16px 40px rgba(138,69,16,.32);position:relative;overflow:hidden}
+.sucov-box::before{content:'';position:absolute;inset:0;background:var(--leafpat);opacity:.5;pointer-events:none}
+.sucov-box>*{position:relative}
+.sucov-box .kb-t{flex:1 1 320px;min-width:0}
+.sucov-box .lb{font-size:12.5px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;opacity:.95;display:inline-flex;gap:8px;align-items:center}
+.sucov-box .lb .i{width:16px;height:16px;color:#FBD9AE}
+.sucov-box .num{font-size:clamp(26px,4.5vw,38px);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-top:3px;font-variant-numeric:tabular-nums}
+.sucov-box .st{font-size:13.5px;margin-top:6px;opacity:.96;line-height:1.5}
+.sucov-box .big{flex:0 0 auto;min-height:56px;padding:0 26px;border-radius:14px;background:#fff;color:var(--accent-deep);font-size:16px;font-weight:900;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 26px rgba(12,46,32,.2);transition:.2s}
+.sucov-box .big:hover{transform:translateY(-2px)}
+.sucov-box .big .i{width:19px;height:19px}
+
+/* ============ QUY TRÌNH ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:stp}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:28px 22px;position:relative;box-shadow:var(--sh1);transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .s-ic{width:56px;height:56px;border-radius:50%;background:var(--grad-dark);color:var(--accent-2);display:grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(12,46,32,.28);border:1.5px solid rgba(232,165,75,.4)}
+.step .s-ic .i{width:25px;height:25px}
+.step .s-ic::after{counter-increment:stp;content:counter(stp);position:absolute;top:-6px;right:-6px;width:24px;height:24px;background:var(--grad-accent);color:#3B2308;font-size:.72rem;font-weight:900;border-radius:50%;display:grid;place-items:center;border:2.5px solid #fff}
+.step h3{font-size:1rem;font-weight:900;color:var(--primary);margin:16px 0 8px}
+.step p{font-size:.82rem;color:var(--soft);font-weight:500}
+.step .meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.step .meta .i{width:13px;height:13px}
+
+/* ============ CAM KẾT ============ */
+#commit{background:linear-gradient(180deg,var(--texture),#fff)}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.com-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:hidden;min-width:0}
+.com-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(217,123,41,.35)}
+.com-card .cc-ic{width:54px;height:54px;border-radius:16px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:16px;transition:.3s}
+.com-card:hover .cc-ic{background:var(--grad-accent);color:#3B2308;transform:rotate(-6deg)}
+.com-card .cc-ic .i{width:25px;height:25px}
+.com-card h3{font-size:1.02rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+.com-card p{font-size:.84rem;color:var(--soft);font-weight:500}
+.com-card .cc-num{position:absolute;right:14px;top:10px;font-size:2.6rem;font-weight:900;color:var(--texture-2);line-height:1;z-index:0}
+.hot-strip{margin-top:34px;background:var(--grad-dark);border-radius:var(--r4);padding:34px 40px;display:flex;align-items:center;gap:26px;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden;border:1.5px solid rgba(232,165,75,.25)}
+.hot-strip::before{content:'';position:absolute;inset:0;background:var(--leafpat);opacity:.5}
+.hot-strip>*{position:relative}
+.hot-strip .hs-t h3{color:#fff;font-size:1.5rem;font-weight:900}
+.hot-strip .hs-t p{color:#CBDCD2;font-size:.9rem;font-weight:500}
+.hot-strip .hs-acts{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--grad-dark);color:#fff;padding:64px 0;position:relative;overflow:clip}
+.stats::before{content:'';position:absolute;inset:0;background:var(--leafpat);opacity:.6}
+.stats .wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat b{font-size:2.7rem;font-weight:900;color:#F3C888;display:block;line-height:1.1}
+.stat b em{font-style:normal;font-size:1.4rem}
+.stat span{display:block;font-size:.85rem;font-weight:600;color:#CBDCD2;margin-top:6px}
+
+/* ============ ABOUT ============ */
+#about .ab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:center}
+.ab-img{position:relative;min-width:0}
+.ab-img img{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh2);transform:rotate(-1.6deg);aspect-ratio:4/3.4;object-fit:cover;width:100%;animation:fl1 8s ease-in-out infinite}
+.ab-img .ab-tag{position:absolute;bottom:-18px;right:8%;background:var(--grad-accent);color:#3B2308;border-radius:16px;padding:14px 20px;transform:rotate(2.5deg);box-shadow:0 14px 30px rgba(217,123,41,.38)}
+.ab-img .ab-tag b{display:block;font-size:1.3rem;font-weight:900;line-height:1}
+.ab-img .ab-tag span{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:3px}
+.ab-txt h2{font-size:2rem;font-weight:900;color:var(--primary);margin:16px 0 12px}
+.ab-txt>p{color:var(--soft);font-weight:500;font-size:.95rem}
+.ab-pts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.ab-pt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh1);transition:.25s;min-width:0}
+.ab-pt:hover{border-color:rgba(217,123,41,.35);transform:translateY(-3px)}
+.ab-pt .i{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.ab-pt b{display:block;font-size:.88rem;color:var(--primary);font-weight:800}
+.ab-pt span{display:block;font-size:.75rem;color:var(--soft);font-weight:500}
+.ab-cta{display:flex;gap:13px;margin-top:24px;flex-wrap:wrap}
+
+/* ============ SOCIAL PROOF ============ */
+#proof{background:var(--texture)}
+.rvw-shell{display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:stretch}
+.rvw-shell>*{min-width:0}/*NB93-341: chong grid blowout tren mobile*/
+.rvw-view{overflow:hidden;border-radius:var(--r3);min-width:0}
+.rvw-track{display:flex;transition:transform .55s cubic-bezier(.25,.8,.3,1)}
+.rvw-slide{flex:0 0 100%;padding:2px;min-width:0}
+.rvw-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:30px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rvw-card .stars{display:flex;gap:3px;color:#E8A23A}
+.rvw-card .stars .i{width:16px;height:16px}
+.rvw-card p{font-size:.95rem;color:var(--ink);font-weight:500;flex:1}
+.rvw-card .who{display:flex;gap:12px;align-items:center}
+.rvw-card .avt{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:var(--accent-2);display:grid;place-items:center;font-weight:900;font-size:.95rem;flex:0 0 auto;border:1.5px solid rgba(232,165,75,.45)}
+.rvw-card .who b{display:block;font-size:.9rem;color:var(--primary)}
+.rvw-card .who span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+.rvw-side{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:18px;min-width:0;border:1.5px solid rgba(232,165,75,.25)}
+.rvw-side .side-img{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.18)}
+.rvw-side .side-img img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.rvw-side .metric b{display:block;font-size:2.6rem;font-weight:900;color:#F3C888;line-height:1}
+.rvw-side .metric span{display:block;font-size:.82rem;color:#CBDCD2;font-weight:600;margin-top:6px}
+.rvw-side .mrow{display:flex;justify-content:space-between;font-size:.8rem;color:#DCEAE1;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.14);padding-bottom:9px}
+.rvw-side .mrow b{color:#9FDFBC}
+.rvw-side h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#9DB8A9;font-weight:800}
+.pchips{display:flex;gap:8px;flex-wrap:wrap}
+.pchips span{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;color:#DCEAE1}
+.rvw-dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.rvw-dots button{width:9px;height:9px;border-radius:99px;background:var(--line-2);transition:.25s;padding:0}
+.rvw-dots button.on{width:26px;background:var(--accent)}
+
+/* ============ MAP + FORM NHẬN TƯ VẤN ============ */
+#baogia{background:var(--grad-dark);color:#fff;overflow:clip}
+#baogia::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%232A6B4C' stroke-width='1.3'%3E%3Cpath d='M12 30c14-16 30-18 44-8-10 14-26 18-44 8z'/%3E%3Cpath d='M76 96h34l24-24v34a8 8 0 0 1-8 8H84a8 8 0 0 1-8-8z'/%3E%3Ccircle cx='112' cy='32' r='9'/%3E%3Cpath d='M112 18v-6M112 52v-6M98 32h-6M132 32h-6'/%3E%3C/g%3E%3C/svg%3E");opacity:.4}
+#baogia .wrap{position:relative}
+.ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:18px;min-width:0}
+.ct-info .ci-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r2);padding:20px;display:flex;gap:15px;align-items:flex-start;min-width:0}
+.ct-info .ci-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#3B2308;flex:0 0 auto}
+.ct-info .ci-ic.g{background:rgba(255,255,255,.12);color:#fff}
+.ct-info b{display:block;font-size:.94rem;font-weight:800}
+.ct-info span{display:block;font-size:.82rem;color:#CBDCD2;font-weight:500;margin-top:3px}
+.map-embed{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.16);min-height:230px}
+.map-embed iframe{width:100%;height:100%;min-height:230px;border:0;display:block}
+.ct-form{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;color-scheme:dark}
+.ct-form h3{font-size:1.3rem;font-weight:900;color:#fff}
+.ct-form .fsub{font-size:.84rem;color:#CBDCD2;font-weight:500;margin-top:-6px}
+.ct-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-form .frow .full{grid-column:1/-1}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;min-width:0}
+.ct-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B9CDBF' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.ct-form select option{color:var(--ink);background:#fff}
+.ct-form textarea{min-height:70px;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:#9DB8A9}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.ct-form .btn{width:100%;margin-top:4px}
+.ct-form .secure{font-size:.74rem;color:#9DB8A9;display:flex;gap:7px;align-items:center;justify-content:center;font-weight:600}
+.ct-form .secure .i{width:14px;height:14px;color:#9FDFBC}
+
+/* ============ FAQ ============ */
+.faq-shell{max-width:820px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center}
+.faq-search{position:relative;flex:1;max-width:420px;min-width:230px}
+.faq-search input{width:100%;padding:13px 15px 13px 42px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;box-shadow:var(--sh1)}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.faq-search .i{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fchip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:.78rem;font-weight:800;color:var(--soft);transition:.2s}
+.fchip:hover{border-color:var(--accent)}
+.fchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:rgba(217,123,41,.4)}
+.faq-q{width:100%;display:flex;align-items:center;gap:13px;padding:17px 20px;font-weight:800;font-size:.94rem;color:var(--primary);text-align:left;min-width:0}
+.faq-q .fq-ic{width:34px;height:34px;border-radius:10px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto;transition:.25s}
+.faq-q .fq-ic .i{width:16px;height:16px}
+.faq-item.open .fq-ic{background:var(--grad-accent);color:#3B2308}
+.faq-q .chev{margin-left:auto;transition:.3s;color:var(--soft)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px 67px;font-size:.87rem;color:var(--soft);font-weight:500}
+.faq-empty{text-align:center;color:var(--soft);font-weight:600;padding:26px;display:none}
+
+/* ============ FOOTER GỌN 2 TẦNG ============ */
+footer{background:var(--primary-deep);color:#B9CDBF;font-size:.86rem}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:34px;padding:52px 0 36px}
+.ft-grid h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:14px}
+.ft-grid ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-grid ul a{transition:.2s;font-weight:500}
+.ft-grid ul a:hover{color:var(--accent-2)}
+.ft-brand .lg-t{color:#fff}
+.ft-brand .lg-s{color:#9DB8A9}
+.ft-brand p{margin-top:13px;font-weight:500}
+.socials{display:flex;gap:10px;margin-top:15px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);display:grid;place-items:center;color:#DCEAE1;transition:.2s}
+.socials a:hover{background:var(--grad-accent);border-color:transparent;color:#3B2308;transform:translateY(-3px)}
+.socials .i{width:18px;height:18px}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;margin-top:15px;background:var(--grad-accent);padding:11px 18px;border-radius:13px;color:#3B2308;font-weight:900;font-size:1.05rem;box-shadow:0 10px 24px rgba(217,123,41,.4)}
+.ft-hot .i{width:18px;height:18px}
+.ft-bar{border-top:1.5px solid rgba(255,255,255,.09);padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.76rem;font-weight:600}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:8px;font-weight:700;color:#DCEAE1}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:9px;background:rgba(12,46,32,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.14);padding:9px;border-radius:22px;box-shadow:var(--sh3);transition:.4s}
+.dock.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(90px)}
+.dock button,.dock a{display:flex;align-items:center;gap:8px;border-radius:15px;padding:11px 15px;color:#DCEAE1;font-weight:800;font-size:.8rem;transition:.2s;white-space:nowrap}
+.dock .i{width:19px;height:19px}
+.dock .d-hot{background:var(--grad-accent);color:#3B2308}
+.dock .d-main{background:var(--grad-dark);color:#fff;border:1.5px solid rgba(232,165,75,.5)}
+.dock button:hover,.dock a:hover{transform:translateY(-3px)}
+
+/* ============ TOAST — title + message 2 phần tử riêng (NB93-341) ============ */
+#toasts{position:fixed;right:18px;bottom:96px;z-index:120;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;padding:13px 18px;border-radius:14px;box-shadow:var(--sh3);font-size:.86rem;font-weight:600;display:flex;gap:10px;align-items:flex-start;max-width:340px;pointer-events:auto;animation:toastIn .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast .i{width:18px;height:18px;color:#9FDFBC;flex:0 0 auto;margin-top:2px}
+.toast .tx b{display:block;font-size:.88rem;font-weight:900;color:#F3C888}
+.toast .tx span{display:block;font-size:.8rem;color:#DCEAE1;margin-top:2px}
+@keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+
+/* ============ RESPONSIVE 1080px ============ */
+@media(max-width:1080px){
+  nav.main{display:none}
+  .hero .wrap{grid-template-columns:1fr 1fr}
+  .hm-stats{position:static;margin-top:18px;justify-content:flex-start}
+  .hero-media{min-height:auto;display:flex;flex-direction:column}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .md-grid{grid-template-columns:290px minmax(0,1fr)}
+  .phi-grid{grid-template-columns:1fr}
+  .com-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  #about .ab-grid{grid-template-columns:1fr}
+  .rvw-shell{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680px — thiết kế riêng ============ */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .sec-title{font-size:1.42rem}
+  .sec .head{margin-bottom:30px}
+  .hd .wrap{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .search{order:3;max-width:none;flex:1 0 100%}
+  .hd-cta .btn-dark{display:none}
+  .hd-cta{margin-left:auto}
+  .hd-cta .btn-hot{font-size:.84rem;padding:11px 14px}
+  .logo .lg-s{display:none}
+  .hero{padding:44px 0 70px}
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .hero h1{font-size:1.7rem}
+  .hero .lead{font-size:.92rem}
+  .hm-badge{display:block;right:10px;top:10px;padding:7px 12px;border-radius:12px}
+  .hm-badge .bt{font-size:1.1rem}
+  .hm-badge .bs{font-size:12px}
+  .hm-main{width:100%;margin:0;transform:none;border-radius:var(--r2);border-width:4px;animation:none}
+  .hm-stats{position:static;width:100%;justify-content:space-between;margin-top:0;order:5}
+  .hm-stats div{flex:1;padding:10px 6px}
+  .hm-stats b{font-size:.98rem}
+  .hm-stats span{font-size:12px}
+  .hero-media{min-height:auto}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:11px}
+  .hero-cta .btn{width:100%;white-space:normal;text-align:center}
+  .trust{gap:7px}
+  .trust span{font-size:12px;padding:7px 10px}
+  .topbar .tb-l span{white-space:normal}
+  .topbar .tb-hide{display:none}
+  .tape{transform:none;margin-top:-30px}
+  .tape-track span{font-size:.8rem;padding:0 14px}
+  .feat-grid{grid-template-columns:1fr;gap:18px}
+  .fcard.fbig h3{font-size:1.3rem}
+  .fcard.fbig ul{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr;gap:10px}
+  .strip .arr{display:none}
+  .md-grid{grid-template-columns:1fr;gap:16px}
+  .md-list{position:static;flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .md-list::-webkit-scrollbar{display:none}
+  .md-item{flex:0 0 auto;min-width:210px;min-height:58px}
+  .md-item:hover{transform:none}
+  .md-item .mi-arr{display:none}
+  .mdp-body{padding:20px 16px}
+  .mdp-body h3{font-size:1.2rem}
+  .mdp-row{grid-template-columns:1fr;gap:3px;padding:10px 14px}
+  .mdp-acts{flex-direction:column}
+  .mdp-acts .btn{min-width:100%}
+  #sucov{padding:14px 0 6px}
+  .sucov-box{padding:20px 16px;text-align:left}
+  .sucov-box .big{width:100%;justify-content:center}
+  .com-grid{grid-template-columns:1fr}
+  .hot-strip{padding:26px 20px;text-align:left}
+  .hot-strip .hs-acts{width:100%;flex-direction:column}
+  .hot-strip .hs-acts .btn{width:100%}
+  .stat b{font-size:2rem}
+  .steps{grid-template-columns:1fr}
+  .ab-pts{grid-template-columns:1fr}
+  .ab-txt h2{font-size:1.42rem}
+  .ab-cta .btn{width:100%}
+  .calc{padding:20px 16px}
+  .ct-form .frow{grid-template-columns:1fr}
+  .ct-form{padding:22px 16px}
+  .ct-form .btn{width:100%;white-space:normal}
+  .faq-a p{padding-left:20px}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:44px 0 28px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:8px;gap:6px;border-radius:20px}
+  .dock button,.dock a{padding:12px;font-size:0;gap:0}
+  .dock .i{width:21px;height:21px}
+  #toasts{right:12px;left:12px;bottom:150px}
+  .toast{max-width:none}
+}
+/*MOBILE-TAP40: chu >=12px, nut/chip >=40px, chat khong de dock (NB93-341)*/
+@media(max-width:680px){
+  .fcard .badge{font-size:12px}
+  .fcard .price-ov{font-size:12.5px}
+  .strip small{font-size:12px}
+  .md-item small{font-size:12px}
+  .mdp-img .cat-b{font-size:12px}
+  .mdp-img .sla-ov{font-size:12.5px}
+  .mdp-row .k{font-size:12px}
+  .mdp-row .v{font-size:13px}
+  .sucov-box .lb{font-size:12px}
+  .step .meta{font-size:12px}
+  .ab-tag span{font-size:12px}
+  .rvw-card .who span{font-size:12px}
+  .pchips span{font-size:12px}
+  .ct-form .secure{font-size:12px}
+  .co-row{font-size:13px}
+  .btn{min-height:44px;white-space:normal;text-align:center}
+  .ct-form input,.ct-form select,.ct-form textarea{min-height:44px}
+  body{padding-bottom:76px}
+  .pkc-fab{bottom:88px !important}
+  .pkc-panel{bottom:148px !important}
+  .pkc-chip{font-size:12px}
+  .pkc-on{font-size:12px}
+  .pkc-x{width:40px;height:40px}
+  .fchip{min-height:40px}
+}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<style data-nb93-quality>
+/* NGHE-11 quality pass — ảnh to hơn, hết khoảng trống trong khối 8 hạng mục */
+.md-item{align-items:center}
+.md-item .md-th{width:64px;height:48px;border-radius:10px;overflow:hidden;flex:none}
+.md-item .md-th img{width:100%;height:100%;object-fit:cover;display:block}
+.md-panel .mdp-img{aspect-ratio:16/9;margin:0;border-radius:0}
+.md-panel .mdp-body{padding:20px 22px 22px}
+@media (max-width:959px){.md-item .md-th{width:52px;height:40px}}
+</style><style data-nb93fix="341:ghost">
+/*NB93-FIX-341:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .feat-grid > *{grid-column:auto!important}
+}
+</style>
+<style data-nb93fix="341:fab">
+/*NB93-FIX-341:fab CTA day phai tranh fab chat*/
+@media(max-width:768px){
+  .btn-xl{padding-right:64px}
+}
+</style>
+<style data-nb93fix="341:rowimg">
+/*NB93-FIX-341:rowimg rowimg: phong thumb khoi-8 hang ngang len 104x78 (loi 1)*/
+/*NB93-FIX rowimg: phong thumb khoi-8 dang hang 64x48/52x40 -> 104x78*/
+.md-item>.md-th{width:104px!important;height:78px!important;aspect-ratio:auto!important}
+.md-item>.md-th img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+@media(max-width:768px){
+  .md-item>.mi-tw{min-width:0!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS (NB93-341) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6.5L9 22l11-12.5h-6.5L15 2z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8 7.5 21l4.5-2.6L16.5 21l-1.3-7.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/></symbol>
+  <symbol id="i-siren" viewBox="0 0 24 24"><path d="M6 20v-6a6 6 0 0 1 12 0v6M4 20h16M12 4V2M5 6 3.5 4.5M19 6l1.5-1.5"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6h-6v6H4v-9z"/></symbol>
+  <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12 20 3M17 6l3 3M14 9l2 2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.6 3 14.4 0 18-3-3.6-3-14.4 0-18z"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 24 24"><path d="M19 3 12.5 9.5M9 11l4 4M5.5 21c-.8-3.4.4-6.6 3.5-8.5L11 14.5c-2 3-2.1 4.7-5.5 6.5z"/><path d="M11.5 10.5 13.5 12.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.2 3.5 9.3A4.6 4.6 0 0 1 12 6.7a4.6 4.6 0 0 1 8.5 2.6c0 3.9-3.5 7.2-8.5 11.2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 1 5-5l-2.7 2.7 1 1L20.5 2.5a4 4 0 0 1-5 5L7 16a2.1 2.1 0 1 1-3-3z"/><path d="M5 19l1.5 1.5"/></symbol>
+</svg>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span class="tb-hide"><svg class="i"><use href="#i-home"/></svg>Đà Lạt · Nha Trang · Phan Thiết · TP.HCM — khảo sát nhà miễn phí</span>
+    </div>
+    <div class="tb-l">
+      <span class="hot"><svg class="i"><use href="#i-phone"/></svg>Hotline chủ nhà: <b>0905 341 668</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="An Trú Việt">
+      <span class="mark"><svg class="i"><use href="#i-home"/></svg></span>
+      <span><span class="lg-t">An Trú Việt</span><span class="lg-s">Quản lý nhà thuê ngắn hạn</span></span>
+    </a>
+    <div class="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm dịch vụ: OTA, vệ sinh, báo cáo…" autocomplete="off">
+      <div class="drop" id="searchDrop"></div>
+    </div>
+    <nav class="main">
+      <a href="#goi">Gói</a>
+      <a href="#dichvu">Dịch vụ</a>
+      <a href="#phi">Phí %</a>
+      <a href="#quytrinh">Quy trình</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="btn btn-hot" href="tel:0905341668"><svg class="i"><use href="#i-phone"/></svg>0905 341 668</a>
+      <button class="btn btn-dark" id="hdQuote"><svg class="i"><use href="#i-doc"/></svg>Tư vấn</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="eyebrow"><svg class="i"><use href="#i-key"/></svg>Vận hành nhà thuê ngắn hạn · Dành cho chủ nhà</span>
+      <h1>Chủ nhà không rảnh — <span class="hl">phòng vẫn tròn khách</span>, doanh thu rõ từng đồng</h1>
+      <p class="lead">An Trú Việt nhận vận hành trọn gói homestay &amp; nhà cho thuê ngắn hạn: đăng phòng trên <b>Airbnb – Booking – Agoda</b>, đón khách, <b>vệ sinh giữa khách theo checklist 42 điểm</b>, chăm khách 24/7 và gửi <b>báo cáo doanh thu đầu tháng</b>. Phí tính theo <b>% doanh thu từng phòng</b> — nhà trống, chủ nhà không mất phí vận hành.</p>
+      <div class="hero-cta">
+        <a class="btn btn-hot btn-xl" href="tel:0905341668"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>☎ 0905 341 668 — tư vấn chủ nhà</a>
+        <a class="btn btn-line btn-xl" href="#baogia"><svg class="i" style="width:22px;height:22px"><use href="#i-doc"/></svg>Nhận thẩm định nhà &amp; báo cáo dự kiến</a>
+      </div>
+      <div class="trust">
+        <span><svg class="i"><use href="#i-award"/></svg>8 năm vận hành lưu trú</span>
+        <span><svg class="i"><use href="#i-home"/></svg>120+ phòng đang chạy</span>
+        <span><svg class="i"><use href="#i-doc"/></svg>Hợp đồng &amp; hoá đơn VAT</span>
+        <span><svg class="i"><use href="#i-wallet"/></svg>Phí % doanh thu — không phí ẩn</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-badge"><span class="bt">+18%</span><span class="bs">tỷ lệ lấp đầy</span></div>
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="An Trú Việt — quản lý vận hành homestay và nhà cho thuê chuyên nghiệp">
+      </div>
+      <div class="hm-stats">
+        <div><b>8 năm</b><span>vận hành</span></div>
+        <div><b>120+</b><span>phòng</span></div>
+        <div><b>4,9/5</b><span>review khách</span></div>
+        <div><b>42 điểm</b><span>checklist vệ sinh</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE MARQUEE ============ -->
+<div class="tape-clip" style="overflow-x:clip">
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span><svg class="i"><use href="#i-wallet"/></svg>Phí theo % doanh thu — nhà trống không mất phí</span>
+    <span><svg class="i"><use href="#i-globe"/></svg>Đăng &amp; đồng bộ lịch Airbnb · Booking · Agoda · Traveloka</span>
+    <span><svg class="i"><use href="#i-broom"/></svg>Vệ sinh giữa khách — checklist 42 điểm, ảnh trước/sau</span>
+    <span><svg class="i"><use href="#i-chat"/></svg>Chăm khách 24/7 — phản hồi trong 15 phút</span>
+    <span><svg class="i"><use href="#i-chart"/></svg>Báo cáo doanh thu gửi ngày 5 hàng tháng</span>
+    <span><svg class="i"><use href="#i-tools"/></svg>Đội xử lý sự cố cơ động trong 60 phút</span>
+    <span><svg class="i"><use href="#i-shield"/></svg>Bàn giao chìa khoá 2 vòng khoá — sổ giao rõ ràng</span>
+  </div>
+</div>
+</div>
+
+<!-- ============ 3 GÓI PHÍ ============ -->
+<section class="sec alt" id="goi">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">3 cách làm việc — chủ nhà chọn mức nhúng tay</h2>
+      <span class="sec-sub">Mọi gói đều tính phí theo % doanh thu từng phòng, chốt rõ trong hợp đồng — nhà trống thì không phát sinh phí vận hành</span>
+    </div>
+    <div class="feat-grid">
+      <article class="fcard fbig spot rv" data-d="0">
+        <div class="fimg">
+          <img src="assets/img/p1.webp" alt="Vận hành trọn gói homestay — quản lý lịch, giá và chất lượng phòng" loading="lazy">
+          <span class="ribbon">Chủ nhà chọn nhiều nhất</span>
+          <span class="badge"><svg class="i"><use href="#i-home"/></svg>Vận hành trọn gói</span>
+          <span class="price-ov"><small>phí</small> 18% doanh thu/tháng</span>
+        </div>
+        <div class="fbody">
+          <h3>VẬN HÀNH TRỌN GÓI — CHỦ NHÀ CHỈ NHẬN TIỀN</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Đăng phòng &amp; cập nhật giá trên 4 OTA — đồng bộ lịch không trùng phòng</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Đón tiếp – bàn giao khách, kể cả check-in sau 22h</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Vệ sinh giữa khách checklist 42 điểm — ảnh trước/sau gửi chủ nhà</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Chăm khách 24/7 — giữ review, xử lý khiếu nại</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Xử lý sự cố điện nước – khoá – thiết bị, đội cơ động 60 phút</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Báo cáo doanh thu – công nợ OTA ngày 5 hàng tháng</li>
+          </ul>
+          <button class="btn btn-accent lead-btn" data-lead="Vận hành trọn gói"><svg class="i"><use href="#i-doc"/></svg>Nhận thẩm định gói trọn gói</button>
+        </div>
+      </article>
+      <article class="fcard spot rv" data-d="1">
+        <div class="fimg">
+          <img src="assets/img/p2.webp" alt="Đăng tin và cập nhật lịch phòng trên các nền tảng đặt phòng OTA" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-globe"/></svg>Gói OTA từ A–Z</span>
+          <span class="price-ov"><small>phí</small> 8% doanh thu/tháng</span>
+        </div>
+        <div class="fbody">
+          <h3>Gói OTA từ A–Z</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Chụp ảnh, viết tin đăng chuẩn từng nền tảng</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Giá động theo mùa, sự kiện, khe ngày trống</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Trả tin nhắn khách trong 30 phút</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Đồng bộ lịch 4 OTA — không trùng phòng</li>
+          </ul>
+          <button class="btn btn-accent lead-btn" data-lead="Gói OTA từ A–Z"><svg class="i"><use href="#i-doc"/></svg>Nhận tư vấn gói OTA</button>
+        </div>
+      </article>
+      <article class="fcard spot rv" data-d="2">
+        <div class="fimg">
+          <img src="assets/img/p4.webp" alt="Vệ sinh giữa khách theo checklist — phòng lên sàn trong 4 giờ" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-broom"/></svg>Gói lẻ theo lượt</span>
+          <span class="price-ov"><small>trả</small> theo từng lượt</span>
+        </div>
+        <div class="fbody">
+          <h3>Gói lẻ theo lượt</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Vệ sinh giữa khách 150.000đ/lượt — checklist 42 điểm</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Đón khách – bàn giao phòng 100.000đ/lượt</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Phù hợp nhà ít khách, chủ nhà tự chạy tin</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Không phí tháng — dùng tới đâu trả tới đó</li>
+          </ul>
+          <button class="btn btn-accent lead-btn" data-lead="Gói lẻ theo lượt"><svg class="i"><use href="#i-doc"/></svg>Nhận bảng giá gói lẻ</button>
+        </div>
+      </article>
+    </div>
+    <div class="strip rv" data-d="1">
+      <a href="#dichvu" data-md-go="0"><span class="ic"><svg class="i"><use href="#i-home"/></svg></span><span><b>Quản lý vận hành</b><small>lịch – giá – chất lượng</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-md-go="1"><span class="ic"><svg class="i"><use href="#i-globe"/></svg></span><span><b>Đăng tải OTA</b><small>4 nền tảng đặt phòng</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-md-go="3"><span class="ic"><svg class="i"><use href="#i-broom"/></svg></span><span><b>Vệ sinh giữa khách</b><small>42 điểm · trong 4 giờ</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-md-go="5"><span class="ic"><svg class="i"><use href="#i-chart"/></svg></span><span><b>Báo cáo doanh thu</b><small>gửi ngày 5 hàng tháng</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu" data-md-go="7"><span class="ic"><svg class="i"><use href="#i-tools"/></svg></span><span><b>Xử lý sự cố</b><small>cơ động 60 phút</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 DỊCH VỤ — MASTER–DETAIL (M4) ============ -->
+<section class="sec" id="dichvu">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">8 mảng việc An Trú Việt nhận cho chủ nhà</h2>
+      <span class="sec-sub">Bấm từng mảng bên trái để xem phạm vi, nhịp vận hành và cam kết — chốt phạm vi sau khảo sát nhà (miễn phí)</span>
+    </div>
+    <div class="md-grid rv" data-d="1">
+      <div class="md-list" id="mdList" role="tablist" aria-label="8 mảng dịch vụ quản lý"></div>
+      <div class="md-panel fadein" id="mdPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÔ HÌNH PHÍ + MÁY TÍNH DOANH THU (dacThu NB93-341) ============ -->
+<section class="sec" id="phi">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Phí theo % doanh thu từng phòng — thử máy tính doanh thu</h2>
+      <span class="sec-sub">Kéo 3 thanh trượt theo nhà của bạn — xem doanh thu hiện tại và mức chủ nhà nhận về khi lấp đầy tăng sau 3 tháng vận hành</span>
+    </div>
+    <div class="phi-grid rv" data-d="1">
+      <div class="phi-model">
+        <div class="fee-card">
+          <span class="fc-ic"><svg class="i"><use href="#i-home"/></svg></span>
+          <span><b>Vận hành trọn gói</b><span class="fc-rate">18% doanh thu/tháng</span><span>Toàn bộ OTA, đón khách, vệ sinh, chăm khách, sự cố, báo cáo. Tính riêng từng phòng — phòng trống không tính phí.</span></span>
+        </div>
+        <div class="fee-card">
+          <span class="fc-ic"><svg class="i"><use href="#i-globe"/></svg></span>
+          <span><b>Gói OTA từ A–Z</b><span class="fc-rate">8% doanh thu/tháng</span><span>Tin đăng, giá động, đồng bộ lịch, trả tin nhắn — chủ nhà tự vận hành phần dưới. Chi phí thiết bị (khóa, camera) ghi minh bạch ngoài phí.</span></span>
+        </div>
+        <div class="fee-card">
+          <span class="fc-ic"><svg class="i"><use href="#i-broom"/></svg></span>
+          <span><b>Gói lẻ theo lượt</b><span class="fc-rate">150k vệ sinh · 100k đón khách</span><span>Nhà ít khách hoặc muốn thử trước khi ký trọn gói — không phí tháng, dùng tới đâu trả tới đó.</span></span>
+        </div>
+        <div class="fee-note"><svg class="i"><use href="#i-wallet"/></svg>Không phí ẩn: khảo sát 0đ, chi phí thợ gốc khi sửa chữa được đối chiếu hoá đơn từng đồng trong báo cáo tháng.</div>
+      </div>
+      <div class="calc">
+        <h3><svg class="i"><use href="#i-chart"/></svg>Máy tính doanh thu chủ nhà</h3>
+        <p class="calc-sub">Minh hoạ theo gói trọn gói — phí 18% doanh thu, mục tiêu +18 điểm lấp đầy trong 3 tháng đầu.</p>
+        <div class="cr">
+          <div class="cr-top"><label for="crRooms">Số phòng quản lý</label><output id="outRooms">6 phòng</output></div>
+          <input type="range" id="crRooms" min="1" max="30" value="6" step="1">
+        </div>
+        <div class="cr">
+          <div class="cr-top"><label for="crAdr">Giá trung bình mỗi đêm</label><output id="outAdr">850.000đ</output></div>
+          <input type="range" id="crAdr" min="300" max="2500" value="850" step="50">
+        </div>
+        <div class="cr">
+          <div class="cr-top"><label for="crOcc">Tỷ lệ lấp đầy hiện tại</label><output id="outOcc">45%</output></div>
+          <input type="range" id="crOcc" min="20" max="80" value="45" step="1">
+        </div>
+        <div class="calc-out">
+          <div class="co-row"><span>Doanh thu hiện tại / tháng</span><b id="coCur">—</b></div>
+          <div class="co-row up"><span>Mục tiêu sau vận hành (+18 điểm lấp đầy)</span><b id="coTgt">—</b></div>
+          <div class="co-row"><span>Tăng thêm mỗi tháng</span><b id="coDelta">—</b></div>
+          <div class="co-row fee"><span>Phí An Trú Việt (18% doanh thu mục tiêu)</span><b id="coFee">—</b></div>
+          <div class="co-row up"><span>Chủ nhà nhận về / tháng</span><b id="coNet">—</b></div>
+          <div class="co-bar">
+            <small><span>Lấp đầy: hiện tại <b id="coOccLbl">45%</b></span><span>mục tiêu <b id="coTgtOccLbl">63%</b></span></small>
+            <div class="co-track"><div class="co-fill" id="barCur" style="width:45%"></div></div>
+            <div class="co-track"><div class="co-fill win" id="barTgt" style="width:63%"></div></div>
+          </div>
+        </div>
+        <p class="calc-fine"><svg class="i"><use href="#i-check"/></svg>Con số minh hoạ trên 30 đêm — báo cáo thẩm định thực tế theo từng phòng gửi sau khảo sát 48 giờ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DẢI SỰ CỐ 24/7 ============ -->
+<section id="sucov">
+  <div class="wrap">
+    <div class="sucov-box rv">
+      <div class="kb-t">
+        <div class="lb"><svg class="i"><use href="#i-siren"/></svg>Nhà đang cho thuê gặp sự cố — mất điện, khoá kẹt, khách bức xúc?</div>
+        <div class="num">0905 341 668</div>
+        <div class="st">Gọi ngay — đội cơ động 24/7 tới trong 60 phút tại Đà Lạt · nhận cả nhà chưa ký hợp đồng · báo giá chi phí trước khi sửa</div>
+      </div>
+      <a class="big" href="tel:0905341668"><svg class="i"><use href="#i-phone"/></svg>☎ Gọi xử lý ngay</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec" id="quytrinh">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Từ nhà để trống đến phòng tròn khách</h2>
+      <span class="sec-sub">Mỗi bước có mốc thời gian cam kết — chủ nhà luôn biết nhà mình đang ở giai đoạn nào, ai đang phụ trách</span>
+    </div>
+    <div class="steps">
+      <article class="step rv" data-d="0">
+        <div class="s-ic"><svg class="i"><use href="#i-search"/></svg></div>
+        <h3>Khảo sát &amp; thẩm định nhà</h3>
+        <p>Chụp ảnh, chấm theo chuẩn khách lưu trú, ước tính lấp đầy khả dụng — khảo sát miễn phí, không ràng buộc ký kết.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Miễn phí — trong 48 giờ</span>
+      </article>
+      <article class="step rv" data-d="1">
+        <div class="s-ic"><svg class="i"><use href="#i-doc"/></svg></div>
+        <h3>Chốt gói &amp; phí % doanh thu</h3>
+        <p>Báo cáo thẩm định kèm phương án phí theo % doanh thu từng phòng — duyệt rồi mới ký, bàn giao tài sản theo biểu mẫu.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Hợp đồng trong 3 ngày</span>
+      </article>
+      <article class="step rv" data-d="2">
+        <div class="s-ic"><svg class="i"><use href="#i-up"/></svg></div>
+        <h3>Bốc tin &amp; lên hệ thống</h3>
+        <p>Chụp ảnh chuẩn, đăng 4 OTA, nạp lịch giá cả năm, thiết lập quy trình vệ sinh — phòng nhận booking đầu tiên.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Hoàn tất trong 7 ngày</span>
+      </article>
+      <article class="step rv" data-d="3">
+        <div class="s-ic"><svg class="i"><use href="#i-chart"/></svg></div>
+        <h3>Vận hành &amp; báo cáo tháng</h3>
+        <p>Chạy phòng hằng ngày, vệ sinh giữa khách, chăm khách 24/7 — báo cáo doanh thu – công nợ – review gửi ngày 5.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Lặp lại mỗi tháng</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="commit">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">4 cam kết viết vào hợp đồng với mỗi ngôi nhà</h2>
+      <span class="sec-sub">Không phải lời hứa suông — mỗi cam kết đều có điều khoản và số liệu kiểm chứng trong báo cáo tháng</span>
+    </div>
+    <div class="com-grid">
+      <article class="com-card spot rv" data-d="0">
+        <span class="cc-num">01</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-wallet"/></svg></div>
+        <h3>Phí đúng % doanh thu — nhà trống không mất phí</h3>
+        <p>Phí tính trên doanh thu phòng thật, đối chiếu payout từng OTA trong báo cáo tháng. Không thu phí quản lý cố định khi phòng không có khách.</p>
+      </article>
+      <article class="com-card spot rv" data-d="1">
+        <span class="cc-num">02</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-broom"/></svg></div>
+        <h3>Vệ sinh giữa khách chuẩn checklist 42 điểm</h3>
+        <p>Thay ga gối, khử mùi, soi từng góc theo biểu mẫu — ảnh trước/sau mỗi lượt gửi thẳng Zalo chủ nhà, phòng lên sàn trong 4 giờ.</p>
+      </article>
+      <article class="com-card spot rv" data-d="2">
+        <span class="cc-num">03</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-heart"/></svg></div>
+        <h3>Khách được phản hồi trong 15 phút — 24/7</h3>
+        <p>Bộ phận chăm khách 2 ca ngày đêm: hỗ trợ tiện ích, xử lý khiếu nại, giữ review của nhà — chủ nhà không nhận cuộc gọi lúc 2 giờ sáng.</p>
+      </article>
+      <article class="com-card spot rv" data-d="3">
+        <span class="cc-num">04</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-chart"/></svg></div>
+        <h3>Báo cáo minh bạch ngày 5 hàng tháng</h3>
+        <p>Tỷ lệ lấp đầy, doanh thu từng phòng, công nợ OTA, review và chi phí phát sinh — kèm file chi tiết, chủ nhà tra cứu online bất cứ lúc nào.</p>
+      </article>
+    </div>
+    <div class="hot-strip rv" data-d="1">
+      <div class="hs-t">
+        <h3>Nhà đang để trống mùa này?</h3>
+        <p>Gửi địa chỉ nhà — nhận báo cáo thẩm định &amp; doanh thu dự kiến trong 48 giờ, khảo sát 0đ.</p>
+      </div>
+      <div class="hs-acts">
+        <a class="btn btn-accent btn-xl" href="tel:0905341668"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>0905 341 668 — gọi chủ nhà ngay</a>
+        <a class="btn btn-line btn-xl" href="#baogia"><svg class="i" style="width:22px;height:22px"><use href="#i-doc"/></svg>Nhận tư vấn trong 48 giờ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat rv" data-d="0"><b><span class="cnt" data-n="120">0</span><em>+</em></b><span>phòng đang vận hành tại 4 thành phố</span></div>
+    <div class="stat rv" data-d="1"><b><span class="cnt" data-n="92">0</span><em>%</em></b><span>tỷ lệ lấp đầy trung bình mùa cao điểm</span></div>
+    <div class="stat rv" data-d="2"><b>4,<span class="cnt" data-n="9">0</span><em>/5</em></b><span>điểm review trung bình của các nhà quản lý</span></div>
+    <div class="stat rv" data-d="3"><b><span class="cnt" data-n="42">0</span><em> điểm</em></b><span>checklist vệ sinh giữa mỗi lượt khách</span></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div class="ab-img rv">
+        <img src="assets/img/intro.webp" alt="Đội vận hành An Trú Việt bàn giao nhà cho chủ nhà" loading="lazy">
+        <div class="ab-tag"><b>120+</b><span>phòng đang vận hành</span></div>
+      </div>
+      <div class="ab-txt rv" data-d="1">
+        <span class="eyebrow"><svg class="i"><use href="#i-key"/></svg>Về An Trú Việt</span>
+        <h2>Từ 6 homestay phố cổ Đà Lạt 2018 — nay vận hành 120+ phòng cho chủ nhà bận rộn</h2>
+        <p>An Trú Việt khởi đầu bằng việc giúp vài chủ nhà già ở xa không thể tự chạy homestay. Hôm nay, đội của chúng tôi phụ trách trọn vận hành cho 120+ phòng ở Đà Lạt, Nha Trang, Phan Thiết và TP.HCM: mỗi khu vực có quản lý riêng, đội vệ sinh ở gần nhà, bộ phận chăm khách 2 ca và kế toán đối chiếu công nợ OTA từng đồng. Chủ nhà chỉ cần một kênh duy nhất — báo cáo ngày 5 và điện thoại nóng khi có việc.</p>
+        <div class="ab-pts">
+          <div class="ab-pt"><svg class="i"><use href="#i-home"/></svg><span><b>Quản lý khu vực ở gần từng nhà</b><span>Đội vệ sinh và đón khách trong bán kính 15 phút</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-globe"/></svg><span><b>Chuyên viên OTA riêng theo từng nền tảng</b><span>Airbnb, Booking, Agoda, Traveloka — giá động theo mùa</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-doc"/></svg><span><b>Hợp đồng &amp; hoá đơn VAT đầy đủ</b><span>Chi phí phát sinh đối chiếu hoá đơn gốc từng đồng</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-tools"/></svg><span><b>Đội cơ động xử lý sự cố 24/7</b><span>Tới nhà trong 60 phút tại khu vực trung tâm</span></span></div>
+        </div>
+        <div class="ab-cta">
+          <a class="btn btn-accent" href="tel:0905341668"><svg class="i"><use href="#i-phone"/></svg>Gọi: 0905 341 668</a>
+          <a class="btn btn-ghost" href="#baogia"><svg class="i"><use href="#i-doc"/></svg>Nhận thẩm định nhà miễn phí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF — CHỦ NHÀ B2B ============ -->
+<section class="sec" id="proof" style="background:var(--texture)">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Chủ nhà kể về nhà của họ dưới tay An Trú</h2>
+      <span class="sec-sub">Đánh giá theo kỳ hợp đồng — quản lý khu vực gọi lại rà soát chất lượng mỗi tháng</span>
+    </div>
+    <div class="rvw-shell rv" data-d="1">
+      <div>
+        <div class="rvw-view">
+          <div class="rvw-track" id="rvwTrack"></div>
+        </div>
+        <div class="rvw-dots" id="rvwDots"></div>
+      </div>
+      <aside class="rvw-side">
+        <div class="side-img"><img src="assets/img/space.webp" alt="Khu tiếp nhận và lễ tân của nhà do An Trú Việt vận hành" loading="lazy"></div>
+        <div class="metric"><b>4.9/5</b><span>từ 120+ phòng đang &amp; đã vận hành</span></div>
+        <div class="mrow"><span>Chủ nhà gia hạn hợp đồng</span><b>89%</b></div>
+        <div class="mrow"><span>Lấp đầy tăng sau 3 tháng</span><b>+18 điểm</b></div>
+        <div class="mrow"><span>Phòng lên sàn sau check-out</span><b>≤ 4 giờ</b></div>
+        <div>
+          <h4 style="margin-bottom:10px">Nền tảng đang chạy phòng</h4>
+          <div class="pchips"><span>Airbnb</span><span>Booking.com</span><span>Agoda</span><span>Traveloka</span><span>Khách đoàn trực tiếp</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM NHẬN TƯ VẤN ============ -->
+<section class="sec" id="baogia">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Nhận thẩm định nhà &amp; báo cáo doanh thu dự kiến</h2>
+      <span class="sec-sub">Điền nhanh 5 dòng — quản lý khu vực gọi lại trong 30 phút, hẹn khảo sát miễn phí trong 48 giờ</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-pin"/></svg></span>
+          <span><b>Văn phòng An Trú Việt</b><span>56 Yên Thế, Phường 8, TP. Đà Lạt, Lâm Đồng</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+          <span><b>Hotline chủ nhà: 0905 341 668</b><span>Tư vấn gói &amp; phí — gọi trực tiếp, phản hồi trong giờ làm việc</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic g"><svg class="i"><use href="#i-clock"/></svg></span>
+          <span><b>Giờ phục vụ</b><span>Chăm khách đang lưu trú 24/7 — văn phòng chủ nhà 8:00–19:00 (thứ 2 – chủ nhật)</span></span>
+        </div>
+        <div class="map-embed">
+          <iframe title="Bản đồ văn phòng An Trú Việt tại Đà Lạt" src="https://www.google.com/maps?q=11.9246,108.4088&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm" novalidate>
+        <h3>Phiếu yêu cầu tư vấn cho chủ nhà</h3>
+        <p class="fsub">Bộ phận chủ nhà trực 7 ngày/tuần — gọi lại trong 30 phút kể từ khi gửi</p>
+        <div class="frow">
+          <input type="text" id="ctName" placeholder="Họ tên chủ nhà *">
+          <input type="tel" id="ctPhone" placeholder="Số điện thoại *">
+        </div>
+        <div class="frow">
+          <select id="ctType" class="full">
+            <option value="">Loại nhà cần quản lý…</option>
+            <option>Homestay nguyên nhà</option>
+            <option>Nhà phố cho thuê ngắn hạn</option>
+            <option>Căn hộ – chung cư</option>
+            <option>Villa – biệt thự nghỉ dưỡng</option>
+            <option>Nhiều nhà / chuỗi phòng</option>
+          </select>
+        </div>
+        <div class="frow">
+          <input type="text" id="ctAddr" class="full" placeholder="Số phòng &amp; khu vực nhà (vd: 5 phòng, phố Tây Phú Hội) *">
+        </div>
+        <div class="frow">
+          <textarea class="full" id="ctDesc" placeholder="Tình trạng hiện tại (không bắt buộc): vd “tự chạy Airbnb 2 năm, lấp đầy 40%, muốn bàn giao trọn gói”…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent"><svg class="i"><use href="#i-send"/></svg>Nhận tư vấn — gọi lại trong 30 phút</button>
+        <p class="secure"><svg class="i"><use href="#i-lock"/></svg>Thông tin chỉ dùng để thẩm định &amp; tư vấn cho chủ nhà — không chia sẻ cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Hỏi nhanh — đáp gọn trước khi bàn giao nhà</h2>
+      <span class="sec-sub">Tìm bằng từ khoá hoặc chạm chip chủ đề bạn quan tâm</span>
+    </div>
+    <div class="faq-shell rv" data-d="1">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg class="i"><use href="#i-search"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: phí %, chìa khoá, vệ sinh, báo cáo, hợp đồng…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="fchip" data-k="phí">Phí % doanh thu</button>
+          <button class="fchip" data-k="chìa khoá">Chìa khoá &amp; an ninh</button>
+          <button class="fchip" data-k="vệ sinh">Vệ sinh giữa khách</button>
+          <button class="fchip" data-k="báo cáo">Báo cáo tháng</button>
+          <button class="fchip" data-k="hợp đồng">Hợp đồng</button>
+          <button class="fchip" data-k="khu vực">Khu vực phục vụ</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0905 341 668 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER GỌN ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="mark"><svg class="i"><use href="#i-home"/></svg></span>
+          <span><span class="lg-t">An Trú Việt</span><span class="lg-s">Quản lý homestay &amp; nhà cho thuê</span></span>
+        </a>
+        <p>Vận hành trọn gói cho chủ nhà bận rộn: OTA, đón khách, vệ sinh giữa khách, chăm khách 24/7, báo cáo doanh thu hàng tháng — phí theo % doanh thu, nhà trống không mất phí.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg class="i"><use href="#i-chat"/></svg></a>
+          <a href="https://zalo.me/0905341668" target="_blank" rel="noopener" aria-label="Zalo"><svg class="i"><use href="#i-list"/></svg></a>
+          <a href="tel:0905341668" aria-label="Gọi điện"><svg class="i"><use href="#i-phone"/></svg></a>
+        </div>
+        <a class="ft-hot" href="tel:0905341668"><svg class="i"><use href="#i-phone"/></svg>0905 341 668</a>
+      </div>
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#dichvu">Vận hành trọn gói</a></li>
+          <li><a href="#dichvu">Đăng tải &amp; chạy OTA</a></li>
+          <li><a href="#dichvu">Vệ sinh giữa khách</a></li>
+          <li><a href="#dichvu">Đón tiếp – bàn giao khách</a></li>
+          <li><a href="#dichvu">Báo cáo doanh thu</a></li>
+          <li><a href="#dichvu">Xử lý sự cố 24/7</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Cho chủ nhà</h4>
+        <ul>
+          <li><a href="#phi">Máy tính doanh thu &amp; phí %</a></li>
+          <li><a href="#quytrinh">Quy trình bàn giao 4 bước</a></li>
+          <li><a href="#commit">4 cam kết trong hợp đồng</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+          <li><a href="#baogia">Thẩm định nhà miễn phí</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>Văn phòng: 56 Yên Thế, Phường 8, TP. Đà Lạt, Lâm Đồng</li>
+          <li>Hotline chủ nhà: <b style="color:#fff">0905 341 668</b></li>
+          <li>Zalo: 0905 341 668</li>
+          <li>Email: chunha@antruviet.vn</li>
+          <li>Chăm khách đang lưu trú 24/7 — kể cả lễ Tết</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span>© 2026 An Trú Việt — Quản lý homestay &amp; nhà cho thuê. Chủ nhà ngủ ngon, phòng vẫn tròn khách.</span>
+      <div class="pay-chips"><span>Hợp đồng</span><span>Hoá đơn VAT</span><span>Chuyển khoản ngày 5</span><span>Chi phí gốc theo hoá đơn</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock hide" id="dock">
+  <a class="d-hot" href="tel:0905341668"><svg class="i"><use href="#i-phone"/></svg>Gọi chủ nhà</a>
+  <a class="d-main" href="#baogia"><svg class="i"><use href="#i-doc"/></svg>Nhận tư vấn</a>
+  <a href="https://zalo.me/0905341668" target="_blank" rel="noopener" title="Zalo"><svg class="i"><use href="#i-chat"/></svg>Zalo</a>
+  <a href="#dichvu" title="8 dịch vụ"><svg class="i"><use href="#i-list"/></svg>Dịch vụ</a>
+  <a href="#phi" title="Máy tính doanh thu"><svg class="i"><use href="#i-chart"/></svg>Doanh thu</a>
+  <button id="dockTop" title="Lên đầu trang"><svg class="i"><use href="#i-up"/></svg>Lên đầu</button>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/*NB93-341*/
+/* ================= DỮ LIỆU ================= */
+var HOTLINE = '0905 341 668';
+var TEL = 'tel:0905341668';
+
+/* 8 dịch vụ — MASTER-DETAIL (M4) */
+var MD = [
+  {n:'Quản lý vận hành homestay', sub:'lịch – giá – chất lượng phòng', ic:'i-home', img:'assets/img/p1.webp',
+   d:'Giữ toàn bộ nhịp vận hành thay chủ nhà: đồng bộ lịch phòng, chốt giá theo mùa, kiểm chuẩn chất lượng phòng và chấm điểm nội bộ mỗi tuần — chủ nhà chỉ cần đọc báo cáo.',
+   rows:[
+     ['Phạm vi','Lịch phòng, giá, chuẩn phòng, vật tư'],
+     ['Nhịp vận hành','Cập nhật realtime — kiểm chất lượng mỗi tuần'],
+     ['Đội thực hiện','Quản lý khu vực + 1 điều phối/vùng'],
+     ['Cam kết SLA','Lỗi lịch hoặc giá xử lý trong 2 giờ'],
+     ['Phí tham chiếu','Trong gói trọn gói — 18% doanh thu/tháng']
+   ]},
+  {n:'Đăng tải nền tảng đặt phòng', sub:'Airbnb · Booking · Agoda · Traveloka', ic:'i-globe', img:'assets/img/p2.webp',
+   d:'Tin đăng chuẩn từng OTA: chụp ảnh, viết nội dung, đặt giá động theo mùa, trả lời tin nhắn khách và đồng bộ lịch 4 nền tảng để không bao giờ bị trùng phòng.',
+   rows:[
+     ['Phạm vi','Airbnb, Booking, Agoda, Traveloka'],
+     ['Nhịp vận hành','Giá động cập nhật theo mùa & sự kiện'],
+     ['Đội thực hiện','Chuyên viên nội dung + điều phối lịch'],
+     ['Cam kết SLA','Tin nhắn OTA trả khách trong 30 phút'],
+     ['Phí tham chiếu','Gói OTA — 8% doanh thu/tháng']
+   ]},
+  {n:'Đón tiếp – bàn giao khách', sub:'check-in linh hoạt · kể cả sau 22h', ic:'i-user', img:'assets/img/p3.webp',
+   d:'Check-in linh hoạt với khoá thông minh cho nhà tự nhận phòng; đón trực tiếp với villa; bàn giao – kiểm trả phòng theo biểu mẫu, giữ cọc và xử lý mất mát đúng quy trình.',
+   rows:[
+     ['Phạm vi','Check-in/out, hướng dẫn, kiểm trả phòng'],
+     ['Nhịp vận hành','Mỗi lượt khách — kể cả check-in sau 22h'],
+     ['Đội thực hiện','Lễ tân khu vực + quản lý trực tổng'],
+     ['Cam kết SLA','Khách chờ nhận phòng dưới 15 phút'],
+     ['Phí tham chiếu','Trong gói trọn gói — lẻ 100.000đ/lượt']
+   ]},
+  {n:'Dọn dẹp – housekeeping', sub:'checklist 42 điểm · phòng lên trong 4 giờ', ic:'i-broom', img:'assets/img/p4.webp',
+   d:'Vệ sinh giữa khách theo checklist 42 điểm: thay ga gối, cất lại vật tư, khử mùi, soi từng góc — chụp ảnh trước/sau gửi chủ nhà, phòng lên sàn trong 4 giờ kể từ check-out.',
+   rows:[
+     ['Phạm vi','Toàn bộ phòng – bếp – sân vườn, thay ga'],
+     ['Nhịp vận hành','Mỗi lượt khách — xong trong 4 giờ'],
+     ['Đội thực hiện','Đội vệ sinh khu vực + kiểm tra chéo'],
+     ['Cam kết SLA','Hỏng hóc phát hiện khi dọn báo ngay trong giờ'],
+     ['Phí tham chiếu','Trong gói trọn gói — lẻ 150.000đ/lượt']
+   ]},
+  {n:'Chăm sóc khách lưu trú', sub:'hotline 24/7 · phản hồi 15 phút', ic:'i-heart', img:'assets/img/p5.webp',
+   d:'Hotline 24/7 cho khách đang ở: hỗ trợ tiện ích, gợi ý địa điểm, tiếp nhận khiếu nại — giữ review 4,9 của nhà bạn bằng cách xử lý tâm lý trước khi khách lên OTA chấm điểm.',
+   rows:[
+     ['Phạm vi','Khách đang lưu trú tại các nhà quản lý'],
+     ['Nhịp vận hành','24/7 — kể cả lễ Tết'],
+     ['Đội thực hiện','Bộ phận chăm khách 2 ca ngày đêm'],
+     ['Cam kết SLA','Phản hồi khách trong 15 phút'],
+     ['Phí tham chiếu','Trong gói trọn gói']
+   ]},
+  {n:'Báo cáo doanh thu chủ nhà', sub:'gửi ngày 5 · đối chiếu từng đồng', ic:'i-chart', img:'assets/img/p6.webp',
+   d:'Báo cáo đầu tháng ngày 5: tỷ lệ lấp đầy, doanh thu từng phòng, payout từng OTA, công nợ và review — kèm file chi tiết để chủ nhà đối chiếu trước khi nhận tiền chuyển khoản.',
+   rows:[
+     ['Phạm vi','Doanh thu, công nợ OTA, review, sự cố'],
+     ['Nhịp vận hành','Gửi ngày 5 hàng tháng + tra cứu online'],
+     ['Đội thực hiện','Kế toán + quản lý khu vực'],
+     ['Cam kết SLA','Sai lệch đối chiếu giải trình trong 24 giờ'],
+     ['Phí tham chiếu','Miễn phí cho khách hợp đồng']
+   ]},
+  {n:'Marketing tăng tỷ lệ lấp đầy', sub:'+18 điểm lấp đầy trong 3 tháng đầu', ic:'i-up', img:'assets/img/p7.webp',
+   d:'Lấp khe ngày trống bằng khuyến mãi ngắn, nội dung đăng bài theo mùa, tìm khách đoàn — mục tiêu +18 điểm phần trăm lấp đầy trong 3 tháng đầu vận hành.',
+   rows:[
+     ['Phạm vi','Nội dung, khuyến mãi, kênh khách đoàn'],
+     ['Nhịp vận hành','Chiến dịch theo mùa + khe trống gấp'],
+     ['Đội thực hiện','Chuyên viên marketing lưu trú'],
+     ['Cam kết SLA','Đề xuất chiến dịch trong 5 ngày làm việc'],
+     ['Phí tham chiếu','Theo dự án — từ 3.000.000đ/tháng']
+   ]},
+  {n:'Xử lý sự cố phát sinh', sub:'cơ động 60 phút · ứng trực 24/7', ic:'i-tools', img:'assets/img/p8.webp',
+   d:'Mất điện nước, khoá kẹt, rò rỉ, khách khiếu nại gấp — đội cơ động trong 60 phút tại khu vực trung tâm, sửa chữa hoặc thay thế trước, báo cáo chi phí minh bạch sau.',
+   rows:[
+     ['Phạm vi','Điện nước, khoá, thiết bị, khiếu nại gấp'],
+     ['Nhịp vận hành','Ứng trực 24/7 — kể cả đêm'],
+     ['Đội thực hiện','Đội cơ động + thợ địa bàn'],
+     ['Cam kết SLA','Tới nhà trong 60 phút tại khu trung tâm'],
+     ['Phí tham chiếu','Theo lượt — khách hợp đồng trả giá thợ gốc']
+   ]}
+];
+var ROW_IC = ['i-doc','i-clock','i-user','i-gauge','i-tag'];
+var mdSel = 0;
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(ttl, msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<svg class="i"><use href="#i-check"/></svg><span class="tx"><b>' + esc(ttl) + '</b><span>' + esc(msg) + '</span></span>';
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; t.style.transition = '.4s'; }, 3400);
+  setTimeout(function(){ t.remove(); }, 3900);
+}
+
+/* ================= MASTER–DETAIL ================= */
+function mdRenderList(){
+  var h = '';
+  MD.forEach(function(m, i){
+    h += '<button type="button" class="md-item" role="tab" data-md="' + i + '" aria-selected="' + (i===mdSel) + '">' +
+      '<span class="md-th"><img src="' + m.img + '" loading="lazy" alt=""></span>' + '<span class="mi-ic"><svg class="i"><use href="#' + m.ic + '"/></svg></span>' +
+      '<span class="mi-tw"><b>' + esc(m.n) + '</b><small>' + esc(m.sub) + '</small></span>' +
+      '<svg class="i mi-arr"><use href="#i-right"/></svg></button>';
+  });
+  $('mdList').innerHTML = h;
+  $('mdList').querySelectorAll('[data-md]').forEach(function(b){
+    b.addEventListener('click', function(){ mdSelect(+b.getAttribute('data-md'), false); });
+  });
+}
+function mdRenderPanel(){
+  var m = MD[mdSel];
+  var rows = '';
+  m.rows.forEach(function(r, i){
+    rows += '<div class="mdp-row' + (i===4?' hot':'') + '"><span class="k"><svg class="i"><use href="#' + ROW_IC[i] + '"/></svg>' + esc(r[0]) + '</span><span class="v">' + esc(r[1]) + '</span></div>';
+  });
+  $('mdPanel').innerHTML =
+    '<div class="mdp-img">' +
+      '<img src="' + m.img + '" alt="' + esc(m.n) + '" loading="lazy">' +
+      '<span class="cat-b"><svg class="i"><use href="#' + m.ic + '"/></svg>Dịch vụ ' + (mdSel+1) + '/8</span>' +
+      '<span class="sla-ov"><svg class="i"><use href="#i-gauge"/></svg>' + esc(m.rows[3][1]) + '</span>' +
+    '</div>' +
+    '<div class="mdp-body">' +
+      '<h3>' + esc(m.n) + '</h3>' +
+      '<p class="mdp-desc">' + esc(m.d) + '</p>' +
+      '<div class="mdp-tbl">' + rows + '</div>' +
+      '<div class="mdp-acts">' +
+        '<button type="button" class="btn btn-accent" id="mdLead"><svg class="i"><use href="#i-doc"/></svg>Nhận tư vấn mảng việc này</button>' +
+        '<a class="btn btn-ghost" href="' + TEL + '"><svg class="i"><use href="#i-phone"/></svg>Gọi: ' + HOTLINE + '</a>' +
+      '</div>' +
+      '<p class="mdp-fine"><svg class="i"><use href="#i-check"/></svg>Khảo sát nhà 0đ — phạm vi &amp; phí % chốt sau thẩm định 48 giờ.</p>' +
+    '</div>';
+  var p = $('mdPanel');
+  p.classList.remove('fadein'); void p.offsetWidth; p.classList.add('fadein');
+  $('mdLead').addEventListener('click', function(){ openLead(m.n); });
+}
+function mdSelect(i, scroll){
+  mdSel = Math.max(0, Math.min(MD.length-1, i));
+  $('mdList').querySelectorAll('[data-md]').forEach(function(b, j){
+    b.setAttribute('aria-selected', String(j===mdSel));
+  });
+  mdRenderPanel();
+  if(scroll) document.getElementById('dichvu').scrollIntoView({behavior:'smooth'});
+}
+mdRenderList(); mdRenderPanel();
+
+/* Chuyển dịch vụ từ dải nhanh dưới khối gói phí */
+document.querySelectorAll('[data-md-go]').forEach(function(a){
+  a.addEventListener('click', function(){ mdSelect(+a.getAttribute('data-md-go'), true); });
+});
+
+/* Prefill form tư vấn */
+function openLead(service){
+  var sel = $('ctType');
+  for(var i=0;i<sel.options.length;i++){
+    if(sel.options[i].text === service){ sel.selectedIndex = i; break; }
+  }
+  var desc = $('ctDesc');
+  desc.value = 'Đang quan tâm: ' + service + '. ';
+  document.getElementById('baogia').scrollIntoView({behavior:'smooth'});
+  toast('Đã chọn "' + service + '"', 'Điền số điện thoại — quản lý khu vực gọi lại trong 30 phút');
+}
+document.querySelectorAll('.lead-btn').forEach(function(b){
+  b.addEventListener('click', function(){ openLead(b.getAttribute('data-lead')); });
+});
+
+/* ================= HEADER: nút tư vấn + tìm kiếm ================= */
+$('hdQuote').addEventListener('click', function(){
+  document.getElementById('baogia').scrollIntoView({behavior:'smooth'});
+});
+$('searchInput').addEventListener('input', function(){
+  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
+  if(!q){ drop.classList.remove('open'); return; }
+  var m = [];
+  MD.forEach(function(s, i){ if((s.n + ' ' + s.sub + ' ' + s.d).toLowerCase().indexOf(q) !== -1) m.push(i); });
+  if(!m.length){ drop.classList.remove('open'); return; }
+  drop.innerHTML = m.map(function(i){ return '<button data-mdq="' + i + '"><svg class="i"><use href="#' + MD[i].ic + '"/></svg>' + esc(MD[i].n) + '</button>'; }).join('');
+  drop.classList.add('open');
+  drop.querySelectorAll('[data-mdq]').forEach(function(b){
+    b.addEventListener('click', function(){ drop.classList.remove('open'); $('searchInput').value = ''; mdSelect(+b.getAttribute('data-mdq'), true); });
+  });
+});
+$('searchInput').addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
+  var m = [];
+  MD.forEach(function(s, i){ if((s.n + ' ' + s.sub + ' ' + s.d).toLowerCase().indexOf(q) !== -1) m.push(i); });
+  if(m.length){ mdSelect(m[0], true); drop.classList.remove('open'); }
+  else { toast('Không tìm thấy dịch vụ', 'Không có kết quả cho "' + q + '" — gọi ' + HOTLINE + ' để được tư vấn ngay'); }
+});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search')) $('searchDrop').classList.remove('open');
+});
+
+/* ================= REVEAL + SPOTLIGHT + COUNTER + DOCK ================= */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+document.querySelectorAll('.spot').forEach(function(c){
+  c.addEventListener('pointermove', function(ev){
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  });
+});
+var cio = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, target = +el.getAttribute('data-n'), t0 = performance.now(), dur = 1300;
+    function tick(t){
+      var p = Math.min((t - t0)/dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p,3))).toLocaleString('vi-VN');
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:.4});
+document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
+var heroEl = $('hero'), heroVis = true, lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+function syncDock(){
+  var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var down = y > lastY + 2, up = y < lastY - 2;
+  $('dock').classList.toggle('hide', heroVis || (y > 100 && down && !up));
+}
+new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; syncDock(); },{threshold:.15}).observe(heroEl);
+window.addEventListener('scroll', function(){ syncDock(); lastY = window.pageYOffset || document.documentElement.scrollTop || 0; }, {passive:true});
+$('dockTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/* ================= TAPE: nhân đôi nội dung để chạy liền mạch ================= */
+$('tapeTrack').innerHTML += $('tapeTrack').innerHTML;
+
+/* ================= MÁY TÍNH DOANH THU (NB93-341) ================= */
+function fmtV(n){
+  n = Math.round(n);
+  return n.toLocaleString('vi-VN') + 'đ';
+}
+function fmtM(n){
+  if(n >= 1e9) return (Math.round(n/1e7)/100).toLocaleString('vi-VN') + ' tỷ';
+  if(n >= 1e6) return (Math.round(n/1e5)/10).toLocaleString('vi-VN') + ' tr';
+  return fmtV(n);
+}
+function calcSync(){
+  var rooms = +$('crRooms').value;
+  var adr = +$('crAdr').value * 1000;
+  var occ = +$('crOcc').value;
+  var tgt = Math.min(occ + 18, 92);
+  var cur = rooms * adr * 30 * occ / 100;
+  var tgtRev = rooms * adr * 30 * tgt / 100;
+  var delta = tgtRev - cur;
+  var fee = tgtRev * 0.18;
+  var net = tgtRev - fee;
+  $('outRooms').textContent = rooms + ' phòng';
+  $('outAdr').textContent = fmtV(adr);
+  $('outOcc').textContent = occ + '%';
+  $('coCur').textContent = fmtM(cur);
+  $('coTgt').textContent = fmtM(tgtRev);
+  $('coDelta').textContent = '+' + fmtM(delta);
+  $('coFee').textContent = fmtM(fee);
+  $('coNet').textContent = fmtM(net);
+  $('coOccLbl').textContent = occ + '%';
+  $('coTgtOccLbl').textContent = tgt + '%';
+  $('barCur').style.width = occ + '%';
+  $('barTgt').style.width = tgt + '%';
+}
+['crRooms','crAdr','crOcc'].forEach(function(id){
+  $(id).addEventListener('input', calcSync);
+});
+calcSync();
+
+/* ================= SOCIAL PROOF — 4 CHỦ NHÀ ================= */
+var RVW = [
+  {t:'Ba năm ký lại ba lần. Báo cáo ngày 5 rõ từng payout của Airbnb với Agoda, sổ vệ sinh có ảnh trước sau — tôi sống ở nước ngoài mà chưa từng phải gọi khẩn lần nào.', n:'Ông Nguyễn Đắc Lâm', w:'Chủ 4 căn hộ — phố Tây Phú Hội, Đà Lạt', i:'L'},
+  {t:'Nhà tôi từng lấp đầy 38%. Ba tháng sau khi bàn giao trọn gói là 61%, review lên 4,8. Đội vệ sinh ở ngay gần khu phố, phòng lúc nào cũng thơm như khách mô tả.', n:'Chị Hoàng Thu Ngân', w:'Chủ homestay 7 phòng — Thị trấn Ancơ, Nha Trang', i:'N'},
+  {t:'Có lần cúp điện lúc 23h, đội của An Trú có mặt trước khi khách kịp gọi lần hai. Chi phí thợ ghi rõ hoá đơn trong báo cáo tháng — không một đồng nào bắt tôi đoán mò.', n:'Ông Trần Minh Khoa', w:'Chủ nhà phố 3 phòng — Phan Thiết', i:'K'},
+  {t:'Tôi đang mang thai nên bàn giao cả 2 nhà cho gói OTA trước, sau nâng lên trọn gói. Việc duy nhất của tôi là đọc báo cáo và nhận chuyển khoản ngày mùng 5.', n:'Chị Lê Phương Anh', w:'Chủ 2 nhà phố — Thủ Đức, TP.HCM', i:'A'}
+];
+var rvIdx = 0, rvTimer = null;
+function rvRender(){
+  var h = '';
+  RVW.forEach(function(r){
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<svg class="i f"><use href="#i-star"/></svg>';
+    h += '<div class="rvw-slide"><div class="rvw-card"><div class="stars">' + stars + '</div>' +
+      '<p>"' + esc(r.t) + '"</p>' +
+      '<div class="who"><span class="avt">' + esc(r.i) + '</span><span><b>' + esc(r.n) + '</b><span>' + esc(r.w) + '</span></span></div>' +
+      '</div></div>';
+  });
+  $('rvwTrack').innerHTML = h;
+  var d = '';
+  RVW.forEach(function(_, i){ d += '<button data-d="' + i + '" aria-label="Đánh giá ' + (i+1) + '"></button>'; });
+  $('rvwDots').innerHTML = d;
+  $('rvwDots').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ rvGo(+b.getAttribute('data-d')); rvAuto(); });
+  });
+  rvGo(0);
+}
+function rvGo(i){
+  rvIdx = (i + RVW.length) % RVW.length;
+  $('rvwTrack').style.transform = 'translateX(' + (-rvIdx * 100) + '%)';
+  $('rvwDots').querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===rvIdx); });
+}
+function rvAuto(){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){ rvGo(rvIdx + 1); }, 6000);
+}
+var rvShell = document.querySelector('.rvw-shell');
+rvShell.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+rvShell.addEventListener('mouseleave', rvAuto);
+rvRender(); rvAuto();
+
+/* ================= FORM NHẬN TƯ VẤN ================= */
+$('ctForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('ctName').value.trim(), phone = $('ctPhone').value.trim(), typ = $('ctType').value, addr = $('ctAddr').value.trim();
+  if(!name || !phone || !typ || !addr){ toast('Thiếu thông tin', 'Điền đủ họ tên, SĐT, loại nhà và khu vực nhé!'); return; }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ', 'Kiểm tra lại số điện thoại giúp chúng tôi nhé!'); return; }
+  this.reset();
+  toast('Đã gửi yêu cầu tư vấn', 'Quản lý khu vực gọi lại trong 30 phút — hẹn khảo sát miễn phí trong 48 giờ');
+});
+
+/* ================= FAQ 8 CÂU ================= */
+var FAQ = [
+  {q:'Phí % doanh thu tính trên con số nào?', k:'phí doanh thu % payout công nợ tính tiền',
+   a:'Phí tính trên doanh thu phòng thật: tiền payout từ Airbnb, Booking, Agoda cộng thu trực tiếp (khách đoàn, ở dài ngày). Mọi kênh đều đối chiếu trong báo cáo ngày 5. Nhà trống trong tháng thì không phát sinh phí vận hành — chúng tôi chỉ hưởng khi chủ nhà có doanh thu.'},
+  {q:'Tôi ở xa, ai giữ chìa khoá và ai quản lý khách vào ra?', k:'chìa khoá khoá thông minh an ninh bàn giao 2 vòng',
+   a:'Chìa khoá/khóa mã bàn giao theo sổ 2 vòng khoá, ký biên bản khi nhận – trả. Nhà phù hợp sẽ đề xuất khóa thông minh để khách tự nhận phòng; camera chỉ bố trí ngoại sảnh theo thoả thuận. Toàn bộ tài sản có biểu mô kiểm kê đầu kỳ — mất mát được xử lý theo quy trình trong hợp đồng.'},
+  {q:'Vệ sinh giữa khách chuẩn thế nào?', k:'vệ sinh dọn phòng checklist 42 điểm thay ga ảnh trước sau 4 giờ',
+   a:'Mỗi lượt khách trả phòng, đội vệ sinh chạy checklist 42 điểm: thay ga gối, khăn, cất lại vật tư, khử mùi, soi góc bếp – WC. Ảnh trước/sau gửi thẳng Zalo chủ nhà, phòng lên sàn trong 4 giờ kể từ check-out. Định kỳ 2 tuần/lượt đại tu: giặt rèm phủ, lau kính, kiểm tra đèn – vòi sen.'},
+  {q:'Tôi có phải đầu tư khóa thông minh, camera không?', k:'khóa thông minh camera đầu tư chi phí thiết bị lắp đặt',
+   a:'Không bắt buộc. Sau khảo sát, nếu nhà phù hợp chúng tôi đề xuất phương án thiết bị (khóa mã, hộp khóa, camera ngoại sảnh) với chi phí minh bạch — chủ nhà có thể dùng thiết bị sẵn có. Chi phí nằm ngoài phí % doanh thu, không găm vào giá dịch vụ.'},
+  {q:'Khi nào nhận báo cáo và tiền?', k:'báo cáo ngày 5 hàng tháng chuyển khoản doanh thu công nợ',
+   a:'Báo cáo gửi ngày 5 hàng tháng: tỷ lệ lấp đầy, doanh thu từng phòng, payout từng OTA, review và chi phí phát sinh kèm hoá đơn. Tiền chuyển khoản cho chủ nhà theo kỳ trong hợp đồng (thường ngày 5–7). Chủ nhà cũng xem được số liệu cập nhật online bất cứ lúc nào.'},
+  {q:'Hợp đồng tối thiểu bao lâu? Dừng có khó không?', k:'hợp đồng thời hạn dừng chấm thanh lý 3 tháng 30 ngày',
+   a:'Chúng tôi khuyến nghị tối thiểu 6 tháng để marketing và giá động phát huy hiệu quả. Muốn dừng, chủ nhà báo trước 30 ngày sau giai đoạn tối thiểu 3 tháng — bàn giao lại chìa khoá, tài khoản OTA, sổ kê và toàn bộ số liệu không mất phí thanh lý.'},
+  {q:'Khách ồn ào, tổ chức tiệc trong nhà thì xử lý thế nào?', k:'khách ồn ào tiệc tùng nội quy khiếu nại hàng xóm',
+   a:'Mỗi nhà có bộ nội quy gửi khách trước khi nhận phòng; hệ thống nhắc lịch và kiểm soát số khách theo tin đăng. Có khiếu nại, bộ phận 24/7 liên hệ khách trong 15 phút, đội cơ động tới nhà trong 60 phút nếu cần — vụ việc ghi rõ vào báo cáo tháng kèm cách xử lý.'},
+  {q:'Nhận quản lý nhà ở những khu vực nào?', k:'khu vực phục vụ đà lạt nha trang phan thiết tp.hcm lâm đồng khánh hòa bình thuận',
+   a:'Hiện chạy tại Đà Lạt, Nha Trang, Phan Thiết và TP.HCM — nơi nào có đội vệ sinh và quản lý khu vực ở gần, chúng tôi mới nhận để giữ chuẩn phản hồi 60 phút. Nhà ngoài bán kính 15 phút từ trung tâm xin phép cân nhắc trước khi khảo sát, không tính phí luân chuyển ẩn.'}
+];
+function faqRender(list){
+  var h = '';
+  list.forEach(function(f){
+    h += '<div class="faq-item"><button class="faq-q"><span class="fq-ic"><svg class="i"><use href="#i-chat"/></svg></span>' +
+      '<span>' + esc(f.q) + '</span><svg class="i chev"><use href="#i-chevd"/></svg></button>' +
+      '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  });
+  $('faqList').innerHTML = h;
+  $('faqEmpty').style.display = list.length ? 'none' : 'block';
+  $('faqList').querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.parentElement, body = item.querySelector('.faq-a'), open = item.classList.contains('open');
+      $('faqList').querySelectorAll('.faq-item.open').forEach(function(x){
+        x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+}
+function faqFilter(q){
+  if(!q){ faqRender(FAQ); return; }
+  q = q.toLowerCase();
+  var m = FAQ.filter(function(f){ return (f.q + ' ' + f.a + ' ' + f.k).toLowerCase().indexOf(q) !== -1; });
+  faqRender(m);
+}
+$('faqSearch').addEventListener('input', function(){
+  $('faqChips').querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+  faqFilter(this.value.trim());
+});
+$('faqChips').querySelectorAll('.fchip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var on = c.classList.contains('on');
+    $('faqChips').querySelectorAll('.fchip').forEach(function(x){ x.classList.remove('on'); });
+    $('faqSearch').value = '';
+    if(on){ faqRender(FAQ); } else { c.classList.add('on'); faqFilter(c.getAttribute('data-k')); }
+  });
+});
+faqRender(FAQ);
+</script>
+
+<!-- CHAT: widget tư vấn trực tiếp (demo bot — kịch bản cho chủ nhà NB93-341) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn cho chủ nhà">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🏡</div>
+    <div><div class="pkc-name">Tư vấn chủ nhà <span data-pkc="brand">An Trú Việt</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-341: widget chat truc tiep*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:var(--grad-accent,#D97B29);color:#3B2308;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(168,90,20,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#14432F;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(217,123,41,.18)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(12,46,32,.5);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:var(--grad-dark,#14432F);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0;border-bottom:2px solid #E8A54B}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(232,165,75,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F7F4EC}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(12,46,32,.08);border-bottom-left-radius:4px;color:#1F3529}
+.pkc-u{align-self:flex-end;background:var(--grad-dark,#14432F);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(12,46,32,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(12,46,32,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(217,123,41,.4);color:#A85A14;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+.pkc-chip:hover{background:#FBF0E0}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(12,46,32,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(12,46,32,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none;min-width:0}
+.pkc-inrow input:focus{border-color:#D97B29;box-shadow:0 0 0 3px rgba(217,123,41,.12)}
+.pkc-inrow button{width:44px;border-radius:11px;background:var(--grad-accent,#D97B29);color:#3B2308;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style><script>
+/*NB93-341*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/* NB93-341: FAILSAFE — element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"An Trú Việt",
+  "slogan":"Chủ nhà không rảnh — phòng vẫn tròn khách, doanh thu rõ từng đồng",
+  "telephone":"0905341668",
+  "address":{"@type":"PostalAddress","streetAddress":"56 Yên Thế, Phường 8","addressLocality":"Đà Lạt","addressRegion":"Lâm Đồng","addressCountry":"VN"},
+  "openingHours":"Mo-Su 08:00-19:00",
+  "areaServed":["Đà Lạt","Nha Trang","Phan Thiết","TP.HCM"]
+}
+</script>
+</body>
+</html>

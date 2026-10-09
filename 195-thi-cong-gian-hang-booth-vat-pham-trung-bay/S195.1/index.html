@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BoothViệt — Thi công gian hàng, booth hội chợ theo m² | 3D duyệt trước, đúng lịch, tháo gỡ trả mặt bằng</title>
+<meta name="description" content="BoothViệt nhận thiết kế 3D, thi công gian hàng hội chợ triển lãm trọn gói theo m², lắp đúng giờ mở cửa và tháo gỡ trả mặt bằng sạch. Báo giá trong 30 phút, hotline 0901 855 195.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='10' fill='%23132441'/%3E%3Cpath d='M10 30 22 10l12 20z' fill='%23FFB84D'/%3E%3Cpath d='M22 10v20M10 30h24' stroke='%23132441' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ============ RESET & TOKENS — NB93-195 ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#132441;
+  --primary-2:#1D3560;
+  --primary-3:#0C1830;
+  --texture:#F7F5F0;
+  --texture-2:#EFEBE1;
+  --accent:#E88A0C;
+  --accent-200:#F6BE55;
+  --accent-100:#FCEBC9;
+  --grad-accent:linear-gradient(135deg,#FFC24B,#F08A00);
+  --grad-dark:linear-gradient(140deg,#1D3560 0%,#132441 52%,#0C1830 100%);
+  --ink:#20222B;
+  --soft:#5A6472;
+  --line:#E3DED2;
+  --line-dark:rgba(255,255,255,.14);
+  --white:#FFFFFF;
+  --rad-s:10px;--rad-m:16px;--rad-l:24px;--rad-xl:32px;
+  --sh-1:0 2px 10px rgba(12,24,48,.06);
+  --sh-2:0 14px 34px rgba(12,24,48,.12);
+  --sh-3:0 28px 70px rgba(12,24,48,.22);
+  --glow:0 12px 30px rgba(240,138,0,.36);
+  --pat-grid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 16h64M0 48h64M16 0v64M48 0v64' stroke='%23132441' stroke-opacity='.06' stroke-width='1'/%3E%3Ccircle cx='16' cy='16' r='2.2' fill='none' stroke='%23E88A0C' stroke-opacity='.28'/%3E%3C/svg%3E");
+  --pat-grid-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 16h64M0 48h64M16 0v64M48 0v64' stroke='%23FFFFFF' stroke-opacity='.07' stroke-width='1'/%3E%3Ccircle cx='48' cy='48' r='2.2' fill='none' stroke='%23F6BE55' stroke-opacity='.35'/%3E%3C/svg%3E");
+  --pat-dots:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Ccircle cx='3' cy='3' r='2' fill='%23132441' fill-opacity='.07'/%3E%3C/svg%3E");
+  --pat-hatch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M-2 14 14 -2M-2 28 28 -2' stroke='%23F6BE55' stroke-opacity='.16' stroke-width='1.4'/%3E%3C/svg%3E");
+}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{
+  font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+ul{list-style:none}
+::selection{background:var(--accent);color:var(--primary-3)}
+.wrap{width:min(1180px,92%);margin-inline:auto;position:relative;z-index:2}
+.mini{font-size:.85rem}
+
+/* ============ TYPO HELPERS ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.74rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--primary-2)}
+.eyebrow::before{content:"";width:26px;height:2.5px;background:var(--grad-accent);border-radius:2px}
+.eyebrow.on-dark{color:var(--accent-200)}
+.h2{display:block;font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:900;line-height:1.18;letter-spacing:-.02em;margin:12px 0 14px;color:var(--primary)}
+.h2 .hl{background:linear-gradient(0deg,var(--accent-100) 0 46%,transparent 46%);padding:0 6px;border-radius:4px}
+.sec-sub{display:block;max-width:640px;color:var(--soft);font-size:1.02rem}
+.on-dark .h2{color:#fff}
+.on-dark .sec-sub{color:rgba(255,255,255,.72)}
+.sec-head{margin-bottom:38px}
+.sec-head.center{text-align:center}
+.sec-head.center .sec-sub{margin-inline:auto}
+.sec-head.center .eyebrow::before{display:none}
+.sec-head.center .eyebrow{background:#fff;border:1.5px solid var(--line);padding:8px 16px;border-radius:999px;color:var(--primary-2)}
+.sec-head.center .eyebrow.on-dark{background:rgba(255,255,255,.08);border-color:var(--line-dark)}
+
+/* ============ BUTTONS & CHIPS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:.95rem;padding:15px 26px;border-radius:14px;transition:transform .25s,box-shadow .25s,background .25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-acc{background:var(--grad-accent);color:var(--primary-3);box-shadow:var(--glow)}
+.btn-acc::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-acc:hover{transform:translateY(-3px)}
+.btn-acc:hover::after{left:130%}
+.btn-dark{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(12,24,48,.28)}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-3px)}
+.btn-ghost{border:1.8px solid var(--line);background:#fff;color:var(--primary)}
+.btn-ghost:hover{border-color:var(--primary);transform:translateY(-3px)}
+.btn-ghost-dark{border:1.8px solid var(--line-dark);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(8px)}
+.btn-ghost-dark:hover{background:rgba(255,255,255,.14);transform:translateY(-3px)}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;padding:8px 14px;border-radius:999px;background:#fff;border:1.5px solid var(--line);color:var(--primary)}
+.chip svg{width:15px;height:15px;color:var(--accent)}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-3);color:rgba(255,255,255,.85);font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:40px;gap:14px}
+.topbar b{color:var(--accent-200)}
+.tb-left,.tb-right{display:flex;align-items:center;gap:18px}
+.tb-item{display:inline-flex;align-items:center;gap:7px;min-width:0}
+.tb-item svg{width:14px;height:14px;color:var(--accent);flex:none}
+.tb-hotline{display:inline-flex;align-items:center;gap:8px;font-weight:900;color:var(--accent-200);letter-spacing:.02em}
+.tb-hotline svg{width:15px;height:15px}
+
+/* ============ HEADER ============ */
+.header{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:box-shadow .3s}
+.header.scrolled{box-shadow:var(--sh-2)}
+.header .wrap{display:flex;align-items:center;gap:22px;min-height:74px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.16rem;color:var(--primary);letter-spacing:-.01em;flex:none}
+.logo svg{width:42px;height:42px;flex:none}
+.logo .lt{display:block;line-height:1.05}
+.logo .lt em{display:block;font-style:normal;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:3px}
+.nav{display:flex;gap:2px;margin-inline:auto}
+.nav a{font-size:.89rem;font-weight:600;color:var(--soft);padding:9px 12px;border-radius:10px;transition:.2s}
+.nav a:hover{color:var(--primary);background:var(--accent-100)}
+.head-search{position:relative;flex:none;width:180px}
+.head-search input{width:100%;border:1.6px solid var(--line);border-radius:999px;padding:9px 14px 9px 38px;font-size:.85rem;background:var(--texture);transition:.2s}
+.head-search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.head-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--soft)}
+.head-cta{flex:none}
+.head-cta .btn{padding:12px 20px;font-size:.88rem}
+.m-head-row{display:none}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--texture);padding:56px 0 76px}
+.hero::before{content:"";position:absolute;inset:0;background-image:var(--pat-grid);pointer-events:none}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-deco .rule-h{position:absolute;height:1.6px;background:rgba(19,36,65,.14);left:0;right:0;top:78%}
+.hero-deco .rule-h i{position:absolute;top:-5px;width:1.6px;height:12px;background:rgba(19,36,65,.3)}
+.hero-deco .rule-h i:nth-child(odd){height:18px;top:-9px}
+.hero-deco .cr1{top:12%;left:55%}
+.hero-deco .cr2{bottom:8%;right:3%;opacity:.4}
+.cross{position:absolute;width:22px;height:22px}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--accent)}
+.cross::before{left:50%;top:0;width:2.4px;height:100%;transform:translateX(-50%);border-radius:2px}
+.cross::after{top:50%;left:0;height:2.4px;width:100%;transform:translateY(-50%);border-radius:2px}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.6px solid var(--line);border-radius:999px;padding:9px 17px;font-size:.8rem;font-weight:800;color:var(--primary-2);box-shadow:var(--sh-1)}
+.hero-pill .pulse{width:9px;height:9px;border-radius:50%;background:#2BB673;box-shadow:0 0 0 4px rgba(43,182,115,.18);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(43,182,115,.18)}50%{box-shadow:0 0 0 8px rgba(43,182,115,.08)}}
+.hero h1{display:block;font-size:clamp(2.05rem,4.5vw,3.3rem);font-weight:900;line-height:1.12;letter-spacing:-.03em;color:var(--primary);margin:20px 0 18px}
+.hero h1 .hl{position:relative;display:inline-block;color:var(--primary);white-space:nowrap}
+.hero h1 .hl::after{content:"";position:absolute;left:-2%;bottom:4px;width:104%;height:34%;background:var(--accent-100);z-index:-1;border-radius:4px}
+.hero h1 .hl svg{position:absolute;right:-16px;top:-20px;width:32px;height:32px;color:var(--accent)}
+.hero-sub{display:block;max-width:540px;color:var(--soft);font-size:1.06rem;margin-bottom:26px}
+.hero-sub b{color:var(--primary)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.trust-chips{display:flex;gap:10px;flex-wrap:wrap}
+.hero-visual{position:relative;min-width:0}
+.cover-frame{position:relative;border-radius:var(--rad-l);border:7px solid #fff;box-shadow:var(--sh-3);transform:rotate(-2deg);overflow:hidden;background:#fff;z-index:2}
+.cover-frame img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center}
+.price-tag{position:absolute;top:20px;right:-14px;z-index:4;background:var(--grad-accent);color:var(--primary-3);font-weight:900;font-size:.88rem;padding:12px 18px;border-radius:14px;transform:rotate(3deg);box-shadow:var(--glow);line-height:1.3;text-align:center}
+.price-tag small{display:block;font-size:.68rem;font-weight:700;opacity:.82}
+.stats-bar{position:relative;margin-top:18px;z-index:6;display:flex;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--sh-2);overflow:hidden}
+.stats-bar .st{padding:13px 20px;text-align:center;min-width:104px}
+.stats-bar .st+.st{border-left:1.5px solid var(--line)}
+.stats-bar b{display:block;font-size:1.18rem;font-weight:900;color:var(--primary);letter-spacing:-.02em}
+.stats-bar b i{font-style:normal;color:var(--accent)}
+.stats-bar small{display:block;font-size:.7rem;font-weight:600;color:var(--soft);letter-spacing:.02em}
+
+/* ============ TAPE / MARQUEE ============ */
+.tape-wrap{position:relative;z-index:5;margin:60px 0 0;padding:12px 0;overflow:hidden}
+.tape{background:var(--primary);transform:rotate(-1deg);padding:14px 0;overflow:hidden;box-shadow:var(--sh-2);border-block:2.5px solid var(--accent)}
+.tape-track{display:flex;gap:44px;width:max-content;animation:tape 30s linear infinite}
+.tape-track span{display:inline-flex;align-items:center;gap:44px;color:var(--texture);font-weight:800;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.tape-track span i{font-style:normal;color:var(--accent);font-size:1.05rem}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION BASE ============ */
+.section{padding:72px 0;position:relative;overflow:clip}
+.sec-light{background:var(--texture)}
+.sec-white{background:#fff}
+.sec-white::before{content:"";position:absolute;inset:0;background-image:var(--pat-dots);opacity:.5;pointer-events:none}
+.sec-dark{background:var(--grad-dark);color:#fff}
+.sec-dark::before{content:"";position:absolute;inset:0;background-image:var(--pat-grid-dark);pointer-events:none}
+.sec-cream2{background:var(--texture-2)}
+
+/* ============ KHOI-8: 8 HANG MUC (featured 2x2 + 7 card + 1 CTA tile = 12/12 o) — NB93-195 ============ */
+.b8-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:22px}
+.b8-card{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-l);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh-1);transition:transform .3s,box-shadow .3s;min-width:0}
+.b8-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.b8-feat{grid-column:span 2;grid-row:span 2}
+.b8-feat .b8-body{padding:24px 26px 22px;gap:10px}
+.b8-feat h3{font-size:1.5rem}
+.b8-feat .b8-desc{font-size:.96rem}
+.b8-feat .b8-list{display:grid;gap:7px;margin:2px 0}
+.b8-feat .b8-list li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--ink);font-weight:500}
+.b8-feat .b8-list svg{width:16px;height:16px;color:var(--accent);flex:none;margin-top:3px}
+.b8-flag-inline{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;background:var(--grad-accent);color:var(--primary-3);font-size:.74rem;font-weight:900;padding:7px 13px;border-radius:999px;box-shadow:var(--glow)}
+.b8-flag-inline svg{width:14px;height:14px}
+.b8-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--texture-2)}
+.b8-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.b8-card:hover .b8-media img{transform:scale(1.045)}
+.b8-num{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:9px;background:rgba(12,24,48,.82);color:var(--accent-200);font-weight:900;font-size:.82rem;display:grid;place-items:center;backdrop-filter:blur(4px)}
+.b8-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.b8-body h3{font-size:1.1rem;font-weight:900;color:var(--primary);letter-spacing:-.01em;line-height:1.25}
+.b8-desc{font-size:.87rem;color:var(--soft)}
+.b8-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:6px}
+.b8-price{font-size:.8rem;font-weight:900;color:#9D6100;background:var(--accent-100);padding:7px 12px;border-radius:9px;white-space:nowrap}
+.b8-go{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:900;color:var(--primary);padding:9px 12px;border-radius:10px;border:1.6px solid var(--line);transition:.25s;white-space:nowrap}
+.b8-go:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.b8-go svg{width:14px;height:14px}
+.b8-see{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--primary);display:grid;place-items:center;box-shadow:var(--sh-2);transition:.25s}
+.b8-see:hover{background:var(--grad-accent);color:var(--primary-3)}
+.b8-see svg{width:17px;height:17px}
+.b8-tile{background:var(--grad-dark);border-radius:var(--rad-l);padding:24px 22px;display:flex;flex-direction:column;gap:10px;color:#fff;position:relative;overflow:hidden;min-height:100%}
+.b8-tile::before{content:"";position:absolute;inset:0;background-image:var(--pat-hatch);pointer-events:none}
+.b8-tile b{position:relative;font-size:1.08rem;font-weight:900;letter-spacing:-.01em}
+.b8-tile p{position:relative;font-size:.85rem;color:rgba(255,255,255,.72)}
+.b8-tile .btn{position:relative;margin-top:auto;white-space:normal}
+/*NB93-195: mobile nut khong bi cat chu*/
+.b8-go{white-space:nowrap}
+
+/* ============ 3 MOC (dacThu) ============ */
+.moc-grid{display:grid;grid-template-columns:.94fr 1.06fr;gap:50px;align-items:center}
+.moc-visual{position:relative;min-width:0}
+.moc-frame{position:relative;border-radius:var(--rad-l);border:7px solid #fff;box-shadow:var(--sh-3);overflow:hidden;background:#fff}
+.moc-frame img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.moc-badge{position:absolute;top:-20px;right:-8px;background:var(--grad-accent);color:var(--primary-3);border-radius:16px;padding:13px 19px;box-shadow:var(--glow);transform:rotate(3deg);line-height:1.3}
+.moc-badge b{display:block;font-size:1.25rem;font-weight:900}
+.moc-badge small{display:block;font-size:.7rem;font-weight:700;opacity:.8}
+.moc-list{display:grid;gap:16px}
+.moc-item{position:relative;background:rgba(255,255,255,.06);border:1.5px solid var(--line-dark);border-radius:var(--rad-l);padding:20px 22px 20px 26px;display:flex;gap:18px;align-items:flex-start;transition:.25s;min-width:0}
+.moc-item::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:4px;border-radius:4px;background:var(--grad-accent)}
+.moc-item:hover{background:rgba(255,255,255,.1);transform:translateX(4px)}
+.moc-when{flex:none;min-width:92px;text-align:center;background:var(--grad-accent);color:var(--primary-3);font-weight:900;border-radius:12px;padding:10px 10px;line-height:1.25;box-shadow:var(--glow)}
+.moc-when small{display:block;font-size:.62rem;font-weight:800;letter-spacing:.14em;opacity:.78}
+.moc-when b{font-size:1.02rem;white-space:nowrap}
+.moc-item h3{font-size:1.06rem;font-weight:900;color:#fff;margin-bottom:5px;letter-spacing:-.01em}
+.moc-item p{font-size:.87rem;color:rgba(255,255,255,.72)}
+.moc-item p b{color:var(--accent-200)}
+.slot-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;position:relative}
+.slot-row .sr-label{flex-basis:100%;font-size:.74rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-200);margin-bottom:2px}
+.slot-chip{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:#fff;background:rgba(255,255,255,.07);border:1.5px solid var(--line-dark);padding:9px 14px;border-radius:999px}
+.slot-chip i{font-style:normal;font-size:.72rem;font-weight:900;color:var(--primary-3);background:var(--grad-accent);border-radius:999px;padding:3px 9px}
+
+/* ============ PROCESS TIMELINE ============ */
+.tl{position:relative;max-width:980px;margin-inline:auto;padding:12px 0}
+.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2.5px;background:linear-gradient(180deg,var(--accent),rgba(19,36,65,.16) 12%,rgba(19,36,65,.16) 88%,var(--accent));transform:translateX(-50%)}
+.tl-step{display:grid;grid-template-columns:1fr 84px 1fr;align-items:center;margin-bottom:26px;position:relative}
+.tl-step:last-child{margin-bottom:0}
+.tl-node{grid-column:2;justify-self:center;width:64px;height:64px;border-radius:50%;background:var(--grad-accent);color:var(--primary-3);display:grid;place-items:center;font-weight:900;font-size:1.3rem;box-shadow:var(--glow);border:4px solid #fff;position:relative;z-index:2}
+.tl-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-l);padding:22px 24px;box-shadow:var(--sh-1);transition:transform .3s,box-shadow .3s;min-width:0}
+.tl-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.tl-step:nth-child(odd) .tl-card{grid-column:1;grid-row:1;justify-self:end;text-align:right}
+.tl-step:nth-child(even) .tl-card{grid-column:3;grid-row:1;justify-self:start}
+.tl-card .tl-kicker{display:block;font-size:.68rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.tl-card h3{display:block;font-size:1.12rem;font-weight:900;color:var(--primary);margin-bottom:7px;letter-spacing:-.01em}
+.tl-card p{display:block;font-size:.88rem;color:var(--soft)}
+.tl-meta{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-size:.75rem;font-weight:800;color:#9D6100;background:var(--accent-100);border:1.5px solid #F2D398;padding:6px 12px;border-radius:999px}
+.tl-meta svg{width:13px;height:13px}
+.tl-step:nth-child(odd) .tl-meta{float:right}
+
+/* ============ PRICING ============ */
+.pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;margin-bottom:34px}
+.pack{position:relative;background:#fff;border:1.8px solid var(--line);border-radius:var(--rad-xl);padding:30px 28px;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;box-shadow:var(--sh-1);min-width:0}
+.pack:hover{transform:translateY(-8px);box-shadow:var(--sh-2)}
+.pack-pop{border:2.5px solid var(--accent);box-shadow:0 24px 60px rgba(240,138,0,.2)}
+.pack-pop:hover{transform:translateY(-8px) scale(1.015)}
+.pack-flag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--grad-accent);color:var(--primary-3);font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border-radius:999px;box-shadow:var(--glow);white-space:nowrap}
+.pack-tier{display:inline-flex;align-self:flex-start;font-size:.7rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);background:var(--texture);border:1.5px solid var(--line);padding:6px 12px;border-radius:999px}
+.pack h3{font-size:1.3rem;font-weight:900;color:var(--primary);margin:14px 0 4px;letter-spacing:-.01em}
+.pack .pk-for{display:block;font-size:.84rem;color:var(--soft);margin-bottom:16px}
+.pack-price{display:flex;align-items:baseline;gap:8px;padding:16px 0;border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);margin-bottom:18px}
+.pack-price b{font-size:2rem;font-weight:900;letter-spacing:-.03em;color:var(--primary)}
+.pack-price small{font-size:.8rem;color:var(--soft);font-weight:600}
+.pack ul{display:grid;gap:10px;margin-bottom:20px}
+.pack ul li{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--ink)}
+.pack ul li svg{width:17px;height:17px;flex:none;color:var(--accent);margin-top:3px}
+.pack ul li.no{color:#A7B0BC}
+.pack ul li.no svg{color:#C9CFD7}
+.pack .pk-time{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;color:var(--primary);background:var(--accent-100);border-radius:12px;padding:10px 14px;margin-bottom:16px}
+.pack .pk-time svg{width:16px;height:16px;color:#9D6100}
+.pack .btn{margin-top:auto;width:100%}
+.compare-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-l);box-shadow:var(--sh-1);overflow:hidden}
+.compare-scroll{overflow-x:auto}
+.compare{width:100%;border-collapse:collapse;min-width:660px;font-size:.88rem}
+.compare th,.compare td{padding:12px 18px;text-align:center;border-bottom:1.5px solid var(--texture-2)}
+.compare td:first-child,.compare th:first-child{text-align:left;position:sticky;left:0;background:#fff;font-weight:700;color:var(--primary);min-width:190px;z-index:1}
+.compare thead th{background:var(--primary);color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;border-bottom:0}
+.compare thead th.pk-hl{background:var(--accent);color:var(--primary-3)}
+.compare tbody tr:hover td{background:var(--texture)}
+.compare tbody tr:hover td:first-child{background:var(--texture-2)}
+.compare svg{width:17px;height:17px;vertical-align:middle}
+.compare .ok{color:#1F9D55}
+.compare .no{color:#C9CFD7}
+.compare td b{color:var(--primary)}
+.compare-note{display:block;font-size:.8rem;color:var(--soft);margin-top:14px;padding:0 20px 18px}
+
+/* ============ ESTIMATOR ============ */
+.est-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:stretch}
+.glass-dark{background:rgba(255,255,255,.07);border:1.5px solid var(--line-dark);border-radius:var(--rad-xl);padding:28px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.est-form h3,.est-res h3{font-size:1.2rem;font-weight:900;letter-spacing:-.01em}
+.est-form h3{color:#fff;margin-bottom:4px}
+.est-form .est-note{display:block;font-size:.84rem;color:rgba(255,255,255,.62);margin-bottom:20px}
+.field{margin-bottom:16px;min-width:0}
+.field label{display:block;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:7px}
+.field label em{font-style:normal;color:var(--accent-200)}
+.field select,.field input,.field textarea{width:100%;border:1.6px solid var(--line-dark);background:rgba(255,255,255,.07);border-radius:13px;padding:13px 15px;font-size:.92rem;color:#fff;transition:.2s}
+.field select option{color:var(--ink);background:#fff}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.4)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(240,138,0,.18)}
+.field.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.est-opt{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1.5px solid var(--line-dark);border-radius:13px;padding:13px 15px;cursor:pointer;transition:.2s;margin-bottom:14px}
+.est-opt:hover{background:rgba(255,255,255,.1)}
+.est-opt input{width:19px;height:19px;accent-color:var(--accent);flex:none}
+.est-opt b{font-size:.88rem;color:#fff;display:block}
+.est-opt small{display:block;font-size:.75rem;color:rgba(255,255,255,.55)}
+.est-res{background:#fff;border-radius:var(--rad-xl);padding:28px;border:1.5px solid var(--line);box-shadow:var(--sh-2);display:flex;flex-direction:column;position:relative;overflow:hidden;min-width:0}
+.est-res::before{content:"";position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;background:var(--accent-100);opacity:.7}
+.est-res h3{color:var(--primary);margin-bottom:4px;position:relative}
+.est-res .er-sub{display:block;font-size:.84rem;color:var(--soft);margin-bottom:20px;position:relative}
+.er-price{position:relative;background:var(--texture);border:1.5px dashed var(--accent);border-radius:var(--rad-m);padding:20px 22px;margin-bottom:18px}
+.er-price small{display:block;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.er-price b{display:block;font-size:1.8rem;font-weight:900;letter-spacing:-.02em;color:var(--primary);line-height:1.25}
+.er-price i{font-style:normal;color:var(--accent)}
+.er-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.er-cell{background:var(--texture);border-radius:13px;padding:13px 15px;border:1.5px solid var(--line)}
+.er-cell small{display:block;font-size:.7rem;font-weight:700;color:var(--soft);letter-spacing:.06em;text-transform:uppercase}
+.er-cell b{display:block;font-size:.95rem;color:var(--primary)}
+.er-list{position:relative;display:grid;gap:8px;margin-bottom:22px}
+.er-list li{display:flex;gap:9px;font-size:.85rem;color:var(--soft);align-items:flex-start}
+.er-list svg{width:16px;height:16px;color:var(--accent);flex:none;margin-top:3px}
+.est-res .btn{position:relative;width:100%}
+
+/* ============ QUOTE STRIP (form giữa trang) ============ */
+.quote-strip{position:relative;background:var(--grad-dark);border-radius:var(--rad-xl);overflow:hidden;box-shadow:var(--sh-3)}
+.quote-strip::before{content:"";position:absolute;inset:0;background-image:var(--pat-grid-dark);pointer-events:none}
+.qs-ring{position:absolute;width:300px;height:300px;border-radius:50%;border:2px dashed rgba(246,190,85,.35);top:-120px;right:-80px;pointer-events:none}
+.qs-grid{position:relative;display:grid;grid-template-columns:1fr 1.08fr;gap:38px;padding:40px 46px;align-items:center}
+.qs-copy h3{display:block;font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:10px}
+.qs-copy h3 i{font-style:normal;color:var(--accent-200)}
+.qs-copy p{display:block;font-size:.92rem;color:rgba(255,255,255,.7);max-width:400px}
+.qs-points{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.qs-points span{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:var(--accent-200)}
+.qs-points svg{width:15px;height:15px}
+.qs-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;min-width:0}
+.qs-form .field{margin-bottom:0}
+.qs-form .field.full{grid-column:1/-1}
+.qs-form .btn{grid-column:1/-1;white-space:normal}
+.qs-secure{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:.74rem;color:rgba(255,255,255,.55);justify-content:center}
+.qs-secure svg{width:13px;height:13px;color:var(--accent)}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:.94fr 1.06fr;gap:52px;align-items:center}
+.about-visual{position:relative;min-width:0}
+.about-frame{border-radius:var(--rad-l);border:7px solid #fff;box-shadow:var(--sh-3);overflow:hidden;background:#fff;transform:rotate(2deg)}
+.about-frame img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.about-badge{position:absolute;top:-20px;right:-8px;background:var(--grad-dark);color:#fff;border-radius:18px;padding:13px 19px;box-shadow:var(--sh-2);transform:rotate(3deg);border:1.5px solid var(--line-dark)}
+.about-badge b{display:block;font-size:1.3rem;font-weight:900;color:var(--accent-200)}
+.about-badge small{display:block;font-size:.7rem;opacity:.75;font-weight:600}
+.about-copy .sec-sub{margin-bottom:24px}
+.about-strong{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px}
+.as-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-m);padding:16px 18px;display:flex;gap:13px;align-items:flex-start;transition:.25s;min-width:0;box-shadow:var(--sh-1)}
+.as-card:hover{border-color:var(--accent);box-shadow:var(--sh-2);transform:translateY(-3px)}
+.as-card svg{width:21px;height:21px;color:var(--accent);flex:none;margin-top:2px}
+.as-card b{display:block;font-size:.92rem;color:var(--primary);line-height:1.35}
+.as-card small{display:block;font-size:.78rem;color:var(--soft)}
+.about-cta{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ REVIEWS ============ */
+.rev-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:stretch}
+.rev-metric{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-xl);padding:30px;display:flex;flex-direction:column;box-shadow:var(--sh-1);min-width:0;overflow:hidden}
+.rev-metric::before{content:"";position:absolute;bottom:-70px;left:-70px;width:200px;height:200px;border-radius:50%;background:var(--accent-100);opacity:.65}
+.rev-big{position:relative;font-size:3.3rem;font-weight:900;letter-spacing:-.03em;color:var(--primary);line-height:1}
+.rev-big i{font-style:normal;color:var(--accent)}
+.rev-metric>small{position:relative;display:block;font-size:.9rem;color:var(--soft);margin:8px 0 22px}
+.rev-mini{position:relative;display:grid;gap:12px;margin-bottom:22px}
+.rev-mini .rm{display:flex;align-items:center;gap:12px;background:var(--texture);border:1.5px solid var(--line);border-radius:13px;padding:12px 15px}
+.rev-mini b{font-size:1.05rem;font-weight:900;color:var(--primary);min-width:70px}
+.rev-mini b i{font-style:normal;color:var(--accent)}
+.rev-mini span{font-size:.8rem;color:var(--soft)}
+.rev-partners{position:relative;margin-top:auto}
+.rev-partners small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.rev-partners .rp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.rev-partners .rp-chips span{font-size:.76rem;font-weight:700;color:var(--primary);background:var(--texture);border:1.5px solid var(--line);padding:6px 12px;border-radius:999px}
+.rev-slider{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-xl);padding:32px;box-shadow:var(--sh-2);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.rev-quote-mark{width:52px;height:52px;border-radius:14px;background:var(--grad-accent);display:grid;place-items:center;color:var(--primary-3);margin-bottom:18px;box-shadow:var(--glow)}
+.rev-quote-mark svg{width:26px;height:26px}
+.rev-stage{position:relative;flex:1;min-height:210px}
+.rev-item{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;pointer-events:none}
+.rev-item.on{opacity:1;transform:none;pointer-events:auto}
+.rev-item p{display:block;font-size:1.02rem;color:var(--ink);font-weight:500;line-height:1.7;margin-bottom:18px}
+.rev-item p b{color:var(--primary)}
+.rev-who{display:flex;align-items:center;gap:13px}
+.rev-ava{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:var(--primary-3);font-size:1.02rem;flex:none}
+.rev-who b{display:block;font-size:.94rem;color:var(--primary);line-height:1.25}
+.rev-who small{display:block;font-size:.76rem;color:var(--soft)}
+.rev-stars{margin-left:auto;display:flex;gap:2px;flex:none}
+.rev-stars svg{width:16px;height:16px;color:var(--accent)}
+.rev-dots{display:flex;gap:8px;margin-top:20px}
+.rev-dot{width:10px;height:10px;border-radius:50%;background:var(--texture-2);border:1.5px solid var(--line);transition:.25s;padding:0}
+.rev-dot.on{background:var(--accent);border-color:var(--accent);transform:scale(1.25)}
+
+/* ============ CONTACT + MAP CARD ============ */
+.contact-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:42px;align-items:start;margin-bottom:34px}
+.c-hotline{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border:1.5px solid var(--line-dark);border-radius:var(--rad-l);padding:20px 22px;margin:22px 0 18px;transition:.25s}
+.c-hotline:hover{background:rgba(255,255,255,.1)}
+.c-hotline .ch-ico{width:52px;height:52px;flex:none;border-radius:16px;background:var(--grad-accent);display:grid;place-items:center;color:var(--primary-3);box-shadow:var(--glow)}
+.c-hotline .ch-ico svg{width:25px;height:25px}
+.c-hotline small{display:block;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.c-hotline b{display:block;font-size:1.55rem;font-weight:900;color:var(--accent-200);letter-spacing:.01em;line-height:1.2}
+.c-list{display:grid;gap:12px}
+.c-list li{display:flex;gap:13px;align-items:flex-start;font-size:.92rem;color:rgba(255,255,255,.82)}
+.c-list svg{width:19px;height:19px;color:var(--accent);flex:none;margin-top:3px}
+.c-list b{color:#fff}
+.quote-form{background:rgba(255,255,255,.07);border:1.5px solid var(--line-dark);border-radius:var(--rad-xl);padding:30px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.quote-form h3{color:#fff;font-size:1.3rem;font-weight:900;letter-spacing:-.01em}
+.quote-form .qf-sub{display:block;font-size:.85rem;color:rgba(255,255,255,.62);margin:6px 0 20px}
+.qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qf-grid .field{margin-bottom:0}
+.qf-grid .field.full{grid-column:1/-1}
+.qf-grid .btn{grid-column:1/-1;width:100%;white-space:normal}
+.qf-secure{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.74rem;color:rgba(255,255,255,.5)}
+.qf-secure svg{width:13px;height:13px;color:var(--accent)}
+.map-card{position:relative;background:var(--primary-2);border:1.5px solid var(--line-dark);border-radius:var(--rad-xl);overflow:hidden;box-shadow:var(--sh-3);display:grid;grid-template-columns:1.2fr .8fr;min-height:230px}
+.map-card::before{content:"";position:absolute;inset:0;background-image:var(--pat-grid-dark);pointer-events:none}
+.map-copy{position:relative;padding:30px 32px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.map-copy h3{color:#fff;font-size:1.2rem;font-weight:900;letter-spacing:-.01em}
+.map-copy p{font-size:.9rem;color:rgba(255,255,255,.72);max-width:340px}
+.map-copy .mc-row{display:flex;align-items:center;gap:9px;font-size:.85rem;color:rgba(255,255,255,.8);margin-top:2px}
+.map-copy .mc-row svg{width:16px;height:16px;color:var(--accent);flex:none}
+.map-copy .btn{align-self:flex-start;margin-top:12px}
+.map-plan{position:relative;border-left:1.5px dashed var(--line-dark)}
+.map-plan svg{position:absolute;inset:0;width:100%;height:100%}
+
+/* ============ FAQ ============ */
+.faq-tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.faq-search{position:relative;flex:1;min-width:240px;max-width:420px}
+.faq-search input{width:100%;border:1.6px solid var(--line);border-radius:999px;padding:13px 16px 13px 44px;font-size:.9rem;background:#fff;transition:.2s}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-100)}
+.faq-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.faq-chip{font-size:.78rem;font-weight:700;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--soft);transition:.2s}
+.faq-chip:hover{border-color:var(--accent);color:var(--primary)}
+.faq-chip.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.faq-list{display:grid;gap:12px;max-width:880px;margin-inline:auto}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:var(--rad-m);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.faq-item.open{border-color:var(--accent);box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:17px 20px;font-weight:700;color:var(--primary);font-size:.96rem;min-width:0}
+.faq-q .fq-ico{width:34px;height:34px;flex:none;border-radius:10px;background:var(--accent-100);color:var(--primary);display:grid;place-items:center;font-size:.8rem;font-weight:900}
+.faq-q .fq-t{flex:1;min-width:0}
+.faq-q .fq-plus{width:28px;height:28px;flex:none;border-radius:50%;border:1.6px solid var(--line);display:grid;place-items:center;transition:.3s;color:var(--soft)}
+.faq-q .fq-plus svg{width:13px;height:13px}
+.faq-item.open .fq-plus{transform:rotate(45deg);background:var(--grad-accent);border-color:transparent;color:var(--primary-3)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-in{padding:0 20px 20px 68px;font-size:.9rem;color:var(--soft)}
+.faq-a-in b{color:var(--primary)}
+.faq-empty{display:none;text-align:center;color:var(--soft);padding:30px;font-size:.92rem}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--primary-3);color:rgba(255,255,255,.72);position:relative;overflow:clip}
+.footer::before{content:"";position:absolute;inset:0;background-image:var(--pat-grid-dark);opacity:.5;pointer-events:none}
+.f-grid{position:relative;display:grid;grid-template-columns:1.3fr .8fr .9fr 1.1fr;gap:34px;padding:52px 0 36px}
+.f-brand .logo{color:#fff;margin-bottom:14px}
+.f-brand p{font-size:.88rem;max-width:300px;margin-bottom:18px}
+.f-social{display:flex;gap:10px}
+.f-social a{width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line-dark);display:grid;place-items:center;color:rgba(255,255,255,.75);transition:.25s}
+.f-social a:hover{background:var(--grad-accent);color:var(--primary-3);border-color:transparent;transform:translateY(-3px)}
+.f-social svg{width:18px;height:18px}
+.f-col h4{position:relative;color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px;letter-spacing:.02em}
+.f-col ul{display:grid;gap:10px;position:relative}
+.f-col ul a{font-size:.87rem;transition:.2s;display:inline-flex;gap:8px;align-items:center}
+.f-col ul a:hover{color:var(--accent-200)}
+.f-col ul a svg{width:13px;height:13px;color:var(--accent);flex:none}
+.f-col .f-line{display:flex;gap:11px;font-size:.87rem;align-items:flex-start;margin-bottom:12px;position:relative}
+.f-col .f-line svg{width:17px;height:17px;color:var(--accent);flex:none;margin-top:3px}
+.f-col .f-line b{color:#fff}
+.f-bottom{position:relative;border-top:1.5px solid var(--line-dark);padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.f-bottom small{font-size:.78rem;color:rgba(255,255,255,.5)}
+.f-pay{display:flex;gap:9px;flex-wrap:wrap}
+.f-pay span{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;border:1.5px solid var(--line-dark);border-radius:999px;padding:6px 12px;color:rgba(255,255,255,.68)}
+.f-pay svg{width:13px;height:13px;color:var(--accent)}
+
+/* ============ FAB DOCK ============ */
+.fab-dock{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:90;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid var(--line);border-radius:999px;padding:9px 11px;box-shadow:var(--sh-3);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s}
+body.hero-on .fab-dock{transform:translate(-50%,140%);opacity:0;pointer-events:none}
+.fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:var(--primary);border:1.5px solid var(--line);background:#fff;transition:.25s;position:relative}
+.fab:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+.fab svg{width:20px;height:20px}
+.fab-main{width:auto;border-radius:999px;padding:0 22px;height:52px;background:var(--grad-accent);color:var(--primary-3);font-weight:900;font-size:.9rem;display:inline-flex;align-items:center;gap:9px;box-shadow:var(--glow);border:0}
+.fab-main:hover{transform:translateY(-4px);background:var(--grad-accent);color:var(--primary-3)}
+.fab-main svg{width:19px;height:19px}
+.fab .fab-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary-3);color:#fff;font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.fab:hover .fab-tip{opacity:1}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;right:20px;bottom:96px;z-index:120;background:var(--primary-3);color:#fff;border:1.5px solid var(--line-dark);border-radius:16px;padding:15px 19px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh-3);max-width:340px;transform:translateY(24px);opacity:0;pointer-events:none;transition:.35s}
+.toast.show{transform:none;opacity:1}
+.toast .t-ico{width:38px;height:38px;flex:none;border-radius:11px;background:var(--grad-accent);display:grid;place-items:center;color:var(--primary-3)}
+.toast .t-ico svg{width:19px;height:19px}
+.toast b{display:block;font-size:.88rem}
+.toast small{display:block;font-size:.78rem;color:rgba(255,255,255,.65)}
+
+/* ============ REVEAL FX ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media(max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .hero-visual{max-width:560px;margin-inline:auto;width:100%}
+  .b8-grid{grid-template-columns:1fr 1fr}
+  .b8-feat{grid-column:span 2;grid-row:span 1}
+  .moc-grid,.about-grid{grid-template-columns:1fr;gap:46px}
+  .moc-visual,.about-visual{max-width:540px;margin-inline:auto;width:100%}
+  .est-grid,.rev-grid,.contact-grid,.qs-grid{grid-template-columns:1fr}
+  .pack-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+  .pack-pop{order:-1}
+  .cmt-none{display:none}
+  .map-card{grid-template-columns:1fr}
+  
+  .f-grid{grid-template-columns:1fr 1fr}
+  .head-search{display:none}
+}
+
+/* ============ MOBILE ≤680px ============ */
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:92px}
+  .section{padding:52px 0}
+  .h2{font-size:1.42rem;margin:10px 0 10px}
+  .sec-head{margin-bottom:28px}
+  .sec-sub{font-size:.92rem}
+  .btn{white-space:normal;min-height:40px}
+  /* header 2 hàng */
+  .header .wrap{flex-wrap:wrap;padding:10px 0;row-gap:10px;min-height:0}
+  .nav,.head-cta,.head-search{display:none}
+  .logo{order:1}
+  .m-head-row{order:2;display:flex;width:100%;gap:10px;align-items:center}
+  .m-search{position:relative;flex:1;min-width:0}
+  .m-search input{width:100%;border:1.6px solid var(--line);border-radius:999px;padding:11px 14px 11px 40px;font-size:.88rem;background:var(--texture)}
+  .m-search input:focus{outline:none;border-color:var(--accent);background:#fff}
+  .m-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--soft)}
+  .m-call{width:46px;height:46px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;color:var(--primary-3);box-shadow:var(--glow)}
+  .m-call svg{width:20px;height:20px}
+  .topbar .tb-left{display:none}
+  .topbar .wrap{justify-content:center}
+  /* hero */
+  .hero{padding:34px 0 58px}
+  .hero-deco{display:none}
+  .hero h1{font-size:1.62rem;margin:16px 0 12px}
+  .hero h1 .hl::after{height:26%}
+  .hero h1 .hl svg{display:none}
+  .hero-sub{font-size:.94rem;margin-bottom:20px}
+  .hero-cta{flex-direction:column;gap:11px}
+  .hero-cta .btn{width:100%}
+  .trust-chips{display:none}
+  .hero-visual{display:flex;flex-direction:column;gap:18px}
+  .cover-frame{transform:none;border-width:5px;border-radius:18px}
+  .cover-frame img{aspect-ratio:4/3}
+  .price-tag{top:12px;right:12px;font-size:.76rem;padding:9px 13px}
+  .stats-bar{width:100%;justify-content:space-between}
+  .stats-bar .st{flex:1;padding:10px 8px;min-width:0}
+  .stats-bar b{font-size:1rem}
+  .stats-bar small{font-size:.62rem}
+  .tape-wrap{padding:8px 0;margin-top:44px}
+  .tape{padding:10px 0}
+  .tape-track span{font-size:.74rem;letter-spacing:.08em;gap:26px}
+  .tape-track{gap:26px}
+  /* khoi-8 1 cot */
+  .b8-grid{grid-template-columns:1fr;gap:16px}
+  .b8-feat{grid-column:span 1;grid-row:span 1;display:flex;flex-direction:column}
+  .b8-feat .b8-body{padding:18px}
+  .b8-feat h3{font-size:1.22rem}
+  .b8-body{padding:16px}
+  /* 3 moc */
+  .moc-item{flex-direction:column;gap:12px;padding:18px}
+  .moc-when{align-self:flex-start}
+  /* timeline 1 cot, line trai */
+  .tl::before{left:30px;transform:none}
+  .tl-step{grid-template-columns:60px 1fr;margin-bottom:20px}
+  .tl-node{grid-column:1;width:52px;height:52px;font-size:1.05rem;align-self:flex-start}
+  .tl-step:nth-child(odd) .tl-card,.tl-step:nth-child(even) .tl-card{grid-column:2;grid-row:auto;justify-self:start;text-align:left}
+  .tl-step:nth-child(odd) .tl-meta{float:none}
+  .tl-card{padding:18px}
+  .tl-card h3{font-size:1rem}
+  /* pricing + estimator + form */
+  .compare th,.compare td{padding:11px 12px;font-size:.8rem}
+  .est-form,.est-res,.quote-form{padding:22px}
+  .glass-dark{padding:22px}
+  .field.row2{grid-template-columns:1fr}
+  .er-grid{grid-template-columns:1fr}
+  .er-price b{font-size:1.45rem}
+  .qs-grid{padding:28px 20px;gap:26px}
+  .qs-form{grid-template-columns:1fr}
+  /* about + reviews */
+  .about-strong{grid-template-columns:1fr}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .about-badge{top:-14px;right:0;padding:11px 15px}
+  .about-badge b{font-size:1.05rem}
+  .rev-metric,.rev-slider{padding:22px}
+  .rev-big{font-size:2.5rem}
+  .rev-item p{font-size:.92rem}
+  /* contact + faq */
+  .c-hotline b{font-size:1.3rem}
+  .qf-grid{grid-template-columns:1fr}
+  .map-copy{padding:22px}
+  .faq-a-in{padding:0 16px 16px 16px}
+  .faq-q{padding:15px 14px;font-size:.88rem}
+  .faq-q .fq-ico{display:none}
+  /* footer 1 cot + dock */
+  .f-grid{grid-template-columns:1fr;gap:26px;padding:42px 0 30px}
+  .f-bottom{flex-direction:column;text-align:center}
+  .fab-dock{bottom:12px;gap:6px;padding:7px 8px;max-width:96vw}
+  .fab{width:44px;height:44px}
+  .fab-main{padding:0 16px;height:48px;font-size:.82rem;gap:6px}
+  .fab-main span{display:none}
+  .fab-main .fab-mi{display:inline!important}
+  .fab .fab-tip{display:none}
+  .toast{right:12px;left:12px;max-width:none;bottom:86px}
+}
+
+/* NB93-195: hero anh luon dung ti le nguon 4/3 (anh 1448x1086 do PIL), khong crop doc */
+@media(min-width:681px){
+  .cover-frame{z-index:9}
+  .cover-frame img{aspect-ratio:4/3 !important;height:auto !important}
+}
+button:active{transform:scale(.96)}
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+  .faq-chip,.chip,.q-back,.fab,.btn,.b8-go,.b8-see,.rev-dot,.car-jump{min-height:40px!important;min-width:40px!important}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"BoothViệt","telephone":"0901855195","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"BoothViệt nhận thiết kế 3D, thi công gian hàng hội chợ triển lãm trọn gói theo m², lắp đúng giờ mở cửa và tháo gỡ trả mặt bằng sạch. Báo giá trong 30 phút, hotl","url":"http://127.0.0.1:8174/195-thi-cong-gian-hang-booth-vat-pham-trung-bay/"}
+</script>
+</head>
+<body class="hero-on">
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <span class="tb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>T2–T7: <b>8:00 – 18:00</b>&nbsp;· Nhận dự án gấp 24/7 theo lịch hội chợ</span>
+    </div>
+    <div class="tb-right">
+      <span class="tb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>Xưởng 1.200m² — Bình Tân, TP.HCM</span>
+      <a class="tb-hotline" href="tel:0901855195"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Hotline: 0901 855 195</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="BoothViệt — thi công gian hàng hội chợ">
+      <svg viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="11" fill="#132441"/><path d="M9 31 22 9l13 22z" fill="#F08A00"/><path d="M22 9v22M9 31h26" stroke="#132441" stroke-width="2.4"/><path d="M15 31v-7h14v7" fill="#FFC24B" stroke="#132441" stroke-width="1.6"/></svg>
+      <span class="lt">BoothViệt<em>Thi công gian hàng hội chợ</em></span>
+    </a>
+    <nav class="nav" aria-label="Menu chính">
+      <a href="#dich-vu">Hạng mục</a>
+      <a href="#tien-do">Cam kết 3 mốc</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#bang-gia">Gói theo m²</a>
+      <a href="#uoc-tinh">Tính chi phí</a>
+      <a href="#danh-gia">Đánh giá</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <form class="head-search" id="headSearch" role="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="Tìm câu hỏi, hạng mục…" aria-label="Tìm kiếm">
+    </form>
+    <div class="head-cta"><a class="btn btn-acc" href="#lien-he"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Nhận dự án</a></div>
+    <div class="m-head-row">
+      <form class="m-search" id="mSearch" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Tìm hạng mục, câu hỏi…" aria-label="Tìm kiếm">
+      </form>
+      <a class="m-call" href="tel:0901855195" aria-label="Gọi hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-deco">
+    <span class="rule-h"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <span class="cross cr1"></span>
+    <span class="cross cr2"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-pill"><span class="pulse"></span>Lịch sát suất Q4/2026 — còn nhận 4 dự án booth</span>
+      <h1>Gian hàng đẹp là một chuyện. <span class="hl">Đúng lịch hội chợ<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg></span> là chuyện của chúng tôi.</h1>
+      <p class="hero-sub">BoothViệt nhận <b>thiết kế 3D — thi công gian hàng, booth và vật phẩm trưng bày theo m²</b> cho doanh nghiệp đi triển lãm, hội chợ. <b>3D duyệt trước khi xuống xưởng</b>, lắp xong trước giờ mở cửa, tháo gỡ trả mặt bằng sạch.</p>
+      <div class="hero-cta">
+        <a class="btn btn-acc" href="#lien-he"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Nhận dự án — báo giá 30 phút</a>
+        <a class="btn btn-ghost" href="tel:0901855195"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Gọi 0901 855 195</a>
+      </div>
+      <div class="trust-chips">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>420+ booth đã thi công</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>11 năm theo hội chợ</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Thiết kế 3D miễn phí khi thi công</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Trễ hẹn — hoàn 5%/ngày</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="cover-frame rv">
+        <img src="assets/img/cover.webp" alt="Thi công gian hàng, booth và vật phẩm trưng bày — sáng tạo, chuyên nghiệp, trọn gói (poster BoothViệt)" width="1448" height="1086">
+      </div>
+      <span class="price-tag">Từ 2,2 triệu/m²<small>booth hội chợ trọn gói</small></span>
+      <div class="stats-bar">
+        <div class="st"><b><span data-count="420">0</span><i>+</i></b><small>booth đã thi công</small></div>
+        <div class="st"><b><span data-count="98">0</span><i>%</i></b><small>dự án đúng giờ mở cửa</small></div>
+        <div class="st"><b><span data-count="24">0</span><i>h</i></b><small>tháo gỡ trả mặt bằng</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tape marquee -->
+  <div class="tape-wrap">
+    <div class="tape"><div class="tape-track">
+      <span>Thiết kế 3D duyệt trước khi thi công <i>✦</i> Lắp xong trước giờ mở cửa 12 giờ <i>✦</i> Tháo gỡ trả mặt bằng sạch <i>✦</i> Báo giá theo m² minh bạch <i>✦</i> Trễ hẹn hoàn 5% mỗi ngày <i>✦</i> Kỹ thuật trực sự kiện 24/7 <i>✦</i></span>
+      <span>Thiết kế 3D duyệt trước khi thi công <i>✦</i> Lắp xong trước giờ mở cửa 12 giờ <i>✦</i> Tháo gỡ trả mặt bằng sạch <i>✦</i> Báo giá theo m² minh bạch <i>✦</i> Trễ hẹn hoàn 5% mỗi ngày <i>✦</i> Kỹ thuật trực sự kiện 24/7 <i>✦</i></span>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ KHOI-8: 8 HANG MUC ============ -->
+<section class="section sec-white" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Hạng mục thi công</span>
+      <h2 class="h2">8 hạng mục xưởng làm <span class="hl">mỗi tuần</span> cho khách đi triển lãm</h2>
+      <span class="sec-sub">Giá đã gồm thiết kế 3D, vật liệu, vận chuyển, lắp đặt và tháo gỡ. Bấm “Xem ảnh” để xem bản triển khai thật, bấm hạng mục để nhận báo giá theo m² booth của bạn.</span>
+    </div>
+    <div class="b8-grid">
+      <article class="b8-card b8-feat rv" data-svc="Thi công booth triển lãm">
+        <div class="b8-media">
+          <img src="assets/img/p1.webp" alt="Thi công booth triển lãm — booth xanh dương nổi bật giữa sàn triển lãm" width="1448" height="1086">
+          <span class="b8-num">1</span>
+        </div>
+        <div class="b8-body">
+          <span class="b8-flag-inline"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg>Hạng mục chủ lực</span>
+          <h3>Thi công booth triển lãm</h3>
+          <p class="b8-desc">Kết cấu gỗ MFC + hiflex UV + đèn LED theo đúng bản vẽ 3D đã duyệt. Lắp đặt tại SECC, ICE, VECC theo giờ ban tổ chức cấp — nghiệm thu trước khi khách vào cửa.</p>
+          <ul class="b8-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Hoàn thiện trước giờ mở cửa 12 giờ — trễ 1 giờ hoàn 5%</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Giá gồm đủ: 3D + vật liệu + vận chuyển + lắp + tháo dỡ</li>
+          </ul>
+          <div class="b8-foot"><span class="b8-price">Từ 3,2 triệu/m²</span><button class="b8-go" type="button">Nhận báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p1.webp" data-cap="Thi công booth triển lãm — hạng mục chủ lực của BoothViệt" aria-label="Xem ảnh booth triển lãm lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Gian hàng hội chợ" data-d="1">
+        <div class="b8-media"><img src="assets/img/p2.webp" alt="Gian hàng hội chợ tông đỏ cam đông khách tham quan" width="1448" height="1086" loading="lazy"><span class="b8-num">2</span></div>
+        <div class="b8-body">
+          <h3>Gian hàng hội chợ</h3>
+          <p class="b8-desc">Mô hình mở 3 mặt, dễ tiếp khách đi lại — phù hợp hội chợ TMĐT, OCOP, Tết.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 2,4 triệu/m²</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p2.webp" data-cap="Gian hàng hội chợ — mô hình mở 3 mặt" aria-label="Xem ảnh gian hàng hội chợ lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Standee - backdrop sự kiện" data-d="2">
+        <div class="b8-media"><img src="assets/img/p3.webp" alt="Standee và backdrop sự kiện tông tím vàng trước sân khấu" width="1448" height="1086" loading="lazy"><span class="b8-num">3</span></div>
+        <div class="b8-body">
+          <h3>Standee — backdrop sự kiện</h3>
+          <p class="b8-desc">In UV khổ lớn trên hiflex, decal; gia công khung sắt — kèm lắp trong ngày.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 350k/m²</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p3.webp" data-cap="Standee — backdrop sự kiện in UV khổ lớn" aria-label="Xem ảnh standee backdrop lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Kệ trưng bày sản phẩm" data-d="3">
+        <div class="b8-media"><img src="assets/img/p4.webp" alt="Kệ trưng bày sản phẩm tông xanh lục trong showroom" width="1448" height="1086" loading="lazy"><span class="b8-num">4</span></div>
+        <div class="b8-body">
+          <h3>Kệ trưng bày sản phẩm</h3>
+          <p class="b8-desc">Kệ MDF, acrylic đúng size hàng hoá — thiết kế theo số SKU bạn mang đi sự kiện.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 850k/bộ</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p4.webp" data-cap="Kệ trưng bày sản phẩm theo số SKU" aria-label="Xem ảnh kệ trưng bày lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Thiết kế 3D gian hàng" data-d="4">
+        <div class="b8-media"><img src="assets/img/p5.webp" alt="Thiết kế 3D gian hàng trên máy tính của nhà thiết kế" width="1448" height="1086" loading="lazy"><span class="b8-num">5</span></div>
+        <div class="b8-body">
+          <h3>Thiết kế 3D gian hàng</h3>
+          <p class="b8-desc">2 concept kèm phối cảnh quay quanh booth — miễn phí khi thi công trọn gói.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 1,5 triệu/concept</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p5.webp" data-cap="Thiết kế 3D gian hàng — duyệt trước khi thi công" aria-label="Xem ảnh thiết kế 3D lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Thi công booth trong ngày" data-d="5">
+        <div class="b8-media"><img src="assets/img/p6.webp" alt="Đội thợ thi công booth trong ngày với vật tư và thang tại venue" width="1448" height="1086" loading="lazy"><span class="b8-num">6</span></div>
+        <div class="b8-body">
+          <h3>Thi công booth trong ngày</h3>
+          <p class="b8-desc">Đội 6–10 thợ cơ động 24/7 — nhận booth gấp trước giờ mở cửa hội chợ.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 3,9 triệu/m²</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p6.webp" data-cap="Thi công booth trong ngày — đội thợ cơ động" aria-label="Xem ảnh thi công trong ngày lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Vật phẩm trưng bày thương hiệu" data-d="6">
+        <div class="b8-media"><img src="assets/img/p7.webp" alt="Vật phẩm trưng bày thương hiệu tông hồng kem gồm hộp đứng, POSM" width="1448" height="1086" loading="lazy"><span class="b8-num">7</span></div>
+        <div class="b8-body">
+          <h3>Vật phẩm trưng bày thương hiệu</h3>
+          <p class="b8-desc">Bộ POSM đồng bộ nhận diện: quầy thử, hộp đứng, mô hình, hộp đèn.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 250k/sản phẩm</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p7.webp" data-cap="Vật phẩm trưng bày thương hiệu — bộ POSM đồng bộ" aria-label="Xem ảnh vật phẩm trưng bày lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <article class="b8-card rv" data-svc="Tháo dỡ sau sự kiện" data-d="7">
+        <div class="b8-media"><img src="assets/img/p8.webp" alt="Tháo dỡ booth sau sự kiện — thợ đóng thùng vật tư trong kho" width="1448" height="1086" loading="lazy"><span class="b8-num">8</span></div>
+        <div class="b8-body">
+          <h3>Tháo dỡ sau sự kiện</h3>
+          <p class="b8-desc">Tháo gỡ, chở vật tư về xưởng, dọn sạch — ký biên bản trả mặt bằng.</p>
+          <div class="b8-foot"><span class="b8-price">Từ 180k/m²</span><button class="b8-go" type="button">Báo giá<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+        <button class="b8-see" type="button" data-full="assets/img/p8.webp" data-cap="Tháo dỡ sau sự kiện — biên bản trả mặt bằng" aria-label="Xem ảnh tháo dỡ lớn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></button>
+      </article>
+      <div class="b8-tile rv" data-d="8">
+        <b>Cần booth gấp theo lịch hội chợ?</b>
+        <p>Gửi bản vẽ mặt bằng + ngày mở cửa — nhận phương án 3D và báo giá trong 30 phút, kể cả dự án sát ngày.</p>
+        <a class="btn btn-acc" href="#lien-he"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 11 18-8-8 18-2.5-7.5z"/></svg>Nhận dự án ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAC THU: 3 MOC CAM KET ============ -->
+<section class="section sec-dark" id="tien-do">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow on-dark">Dấu ấn BoothViệt — ghi thẳng vào hợp đồng</span>
+      <h2 class="h2">Không chậm một mốc nào: <span class="hl" style="background:none;color:var(--accent-200)">3D — Lắp — Trả mặt bằng</span></h2>
+      <span class="sec-sub">Đi hội chợ, trễ lịch là mất trắng vé cùng khách qua tay. BoothViệt cam kết 3 mốc thời gian bằng tiền — trễ mốc nào hoàn đúng mức ghi dưới đây.</span>
+    </div>
+    <div class="moc-grid">
+      <div class="moc-visual rv">
+        <div class="moc-frame"><img src="assets/img/space.webp" alt="Sàn triển lãm với các gian hàng đã hoàn thiện chờ khách vào cửa" width="1448" height="1086" loading="lazy"></div>
+        <div class="moc-badge"><b>98%</b><small>dự án mở cửa đúng giờ<br>2015–2026 · 420+ booth</small></div>
+      </div>
+      <div class="rv" data-d="1">
+        <div class="moc-list">
+          <div class="moc-item">
+            <span class="moc-when"><small>TRƯỚC SỰ KIỆN</small><b>T−20 ngày</b></span>
+            <span><h3>Chốt thiết kế 3D</h3><p>2 concept theo ngân sách, chỉnh trong 3 vòng, duyệt trên phối cảnh 3D quay quanh booth. Chậm do xưởng — <b>hoàn 2% giá trị gói mỗi ngày</b>.</p></span>
+          </div>
+          <div class="moc-item">
+            <span class="moc-when"><small>TRƯỚC MỞ CỬA</small><b>T−12 giờ</b></span>
+            <span><h3>Booth hoàn thiện — sáng đèn</h3><p>Lắp đặt xong, dọn sạch, nghiệm thu cùng ban tổ chức trước khi khách vào cửa. Trễ 1 giờ do BoothViệt — <b>hoàn 5% giá trị thi công</b>.</p></span>
+          </div>
+          <div class="moc-item">
+            <span class="moc-when"><small>SAU ĐÓNG CỬA</small><b>T+24 giờ</b></span>
+            <span><h3>Tháo gỡ — trả sạch mặt bằng</h3><p>Tháo dỡ, chở hết vật tư, dọn sạch theo quy định venue — <b>ký biên bản trả mặt bằng</b> để bạn nhận lại tiền đặt cọc.</p></span>
+          </div>
+        </div>
+        <div class="slot-row">
+          <span class="sr-label">Lịch sát suất — cập nhật 09/2026</span>
+          <span class="slot-chip">Vietbuild 09/2026 <i>còn 2 slot</i></span>
+          <span class="slot-chip">Vietnam Expo 10/2026 <i>còn 1 slot</i></span>
+          <span class="slot-chip">Foodexpo 11/2026 <i>còn 3 slot</i></span>
+          <span class="slot-chip">VIA Expo 12/2026 <i>còn 2 slot</i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRINH 6 BUOC ============ -->
+<section class="section sec-light" id="quy-trinh" style="background-image:var(--pat-grid)">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Quy trình 6 bước</span>
+      <h2 class="h2">Từ bản vẽ mặt bằng đến <span class="hl">biên bản trả phòng</span></h2>
+      <span class="sec-sub">Bạn biết chính xác từng ngày mình nhận gì — cập nhật hình ảnh thi công hằng ngày qua nhóm Zalo dự án.</span>
+    </div>
+    <div class="tl">
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 01</span>
+          <h3>Nhận brief + bản vẽ mặt bằng</h3>
+          <p>Gửi sơ đồ ô số, diện tích, ngày mở cửa và ngân sách. Xưởng phản hồi phương án dựng + dải giá trong 30 phút, không chờ qua trung gian.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Phản hồi trong 30 phút</span>
+        </div>
+        <span class="tl-node">1</span>
+      </div>
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 02</span>
+          <h3>Thiết kế 3D — duyệt chốt</h3>
+          <p>2 concept theo ngân sách, chỉnh trong 3 vòng. Bạn duyệt trên phối cảnh 3D quay quanh booth kèm bảng vật liệu — chốt rồi mới sản xuất.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>3–5 ngày làm việc</span>
+        </div>
+        <span class="tl-node">2</span>
+      </div>
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 03</span>
+          <h3>Sản xuất tại xưởng 1.200m²</h3>
+          <p>Cắt CNC, dán decal, lắp khung sẵn 80% tại xưởng — đến venue chỉ ráp và hoàn thiện, giảm rủi ro trễ giờ ban tổ chức cấp.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>5–10 ngày trước sự kiện</span>
+        </div>
+        <span class="tl-node">3</span>
+      </div>
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 04</span>
+          <h3>Lắp đặt đúng lịch hội chợ</h3>
+          <p>Đội thi công vào venue theo giờ được cấp, hoàn thành trước giờ mở cửa 12 giờ — nghiệm thu điện, đèn cùng ban tổ chức và bạn.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>16–48 giờ tại venue</span>
+        </div>
+        <span class="tl-node">4</span>
+      </div>
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 05</span>
+          <h3>Kỹ thuật trực suốt sự kiện</h3>
+          <p>Kỹ thuật viên trực 24/7 trong 3–4 ngày triển lãm: đèn cháy, mất điện, phát sinh vật phẩm — xử lý trong 30 phút, không tính phí nhỏ.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Phản hồi trong 30 phút</span>
+        </div>
+        <span class="tl-node">5</span>
+      </div>
+      <div class="tl-step rv">
+        <div class="tl-card">
+          <span class="tl-kicker">Bước 06</span>
+          <h3>Tháo gỡ + trả mặt bằng</h3>
+          <p>Tháo dỡ trong 24 giờ sau khi đóng cửa, chở vật tư về xưởng bảo quản nếu bạn dùng lại hội chợ sau — ký biên bản trả mặt bằng nhận lại cọc.</p>
+          <span class="tl-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Hoàn tất trong 24 giờ</span>
+        </div>
+        <span class="tl-node">6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANG GIA 3 GOI THEO M2 ============ -->
+<section class="section sec-white" id="bang-gia">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Gói thi công theo m²</span>
+      <h2 class="h2">Chọn gói theo <span class="hl">diện tích ô số</span> bạn được cấp</h2>
+      <span class="sec-sub">Giá trọn gói theo m² đã gồm thiết kế 3D, vật liệu, vận chuyển, lắp đặt và tháo dỡ. Xuất hóa đơn VAT đầy đủ.</span>
+    </div>
+    <div class="pack-grid">
+      <article class="pack rv">
+        <span class="pack-tier">Gói 01</span>
+        <h3>Tiêu Chuẩn — booth 9–18m²</h3>
+        <span class="pk-for">Lần đầu đi triển lãm, ngân sách gọn nhưng vẫn cần booth chỉn chu.</span>
+        <div class="pack-price"><b>2,2tr</b><small>/ m² trọn gói</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Thiết kế 3D miễn phí — duyệt trước</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Tường panel MDF + decal dán UV</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Trần hiflex + đèn tuýp LED</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Quầy sảnh chuẩn + thảm trải sàn</li>
+          <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>Khu đàm phán riêng + quầy bar</li>
+          <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>Kỹ thuật trực sự kiện 24/7</li>
+        </ul>
+        <span class="pk-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Lắp tại venue: 16 giờ</span>
+        <a class="btn btn-ghost" href="#lien-he">Nhận báo giá gói Tiêu Chuẩn</a>
+      </article>
+      <article class="pack pack-pop rv" data-d="1">
+        <span class="pack-flag">Chọn nhiều nhất</span>
+        <span class="pack-tier">Gói 02</span>
+        <h3>Đặc Biệt — booth 18–54m²</h3>
+        <span class="pk-for">Doanh nghiệp cần booth dẫn khách, có khu đàm phán chốt đơn tại chỗ.</span>
+        <div class="pack-price"><b>3,4tr</b><small>/ m² trọn gói</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Thiết kế 3D riêng — 2 concept</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Kết cấu gỗ MFC sơn + hiflex UV + LED strip</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Quầy bar + khu đàm phán + kho hàng</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Kệ trưng bày + đèn spot gầm trần</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Kỹ thuật trực sự kiện 24/7</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Tháo gỡ + biên bản trả mặt bằng</li>
+        </ul>
+        <span class="pk-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Lắp tại venue: 24–48 giờ</span>
+        <a class="btn btn-acc" href="#lien-he">Nhận báo giá gói Đặc Biệt</a>
+      </article>
+      <article class="pack rv" data-d="2">
+        <span class="pack-tier">Gói 03</span>
+        <h3>Key Visual — booth 54m²+</h3>
+        <span class="pk-for">Thương hiệu lớn cần booth là điểm chụp hình của cả sàn triển lãm.</span>
+        <div class="pack-price"><b>4,8tr</b><small>/ m² trọn gói</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Concept kiến trúc riêng + mô hình thu nhỏ</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Kết cấu sắt + MFC chống cháy theo quy định venue</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Màn hình LED + hệ âm thanh ánh sáng</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Đạo cụ sản xuất riêng theo sản phẩm</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>1 kỹ sư giám sát riêng + bảo hiểm thi công</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Bảo quản vật tư tái sử dụng hội chợ sau</li>
+        </ul>
+        <span class="pk-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Lắp tại venue: 48–72 giờ</span>
+        <a class="btn btn-dark" href="#lien-he">Nhận báo giá gói Key Visual</a>
+      </article>
+    </div>
+    <div class="compare-card rv">
+      <div class="compare-scroll">
+        <table class="compare">
+          <thead>
+            <tr><th>Nội dung</th><th>Tiêu Chuẩn</th><th class="pk-hl">Đặc Biệt</th><th>Key Visual</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Diện tích phù hợp</td><td><b>9–18m²</b></td><td><b>18–54m²</b></td><td><b>54m²+</b></td></tr>
+            <tr><td>Thiết kế 3D duyệt trước</td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td><td><b>2 concept</b></td><td><b>Concept riêng</b></td></tr>
+            <tr><td>Kết cấu chính</td><td>Panel MDF + decal</td><td><b>MFC sơn + hiflex UV</b></td><td><b>Sắt + MFC chống cháy</b></td></tr>
+            <tr><td>Chiếu sáng</td><td>Đèn tuýp LED</td><td><b>LED strip + spot</b></td><td><b>LED + màn hình + sân khấu nhỏ</b></td></tr>
+            <tr><td>Quầy bar — khu đàm phán</td><td>—</td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td></tr>
+            <tr><td>Kỹ thuật trực sự kiện</td><td>—</td><td><b>24/7</b></td><td><b>24/7 + kỹ sư riêng</b></td></tr>
+            <tr><td>Tháo gỡ + biên bản trả mặt bằng</td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td><td><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></td></tr>
+            <tr><td>Bảo quản tái sử dụng</td><td>—</td><td>—</td><td><b>Kho miễn phí 6 tháng</b></td></tr>
+            <tr><td>Thời gian lắp tại venue</td><td><b>16 giờ</b></td><td><b>24–48 giờ</b></td><td><b>48–72 giờ</b></td></tr>
+            <tr><td>Cam kết trễ hẹn</td><td colspan="3"><b>Trễ 1 giờ so với mốc — hoàn 5% giá trị thi công, ghi trong hợp đồng</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="compare-note">* Giá tham khảo cho booth trong nhà tại TP.HCM/Hà Nội; venue ngoài trời, booth 2 tầng hoặc vật liệu đặc biệt báo giá riêng. Dự án sát ngày (dưới 7 ngày) phụ thu cơ động 15%.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESTIMATOR ============ -->
+<section class="section sec-dark" id="uoc-tinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow on-dark">Tính nhanh chi phí</span>
+      <h2 class="h2">Vài chạm biết <span class="hl" style="background:none;color:var(--accent-200)">ngân sách booth</span> và ngày cần chốt</h2>
+      <span class="sec-sub">Chọn hạng mục và diện tích ô số — hệ thống đưa ra dải giá theo m², thời gian lắp tại venue và mốc chốt 3D. Báo giá chính thức gửi trong 30 phút.</span>
+    </div>
+    <div class="est-grid">
+      <form class="est-form glass-dark rv" id="estForm">
+        <h3>Dự án của bạn là gì?</h3>
+        <span class="est-note">Trả lời 2 mục + 1 tùy chọn là đủ để thấy dải giá.</span>
+        <div class="field">
+          <label>Hạng mục</label>
+          <select id="estWork">
+            <option value="expo" selected>Thi công booth triển lãm trọn gói</option>
+            <option value="cho">Gian hàng hội chợ tiêu chuẩn</option>
+            <option value="fast">Booth gấp — thi công trong ngày</option>
+            <option value="deco">Chỉ vật phẩm trưng bày + standee/backdrop</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Diện tích ô số</label>
+          <select id="estArea">
+            <option value="9">9m² (3×3m)</option>
+            <option value="18" selected>18m² (3×6m)</option>
+            <option value="27">27m² (góc 2 mặt)</option>
+            <option value="36">36m² (6×6m)</option>
+            <option value="54">54m² (đảo giữa)</option>
+            <option value="72">72m²+ (key visual)</option>
+          </select>
+        </div>
+        <label class="est-opt">
+          <input type="checkbox" id="estPosm">
+          <span><b>Thêm vật phẩm trưng bày + kệ hàng</b><small>POSM, kệ MDF/acrylic, standee backdrop (thêm 3,5 – 9 triệu)</small></span>
+        </label>
+        <p class="mini" style="color:rgba(255,255,255,.5)">Dải giá đã gồm thiết kế 3D miễn phí, vận chuyển, lắp đặt và tháo gỡ trả mặt bằng.</p>
+      </form>
+      <div class="est-res rv" data-d="1">
+        <h3>Dải chi phí tham khảo</h3>
+        <span class="er-sub">Cập nhật tức thời theo lựa chọn bên trái.</span>
+        <div class="er-price">
+          <small>Khoảng giá thi công</small>
+          <b><span id="estMin">39.600.000</span> – <i id="estMax">61.200.000</i>đ</b>
+        </div>
+        <div class="er-grid">
+          <div class="er-cell"><small>Lắp tại venue</small><b id="estTime">24–48 giờ</b></div>
+          <div class="er-cell"><small>Cần chốt 3D trước</small><b id="estPre">20 ngày</b></div>
+        </div>
+        <ul class="er-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span id="estDesc">Booth triển lãm 18m²: kết cấu gỗ + hiflex UV + đèn LED, trọn gói lắp và tháo</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Thiết kế 3D miễn phí — duyệt trước khi xuống xưởng</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Trễ mốc hoàn 5%/ngày + biên bản trả mặt bằng</li>
+        </ul>
+        <a class="btn btn-acc" href="#lien-he" id="estCta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Nhận báo giá chính thức trong 30 phút</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIOI THIEU ============ -->
+<section class="section sec-light" id="gioi-thieu">
+  <div class="wrap about-grid">
+    <div class="about-visual rv">
+      <div class="about-frame">
+        <img src="assets/img/intro.webp" alt="Giới thiệu BoothViệt — giải pháp trọn gói từ thiết kế, thi công đến tháo dỡ gian hàng" width="1448" height="1086" loading="lazy">
+      </div>
+      <div class="about-badge"><b>11 năm</b><small>chỉ làm gian hàng hội chợ</small></div>
+    </div>
+    <div class="about-copy rv" data-d="1">
+      <span class="eyebrow">Về xưởng BoothViệt</span>
+      <h2 class="h2">Xưởng của người <span class="hl">đi hội chợ cùng bạn</span></h2>
+      <span class="sec-sub">Khởi đầu 2015 từ một xưởng gỗ 200m² ở Bình Tân, BoothViệt nay là xưởng 1.200m² với 3 đội thi công cơ động. Mỗi mùa triển lãm, chúng tôi đứng sau 40–60 gian hàng tại SECC, ICE, VECC và các trung tâm hội nghị lớn.</span>
+      <div class="about-strong">
+        <div class="as-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span><b>Thiết kế 3D trước, thi công sau</b><small>Chốt trên phối cảnh — không ép giá khi đã dựng</small></span></div>
+        <div class="as-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="9" r="3.4"/><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg><span><b>3 đội thi công cơ động</b><small>Đồng loạt lắp nhiều venue cùng ngày</small></span></div>
+        <div class="as-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 9h18M8 14h3M8 17h6"/></svg><span><b>Lịch hội chợ là kim chỉ nam</b><small>Cập nhật tiến độ hình ảnh mỗi sáng qua Zalo</small></span></div>
+        <div class="as-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/><path d="m15 18 3 2 4-4" transform="translate(-1 -1) scale(.92)"/></svg><span><b>Nói được — làm được</b><small>Trễ mốc hoàn 5%/ngày, ghi thẳng hợp đồng</small></span></div>
+      </div>
+      <div class="about-cta">
+        <a class="btn btn-acc" href="#dich-vu">Xem 8 hạng mục thi công</a>
+        <a class="btn btn-ghost" href="tel:0901855195"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>0901 855 195 — nghe phương án ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE STRIP (form giữa trang) ============ -->
+<section class="section" style="padding-top:20px;background:var(--texture)">
+  <div class="wrap">
+    <div class="quote-strip rv">
+      <span class="qs-ring"></span>
+      <div class="qs-grid">
+        <div class="qs-copy">
+          <h3>Đã có lịch hội chợ? <i>Gửi dự án 60 giây</i> — nhận phương án trong 30 phút</h3>
+          <p>Không cần viết dài. Điền 4 ô bên phải, xưởng gọi lại làm rõ và gửi 3D dự thảo.</p>
+          <div class="qs-points">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Thiết kế 3D miễn phí khi thi công trọn gói</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Báo giá theo m² — không phát sinh ngoài hợp đồng</span>
+          </div>
+        </div>
+        <form class="qs-form" id="qsForm" novalidate>
+          <div class="field"><label for="qsName">Tên của bạn <em>*</em></label><input type="text" id="qsName" placeholder="VD: Minh Anh" autocomplete="name"></div>
+          <div class="field"><label for="qsPhone">Số điện thoại <em>*</em></label><input type="tel" id="qsPhone" placeholder="09xx xxx xxx" autocomplete="tel"></div>
+          <div class="field full"><label for="qsCat">Hạng mục cần làm</label><select id="qsCat"><option>Thi công booth triển lãm</option><option>Gian hàng hội chợ</option><option>Standee — backdrop sự kiện</option><option>Kệ trưng bày sản phẩm</option><option>Thiết kế 3D gian hàng</option><option>Thi công booth trong ngày</option><option>Vật phẩm trưng bày thương hiệu</option><option>Tháo dỡ sau sự kiện</option></select></div>
+          <button class="btn btn-acc" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 11 18-8-8 18-2.5-7.5z"/></svg>Gửi dự án — chờ gọi lại 30 phút</button>
+          <span class="qs-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Thông tin chỉ dùng để gửi phương án — không chia sẻ cho bên thứ ba</span>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section sec-cream2" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Khách nói gì</span>
+      <h2 class="h2">Nhận xét từ <span class="hl">doanh nghiệp đã đi triển lãm</span> cùng BoothViệt</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-metric rv">
+        <span class="rev-big"><i>98%</i></span>
+        <small>dự án mở cửa đúng giờ trong 420+ booth thi công 2015–2026 — con số đối chiếu từ lịch nghiệm thu của ban tổ chức.</small>
+        <div class="rev-mini">
+          <div class="rm"><b>4,9<i>/5</i></b><span>điểm hài lòng sau từng mùa hội chợ</span></div>
+          <div class="rm"><b>68%<i>&nbsp;</i></b><span>khách quay lại thuê booth mùa sau</span></div>
+          <div class="rm"><b>24h<i>&nbsp;</i></b><span>tháo gỡ xong, ký biên bản trả mặt bằng</span></div>
+        </div>
+        <div class="rev-partners">
+          <small>Đồng hành cùng thương hiệu tại các triển lãm</small>
+          <div class="rp-chips">
+            <span>Hoa Sen Cosmetics</span><span>Nắng Vàng Food</span><span>Kỹ Nguyên</span><span>Gốm Gia Phát</span><span>EcoSolar VN</span><span>Thảo Mộc Rừng Xanh</span><span>Long Thành Furniture</span><span>ANZ Agri</span>
+          </div>
+        </div>
+      </div>
+      <div class="rev-slider rv" data-d="1">
+        <span class="rev-quote-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 8c-3 .7-5 3-5 6.5V19h6v-6H8c0-2 1-3.4 3-4zm9 0c-3 .7-5 3-5 6.5V19h6v-6h-3c0-2 1-3.4 3-4z"/></svg></span>
+        <div class="rev-stage" id="revStage">
+          <div class="rev-item on">
+            <p>“<b>Lần đầu booth 36m² của chúng tôi kín khách từ giờ đầu tiên.</b> 3D duyệt 2 vòng, lắp xong 10 giờ tối trước ngày mở cửa — sáng ra cả gian hàng sáng đèn, thơm mùi gỗ mới. Suốt 4 ngày triển lãm không phải gọi kỹ thuật lần nào.”</p>
+            <div class="rev-who"><span class="rev-ava" style="background:var(--accent-100)">TT</span><span><b>Trang Trần</b><small>Trưởng phòng Marketing — Hoa Sen Cosmetics, SECC</small></span><span class="rev-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg></span></div>
+          </div>
+          <div class="rev-item">
+            <p>“Đi Foodexpo là <b>mỗi giờ trễ là mất trắng một lượt khách chốt đơn</b>. Đội BoothViệt vào venue 6 giờ sáng, 4 giờ chiều booth đã chạy thử đèn. Đúng cam kết T−12 giờ ghi trong hợp đồng — mình tin vì họ dám ghi tiền phạt vào giấy.”</p>
+            <div class="rev-who"><span class="rev-ava" style="background:#DCEDE8">QH</span><span><b>Quang Huy</b><small>Giám đốc — Nắng Vàng Food, Foodexpo HCMC</small></span><span class="rev-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg></span></div>
+          </div>
+          <div class="rev-item">
+            <p>“Booth 54m² máy móc công nghiệp, <b>tải trọng và vật liệu chống cháy bị venue kiểm tra gắt</b>. Xưởng chuẩn bị đủ hồ sơ, nghiệm thu một lần qua. Kết thúc sự kiện tháo dỡ trong một đêm, sáng hôm sau ký biên bản trả mặt bằng lấy lại 2.000 USD tiền cọc.”</p>
+            <div class="rev-who"><span class="rev-ava" style="background:#FCEBC9">MT</span><span><b>Minh Trí</b><small>Giám đốc Kinh doanh — Kỹ Nguyên, Vietnam Expo ICE</small></span><span class="rev-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg></span></div>
+          </div>
+          <div class="rev-item">
+            <p>“Gốm Gia Phát đi Vietbuild 3 năm liền, 2 năm đầu thuê bên khác <b>toàn bị phát sinh phí giữa chừng</b>. Chuyển sang BoothViệt, báo giá chốt theo m² từ đầu, 3D thấy gì dựng nấy. Gian hàng năm nay được ban tổ chức mời chụp ảnh làm ấn phẩm truyền thông.”</p>
+            <div class="rev-who"><span class="rev-ava" style="background:#E5DDF5">GP</span><span><b>Gia Phạm</b><small>Founder — Gốm Gia Phát, Vietbuild</small></span><span class="rev-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.2L21 9l-5 4.2 1.6 6.6L12 16.4 6.4 19.8 8 13.2 3 9l6.6-.8z"/></svg></span></div>
+          </div>
+        </div>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT + MAP CARD + FORM ============ -->
+<section class="section sec-dark" id="lien-he">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="rv">
+        <span class="eyebrow on-dark">Liên hệ — nhận dự án</span>
+        <h2 class="h2">Gửi ngày mở cửa hôm nay,<br><span class="hl" style="background:none;color:var(--accent-200)">nhận 3D + báo giá trong 30 phút</span></h2>
+        <a class="c-hotline" href="tel:0901855195">
+          <span class="ch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+          <span><small>Hotline xưởng — gọi là kỹ thuật nghe, không qua tổng đài</small><b>0901 855 195</b></span>
+        </a>
+        <ul class="c-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span><b>Xưởng sản xuất &amp; văn phòng:</b> 55 Đường số 18, P. Bình Hưng Hòa, Q. Bình Tân, TP.HCM — cách VECC 15 phút</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg><span><b>Email:</b> duan@boothviet.vn — đính kèm bản vẽ mặt bằng venue để báo giá nhanh nhất</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M16 8h5V3"/></svg><span><b>Zalo:</b> 0901 855 195 — nhóm dự án riêng, gửi ảnh thi công mỗi sáng</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><b>Giờ làm việc:</b> T2–T7 8:00–18:00 — dự án sát lịch hội chợ nhận 24/7</span></li>
+        </ul>
+      </div>
+      <form class="quote-form rv" data-d="1" id="mainForm" novalidate>
+        <h3>Form nhận dự án booth</h3>
+        <span class="qf-sub">Điền 60 giây — xưởng gọi lại làm rõ trước khi gửi 3D và báo giá chi tiết.</span>
+        <div class="qf-grid">
+          <div class="field"><label for="mfName">Họ tên <em>*</em></label><input type="text" id="mfName" placeholder="VD: Nguyễn Nam" autocomplete="name"></div>
+          <div class="field"><label for="mfPhone">Số điện thoại <em>*</em></label><input type="tel" id="mfPhone" placeholder="09xx xxx xxx" autocomplete="tel"></div>
+          <div class="field"><label for="mfVenue">Hội chợ / địa điểm</label><select id="mfVenue"><option>SECC — Q.7, TP.HCM</option><option>ICE — Bách Khoa, Hà Nội</option><option>VECC — Tân Phú, TP.HCM</option><option>Saigon Exhibition khác</option><option>Khu hội nghị / ngoài trời</option><option>Khác — ghi ở mục nội dung</option></select></div>
+          <div class="field"><label for="mfArea">Diện tích ô số</label><select id="mfArea"><option>9m² (3×3m)</option><option selected>18m² (3×6m)</option><option>27m² (góc 2 mặt)</option><option>36m² (6×6m)</option><option>54m²+ (đảo/key visual)</option><option>Chưa có mặt bằng</option></select></div>
+          <div class="field"><label for="mfDate">Ngày mở cửa dự kiến</label><input type="text" id="mfDate" placeholder="VD: 15/11/2026"></div>
+          <div class="field"><label for="mfSvc">Hạng mục cần làm</label><select id="mfSvc"><option>Thi công booth triển lãm</option><option selected>Gian hàng hội chợ</option><option>Standee — backdrop sự kiện</option><option>Kệ trưng bày sản phẩm</option><option>Thiết kế 3D gian hàng</option><option>Thi công booth trong ngày</option><option>Vật phẩm trưng bày thương hiệu</option><option>Tháo dỡ sau sự kiện</option><option>Trọn gói nhiều hạng mục</option></select></div>
+          <div class="field full"><label for="mfNote">Nội dung thêm (không bắt buộc)</label><textarea id="mfNote" rows="3" placeholder="VD: cần booth 2 mặt tiền, có khu pha chế, ngân sách khoảng 90 triệu…"></textarea></div>
+          <button class="btn btn-acc" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 11 18-8-8 18-2.5-7.5z"/></svg>Nhận 3D + báo giá trong 30 phút</button>
+          <span class="qf-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Thông tin chỉ dùng để soạn phương án — không chia sẻ cho bên thứ ba</span>
+        </div>
+      </form>
+    </div>
+    <div class="map-card rv">
+      <div class="map-copy">
+        <h3>Ghé xưởng xem vật liệu thật trước khi chốt</h3>
+        <p>55 Đường số 18, P. Bình Hưng Hòa, Q. Bình Tân, TP.HCM — xem mẫu MFC, decal, đèn LED và các booth đang sản xuất.</p>
+        <span class="mc-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>T2–T7: 8:00–18:00 · Nhận hẹn ngoài giờ cho khách tỉnh</span>
+        <span class="mc-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>0901 855 195 — gọi trước 30 phút là có người đón tại xưởng</span>
+        <a class="btn btn-acc" href="https://www.google.com/maps/search/?api=1&amp;query=Binh+Hung+Hoa+Binh+Tan+Ho+Chi+Minh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>Chỉ đường đến xưởng</a>
+      </div>
+      <div class="map-plan">
+        <!--NB93-MAP: 10.9285,106.7687-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.9285,106.7687&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section sec-white" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Câu hỏi thường gặp</span>
+      <h2 class="h2">Thắc mắc về <span class="hl">giá m², tiến độ, tháo dỡ</span></h2>
+      <span class="sec-sub">Tìm nhanh bằng ô dưới đây hoặc chạm vào từ khóa. Không thấy câu trả lời? Gọi 0901 855 195.</span>
+    </div>
+    <div class="faq-tools rv">
+      <div class="faq-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="faqInput" placeholder="VD: giá m², trễ hẹn, biên bản…" aria-label="Tìm trong câu hỏi">
+      </div>
+      <div class="faq-chips" id="faqChips">
+        <button class="faq-chip" data-k="m²">Giá theo m²</button>
+        <button class="faq-chip" data-k="3d">Thiết kế 3D</button>
+        <button class="faq-chip" data-k="tháo dỡ">Tháo dỡ</button>
+        <button class="faq-chip" data-k="trễ">Trễ hẹn</button>
+        <button class="faq-chip" data-k="cháy">Vật liệu PCCC</button>
+        <button class="faq-chip" data-k="thanh toán">Thanh toán</button>
+      </div>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">01</span><span class="fq-t">Giá theo m² đã gồm những gì? Có phát sinh sau khi ký không?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Giá trọn gói theo m² gồm: <b>thiết kế 3D, toàn bộ vật liệu kết cấu, điện – đèn, vận chuyển, lắp đặt tại venue và tháo dỡ trả mặt bằng</b>. Mọi hạng mục ngoài (màn hình LED thuê thêm, hàng trưng bày đặc biệt, phụ thu giờ thi công ngoài khung venue) được liệt kê giá riêng ngay từ báo giá — không phát sinh sau khi ký.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">02</span><span class="fq-t">Bao lâu trước ngày hội chợ mở cửa tôi cần chốt dự án?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Lý tưởng nhất là <b>20 ngày trước ngày mở cửa</b> để đủ thời gian 3D – duyệt – sản xuất. Booth tiêu chuẩn chốt được trước <b>10 ngày</b> vẫn làm thoải mái. Dưới 7 ngày vẫn nhận — đó là gói thi công trong ngày với đội cơ động, phụ thu 15% chi phí cơ động và cần bản vẽ mặt bằng ngay.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">03</span><span class="fq-t">Thiết kế 3D có mất phí không? Được chỉnh bao nhiêu vòng?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in"><b>Miễn phí khi bạn thi công trọn gói</b> — 2 concept theo ngân sách, chỉnh trong 3 vòng, duyệt trên phối cảnh 3D quay quanh booth kèm bảng vật liệu. Nếu chỉ cần thiết kế 3D (tự thi công hoặc so sánh giá): từ 1,5 triệu/concept, trừ thẳng vào phí thi công nếu quay lại đặt booth.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">04</span><span class="fq-t">Ai phụ trách tháo dỡ và trả mặt bằng? Có được ký biên bản không?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">BoothViệt phụ trách toàn bộ: tháo gỡ trong <b>24 giờ sau khi đóng cửa</b>, chở hết vật tư về xưởng, dọn sạch theo quy chế venue. Bạn nhận <b>biên bản trả mặt bằng có xác nhận của ban tổ chức</b> — giấy tờ này để nhận lại tiền đặt cọc venue. Với gói Key Visual, vật tư còn dùng được được bảo quản miễn phí 6 tháng cho hội chợ sau.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">05</span><span class="fq-t">Nếu xưởng trễ tiến độ thì sao? Có cam kết bằng tiền?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Có, ghi thẳng trong hợp đồng: chậm mốc chốt 3D — <b>hoàn 2%/ngày</b>; booth chưa hoàn thiện trước giờ mở cửa 12 giờ — <b>hoàn 5% giá trị thi công mỗi giờ trễ</b>. Ngoài ra 98% dự án 2015–2026 mở cửa đúng giờ, bạn có thể yêu cầu tham quan xưởng hoặc nói chuyện trực tiếp khách cũ cùng ngành trước khi ký.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">06</span><span class="fq-t">Vật liệu có đạt yêu cầu phòng cháy chữa cháy của trung tâm triển lãm?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Có. Với các venue yêu cầu nghiêm (SECC, ICE, NCC…), xưởng dùng <b>MFC chống cháy, vải canvas chịu lửa, dây điện đạt chuẩn và mạch bảo vệ riêng từng booth</b>, kèm hồ sơ vật liệu nộp ban tổ chức trước khi thi công. Booth 2 tầng hoặc kết cấu sắt được tính tải trọng và nộp bản vẽ kết cấu để duyệt.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">07</span><span class="fq-t">Trong suốt 3–4 ngày triển lãm, đèn hỏng mất điện thì ai xử lý?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Gói Đặc Biệt và Key Visual có <b>kỹ thuật viên trực 24/7 trong suốt sự kiện</b>: đèn cháy, ổ điện lỏng, tường bong — xử lý trong 30 phút, không tính phí sửa nhỏ. Gói Tiêu Chuẩn hỗ trợ từ xa qua Zalo + kỹ thuật viên có mặt trong 2 giờ. Vật phẩm phát sinh trong sự kiện (thêm kệ, standee) xưởng gia công nhanh trong ngày.</div></div></div>
+      <div class="faq-item rv"><button class="faq-q"><span class="fq-ico">08</span><span class="fq-t">Thanh toán như thế nào? Có xuất hóa đơn VAT không?</span><span class="fq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><div class="faq-a-in">Chia 3 đợt theo mốc: <b>30% chốt 3D — 50% trước khi vào venue lắp — 20% sau khi trả xong mặt bằng</b> (kèm biên bản). Chuyển khoản hoặc VietQR, xuất hóa đơn VAT đầy đủ. Khách doanh nghiệp ký hợp đồng điện tử có điều khoản phạt trễ 2 chiều — bảo vệ cả hai bên.</div></div></div>
+      <p class="faq-empty" id="faqEmpty">Chưa tìm thấy câu hỏi khớp — gọi 0901 855 195 để được trả lời trong 5 phút.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="#top">
+          <svg viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="11" fill="#F08A00"/><path d="M9 31 22 9l13 22z" fill="#FFC24B"/><path d="M22 9v22M9 31h26" stroke="#0C1830" stroke-width="2.4"/><path d="M15 31v-7h14v7" fill="#132441" stroke="#0C1830" stroke-width="1.6"/></svg>
+          <span class="lt">BoothViệt<em>Thi công gian hàng hội chợ</em></span>
+        </a>
+        <p>Thiết kế 3D — thi công gian hàng, booth và vật phẩm trưng bày theo m² — tháo gỡ trả mặt bằng. 420+ booth tại SECC, ICE, VECC từ 2015.</p>
+        <div class="f-social">
+          <a href="#top" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#top" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="6" width="18" height="13" rx="4"/><path d="m10.5 10 4.5 2.8-4.5 2.7z" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#top" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M14 4v9.5a4 4 0 1 1-4-4"/><path d="M14 4c.6 2.6 2.4 4.2 5 4.5"/></svg></a>
+          <a href="tel:0901855195" aria-label="Gọi điện"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Hạng mục</h4>
+        <ul>
+          <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Thi công booth triển lãm</a></li>
+          <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Gian hàng hội chợ</a></li>
+          <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Thiết kế 3D gian hàng</a></li>
+          <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Standee — backdrop</a></li>
+          <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Tháo dỡ sau sự kiện</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="#tien-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Cam kết 3 mốc</a></li>
+          <li><a href="#quy-trinh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Quy trình 6 bước</a></li>
+          <li><a href="#bang-gia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Gói theo m²</a></li>
+          <li><a href="#uoc-tinh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Tính chi phí nhanh</a></li>
+          <li><a href="#faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"/></svg>Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Liên hệ</h4>
+        <div class="f-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>55 Đường số 18, P. Bình Hưng Hòa,<br>Q. Bình Tân, TP.HCM</span></div>
+        <div class="f-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span><b>0901 855 195</b> — Zalo &amp; hotline</span></div>
+        <div class="f-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg><span>duan@boothviet.vn</span></div>
+        <div class="f-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>T2–T7: 8:00–18:00 · Gấp 24/7</span></div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <small>© <span id="year">2026</span> BoothViệt — GPKD 0312xxxxxx · Cam kết tiến độ ghi trong từng hợp đồng thi công.</small>
+      <div class="f-pay">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18"/></svg>Chuyển khoản</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10h8M8 14h8M10 8v8M14 8v8" opacity=".7"/></svg>VietQR</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Hợp đồng điện tử</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 13 11 5h2l6 8-6 8h-2z" opacity=".85"/><circle cx="12" cy="13" r="1.6"/></svg>Hóa đơn VAT</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="fab-dock" id="fabDock">
+  <a class="fab" href="tel:0901855195" aria-label="Gọi hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="fab-tip">Gọi 0901 855 195</span></a>
+  <a class="fab" href="#uoc-tinh" aria-label="Tính chi phí booth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span class="fab-tip">Tính chi phí theo m²</span></a>
+  <a class="fab fab-main" href="#lien-he" aria-label="Nhận dự án"><svg class="fab-mi" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Nhận dự án</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="display:none" class="fab-mi"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  <a class="fab" href="https://zalo.me/0901855195" target="_blank" rel="noopener" aria-label="Chat Zalo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4a8 8 0 0 1 8 8 8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 0 1 12 4z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span class="fab-tip">Chat Zalo</span></a>
+  <button class="fab" id="fabTop" aria-label="Lên đầu trang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5m-6 6 6-6 6 6"/></svg><span class="fab-tip">Lên đầu trang</span></button>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast" role="status">
+  <span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m4 12.5 5 5L20 6.5"/></svg></span>
+  <span><b id="toastTitle">Đã gửi!</b><small id="toastMsg">Xưởng sẽ gọi lại trong 30 phút.</small></span>
+</div>
+
+<!-- Lightbox xem anh hang muc lon — NB93-195 -->
+<div class="b8-lb pfg-lb" id="pfgLb" hidden>
+  <div class="pfg-lb-backdrop" data-lb-close aria-hidden="true"></div>
+  <figure class="pfg-lb-box" role="dialog" aria-modal="true" aria-label="Xem ảnh hạng mục cỡ lớn">
+    <button class="pfg-lb-x" type="button" data-lb-close aria-label="Đóng cửa sổ ảnh">✕</button>
+    <img id="pfgLbImg" src="assets/img/cover.webp" alt="">
+    <figcaption id="pfgLbCap"></figcaption>
+  </figure>
+</div>
+<style>
+/*NB93-195: style lightbox dung chung cho khoi-8*/
+.pfg-lb{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:22px}
+.pfg-lb[hidden]{display:none}
+.pfg-lb-backdrop{position:absolute;inset:0;background:rgba(9,14,32,.92);cursor:zoom-out}
+.pfg-lb-box{position:relative;max-width:min(860px,94vw);display:flex;flex-direction:column;background:var(--primary-3);border:1px solid var(--line-dark);border-radius:var(--rad-m);padding:10px;margin:0;box-shadow:var(--sh-3)}
+.pfg-lb-box img{width:100%;height:auto;max-height:calc(90vh - 96px);object-fit:contain;border-radius:10px;display:block;background:#0B132B}
+.pfg-lb-box figcaption{color:#E7ECF8;font-size:.9rem;font-weight:700;padding:11px 6px 3px}
+.pfg-lb-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:var(--grad-accent);color:var(--primary-3);font-size:17px;font-weight:900;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:var(--glow);z-index:2}
+.pfg-lb-x:hover{filter:brightness(1.07)}
+</style>
+<script>
+/*NB93-195: js chinh — thuan vat ly nghiem 195*/
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+/* ---------- Header scrolled ---------- */
+var header=$('#header');
+addEventListener('scroll',function(){header.classList.toggle('scrolled',scrollY>10)},{passive:true});
+
+/* ---------- Hero visible → hide FAB ---------- */
+var hero=$('#top');
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(en){document.body.classList.toggle('hero-on',en[0].isIntersecting)},{threshold:.18}).observe(hero);
+}else{document.body.classList.remove('hero-on')}
+
+/* ---------- Reveal on scroll ---------- */
+var rvEls=$$('.rv');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var d=parseInt(e.target.getAttribute('data-d')||'0',10);
+        e.target.style.transitionDelay=(d*90)+'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+  rvEls.forEach(function(el){io.observe(el)});
+}else{rvEls.forEach(function(el){el.classList.add('in')})}
+
+/* ---------- Counters ---------- */
+var counters=$$('[data-count]');
+function runCounter(el){
+  var target=parseInt(el.getAttribute('data-count'),10),t0=null,dur=1600;
+  function tick(t){
+    if(!t0)t0=t;
+    var p=Math.min((t-t0)/dur,1),ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*ease).toLocaleString('vi-VN');
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+if('IntersectionObserver' in window){
+  var cio=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){runCounter(e.target);cio.unobserve(e.target)}});
+  },{threshold:.5});
+  counters.forEach(function(el){cio.observe(el)});
+}else{counters.forEach(runCounter)}
+
+/* ---------- Toast ---------- */
+var toast=$('#toast'),toastTitle=$('#toastTitle'),toastMsg=$('#toastMsg'),toastTimer;
+function showToast(t,m){
+  toastTitle.textContent=t;toastMsg.textContent=m;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){toast.classList.remove('show')},4200);
+}
+window.__toast=showToast;
+
+/* ---------- Khoi-8: nut "Bao gia" → prefill form + scroll ---------- */
+var mfSvc=$('#mfSvc');
+$$('.b8-card').forEach(function(card){
+  var go=$('.b8-go',card);
+  if(!go)return;
+  go.addEventListener('click',function(){
+    var v=card.getAttribute('data-svc');
+    if(v&&mfSvc){
+      for(var i=0;i<mfSvc.options.length;i++){if(mfSvc.options[i].text.indexOf(v)>-1||v.indexOf(mfSvc.options[i].text)>-1){mfSvc.selectedIndex=i;break}}
+    }
+    $('#lien-he').scrollIntoView({behavior:'smooth'});
+    showToast('Đã chọn hạng mục','“'+v+'” — điền tên + SĐT để nhận 3D và báo giá trong 30 phút.');
+  });
+});
+
+/* ---------- Khoi-8: lightbox xem anh lon ---------- */
+var lb=$('#pfgLb');
+if(lb){
+  var lbImg=$('#pfgLbImg'),lbCap=$('#pfgLbCap');
+  function openLb(src,t){
+    lbImg.src=src;lbImg.alt=t;lbCap.textContent=t;
+    lb.hidden=false;document.body.style.overflow='hidden';
+  }
+  function closeLb(){
+    lb.hidden=true;lbImg.src='';document.body.style.overflow='';
+  }
+  $$('.b8-see').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      openLb(btn.getAttribute('data-full'),btn.getAttribute('data-cap')||'Ảnh hạng mục');
+    });
+  });
+  lb.addEventListener('click',function(e){
+    if(e.target&&e.target.getAttribute&&e.target.getAttribute('data-lb-close')!==null)closeLb();
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.key==='Escape'||e.key==='Esc')&&!lb.hidden)closeLb();
+  });
+}
+
+/* ---------- Estimator chi phi booth theo m2 ---------- */
+var estWork=$('#estWork'),estArea=$('#estArea'),estPosm=$('#estPosm');
+var estMin=$('#estMin'),estMax=$('#estMax'),estTime=$('#estTime'),estPre=$('#estPre'),estDesc=$('#estDesc');
+var EST={
+  expo:{lo:2.8,hi:4.5,t:'24–48 giờ',pre:'20 ngày',d:function(a){return 'Booth triển lãm '+a+'m²: kết cấu gỗ + hiflex UV + đèn LED, trọn gói lắp và tháo'}},
+  cho:{lo:2.2,hi:3.4,t:'16–24 giờ',pre:'15 ngày',d:function(a){return 'Gian hàng hội chợ '+a+'m²: mô hình mở 3 mặt, quầy sảnh + decal UV'}},
+  fast:{lo:3.6,hi:5.2,t:'8–12 giờ',pre:'5–7 ngày',d:function(a){return 'Booth gấp '+a+'m²: đội cơ động thi công trong ngày, phụ thu 15% đã gồm'}},
+  deco:{lo:0,hi:0,t:'4–8 giờ',pre:'7 ngày',d:function(a){return 'Bộ vật phẩm trưng bày + standee/backdrop cho '+a+'m² gian hàng'}}
+};
+function fmtVND(x){return Math.round(x*1e6).toLocaleString('vi-VN')}
+function calcEst(){
+  var w=EST[estWork.value],a=parseInt(estArea.value,10);
+  var lo,hi;
+  if(w.lo===0){lo=4;hi=15}
+  else{lo=w.lo*a;hi=w.hi*a}
+  if(estPosm.checked){lo+=3.5;hi+=9}
+  estMin.textContent=fmtVND(lo);
+  estMax.textContent=fmtVND(hi);
+  estTime.textContent=w.t;
+  estPre.textContent=w.pre;
+  estDesc.textContent=w.d(a)+(estPosm.checked?' + bộ POSM, kệ trưng bày':'');
+}
+estWork.addEventListener('change',calcEst);
+estArea.addEventListener('change',calcEst);
+estPosm.addEventListener('change',calcEst);
+calcEst();
+
+/* ---------- Reviews slider ---------- */
+var revItems=$$('.rev-item'),revDotsBox=$('#revDots');
+if(revItems.length){
+  revItems.forEach(function(_,i){
+    var b=document.createElement('button');
+    b.className='rev-dot'+(i===0?' on':'');
+    b.setAttribute('aria-label','Xem đánh giá '+(i+1));
+    b.addEventListener('click',function(){showRev(i)});
+    revDotsBox.appendChild(b);
+  });
+  var revIdx=0,revTimer=setInterval(function(){showRev((revIdx+1)%revItems.length)},6500);
+  function showRev(i){
+    revIdx=i;
+    revItems.forEach(function(it,j){it.classList.toggle('on',j===i)});
+    $$('.rev-dot',revDotsBox).forEach(function(d,j){d.classList.toggle('on',j===i)});
+  }
+  revDotsBox.addEventListener('click',function(){clearInterval(revTimer)});
+}
+
+/* ---------- FAQ accordion + search + chips ---------- */
+var faqItems=$$('.faq-item'),faqInput=$('#faqInput'),faqChips=$('#faqChips'),faqEmpty=$('#faqEmpty');
+function toggleFaq(item,open){
+  var a=$('.faq-a',item),want=open===undefined?!item.classList.contains('open'):open;
+  faqItems.forEach(function(o){if(o!==item){o.classList.remove('open');$('.faq-a',o).style.maxHeight='0px'}});
+  item.classList.toggle('open',want);
+  a.style.maxHeight=want?($('.faq-a-in',a).scrollHeight+40)+'px':'0px';
+}
+faqItems.forEach(function(item){
+  $('.faq-q',item).addEventListener('click',function(){toggleFaq(item)});
+});
+function filterFaq(kw){
+  kw=(kw||'').trim().toLowerCase();var n=0;
+  faqItems.forEach(function(item){
+    var hit=!kw||item.textContent.toLowerCase().indexOf(kw)>-1;
+    item.style.display=hit?'':'none';if(hit)n++;
+  });
+  faqEmpty.style.display=n?'none':'block';
+}
+faqInput.addEventListener('input',function(){filterFaq(faqInput.value);
+  $$('.faq-chip',faqChips).forEach(function(c){c.classList.remove('on')});
+});
+$$('.faq-chip',faqChips).forEach(function(chip){
+  chip.addEventListener('click',function(){
+    var on=chip.classList.contains('on');
+    $$('.faq-chip',faqChips).forEach(function(c){c.classList.remove('on')});
+    if(on){faqInput.value='';filterFaq('')}
+    else{chip.classList.add('on');faqInput.value=chip.getAttribute('data-k');filterFaq(chip.getAttribute('data-k'))}
+  });
+});
+
+/* ---------- Header/mobile search → FAQ ---------- */
+function jumpSearch(sel){
+  var form=$(sel);
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var q=form.querySelector('input').value;
+    $('#faq').scrollIntoView({behavior:'smooth'});
+    faqInput.value=q;filterFaq(q);
+    showToast('Đã tìm trong Hỏi đáp',q?'Hiển thị câu hỏi khớp từ khóa “'+q+'”.':'Bạn có thể chạm chip từ khóa để lọc nhanh.');
+  });
+}
+jumpSearch('#headSearch');jumpSearch('#mSearch');
+
+/* ---------- Forms: tu kiem trong → toast (novalidate) ---------- */
+function bindForm(formId,okTitle,okMsg){
+  var f=$(formId);
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=f.querySelector('input[type="text"],input:not([type])');
+    var phone=f.querySelector('input[type="tel"]');
+    if(name&&!name.value.trim()){showToast('Thiếu tên của bạn','Điền tên để xưởng gọi đúng người nhé.');if(name.focus)name.focus();return}
+    if(phone&&(!phone.value.trim()||!/^[\d+ ][\d+ .]{7,13}$/.test(phone.value.trim()))){showToast('Số điện thoại chưa đúng','Kiểm tra lại SĐT (VD: 0901 855 195) để xưởng gọi lại nhé.');if(phone.focus)phone.focus();return}
+    showToast(okTitle,okMsg);
+    f.reset();
+  });
+}
+bindForm('#qsForm','Dự án đã gửi!','Xưởng gọi lại trong 30 phút giờ hành chính — giữ điện thoại nhé.');
+bindForm('#mainForm','Dự án đã ghi nhận!','Kỹ thuật phụ trách gọi lại làm rõ + gửi 3D dự thảo trong 30 phút.');
+
+/* ---------- FAB top ---------- */
+$('#fabTop').addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+
+/* ---------- Year ---------- */
+$('#year').textContent=new Date().getFullYear();
+})();
+</script>
+<script>
+/* BULKFIX4-FAILSAFE: element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+
+<!-- BULKFIX3-CHAT: widget chat truc tiep — NGHE-14-BOTFIX: da bo bot mau, chat that do C3 bridge dieu hanh — NB93-195 -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand"></span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/* BULKFIX3-CHAT: widget chat truc tiep */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(31,122,80,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1F7A50,#145238);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F7F5F0}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-bottom-left-radius:4px;color:#1B2A3A}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(31,122,80,.4);color:#1F7A50;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.pkc-chip:hover{background:#E8F5EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(14,42,71,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2F9E6E;box-shadow:0 0 0 3px rgba(47,158,110,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style><script>
+/*NB93-195: chat bot theo nghe thi cong booth*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+
+<script>/*P0-DOCKHIDE: dock tu an khi cuon xuong — khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script></body>
+</html>

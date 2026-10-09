@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đồ Chơi Cầu Vồng — Cửa hàng đồ chơi trẻ em | Chọn niềm vui, mở trí tưởng tượng</title>
+<meta name="description" content="Đồ Chơi Cầu Vồng — đồ chơi lắp ráp, búp bê, xe điều khiển, STEM, đồ chơi gỗ, thú bông, board game. Chọn quà đúng tuổi 0–12, gói quà + thiệp miễn phí, giao trong 2 giờ.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ToyStore","name":"Đồ Chơi Cầu Vồng","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"12 Đường Cầu Vồng, P. Tuổi Thơ","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.8162,"longitude":106.7093},"openingHours":"Mo-Su 08:00-21:30","priceRange":"99.000đ-299.000đ"}
+</script>
+<style>
+/*NB110-370 — BẢNG ĐỒ CHƠI (pattern #2 biến thể: nền pastel/vàng/cam/trắng, chữ viết tay, kẹp giấy hình bông/váy)*/
+:root{
+  --teal:#1F8A8D; --teal-2:#157477; --teal-3:#0E5659;
+  --coral:#E8503A; --coral-2:#C43B28;
+  --sun:#FFC93C; --sun-2:#F0A81C;
+  --pink:#F9C9D4; --mint:#CDEDE4; --sky:#CBE7F4;
+  --bg:#FFF7EA; --paper:#FFFFFF; --ink:#3B2B23; --mut:#8A7264;
+  --line:#F1DFC6; --ok:#2F9E6E; --bad:#D64545;
+  --sh:0 10px 26px rgba(120,80,30,.10); --r:16px;
+  --hand:'Comic Sans MS','Chalkboard SE','Segoe Print','Comic Neue',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,.hand{font-family:var(--hand);line-height:1.3}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:800}
+.kicker::before,.kicker::after{content:"";width:24px;height:2px;border-radius:2px;background:var(--sun)}
+.sec-head h2{font-size:clamp(25px,4vw,36px);margin:8px 0 10px;color:var(--teal-3)}
+.sec-head p{color:var(--mut)}
+/*NB110-370 — mái hiên răng lược: thiết bị hình ảnh riêng của nghề, lặp ≥3 khối (hero / bảng đồ chơi / combo / footer)*/
+.awn{height:34px;background:repeating-linear-gradient(90deg,var(--coral) 0 36px,#FFF3DA 36px 48px,var(--teal) 48px 84px,#FFF3DA 84px 96px,var(--sun) 96px 132px,#FFF3DA 132px 144px)}
+.awn::after{content:"";display:block;height:15px;background:inherit;-webkit-mask:radial-gradient(circle 18px at 18px 0,#000 17px,transparent 18px);-webkit-mask-size:36px 18px;-webkit-mask-repeat:repeat-x;mask:radial-gradient(circle 18px at 18px 0,#000 17px,transparent 18px);mask-size:36px 18px;mask-repeat:repeat-x}
+.confetti{background-image:radial-gradient(circle 3px at 12% 22%,rgba(255,201,60,.5) 98%,transparent),radial-gradient(circle 2.5px at 34% 68%,rgba(232,80,58,.30) 98%,transparent),radial-gradient(circle 3px at 58% 18%,rgba(31,138,141,.30) 98%,transparent),radial-gradient(circle 2.5px at 78% 62%,rgba(249,201,212,.9) 98%,transparent),radial-gradient(circle 3px at 92% 30%,rgba(255,201,60,.45) 98%,transparent),radial-gradient(circle 2.5px at 22% 88%,rgba(31,138,141,.25) 98%,transparent)}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(255,247,234,.95);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 18px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:14px 14px 14px 4px;background:var(--coral);color:#FFF3DA;display:grid;place-items:center;font-size:22px;flex:none;box-shadow:0 3px 0 var(--sun)}
+.logo b{font-family:var(--hand);font-size:17.5px;color:var(--teal-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:400;letter-spacing:.3px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:10px;font-size:13.5px;font-weight:700;color:var(--teal-2)}
+nav.main a:hover{background:var(--mint)}
+.srch{position:relative}
+.srch input{width:200px;padding:10px 34px 10px 12px;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:13.5px;color:var(--ink)}
+.srch input:focus{outline:none;border-color:var(--teal)}
+.srch .s-ic{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:14px;color:var(--mut);pointer-events:none}
+.s-pop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border:2px solid var(--line);border-radius:12px;box-shadow:var(--sh);overflow:hidden;display:none;z-index:70}
+.s-pop.open{display:block}
+.s-pop button{display:flex;width:100%;text-align:left;gap:8px;align-items:center;padding:9px 12px;border:0;background:none;font-size:13px}
+.s-pop button:hover{background:var(--mint)}
+.s-pop button b{color:var(--coral);font-size:11.5px;margin-left:auto;white-space:nowrap}
+.hd-right{display:flex;align-items:center;gap:8px}
+.call{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--line);background:#fff;border-radius:12px;padding:9px 13px;font-weight:800;font-size:13px;color:var(--teal-3);min-height:42px;white-space:nowrap}
+/*NB110-370 — FAB giỏ SVG xếp trên chat*/
+.cart-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--coral);color:#FFF3DA;display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(196,59,40,.38);transition:opacity .25s,transform .25s}
+.cart-fab:hover{background:var(--teal);transform:translateY(-2px)}
+.cart-fab .pkc-dot{position:absolute;top:2px;right:2px}
+.cart-fab[hidden]{display:none}
+body.chat-open .cart-fab{opacity:0;pointer-events:none}
+#cartN{position:absolute;top:-5px;right:-5px;background:var(--sun);color:var(--ink);border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:11.5px;padding:0 6px;font-weight:800;border:2px solid #fff}
+#cartN[hidden]{display:none}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(180deg,#FFF1D6 0%,var(--bg) 88%);border-bottom:2px dashed var(--line)}
+.hero-g{display:grid;grid-template-columns:1.04fr .96fr;gap:40px;align-items:center;padding:46px 18px 54px}
+.hero .kicker{margin-bottom:12px}
+.hero h1{font-size:clamp(29px,4.6vw,44px);color:var(--teal-3);margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--coral);background:linear-gradient(180deg,transparent 62%,var(--sun) 62%,var(--sun) 92%,transparent 92%);padding:0 4px}
+.hero p.lead{color:#6E5647;font-size:15.5px;max-width:480px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-a{background:var(--coral);color:#fff;box-shadow:0 6px 0 var(--coral-2)}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--coral-2)}
+.btn-g{background:#fff;color:var(--teal-3);border:2px solid var(--teal);box-shadow:0 4px 0 var(--teal)}
+.btn-g:hover{transform:translateY(-2px)}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap}
+.hero-stats div b{font-family:var(--hand);font-size:21px;color:var(--coral);display:block}
+.hero-stats div span{font-size:12.5px;color:var(--mut)}
+/*NB110-370 — poster nguyên khung trong khung "cửa sổ tiệm" nghiêng nhẹ + kẹp giấy hình bông*/
+.hero-pic{position:relative}
+.frame{background:#fff;border:3px solid var(--teal);border-radius:20px;padding:12px 12px 14px;box-shadow:var(--sh);transform:rotate(-1.3deg);position:relative}
+.frame img{border-radius:12px;width:100%}
+.frame .clip{position:absolute;width:44px;height:66px;top:-30px;left:38px;z-index:3;filter:drop-shadow(0 3px 3px rgba(59,43,35,.25))}
+.stk{position:absolute;display:grid;place-items:center;border-radius:99px;font-family:var(--hand);text-align:center;z-index:3}
+.stk-a{width:92px;height:92px;right:-16px;top:-24px;background:var(--sun);color:var(--ink);font-size:12.5px;font-weight:800;transform:rotate(8deg);box-shadow:0 5px 0 rgba(240,168,28,.9);line-height:1.25;padding:8px}
+.stk-b{width:78px;height:78px;left:-14px;bottom:30px;background:var(--teal);color:#fff;font-size:11.5px;font-weight:800;transform:rotate(-9deg);box-shadow:0 4px 0 var(--teal-3);line-height:1.25;padding:8px}
+.poster-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:99px;padding:8px 15px;font-size:13px;font-weight:700;color:var(--teal-3)}
+.pchip i{font-style:normal;background:var(--mint);border-radius:99px;width:26px;height:26px;display:grid;place-items:center;font-size:13px}
+
+/* ===== TIỆN ÍCH ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start}
+.svc:nth-child(3n+1) .ic{background:var(--mint)}
+.svc:nth-child(3n+2) .ic{background:#FFEFC2}
+.svc:nth-child(3n+3) .ic{background:var(--pink)}
+.svc .ic{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;font-size:21px}
+.svc b{display:block;font-size:15px;color:var(--teal-3)}
+.svc span{font-size:13px;color:var(--mut)}
+
+/* ===== KHỐI 8 — BẢNG ĐỒ CHƠI (pattern #2 biến thể: bảng pastel kẹp giấy bông/váy) ===== */
+.board-sec{background:linear-gradient(180deg,var(--bg),#FFF0D2)}
+.board{position:relative;max-width:1080px;margin:0 auto;background:#fff;border:10px solid transparent;border-image:repeating-linear-gradient(135deg,var(--sun) 0 22px,#FFDD8F 22px 44px,var(--coral) 44px 52px,#FFDD8F 60px 82px,var(--teal) 82px 90px,#FFDD8F 98px 120px) 1;border-radius:6px;background-clip:padding-box;padding:26px clamp(14px,3vw,30px) 28px;box-shadow:0 22px 50px rgba(120,80,30,.18)}
+.board::before{content:"";position:absolute;inset:6px;border:2px dashed rgba(31,138,141,.30);border-radius:8px;pointer-events:none}
+.board-head{position:relative;text-align:center;margin-bottom:6px}
+.board-head .tag{display:inline-block;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;color:#fff;background:var(--teal);border-radius:99px;padding:5px 12px;margin-bottom:8px}
+.board-head h2{font-size:clamp(24px,3.6vw,34px);color:var(--coral)}
+.board-head h2 span{color:var(--teal-3)}
+.board-sub{text-align:center;color:var(--mut);font-size:13.5px;margin-bottom:22px}
+/*NB110-370 — lưới 6 cột: 2 thẻ nổi bật chiếm nửa bề rộng (span 3) + 6 thẻ thường span 2 = kín ô tuyệt đối*/
+.bd-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:26px 18px}
+.card{grid-column:span 2;background:#fff;border:2px solid var(--line);border-radius:16px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px) rotate(0deg);box-shadow:0 14px 30px rgba(120,80,30,.16)}
+.card .clip{position:absolute;width:34px;height:52px;top:-22px;left:50%;transform:translateX(-50%) rotate(-3deg);z-index:3;filter:drop-shadow(0 2px 2px rgba(59,43,35,.25))}
+.card:nth-child(odd) .clip{transform:translateX(-50%) rotate(3deg)}
+.card .ph{position:relative;padding:12px 12px 0}
+.card .ph::after{content:"";position:absolute;top:6px;left:14px;width:52px;height:16px;border-radius:3px;transform:rotate(-8deg);opacity:.85}
+.card:nth-child(4n+1) .ph::after{background:var(--mint)}
+.card:nth-child(4n+2) .ph::after{background:var(--pink)}
+.card:nth-child(4n+3) .ph::after{background:var(--sky)}
+.card:nth-child(4n+4) .ph::after{background:#FFE49E}
+.card .ph img{border-radius:11px;width:100%;aspect-ratio:3/2;object-fit:cover}
+.card .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:15.5px;color:var(--teal-3);min-height:42px}
+.card .cat{display:inline-block;align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal-2);background:var(--mint);border-radius:99px;padding:3px 9px}
+/*NB110-370 — dòng giá kiểu bảng/menu: tên … chấm chấm … tem giá tròn*/
+.pri-row{display:flex;align-items:center;gap:8px;margin-top:auto}
+.pri{font-family:var(--hand);font-weight:800;color:var(--coral);font-size:16.5px;white-space:normal}
+.pri.free{color:var(--ok)}
+.pri-row .dots{flex:1;border-bottom:2.5px dotted #E4CBA2;transform:translateY(-4px)}
+.add{border:0;background:var(--coral);color:#fff;border-radius:12px;padding:9px 14px;font-weight:800;font-size:13px;min-height:42px;white-space:normal;text-align:center;box-shadow:0 3px 0 var(--coral-2)}
+.add:hover{background:var(--teal);box-shadow:0 3px 0 var(--teal-3)}
+.add.alt{background:var(--teal);box-shadow:0 3px 0 var(--teal-3)}
+.add.alt:hover{background:var(--coral);box-shadow:0 3px 0 var(--coral-2)}
+/* thẻ nổi bật TO hơn hẳn: nửa bề rộng, ảnh lớn, tem giá to, nghiêng nhẹ */
+.card.feat{grid-column:span 3;border:3px solid var(--sun);transform:rotate(-.8deg);box-shadow:0 16px 34px rgba(240,168,28,.28)}
+.card.feat.r{transform:rotate(.8deg)}
+.card.feat:hover{transform:rotate(0deg) translateY(-5px);box-shadow:0 18px 38px rgba(240,168,28,.34)}
+.card.feat h3{font-size:20px;min-height:0}
+.card.feat .ph img{aspect-ratio:16/9}
+.card.feat .bd{padding:16px 18px 18px}
+.card.feat .pri{font-size:22px}
+.card.feat p{font-size:13.5px;color:var(--mut)}
+.badge{position:absolute;top:-14px;left:16px;z-index:4;background:var(--coral);color:#fff;font-family:var(--hand);font-size:12.5px;font-weight:800;border-radius:99px;padding:6px 14px;letter-spacing:.4px;box-shadow:0 4px 10px rgba(196,59,40,.4);transform:rotate(-2deg)}
+.badge.teal{background:var(--teal);box-shadow:0 4px 10px rgba(21,116,119,.4);transform:rotate(2deg)}
+.board-note{position:relative;text-align:center;font-size:13px;color:var(--mut);margin-top:22px}
+.board-note b{color:var(--coral)}
+
+/* ===== COMBO ===== */
+.combo-sec{background:var(--teal-3);border-radius:28px;position:relative;overflow:hidden;padding:44px clamp(18px,4vw,44px);color:#EAF6F4}
+.combo-sec .awn{position:absolute;top:0;left:0;right:0;opacity:.92}
+.combo-sec .kicker{color:var(--sun)}
+.combo-sec .kicker::before,.combo-sec .kicker::after{background:var(--sun)}
+.combo-sec .sec-head h2{color:#fff}
+.combo-sec .sec-head p{color:#BCE0DC}
+.combo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
+.combo{background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.combo.hot{border:3px solid var(--sun);background:linear-gradient(180deg,#FFF7E2,#fff);transform:rotate(-.6deg)}
+.combo h3{font-size:18px;color:var(--teal-3)}
+.combo ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#5D4834}
+.combo ul li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.combo .pr{display:flex;align-items:baseline;gap:9px;margin-top:auto}
+.combo .pr b{font-size:23px;color:var(--coral);font-family:var(--hand)}
+.combo .pr s{color:var(--mut);font-size:13.5px}
+.combo .add{margin-left:0;width:100%}
+.combo .badge{top:-14px;right:14px;left:auto}
+
+/* ===== dacThu — MÁY CHỌN QUÀ ĐÚNG TUỔI ===== */
+.gift-sec{background:#fff;border:3px dashed var(--teal);border-radius:28px;padding:38px clamp(16px,3.5vw,40px);position:relative}
+.gift-steps{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}
+.gift-pick label{font-family:var(--hand);font-size:13.5px;font-weight:800;color:var(--teal-3);display:block;margin:16px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:9px 16px;font-size:13.5px;font-weight:700;min-height:42px;transition:.15s}
+.chips button:hover{border-color:var(--teal)}
+.chips button.on{background:var(--coral);border-color:var(--coral);color:#fff;box-shadow:0 3px 0 var(--coral-2)}
+.chips button.on.tealc{background:var(--teal);border-color:var(--teal);box-shadow:0 3px 0 var(--teal-3)}
+select#giftBudget{width:100%;padding:11px 12px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);font-size:14px;min-height:46px;font-weight:600}
+select#giftBudget:focus{outline:none;border-color:var(--teal)}
+.gift-note{font-size:12.5px;color:var(--mut);margin-top:14px;background:#FFF6E4;border-radius:12px;padding:10px 13px;border:1.5px dashed #EFD9AE}
+.gift-note b{color:var(--coral)}
+.gift-out{background:linear-gradient(180deg,#FFF6E4,#fff);border:2px solid var(--sun);border-radius:18px;padding:20px;transform:rotate(.4deg)}
+.gift-out h3{font-size:16.5px;color:var(--teal-3);margin-bottom:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.gift-out h3 small{color:var(--coral);font-weight:800;font-size:12.5px;align-self:center}
+.gift-row{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1.5px dashed var(--line);font-size:13.5px}
+.gift-row .n{flex:1;min-width:0}
+.gift-row .q{color:var(--mut);font-size:12.5px;white-space:nowrap}
+.gift-row .m{font-weight:800;white-space:nowrap;color:var(--ink)}
+.gift-row.free .m{color:var(--ok)}
+.gift-row.free .n{color:var(--ok)}
+.gift-total{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 4px;font-size:14px}
+.gift-total b{font-family:var(--hand);font-size:22px;color:var(--coral)}
+.gift-add{width:100%;border:0;background:var(--coral);color:#fff;font-weight:800;border-radius:13px;padding:13px;font-size:14.5px;min-height:48px;margin-top:10px;box-shadow:0 4px 0 var(--coral-2)}
+.gift-add:hover{background:var(--teal);box-shadow:0 4px 0 var(--teal-3)}
+.gift-out .tiny{font-size:11.5px;color:var(--mut);text-align:center;margin-top:9px}
+
+/* ===== VỀ TIỆM — M3 Collage so le (P12) ===== */
+.collage{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}
+.col-imgs{position:relative;padding:22px 6px 10px}
+.col-imgs .big{position:relative;transform:rotate(-1.5deg);border-radius:18px;overflow:hidden;border:6px solid #fff;box-shadow:var(--sh)}
+.col-imgs .big img{width:100%;transition:transform .5s}
+.col-imgs .big:hover img{transform:scale(1.04)}
+.col-imgs .small{position:relative;width:68%;margin:-44px 4px 0 auto;transform:rotate(1.6deg);border-radius:16px;overflow:hidden;border:6px solid #fff;box-shadow:var(--sh);z-index:2}
+.col-imgs .small img{width:100%;transition:transform .5s}
+.col-imgs .small:hover img{transform:scale(1.05)}
+.cap{position:absolute;z-index:3;font-family:var(--hand);font-size:12.5px;font-weight:800;color:#6B4A26;background:#F6E7C8;border:1.5px dashed #D9B87F;border-radius:10px;padding:6px 12px;box-shadow:0 3px 8px rgba(107,74,38,.18);opacity:0;transition:opacity .4s}
+.col-imgs:hover .cap{opacity:1}
+.cap.c1{left:14px;bottom:52%}
+.cap.c2{right:10px;bottom:-14px}
+.col-imgs .pin{position:absolute;width:16px;height:16px;border-radius:99px;background:var(--coral);border:3px solid #fff;box-shadow:0 3px 6px rgba(59,43,35,.3);z-index:4}
+.col-imgs .pin.p1{top:8px;left:50%;margin-left:-8px}
+.col-imgs .pin.p2{top:-8px;right:30%}
+.about-txt h2{font-size:clamp(24px,3.6vw,34px);color:var(--teal-3);margin:8px 0 14px}
+.about-txt p{color:#6E5647;font-size:14.5px;margin-bottom:12px}
+.about-txt .sign{font-family:var(--hand);color:var(--coral);font-size:15px}
+.commit-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
+.commit{background:#fff;border:2px solid var(--line);border-radius:13px;padding:12px 14px;text-align:center}
+.commit b{font-family:var(--hand);display:block;font-size:19px;color:var(--coral)}
+.commit span{font-size:12px;color:var(--mut)}
+
+/* ===== REVIEW ===== */
+.rev-sec{background:linear-gradient(180deg,var(--bg),#FFF0D2)}
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
+.rev:nth-child(odd){transform:rotate(-.5deg)}
+.rev:nth-child(even){transform:rotate(.5deg)}
+.rev .st{color:var(--sun-2);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#5D4834;flex:1}
+.rev b{font-size:13px;color:var(--teal-3)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.ct-card{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:var(--teal-3)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#5D4834}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:12px 12px 12px 4px;background:var(--mint);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--teal-3)}
+.ct-card .tel{font-size:21px;font-weight:800;color:var(--coral);font-family:var(--hand)}
+.ct-card iframe{width:100%;height:230px;border:0;border-radius:14px;flex:1;min-height:230px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:#fff;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--teal-3);min-height:48px}
+.qa>button i{font-style:normal;color:var(--coral);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#5D4834}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{margin-top:46px}
+.ft-in{background:var(--teal-3);color:#BCE0DC;padding-bottom:0}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:30px 18px 22px}
+.ft-g h4{color:var(--sun);font-family:var(--hand);font-size:14px;margin-bottom:10px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#BCE0DC;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--sun)}
+.ft-brand b{font-family:var(--hand);font-size:17px;color:#fff;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.12);padding:12px 0;text-align:center;font-size:11.5px;color:#8FC3BF}
+
+/* ===== CART DRAWER ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(46,26,14,.5);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#cartDrawer{position:fixed;top:0;right:0;width:400px;max-width:96vw;height:100dvh;background:#fff;z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.18)}
+#cartDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:2px solid var(--line)}
+.dr-head h3{font-size:17px;color:var(--teal-3);flex:1}
+.dr-x{border:0;background:var(--mint);width:38px;height:38px;border-radius:11px;font-size:16px;color:var(--teal-3)}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:14px 18px}
+.dr-empty{text-align:center;color:var(--mut);padding:44px 10px;font-size:14px}
+.dr-empty .big{font-size:40px;display:block;margin-bottom:10px}
+.ci{display:flex;gap:11px;padding:11px 0;border-bottom:1.5px dashed var(--line);align-items:center}
+.ci img{width:64px;height:48px;object-fit:cover;border-radius:10px;flex:none}
+.ci .nm{font-size:13px;font-weight:700;color:var(--teal-3);line-height:1.35}
+.ci .pr{font-size:12px;color:var(--coral);font-weight:700}
+.qty{display:flex;align-items:center;gap:7px;margin-left:auto}
+.qty button{width:38px;height:40px;border-radius:10px;border:2px solid var(--line);background:#fff;font-weight:800;color:var(--teal-3);font-size:16px}
+.qty span{min-width:20px;text-align:center;font-weight:800;font-size:13.5px}
+.dr-foot{border-top:2px solid var(--line);padding:14px 18px 18px;background:#FFF9EE;flex-shrink:0;max-height:calc(100dvh - 90px);overflow-y:auto}
+.dr-tot{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px;color:#5D4834}
+.dr-tot.big{font-size:16.5px;font-weight:800;color:var(--teal-3)}
+.dr-tot.big b{color:var(--coral);font-size:20px;font-family:var(--hand)}
+.dr-cta{width:100%;margin-top:12px}
+.dr-form{display:none;flex-direction:column;gap:9px}
+.dr-form.on{display:flex}
+.dr-form label{font-size:12px;font-weight:700;color:var(--teal-3)}
+.dr-form input,.dr-form textarea{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:11px;font-size:14px;font-family:inherit;background:#fff}
+.dr-form input.err{border-color:var(--bad);background:#FFF5F5}
+.dr-form textarea{resize:vertical;min-height:56px}
+.dr-opt{font-size:12px;font-weight:700;color:var(--mut);margin-top:6px}
+.dr-back{border:0;background:none;color:var(--mut);font-size:13px;padding:8px 0;text-align:left;min-height:38px}
+.dr-back:hover{color:var(--coral)}
+
+/* ===== CHAT WIDGET ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--teal);color:#fff;font-size:23px;box-shadow:0 10px 24px rgba(21,116,119,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:#fff;border:2px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(46,26,14,.22);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--coral);color:#FFF3DA}
+.pkc-ava{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.9}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#FFF3DA;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#FFFBF3}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1.5px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--teal-3);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:2px solid var(--line);background:#fff}
+#pkcInput{flex:1;padding:10px 12px;border:2px solid var(--line);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--coral);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--teal-3);color:#FFF7EA;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:var(--sun);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#D7EDEA}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE — MOBILE RIÊNG ===== */
+@media (max-width:980px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:34px 18px}
+  .stk-a{right:-4px}
+  .hero p.lead{max-width:none}
+  .bd-grid{grid-template-columns:repeat(2,1fr)}
+  .card,.card.feat{grid-column:span 1}
+  .gift-steps{grid-template-columns:1fr}
+  .collage{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:repeat(2,1fr)}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .srch input{width:150px}
+  .combo-g{grid-template-columns:1fr 1fr}
+  .combo.hot{transform:none}
+}
+@media (max-width:640px){
+  .sec{padding:40px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .srch{order:3;width:100%}
+  .srch input{width:100%}
+  .call span{display:none}
+  .call{padding:10px 12px}
+  .svc-g{grid-template-columns:1fr}
+  .bd-grid{grid-template-columns:1fr;gap:30px}
+  .card,.card.feat{grid-column:span 1}
+  /*NB110-370 — mobile: thẻ nổi bật THẬT nổi — lên ĐẦU bảng + viền cam + bóng đậm (hợp đồng A)*/
+  .card.feat{order:-1;border:3px solid var(--coral);box-shadow:0 14px 30px rgba(196,59,40,.22);transform:none}
+  .card.feat.r{transform:none}
+  .card h3{min-height:0}
+  .card.feat .ph img{aspect-ratio:3/2}
+  .combo-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  .rev:nth-child(odd),.rev:nth-child(even){transform:none}
+  .col-imgs .small{width:80%;margin-top:-30px}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  .stk-a{width:76px;height:76px;right:-8px;top:-18px;font-size:11px}
+  .stk-b{width:66px;height:66px;left:-8px;font-size:10.5px}
+  #cartDrawer{width:100vw;max-width:100vw}
+  .dr-foot{padding-bottom:60px}
+  .hero h1{font-size:28px}
+  .commit-g{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NB110-370 — bộ icon SVG viết tay: kẹp giấy hình bông / váy, ngôi sao, túi giỏ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="clip-flower" viewBox="0 0 40 66">
+    <path d="M20 16v46" fill="none" stroke="#C43B28" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="20" cy="8" r="6.5" fill="#E8503A"/>
+    <circle cx="12.5" cy="13.5" r="6.5" fill="#F0806C"/>
+    <circle cx="27.5" cy="13.5" r="6.5" fill="#F0806C"/>
+    <circle cx="15" cy="21" r="6.5" fill="#E8503A"/>
+    <circle cx="25" cy="21" r="6.5" fill="#E8503A"/>
+    <circle cx="20" cy="15" r="4" fill="#FFC93C"/>
+  </symbol>
+  <symbol id="clip-dress" viewBox="0 0 40 66">
+    <path d="M20 2v9" fill="none" stroke="#0E5659" stroke-width="3" stroke-linecap="round"/>
+    <path d="M13 13h14l1.5 8-3.5 2 5.5 22c-3 2.4-6.5 3.6-10.5 3.6S12.5 47.4 9.5 45L15 23l-3.5-2Z" fill="#1F8A8D"/>
+    <path d="M13 13h14l-7 7Z" fill="#157477"/>
+    <circle cx="20" cy="30" r="2.2" fill="#FFC93C"/>
+    <circle cx="16" cy="38" r="1.8" fill="#FFC93C"/>
+    <circle cx="24" cy="38" r="1.8" fill="#FFC93C"/>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 24 24">
+    <path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8Z"/>
+  </symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24">
+    <path d="M5.5 8h13l1.1 11a2 2 0 0 1-2 2.2H6.4a2 2 0 0 1-2-2.2Z"/>
+    <path d="M9 10.5V6a3 3 0 0 1 6 0v4.5" fill="none"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark">🧸</span>
+      <span><b>Đồ Chơi Cầu Vồng</b><small>Cửa hàng đồ chơi trẻ em · 0–12 tuổi</small></span>
+    </a>
+    <nav class="main">
+      <a href="#ke-do-choi">Kệ đồ chơi</a>
+      <a href="#combo">Combo quà</a>
+      <a href="#chon-qua">Chọn quà theo tuổi</a>
+      <a href="#ve-tiem">Ghé tiệm</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="srch">
+      <input id="q" type="text" placeholder="Tìm đồ chơi, combo…" autocomplete="off" aria-label="Tìm sản phẩm">
+      <span class="s-ic">🔍</span>
+      <div class="s-pop" id="sPop"></div>
+    </div>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero confetti" id="top">
+  <div class="awn" aria-hidden="true"></div>
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">12 Đường Cầu Vồng · P. Tuổi Thơ</span>
+      <h1>Chọn niềm vui,<br><em>mở trí tưởng tượng</em></h1>
+      <p class="lead">Đồ chơi an toàn cho bé 0–12 tuổi: lắp ráp sáng tạo, búp bê, xe điều khiển, STEM, đồ chơi gỗ, thú bông và board game — kèm gói quà + thiệp viết tay miễn phí cho mỗi món quà sinh nhật.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#ke-do-choi">🛒 Xem bảng đồ chơi hôm nay</a>
+        <a class="btn btn-g" href="#chon-qua">🎁 Chọn quà theo tuổi</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>500+</b><span>món trong tiệm</span></div>
+        <div><b>Miễn phí</b><span>gói quà &amp; thiệp</span></div>
+        <div><b>2 giờ</b><span>giao nội thành</span></div>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="frame">
+        <svg class="clip" aria-hidden="true"><use href="#clip-flower"/></svg>
+        <img src="assets/img/cover.webp" alt="Cửa hàng Đồ Chơi Cầu Vồng — kệ đồ chơi và gia đình bé" width="1408" height="939" fetchpriority="high">
+        <span class="stk stk-a">⭐<br>Gói quà<br>0đ</span>
+        <span class="stk stk-b">An toàn<br>theo tuổi</span>
+      </div>
+      <div class="poster-chips">
+        <a class="pchip" href="#ke-do-choi"><i>🧩</i> Đồ chơi an toàn</a>
+        <a class="pchip" href="#combo"><i>🎁</i> Quà tặng</a>
+        <a class="pchip" href="#chon-qua"><i>🎈</i> Tư vấn theo tuổi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tien-ich">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Tiện ích của tiệm</span>
+      <h2>Mua đồ chơi ở đây, nhẹ cả tay lẫn lòng</h2>
+      <p>Ba việc nhỏ tiệm làm kỹ để bố mẹ chỉ việc trao quà và nhận nụ cười.</p>
+    </div>
+    <div class="svc-g">
+      <div class="svc rv"><div class="ic">🛵</div><div><b>Giao trong 2 giờ nội thành</b><span>Đặt trước 19:00 — quà tới trước bữa tối, kèm túi quà xinh.</span></div></div>
+      <div class="svc rv"><div class="ic">🎀</div><div><b>Gói quà + thiệp miễn phí</b><span>Nơ ruy băng chọn màu, thiệp viết tay theo lời chúc của bạn.</span></div></div>
+      <div class="svc rv"><div class="ic">🛡</div><div><b>An toàn là điều kiện đầu tiên</b><span>Chất liệu chọn lọc, bề mặt mịn, không cạnh sắc — đủ cho bé 0–12 tuổi.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec board-sec" id="ke-do-choi">
+  <div class="wrap">
+    <div class="board rv">
+      <div class="board-head">
+        <span class="tag">Giá niêm yết tại quầy</span>
+        <h2>Bảng đồ chơi <span>hôm nay</span></h2>
+      </div>
+      <p class="board-sub">Chạm là thêm vào giỏ — mỗi món đều kèm gói quà xinh nếu bạn cần tặng.</p>
+      <div class="bd-grid" id="bdGrid"></div>
+      <p class="board-note">Mua tại quầy được thử đồ chơi trước · Đổi trả trong <b>7 ngày</b> nếu còn hộp nguyên tem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="combo">
+  <div class="wrap">
+    <div class="combo-sec rv">
+      <div class="awn" aria-hidden="true"></div>
+      <div class="sec-head" style="padding-top:26px">
+        <span class="kicker">Combo &amp; khuyến mãi</span>
+        <h2>Gộp lại tặng, tiết kiệm hẳn giá</h2>
+        <p>Ba combo được gói sẵn theo dịp — đỡ chọn, lại vui hơn mua lẻ.</p>
+      </div>
+      <div class="combo-g">
+        <div class="combo rv">
+          <h3>🧸 Combo rủ bạn cùng chơi</h3>
+          <ul><li>1 board game gia đình chọn tại quầy</li><li>1 thú bông ôm Easy làm quà kèm</li><li>Gói quà + thiệp viết tay miễn phí</li><li>Đổi board game trong 7 ngày nếu trùng</li></ul>
+          <div class="pr"><b>199.000đ</b><s>239.000đ</s></div>
+          <button class="add" data-combo="0">Thêm combo vào giỏ</button>
+        </div>
+        <div class="combo hot rv">
+          <span class="badge">ĐẶT NHIỀU NHẤT</span>
+          <h3>🎂 Quà sinh nhật trọn gói</h3>
+          <ul><li>1 món chơi chính chọn theo tuổi bé</li><li>Thiệp viết tay theo lời chúc của bạn</li><li>Gói quà nơ ruy băng + dán tên tặng</li><li>Giao tận nơi trong 2 giờ nội thành</li></ul>
+          <div class="pr"><b>299.000đ</b><s>359.000đ</s></div>
+          <button class="add" data-combo="1">Thêm combo vào giỏ</button>
+        </div>
+        <div class="combo rv">
+          <h3>👶 Combo bé khám phá 0–2 tuổi</h3>
+          <ul><li>1 món đồ chơi gỗ vận động tinh</li><li>1 thú bông / đồ chơi cảm giác mềm</li><li>Bề mặt mịn, màu dịu — ngậm an tâm</li><li>Kèm cẩm nang chơi cùng con</li></ul>
+          <div class="pr"><b>169.000đ</b><s>199.000đ</s></div>
+          <button class="add" data-combo="2">Thêm combo vào giỏ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="chon-qua">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Công cụ đặc biệt của tiệm</span>
+      <h2>🎁 Chọn quà đúng tuổi — hết 30 giây</h2>
+      <p>Câu hỏi khó nhất của phụ huynh: "mua gì cho bé X tuổi, ngân sách bao nhiêu?" — chọn 3 cái là tiệm gói sẵn bộ quà, thêm giỏ một nút.</p>
+    </div>
+    <div class="gift-sec rv">
+      <div class="gift-steps">
+        <div class="gift-pick">
+          <label>1 · Bé nhà mình bao nhiêu tuổi?</label>
+          <div class="chips" id="giftAge">
+            <button data-a="0-2" class="tealc">0 – 2 tuổi</button>
+            <button data-a="3-6" class="on tealc">3 – 6 tuổi</button>
+            <button data-a="7-12" class="tealc">7 – 12 tuổi</button>
+          </div>
+          <label>2 · Dịp tặng quà?</label>
+          <div class="chips" id="giftOcc">
+            <button data-o="sinh-nhat" class="on">🎂 Sinh nhật</button>
+            <button data-o="thuong">⭐ Thưởng bé</button>
+            <button data-o="choi-nha">🏡 Đến chơi nhà</button>
+          </div>
+          <label for="giftBudget">3 · Ngân sách của bạn</label>
+          <select id="giftBudget">
+            <option value="u2">Dưới 200.000đ</option>
+            <option value="u35" selected>200.000đ – 350.000đ</option>
+            <option value="u5">350.000đ – 500.000đ</option>
+            <option value="t5">Trên 500.000đ</option>
+          </select>
+          <p class="gift-note">💡 Không biết sở thích của bé? Gọi <b>0034567899</b> — cô bên quầy tư vấn 1 phút, đổi món khác nếu bé đã có rồi (trong 7 ngày).</p>
+        </div>
+        <div class="gift-out">
+          <h3><span id="giftName">Bộ quà sinh nhật · bé 3–6 tuổi</span><small id="giftCount"></small></h3>
+          <div id="giftList"></div>
+          <div class="gift-total"><span>Tạm tính cả bộ quà</span><b id="giftTotal">0đ</b></div>
+          <button class="gift-add" id="giftAdd">🛒 Thêm cả bộ quà vào giỏ</button>
+          <p class="tiny">Gói quà + thiệp luôn miễn phí · Đổi món trong 7 ngày · Giao 2 giờ nội thành</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ve-tiem">
+  <div class="wrap collage">
+    <div class="col-imgs rv">
+      <div class="big">
+        <span class="pin p1"></span>
+        <img src="assets/img/intro.webp" alt="Cô tư vấn chọn món chơi theo độ tuổi cùng bé tại Đồ Chơi Cầu Vồng" width="1536" height="1024" loading="lazy">
+        <span class="cap c1">Góc tư vấn chọn quà theo tuổi 🎈</span>
+      </div>
+      <div class="small">
+        <span class="pin p2"></span>
+        <img src="assets/img/space.webp" alt="Gian giữa tiệm — kệ gỗ, thú bông và cây xanh" width="1408" height="939" loading="lazy">
+        <span class="cap c2">Gian giữa tiệm — kệ gỗ &amp; cây xanh 🌿</span>
+      </div>
+    </div>
+    <div class="about-txt rv">
+      <span class="kicker">Ghé tiệm chơi</span>
+      <h2>Một góc nhỏ Đường Cầu Vồng, mở cửa mỗi ngày</h2>
+      <p>Đồ Chơi Cầu Vồng bắt đầu từ một chiếc kệ đồ chơi gỗ mượn ở góc nhà, nay đã thành tiệm có hơn 500 món cho bé từ 0 đến 12 tuổi. Cái tiệm giữ nguyên từ ngày đầu: mỗi món lên kệ đều phải có một bé thử chơi và cười mới được bán.</p>
+      <p>Chiều cuối tuần, góc giữa tiệm mở bàn thử board game cho cả nhà; mùa sinh nhật cao điểm, các cô gói quà và viết thiệp giúp bố mẹ đến tận tối — miễn phí, kể cả khi bạn chỉ mua một món nhỏ.</p>
+      <div class="commit-g">
+        <div class="commit"><b>500+</b><span>món chọn kỹ theo tuổi</span></div>
+        <div class="commit"><b>0đ</b><span>gói quà &amp; thiệp viết tay</span></div>
+        <div class="commit"><b>7 ngày</b><span>đổi trả còn hộp nguyên tem</span></div>
+        <div class="commit"><b>0–12 tuổi</b><span>tư vấn đúng giai đoạn phát triển</span></div>
+      </div>
+      <p class="sign">— Cô Mai, chủ tiệm đồ chơi —</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev-sec" id="review">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Bố mẹ nói về tiệm</span>
+      <h2>Người mua quà, bé nhận quà đều quay lại</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đặt combo sinh nhật trọn gói cho bạn thân của con — thiệp viết tay làm bé ấy ôm chặt, mẹ bạn nhắn khen suốt."</p><b>Chị Thu Hà</b><span>phụ huynh bé 5 tuổi · P. Tuổi Thơ</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Công cụ chọn quà theo tuổi là cứu tinh: chọn 7–12 tuổi, ngân sách 350k là có ngay bộ STEM, không phải lụi cui research."</p><b>Anh Quốc Bảo</b><span>bố bé Tiên 7 tuổi · Gò Vấp</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đồ chơi gỗ bề mặt mịn, màu dịu — con 1 tuổi ngậm thoải mái. Tiệm tư vấn tránh món có hạt nhỏ rất tận tình."</p><b>Chị Bích Trâm</b><span>mẹ hai con · Bình Thạnh</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Tối thứ 7 cả nhà chơi board game của tiệm, luật dễ tiếp cận. Chấm đủ sao khi mở thêm bàn thử tại quầy ngày thường."</p><b>Anh Đăng Khoa</b><span>khách quen · P. Tuổi Thơ</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏠 Ghé tiệm chơi cùng bé</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>12 Đường Cầu Vồng, P. Tuổi Thơ</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ mở cửa</b><br>08:00 – 21:30 tất cả các ngày trong tuần</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.8162,106.7093&z=16" target="_blank" rel="noopener">🧭 Chỉ đường tới tiệm</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.8162,106.7093 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.8162,106.7093&z=16&output=embed&hl=vi" title="Bản đồ Đồ Chơi Cầu Vồng"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều bố mẹ hay hỏi trước khi mua</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Mua quà cho bé mấy tuổi thì được tư vấn?<i>+</i></button><div class="a">Tiệm chia đồ chơi theo 3 nhóm tuổi 0–2, 3–6 và 7–12. Dùng công cụ "Chọn quà đúng tuổi" ngay trên trang, hoặc gọi 0034567899 — cô bên quầy hỏi 2 câu là gợi ý được món phù hợp giai đoạn phát triển của bé.</div></div>
+      <div class="qa rv"><button>Đồ chơi có an toàn cho bé nhỏ không?<i>+</i></button><div class="a">Món vào kệ đều được chọn theo tiêu chuẩn an toàn đồ chơi: chất liệu không mùi gắt, bề mặt mịn không cạnh sắc, màu bám chắc. Riêng bé dưới 3 tuổi, tiệm mặc định tránh món có hạt nhỏ dễ nuốt và ghi chú độ tuổi ngay trên từng thẻ.</div></div>
+      <div class="qa rv"><button>Gói quà và thiệp có tính phí không?<i>+</i></button><div class="a">Miễn phí cho mọi đơn — kể cả một món nhỏ: gói quà nơ ruy băng (chọn màu theo bé trai/bé gái hoặc trung tính) kèm thiệp viết tay theo lời chúc bạn gửi. Bạn muốn giấy gói chủ đề riêng (khủng long, công chúa, vũ trụ) nhắn trước là tiệm chuẩn bị.</div></div>
+      <div class="qa rv"><button>Giao hàng trong bao lâu?<i>+</i></button><div class="a">Nội thành giao trong 2 giờ kể từ khi xác nhận đơn, đặt trước 19:00 là tới trước bữa tối. Ngoại thành và tỉnh 1–3 ngày theo đơn vị vận chuyển, phí tính đúng bảng niêm yết.</div></div>
+      <div class="qa rv"><button>Bé đã có món đó rồi, đổi được không?<i>+</i></button><div class="a">Đổi trong 7 ngày kể từ khi nhận, món còn hộp nguyên tem — tiệm đổi món khác cùng giá hoặc xuất kho code mua món giá hơn, bạn chỉ trả phần chênh.</div></div>
+      <div class="qa rv"><button>Giá trên bảng đã gồm pin và phụ kiện chưa?<i>+</i></button><div class="a">Giá niêm yết đã gồm VAT và đủ phụ kiện chơi ngay: xe điều khiển kèm pin sạc, bộ STEM kèm dụng cụ thí nghiệm, board game kèm đủ quân bài. Món nào cần thêm pin AA tiệm ghi rõ trên thẻ để bạn không phải đi lùng pin về.</div></div>
+      <div class="qa rv"><button>Lớp học, nhà trẻ mua số lượng lớn có giá riêng?<i>+</i></button><div class="a">Có — từ 20 món trở lên có bảng giá riêng kèm hóa đơn, tiệm gói theo từng bé nếu là quà tặng cuối năm. Gọi hotline để nhận báo giá trong ngày.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="awn" aria-hidden="true"></div>
+  <div class="ft-in">
+    <div class="wrap ft-g">
+      <div class="ft-brand">
+        <b>🧸 Đồ Chơi Cầu Vồng</b>
+        <p>Chọn niềm vui · mở trí tưởng tượng. Cửa hàng đồ chơi trẻ em cho bé 0–12 tuổi tại 12 Đường Cầu Vồng, P. Tuổi Thơ.</p>
+      </div>
+      <div>
+        <h4>Khám phá</h4>
+        <a href="#ke-do-choi">Bảng đồ chơi hôm nay</a>
+        <a href="#combo">Combo quà tặng</a>
+        <a href="#chon-qua">Chọn quà theo tuổi</a>
+        <a href="#faq">Hỏi &amp; đáp</a>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <p>📍 12 Đường Cầu Vồng, P. Tuổi Thơ</p>
+        <p>📞 <a href="tel:0034567899">0034567899</a></p>
+        <p>🕰 08:00 – 21:30 hằng ngày</p>
+      </div>
+    </div>
+    <div class="ft-bot">© 2026 Đồ Chơi Cầu Vồng · Giá niêm yết tại quầy, có thể điều chỉnh theo đợt nhập hàng</div>
+  </div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="cartDrawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <h3>🛒 Giỏ quà của bạn</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng giỏ hàng">✕</button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="dr-tot"><span>Số món</span><span id="drDisc">0 món</span></div>
+    <div class="dr-tot big"><span>Tạm tính</span><b id="drTotal">0đ</b></div>
+    <button class="btn btn-a dr-cta" id="checkoutBtn">Tiến hành đặt hàng</button>
+    <div class="dr-form" id="drForm">
+      <button class="dr-back" id="drBack">← Quay lại xem giỏ</button>
+      <label for="fName">Họ tên *</label>
+      <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Bích">
+      <label for="fPhone">Số điện thoại *</label>
+      <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
+      <!--NB110-370 — nút Gửi đứng TRÊN các ô tuỳ chọn: widget gợi ý địa chỉ không đẩy nút mất khỏi ngón tay-->
+      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>📩 Gửi đơn cho tiệm</button>
+      <p class="dr-opt">📝 Địa chỉ giúp tiệm giao quà đúng hẹn — ghi chú thêm thì tuỳ bạn</p>
+      <label for="fAddr">Địa chỉ nhận hàng *</label>
+      <input id="fAddr" data-nghe-order="address" type="text" placeholder="Số nhà, đường, quận/huyện">
+      <label for="fNote">Ghi chú (tuổi bé, màu nơ, lời chúc thiệp…)</label>
+      <textarea id="fNote" data-nghe-order="note" placeholder="VD: bé 4 tuổi thích khủng long, thiệp chúc sinh nhật bạn Bông"></textarea>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== FAB GIỎ HÀNG (xếp trên chat — icon SVG) ===== -->
+<button class="cart-fab" id="cartOpen" aria-label="Mở giỏ hàng">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5.5 8h13l1.1 11a2 2 0 0 1-2 2.2H6.4a2 2 0 0 1-2-2.2Z"/>
+    <path d="M9 10.5V6a3 3 0 0 1 6 0v4.5"/>
+  </svg>
+  <b id="cartN" hidden>0</b>
+</button>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🧸</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">Đồ Chơi Cầu Vồng</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🎂 Quà sinh nhật bé 4 tuổi?</button>
+    <button class="pkc-chip">🎀 Gói quà có phí không?</button>
+    <button class="pkc-chip">🚚 Giao trong 2 giờ?</button>
+    <button class="pkc-chip">🧸 Đồ chơi bé 1 tuổi?</button>
+    <button class="pkc-chip">📅 Đổi trả thế nào?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho tiệm đồ chơi…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-370*/
+'use strict';
+var P = [
+  {id:'lap-rap',    n:'Đồ chơi lắp ráp sáng tạo',       price:189000, img:'assets/img/p1.webp', cat:'Lắp ráp',   d:'Giá từ · gợi mở trí tưởng tượng mỗi ngày, an toàn theo độ tuổi.'},
+  {id:'bup-be',     n:'Búp bê &amp; phụ kiện nhập vai', price:159000, img:'assets/img/p2.webp', cat:'Nhập vai',  d:'Thế giới nhỏ, câu chuyện lớn — khuyến khích bé kể chuyện và phối đồ.'},
+  {id:'xe-dk',      n:'Xe điều khiển &amp; đường đua mini', price:249000, img:'assets/img/p3.webp', cat:'Điều khiển',d:'Kèm pin sạc, điều khiển dễ đúng — tăng tốc giờ chơi trong nhà.'},
+  {id:'stem',       n:'Đồ chơi giáo dục STEM',          price:219000, img:'assets/img/p4.webp', cat:'STEM',      d:'Bộ thí nghiệm bánh răng — đèn: thử nghiệm trực quan, rèn tư duy logic.'},
+  {id:'go-van-dong',n:'Đồ chơi gỗ &amp; vận động tinh', price:129000, img:'assets/img/p5.webp', cat:'Đồ chơi gỗ',d:'Bề mặt mịn, màu dịu mắt — luyện phối hợp tay mắt cho bé 0–3 tuổi.'},
+  {id:'thu-bong',   n:'Thú bông &amp; đồ chơi cảm giác', price:99000,  img:'assets/img/p6.webp', cat:'Thú bông',  d:'Mềm mại dễ ôm, nhiều chất liệu thú vị — bạn nhỏ đồng hành giấc ngủ.'},
+  {id:'board-game', n:'Board game &amp; trò chơi gia đình', price:179000, img:'assets/img/p7.webp', cat:'Board game',d:'Luật chơi dễ tiếp cận, 2–6 người — gắn kết qua từng lượt chơi tối cuối tuần.'},
+  {id:'tu-van-qua', n:'Tư vấn chọn quà &amp; gói quà theo tuổi', price:0,     img:'assets/img/p8.webp', cat:'Dịch vụ',   d:'Chọn quà đúng tuổi 0–12, gói quà nơ ruy băng + thiệp viết tay miễn phí.'}
+];
+var COMBOS = [
+  {n:'Combo rủ bạn cùng chơi', price:199000},
+  {n:'Quà sinh nhật trọn gói', price:299000},
+  {n:'Combo bé khám phá 0–2 tuổi', price:169000}
+];
+var CART = [];
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+var byId = function(id){ for (var i=0;i<P.length;i++){ if(P[i].id===id) return P[i]; } return null; };
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== RENDER BẢNG ĐỒ CHƠI (khối-8: 2 thẻ nổi bật TO + 6 thẻ đồng đều, kín ô 6 cột) ===== */
+var FEAT = { 'lap-rap':'BÁN CHẠY NHẤT TIỆM', 'tu-van-qua':'MIỄN PHÍ — ĐẶC BIỆT CỦA TIỆM' };
+/*NB110-370 — thứ tự DOM: 2 thẻ nổi bật ĐẦU TIÊN (row1 = feat+feat kín 6 cột), 6 thẻ thường span2 kín 2 hàng — lưới tuyệt đối không hở ô*/
+function renderBoard(){
+  var g = document.getElementById('bdGrid');
+  var order = [];
+  for (var f=0;f<P.length;f++){ if (FEAT[P[f].id]) order.push(P[f]); }
+  for (var r=0;r<P.length;r++){ if (!FEAT[P[r].id]) order.push(P[r]); }
+  var html = '';
+  for (var i=0;i<order.length;i++){
+    var p = order[i];
+    var feat = FEAT[p.id] ? (i===0 ? ' feat' : ' feat r') : '';
+    var priceHtml = p.price>0 ? '<div class="pri">'+fmt(p.price)+'</div>'
+                              : '<div class="pri free">Miễn phí</div>';
+    var badge = FEAT[p.id] ? '<span class="badge'+(i===0?'':' teal')+'">'+FEAT[p.id]+'</span>' : '';
+    var clip = (i%2===0) ? 'clip-flower' : 'clip-dress';
+    var addTxt = p.price>0 ? '+ Giỏ' : 'Nhận tư vấn';
+    html += '<article class="card'+feat+' rv">'
+      + badge
+      + '<svg class="clip" aria-hidden="true"><use href="#'+clip+'"/></svg>'
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.n.replace(/&amp;/g,'&')+'" width="600" height="400"></div>'
+      + '<div class="bd"><span class="cat">'+p.cat+'</span><h3>'+p.n+'</h3>'
+      + (feat ? '<p>'+p.d+'</p>' : '')
+      + '<div class="pri-row">'+priceHtml+'<span class="dots" aria-hidden="true"></span>'
+      + '<button class="add'+(p.price>0?'':' alt')+'" data-add="'+p.id+'">'+addTxt+'</button></div></div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-add]');
+    if (!btn) return;
+    addToCart(btn.getAttribute('data-add'), 1);
+  });
+}
+
+/* ===== GIỎ HÀNG ===== */
+function addToCart(id, qty){
+  var p = byId(id); if (!p) return;
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; renderCart(); return; } }
+  CART.push({id:id, qty:qty});
+  renderCart();
+  toast('Đã thêm vào giỏ', p.n.replace(/&amp;/g,'&') + (p.price>0 ? ' — '+fmt(p.price) : ' — miễn phí'));
+}
+document.addEventListener('click', function(e){
+  var cb = e.target.closest('[data-combo]');
+  if (!cb) return;
+  var i = parseInt(cb.getAttribute('data-combo'),10);
+  var c = COMBOS[i];
+  var key = 'combo-'+i;
+  for (var k=0;k<CART.length;k++){ if (CART[k].id===key){ CART[k].qty++; renderCart(); toast('Đã thêm vào giỏ', c.n); return; } }
+  CART.push({id:key, qty:1, name:c.n, price:c.price, img:'assets/img/p'+(i+6)+'.webp'});
+  renderCart();
+  toast('Đã thêm vào giỏ', c.n + ' — ' + fmt(c.price));
+});
+function cartCount(){ var s=0; for(var i=0;i<CART.length;i++) s+=CART[i].qty; return s; }
+function cartTotal(){
+  var s=0;
+  for (var i=0;i<CART.length;i++){
+    var it = CART[i], price = it.price;
+    if (price === undefined){ var p = byId(it.id); price = p ? p.price : 0; }
+    s += price * it.qty;
+  }
+  return s;
+}
+function renderCart(){
+  var n = document.getElementById('cartN');
+  var cnt = cartCount();
+  n.textContent = cnt; n.hidden = cnt===0;
+  var body = document.getElementById('drBody');
+  if (CART.length===0){
+    body.innerHTML = '<div class="dr-empty"><span class="big">🧸</span>Giỏ quà đang trống.<br>Bảng đồ chơi hôm nay có nhiều món đáng lấy về lắm!</div>';
+  } else {
+    var html = '';
+    for (var i=0;i<CART.length;i++){
+      var it = CART[i];
+      var p = byId(it.id);
+      var name = it.name || (p ? p.n : it.id);
+      var price = it.price !== undefined ? it.price : (p ? p.price : 0);
+      var img = p ? p.img : (it.img || 'assets/img/p1.webp');
+      html += '<div class="ci"><img src="'+img+'" alt="">'
+        + '<div><div class="nm">'+name.replace(/&amp;/g,'&')+'</div><div class="pr">'+(price>0?fmt(price):'Miễn phí')+'</div></div>'
+        + '<div class="qty"><button data-dec="'+it.id+'" aria-label="Giảm">−</button><span>'+it.qty+'</span><button data-inc="'+it.id+'" aria-label="Tăng">+</button></div></div>';
+    }
+    body.innerHTML = html;
+  }
+  document.getElementById('drDisc').textContent = cnt + ' món';
+  document.getElementById('drTotal').textContent = fmt(cartTotal());
+  document.getElementById('checkoutBtn').disabled = CART.length===0;
+}
+document.getElementById('drBody').addEventListener('click', function(e){
+  var inc = e.target.getAttribute('data-inc'), dec = e.target.getAttribute('data-dec');
+  if (inc){ for (var i=0;i<CART.length;i++){ if (CART[i].id===inc) CART[i].qty++; } renderCart(); }
+  if (dec){
+    for (var j=0;j<CART.length;j++){
+      if (CART[j].id===dec){ CART[j].qty--; if (CART[j].qty<=0) CART.splice(j,1); break; }
+    }
+    renderCart();
+  }
+});
+function openDrawer(){
+  showCartView();
+  document.getElementById('cartDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  document.getElementById('cartDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function showCartView(){
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+}
+document.getElementById('cartOpen').addEventListener('click', openDrawer);
+document.getElementById('drClose').addEventListener('click', closeDrawer);
+document.getElementById('drMask').addEventListener('click', closeDrawer);
+document.getElementById('checkoutBtn').addEventListener('click', function(){
+  if (CART.length===0) return;
+  document.getElementById('drForm').classList.add('on');
+  document.getElementById('checkoutBtn').style.display='none';
+});
+document.getElementById('drBack').addEventListener('click', showCartView);
+document.getElementById('drSubmit').addEventListener('click', function(){
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var addr = document.getElementById('fAddr');
+  var ok = true;
+  [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho tiệm xin họ tên, số điện thoại và địa chỉ để giao quà nhé!'); return; }
+  var total = fmt(cartTotal());
+  CART = []; renderCart(); closeDrawer(); showCartView();
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+  toast('Đã nhận đơn — cảm ơn '+name.value.trim()+'!', 'Tiệm gọi xác nhận trong ít phút. Tổng tạm tính: '+total+' · Hotline 0034567899');
+});
+
+/* ===== dacThu — MÁY CHỌN QUÀ ĐÚNG TUỔI (tuổi × dịp × ngân sách → bộ quà gợi ý) ===== */
+var AGE_LABEL = {'0-2':'bé 0–2 tuổi','3-6':'bé 3–6 tuổi','7-12':'bé 7–12 tuổi'};
+var OCC_LABEL = {'sinh-nhat':'sinh nhật','thuong':'thưởng bé','choi-nha':'đến chơi nhà'};
+var AGE_POOL = {
+  '0-2':  ['go-van-dong','thu-bong','board-game'],
+  '3-6':  ['lap-rap','bup-be','thu-bong','go-van-dong'],
+  '7-12': ['stem','board-game','xe-dk','lap-rap']
+};
+var OCC_EXTRA = { 'sinh-nhat':['thu-bong','board-game'], 'thuong':['board-game'], 'choi-nha':['go-van-dong','thu-bong'] };
+var BUD_CAP = { u2:200000, u35:350000, u5:500000, t5:900000 };
+var giftAge = '3-6', giftOcc = 'sinh-nhat';
+function giftBuild(){
+  var cap = BUD_CAP[document.getElementById('giftBudget').value];
+  if (giftOcc==='choi-nha') cap = Math.min(cap, 220000);
+  var pool = AGE_POOL[giftAge];
+  var main = null;
+  for (var i=0;i<pool.length;i++){ var p=byId(pool[i]); if (p && p.price<=cap && (!main || p.price>main.price)) main = p; }
+  if (!main){ var cheap=byId(pool[0]); for (var j=1;j<pool.length;j++){ var q=byId(pool[j]); if (q.price<cheap.price) cheap=q; } main = cheap; }
+  var items = [{id:main.id, qty:1}], total = main.price;
+  var extra = [];
+  for (var k=0;k<pool.length;k++){ if (pool[k]!==main.id && extra.indexOf(pool[k])<0) extra.push(pool[k]); }
+  var occEx = OCC_EXTRA[giftOcc] || [];
+  for (var m=0;m<occEx.length;m++){ if (occEx[m]!==main.id && extra.indexOf(occEx[m])<0) extra.push(occEx[m]); }
+  for (var u=0;u<extra.length;u++){
+    var ep = byId(extra[u]);
+    if (ep && total + ep.price <= cap){ items.push({id:ep.id, qty:1}); total += ep.price; }
+  }
+  return items;
+}
+function renderGift(){
+  var items = giftBuild();
+  var total = 0, count = 0;
+  var list = document.getElementById('giftList');
+  var html = '';
+  for (var i=0;i<items.length;i++){
+    var p = byId(items[i].id); if (!p) continue;
+    var line = p.price * items[i].qty; total += line; count += items[i].qty;
+    html += '<div class="gift-row"><span class="n">'+p.n+'</span><span class="q">×'+items[i].qty+'</span><span class="m">'+fmt(line)+'</span></div>';
+  }
+  html += '<div class="gift-row free"><span class="n">Gói quà nơ ruy băng + thiệp viết tay</span><span class="q">×1</span><span class="m">Miễn phí</span></div>';
+  list.innerHTML = html;
+  document.getElementById('giftName').textContent = 'Bộ quà ' + OCC_LABEL[giftOcc] + ' · ' + AGE_LABEL[giftAge];
+  document.getElementById('giftCount').textContent = count + ' món chơi';
+  document.getElementById('giftTotal').textContent = fmt(total);
+}
+document.getElementById('giftAge').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-a]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  giftAge = b.getAttribute('data-a');
+  renderGift();
+});
+document.getElementById('giftOcc').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-o]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  giftOcc = b.getAttribute('data-o');
+  renderGift();
+});
+document.getElementById('giftBudget').addEventListener('change', function(){ renderGift(); });
+document.getElementById('giftAdd').addEventListener('click', function(){
+  var items = giftBuild();
+  for (var i=0;i<items.length;i++) addToCartSilent(items[i].id, items[i].qty);
+  renderCart();
+  toast('Đã thêm cả bộ quà vào giỏ', 'Bộ quà ' + OCC_LABEL[giftOcc] + ' ' + AGE_LABEL[giftAge] + ' — gói quà & thiệp đã kèm!');
+  openDrawer();
+});
+function addToCartSilent(id, qty){
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; return; } }
+  CART.push({id:id, qty:qty});
+}
+
+/* ===== SEARCH THẬT: typeahead + Enter lọc + toast đếm ===== */
+function searchIndex(){
+  var idx = [];
+  for (var i=0;i<P.length;i++) idx.push({t:P[i].n.replace(/&amp;/g,'&'), id:P[i].id, tag:P[i].cat});
+  for (var j=0;j<COMBOS.length;j++) idx.push({t:COMBOS[j].n, id:'combo-'+j, tag:'Combo'});
+  return idx;
+}
+var SIDX = searchIndex();
+var qEl = document.getElementById('q'), pop = document.getElementById('sPop');
+function sMatch(v){
+  v = v.trim().toLowerCase(); if (!v) return [];
+  var out = [];
+  for (var i=0;i<SIDX.length;i++){ if (SIDX[i].t.toLowerCase().indexOf(v)>=0 || SIDX[i].tag.toLowerCase().indexOf(v)>=0) out.push(SIDX[i]); }
+  return out;
+}
+qEl.addEventListener('input', function(){
+  var r = sMatch(qEl.value);
+  if (!qEl.value.trim() || r.length===0){ pop.classList.remove('open'); return; }
+  var html = '';
+  for (var i=0;i<Math.min(r.length,6);i++){
+    html += '<button data-go="'+r[i].id+'">'+r[i].t+'<b>'+r[i].tag+'</b></button>';
+  }
+  pop.innerHTML = html; pop.classList.add('open');
+});
+pop.addEventListener('click', function(e){
+  var b = e.target.closest('[data-go]'); if (!b) return;
+  pop.classList.remove('open');
+  document.getElementById('ke-do-choi').scrollIntoView({behavior:'smooth'});
+});
+document.addEventListener('click', function(e){
+  if (!e.target.closest('.srch')) pop.classList.remove('open');
+});
+qEl.addEventListener('keydown', function(e){
+  if (e.key!=='Enter') return;
+  e.preventDefault();
+  var r = sMatch(qEl.value);
+  var g = document.getElementById('bdGrid');
+  var cards = g.querySelectorAll('.card');
+  var found = 0;
+  for (var i=0;i<cards.length;i++){
+    var h = cards[i].querySelector('h3').textContent.toLowerCase();
+    var show = r.length>0 && h.indexOf(qEl.value.trim().toLowerCase())>=0;
+    cards[i].style.display = (r.length>0 && !show) ? 'none' : '';
+    if (show) found++;
+  }
+  pop.classList.remove('open');
+  document.getElementById('ke-do-choi').scrollIntoView({behavior:'smooth'});
+  if (r.length===0){
+    toast('Tìm thấy 0 món', 'Chưa có "'+qEl.value.trim()+'" trên kệ — nhắn hotline 0034567899, tiệm săn giúp!');
+    for (var k2=0;k2<cards.length;k2++) cards[k2].style.display='';
+  } else {
+    toast('Kết quả trên bảng', 'Tìm thấy '+found+' món khớp "'+qEl.value.trim()+'"');
+  }
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderBoard();
+renderCart();
+renderGift();
+initReveal();
+</script>
+</body>
+</html>

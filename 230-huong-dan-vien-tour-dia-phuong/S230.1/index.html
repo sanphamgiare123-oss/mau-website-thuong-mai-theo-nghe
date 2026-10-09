@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chạm Phố — Tour riêng tư theo giờ &amp; HDV địa phương | Đặt trước 24h</title>
+<meta name="description" content="Chạm Phố — tour riêng tư 3 tiếng hoặc trọn ngày với hướng dẫn viên bản địa tại Hội An. HDV nói 6 ngôn ngữ, nhóm nhỏ tối đa 8 khách, đặt trước 24h giữ chỗ, hủy miễn phí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ CHAM PHO 230 — DNA & TOKENS ============ */
+:root{
+  --primary:#146C43;            /* xanh lá từ poster bìa */
+  --primary-deep:#0B3D26;
+  --primary-mid:#2B8A5A;
+  --primary-soft:#E7F3EC;
+  --texture:#FBF7EC;            /* kem ấm */
+  --accent:#F08A1D;             /* cam đèn lồng */
+  --accent-deep:#B85E08;
+  --accent-100:#FDEBD2;
+  --grad-accent:linear-gradient(135deg,#FBA83B,#F08A1D);
+  --ink:#1C2B22;
+  --soft:#55685E;
+  --line:#E2EAE4;
+  --white:#FFFFFF;
+  --ok:#1E9E6A;
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+  --sh-1:0 2px 10px rgba(11,61,38,.07);
+  --sh-2:0 10px 30px rgba(11,61,38,.12);
+  --sh-3:0 24px 60px rgba(11,61,38,.22);
+  --grad-dark:linear-gradient(140deg,#1B7A4B,#146C43,#0B3D26);
+  --font:'Be Vietnam Pro',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--white);line-height:1.6;font-size:16px}
+img{display:block;max-width:100%;height:auto} /*NB93-230: height auto toàn cục — khung aspect-ratio quyết định*/
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.mini{min-width:0}
+.block{display:block}
+/* hoạ tiết "đường mòn nét đứt" — lối đi của HDV dẫn tour */
+.trail{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='48'%3E%3Cpath d='M0 36 Q 16 12 32 30 T 64 26' fill='none' stroke='%23146C43' stroke-opacity='.07' stroke-width='1.6' stroke-dasharray='4 5'/%3E%3Ccircle cx='32' cy='30' r='1.8' fill='%23146C43' fill-opacity='.08'/%3E%3C/svg%3E")}
+.trail-l{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='48'%3E%3Cpath d='M0 36 Q 16 12 32 30 T 64 26' fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1.6' stroke-dasharray='4 5'/%3E%3C/svg%3E")}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#D5E8DD;font-size:13px;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:38px;flex-wrap:wrap}
+.topbar b{color:#fff;font-weight:700}
+.topbar .tb-left{display:flex;align-items:center;gap:8px;min-width:0}
+.topbar .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(30,158,106,.25);flex:none}
+.topbar .tb-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topbar a:hover{color:var(--accent)}
+
+/* ============ HEADER ============ */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd{display:flex;align-items:center;gap:18px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;flex:none}
+.logo-ic{width:42px;height:42px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;color:#FFD79A;box-shadow:var(--sh-1)}
+.logo-tx{display:block;line-height:1.1}
+.logo-tx .t1{font-weight:900;font-size:1.28rem;letter-spacing:.4px;color:var(--primary-deep)}
+.logo-tx .t2{font-size:.68rem;color:var(--soft);letter-spacing:.14em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:330px;min-width:0}
+.search input{width:100%;padding:10px 14px 10px 40px;border:1.5px solid var(--line);border-radius:999px;background:#F6FAF7;outline:none;transition:.25s}
+.search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.search .s-ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--soft);display:flex}
+.search .s-pop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);box-shadow:var(--sh-2);overflow:hidden;display:none;z-index:70}
+.search .s-pop.on{display:block}
+.search .s-it{display:flex;gap:10px;align-items:center;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.search .s-it:last-child{border-bottom:0}
+.search .s-it:hover{background:var(--texture)}
+.search .s-it img{width:52px;height:39px;object-fit:cover;border-radius:8px;flex:none}
+.search .s-it .st{display:block;line-height:1.3;font-size:.86rem;font-weight:700}
+.search .s-it .sp{display:block;font-size:.76rem;color:var(--soft)}
+nav.mainnav{display:flex;gap:4px;margin-left:auto}
+nav.mainnav a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--ink);transition:.2s}
+nav.mainnav a:hover{background:var(--primary-soft);color:var(--primary)}
+.hd-cta{flex:none;display:flex;align-items:center;gap:10px}
+.bk-chip{display:flex;align-items:center;gap:7px;background:var(--primary-soft);color:var(--primary);border:1.5px solid #C8E0D2;padding:8px 13px;border-radius:999px;font-weight:800;font-size:.84rem;cursor:pointer;transition:.2s}
+.bk-chip:hover{background:#D8EDE0}
+.bk-chip .n{background:var(--grad-accent);color:#fff;border-radius:999px;min-width:20px;height:20px;display:grid;place-items:center;font-size:.72rem;padding:0 5px}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-a{background:var(--grad-accent);color:#fff;box-shadow:0 10px 24px rgba(240,138,29,.38)}
+.btn-a::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(240,138,29,.5)}
+.btn-a:hover::after{left:130%}
+.btn-g{background:#fff;color:var(--primary);border:1.5px solid #C8E0D2}
+.btn-g:hover{border-color:var(--primary);background:var(--primary-soft)}
+.btn-d{background:var(--primary);color:#fff}
+.btn-d:hover{background:var(--primary-deep);transform:translateY(-2px)}
+.btn-s{padding:10px 16px;font-size:.88rem;border-radius:11px}
+.btn-full{width:100%}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(180deg,#F1F8F3 0%,#FFFEFA 100%);overflow:clip;padding:54px 0 86px}
+.hero .wrap{display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(120deg,#FFF6E6,#FDEFD6);border:1.5px solid #EAD9BC;color:var(--accent-deep);font-weight:800;font-size:.82rem;padding:8px 15px;border-radius:999px;box-shadow:var(--sh-1)}
+.eyebrow .dotp{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(2.1rem,4.2vw,3.25rem);line-height:1.12;font-weight:900;letter-spacing:-.5px;margin:18px 0 16px}
+h1 .hl{position:relative;display:inline-block;color:#fff;padding:2px 14px;border-radius:12px;background:var(--grad-accent);transform:rotate(-1.4deg);box-shadow:0 8px 20px rgba(240,138,29,.35)}
+h1 .hlg{position:relative;display:inline-block;color:#fff;padding:2px 14px;border-radius:12px;background:var(--grad-dark);transform:rotate(1.2deg);box-shadow:0 8px 20px rgba(11,61,38,.3)}
+.hero-sub{color:var(--soft);font-size:1.04rem;max-width:530px}
+.hero-sub b{color:var(--ink)}
+.hero-cta{display:flex;gap:14px;margin:26px 0 22px;flex-wrap:wrap}
+.trust-chips{display:grid;grid-template-columns:repeat(2,auto);gap:9px 22px;justify-content:start}
+.trust-chips span{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--ink)}
+.trust-chips svg{color:var(--ok);flex:none}
+/* poster bìa giữ nguyên nhận diện — khung 4/3 đúng tỉ lệ gốc */
+.hero-vis{position:relative}
+.hero-poster{border-radius:var(--r-xl);overflow:hidden;border:8px solid #fff;transform:rotate(-1.6deg);box-shadow:var(--sh-3);aspect-ratio:4/3}
+.hero-poster img{width:100%;height:100%;object-fit:cover}
+.hero-badge{position:absolute;left:-8px;bottom:-16px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:var(--sh-2);display:flex;gap:10px;align-items:center;transform:rotate(2deg);z-index:3}
+.hero-badge .bi{width:38px;height:38px;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep);flex:none}
+.hero-badge .bt{display:block;font-weight:800;font-size:.85rem;line-height:1.25}
+.hero-badge .bs{display:block;font-size:.72rem;color:var(--soft)}
+.hero-stats{position:absolute;right:-6px;top:-16px;background:rgba(11,61,38,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;border-radius:16px;padding:11px 18px;display:flex;gap:22px;transform:rotate(1.4deg);z-index:3;border:1px solid rgba(255,255,255,.18)}
+.hero-stats .hs{min-width:0;text-align:center}
+.hero-stats .hv{display:block;font-weight:900;font-size:1.2rem;color:#FFC266;line-height:1.15}
+.hero-stats .hk{display:block;font-size:.68rem;opacity:.88;letter-spacing:.03em}
+/* quick booking strip trong hero */
+.qbook{margin-top:26px;background:#fff;border:1.5px solid var(--line);border-radius:20px;box-shadow:var(--sh-2);padding:14px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end}
+.qb-f label{display:block;font-size:.72rem;font-weight:800;color:var(--soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.qb-f input,.qb-f select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;background:#F9FCFA;outline:none}
+.qb-f input:focus,.qb-f select:focus{border-color:var(--accent);background:#fff}
+
+/* ============ TAPE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);margin:-30px 0 0;box-shadow:var(--sh-2);overflow:hidden;position:relative;z-index:5}
+.tape-in{display:flex;gap:0;width:max-content;animation:tapeMove 30s linear infinite;padding:13px 0}
+.tape span{color:#fff;font-weight:800;font-size:.95rem;white-space:nowrap;display:inline-flex;align-items:center;gap:22px;padding:0 11px}
+.tape span::after{content:"✦";opacity:.7;font-size:.8rem}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+
+/* ============ SECTION HEAD ============ */
+section{padding:86px 0}
+.sec-head{max-width:680px;margin-bottom:44px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent-deep);font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.kicker::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--grad-accent)}
+.sec-head.center .kicker::after{content:"";width:26px;height:3px;border-radius:3px;background:var(--grad-accent)}
+h2{font-size:clamp(1.6rem,3vw,2.35rem);font-weight:900;letter-spacing:-.4px;line-height:1.18;margin:10px 0 12px}
+.sec-head p{color:var(--soft)}
+
+/* ============ KHỐI-8: BENTO KÍN Ô (feat 2 cột + 7 thẻ đều) ============ */
+#tour{background:linear-gradient(180deg,#fff 0%,var(--texture) 100%)}
+.t8{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;grid-auto-flow:dense}
+.t-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;position:relative;transition:.3s;min-width:0}
+.t-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.t-feat{grid-column:span 2;border:2px solid #F4C48A;box-shadow:0 14px 38px rgba(240,138,29,.16)}
+.t-feat .t-in{display:grid;grid-template-columns:1.05fr 1fr;gap:0;flex:1}
+.t-feat .t-media{border-radius:0;aspect-ratio:4/3;height:auto;position:relative;overflow:hidden}
+.t-feat .t-body{padding:22px 22px 18px;display:flex;flex-direction:column;gap:10px;border-left:1.5px dashed var(--line)}
+.t-media{position:relative;aspect-ratio:4/3;overflow:hidden;flex:none}
+.t-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.t-card:hover .t-media img{transform:scale(1.045)}
+.t-dur{position:absolute;bottom:12px;left:12px;background:#fff;color:var(--primary-deep);font-size:.74rem;font-weight:800;padding:5px 11px;border-radius:999px;box-shadow:var(--sh-1)}
+.t-hot{position:absolute;top:12px;right:12px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.22)}
+.t-flag{position:absolute;top:12px;left:12px;background:var(--grad-dark);color:#FFD79A;font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.t-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.t-body h3{font-size:1.06rem;font-weight:800;line-height:1.3}
+.t-feat .t-body h3{font-size:1.3rem}
+.t-desc{color:var(--soft);font-size:.86rem}
+.t-util{display:flex;gap:6px;flex-wrap:wrap}
+.t-util i{font-style:normal;font-size:.72rem;font-weight:700;background:var(--primary-soft);color:var(--primary);border-radius:999px;padding:4px 10px}
+.t-price{margin-top:auto;border-top:1.5px dashed var(--line);padding-top:11px;display:flex;align-items:end;justify-content:space-between;gap:10px}
+.t-price .tp{display:block;line-height:1.25}
+.t-price .tp b{font-size:1.16rem;color:var(--primary-deep)}
+.t-price .tp span{display:block;font-size:.74rem;color:var(--soft)}
+.t-feat .t-price .tp b{font-size:1.4rem}
+.t-acts{display:flex;gap:8px}
+.t-view{border:1.5px solid #C8E0D2;color:var(--primary);font-weight:800;font-size:.82rem;padding:9px 13px;border-radius:10px;transition:.2s;background:#fff}
+.t-view:hover{border-color:var(--primary);background:var(--primary-soft)}
+.t-pick{background:var(--grad-accent);color:#fff;font-weight:800;font-size:.82rem;padding:9px 14px;border-radius:10px;box-shadow:0 6px 14px rgba(240,138,29,.3);transition:.2s}
+.t-pick:hover{transform:translateY(-2px)}
+
+/* ============ SLIM STRIP ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+.strip a{display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:700;font-size:.9rem;transition:.25s;color:var(--ink)}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh-1)}
+.strip .si{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none}
+.strip .ar{margin-left:auto;color:var(--accent);transition:.25s}
+.strip a:hover .ar{transform:translateX(4px)}
+
+/* ============ BOOKING ENGINE ============ */
+#booking{background:var(--grad-dark);position:relative;overflow:clip;color:#E5F1E9}
+#booking .sec-head h2{color:#fff}
+#booking .sec-head p{color:#B9D6C5}
+#booking .kicker{color:#FFC266}
+#booking .kicker::before{background:var(--grad-accent)}
+.bk-grid{display:grid;grid-template-columns:440px 1fr;gap:26px;align-items:start;position:relative;z-index:2}
+.bk-form{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--r-xl);padding:26px;display:flex;flex-direction:column;gap:16px}
+.bk-form .fg label{display:block;font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#A9CCB8;margin-bottom:6px}
+.bk-form input,.bk-form select{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;outline:none;transition:.2s}
+.bk-form select option{color:var(--ink)}
+.bk-form input:focus,.bk-form select:focus{border-color:var(--accent);background:rgba(255,255,255,.16)}
+.bk-form input[type="date"]{color-scheme:dark}
+.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-btn{border:1.5px solid rgba(255,255,255,.22);border-radius:12px;padding:12px;text-align:center;font-weight:800;color:#CFE6D8;transition:.2s;font-size:.9rem}
+.mode-btn small{display:block;font-weight:600;font-size:.72rem;color:#9DC3AD;margin-top:2px}
+.mode-btn.on{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(240,138,29,.4)}
+.mode-btn.on small{color:#FFF0DB}
+.bk-note{font-size:.8rem;color:#9DC3AD;display:flex;gap:8px;align-items:flex-start}
+.bk-note svg{flex:none;margin-top:2px;color:#FFC266}
+.bk-res{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xl);padding:22px;min-height:420px}
+.bk-res-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.bk-res-top .rt{font-weight:800;font-size:1.05rem;color:#fff}
+.bk-res-top .rc{font-size:.8rem;color:#A9CCB8;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:999px}
+.avail{display:flex;flex-direction:column;gap:12px}
+.av-item{display:flex;gap:14px;background:#fff;color:var(--ink);border-radius:18px;padding:14px;align-items:center;box-shadow:var(--sh-1);transition:.25s;min-width:0}
+.av-item:hover{transform:translateX(5px)}
+.av-item img{width:112px;height:84px;object-fit:cover;border-radius:12px;flex:none}
+.av-info{flex:1;min-width:0}
+.av-info .an{display:block;font-weight:800;font-size:1rem}
+.av-info .am{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--soft);margin-top:3px}
+.av-info .am span{display:inline-flex;align-items:center;gap:5px}
+.av-meta{display:flex;gap:14px;align-items:center;flex:none;text-align:right}
+.av-pr{display:block;font-weight:900;font-size:1.12rem;color:var(--primary-deep);white-space:nowrap}
+.av-pu{display:block;font-size:.72rem;color:var(--soft);white-space:nowrap}
+.av-btn{background:var(--grad-accent);color:#fff;font-weight:800;padding:10px 16px;border-radius:11px;font-size:.85rem;box-shadow:0 6px 16px rgba(240,138,29,.35);transition:.2s;white-space:nowrap}
+.av-btn:hover{transform:translateY(-2px)}
+.av-full{text-align:center;color:#B9D6C5;padding:40px 20px;font-size:.95rem}
+.av-full .b{font-size:2rem;display:block;margin-bottom:8px;opacity:.5}
+.bk-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px;position:relative;z-index:2}
+.bk-trust .bt-c{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center}
+.bt-c .bi{width:40px;height:40px;border-radius:12px;background:rgba(255,194,102,.16);color:#FFC266;display:grid;place-items:center;flex:none}
+.bt-c .bt{display:block;font-weight:800;font-size:.9rem;color:#fff;line-height:1.3}
+.bt-c .bs{display:block;font-size:.74rem;color:#9DC3AD}
+
+/* ============ PRICE TABLE (theo kỳ) ============ */
+#gia{background:var(--texture)}
+.ptabs{display:inline-flex;gap:6px;background:#fff;border:1.5px solid var(--line);padding:6px;border-radius:16px;box-shadow:var(--sh-1);margin-bottom:26px;max-width:100%;overflow-x:auto}
+.ptab{padding:10px 20px;border-radius:11px;font-weight:800;font-size:.92rem;color:var(--soft);white-space:nowrap;transition:.2s}
+.ptab.on{background:var(--grad-dark);color:#fff;box-shadow:var(--sh-1)}
+.ptab em{font-style:normal;color:var(--accent);font-size:.78rem;margin-left:5px}
+.ptab.on em{color:#FFC266}
+.ptable-card{background:#fff;border-radius:var(--r-xl);border:1.5px solid var(--line);box-shadow:var(--sh-1);overflow:hidden}
+.ptable-wrap{overflow-x:auto}
+table.ptable{width:100%;border-collapse:collapse;min-width:720px}
+.ptable th{background:var(--primary-soft);color:var(--primary-deep);text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;padding:14px 18px}
+.ptable td{padding:13px 18px;border-top:1px solid var(--line);font-size:.93rem}
+.ptable td:first-child{font-weight:700}
+.ptable .mono{font-variant-numeric:tabular-nums;font-weight:800;color:var(--primary-deep)}
+.ptable .sur{color:var(--accent-deep);font-weight:700;font-size:.85rem}
+.ptips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.ptip{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;display:flex;gap:13px;box-shadow:var(--sh-1)}
+.ptip .pi{width:40px;height:40px;border-radius:12px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:none}
+.ptip .pt{display:block;font-weight:800;font-size:.93rem}
+.ptip .pd{display:block;font-size:.84rem;color:var(--soft)}
+/* combos — gói theo ngày */
+.combo-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:56px 0 24px;flex-wrap:wrap}
+.combo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.combo{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;box-shadow:var(--sh-1);transition:.3s}
+.combo:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.combo.hot{border:2.5px solid var(--accent);box-shadow:0 16px 40px rgba(240,138,29,.18)}
+.combo .c-flag{position:absolute;top:-13px;left:24px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:800;padding:5px 13px;border-radius:999px}
+.combo h4{font-size:1.1rem;font-weight:800}
+.combo .c-for{color:var(--soft);font-size:.85rem}
+.combo .c-list{display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+.combo .c-list span{display:flex;gap:9px}
+.combo .c-list svg{color:var(--ok);flex:none;margin-top:3px}
+.c-price{margin-top:auto;display:flex;align-items:baseline;gap:9px}
+.c-price b{font-size:1.55rem;font-weight:900;color:var(--primary-deep)}
+.c-price s{color:#64748B;font-size:.9rem}
+.c-price .save{background:var(--accent-100);color:var(--accent-deep);font-size:.74rem;font-weight:800;border-radius:999px;padding:4px 10px}
+
+/* ============ ĐỘI HDV ============ */
+#hdv{background:linear-gradient(180deg,#fff,var(--primary-soft))}
+.gd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.gd{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:24px 20px;box-shadow:var(--sh-1);display:flex;flex-direction:column;gap:11px;transition:.3s;position:relative;overflow:hidden}
+.gd::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad-accent)}
+.gd:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.gd-av{width:60px;height:60px;border-radius:50%;background:var(--grad-dark);color:#FFD79A;display:grid;place-items:center;font-weight:900;font-size:1.4rem}
+.gd b{display:block;font-size:1.02rem}
+.gd .gd-role{display:block;font-size:.8rem;color:var(--accent-deep);font-weight:700}
+.gd .gd-bio{font-size:.85rem;color:var(--soft)}
+.gd-langs{display:flex;gap:6px;flex-wrap:wrap}
+.gd-langs i{font-style:normal;font-size:.72rem;font-weight:800;background:var(--primary-soft);color:var(--primary);border-radius:999px;padding:4px 10px;border:1px solid #CDE4D6}
+.gd-mt{margin-top:auto;border-top:1.5px dashed var(--line);padding-top:10px;display:flex;gap:14px;font-size:.76rem;color:var(--soft)}
+.gd-mt b{display:block;font-size:.95rem;color:var(--primary-deep)}
+
+/* ============ LỘ TRÌNH 3 GIỜ ============ */
+#lo-trinh{background:var(--texture)}
+.rt-wrap{position:relative;margin-top:10px}
+.rt-line{position:absolute;top:26px;left:4%;right:4%;height:0;border-top:3px dashed #E7C79A;z-index:0}
+.rt-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative;z-index:1}
+.rt-stop{text-align:center;padding:0 6px}
+.rt-dot{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:#fff;border:3px solid var(--accent);display:grid;place-items:center;font-weight:900;color:var(--accent-deep);box-shadow:0 6px 16px rgba(240,138,29,.25);position:relative}
+.rt-time{display:inline-block;background:var(--grad-dark);color:#FFD79A;font-weight:800;font-size:.74rem;border-radius:999px;padding:4px 12px;margin-bottom:8px}
+.rt-stop b{display:block;font-size:.94rem;margin-bottom:4px}
+.rt-stop p{font-size:.8rem;color:var(--soft)}
+.rt-cap{margin-top:26px;text-align:center;background:#fff;border:1.5px dashed #E7C79A;border-radius:16px;padding:14px 20px;color:var(--soft);font-size:.9rem}
+.rt-cap b{color:var(--accent-deep)}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--grad-dark);position:relative;overflow:clip;padding:64px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
+.stat{text-align:center;color:#fff;padding:10px}
+.stat .sv{font-size:2.5rem;font-weight:900;color:#FFC266;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .sv small{font-size:1.3rem}
+.stat .sk{font-size:.86rem;color:#B9D6C5;margin-top:4px}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
+.about-vis{position:relative;padding:0 18px 26px 0}
+.about-vis .av-img{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;transform:rotate(2deg);box-shadow:var(--sh-3);aspect-ratio:4/3}
+.about-vis .av-img img{width:100%;height:100%;object-fit:cover}
+.about-vis .av-float{position:absolute;left:-14px;bottom:0;background:#fff;border-radius:16px;box-shadow:var(--sh-2);padding:13px 18px;display:flex;gap:11px;align-items:center;transform:rotate(-2deg)}
+.about-vis .av-float .fi{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none}
+.about-vis .av-float b{display:block;font-size:.95rem;line-height:1.2}
+.about-vis .av-float span{display:block;font-size:.74rem;color:var(--soft)}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 26px}
+.str-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--sh-1);transition:.25s}
+.str-card:hover{transform:translateY(-4px);border-color:#C8E0D2}
+.str-card .si{width:44px;height:44px;border-radius:13px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:12px}
+.str-card b{display:block;font-size:.98rem;margin-bottom:4px}
+.str-card p{font-size:.85rem;color:var(--soft)}
+.about-cta{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ PROCESS ============ */
+#quy-trinh{background:var(--grad-dark);overflow:clip;position:relative}
+#quy-trinh .sec-head h2{color:#fff}
+#quy-trinh .sec-head p{color:#B9D6C5}
+#quy-trinh .kicker{color:#FFC266}
+#quy-trinh .kicker::before{background:var(--grad-accent)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
+.proc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-l);padding:26px 22px;color:#E5F1E9;position:relative;transition:.3s}
+.proc:hover{transform:translateY(-6px);background:rgba(255,255,255,.11)}
+.proc .pn{position:absolute;top:18px;right:20px;font-size:2.4rem;font-weight:900;color:rgba(255,255,255,.1);line-height:1}
+.proc .pi{width:52px;height:52px;border-radius:16px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;margin-bottom:16px;box-shadow:0 8px 20px rgba(240,138,29,.35)}
+.proc b{display:block;font-size:1.05rem;color:#fff;margin-bottom:6px}
+.proc p{font-size:.86rem;color:#B9D6C5}
+.proc .pm{display:inline-flex;margin-top:14px;background:rgba(255,194,102,.15);color:#FFC266;font-weight:800;font-size:.76rem;border-radius:999px;padding:5px 12px}
+
+/* ============ REVIEWS ============ */
+.rev-shell{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:stretch}
+.rev-main{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);overflow:hidden;position:relative}
+.rev-track{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1)}
+.rev-slide{flex:0 0 100%;padding:34px 34px 30px;min-width:0}
+.rev-stars{color:#B85E08;letter-spacing:3px;font-size:1rem}
+.rev-slide p{font-size:1.04rem;margin:14px 0 20px;color:var(--ink)}
+.rev-who{display:flex;gap:13px;align-items:center}
+.rev-who .rw-av{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:#FFD79A;display:grid;place-items:center;font-weight:900;font-size:1.05rem;flex:none}
+.rev-who b{display:block;font-size:.95rem}
+.rev-who span{display:block;font-size:.78rem;color:var(--soft)}
+.rev-dots{display:flex;gap:7px;padding:0 34px 26px}
+.rev-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
+.rev-dots i.on{background:var(--accent);width:26px;border-radius:6px}
+.rev-side{background:var(--grad-dark);border-radius:var(--r-xl);padding:30px;color:#fff;display:flex;flex-direction:column;gap:20px}
+.rev-metric{display:flex;gap:14px;align-items:center}
+.rev-metric .mv{font-size:1.9rem;font-weight:900;color:#FFC266;min-width:96px;line-height:1.1}
+.rev-metric .mk{font-size:.84rem;color:#B9D6C5}
+.rev-metric .mk b{color:#7BE0AE}
+.partners{margin-top:14px}
+.partners .pk{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#9DC3AD;margin-bottom:12px}
+.partner-chips{display:flex;gap:9px;flex-wrap:wrap}
+.partner-chips i{font-style:normal;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#D5E8DD;font-weight:700;font-size:.8rem;padding:7px 14px;border-radius:999px}
+
+/* ============ QUICK VIEW ============ */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal .m-bg{position:absolute;inset:0;background:rgba(8,35,22,.66);backdrop-filter:blur(5px)}
+.modal .m-card{position:relative;background:#fff;border-radius:var(--r-xl);max-width:720px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-3);animation:popIn .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes popIn{from{transform:translateY(30px) scale(.96);opacity:0}}
+.m-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(11,61,38,.65);color:#fff;display:grid;place-items:center;z-index:5;transition:.2s}
+.m-close:hover{background:var(--accent)}
+.m-hero{aspect-ratio:4/3;overflow:hidden}
+.m-hero img{width:100%;height:100%;object-fit:cover}
+.m-body{padding:24px 26px 26px}
+.m-body h3{font-size:1.35rem;font-weight:900}
+.m-meta{display:flex;gap:16px;color:var(--soft);font-size:.86rem;margin:8px 0 14px;flex-wrap:wrap}
+.m-meta span{display:inline-flex;gap:6px;align-items:center}
+.m-meta svg{color:var(--primary-mid)}
+.m-table{width:100%;border-collapse:collapse;margin:6px 0 16px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.m-table th{background:var(--primary-soft);color:var(--primary-deep);font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;text-align:left}
+.m-table td{padding:10px 14px;border-top:1px solid var(--line);font-size:.9rem}
+.m-table .mp{font-weight:900;color:var(--accent-deep);white-space:nowrap}
+.m-utils{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.m-utils i{font-style:normal;font-size:.76rem;font-weight:700;background:var(--primary-soft);color:var(--primary);border-radius:999px;padding:5px 12px}
+.m-foot{display:flex;gap:12px;flex-wrap:wrap}
+.m-metas{display:flex;gap:18px;margin-top:16px;font-size:.8rem;color:var(--soft);flex-wrap:wrap}
+.m-metas span{display:inline-flex;gap:6px;align-items:center}
+.m-metas svg{color:var(--ok)}
+
+/* ============ BOOKING DRAWER ============ */
+.drawer-bg{position:fixed;inset:0;background:rgba(8,35,22,.55);backdrop-filter:blur(4px);z-index:300;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;top:0;right:-460px;width:440px;max-width:94vw;height:100dvh;background:#fff;z-index:310;transition:right .38s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(11,61,38,.25)}
+body.drawer-open .drawer{right:0}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.dw-head{background:var(--grad-dark);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
+.dw-head .dt{font-weight:900;font-size:1.1rem}
+.dw-head .ds{font-size:.78rem;color:#B9D6C5}
+.dw-x{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;transition:.2s;flex:none}
+.dw-x:hover{background:var(--accent)}
+.dw-body{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px}
+.dw-sec .dl{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+.dw-days{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.dw-day{border:1.5px solid var(--line);border-radius:11px;padding:7px 2px;text-align:center;transition:.2s;min-width:0}
+.dw-day .dd{display:block;font-size:.66rem;color:var(--soft);text-transform:uppercase}
+.dw-day .dn{display:block;font-weight:900;font-size:1.02rem}
+.dw-day.on{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 5px 14px rgba(240,138,29,.35)}
+.dw-day.on .dd{color:#FFF0DB}
+.dw-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.dw-slot{border:1.5px solid var(--line);border-radius:10px;padding:9px 4px;font-weight:700;font-size:.78rem;text-align:center;color:var(--ink);transition:.2s}
+.dw-slot small{display:block;font-size:.64rem;color:var(--soft);font-weight:600}
+.dw-slot.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.dw-slot.on small{color:#CBE6D6}
+.dw-fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dw-fg label{display:block;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);margin-bottom:6px}
+.dw-fg select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:#F9FCFA;outline:none}
+.dw-fg select:focus{border-color:var(--accent);background:#fff}
+.dw-room{display:flex;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:12px;align-items:center;min-width:0}
+.dw-room img{width:74px;height:56px;object-fit:cover;border-radius:10px;flex:none}
+.dw-room .dn2{display:block;font-weight:800;font-size:.92rem;line-height:1.25}
+.dw-room .dm2{display:block;font-size:.75rem;color:var(--soft)}
+.dw-room .dx{margin-left:auto;color:var(--soft);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none}
+.dw-room .dx:hover{background:#FDECEC;color:#D64545}
+.dw-empty{border:1.5px dashed var(--line);border-radius:14px;padding:18px;text-align:center;color:var(--soft);font-size:.88rem}
+.dw-empty a{color:var(--accent-deep);font-weight:800}
+.dw-check{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font-size:.86rem;font-weight:600;cursor:pointer;transition:.2s}
+.dw-check:hover{border-color:var(--accent)}
+.dw-check input{accent-color:var(--accent);width:17px;height:17px;flex:none}
+.dw-check small{display:block;color:var(--soft);font-weight:600;font-size:.74rem}
+.dw-sum{background:var(--texture);border-radius:16px;padding:16px 18px}
+.dw-row{display:flex;justify-content:space-between;font-size:.88rem;padding:4px 0;gap:10px}
+.dw-row .dv{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dw-row.sur .dv{color:var(--accent-deep)}
+.dw-row.total{border-top:1.5px dashed #D8CBB2;margin-top:8px;padding-top:11px;font-weight:900;font-size:1.06rem}
+.dw-row.total .dv{color:var(--accent-deep);font-size:1.3rem}
+.dw-inputs{display:grid;gap:10px}
+.dw-inputs input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;background:#F9FCFD;transition:.2s}
+.dw-inputs input:focus{border-color:var(--accent);background:#fff}
+.dw-foot{padding:16px 24px;border-top:1.5px solid var(--line);background:#fff}
+.dw-secure{display:flex;gap:7px;align-items:center;justify-content:center;font-size:.74rem;color:var(--soft);margin-top:9px}
+.dw-secure svg{color:var(--ok)}
+.dw-success{text-align:center;padding:26px 10px}
+.dw-success .ok-ic{width:72px;height:72px;border-radius:50%;background:#E5F7EE;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px;animation:popIn .4s cubic-bezier(.2,.9,.3,1.3)}
+.dw-success h4{font-size:1.2rem;font-weight:900;margin-bottom:6px}
+.dw-success .sub{color:var(--soft);font-size:.9rem;margin-bottom:18px}
+.bk-code{background:var(--grad-dark);color:#fff;border-radius:16px;padding:18px;margin-bottom:16px}
+.bk-code .bl{font-size:.74rem;color:#B9D6C5;text-transform:uppercase;letter-spacing:.1em}
+.bk-code .bv{font-size:1.7rem;font-weight:900;letter-spacing:.06em;color:#FFC266;margin-top:4px}
+.bk-code .bsum{display:flex;justify-content:space-between;font-size:.82rem;color:#D5E8DD;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.25)}
+
+/* ============ CONTACT + MAP ============ */
+#lien-he{background:linear-gradient(180deg,var(--texture),#fff)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.ct-info{background:var(--grad-dark);border-radius:var(--r-xl);padding:32px;color:#fff;position:relative;overflow:clip;display:flex;flex-direction:column;gap:6px}
+.ct-info h3{font-size:1.5rem;font-weight:900;margin-bottom:4px}
+.ct-info .cs{color:#B9D6C5;font-size:.92rem;margin-bottom:18px}
+.ct-line{display:flex;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.16);align-items:flex-start}
+.ct-line:last-of-type{border-bottom:0}
+.ct-line .ci{width:40px;height:40px;border-radius:12px;background:rgba(255,194,102,.15);color:#FFC266;display:grid;place-items:center;flex:none}
+.ct-line b{display:block;font-size:.92rem}
+.ct-line span{display:block;color:#B9D6C5;font-size:.84rem}
+.ct-map{border-radius:var(--r-xl);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh-1);min-height:340px;flex:1;margin-top:18px}
+.ct-map iframe{width:100%;height:100%;min-height:280px;border:0;display:block}
+.ct-map-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ct-form-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:30px;box-shadow:var(--sh-2)}
+.ct-form-card h3{font-size:1.3rem;font-weight:900}
+.ct-form-card .cs{color:var(--soft);font-size:.9rem;margin:4px 0 18px}
+.ctf{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.ctf .full{grid-column:1/-1}
+.ctf label{display:block;font-size:.76rem;font-weight:800;color:var(--soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.ctf input,.ctf select,.ctf textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;background:#F9FCFA;transition:.2s}
+.ctf input:focus,.ctf select:focus,.ctf textarea:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.ctf-note{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--soft);margin-top:13px;justify-content:center}
+.ctf-note svg{color:var(--ok)}
+
+/* ============ FAQ ============ */
+#faq{background:var(--texture)}
+.faq-tools{display:flex;gap:12px;margin-bottom:26px;flex-wrap:wrap;align-items:center}
+.faq-search{position:relative;flex:1;min-width:240px}
+.faq-search input{width:100%;padding:13px 16px 13px 44px;border:1.5px solid var(--line);border-radius:999px;background:#fff;outline:none}
+.faq-search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-100)}
+.faq-search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font-weight:700;font-size:.84rem;color:var(--soft);transition:.2s}
+.fchip.on,.fchip:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.faq-list{display:flex;flex-direction:column;gap:11px;max-width:860px;margin:0 auto}
+.faq-it{background:#fff;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s}
+.faq-it.open{border-color:var(--accent);box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:17px 22px;font-weight:700;font-size:.98rem;text-align:left;color:var(--ink)}
+.faq-q .fx{width:30px;height:30px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none;transition:.3s;font-size:.9rem}
+.faq-it.open .fx{transform:rotate(45deg);background:var(--grad-accent);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--soft);font-size:.92rem}
+.faq-a .inner{padding:0 22px 19px}
+.faq-none{text-align:center;color:var(--soft);padding:24px;display:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-deep);color:#B9D6C5;position:relative;overflow:clip}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:34px;padding:52px 0 38px;position:relative;z-index:2}
+.ft-brand p{font-size:.88rem;margin:14px 0 18px}
+.ft-social{display:flex;gap:9px}
+.ft-social a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.09);display:grid;place-items:center;color:#D5E8DD;transition:.2s;border:1px solid rgba(255,255,255,.12)}
+.ft-social a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
+footer h5{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px;letter-spacing:.02em}
+.ft-col a,.ft-col span{display:flex;gap:9px;padding:5px 0;font-size:.88rem;color:#B9D6C5;transition:.2s;align-items:flex-start}
+.ft-col a:hover{color:#FFC266;transform:translateX(4px)}
+.ft-col svg{flex:none;margin-top:4px;color:var(--accent)}
+.ft-hotline{font-size:1.25rem;font-weight:900;color:#FFC266}
+.ft-pay{border-top:1px solid rgba(255,255,255,.12);padding:18px 0;position:relative;z-index:2}
+.ft-pay .wrap{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.ft-pay .pl{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#9DC3AD}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips i{font-style:normal;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#D5E8DD;font-size:.76rem;font-weight:700;padding:6px 12px;border-radius:9px}
+.ft-copy{border-top:1px solid rgba(255,255,255,.12);padding:16px 0;font-size:.8rem;position:relative;z-index:2}
+.ft-copy .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* ============ FAB DOCK ============ */
+.fab{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:150;display:flex;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1.5px solid var(--line);padding:9px;border-radius:999px;box-shadow:var(--sh-3);transition:transform .4s,opacity .4s}
+.fab.hide{transform:translateX(-50%) translateY(120px);opacity:0}
+.fab a,.fab button{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--primary);transition:.2s;position:relative}
+.fab a:hover,.fab button:hover{background:var(--primary-soft);transform:translateY(-3px)}
+.fab .fab-main{width:52px;background:var(--grad-accent);color:#fff;box-shadow:0 8px 20px rgba(240,138,29,.45)}
+.fab .fab-main:hover{background:var(--accent-deep);color:#fff}
+.fab .tip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--primary-deep);color:#fff;font-size:.68rem;font-weight:700;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.fab a:hover .tip,.fab button:hover .tip{opacity:1}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;top:20px;right:20px;z-index:400;background:var(--primary-deep);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:var(--sh-3);display:flex;gap:11px;align-items:center;font-size:.9rem;font-weight:600;transform:translateX(130%);transition:transform .4s cubic-bezier(.2,.9,.3,1.1);max-width:340px;pointer-events:none} /*NB93-230: pointer-events none — không đè nút bên dưới*/
+.toast.on{transform:none}
+.toast svg{color:#7BE0AE;flex:none}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.09s}
+.rv[data-d="2"]{transition-delay:.18s}
+.rv[data-d="3"]{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tape-in{animation:none}}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media (max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:36px}
+  .hero-vis{max-width:560px;margin:0 auto;width:100%}
+  .bk-grid{grid-template-columns:1fr}
+  .t8{grid-template-columns:1fr 1fr}
+  .t-feat{grid-column:1/-1}
+  .t8 .t-card:last-child{grid-column:1/-1}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .gd-grid{grid-template-columns:1fr 1fr}
+  .rt-grid{grid-template-columns:repeat(3,1fr);gap:22px}
+  .rt-line{display:none}
+  .combo-grid,.ptips{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .rev-shell{grid-template-columns:1fr}
+  .about-grid,.ct-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .bk-trust{grid-template-columns:1fr 1fr}
+  nav.mainnav{display:none}
+}
+
+/* ============ MOBILE ≤680 — thiết kế riêng ============ */
+@media (max-width:680px){
+  section{padding:50px 0}
+  .wrap{padding:0 16px}
+  h1{font-size:1.62rem;margin:14px 0 12px}
+  h2{font-size:1.42rem}
+  .hero{padding:30px 0 70px}
+  .hero-vis{margin-top:8px}
+  .hero-stats{right:0;top:-12px;padding:9px 12px;gap:14px}
+  .hero-stats .hv{font-size:1rem}
+  .hero-badge{left:0;bottom:-14px;padding:10px 13px}
+  /* header 2 hàng */
+  .hd{flex-wrap:wrap;padding:10px 0;row-gap:9px;min-height:0}
+  .logo{order:1}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .bk-chip span.lbl{display:none}
+  .search{order:3;flex:1 0 100%;max-width:none}
+  nav.mainnav{display:none}
+  /* mobile: nút không bị cắt chữ (lỗi cũ #3) */
+  .btn{white-space:normal;min-height:40px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust-chips{grid-template-columns:1fr}
+  .qbook{grid-template-columns:1fr 1fr;padding:12px;margin-top:20px}
+  .qbook .btn{grid-column:1/-1}
+  .tape{margin-top:-24px}
+  .tape span{font-size:.8rem}
+  /* khối-8: 1 cột, feat full-width */
+  .t8{grid-template-columns:1fr;gap:16px}
+  .t-feat{grid-column:auto}
+  .t-feat .t-in{grid-template-columns:1fr}
+  .t-feat .t-media{aspect-ratio:4/3}
+  .t-feat .t-body{border-left:0;border-top:1.5px dashed var(--line)}
+  .strip{grid-template-columns:1fr;gap:9px}
+  .av-item{flex-wrap:wrap}
+  .av-item img{width:96px;height:72px;flex:none}
+  .av-meta{width:100%;justify-content:space-between;text-align:left;flex-wrap:wrap;gap:10px}
+  .av-item .av-btn{min-height:44px;flex:1}
+  .bk-form,.bk-res{padding:18px}
+  .bk-form .fg{grid-template-columns:1fr !important}
+  .bk-form input,.bk-form select{min-height:44px;font-size:16px}
+  .bk-trust{grid-template-columns:1fr 1fr;gap:9px}
+  .ptabs{width:100%;justify-content:flex-start}
+  .combo-grid,.ptips{grid-template-columns:1fr}
+  .gd-grid{grid-template-columns:1fr}
+  /* lộ trình dọc trên mobile */
+  .rt-grid{grid-template-columns:1fr;gap:20px}
+  .rt-stop{display:grid;grid-template-columns:54px 1fr;gap:14px;text-align:left;align-items:start}
+  .rt-dot{margin:0}
+  .rt-body{text-align:left}
+  .rt-cap{font-size:.84rem;padding:12px 14px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat .sv{font-size:1.9rem}
+  .strengths{grid-template-columns:1fr}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .proc-grid{grid-template-columns:1fr}
+  .rev-slide{padding:22px 18px}
+  .rev-side{padding:22px 18px}
+  .m-body{padding:18px}
+  .m-foot .btn{width:100%}
+  /* drawer full-width cảm giác app */
+  .drawer{width:100vw;max-width:100vw}
+  .dw-days{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding:2px 2px 7px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(240,138,29,.8) #E3E8EF}
+  .dw-days::-webkit-scrollbar{height:5px}
+  .dw-days::-webkit-scrollbar-track{background:#E3E8EF;border-radius:99px}
+  .dw-days::-webkit-scrollbar-thumb{background:rgba(240,138,29,.8);border-radius:99px}
+  .dw-day{flex:0 0 auto;min-width:52px;padding:7px 8px}
+  .dw-day.day-more{display:grid;place-items:center;background:#FFF4E2;border:1.5px dashed rgba(240,138,29,.6);color:var(--accent-deep);font-size:1.2rem;font-weight:900;min-width:44px}
+  .dw-slots{grid-template-columns:repeat(3,1fr);gap:7px}
+  .dw-slot{min-height:40px;display:grid;place-items:center}
+  .dw-fg{grid-template-columns:1fr}
+  .dw-fg select{font-size:16px;min-height:44px}
+  .dw-inputs input{font-size:16px;min-height:44px}
+  .dw-row .dv{font-weight:800;color:var(--accent-deep)}
+  .dw-row .dv[data-empty="1"]{color:var(--soft);font-weight:600;white-space:normal;text-align:right}
+  .dw-foot{padding:13px 16px}
+  #dwConfirm{min-height:48px}
+  .ctf{grid-template-columns:1fr}
+  .ct-info{padding:22px}
+  .ct-map{min-height:240px}
+  .ct-map iframe{min-height:220px}
+  /* dock chỉ icon, sát đáy */
+  .fab{bottom:12px;padding:7px;gap:4px}
+  .fab a,.fab button{width:42px;height:42px}
+  .fab .fab-main{width:46px;height:46px}
+  .fab .tip{display:none}
+  footer{padding-top:0}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:42px 0 30px}
+  .ft-pay .wrap{justify-content:flex-start}
+  .toast{left:16px;right:16px;max-width:none;top:14px}
+}
+
+/* MOBILE-TAP40: mọi điều khiển cảm ứng >=40px */
+@media(max-width:640px){
+  .fchip,.ptab,.mode-btn,.bk-chip,.dw-slot,.dw-day,.m-close,.dw-x,.car-btn,.t-view,.t-pick,.av-btn,.pkc-chip{min-height:40px!important;min-width:40px!important}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Chạm Phố","telephone":"0905346278","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Chạm Phố — tour riêng tư 3 tiếng hoặc trọn ngày với hướng dẫn viên bản địa tại Hội An. HDV nói 6 ngôn ngữ, nhóm nhỏ tối đa 8 khách, đặt trước 24h giữ chỗ, hủy m","url":"http://127.0.0.1:8174/230-huong-dan-vien-tour-dia-phuong/"}
+</script>
+<style data-nb93fix="230:fab">
+/*NB93-FIX-230:fab CTA day phai tranh fab chat*/
+@media(max-width:768px){
+  .btn.btn-g{padding-right:64px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left"><span class="dot"></span><span><b>Đặt trước 24h — giữ HDV của bạn</b> · hủy &amp; đổi lịch miễn phí</span></div>
+    <div class="tb-right">
+      <span>Hotline / Zalo / WhatsApp: <b>0905 346 278</b></span>
+      <a href="#faq">HDV nói 6 ngôn ngữ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Chạm Phố — Local Tours">
+      <span class="logo-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/><path d="M12 3V1.5"/></svg>
+      </span>
+      <span class="logo-tx mini"><span class="t1 block">CHẠM PHỐ</span><span class="t2 block">Local Tours &amp; Guides</span></span>
+    </a>
+    <div class="search mini">
+      <span class="s-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+      <input id="hdSearch" type="text" placeholder="Tìm tour: ẩm thực, phố cổ, chợ đêm, trekking…" autocomplete="off" aria-label="Tìm tour">
+      <div class="s-pop" id="sPop"></div>
+    </div>
+    <nav class="mainnav" aria-label="Điều hướng chính">
+      <a href="#tour">8 tour</a>
+      <a href="#gia">Bảng giá</a>
+      <a href="#hdv">Đội HDV</a>
+      <a href="#booking">Đặt tour</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="bk-chip" id="bkChip" title="Tour đang chọn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span class="lbl">Tour đang chọn</span><span class="n" id="bkCount">0</span>
+      </button>
+      <button class="btn btn-a btn-s" data-open-drawer>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Đặt tour ngay
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" style="padding-bottom:96px">
+  <div class="wrap">
+    <div class="mini">
+      <span class="eyebrow"><span class="dotp"></span>TOUR RIÊNG TƯ &amp; HDV ĐỊA PHƯƠNG — HỘI AN · ĐÀ NẴNG</span>
+      <h1>Đi chậm, đi sâu,<br>như <span class="hlg">người bản địa</span> — <span class="hl">3 giờ hoặc cả ngày</span></h1>
+      <p class="hero-sub">Tour riêng tư cho nhóm nhỏ tối đa 8 khách, HDV bản địa nói <b>tiếng Việt, Anh, Trung, Nhật, Hàn, Thái</b>. Đặt trước 24 giờ là giữ chỗ — hủy miễn phí, không ghép khách lạ.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-open-drawer>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Đặt tour — giữ chỗ trong 60 giây
+        </button>
+        <a class="btn btn-g" href="#tour">Xem 8 tour địa phương</a>
+      </div>
+      <div class="trust-chips">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đặt trước 24h — hủy miễn phí</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Tour riêng tư, không ghép khách</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>HDV bản địa, 6 ngôn ngữ</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đón tận khách sạn trong phố</span>
+      </div>
+      <!-- quick booking bar -->
+      <form class="qbook" id="qBook" aria-label="Kiểm tra chỗ trống nhanh">
+        <div class="qb-f"><label for="qbIn">Ngày đi</label><input type="date" id="qbIn" required></div>
+        <div class="qb-f"><label for="qbG">Số khách</label>
+          <select id="qbG"><option value="1">1 khách</option><option value="2" selected>2 khách</option><option value="3">3 khách</option><option value="4">4 khách</option><option value="5">5 khách</option><option value="6">6 khách</option><option value="7">7 khách</option><option value="8">8 khách</option></select>
+        </div>
+        <div class="qb-f"><label for="qbMode">Kiểu tour</label>
+          <select id="qbMode"><option value="h" selected>Theo giờ — 3 tiếng</option><option value="d">Theo ngày — 4–8 tiếng</option></select>
+        </div>
+        <button class="btn btn-a" type="submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Kiểm tra chỗ trống
+        </button>
+      </form>
+    </div>
+    <div class="hero-vis" aria-hidden="true">
+      <div class="hero-poster"><img src="assets/img/cover.webp" alt="Chạm Phố — hướng dẫn viên và tour địa phương" width="1448" height="1086"></div>
+      <div class="hero-badge">
+        <span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <span class="mini"><span class="bt block">Đặt trước 24h · hủy miễn phí</span><span class="bs block">Cọc 20% giữ chỗ — phần còn lại trả HDV</span></span>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><span class="hv block">9</span><span class="hk block">năm dẫn tour</span></div>
+        <div class="hs"><span class="hv block">6</span><span class="hk block">ngôn ngữ</span></div>
+        <div class="hs"><span class="hv block">4,9★</span><span class="hk block">1.300+ review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-in" id="tapeIn">
+    <span>Tour riêng tư — không ghép khách lạ</span><span>Đặt trước 24h · hủy miễn phí</span><span>HDV nói 6 ngôn ngữ</span><span>Nhóm nhỏ tối đa 8 khách</span><span>Ẩm thực đường phố mỗi tối</span><span>Đón tận khách sạn trong phố</span><span>Cam kết không dừng shop</span><span>Giá trọn gói đã gồm ăn &amp; vé</span>
+  </div>
+</div>
+
+<!-- ============ KHỐI-8: 8 TOUR ============ -->
+<section id="tour" class="trail">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">8 tour riêng tư — chọn theo giờ hoặc theo ngày</span>
+      <h2>Mỗi tour một câu chuyện địa phương</h2>
+      <p>Giá mỗi khách đã gồm HDV riêng, ăn uống / vé vào cửa theo từng tour. Bấm <b>Xem chi tiết</b> để coi lộ trình, bấm <b>Chọn tour</b> để giữ chỗ ngay.</p>
+    </div>
+    <div class="t8 rv" id="tourGrid"></div>
+    <div class="strip rv">
+      <a href="#booking" data-gomode="h"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>Tour 3 tiếng<span class="ar">→</span></a>
+      <a href="#booking" data-gomode="d"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Tour trọn ngày<span class="ar">→</span></a>
+      <a href="#booking" data-gotour="food"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2v8M9 2v8M7.5 10v12M16 2c-2 3-2 6 0 9v11"/></svg></span>Ẩm thực tối<span class="ar">→</span></a>
+      <a href="#booking" data-gofam="fam"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="17.5" cy="6.5" r="2"/><path d="M3 20v-2a4 4 0 0 1 7-2.6M21 20v-2a4 4 0 0 0-7-2.6"/></svg></span>Cho gia đình<span class="ar">→</span></a>
+      <a href="#booking" data-gofam="group"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 20v-1.5A5.5 5.5 0 0 1 8 13a5.5 5.5 0 0 1 6 2.3M16 13a5.5 5.5 0 0 1 6 5.5V20"/></svg></span>Cho đoàn nhỏ<span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ENGINE ============ -->
+<section id="booking" class="trail-l">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Kiểm tra chỗ trống — HDV có lịch từng ngày</span>
+      <h2>Chọn ngày đi, xem HDV còn chỗ &amp; giá của nhóm bạn</h2>
+      <p>Đặt trước 24 giờ để chúng tôi giữ HDV đúng ngôn ngữ bạn cần. Giá hiện ra là giá trọn cho nhóm riêng tư của bạn — không ai ghép vào.</p>
+    </div>
+    <div class="bk-grid">
+      <form class="bk-form rv" id="bkForm" aria-label="Kiểm tra chỗ trống theo ngày">
+        <div class="mode-row">
+          <button type="button" class="mode-btn on" data-mode="h">Theo giờ<small>3 tiếng — tối, sáng, chiều</small></button>
+          <button type="button" class="mode-btn" data-mode="d">Theo ngày<small>4–8 tiếng — trọn trải nghiệm</small></button>
+        </div>
+        <div class="fg" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label for="bkIn">Ngày khởi hành</label><input type="date" id="bkIn" required></div>
+          <div><label for="bkG2">Số khách</label>
+            <select id="bkG2"><option value="1">1 khách</option><option value="2" selected>2 khách</option><option value="3">3 khách</option><option value="4">4 khách</option><option value="5">5 khách</option><option value="6">6 khách</option><option value="7">7 khách</option><option value="8">8 khách</option></select>
+          </div>
+        </div>
+        <div class="fg"><label for="bkLang">Ngôn ngữ HDV</label>
+          <select id="bkLang">
+            <option value="vi" selected>Tiếng Việt</option>
+            <option value="en">English</option>
+            <option value="zh">中文 — Mandarin (+15%)</option>
+            <option value="ja">日本語 — Japanese (+15%)</option>
+            <option value="ko">한국어 — Korean (+15%)</option>
+          </select>
+        </div>
+        <button class="btn btn-a btn-full" type="submit">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Xem HDV còn chỗ — giá cho nhóm của bạn
+        </button>
+        <span class="bk-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Ngày sớm nhất là ngày mai — đặt trước 24 giờ. Từ 4 khách trở lên được giảm 5% giá nhóm.</span>
+      </form>
+      <div class="bk-res rv" data-d="1">
+        <div class="bk-res-top">
+          <span class="rt" id="resTitle">HDV còn chỗ sắp tới</span>
+          <span class="rc" id="resMeta">—</span>
+        </div>
+        <div class="avail" id="availList"></div>
+      </div>
+    </div>
+    <div class="bk-trust rv">
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="mini"><span class="bt block">Đặt trước 24h</span><span class="bs block">Giữ HDV đúng ngày, đúng giờ</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span><span class="mini"><span class="bt block">Hủy &amp; đổi miễn phí</span><span class="bs block">Trước 24h — hoàn cọc 100%</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg></span><span class="mini"><span class="bt block">Đón tận khách sạn</span><span class="bs block">Miễn phí khu phố cổ &amp; trung tâm</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 20v-1.5A5.5 5.5 0 0 1 8 13a5.5 5.5 0 0 1 6 2.3M16 13a5.5 5.5 0 0 1 6 5.5V20"/></svg></span><span class="mini"><span class="bt block">Nhóm riêng ≤ 8 khách</span><span class="bs block">Không ghép khách lạ — bao trọn</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BẢNG GIÁ THEO KỲ + GÓI ============ -->
+<section id="gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Giá minh bạch — không phí ẩn, không dừng shop</span>
+      <h2>Bảng giá tour theo từng kỳ</h2>
+      <p>Chọn kỳ đi để xem giá áp dụng. Giá tính mỗi khách; 2 trẻ 5–11 tuổi tính như 1 người lớn (60%).</p>
+    </div>
+    <div class="rv">
+      <div class="ptabs" role="tablist" aria-label="Kỳ áp dụng giá">
+        <button class="ptab on" data-season="normal" role="tab">Ngày thường</button>
+        <button class="ptab" data-season="weekend" role="tab">Cuối tuần <em>+10%</em></button>
+        <button class="ptab" data-season="holiday" role="tab">Lễ — Tết <em>+20%</em></button>
+      </div>
+      <div class="ptable-card">
+        <div class="ptable-wrap">
+          <table class="ptable">
+            <thead><tr><th>Tour</th><th>Thời lượng</th><th>Buổi khởi hành</th><th>Giá mỗi khách</th><th>Ghi chú kỳ</th></tr></thead>
+            <tbody id="priceBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="ptips">
+        <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="mini"><span class="pt block">Đặt trước 24 giờ</span><span class="pd block">Giữ HDV đúng ngôn ngữ bạn chọn. Gấp hơn 24h? Gọi 0905 346 278 — còn HDV rảnh là nhận.</span></span></div>
+        <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 10h18"/></svg></span><span class="mini"><span class="pt block">Cuối tuần +10% · Lễ +20%</span><span class="pd block">Thứ 7, Chủ nhật nhân 1,1; 30/4–1/5, 2/9 và Tết nhân 1,2. Trẻ 5–11 tuổi tính 60%, dưới 5 tuổi miễn phí.</span></span></div>
+        <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="mini"><span class="pt block">Cọc 20% giữ chỗ</span><span class="pd block">Cọc qua MoMo / ZaloPay / VNPay / Visa. Phần còn lại trả trực tiếp HDV cuối tour — tiền mặt hoặc quét mã.</span></span></div>
+      </div>
+    </div>
+
+    <div class="combo-head rv">
+      <div class="mini">
+        <span class="kicker">Gói theo ngày</span>
+        <h2 style="font-size:clamp(1.35rem,2.4vw,1.8rem)">Trọn 24h hoặc 2 ngày — rẻ hơn đặt lẻ</h2>
+      </div>
+      <span style="color:var(--soft);font-size:.9rem">Một mã giữ chỗ — HDV đứng ra lo trọn lộ trình và đưa đón</span>
+    </div>
+    <div class="combo-grid">
+      <div class="combo rv">
+        <h4>Gói Chạm phố 24h</h4>
+        <span class="c-for">Lần đầu đến Hội An — 1 ngày 1 tối</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Phố cổ trọn ngày (8:30–16:30)</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Tour ẩm thực đường phố buổi tối</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đưa đón khách sạn 2 chiều + nước suối</span>
+        </div>
+        <div class="c-price"><b>940K</b><s>1.040K</s><span class="save">Tiết kiệm 10%</span></div>
+        <button class="btn btn-g btn-full" data-combo="Gói Chạm phố 24h|oldtown">Chọn gói — giữ chỗ liền</button>
+      </div>
+      <div class="combo hot rv" data-d="1">
+        <span class="c-flag">HAY ĐẶT CHO GIA ĐÌNH</span>
+        <h4>Gói Gia đình có bé</h4>
+        <span class="c-for">Cho 2 người lớn + 1–2 bé dưới 12 tuổi</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Sông nước buổi sáng — thuyền thúng &amp; chợ cá</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Làng nghề chiều — bé tự làm lồng đèn / gốm</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Trẻ 5–11 tuổi tính 60% · dưới 5 tuổi miễn phí</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đón khách sạn + ghế ăn cho bé miễn phí</span>
+        </div>
+        <div class="c-price"><b>850K</b><span class="save">mỗi người lớn</span></div>
+        <button class="btn btn-a btn-full" data-combo="Gói Gia đình có bé|boat">Chọn gói — giữ chỗ liền</button>
+      </div>
+      <div class="combo rv" data-d="2">
+        <h4>Gói Balô 2 ngày</h4>
+        <span class="c-for">Cho nhóm bạn trẻ — 2 ngày đậm chất địa phương</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Ngày 1: xe máy khám phá theo lộ trình riêng</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Ngày 2: trekking rừng núi nhóm nhỏ</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Tặng 1 buổi tối chợ đêm có HDV dẫn</span>
+        </div>
+        <div class="c-price"><b>1.350K</b><s>1.530K</s><span class="save">Tiết kiệm 12%</span></div>
+        <button class="btn btn-g btn-full" data-combo="Gói Balô 2 ngày|moto">Chọn gói — giữ chỗ liền</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ĐỘI HDV ============ -->
+<section id="hdv" class="trail">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Đội HDV đa ngôn ngữ</span>
+      <h2>Người dẫn bạn là người lớn lên ở đây</h2>
+      <p>Mỗi HDV đều có chứng chỉ hành nghề, nói tối thiểu 2 ngôn ngữ và dẫn dưới 8 khách mỗi chuyến. Đặt trước 24h để chọn đúng người.</p>
+    </div>
+    <div class="gd-grid">
+      <article class="gd rv">
+        <span class="gd-av">QB</span>
+        <span class="mini"><b class="block">Quốc Bảo</b><span class="gd-role block">Chuyên tour ẩm thực</span></span>
+        <span class="gd-bio">Nguyên phụ bếp 8 năm — biết từng hẻm thơm nhất khi đèn vừa tắt nắng. "Ăn như người địa phương" là nguyên tắc của Bảo.</span>
+        <div class="gd-langs"><i>Tiếng Việt</i><i>English</i><i>日本語 cơ bản</i></div>
+        <div class="gd-mt"><span class="mini"><b class="block">1.200+</b>tour đã dẫn</span><span class="mini"><b class="block">4,9★</b>điểm review</span></div>
+      </article>
+      <article class="gd rv" data-d="1">
+        <span class="gd-av">LH</span>
+        <span class="mini"><b class="block">Lan Hương</b><span class="gd-role block">Chuyên văn hóa &amp; làng nghề</span></span>
+        <span class="gd-bio">Con nhà mộc làng Kim Bồng — kể chuyện nghề bằng chính tay mình. Hương mở lớp làm lồng đèn mini cho bé cuối mỗi chuyến.</span>
+        <div class="gd-langs"><i>Tiếng Việt</i><i>English</i><i>中文</i></div>
+        <div class="gd-mt"><span class="mini"><b class="block">900+</b>tour đã dẫn</span><span class="mini"><b class="block">4,9★</b>điểm review</span></div>
+      </article>
+      <article class="gd rv" data-d="2">
+        <span class="gd-av">MD</span>
+        <span class="mini"><b class="block">Minh Đại</b><span class="gd-role block">Chuyên xe máy &amp; trekking</span></span>
+        <span class="gd-bio">Chứng chỉ an toàn vận tải và cấp cứu cơ bản. Lộ trình biển — đèo — núi rừng đều nằm trong tay, chạy xe êm kể cả với người mới ngồi.</span>
+        <div class="gd-langs"><i>Tiếng Việt</i><i>English</i><i>한국어</i></div>
+        <div class="gd-mt"><span class="mini"><b class="block">800+</b>tour đã dẫn</span><span class="mini"><b class="block">4,8★</b>điểm review</span></div>
+      </article>
+      <article class="gd rv" data-d="3">
+        <span class="gd-av">TV</span>
+        <span class="mini"><b class="block">Thảo Vy</b><span class="gd-role block">Chuyên lịch sử phố cổ</span></span>
+        <span class="gd-bio">Cử nhân lịch sử — dẫn tour check-in nhưng bên dưới là cả tầng câu chuyện thương cảng 400 năm. Chụp ảnh hộ siêu nghệ.</span>
+        <div class="gd-langs"><i>Tiếng Việt</i><i>English</i><i>日本語</i><i>ไทย cơ bản</i></div>
+        <div class="gd-mt"><span class="mini"><b class="block">1.500+</b>tour đã dẫn</span><span class="mini"><b class="block">5,0★</b>điểm review</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LỘ TRÌNH 3 GIỜ ============ -->
+<section id="lo-trinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker" style="justify-content:center">Một buổi đi thật của tour ẩm thực</span>
+      <h2>3 giờ — 5 điểm dừng, không quán trả phí đưa khách</h2>
+      <p>Lộ trình mẫu tối thứ ba tuần này. Mỗi buổi đi theo nhóm của riêng bạn, giờ giấc co giãn theo bạn.</p>
+    </div>
+    <div class="rt-wrap rv">
+      <div class="rt-line" aria-hidden="true"></div>
+      <div class="rt-grid">
+        <div class="rt-stop"><span class="rt-dot">01</span><span class="rt-body mini"><span class="rt-time block">17:30</span><b class="block">Đón tại khách sạn</b><p class="block">HDV gặp bạn ở sảnh, giới thiệu 5 quán sẽ đi và khẩu vị của cả nhóm.</p></span></div>
+        <div class="rt-stop"><span class="rt-dot">02</span><span class="rt-body mini"><span class="rt-time block">18:00</span><b class="block">Bánh mì hẻm 3 đời</b><p class="block">Ổ bánh mì than hoa, pate nhà làm — món mở màn đậm nhất buổi tối.</p></span></div>
+        <div class="rt-stop"><span class="rt-dot">03</span><span class="rt-body mini"><span class="rt-time block">18:40</span><b class="block">Cao lầu &amp; hoành thánh</b><p class="block">Mì nước tro đất quê, hoành thánh chiên giòn — bàn gỗ, ghế nhựa, đúng chất.</p></span></div>
+        <div class="rt-stop"><span class="rt-dot">04</span><span class="rt-body mini"><span class="rt-time block">19:20</span><b class="block">Chợ đêm ăn vặt</b><p class="block">Đi giữa đèn lồng: bò lá lốt, nem lụi, chè hạt lót — ăn theo thứ tự "ngon nhất để sau".</p></span></div>
+        <div class="rt-stop"><span class="rt-dot">05</span><span class="rt-body mini"><span class="rt-time block">20:00</span><b class="block">Trà móc mật &amp; tạm biệt</b><p class="block">Ly trà nóng cuối buổi kèm bản đồ "ăn gì tiếp" cho những tối còn lại của bạn.</p></span></div>
+      </div>
+      <p class="rt-cap rv">Buổi đi <b>không có quán trả phí đưa khách</b> — 5 quán đều là chỗ HDV tự bỏ tiền túi ăn từ trước khi làm nghề. Ăn chay / dị ứng: tick sẵn trong form đặt, chúng tôi đổi 2–3 món tương ứng.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<div class="stats trail-l">
+  <div class="wrap stats-grid">
+    <div class="stat rv"><span class="sv block"><span class="cnt" data-to="9">0</span></span><span class="sk block">năm dẫn tour địa phương</span></div>
+    <div class="stat rv" data-d="1"><span class="sv block"><span class="cnt" data-to="6">0</span></span><span class="sk block">ngôn ngữ của đội HDV</span></div>
+    <div class="stat rv" data-d="2"><span class="sv block"><span class="cnt" data-to="4900">0</span><small>+</small></span><span class="sk block">khách quốc tế mỗi năm</span></div>
+    <div class="stat rv" data-d="3"><span class="sv block"><span class="cnt" data-to="49" data-dec="1">0</span><small>/5</small></span><span class="sk block">điểm hài lòng — 1.300+ review</span></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="ve-chung-toi">
+  <div class="wrap about-grid">
+    <div class="about-vis rv">
+      <div class="av-img"><img src="assets/img/intro.webp" alt="Giới thiệu Chạm Phố — hướng dẫn viên và tour địa phương" width="1448" height="1086" loading="lazy"></div>
+      <div class="av-float fl3">
+        <span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span>
+        <span class="mini"><b class="block">Cam kết không dừng shop</b><span class="block">Không hoa hồng — chỉ chỗ thật sự ngon</span></span>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="sec-head rv" style="margin-bottom:8px">
+        <span class="kicker">Câu chuyện Chạm Phố</span>
+        <h2>Bắt đầu từ 4 người bạn và một chiếc xe đạp điện cũ</h2>
+        <p>Năm 2017, bốn người bạn ở Hội An mở tour miễn phí cho vài người khách Tây hỏi đường. Hôm nay Chạm Phố là đội 12 HDV bản địa, mỗi năm dẫn gần 5.000 khách quốc tế — vẫn giữ nguyên quy tắc đầu tiên: <b>đưa khách đến chỗ mình thật sự thích</b>, chứ không phải chỗ trả hoa hồng.</p>
+      </div>
+      <div class="strengths">
+        <div class="str-card rv"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/><path d="m9.5 12.5 1 2.5h3l1-2.5"/></svg></span><b>HDV bản địa có chứng chỉ</b><p>Thẻ hành nghề du lịch, tiếng ngoại giao tiếp tốt và được tập huấn cấp cứu cơ bản mỗi năm một lần.</p></div>
+        <div class="str-card rv" data-d="1"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 20v-1.5A5.5 5.5 0 0 1 8 13a5.5 5.5 0 0 1 6 2.3M16 13a5.5 5.5 0 0 1 6 5.5V20"/></svg></span><b>Nhóm nhỏ tối đa 8 khách</b><p>Nhóm của riêng bạn, không ghép người lạ. Vào hẻm, lên thuyền, vào xưởng nghề — đâu cũng vừa vặn.</p></div>
+        <div class="str-card rv" data-d="2"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg></span><b>Lịch trình theo ý bạn</b><p>Trộn 2–3 tour thành ngày riêng, đổi điểm dừng giữa đường, hoặc nhờ thiết kế lộ trình từ đầu — miễn phí tư vấn.</p></div>
+        <div class="str-card rv" data-d="3"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><b>Giá trọn gói, công khai</b><p>Giá đã gồm HDV, ăn uống / vé theo tour, đưa đón trung tâm. Hủy trước 24h hoàn cọc 100% — kể cả lúc mưa bão.</p></div>
+      </div>
+      <div class="about-cta rv">
+        <button class="btn btn-a" data-open-drawer>Đặt tour — giữ chỗ 60 giây</button>
+        <a class="btn btn-g" href="tel:0905346278">Gọi 0905 346 278 — 7:00–21:00</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHÔNG GIAN TOUR ============ -->
+<section id="khong-gian" style="padding-top:0">
+  <div class="wrap about-grid">
+    <div class="mini">
+      <div class="sec-head rv" style="margin-bottom:8px">
+        <span class="kicker">Buổi đi trông thế nào?</span>
+        <h2>Nhóm nhỏ, đi bộ chậm, dừng hết chỗ hay</h2>
+        <p>Điểm hẹn gần, lộ trình trong bán kính 5 km, không hạn chế thời gian chụp ảnh. HDV luôn đi trước một bước — dò bàn trống, hỏi khẩu vị, gọi món sẵn cho nhóm.</p>
+      </div>
+      <div class="strengths" style="grid-template-columns:1fr 1fr">
+        <div class="str-card rv"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg></span><b>Điểm hẹn thuận chân</b><p>Đón tận khách sạn trong phố cổ miễn phí; ngoài trung tâm phụ thu công khai từ 100K.</p></div>
+        <div class="str-card rv" data-d="1"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg></span><b>Ảnh đẹp là trách nhiệm của HDV</b><p>Mỗi chuyến có ít nhất 10 tấm "ảnh nhóm sống ảo" — chụp hộ, sửa màu, gửi Zalo ngay tối hôm đó.</p></div>
+      </div>
+    </div>
+    <div class="about-vis rv" data-d="1">
+      <div class="av-img"><img src="assets/img/space.webp" alt="Nhóm khách nhỏ cùng HDV dừng chân bên hồ trong tour địa phương" width="1086" height="814" loading="lazy" style="object-position:center"></div>
+      <div class="av-float fl3" style="left:auto;right:-10px">
+        <span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span>
+        <span class="mini"><b class="block">Vừa đi vừa nghỉ</b><span class="block">Dừng nước mát mỗi 60–90 phút</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section id="quy-trinh" class="trail-l">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker" style="justify-content:center">Đặt tour dễ như gọi món</span>
+      <h2>4 bước từ mạng tới con hẻm</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc rv"><span class="pn">01</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><b class="block">Chọn tour &amp; ngày</b><p>Đặt trước 24 giờ để giữ HDV đúng ngôn ngữ. Chọn nhanh trong 8 tour hoặc xin lộ trình riêng.</p><span class="pm">≈ 60 giây</span></div>
+      <div class="proc rv" data-d="1"><span class="pn">02</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.5 8.5 0 1 1-4.6-7.6L21 3l-1.5 4.5"/><path d="M9 12l2 2 4-4"/></svg></span><b class="block">Nhận mã giữ chỗ</b><p>Mã gửi qua Zalo / WhatsApp / email. Cọc 20% giữ chỗ — phần còn lại trả HDV cuối tour.</p><span class="pm">Xác nhận trong 15 phút</span></div>
+      <div class="proc rv" data-d="2"><span class="pn">03</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg></span><b class="block">HDV đón tại khách sạn</b><p>Sớm hơn giờ hẹn 15 phút, bảng tên Chạm Phố, gọi trước khi lên tầng. Miễn phí khu trung tâm.</p><span class="pm">Đúng giờ hẹn</span></div>
+      <div class="proc rv" data-d="3"><span class="pn">04</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></span><b class="block">Trải nghiệm &amp; kết thúc</b><p>Thanh toán phần còn lại cuối tour. Hài lòng hay không — review thật, đổi lịch / hủy trước 24h miễn phí.</p><span class="pm">Hủy miễn phí 24h</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khách nói gì</span>
+      <h2>1.300+ đánh giá — điểm trung bình 4,9/5</h2>
+    </div>
+    <div class="rev-shell rv">
+      <div class="rev-main">
+        <div class="rev-track" id="revTrack"></div>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+      <div class="rev-side">
+        <div class="rev-metric"><span class="mv">15 phút</span><span class="mk">thời gian phản hồi trung bình qua <b>Zalo / WhatsApp</b> trong giờ 7:00–21:00</span></div>
+        <div class="rev-metric"><span class="mv">96%</span><span class="mk">review khen <b>HDV "như bạn địa phương thật sự"</b> trong 12 tháng gần nhất</span></div>
+        <div class="rev-metric"><span class="mv">0 ₫</span><span class="mk">tiền hoa hồng shop — <b>cam kết bằng văn bản</b> trong mã giữ chỗ</span></div>
+        <div class="partners">
+          <span class="pk block">Khách tìm đến qua</span>
+          <div class="partner-chips"><i>TripAdvisor</i><i>GetYourGuide</i><i>Klook</i><i>KKday</i><i>Google Đánh giá</i><i>Zalo</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIÊN HỆ + MAP + FORM ============ -->
+<section id="lien-he" class="trail">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Văn phòng ngay mép phố cổ</span>
+      <h2>Gặp trực tiếp hoặc gửi yêu cầu lịch trình riêng</h2>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info trail-l rv">
+        <h3>Chạm Phố — Local Tours &amp; Guides</h3>
+        <p class="cs">Mở 7:00–21:00 mỗi ngày — đều đặn cả ngày lễ</p>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg></span><span class="mini"><b class="block">88 Sông Hoài, P. Sơn Phong, TP. Hội An, Quảng Nam</b><span class="block">Mép tây phố cổ — 3 phút từ chợ Hội An</span></span></div>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg></span><span class="mini"><b class="block">Hotline / Zalo / WhatsApp: 0905 346 278</b><span class="block">Gọi giữ chỗ — xác nhận trong 15 phút</span></span></div>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="mini"><b class="block">7:00 – 21:00 mỗi ngày</b><span class="block">Tour khởi hành 6:30 – 18:30 tùy tuyến</span></span></div>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span><span class="mini"><b class="block">Tiếng Việt · English · 中文 · 日本語 · 한국어 · ไทย</b><span class="block">Tư vấn trực tiếp hoặc qua chat cùng số hotline</span></span></div>
+        <div class="ct-map">
+          <iframe src="https://www.google.com/maps?q=15.8833,108.3372&z=15&output=embed" loading="lazy" title="Bản đồ văn phòng Chạm Phố tại Hội An" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="ct-map-actions">
+          <a class="btn btn-a btn-s" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=15.8833,108.3372">Chỉ đường đến văn phòng</a>
+          <a class="btn btn-g btn-s" href="tel:0905346278">Gọi giữ chỗ ngay</a>
+        </div>
+      </div>
+      <form class="ct-form-card rv" data-d="1" id="ctForm" novalidate>
+        <h3>Xin lịch trình riêng trong 24h</h3>
+        <p class="cs">Không đúng tour nào ở trên? Kể chúng tôi nghe bạn thích gì — HDV sẽ thiết kế lộ trình riêng và gửi lại kèm giá.</p>
+        <div class="ctf">
+          <div><label for="cfName">Họ tên *</label><input id="cfName" type="text" placeholder="Nguyễn Văn A / Your name" required></div>
+          <div><label for="cfContact">Số điện thoại / Email *</label><input id="cfContact" type="text" placeholder="09xx xxx xxx hoặc you@mail.com" required></div>
+          <div><label for="cfTour">Tour gần với ý bạn nhất</label>
+            <select id="cfTour">
+              <option>Chưa rõ — thiết kế từ đầu</option><option>Tour ẩm thực đường phố buổi tối</option><option>Tour Phố cổ trọn ngày</option><option>Tour làng nghề &amp; văn hóa bản địa</option><option>Tour sông nước buổi sáng</option><option>Tour xe máy khám phá</option><option>Tour trekking nhóm nhỏ</option><option>Tour check-in điểm đẹp</option><option>Tour chợ đêm &amp; văn hóa đêm</option>
+            </select>
+          </div>
+          <div><label for="cfLang">Ngôn ngữ HDV mong muốn</label>
+            <select id="cfLang"><option>Tiếng Việt</option><option>English</option><option>中文 (Trung)</option><option>日本語 (Nhật)</option><option>한국어 (Hàn)</option><option>ภาษาไทย (Thái)</option></select>
+          </div>
+          <div><label for="cfWhen">Ngày dự kiến</label><input id="cfWhen" type="date"></div>
+          <div><label for="cfPeople">Số khách</label><input id="cfPeople" type="number" min="1" max="30" placeholder="VD: 4"></div>
+          <div class="full"><label for="cfNote">Kể chúng tôi nghe chuyến đi của bạn</label><textarea id="cfNote" rows="3" placeholder="VD: Nhóm 4 bạn Đức, thích ăn chay + chụp ảnh sớm mai, 2 ngày 1 đêm…"></textarea></div>
+          <div class="full"><button class="btn btn-a btn-full" type="submit">Gửi yêu cầu — nhận lộ trình trong 24h</button></div>
+        </div>
+        <span class="ctf-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Thông tin chỉ dùng để soạn lộ trình — không chia sẻ bên thứ ba.</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker" style="justify-content:center">Giải đáp nhanh</span>
+      <h2>Câu hỏi hay gặp khi đặt tour riêng</h2>
+    </div>
+    <div class="rv">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: 24h, hủy, trẻ em, mưa, ngôn ngữ, thanh toán…">
+        </div>
+        <div class="faq-chips" id="faqChips"></div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-none" id="faqNone">Không tìm thấy câu phù hợp — gọi 0905 346 278 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="trail-l">
+  <div class="wrap ft-grid">
+    <div class="ft-brand">
+      <a class="logo" href="#top">
+        <span class="logo-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/><path d="M12 3V1.5"/></svg></span>
+        <span class="logo-tx mini"><span class="t1 block" style="color:#fff">CHẠM PHỐ</span><span class="t2 block">Local Tours &amp; Guides</span></span>
+      </a>
+      <p>Tour riêng tư theo giờ &amp; theo ngày với HDV bản địa tại Hội An — Đà Nẵng. Nhóm nhỏ tối đa 8 khách, 6 ngôn ngữ, đặt trước 24h, không dừng shop.</p>
+      <div class="ft-social">
+        <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+        <a href="#" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0 0 20c1.3 0 2.5-.25 3.6-.7L20 22l-.9-3.6A10 10 0 0 0 12 2Zm-2.2 5.5h1.6l2.3 6.6h-1.6l-.5-1.6H9.3l-.5 1.6H7.2l2.6-6.6Zm5.7 0h1.5v6.6h-1.5V7.5ZM10.4 9.4l-.7 2h1.4l-.7-2Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8c1.5.4 7.8.4 7.8.4s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8ZM10 9l5.2 3L10 15V9Z"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>8 tour riêng tư</h5>
+      <a href="#tour">Ẩm thực đường phố buổi tối</a>
+      <a href="#tour">Phố cổ trọn ngày</a>
+      <a href="#tour">Làng nghề &amp; văn hóa bản địa</a>
+      <a href="#tour">Sông nước buổi sáng</a>
+      <a href="#tour">Xe máy &amp; trekking nhóm nhỏ</a>
+      <a href="#tour">Chợ đêm &amp; check-in điểm đẹp</a>
+    </div>
+    <div class="ft-col">
+      <h5>Hỗ trợ khách</h5>
+      <a href="#booking">Đặt tour online</a>
+      <a href="#gia">Bảng giá theo kỳ</a>
+      <a href="#lo-trinh">Lộ trình mẫu 3 giờ</a>
+      <a href="#hdv">Đội HDV đa ngôn ngữ</a>
+      <a href="#faq">Chính sách hủy — đổi lịch</a>
+      <a href="#faq">Câu hỏi thường gặp</a>
+    </div>
+    <div class="ft-col">
+      <h5>Liên hệ</h5>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg>88 Sông Hoài, P. Sơn Phong, TP. Hội An</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg><span class="ft-hotline">0905 346 278</span></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mở 7:00–21:00 — cả ngày lễ</span>
+    </div>
+  </div>
+  <div class="ft-pay">
+    <div class="wrap">
+      <span class="pl">Cọc &amp; thanh toán qua</span>
+      <div class="pay-chips"><i>MoMo</i><i>ZaloPay</i><i>VNPay-QR</i><i>Visa / Master</i><i>Tiền mặt cho HDV</i></div>
+    </div>
+  </div>
+  <div class="ft-copy">
+    <div class="wrap"><span>© 2026 Chạm Phố Local Tours — 88 Sông Hoài, Hội An. GPKD 8103xxxxxx.</span><span>Đặt trước 24h · Hủy miễn phí · Không dừng shop</span></div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="fab" id="fab" aria-label="Thanh thao tác nhanh">
+  <button class="fab-main" data-open-drawer aria-label="Đặt tour"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="tip">Đặt tour</span></button>
+  <a href="tel:0905346278" aria-label="Gọi hotline"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg><span class="tip">Gọi ngay</span></a>
+  <a href="https://zalo.me/84905346278" target="_blank" rel="noopener" aria-label="Zalo"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0 0 20c1.3 0 2.5-.25 3.6-.7L20 22l-.9-3.6A10 10 0 0 0 12 2Zm-2.2 5.5h1.6l2.3 6.6h-1.6l-.5-1.6H9.3l-.5 1.6H7.2l2.6-6.6Zm5.7 0h1.5v6.6h-1.5V7.5ZM10.4 9.4l-.7 2h1.4l-.7-2Z"/></svg><span class="tip">Chat Zalo</span></a>
+  <a href="#lien-he" aria-label="Bản đồ"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg><span class="tip">Chỉ đường</span></a>
+  <a href="#faq" aria-label="Hỏi đáp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.5A2.8 2.8 0 0 1 12 7.5c1.5 0 2.7 1 2.7 2.3 0 1.7-2.7 2-2.7 3.7M12 16.8h.01"/></svg><span class="tip">Hỏi đáp</span></a>
+  <button id="toTop" aria-label="Lên đầu trang"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span class="tip">Lên đầu</span></button>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal" id="qvModal" role="dialog" aria-modal="true" aria-label="Xem nhanh tour">
+  <div class="m-bg" data-close-qv></div>
+  <div class="m-card">
+    <button class="m-close" data-close-qv aria-label="Đóng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="m-hero"><img id="qvImg" src="assets/img/p1.webp" alt="Ảnh tour" width="1448" height="1086"></div>
+    <div class="m-body">
+      <h3 id="qvName">Tour</h3>
+      <div class="m-meta" id="qvMeta"></div>
+      <table class="m-table"><thead><tr><th>Hạng mục</th><th>Chi tiết</th><th>Giá</th></tr></thead><tbody id="qvPrices"></tbody></table>
+      <div class="m-utils" id="qvUtils"></div>
+      <div class="m-foot">
+        <button class="btn btn-a" id="qvPick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Chọn tour này — giữ chỗ 60 giây</button>
+        <a class="btn btn-g" href="tel:0905346278">Gọi giữ chỗ</a>
+      </div>
+      <div class="m-metas">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đặt trước 24h · hủy miễn phí</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Nhóm riêng ≤ 8 khách</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Cọc 20% — trả HDV phần còn lại</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BOOKING DRAWER ============ -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Đặt tour của bạn">
+  <div class="dw-head">
+    <span class="mini"><span class="dt block">Đặt tour của bạn</span><span class="ds block">Đặt trước 24h · cọc 20% giữ chỗ · hủy miễn phí</span></span>
+    <button class="dw-x" id="dwClose" aria-label="Đóng"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="dw-body" id="dwBody">
+    <div class="dw-sec">
+      <span class="dl">1 · Ngày khởi hành (sớm nhất là ngày mai)</span>
+      <div class="dw-days" id="dwDays"></div>
+    </div>
+    <div class="dw-sec">
+      <span class="dl">2 · Giờ khởi hành dự kiến</span>
+      <div class="dw-slots" id="dwSlots"></div>
+    </div>
+    <div class="dw-sec">
+      <span class="dl">3 · Tour &amp; số khách <a href="#tour" id="dwBrowse" style="color:var(--accent-deep);font-weight:800">xem 8 tour →</a></span>
+      <div id="dwTourBox" style="margin-bottom:12px"></div>
+      <div class="dw-fg">
+        <div><label for="dwGuests">Số khách</label>
+          <select id="dwGuests"><option value="1">1 khách</option><option value="2" selected>2 khách</option><option value="3">3 khách</option><option value="4">4 khách — giảm 5%</option><option value="5">5 khách — giảm 5%</option><option value="6">6 khách — giảm 5%</option><option value="7">7 khách — giảm 5%</option><option value="8">8 khách — giảm 5%</option></select>
+        </div>
+        <div><label for="dwLang">Ngôn ngữ HDV</label>
+          <select id="dwLang">
+            <option value="vi" selected>Tiếng Việt</option>
+            <option value="en">English</option>
+            <option value="zh">中文 (+15%)</option>
+            <option value="ja">日本語 (+15%)</option>
+            <option value="ko">한국어 (+15%)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="dw-sec" id="dwExtras">
+      <span class="dl">4 · Tiện lợi thêm (không bắt buộc)</span>
+      <label class="dw-check" style="margin-bottom:9px"><input type="checkbox" id="dwPickup" checked><span class="mini">Đón tại khách sạn<small>Miễn phí khu phố cổ &amp; trung tâm Đà Nẵng</small></span></label>
+      <label class="dw-check"><input type="checkbox" id="dwVeg"><span class="mini">Ăn chay / dị ứng / không cay<small>Báo trước 24h — đổi món tương ứng miễn phí</small></span></label>
+    </div>
+    <div class="dw-sec dw-inputs">
+      <span class="dl">5 · Thông tin người đặt</span>
+      <input type="text" id="dwName" placeholder="Họ tên người đặt tour *">
+      <input type="tel" id="dwPhone" placeholder="Số điện thoại / WhatsApp nhận mã *">
+    </div>
+    <div class="dw-sec dw-sum" id="dwSum"></div>
+  </div>
+  <div class="dw-foot">
+    <button class="btn btn-a btn-full" id="dwConfirm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+      Xác nhận đặt — nhận mã giữ chỗ trong 60 giây
+    </button>
+    <span class="dw-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Cọc 20% giữ chỗ · hủy miễn phí trước 24h · phần còn lại trả HDV</span>
+  </div>
+</aside>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span id="toastMsg">Đã thực hiện</span></div>
+
+<script>
+/* ================= NB93-230 DATA: 8 TOUR RIÊNG TƯ ================= */
+const TOURS = [
+  {id:'food',    code:'FOOD', name:'Tour ẩm thực đường phố buổi tối', img:'p8', fam:'h', price:450, dur:'3 giờ',  when:'17:30 – 20:30 · mỗi tối', hot:true,
+   desc:'Đi hẻm như người bản địa: 5–6 quán gia truyền — bánh mì than hoa, cao lầu, nem lụi, chè hạt lót. Đã gồm toàn bộ ăn uống.',
+   util:['5–6 quán bản địa','Đã gồm ăn & uống','Đi bộ trong phố cổ','Nhóm ≤ 8 khách','Có lựa chọn chay']},
+  {id:'oldtown', code:'OLD',  name:'Tour Phố cổ trọn ngày',           img:'p1', fam:'d', price:590, dur:'8 tiếng', when:'8:30 – 16:30', hot:true,
+   desc:'Một vòng world heritage đi chậm: chợ cổ, nhà cổ, hội quán, dạo cầu ngói — kết thúc bằng ly cà phê nhìn sông.',
+   util:['Vé thăm quan phố cổ','Ăn trưa địa phương','Xe điện về khách sạn','Nhóm ≤ 8 khách','HDV chụp ảnh hộ']},
+  {id:'craft',   code:'CFT',  name:'Tour làng nghề & văn hóa bản địa', img:'p2', fam:'d', price:420, dur:'4–5 tiếng', when:'8:30 – 13:00 hoặc 13:30 – 18:00', hot:false,
+   desc:'Đưa đón ra làng mộc, xưởng đúc nồi, lò gốm — tự tay làm một món mang về. Hương dẫn và dịch trực tiếp từ tay nghề nhà mình.',
+   util:['Gốm / lồng đèn tự làm','Đưa đón 2 chiều','Trà làng + trái cây','Phù hợp gia đình có bé','Người thợ hướng dẫn tay']},
+  {id:'boat',    code:'BOAT', name:'Tour sông nước buổi sáng',         img:'p3', fam:'h', price:480, dur:'3 giờ',  when:'7:00 – 10:00 · mỗi sáng', hot:false,
+   desc:'Lên thuyền mành theo HDV ra chợ cá, tập bập bè thuyền thúng, cà phê bờ sông khi nắng chưa gắt — buổi sáng "đúng giờ địa phương".',
+   util:['Thuyền riêng cho nhóm','Thuyền thúng tự lái','Đón khách sạn 6:40','Phù hợp gia đình','Mũ cói tặng mỗi khách']},
+  {id:'moto',    code:'MOTO', name:'Tour xe máy khám phá theo lộ trình riêng', img:'p4', fam:'d', price:750, dur:'Trọn ngày', when:'8:00 – 16:00 · lộ trình theo ý', hot:false,
+   desc:'Ngồi sau tay lái an toàn hoặc tự lái (có bằng A1): biển, đèo, làng — điểm dừng do nhóm quyết, Đại chạy đầu và chăm phía sau.',
+   util:['Xe + mũ + xăng trọn gói','Tự lái hoặc ngồi sau','Đường ven biển — làng mạc','Bảo hiểm hành khách','Phù hợp bạn trẻ']},
+  {id:'trek',    code:'TREK', name:'Tour trekking rừng núi nhóm nhỏ',  img:'p5', fam:'d', price:690, dur:'Trọn ngày', when:'6:30 – 16:00', hot:false,
+   desc:'Rẽ vào thung lũng xanh mát 40 phút từ phố: đường mòn bản địa, suối nhỏ, bữa trưa lá chuối. Nhóm tối đa 6 khách để giữ nhịp.',
+   util:['Nhóm ≤ 6 khách','Bữa trưa lá chuối','Gậy + mưa áo mượn miễn phí','HDV chứng chỉ an toàn','Cấp cứu cơ bản sẵn tuýp']},
+  {id:'checkin', code:'CHEK', name:'Tour check-in điểm đẹp + HDV song ngữ', img:'p6', fam:'h', price:350, dur:'3 giờ', when:'Linh hoạt 8:00 – 19:00', hot:false,
+   desc:'Ba giờ trọn bộ góc sống ảo kèm người hiểu ảnh: Vy chụp hộ, chỉ góc đẹp và kể cả tầng câu chuyện phía sau mỗi bức tường.',
+   util:['10+ góc chụp đẹp nhất','Sửa màu + gửi Zalo tối đó','Linh hoạt giờ đi','Nhóm ≤ 8 khách','HDV Việt – Anh']},
+  {id:'night',   code:'NGT',  name:'Tour chợ đêm & văn hóa đêm',       img:'p7', fam:'h', price:390, dur:'3 giờ',  when:'18:30 – 21:30 · mỗi tối', hot:false,
+   desc:'Chợ đêm không chỉ mua sắm: đọc đèn lồng, nghe hát bội tối, ăn vặt đúng chỗ địa phương ngồi — kết thúc bằng trà nóng bờ sông.',
+   util:['Ăn vặt đã gồm','Nghe kể văn hóa đêm','Mua sắm có HDV mặc cả hộ','Nhóm ≤ 8 khách','Phù hợp mọi lứa tuổi']}
+];
+const fmtK = n => new Intl.NumberFormat('vi-VN').format(n) + 'K';
+const fmtMoney = n => n >= 1000 ? (Math.round(n/100)/10).toLocaleString('vi-VN',{maximumFractionDigits:1}) + ' triệu' : fmtK(n);
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const LANG_PREMIUM = {vi:0, en:0, zh:.15, ja:.15, ko:.15};
+const LANG_LABEL   = {vi:'tiếng Việt', en:'English', zh:'tiếng Trung', ja:'tiếng Nhật', ko:'tiếng Hàn'};
+
+/* kỳ giá: normal ×1 · weekend(T7,CN) ×1.1 · holiday ×1.2 */
+const HOLIDAYS_MD = ['01-01','04-30','05-01','09-02'];
+const TET_DATES = ['2026-02-16','2026-02-17','2026-02-18','2026-02-19','2027-02-05','2027-02-06','2027-02-07','2027-02-08'];
+function parseDay(dstr){ return new Date(dstr+'T00:00:00Z'); }
+function seasonOf(dstr){
+  if (TET_DATES.includes(dstr) || HOLIDAYS_MD.includes(dstr.slice(5))) return {k:1.2, label:'lễ Tết'};
+  const wd = parseDay(dstr).getUTCDay();
+  if (wd===0 || wd===6) return {k:1.1, label:'cuối tuần'};
+  return {k:1, label:'ngày thường'};
+}
+function addDays(dstr,n){ const d=parseDay(dstr); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); }
+function dstrVN(dstr){ return parseDay(dstr).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',timeZone:'UTC'}); }
+function tourImg(r){ return 'assets/img/'+r.img+'.webp'; }
+const round10 = v => Math.round(v/10000)*10000;
+/* giá mỗi khách theo kỳ + phụ thu ngôn ngữ + giảm nhóm (từ 4 khách −5%) */
+function pricePerGuest(t, dstr, lang){
+  const s = seasonOf(dstr);
+  return { base: round10(t.price*s.k), k:s.k, klabel:s.label, lang: LANG_PREMIUM[lang]||0, langLabel: LANG_LABEL[lang]||'' };
+}
+function groupTotal(t, guests, dstr, lang){
+  const p = pricePerGuest(t, dstr, lang);
+  const disc = guests>=4 ? .05 : 0;
+  const unit = p.base*(1+p.lang);
+  const gross = unit*guests;
+  const discVal = round10(gross*disc);
+  const total = round10(gross) - discVal;
+  return {p, disc, discVal, total, unit: round10(unit)};
+}
+
+/* ================= TOAST ================= */
+let toastT;
+function toast(msg){
+  $('#toastMsg').textContent = msg;
+  $('#toast').classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>$('#toast').classList.remove('on'), 3200);
+}
+
+/* ================= REVEAL + COUNTERS ================= */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.14});
+$$('.rv').forEach(el=>io.observe(el));
+const cio = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, to=+el.dataset.to, dec=el.dataset.dec?1:0, t0=performance.now();
+    function step(t){
+      const p=Math.min((t-t0)/1400,1), v=to*(1-Math.pow(1-p,3));
+      el.textContent = dec ? (v/10).toLocaleString('vi-VN',{minimumFractionDigits:1,maximumFractionDigits:1}) : Math.round(v).toLocaleString('vi-VN');
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step); cio.unobserve(el);
+  });
+},{threshold:.5});
+$$('.cnt').forEach(el=>cio.observe(el));
+
+/* ================= TAPE duplicate ================= */
+$('#tapeIn').innerHTML += $('#tapeIn').innerHTML;
+
+/* ================= NGÀY: hôm nay + ngày mai (đặt trước 24h) ================= */
+const today = new Date();
+function iso(d){ const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+const todayStr = iso(today);
+const tomStr = addDays(todayStr,1);
+$('#qbIn').value = tomStr; $('#qbIn').min = tomStr;
+$('#bkIn').value = tomStr; $('#bkIn').min = tomStr;
+
+/* ================= KHỐI-8 RENDER (feat 2 cột + 7 thẻ đều — grid kín 9 ô) ================= */
+const ORDER = ['food','oldtown','craft','night','boat','moto','trek','checkin'];
+function cardHTML(t, feat){
+  const famLabel = t.fam==='h' ? 'Theo giờ · '+t.dur : 'Theo ngày · '+t.dur;
+  return `
+  <article class="t-card${feat?' t-feat':''}">
+    <div class="t-in">
+      <div class="t-media">
+        <img src="${tourImg(t)}" alt="${t.name}" loading="lazy" width="1448" height="1086">
+        ${feat?'<span class="t-flag">HAY ĐẶT NHẤT · KHÁCH NƯỚC NGOÀI</span>':''}
+        ${t.hot?`<span class="t-hot">${feat?'BÁN CHẠY':'PHỔ BIẾN'}</span>`:''}
+        <span class="t-dur">${famLabel}</span>
+      </div>
+      <div class="t-body">
+        <h3>${t.name}</h3>
+        ${feat?`<span class="t-desc">${t.desc}</span>`:''}
+        <div class="t-util">${(t.util||[]).slice(0,3).map(u=>'<i>'+u+'</i>').join('')}</div>
+        <div class="t-price">
+          <span class="mini"><span class="tp"><b>${fmtK(t.price)}</b>/khách</span><span class="block">${t.when}</span></span>
+        </div>
+        <div class="t-acts">
+          <button class="t-view" data-qv="${t.id}">Xem chi tiết</button>
+          <button class="t-pick" data-pick="${t.id}">Chọn tour</button>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}
+(function renderGrid(){
+  const feat = TOURS.find(x=>x.id==='food');
+  const rest = ORDER.filter(id=>id!=='food').map(id=>TOURS.find(x=>x.id===id)).filter(Boolean);
+  $('#tourGrid').innerHTML = cardHTML(feat, true) + rest.map(t=>cardHTML(t,false)).join('');
+})();
+
+/* ================= QUICK BOOK (hero) + ENGINE ================= */
+let engMode='h';
+$$('.mode-btn').forEach(b=>b.addEventListener('click',()=>{
+  $$('.mode-btn').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  engMode=b.dataset.mode; runEngine();
+}));
+$('#qBook').addEventListener('submit',e=>{
+  e.preventDefault();
+  $('#bkIn').value=$('#qbIn').value; $('#bkG2').value=$('#qbG').value;
+  const mb=$$('.mode-btn').find(x=>x.dataset.mode===$('#qbMode').value);
+  if(mb) mb.click();
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+  setTimeout(runEngine, 350);
+});
+$('#bkForm').addEventListener('submit',e=>{ e.preventDefault(); runEngine(); });
+$('#bkIn').addEventListener('change',runEngine);
+$('#bkG2').addEventListener('change',runEngine);
+$('#bkLang').addEventListener('change',runEngine);
+
+function runEngine(){
+  const din=$('#bkIn').value || tomStr;
+  const g=+$('#bkG2').value || 2;
+  const lang=$('#bkLang').value;
+  const list = TOURS.filter(t=>t.fam===engMode).map(t=>{
+    const c = groupTotal(t, g, din, lang);
+    return {t, c};
+  }).sort((a,b)=>a.c.total-b.c.total);
+  $('#resMeta').textContent = dstrVN(din)+' · '+g+' khách · '+LANG_LABEL[lang];
+  $('#resTitle').textContent = engMode==='h' ? 'HDV còn chỗ — tour 3 tiếng' : 'HDV còn chỗ — tour theo ngày';
+  const box=$('#availList');
+  if(!list.length){ box.innerHTML='<div class="av-full"><span class="b">⚑</span>Chưa có tour phù hợp — gọi 0905 346 278 để được tư vấn lộ trình riêng.</div>'; return; }
+  box.innerHTML = list.map(x=>{
+    const langNote = x.c.p.lang ? ` <b style="color:var(--accent-deep)">+15% HDV ${x.c.p.langLabel}</b>` : '';
+    const discNote = x.c.disc ? ` <b style="color:var(--ok)">đã giảm nhóm 5%</b>` : '';
+    return `
+    <div class="av-item">
+      <img src="${tourImg(x.t)}" alt="${x.t.name}" loading="lazy" width="112" height="84">
+      <div class="av-info mini">
+        <span class="an block">${x.t.name}</span>
+        <span class="am block"><span>${x.t.dur}</span><span>${x.t.when}</span><span>nhóm ≤ ${x.t.id==='trek'?6:8} khách</span></span>
+        <span style="font-size:.78rem;color:var(--soft)">${fmtK(x.c.unit)}/khách · kỳ ${x.c.p.klabel}${langNote}${discNote}</span>
+      </div>
+      <div class="av-meta">
+        <span class="mini"><span class="av-pr block">${fmtMoney(x.c.total)}</span><span class="av-pu block">trọn nhóm ${g} khách</span></span>
+        <button class="av-btn" data-pick="${x.t.id}">Chọn tour</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+runEngine();
+
+/* ================= PRICE TABLE theo kỳ ================= */
+let curSeason='normal';
+const K = {normal:1, weekend:1.1, holiday:1.2};
+const SEASON_NOTE = {
+  normal:'Thứ 2 – thứ 6, trừ ngày lễ',
+  weekend:'Thứ 7 &amp; Chủ nhật — nhân 1,1',
+  holiday:'30/4–1/5 · 2/9 · Tết — nhân 1,2'
+};
+function renderPriceTable(){
+  const k=K[curSeason];
+  $('#priceBody').innerHTML = ORDER.map(id=>{
+    const t=TOURS.find(x=>x.id===id); if(!t) return '';
+    const v=round10(t.price*k);
+    return `<tr><td>${t.name}</td><td>${t.dur}</td><td>${t.when}</td><td><span class="mono">${fmtK(v)}</span>/khách</td><td class="sur">${SEASON_NOTE[curSeason]}</td></tr>`;
+  }).join('');
+}
+$$('.ptab').forEach(t=>t.addEventListener('click',()=>{
+  $$('.ptab').forEach(x=>x.classList.remove('on')); t.classList.add('on');
+  curSeason=t.dataset.season; renderPriceTable();
+}));
+renderPriceTable();
+
+/* ================= QUICK VIEW ================= */
+const qvModal=$('#qvModal');
+function openQV(id){
+  const t=TOURS.find(x=>x.id===id); if(!t) return;
+  $('#qvImg').src=tourImg(t); $('#qvImg').alt=t.name;
+  $('#qvName').textContent=t.name;
+  $('#qvMeta').innerHTML=`<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${t.dur}</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 10h18"/></svg>${t.when}</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 20v-1.5A5.5 5.5 0 0 1 8 13a5.5 5.5 0 0 1 6 2.3M16 13a5.5 5.5 0 0 1 6 5.5V20"/></svg>nhóm ≤ ${t.id==='trek'?6:8} khách</span>`;
+  const rows=[
+    ['Giá mỗi khách', 'Đã gồm HDV riêng + '+((t.util||[]).find(u=>/gồm|tặng|miễn phí|thuyền riêng|xe \+/i.test(u))||'chi phí ghi trong tour'), fmtK(round10(t.price))],
+    ['Trẻ em', 'Dưới 5 tuổi miễn phí · 5–11 tuổi tính 60%', '−40%'],
+    ['Ngôn ngữ khác', 'HDV tiếng Trung / Nhật / Hàn (báo trước 24h)', '+15%']
+  ];
+  $('#qvPrices').innerHTML=rows.map(x=>`<tr><td><b>${x[0]}</b></td><td style="color:var(--soft)">${x[1]}</td><td class="mp">${x[2]}</td></tr>`).join('');
+  $('#qvUtils').innerHTML=t.util.map(u=>'<i>'+u+'</i>').join('');
+  $('#qvPick').onclick=()=>{ closeQV(); openDrawer(t.id); };
+  qvModal.classList.add('on'); document.body.style.overflow='hidden';
+}
+function closeQV(){ qvModal.classList.remove('on'); document.body.style.overflow=''; }
+$$('[data-close-qv]').forEach(b=>b.addEventListener('click',closeQV));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeQV(); closeDrawer();} });
+
+/* ================= BOOKING DRAWER ================= */
+const drawer=$('#drawer');
+const dwState={tourId:null, day:tomStr, slot:'t', guests:2, lang:'vi'};
+function openDrawer(tourId){
+  if(tourId) dwState.tourId=tourId;
+  document.body.classList.add('drawer-open');
+  document.body.style.overflow='hidden';
+  renderDrawer();
+}
+function closeDrawer(){ document.body.classList.remove('drawer-open'); document.body.style.overflow=''; }
+$('#drawerBg').addEventListener('click',closeDrawer);
+$('#dwClose').addEventListener('click',closeDrawer);
+$('#dwBrowse').addEventListener('click',()=>{ closeDrawer(); });
+$('#bkChip').addEventListener('click',()=>openDrawer());
+$$('[data-open-drawer]').forEach(b=>b.addEventListener('click',()=>openDrawer()));
+$$('.strip [data-gomode]').forEach(a=>a.addEventListener('click',()=>{
+  const mb=$$('.mode-btn').find(x=>x.dataset.mode===a.dataset.gomode);
+  if(mb) mb.click();
+}));
+$$('.strip [data-gotour]').forEach(a=>a.addEventListener('click',()=>{ openDrawer(a.dataset.gotour); }));
+$$('.strip [data-gofam]').forEach(a=>a.addEventListener('click',()=>{
+  toast(a.dataset.gofam==='fam' ? 'Gợi ý gia đình: sông nước buổi sáng + làng nghề chiều' : 'Cho đoàn nhỏ: xe máy + trekking — đặt 2 ngày liên tiếp được giảm thêm');
+}));
+let dwDone=false;
+/* delegation — mọi nút data-pick / data-combo / data-qv dùng chung listener */
+document.addEventListener('click',e=>{
+  const pk=e.target.closest('[data-pick]');
+  if(pk){ const t=TOURS.find(x=>x.id===pk.dataset.pick); if(t){ openDrawer(t.id); toast('Đã chọn "'+t.name+'" — điền thông tin để giữ chỗ'); } return; }
+  const cb=e.target.closest('[data-combo]');
+  if(cb){ const parts=cb.dataset.combo.split('|'); openDrawer(parts[1]); toast('Đã chọn '+parts[0]+' — HDV sẽ chốt trọn gói khi xác nhận'); return; }
+  const qv=e.target.closest('[data-qv]');
+  if(qv){ sPop.classList.remove('on'); hdSearch.value=''; openQV(qv.dataset.qv); return; }
+});
+
+/* day chips — bắt đầu từ NGÀY MAI (đặt trước 24h) */
+const DW_NAMES=['CN','T2','T3','T4','T5','T6','T7'];
+const dwDays=[];
+(function(){ for(let i=1;i<=8;i++){ dwDays.push(addDays(todayStr,i)); } })();
+function renderDwDays(){
+  let html='';
+  dwDays.forEach((d,i)=>{
+    const dt=parseDay(d);
+    html+=`<button type="button" class="dw-day${dwState.day===d?' on':''}" data-day="${d}"><span class="dd block">${i===0?'Ng.mai':DW_NAMES[dt.getUTCDay()]}</span><span class="dn block">${dt.getUTCDate()}</span></button>`;
+  });
+  html+=`<button type="button" class="dw-day day-more" data-daymore="1" aria-label="Xem thêm tuần">＋</button>`;
+  $('#dwDays').innerHTML=html;
+  $$('#dwDays .dw-day[data-day]').forEach(b=>b.addEventListener('click',()=>{
+    $$('#dwDays .dw-day').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); dwState.day=b.dataset.day; renderDrawer();
+  }));
+  const mb=$('#dwDays [data-daymore]');
+  if(mb) mb.addEventListener('click',()=>{
+    const last=dwDays[dwDays.length-1];
+    for(let k=1;k<=7;k++) dwDays.push(addDays(last,k));
+    renderDwDays();
+    const el=$('#dwDays'); if(el) el.scrollLeft=el.scrollWidth;
+  });
+}
+renderDwDays();
+/* slot chips */
+const SLOTS=[['s','Sáng','8:30'],['c','Chiều','13:30'],['t','Tối','17:30']];
+$('#dwSlots').innerHTML=SLOTS.map(s=>`<button type="button" class="dw-slot${s[0]===dwState.slot?' on':''}" data-slot="${s[0]}">${s[1]}<small>${s[2]}</small></button>`).join('');
+$$('#dwSlots .dw-slot').forEach(b=>b.addEventListener('click',()=>{
+  $$('#dwSlots .dw-slot').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); dwState.slot=b.dataset.slot; renderDrawer();
+}));
+$('#dwGuests').addEventListener('change',()=>{ dwState.guests=+$('#dwGuests').value; renderDrawer(); });
+$('#dwLang').addEventListener('change',()=>{ dwState.lang=$('#dwLang').value; renderDrawer(); });
+
+function drawerCalc(){
+  const t=TOURS.find(x=>x.id===dwState.tourId);
+  if(!t || dwDone) return null;
+  const c=groupTotal(t, dwState.guests, dwState.day, dwState.lang);
+  const lines=[];
+  lines.push([t.name+' · '+c.p.klabel, fmtK(c.unit)+' × '+dwState.guests, round10(c.unit)*dwState.guests]);
+  if(c.p.lang) lines.push(['Phụ thu HDV '+c.p.langLabel+' (+15%)', '', round10(c.unit*dwState.guests*0.15)]);
+  if(c.disc) lines.push(['Giảm nhóm từ 4 khách (−5%)', '', -c.discVal]);
+  const deposit=round10(c.total*0.2);
+  return {t, c, lines, total:c.total, deposit, rest:c.total-deposit};
+}
+function renderDrawer(){
+  const countEl=$('#bkCount'); if(countEl) countEl.textContent = dwState.tourId?1:0;
+  const box=$('#dwTourBox');
+  if(!box) return; /* sau khi đặt thành công, dwBody là màn mã giữ chỗ — không vẽ lại form */
+  if(!dwState.tourId){
+    box.innerHTML='<div class="dw-empty">Chưa chọn tour — <a href="#tour" id="dwGoTours">xem 8 tour</a> hoặc dùng bảng kiểm chỗ phía trên.</div>';
+    const g=$('#dwGoTours'); if(g) g.addEventListener('click',closeDrawer);
+  } else {
+    const t=TOURS.find(x=>x.id===dwState.tourId);
+    box.innerHTML=`<div class="dw-room"><img src="${tourImg(t)}" alt="${t.name}" width="74" height="56">
+      <span class="mini"><span class="dn2 block">${t.name}</span><span class="dm2 block">${t.dur} · ${t.when}</span></span>
+      <button class="dx" id="dwRemove" aria-label="Bỏ tour"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>`;
+    $('#dwRemove').addEventListener('click',()=>{ dwState.tourId=null; renderDrawer(); });
+  }
+  const calc=drawerCalc();
+  const sum=$('#dwSum');
+  if(!calc){
+    sum.innerHTML='<div class="dw-row"><span>Tour</span><span class="dv" data-empty="1">Chưa chọn</span></div>';
+    return;
+  }
+  const slotLabel=(SLOTS.find(s=>s[0]===dwState.slot)||[,'',''])[1];
+  sum.innerHTML = calc.lines.map(l=>`<div class="dw-row"><span>${l[0]}${l[1]?' <b style="color:var(--soft)">('+l[1]+')</b>':''}</span><span class="dv">${fmtMoney(l[2])}</span></div>`).join('')
+    + `<div class="dw-row total"><span>Tổng nhóm</span><span class="dv">${fmtMoney(calc.total)}</span></div>`
+    + `<div class="dw-row sur"><span>Cọc giữ chỗ hôm nay (20%)</span><span class="dv">${fmtMoney(calc.deposit)}</span></div>`
+    + `<div class="dw-row"><span>Trả HDV cuối tour</span><span class="dv">${fmtMoney(calc.rest)}</span></div>`
+    + `<div class="dw-row" style="font-size:.76rem;color:var(--soft)"><span>Khởi hành</span><span class="dv" style="color:var(--soft)">${dstrVN(dwState.day)} · ${slotLabel}</span></div>`;
+}
+renderDrawer();
+
+/* confirm → mã giữ chỗ */
+$('#dwConfirm').addEventListener('click',()=>{
+  if(dwDone) return;
+  if(!dwState.tourId){ toast('Bạn chưa chọn tour — hãy chọn 1 tour trước nhé'); return; }
+  const name=$('#dwName').value.trim(), phone=$('#dwPhone').value.trim();
+  if(name.length<2){ toast('Điền họ tên người đặt tour'); $('#dwName').focus(); return; }
+  const clean=phone.replace(/[\s.\-]/g,'');
+  if(!/^(\+?84|0)\d{8,10}$/.test(clean)){ toast('Số điện thoại chưa đúng — vd 0905346278 hoặc +84 905 346 278'); $('#dwPhone').focus(); return; }
+  const calc=drawerCalc();
+  if(!calc){ toast('Chưa tính được giá — bạn chọn lại tour nhé'); return; }
+  const code='CHP-'+calc.t.code+'-'+Math.floor(1000+Math.random()*9000);
+  const dayVN=dstrVN(dwState.day);
+  dwDone=true;
+  $('#dwBody').innerHTML=`
+    <div class="dw-success">
+      <span class="ok-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h4>Giữ chỗ thành công!</h4>
+      <p class="sub">Mã giữ chỗ đã tạo — HDV xác nhận qua Zalo/WhatsApp trong 15 phút.</p>
+      <div class="bk-code">
+        <span class="bl block">Mã giữ chỗ của bạn</span>
+        <span class="bv block">${code}</span>
+        <div class="bsum"><span>${calc.t.name}</span><span>${dayVN}</span></div>
+        <div class="bsum"><span>${dwState.guests} khách · ${LANG_LABEL[dwState.lang]}</span><span><b>${fmtMoney(calc.total)}</b></span></div>
+        <div class="bsum"><span>Cọc giữ chỗ 20%</span><span><b>${fmtMoney(calc.deposit)}</b></span></div>
+      </div>
+      <p class="sub" style="font-size:.82rem">Hủy / đổi lịch miễn phí trước 24h. Xuất trình mã khi HDV đón tại khách sạn.</p>
+      <button class="btn btn-d btn-full" onclick="location.reload()">Đặt thêm tour khác</button>
+    </div>`;
+  toast('Đã tạo mã ' + code + ' — kiểm tra Zalo/WhatsApp nhé');
+});
+
+/* ================= REVIEWS ================= */
+const REVS=[
+  {n:'Lucas (Đức)', t:'Tour ẩm thực · 4 khách', s:5, x:'Bảo dẫn chúng tôi vào những hẻm mà tự đi chắc chắn không dám rẽ. Bốn người ăn no nê ba giờ với giá một bữa nhà hàng ở nhà. Không một phút nào cảm thấy bị "chốt đơn".'},
+  {n:'Emily & Tom (Úc)', t:'Phố cổ trọn ngày', s:5, x:'Vy kể chuyện thương cảng hay như một bộ phim. Cả nhóm 6 người chụp được hằng trăm tấm — cô ấy kiên nhẫn thật sự. Đặt trước 2 ngày, đúng giờ đến đón.'},
+  {n:'Sakura (Nhật)', t:'Làng nghề · HDV tiếng Nhật', s:5, x:'Dược giải thích bằng tiếng Nhật rõ ràng từng công đoạn làm gốm. Nhìn Hương và người thợ trò chuyện với nhau mới hiểu vì sao tour này thật.'},
+  {n:'Gia đình Lee (Hàn)', t:'Sông nước buổi sáng', s:4, x:'Hai bé 5 và 8 tuổi hí hửng nhất chuyến đi khi tự lái thuyền thúng. Chấm 4/5 vì sáng hôm đó hơi nắng — nhờ có mũ cói tặng nên không sao.'},
+  {n:'Minh Anh (Hà Nội)', t:'Trekking nhóm nhỏ', s:5, x:'Đi 6 người toàn bạn cũ, HDV đi chậm đúng nhịp, bữa trưa lá chuối ngon bất ngờ. Trả tiền xứng — không shop, không ép mua gì hết.'}
+];
+let revIdx=0, revTimer;
+$('#revTrack').innerHTML=REVS.map(r=>`
+  <div class="rev-slide">
+    <div class="rev-stars">${'★'.repeat(r.s)}${'☆'.repeat(5-r.s)}</div>
+    <p>"${r.x}"</p>
+    <div class="rev-who"><span class="rw-av">${r.n.charAt(0)}</span><span class="mini"><b class="block">${r.n}</b><span class="block">${r.t}</span></span></div>
+  </div>`).join('');
+$('#revDots').innerHTML=REVS.map((_,i)=>`<i class="${i===0?'on':''}" data-ri="${i}"></i>`).join('');
+function revGo(i){
+  revIdx=(i+REVS.length)%REVS.length;
+  $('#revTrack').style.transform='translateX(-'+revIdx*100+'%)';
+  $$('#revDots i').forEach((d,j)=>d.classList.toggle('on',j===revIdx));
+}
+function revAuto(){ clearInterval(revTimer); revTimer=setInterval(()=>revGo(revIdx+1),6000); }
+$$('#revDots i').forEach(d=>d.addEventListener('click',()=>{revGo(+d.dataset.ri);revAuto();}));
+revAuto();
+
+/* ================= FAQ ================= */
+const FAQ=[
+  {t:'"Đặt trước 24h" là sao? Có đặt gấp được không?', c:'dat', a:'Cần đặt trước 24 giờ để chúng tôi giữ HDV đúng ngày và đúng ngôn ngữ bạn chọn. Đặt gấp hơn? Gọi 0905 346 278 — nếu còn HDV rảnh là nhận ngay, ưu tiên nhóm đã có mã.'},
+  {t:'Tour có ghép khách lạ vào nhóm mình không?', c:'dat', a:'Không. Giá bạn thấy là giá trọn cho nhóm riêng tư tối đa 8 khách (tour trekking tối đa 6). Cả nhóm đi riêng với HDV, không ai ghép vào và ngược lại.'},
+  {t:'HDV nói được những ngôn ngữ nào?', c:'ngonngu', a:'Tiếng Việt và English đã gồm trong giá. Tiếng Trung, Nhật, Hàn có phụ thu 15% mỗi khách (báo trước 24h để giữ đúng HDV). Văn phòng tư vấn thêm tiếng Thái cơ bản.'},
+  {t:'Trời mưa hoặc bão thì sao?', c:'tthh', a:'Trước giờ đi: đổi lịch miễn phí sang ngày khác hoặc hoàn cọc 100% — kể cả mưa lớn. Trong buổi đi gặp mưa rào: HDV điều chỉnh lộ trình trong nhà (hội quán, xưởng nghề, quán cà phê) và bạn nhận ưu đãi lần sau.'},
+  {t:'Đi cùng trẻ em có tính thêm tiền?', c:'tre', a:'Trẻ dưới 5 tuổi miễn phí, 5–11 tuổi tính 60% giá người lớn. Xe ghế, khăn ướt và món ăn nhẹ cho bé miễn phí — nhớ ghi số tuổi trong phần ghi chú khi đặt.'},
+  {t:'Thanh toán và hủy tour thế nào?', c:'tien', a:'Cọc 20% giữ chỗ qua MoMo / ZaloPay / VNPay-QR / Visa. Phần còn lại trả trực tiếp HDV cuối tour (tiền mặt hoặc quét mã). Hủy hoặc đổi trước 24h: hoàn cọc 100%, không hỏi lý do.'},
+  {t:'Ăn chay, dị ứng hoặc không ăn cay được thì sao?', c:'tre', a:'Tick sẵn ô "Ăn chay / dị ứng / không cay" trong form đặt — chúng tôi đổi 2–3 món tương ứng trong tour ẩm thực và chợ đêm, miễn phí, miễn báo trước 24h.'},
+  {t:'Có đón tận khách sạn không?', c:'dat', a:'Có — miễn phí trong phố cổ Hội An và trung tâm Đà Nẵng. Ngoài khu này phụ thu công khai từ 100K lượt/chiều, HDV sẽ báo đúng giá trước khi bạn chốt.'}
+];
+const CATS={all:'Tất cả',dat:'Đặt tour',ngonngu:'Ngôn ngữ',tre:'Trẻ em & ăn uống',tthh:'Thời tiết',tien:'Thanh toán & hủy'};
+let faqCat='all', faqQ='';
+function faqRender(){
+  const list=FAQ.map((f,i)=>({...f,i})).filter(f=>
+    (faqCat==='all'||f.c===faqCat) &&
+    (f.t+' '+f.a).toLowerCase().includes(faqQ)
+  );
+  $('#faqNone').style.display=list.length?'none':'block';
+  $('#faqList').innerHTML=list.length?list.map(f=>`
+    <div class="faq-it" data-fi="${f.i}">
+      <button class="faq-q">${f.t}<span class="fx">+</span></button>
+      <div class="faq-a"><div class="inner">${f.a}</div></div>
+    </div>`).join(''):'';
+  $$('#faqList .faq-it').forEach(it=>it.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    $$('#faqList .faq-it').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){
+      it.classList.add('open');
+      const a=it.querySelector('.faq-a');
+      a.style.maxHeight=a.scrollHeight+'px';
+    }
+  }));
+}
+$('#faqChips').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="fchip${k==='all'?' on':''}" data-fc="${k}">${v}</button>`).join('');
+$$('#faqChips .fchip').forEach(c=>c.addEventListener('click',()=>{
+  $$('#faqChips .fchip').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on'); faqCat=c.dataset.fc; faqRender();
+}));
+$('#faqSearch').addEventListener('input',e=>{ faqQ=e.target.value.trim().toLowerCase(); faqRender(); });
+faqRender();
+
+/* ================= HEADER SEARCH gợi ý tour ================= */
+const hdSearch=$('#hdSearch'), sPop=$('#sPop');
+hdSearch.addEventListener('input',()=>{
+  const q=hdSearch.value.trim().toLowerCase();
+  if(!q){ sPop.classList.remove('on'); return; }
+  const hits=TOURS.filter(t=>(t.name+' '+t.desc+' '+(t.util||[]).join(' ')+' '+t.dur).toLowerCase().includes(q)).slice(0,5);
+  if(!hits.length){ sPop.innerHTML='<div class="s-it"><span class="mini"><span class="st block">Không thấy tour khớp</span><span class="sp block">Thử: ẩm thực, phố cổ, chợ đêm, trekking, xe máy</span></span></div>'; }
+  else{
+    sPop.innerHTML=hits.map(t=>`<div class="s-it" data-qv="${t.id}"><img src="${tourImg(t)}" alt="${t.name}" width="52" height="39"><span class="mini"><span class="st block">${t.name}</span><span class="sp block">${fmtK(t.price)}/khách · ${t.dur}</span></span></div>`).join('');
+  }
+  sPop.classList.add('on');
+});
+document.addEventListener('click',e=>{ if(!e.target.closest('.search')) sPop.classList.remove('on'); });
+hdSearch.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){ e.preventDefault(); sPop.classList.remove('on'); document.getElementById('tour').scrollIntoView({behavior:'smooth'}); }
+});
+
+/* ================= FAB hide ở hero + toTop ================= */
+const fab=$('#fab');
+new IntersectionObserver(es=>{ fab.classList.toggle('hide', es[0].isIntersecting); },{threshold:.2})
+  .observe($('.hero'));
+$('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ================= CONTACT FORM ================= */
+$('#cfWhen').min = tomStr;
+$('#ctForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=$('#cfName').value.trim(), c=$('#cfContact').value.trim();
+  if(n.length<2){ toast('Điền họ tên để HDV gọi lại nhé'); $('#cfName').focus(); return; }
+  const okPhone=/^(\+?84|0)\d{8,10}$/.test(c.replace(/[\s.\-]/g,''));
+  const okMail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c);
+  if(!okPhone && !okMail){ toast('Điền số điện thoại (09xx xxx xxx) hoặc email'); $('#cfContact').focus(); return; }
+  toast('Đã gửi yêu cầu — lộ trình riêng sẽ phản hồi trong 24h');
+  e.target.reset();
+});
+
+/* ================= REVEAL FAILSAFE: element kẹt tự hiện sau 1.6s ================= */
+setTimeout(function(){try{
+  document.querySelectorAll('.rv').forEach(function(el){
+    if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in');}
+  });
+}catch(e){}},1600);
+
+/* ================= DOCK tự trượt khi cuộn xuống ================= */
+(function(){var c=document.getElementById('fab');if(!c)return;var last=window.scrollY;window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){c.style.transform='translateX(-50%) translateY(120px)';c.style.opacity='0';}else{c.style.transform='translateX(-50%) translateY(0)';c.style.opacity='1';}last=y;},{passive:true});})();
+</script>
+
+<!-- NB93-230: CHAT widget tư vấn trực tuyến (demo bot) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand"></span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/* NB93-230: chat widget */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2B8A5A,#146C43);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(20,108,67,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,35,22,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#146C43,#0B3D26);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7BE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F7F5EF}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(11,61,38,.08);border-bottom-left-radius:4px;color:#1C2B22}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2B8A5A,#146C43);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(11,61,38,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(11,61,38,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(20,108,67,.4);color:#146C43;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.pkc-chip:hover{background:#E7F3EC}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(11,61,38,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(11,61,38,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2B8A5A;box-shadow:0 0 0 3px rgba(43,138,90,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2B8A5A,#146C43);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:10px;bottom:82px;width:52px;height:52px}}
+</style>
+<script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+</body>
+</html>

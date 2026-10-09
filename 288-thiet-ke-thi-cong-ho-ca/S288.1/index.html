@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KoiViệt — Thiết kế, thi công &amp; bảo trì hồ cá Koi, hồ thủy sinh | Hệ lọc sinh học</title>
+<meta name="description" content="KoiViệt — 9 năm chuyên hồ cá: thiết kế hồ Koi theo không gian (sân vườn biệt thự, sân thượng, quán café), buồng lọc sinh học 4 ngăn, giống Koi chuẩn kiểm dịch, gói bảo trì nước định kỳ. Khảo sát miễn phí, báo giá 30 phút.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-288: palette nghề hồ cá — xanh mặt hồ sâu + cam Koi + kem vảy cá (KHÁC biệt exemplar cyan biển)*/
+:root{
+  --primary:#1A4030; --primary-2:#22563F; --primary-3:#0D2A1E;
+  --texture:#F1EDE1; --texture-2:#E5DFCB;
+  --accent:#E2611F; --accent-2:#F08A4F; --accent-100:#FCEADB; --accent-200:#F6C69E;
+  --gold:#D9A441; --gold-100:#F7EDD6; --gold-200:#E9C36A;
+  --grad-accent:linear-gradient(135deg,#F08A4F,#E2611F);
+  --grad-dark:linear-gradient(140deg,#22563F,#1A4030 55%,#0D2A1E);
+  --grad-gold:linear-gradient(135deg,#E9C36A,#CE9B33);
+  --ink:#22312A; --soft:#5F7267; --line:#E2DCC9;
+  --sh1:0 4px 14px rgba(13,42,30,.07); --sh2:0 14px 34px rgba(13,42,30,.12); --sh3:0 26px 60px rgba(13,42,30,.22);
+  --r:16px; --r2:24px; --r3:32px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#FAF7EF;overflow-x:hidden;overflow-x:clip;scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:#FAF7EF;line-height:1.6;font-size:16px;overflow-x:hidden;overflow-x:clip}
+[id]{scroll-margin-top:90px}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.sec{padding:70px 0;position:relative}
+.sec-dark{background:var(--grad-dark);color:#E9F2EC}
+.sec-texture{background:var(--texture)}
+.sec-white{background:#FAF7EF}
+/*NB93-288: hoạ tiết VẢY CÁ Koi — điểm nhấn chất liệu nghề*/
+.scales{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28'%3E%3Cg fill='none' stroke='%231A4030' stroke-opacity='.055'%3E%3Cpath d='M-14 28a14 14 0 0 1 28 0'/%3E%3Cpath d='M14 28a14 14 0 0 1 28 0'/%3E%3Cpath d='M0 14a14 14 0 0 1 28 0'/%3E%3Cpath d='M28 14a14 14 0 0 1 28 0'/%3E%3C/g%3E%3C/svg%3E")}
+.sec-dark.scales{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.05'%3E%3Cpath d='M-14 28a14 14 0 0 1 28 0'/%3E%3Cpath d='M14 28a14 14 0 0 1 28 0'/%3E%3Cpath d='M0 14a14 14 0 0 1 28 0'/%3E%3Cpath d='M28 14a14 14 0 0 1 28 0'/%3E%3C/g%3E%3C/svg%3E"),var(--grad-dark)}
+.sec-head{max-width:760px;margin:0 auto 42px;text-align:center}
+.sec-head h2,.sec-head p,.sec-head .eyebrow{display:block}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-100);border:1.5px solid var(--accent-200);padding:7px 16px;border-radius:99px;margin-bottom:16px}
+.sec-dark .eyebrow{background:rgba(240,138,79,.14);border-color:rgba(240,138,79,.4);color:var(--accent-2)}
+h2.sec-title{font-size:2.15rem;font-weight:900;line-height:1.22;letter-spacing:-.01em}
+.sec-sub{color:var(--soft);margin-top:12px;font-size:1.02rem}
+.sec-dark .sec-sub{color:#BAD3C4}
+mark{background:linear-gradient(120deg,var(--accent-2),var(--accent));color:#fff;padding:1px 12px 3px;border-radius:10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark.gold{background:var(--grad-gold)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:14px 26px;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;font-size:.98rem;min-width:0}
+.btn svg{flex:none}
+.btn-acc{background:var(--grad-accent);color:#fff;box-shadow:0 12px 28px rgba(226,97,31,.38)}
+.btn-acc:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(226,97,31,.5)}
+.btn-acc::before{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-acc:hover::before{left:130%}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.btn-dark{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(13,42,30,.3)}
+.btn-dark:hover{transform:translateY(-3px);background:var(--primary-2)}
+.btn-line{background:#fff;color:var(--primary);border:1.5px solid var(--line)}
+.btn-line:hover{transform:translateY(-3px);border-color:var(--accent);color:var(--accent);box-shadow:var(--sh1)}
+.hotline{font-weight:900;letter-spacing:.02em;white-space:nowrap}
+/* topbar */
+.topbar{background:var(--primary-3);color:#C4D8CC;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}
+.topbar b{color:#fff}
+.topbar .tb-hot{color:var(--accent-2);font-weight:800}
+.tb-free{display:inline-flex;align-items:center;gap:7px;color:#9BD8B4;font-weight:700}
+/* header */
+.hdr{position:sticky;top:0;z-index:55;background:rgba(250,247,239,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;box-shadow:0 8px 18px rgba(13,42,30,.28);flex:none}
+.logo b{display:block;font-size:1.22rem;font-weight:900;line-height:1.1;letter-spacing:-.01em}
+.logo span{display:block;font-size:.72rem;color:var(--soft);font-weight:600;letter-spacing:.05em}
+.logo b span{display:inline;font-size:inherit;font-weight:inherit;letter-spacing:inherit}
+.hdr-search{flex:1 1 170px;max-width:280px;display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:9px 16px;min-width:0;transition:border-color .2s,box-shadow .2s;position:relative}
+.hdr-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(226,97,31,.12)}
+.hdr-search input{border:none;outline:none;background:none;width:100%;min-width:0;font-size:.9rem}
+.hdr-nav{display:flex;gap:4px;margin-left:auto}
+.hdr-nav a{font-size:.86rem;font-weight:700;color:var(--ink);padding:9px 10px;border-radius:10px;transition:.2s}
+.hdr-nav a:hover{background:var(--accent-100);color:var(--accent)}
+.hdr-cta{flex:none;display:flex;align-items:center;gap:12px}
+.hdr-phone{display:flex;flex-direction:column;line-height:1.15;text-align:right}
+.hdr-phone span{display:block;font-size:.68rem;color:var(--soft);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hdr-phone b{display:block;font-size:1.05rem;color:var(--accent)}
+.hdr .btn{padding:11px 20px;border-radius:12px;font-size:.88rem}
+/* hero — nền kem sáng + poster bìa giữ nguyên nhận diện (khác hero tối của exemplar) */
+.hero{position:relative;overflow:clip;color:var(--ink);border-bottom:1.5px solid var(--line)}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:56px;background:var(--texture);clip-path:ellipse(62% 100% at 50% 100%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center;padding:58px 0 78px;position:relative;z-index:2}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 18px;font-size:.82rem;font-weight:700;color:var(--primary);box-shadow:var(--sh1);margin-bottom:20px}
+.hero-pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(226,97,31,.18);flex:none}
+h1{display:block;font-size:2.8rem;font-weight:900;line-height:1.14;letter-spacing:-.015em;color:var(--primary-3)}
+.hero-sub{display:block;color:var(--soft);font-size:1.05rem;margin:18px 0 26px;max-width:540px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-call{display:flex;align-items:center;gap:13px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 18px;box-shadow:var(--sh1)}
+.hero-call span{display:block;font-size:.7rem;color:var(--soft);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.hero-call b{display:block;font-size:1.32rem;color:var(--accent);letter-spacing:.02em}
+.trust-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.trust-chips li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 15px;font-size:.8rem;font-weight:600;color:var(--ink);box-shadow:var(--sh1)}
+.trust-chips svg{flex:none;color:var(--accent)}
+.hero-vis{position:relative;min-width:0}
+/*NB93-288: bìa là POSTER 4:3 có chữ + SĐT — giữ nguyên khung poster, KHÔNG crop mất nội dung*/
+.hv-main{width:100%;border:6px solid #fff;border-radius:26px;box-shadow:var(--sh3);transform:rotate(2deg);overflow:clip;position:relative;z-index:9}
+.hv-main img{width:100%;height:auto;aspect-ratio:1086/814;object-fit:cover}
+/*NB93-288: tag giá đặt TRÊN poster (static) — không đè chữ poster*/
+.hv-tag{display:inline-flex;flex-direction:column;align-items:flex-start;background:var(--grad-accent);color:#fff;font-weight:900;font-size:.9rem;padding:10px 18px;border-radius:14px;box-shadow:0 14px 30px rgba(226,97,31,.45);transform:rotate(-2deg);margin:0 0 14px 4px}
+.hv-tag small{display:block;font-size:.66rem;font-weight:700;opacity:.92;letter-spacing:.06em;text-transform:uppercase}
+.hv-badge{display:block;margin:22px auto 0;background:var(--primary-3);color:#fff;border:1.5px solid rgba(255,255,255,.2);border-radius:16px;padding:12px 18px;font-size:.82rem;font-weight:700;max-width:430px;text-align:center;box-shadow:var(--sh2);position:relative;z-index:12}
+.hv-badge b{color:#8FE0AE}
+.hv-stats{margin:18px 0 0;display:flex;background:var(--primary);border:1.5px solid var(--primary-2);border-radius:20px;padding:14px 6px;box-shadow:var(--sh2)}
+.hv-stats li{padding:2px 20px;text-align:center;border-right:1.5px solid rgba(255,255,255,.18);flex:1 0 auto}
+.hv-stats li:last-child{border-right:none}
+.hv-stats b{display:block;font-size:1.28rem;font-weight:900;color:#fff}
+.hv-stats span{display:block;font-size:.66rem;color:#A8C4B2;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+/* tape */
+.tape{background:var(--grad-accent);transform:rotate(-1deg);width:104%;margin:26px -2% 0;box-shadow:0 12px 30px rgba(226,97,31,.35);overflow:clip;position:relative;z-index:5}
+.tape-track{display:flex;gap:0;width:max-content;animation:tapeslide 30s linear infinite}
+.tape-track span{display:inline-flex;align-items:center;gap:14px;color:#fff;font-weight:900;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;padding:13px 0;white-space:nowrap}
+.tape-track span::after{content:'❖';margin:0 22px;opacity:.75;font-size:.8rem}
+@keyframes tapeslide{to{transform:translateX(-50%)}}
+/*NB93-288: KHỐI-8 bento kín ô — feat TO (2 cột × 2 hàng, poster 4:3 nguyên vẹn) + wide 2 cột + 6 thẻ đều = 12/12 ô*/
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;grid-auto-flow:dense}
+.pc{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);overflow:clip;box-shadow:var(--sh1);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;position:relative;min-width:0}
+.pc:hover{transform:translateY(-7px);box-shadow:var(--sh2)}
+.pc-media{position:relative;overflow:clip}
+.pc-media img{width:100%;height:auto;aspect-ratio:1086/814;object-fit:cover;transition:transform .6s}
+.pc:hover .pc-media img{transform:scale(1.04)}
+.pc-num{position:absolute;top:13px;left:13px;background:var(--grad-dark);color:#fff;font-weight:900;font-size:.82rem;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)}
+.pc-badge{position:absolute;top:13px;right:13px;background:var(--grad-gold);color:#5C3D00;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:99px;box-shadow:0 8px 20px rgba(206,155,51,.45)}
+.pc-feat{grid-column:span 2;grid-row:span 2}
+.pc-feat h3{font-size:1.6rem !important}
+.pc-feat .pc-body{padding:24px 26px 28px;gap:12px}
+.pc-feat p{font-size:.96rem !important}
+.pc-feat .pc-price{font-size:1.02rem !important;padding:12px 18px !important}
+.pc-feat .pc-price b{font-size:1.22rem !important}
+.pc-feat .pc-list li{font-size:.9rem !important}
+.pc-wide{grid-column:span 2}
+.pc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pc-body h3{font-size:1.08rem;font-weight:800;display:block}
+.pc-body p{font-size:.85rem;color:var(--soft);flex:1}
+.pc-price{display:flex;align-items:baseline;gap:8px;background:var(--texture);border-radius:12px;padding:10px 14px;align-self:flex-start}
+.pc-price b{font-size:1rem;font-weight:900;color:var(--accent)}
+.pc-price span{font-size:.74rem;color:var(--soft);font-weight:600}
+.pc-list{display:flex;flex-direction:column;gap:8px}
+.pc-list li{display:flex;gap:9px;font-size:.84rem;font-weight:500;align-items:flex-start;color:var(--ink)}
+.pc-list svg{flex:none;color:var(--accent);margin-top:3px}
+.pc-note{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;color:var(--primary-2);background:#E9F2EA;border-radius:99px;padding:6px 12px;align-self:flex-start}
+.pc .btn{width:100%;margin-top:4px}
+/* filter chips + strip */
+.dchips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.dchips button{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:10px 20px;font-size:.86rem;font-weight:800;color:var(--soft);cursor:pointer;transition:.2s;min-height:40px}
+.dchips button:hover{border-color:var(--accent);color:var(--accent)}
+.dchips button.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(226,97,31,.35)}
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.strip a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:15px 16px;transition:.25s;min-width:0}
+.strip a:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--sh1)}
+.strip svg{flex:none;color:var(--accent)}
+.strip b{display:block;font-size:.88rem;font-weight:800;line-height:1.25}
+.strip span{display:block;font-size:.72rem;color:var(--soft);font-weight:600}
+.strip .arr{margin-left:auto;color:var(--accent);flex:none;transition:transform .25s}
+.strip a:hover .arr{transform:translateX(4px)}
+/*NB93-288: DAC-THU 1 — chọn KHÔNG GIAN → gợi ý hồ theo không gian (dấu án nghề)*/
+.sp-tabs{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}
+.sp-btn{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.22);color:#C9DCCF;border-radius:16px;padding:13px 20px;font-weight:800;font-size:.92rem;cursor:pointer;transition:.2s;min-height:48px}
+.sp-btn svg{flex:none;color:var(--accent-2)}
+.sp-btn:hover{border-color:var(--accent-2);color:#fff}
+.sp-btn.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:0 10px 24px rgba(226,97,31,.4)}
+.sp-btn.on svg{color:#fff}
+.sp-panel{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:stretch}
+.sp-desc{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:32px;box-shadow:var(--sh2);display:flex;flex-direction:column;gap:14px}
+.sp-desc h3{font-size:1.45rem;font-weight:900;color:#fff;display:block}
+.sp-desc p{color:#BAD3C4;font-size:.95rem}
+.sp-fit{display:flex;gap:10px;flex-wrap:wrap}
+.sp-fit span{display:inline-flex;align-items:center;gap:7px;background:rgba(240,138,79,.14);border:1px solid rgba(240,138,79,.4);color:var(--accent-2);font-size:.78rem;font-weight:800;border-radius:99px;padding:6px 13px}
+.sp-price{margin-top:auto;display:flex;align-items:baseline;gap:10px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:13px 18px}
+.sp-price b{font-size:1.5rem;font-weight:900;color:var(--accent-2)}
+.sp-price span{font-size:.8rem;color:#A8C4B2;font-weight:600}
+.sp-specs{background:#fff;color:var(--ink);border-radius:var(--r3);padding:28px;box-shadow:var(--sh3);display:flex;flex-direction:column}
+.sp-specs h4{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
+.sp-specs ul{display:flex;flex-direction:column;flex:1}
+.sp-specs li{display:flex;gap:14px;align-items:flex-start;padding:13px 2px;border-bottom:1px dashed var(--line)}
+.sp-specs li:last-child{border-bottom:none}
+.sp-specs li svg{flex:none;color:var(--accent);margin-top:3px}
+.sp-specs li b{display:block;font-size:.86rem;font-weight:900;min-width:128px}
+.sp-specs li span{display:block;font-size:.86rem;color:var(--soft);font-weight:500;flex:1}
+.sp-specs .btn{width:100%;margin-top:16px}
+/*NB93-288: DAC-THU 2 — mặt cắt BUỒNG LỌC SINH HỌC 4 ngăn*/
+.fl-wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:30px;align-items:start}
+.fl-box{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:24px;box-shadow:var(--sh2)}
+.fl-box svg{width:100%;height:auto;display:block}
+.fl-legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.fl-legend span{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;color:var(--soft);background:var(--texture);border:1.5px solid var(--line);border-radius:99px;padding:6px 13px}
+.fl-legend i{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--grad-accent);color:#fff;font-size:.68rem;font-weight:900;display:grid;place-items:center;flex:none}
+.fl-dash{stroke-dasharray:7 9;animation:fldash 1.1s linear infinite}
+@keyframes fldash{to{stroke-dashoffset:-16}}
+.fl-koi{animation:flkoi 6s ease-in-out infinite alternate;transform-origin:center;transform-box:fill-box}
+@keyframes flkoi{from{transform:translateX(0) rotate(0deg)}to{transform:translateX(26px) rotate(4deg)}}
+.tiers{display:flex;flex-direction:column;gap:16px}
+.tier{background:var(--primary);border:1.5px solid var(--primary-2);border-radius:var(--r2);padding:20px 22px;display:flex;gap:14px;align-items:flex-start;transition:.25s;min-width:0}
+.tier:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:var(--accent-2)}
+.tier i{font-style:normal;width:44px;height:44px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;font-weight:900;font-size:1.05rem;flex:none;box-shadow:0 8px 18px rgba(226,97,31,.4)}
+.tier b{display:block;font-size:.98rem;font-weight:800;color:#fff}
+.tier p{font-size:.82rem;color:#BAD3C4;margin-top:3px}
+.tier span{display:inline-block;margin-top:7px;font-size:.76rem;font-weight:800;color:var(--accent-2);background:rgba(240,138,79,.14);border:1px solid rgba(240,138,79,.4);border-radius:99px;padding:5px 12px}
+.tech-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.tech-row span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 18px;font-weight:900;font-size:.8rem;color:var(--primary);letter-spacing:.04em}
+/*NB93-288: DAC-THU 3 — GIỐNG CÁ KOI chuẩn (khối riêng của nghề hồ cá)*/
+.koi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.koi-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:clip;min-width:0}
+.koi-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:var(--accent-200)}
+.koi-dot{position:absolute;top:-30px;right:-30px;width:96px;height:96px;border-radius:50%;background:var(--accent-100);opacity:.8}
+.koi-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative}
+.koi-top h3{font-size:1.08rem;font-weight:900}
+.koi-tag{background:var(--grad-accent);color:#fff;font-size:.68rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:5px 12px;flex:none}
+.koi-tag.alt{background:var(--grad-gold);color:#5C3D00}
+.koi-card p{font-size:.86rem;color:var(--soft);position:relative}
+.koi-meta{display:flex;flex-direction:column;gap:6px;margin-top:auto;position:relative}
+.koi-meta li{display:flex;gap:8px;font-size:.8rem;font-weight:600;color:var(--ink);align-items:flex-start}
+.koi-meta svg{flex:none;color:var(--accent);margin-top:3px}
+.koi-note{margin-top:26px;background:var(--primary);color:#E9F2EC;border-radius:var(--r2);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;box-shadow:var(--sh2)}
+.koi-note svg{flex:none;color:var(--accent-2);margin-top:2px}
+.koi-note p{font-size:.88rem}
+.koi-note b{color:#fff}
+/*NB93-288: bảo trì nước — 3 gói định kỳ*/
+.care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.care-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:26px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh1);transition:.3s;position:relative;min-width:0}
+.care-card:hover{transform:translateY(-7px);box-shadow:var(--sh2);border-color:var(--accent-200)}
+.care-card.hot{border:2.5px solid var(--accent);box-shadow:0 18px 44px rgba(226,97,31,.2)}
+.care-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.care-top h3{font-size:1.12rem;font-weight:900}
+.care-tag{background:var(--accent-100);color:var(--accent);font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:6px 13px}
+.care-card.hot .care-tag{background:var(--grad-accent);color:#fff}
+.care-price{font-size:1.55rem;font-weight:900;color:var(--accent)}
+.care-price small{font-size:.8rem;color:var(--soft);font-weight:700}
+.care-freq{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;color:var(--primary);background:var(--texture);border-radius:12px;padding:8px 13px;align-self:flex-start}
+.care-card ul{display:flex;flex-direction:column;gap:9px;flex:1}
+.care-card ul li{display:flex;gap:9px;font-size:.85rem;font-weight:500;align-items:flex-start}
+.care-card ul svg{flex:none;color:var(--accent);margin-top:3px}
+.care-note{display:block;text-align:center;font-size:.8rem;color:var(--soft);margin-top:22px}
+/*NB93-288: giới thiệu — 2 poster + 4 điểm mạnh*/
+.about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center}
+.about-copy .sec-head{text-align:left;margin:0 0 24px}
+.about-copy .sec-head h2{text-align:left}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about-points li{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px;transition:.25s;min-width:0}
+.about-points li:hover{transform:translateY(-4px);border-color:var(--accent-200);box-shadow:var(--sh1)}
+.about-points svg{color:var(--accent);margin-bottom:8px}
+.about-points b{display:block;font-size:.92rem;font-weight:800;margin-bottom:3px}
+.about-points span{display:block;font-size:.8rem;color:var(--soft)}
+.about-vis{display:flex;flex-direction:column;gap:18px;min-width:0}
+.about-img{position:relative;border-radius:var(--r2);overflow:clip;border:5px solid #fff;box-shadow:var(--sh2)}
+.about-img img{width:100%;height:auto;aspect-ratio:1086/814;object-fit:cover}
+.about-img:last-child{transform:rotate(-1.4deg)}
+.about-cap{position:absolute;left:12px;bottom:10px;z-index:2;background:rgba(13,42,30,.72);backdrop-filter:blur(6px);color:#fff;font-weight:800;font-size:.78rem;padding:7px 14px;border-radius:999px;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/*NB93-288: quy trình 5 bước*/
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:st}
+.step{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r2);padding:22px 18px;display:flex;flex-direction:column;gap:10px;transition:.25s;min-width:0}
+.step:hover{background:rgba(240,138,79,.12);border-color:rgba(240,138,79,.45);transform:translateY(-5px)}
+.step i{font-style:normal;width:42px;height:42px;border-radius:13px;background:var(--grad-accent);color:#fff;font-weight:900;font-size:1.05rem;display:grid;place-items:center;flex:none;box-shadow:0 8px 18px rgba(226,97,31,.4)}
+.step b{display:block;font-size:.94rem;font-weight:800;color:#fff}
+.step p{font-size:.8rem;color:#BAD3C4}
+/* reviews */
+.rev-shell{display:grid;grid-template-columns:1.5fr .9fr;gap:26px;align-items:stretch}
+.rev-viewport{overflow:clip;border-radius:var(--r2)}
+.rev-track{display:flex;transition:transform .6s cubic-bezier(.6,.05,.28,.91)}
+.rev-slide{flex:0 0 100%;min-width:0}
+.rev-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:30px 32px;box-shadow:var(--sh1);height:100%;display:flex;flex-direction:column;gap:16px;position:relative}
+.rev-card::before{content:'“';position:absolute;top:2px;right:24px;font-size:5.4rem;font-weight:900;color:var(--accent-100);line-height:1}
+.rev-stars{color:#F5B301;letter-spacing:2px;font-size:1.05rem}
+.rev-text{font-size:1.02rem;font-weight:500;color:var(--ink);flex:1;position:relative}
+.rev-who{display:flex;align-items:center;gap:14px}
+.rev-av{width:50px;height:50px;border-radius:50%;background:var(--grad-accent);color:#fff;font-weight:900;font-size:1.1rem;display:grid;place-items:center;flex:none}
+.rev-who b{display:block;font-size:.95rem;font-weight:800}
+.rev-who span{display:block;font-size:.78rem;color:var(--soft);font-weight:600}
+.rev-metric{background:var(--grad-dark);color:#fff;border-radius:var(--r2);padding:30px;display:flex;flex-direction:column;justify-content:center;gap:20px;min-width:0}
+.rev-metric li{display:flex;align-items:center;gap:16px}
+.rev-metric li b{display:block;font-size:1.7rem;font-weight:900;color:var(--accent-2);line-height:1.1;min-width:88px}
+.rev-metric li span{display:block;font-size:.82rem;color:#BAD3C4;font-weight:600}
+.rev-dots{display:flex;gap:9px;justify-content:center;margin-top:22px}
+.rev-dots button{width:10px;height:10px;border-radius:99px;border:none;background:var(--texture-2);cursor:pointer;transition:.3s;padding:0}
+.rev-dots button.on{width:30px;background:var(--grad-accent)}
+/* quote form + FAQ cạnh nhau */
+.qf-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:start}
+.qf-box{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:32px;box-shadow:var(--sh2)}
+.qf-box h3{font-size:1.35rem;font-weight:900;color:#fff;display:block}
+.qf-box .fsub{display:block;color:#A8C4B2;font-size:.88rem;margin:8px 0 20px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-grid .full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#BAD3C4}
+.field input,.field select,.field textarea{background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.24);border-radius:13px;padding:13px 15px;color:#fff;outline:none;width:100%;min-width:0;min-height:46px;transition:.2s}
+.field textarea{resize:vertical;min-height:84px}
+.field input::placeholder,.field textarea::placeholder{color:#7E9A88}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(226,97,31,.18)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F08A4F' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+.field select option{color:var(--ink);background:#fff}
+.qf-secure{display:flex;align-items:center;gap:9px;font-size:.76rem;color:#8FAE9A;margin-top:14px;justify-content:center}
+.qf-box .btn{width:100%;margin-top:20px}
+.qf-hotline{margin-top:22px;display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.24);border-radius:18px;padding:16px 22px}
+.qf-hotline .ic{width:48px;height:48px;border-radius:14px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;flex:none}
+.qf-hotline span{display:block;font-size:.72rem;color:#A8C4B2;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.qf-hotline b{display:block;font-size:1.5rem;color:#fff;letter-spacing:.02em}
+/* FAQ gọn nằm cạnh form */
+.faq-side h3{font-size:1.3rem;font-weight:900;color:#fff;display:block;margin-bottom:6px}
+.faq-side .fsub{display:block;color:#A8C4B2;font-size:.88rem;margin-bottom:18px}
+.faq-item{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;margin-bottom:11px;overflow:clip;transition:.25s}
+.faq-item.open{border-color:var(--accent-2);background:rgba(240,138,79,.1)}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;justify-content:space-between;text-align:left;background:none;border:none;padding:15px 18px;font-weight:800;font-size:.92rem;cursor:pointer;color:#E9F2EC;min-width:0}
+.faq-q .pm{flex:none;width:30px;height:30px;border-radius:10px;background:rgba(255,255,255,.1);color:var(--accent-2);display:grid;place-items:center;font-size:1.15rem;font-weight:900;transition:.3s;line-height:1}
+.faq-item.open .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 18px 16px;color:#BAD3C4;font-size:.86rem}
+/* contact + map embed thật */
+.contact-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:stretch}
+.map-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);overflow:clip;box-shadow:var(--sh2);display:flex;flex-direction:column;min-width:0}
+.map-body{padding:18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.map-body h3{font-size:1.05rem;font-weight:900}
+.map-body p{font-size:.86rem;color:var(--soft)}
+.contact-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh2)}
+.contact-line{display:flex;gap:14px;align-items:flex-start}
+.contact-line .ic{width:42px;height:42px;border-radius:13px;background:var(--accent-100);border:1.5px solid var(--accent-200);display:grid;place-items:center;color:var(--accent);flex:none}
+.contact-line b{display:block;font-size:.9rem;font-weight:800;color:var(--ink)}
+.contact-line span{display:block;font-size:.84rem;color:var(--soft)}
+.contact-card .btn{margin-top:auto}
+/* footer gọn */
+.footer{background:var(--primary-3);color:#BAD3C4;padding:54px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.25fr .8fr .8fr 1.05fr;gap:34px;padding-bottom:38px}
+.foot-grid h4{color:#fff;font-size:.96rem;font-weight:800;margin-bottom:16px;display:block}
+.foot-grid p{font-size:.85rem;line-height:1.7}
+.foot-social{display:flex;gap:11px;margin-top:18px}
+.foot-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#DCEDE1;transition:.25s}
+.foot-social a:hover{background:var(--grad-accent);border-color:transparent;transform:translateY(-3px)}
+.foot-grid ul li{margin-bottom:10px}
+.foot-grid ul a{font-size:.86rem;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.foot-grid ul a:hover{color:var(--accent-2)}
+.foot-grid ul a::before{content:'›';color:var(--accent);font-weight:900}
+.foot-contact li{display:flex;gap:12px;margin-bottom:13px;font-size:.85rem;align-items:flex-start}
+.foot-contact svg{flex:none;color:var(--accent-2);margin-top:3px}
+.foot-hot{display:inline-flex;flex-direction:column;background:rgba(240,138,79,.12);border:1.5px solid rgba(240,138,79,.4);border-radius:16px;padding:13px 20px;margin-top:6px}
+.foot-hot span{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A8C4B2}
+.foot-hot b{font-size:1.4rem;color:var(--accent-2);font-weight:900}
+.foot-copy{border-top:1.5px solid rgba(255,255,255,.1);padding:18px 0;text-align:center;font-size:.78rem;color:#7E9A88}
+/* fab */
+.fab{position:fixed;left:50%;transform:translateX(-50%) translateY(120px);bottom:16px;z-index:70;display:flex;gap:10px;background:rgba(13,42,30,.9);border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);border-radius:99px;padding:9px;box-shadow:var(--sh3);transition:transform .45s cubic-bezier(.5,.05,.2,1.2)}
+.fab.show{transform:translateX(-50%) translateY(0)}
+.fab a,.fab button{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:none;cursor:pointer;color:#fff;background:rgba(255,255,255,.1);transition:.25s;position:relative}
+.fab a:hover,.fab button:hover{transform:translateY(-4px);background:rgba(255,255,255,.22)}
+.fab .fab-main{width:auto;border-radius:99px;padding:0 20px;gap:9px;background:var(--grad-accent);display:flex;align-items:center;font-weight:900;font-size:.9rem;box-shadow:0 10px 26px rgba(226,97,31,.45)}
+.fab .fab-zalo{background:#0D6EFD}
+.fab-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(.85);background:var(--primary-3);color:#fff;font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;z-index:5}
+.fab a:hover .fab-label,.fab button:hover .fab-label{opacity:1;transform:translateX(-50%) scale(1)}
+/* chat mini */
+.chat-panel{position:fixed;right:18px;bottom:88px;z-index:80;width:min(340px,calc(100vw - 24px));background:#fff;border:1.5px solid var(--line);border-radius:20px;box-shadow:var(--sh3);overflow:clip;opacity:0;pointer-events:none;transform:translateY(16px);transition:.3s}
+.chat-panel.show{opacity:1;pointer-events:auto;transform:none}
+.chat-head{background:var(--grad-dark);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.chat-head .cav{width:38px;height:38px;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-weight:900;flex:none}
+.chat-head b{display:block;font-size:.92rem}
+.chat-head span{display:block;font-size:.72rem;color:#A8C4B2}
+.chat-msgs{height:230px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:var(--texture)}
+.chat-msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:.84rem;line-height:1.45}
+.chat-b{background:#fff;border:1.5px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.chat-u{background:var(--accent);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px 4px}
+.chat-quick button{background:var(--accent-100);border:1px solid var(--accent-200);color:var(--accent);font-size:.72rem;font-weight:800;border-radius:99px;padding:6px 11px;cursor:pointer;transition:.2s;min-height:32px}
+.chat-quick button:hover{background:var(--accent);color:#fff}
+.chat-foot{display:flex;gap:8px;padding:10px 12px 12px}
+.chat-foot input{flex:1;border:1.5px solid var(--line);border-radius:99px;padding:9px 14px;outline:none;font-size:.84rem;min-width:0}
+.chat-foot input:focus{border-color:var(--accent)}
+.chat-foot button{width:40px;height:40px;border-radius:50%;border:none;background:var(--grad-accent);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+/* search dropdown */
+.sr-drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--sh3);overflow:hidden;z-index:70;display:none}
+.sr-drop.open{display:block}
+.sr-drop button{display:flex;width:100%;text-align:left;gap:10px;align-items:center;background:none;border:none;border-bottom:1px dashed var(--line);padding:11px 14px;cursor:pointer;font-size:.84rem;min-height:40px}
+.sr-drop button:last-child{border-bottom:none}
+.sr-drop button:hover{background:var(--accent-100)}
+.sr-drop b{font-weight:800;color:var(--ink)}
+.sr-drop small{display:block;color:var(--soft);font-size:.74rem}
+.sr-none{padding:12px 14px;font-size:.84rem;color:var(--soft);display:none}
+/* toast — pointer-events:none luôn, title + message 2 phần tử riêng */
+.toast{position:fixed;right:20px;bottom:24px;z-index:95;background:var(--primary);color:#fff;border-radius:16px;padding:15px 20px;font-size:.86rem;font-weight:600;box-shadow:var(--sh3);display:flex;gap:12px;align-items:flex-start;max-width:360px;opacity:0;transform:translateY(16px);pointer-events:none;transition:.35s;border-left:5px solid var(--accent)}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast svg{flex:none;color:#8FE0AE;margin-top:2px}
+.toast-tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.toast-tx b{font-size:.9rem;font-weight:900}
+.toast-tx span{font-size:.8rem;color:#BAD3C4;line-height:1.45}
+/* fx */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.spot{position:relative}
+.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(226,97,31,.1),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none}
+.spot:hover::after{opacity:1}
+/* 1080 */
+@media (max-width:1080px){
+  h1{font-size:2.3rem}
+  h2.sec-title{font-size:1.8rem}
+  .hero .wrap{grid-template-columns:1fr;padding:44px 0 70px}
+  .hero-vis{max-width:640px}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .sp-panel,.fl-wrap,.qf-grid,.contact-grid,.about-grid{grid-template-columns:1fr}
+  .koi-grid,.care-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .rev-shell{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .hdr-nav{display:none}
+}
+/* MOBILE 680 */
+@media (max-width:680px){
+  .sec{padding:48px 0}
+  h1{font-size:1.62rem}
+  h2.sec-title{font-size:1.42rem}
+  .sec-head{margin-bottom:30px}
+  .hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .logo{order:1}
+  .hdr-cta{order:2;margin-left:auto}
+  .hdr-phone{display:none}
+  .hdr-cta .btn span{display:none}
+  .hdr-cta .btn{padding:11px 13px}
+  .hdr-search{order:3;flex-basis:100%;max-width:none}
+  .logo span{font-size:.75rem}
+  .hero .wrap{padding:32px 0 44px;gap:24px}
+  .hero-pill{font-size:.75rem}
+  .hero-sub{font-size:.95rem}
+  .hv-main{transform:none;border-width:4px}
+  .hv-tag{font-size:.8rem;padding:8px 14px;margin:0 0 10px 2px}
+  .hv-badge{margin-top:16px;font-size:.8rem}
+  .hv-stats{padding:10px 4px;flex-wrap:wrap;justify-content:space-between}
+  .hv-stats li{padding:2px 8px}
+  .hv-stats b{font-size:1.05rem}
+  .hv-stats span{font-size:.75rem}
+  .hero-ctas{flex-direction:column;align-items:stretch}
+  .hero-ctas .btn{width:100%;white-space:normal}
+  .hero-call{justify-content:center}
+  .trust-chips{gap:8px}
+  .trust-chips li{font-size:.75rem;padding:7px 12px}
+  .pgrid{grid-template-columns:1fr;gap:16px}
+  .pc-feat,.pc-wide{grid-column:auto;grid-row:auto}
+  .pc-feat h3{font-size:1.4rem !important}
+  .dchips button{font-size:.8rem;padding:9px 14px}
+  .strip{grid-template-columns:1fr}
+  .strip a{padding:13px 14px}
+  .sp-btn{font-size:.84rem;padding:11px 14px}
+  .sp-desc,.sp-specs,.qf-box,.fl-box{padding:22px 18px;border-radius:22px}
+  .sp-specs li b{min-width:108px;font-size:.82rem}
+  .koi-grid,.care-grid,.steps,.about-points{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .f-grid .full{grid-column:auto}
+  .qf-hotline{width:100%;justify-content:center}
+  .field input,.field select,.field textarea{font-size:16px;min-height:46px}
+  .field label{font-size:.75rem}
+  .qf-box .btn{min-height:48px}
+  .contact-card{padding:20px}
+  .rev-card{padding:22px 18px}
+  .rev-metric li b{min-width:72px;font-size:1.3rem}
+  .foot-grid{grid-template-columns:1fr;gap:26px}
+  body{padding-bottom:92px}
+  .fab{bottom:10px;gap:6px;padding:6px}
+  .fab a,.fab button{width:42px;height:42px}
+  .fab .fab-main{padding:0 12px;font-size:.8rem;flex:none;white-space:nowrap}
+  .fab .fab-main svg{display:none}
+  .toast{right:12px;left:12px;max-width:none;bottom:88px}
+  .chat-panel{right:12px;bottom:80px}
+}
+/* MOBILE-TAP40 */
+@media(max-width:640px){
+  .dchips button,.sp-btn,.faq-q,.strip a,.btn,.fab,.fab a,.fab button,.pc .btn,.care-card .btn,.sp-specs .btn,.chat-quick button,.chat-foot button,.chat-foot input,.sr-drop button{min-height:40px}
+}
+/*NB93-288: micro-interaction nhấn nút*/
+button:active{transform:scale(.97)}
+/*NB93-MAP*/.gmap{width:100%;height:230px;border:0;border-radius:12px;display:block;max-width:100%}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<style data-nb93fix="288:ghost">
+/*NB93-FIX-288:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .pgrid.rv.in > *{grid-column:auto!important}
+  .care-grid.rv.in > *{grid-column:auto!important}
+}
+</style>
+<style data-nb93fix="288:input40">
+/*NB93-FIX-288:input40 input tim kiem du 40px touch target*/
+@media(max-width:768px){
+  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}
+}
+</style>
+<style data-nb93fix="288:t2">
+/*NB93-FIX-288:t2 khoi-8 anh chim o tab/lap: ghost-fix (data-nb93fix="288:ghost") bat grid-column:auto cho
+.pgrid.rv.in > * trong 681-1080 nen .pc-feat/.pc-wide mat span 2 cua author — pc-feat roi ve 1 cot (343-461px),
+anh aspect 1086/814 chi cao 256-344px / card 1169-1280px (22-27%). Khoi phuc dung design goc cua author trong
+dai 681-1080: .pc-feat lai span 2 (2x2, anh full row), .pc-wide lai span 2, cac the thuong van giu nguyen
+(49-58% da chuan). Selector giong ghost + them class de thang specificity. Chi them CSS.*/
+@media(min-width:681px) and (max-width:1080px){
+  .pgrid.rv.in > .pc-feat{grid-column:span 2!important}
+  .pgrid.rv.in > .pc-wide{grid-column:span 2!important}
+  .pgrid > .pc-feat.pc-feat{grid-column:span 2!important}
+  .pgrid > .pc-wide.pc-wide{grid-column:span 2!important}
+}
+</style>
+</head>
+<body id="top">
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <span>Giờ làm việc: <b>7:30 – 18:30</b> (T2 – T7)</span>
+    <span class="tb-free"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Khảo sát – thiết kế phương án hồ MIỄN PHÍ trong 30km</span>
+    <span class="tb-hot">Hotline: <b>0907 288 118</b></span>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="KoiViệt">
+      <span class="logo-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F08A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.5-4 7-6 11-4.5L19 5l-1 4.5L19 14l-5-2.5C10 13 5.5 12 3 12z"/><circle cx="8" cy="11" r="1" fill="#F08A4F" stroke="none"/><path d="M5 18c1.4.8 2.8.8 4.2 0 1.4-.8 2.8-.8 4.2 0"/></svg></span>
+      <span><b>Koi<span style="color:var(--accent)">Việt</span></b><span>Hồ cá Koi · Thủy sinh · Tiểu cảnh</span></span>
+    </a>
+    <label class="hdr-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F7267" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="hdrSearch" type="text" placeholder="Tìm: hồ koi, lọc sinh học, xử lý nước…" autocomplete="off">
+      <div class="sr-drop" id="srDrop"><div class="sr-none" id="srNone">Không tìm thấy — thử "koi", "lọc", "bảo trì"…</div></div>
+    </label>
+    <nav class="hdr-nav">
+      <a href="#dich-vu">Dịch vụ</a>
+      <a href="#khong-gian">Hồ theo không gian</a>
+      <a href="#he-loc">Hệ lọc</a>
+      <a href="#giong-koi">Giống Koi</a>
+      <a href="#bao-tri">Bảo trì</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="hdr-phone"><span>Hotline 24/7</span><b class="hotline">0907 288 118</b></span>
+      <a class="btn btn-acc" href="#bao-gia"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg><span>Nhận báo giá</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero scales" id="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-pill"><i></i> Thiết kế · Thi công · Bảo trì hồ cá — TP.HCM · Bình Dương · Long An</span>
+      <h1>Hồ cá Koi <mark>nước trong thấy đáy</mark> — thiết kế đúng không gian nhà bạn</h1>
+      <p class="hero-sub">9 năm chỉ làm một thứ: hồ cá. Từ hồ Koi sân vườn biệt thự, hồ kính sân thượng nhà phố tới hồ cảnh quán café — buồng lọc sinh học chuẩn 4 ngăn, giống Koi kiểm dịch, bảo trì nước định kỳ quanh năm.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-acc" href="#bao-gia"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg> Nhận báo giá trong 30 phút</a>
+        <a class="btn btn-dark" href="#khong-gian"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> Xem hồ hợp không gian của bạn</a>
+        <span class="hero-call"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E2611F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg><span>Khảo sát miễn phí — gọi ngay</span><b class="hotline">0907 288 118</b></span>
+      </div>
+      <ul class="trust-chips">
+        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Buồng lọc sinh học 4 ngăn</li>
+        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Giống Koi kiểm dịch — sống 7 ngày mới tính tiền cá</li>
+        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Bảo trì nước định kỳ theo gói</li>
+        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Chống thấm bảo hành 5 năm</li>
+      </ul>
+    </div>
+    <div class="hero-vis">
+      <span class="hv-tag"><small>Đơn giá tham chiếu</small>Hồ Koi từ 3,8 tr/m² mặt nước</span>
+      <div class="hv-main"><img src="assets/img/cover.webp" alt="Dịch vụ thiết kế, thi công và bảo trì hồ cá Koi của KoiViệt — hồ sân vườn thác kè đá, cá Koi màu rực" width="1086" height="814"></div>
+      <span class="hv-badge">Cam kết nước đạt chuẩn trong 14 ngày — <b>chưa trong, xử lý miễn phí</b> đến khi trong</span>
+      <ul class="hv-stats">
+        <li><b>9+</b><span>Năm làm hồ cá</span></li>
+        <li><b>340+</b><span>Hồ đã bàn giao</span></li>
+        <li><b>12.000+</b><span>Cá Koi thả chuẩn</span></li>
+        <li><b>97%</b><span>Ký gói bảo trì</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span>Buồng lọc sinh học 4 ngăn</span><span>Thiết kế hồ theo không gian</span><span>Giống Koi chuẩn kiểm dịch</span><span>Nước trong thấy đáy</span><span>Bảo trì nước định kỳ</span><span>Chống thấm bảo hành 5 năm</span><span>Buồng lọc sinh học 4 ngăn</span><span>Thiết kế hồ theo không gian</span><span>Giống Koi chuẩn kiểm dịch</span><span>Nước trong thấy đáy</span><span>Bảo trì nước định kỳ</span><span>Chống thấm bảo hành 5 năm</span>
+  </div>
+</div>
+
+<!-- ============ KHỐI-8: BENTO DỊCH VỤ (feat TO nhất trang, 12/12 ô kín) ============ -->
+<section class="sec sec-texture scales" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Dịch vụ KoiViệt</span>
+      <h2 class="sec-title">8 dịch vụ hồ cá — <mark>từ bản vẽ tới con cá</mark> một đầu mối</h2>
+      <p class="sec-sub">Đơn giá tham chiếu 2026 theo mặt bằng TP.HCM. Báo giá chính thức chốt sau khi kỹ sư khảo sát hiện trạng — miễn phí trong 30km.</p>
+    </div>
+    <div class="dchips rv" id="dChips">
+      <button type="button" class="on" data-g="all">Tất cả (8)</button>
+      <button type="button" data-g="thietke">Thiết kế – thi công</button>
+      <button type="button" data-g="locnuoc">Lọc &amp; xử lý nước</button>
+      <button type="button" data-g="chamsoc">Chăm sóc &amp; cá</button>
+    </div>
+    <div class="pgrid rv" id="pGrid">
+      <!-- NỔI BẬT NHẤT: TO = 2 cột × 2 hàng, poster nguyên vẹn -->
+      <article class="pc pc-feat spot" data-g="thietke" data-name="thiet ke ho ca koi ho koi 3d kich thuoc sau phong thuy">
+        <div class="pc-media">
+          <img src="assets/img/p1.webp" alt="Thiết kế hồ cá Koi sân vườn — tư vấn phương án theo không gian thực tế của KoiViệt" width="1448" height="1086">
+          <span class="pc-num">01</span>
+          <span class="pc-badge">Đặt nhiều nhất</span>
+        </div>
+        <div class="pc-body">
+          <h3>Thiết kế hồ cá Koi</h3>
+          <p>Không có hồ mẫu chung cho mọi nhà — KoiViệt đo hiện trạng, xem hướng nắng – gió – tải trọng rồi mới vẽ hồ.</p>
+          <ul class="pc-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Thiết kế theo không gian thật: sân vườn, sân thượng, quán café, hồ kính trong nhà</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 3D phối cảnh chỉnh 2 lượt miễn phí — chốt rồi mới thi công</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tính buồng lọc – bơm – UV theo thể tích nước thật, không lắp quá tay</li>
+          </ul>
+          <span class="pc-price"><b>90k – 150k</b><span>/ m² hồ · miễn phí khi thi công trọn gói</span></span>
+          <span class="pc-note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Báo giá chính thức sau khảo sát miễn phí</span>
+          <a class="btn btn-acc" href="#bao-gia" data-cat="Thiết kế hồ cá Koi">Nhận thiết kế hồ Koi</a>
+        </div>
+      </article>
+      <!-- NỔI BẬT 2: thẻ rộng 2 cột -->
+      <article class="pc pc-wide spot" data-g="thietke" data-name="thi cong ho ca san vuon khe da thac nuoc biet thu">
+        <div class="pc-media">
+          <img src="assets/img/p2.webp" alt="Thi công hồ cá mini trong nhà — thi công gọn gàng, kính trong, thủy sinh xanh" width="1448" height="1086">
+          <span class="pc-num">02</span>
+          <span class="pc-badge">Đặc trưng KoiViệt</span>
+        </div>
+        <div class="pc-body">
+          <h3>Thi công hồ cá sân vườn</h3>
+          <p>Hồ kè đá – thác nước cho biệt thự, hồ kính khung thép cho sân thượng: chống thấm 5 lớp, ngâm thử 72h trước khi hoàn thiện.</p>
+          <ul class="pc-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Đáy dốc hứng cặn + đáy rút — 10 phút hút cặn mỗi ngày</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Thi công được nhà đang ở, quán đang kinh doanh — gọn gàng mỗi ngày</li>
+          </ul>
+          <span class="pc-price"><b>3,8 – 7,5 tr</b><span>/ m² mặt nước</span></span>
+          <a class="btn btn-dark" href="#bao-gia" data-cat="Thi công hồ cá sân vườn">Nhận báo giá thi công</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="locnuoc" data-name="lap he thong loc ho ca loc sinh hoc buong loc uv bom">
+        <div class="pc-media"><img src="assets/img/p3.webp" alt="Lắp hệ thống lọc hồ cá — bồn lọc cát, lọc sinh học, UV cho nước trong veo" width="1448" height="1086" style="object-position:center top"><span class="pc-num">03</span></div>
+        <div class="pc-body">
+          <h3>Lắp hệ thống lọc hồ cá</h3>
+          <p>Buồng lọc 4 ngăn hoặc lọc dọc treo gọn: bơm – giá thể K1 – UV chính hãng, phòng máy gọn trong 1,5–2m².</p>
+          <span class="pc-price"><b>12 – 45 tr</b><span>/ hệ theo thể tích</span></span>
+          <a class="btn btn-line" href="#bao-gia" data-cat="Lắp hệ thống lọc hồ cá">Nhận báo giá</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="chamsoc" data-name="ve sinh ho ca dinh ky hut can rua loc cham soc ho">
+        <div class="pc-media"><img src="assets/img/p4.webp" alt="Vệ sinh hồ cá định kỳ — kỹ thuật viên hút cặn, rửa lọc, chăm sóc hồ" width="1448" height="1086" style="object-position:center top"><span class="pc-num">04</span></div>
+        <div class="pc-body">
+          <h3>Vệ sinh hồ cá định kỳ</h3>
+          <p>Hút cặn đáy, rửa buồng lọc, chà thành hồ, kiểm tra bơm — kèm báo cáo ảnh mỗi lượt cho khách vắng nhà.</p>
+          <span class="pc-price"><b>900k – 2,2 tr</b><span>/ lượt</span></span>
+          <a class="btn btn-line" href="#bao-tri">Xem 3 gói bảo trì</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="locnuoc" data-name="xu ly nuoc ho ca nuoc doc reu am mut can bang ph">
+        <div class="pc-media"><img src="assets/img/p5.webp" alt="Xử lý nước hồ cá — xử lý nước xanh, đục, cân bằng pH trả về nước trong" width="1448" height="1086" style="object-position:center top"><span class="pc-num">05</span></div>
+        <div class="pc-body">
+          <h3>Xử lý nước hồ cá</h3>
+          <p>Nước xanh rêu, đục mù, mùi tanh: đo chỉ số – xử lý gốc rễ – nuôi lại vi sinh, nước trong lại sau 1–3 lượt.</p>
+          <span class="pc-price"><b>1,5 – 3,5 tr</b><span>/ lượt xử lý</span></span>
+          <a class="btn btn-line" href="#bao-gia" data-cat="Xử lý nước hồ cá">Nhận báo giá</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="thietke" data-name="chieu sang ho ca canh quan den led thac nuoc anh sang">
+        <div class="pc-media"><img src="assets/img/p6.webp" alt="Chiếu sáng hồ cá cảnh quan — đèn LED dưới nước, hồ lung linh về đêm" width="1448" height="1086" style="object-position:center top"><span class="pc-num">06</span></div>
+        <div class="pc-body">
+          <h3>Chiếu sáng hồ cá cảnh quan</h3>
+          <p>Đèn LED âm nước 12V, đèn thác – đèn cây: hồ lên đèn lung linh, cá lên màu đẹp nhất về đêm.</p>
+          <span class="pc-price"><b>850k – 2,4 tr</b><span>/ điểm đèn</span></span>
+          <a class="btn btn-line" href="#bao-gia" data-cat="Chiếu sáng hồ cá cảnh quan">Nhận báo giá</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="chamsoc" data-name="sua chua ho ca cu ro ri resan chong tham nang cap loc">
+        <div class="pc-media"><img src="assets/img/p7.webp" alt="Sửa chữa và nâng cấp hồ cá cũ — xử lý rò rỉ, thay thiết bị, nâng cấp lọc" width="1448" height="1086" style="object-position:center top"><span class="pc-num">07</span></div>
+        <div class="pc-body">
+          <h3>Sửa chữa hồ cá cũ</h3>
+          <p>Trị rò rỉ, tràn ngầm, resan – chống thấm lại, nâng cấp buồng lọc cũ mà không phải đục phá toàn bộ.</p>
+          <span class="pc-price"><b>650k – 2,5 tr</b><span>/ m² tùy hạng mục</span></span>
+          <a class="btn btn-line" href="#bao-gia" data-cat="Sửa chữa hồ cá cũ">Nhận báo giá</a>
+        </div>
+      </article>
+      <article class="pc spot" data-g="chamsoc" data-name="tu van chon ca theo ho giong koi kohaku sanke showa thuy sinh">
+        <div class="pc-media"><img src="assets/img/p8.webp" alt="Tư vấn chọn cá theo hồ — giống Koi Kohaku, Sanke, Showa chuẩn kiểm dịch" width="1448" height="1086" style="object-position:center top"><span class="pc-num">08</span></div>
+        <div class="pc-body">
+          <h3>Tư vấn chọn cá theo hồ</h3>
+          <p>Chọn giống theo thể tích hồ và màu nước: thả đúng tỷ lệ, cá lớn đều, màu lên chuẩn — miễn phí khi làm hồ.</p>
+          <span class="pc-price"><b>Miễn phí</b><span>kèm gói làm hồ / bảo trì</span></span>
+          <a class="btn btn-line" href="#giong-koi">Xem 6 giống Koi chuẩn</a>
+        </div>
+      </article>
+    </div>
+    <div class="strip rv">
+      <a href="#bao-gia" data-cat="Thiết kế hồ cá Koi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg><span><b>Thiết kế 3D hồ Koi</b><span>từ 90k/m² hồ</span></span><span class="arr">→</span></a>
+      <a href="#bao-gia" data-cat="Thi công hồ cá sân vườn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.47 4.94-6 8.5-6 3.56 0 6.06 2.53 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6z"/><path d="M18 12v.5M16 17.92c-2 1.4-5 1.4-7 0"/></svg><span><b>Thi công hồ sân vườn</b><span>3,8 – 7,5 tr/m²</span></span><span class="arr">→</span></a>
+      <a href="#bao-gia" data-cat="Lắp hệ thống lọc hồ cá"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v6"/><path d="M19 3v6"/><path d="M10.5 9h12v3a6 6 0 0 1-12 0z"/><path d="M16.5 18v3"/></svg><span><b>Hệ lọc sinh học</b><span>12 – 45 tr/hệ</span></span><span class="arr">→</span></a>
+      <a href="#bao-gia" data-cat="Xử lý nước hồ cá"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><span><b>Xử lý nước đục – xanh</b><span>từ 1,5 tr/lượt</span></span><span class="arr">→</span></a>
+      <a href="#bao-tri"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span><b>Gói bảo trì nước</b><span>từ 1,2 tr/tháng</span></span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAC-THU 1: HỒ THEO KHÔNG GIAN ============ -->
+<section class="sec sec-dark scales" id="khong-gian">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Chọn không gian của bạn</span>
+      <h2 class="sec-title">Không gian nào — <mark class="gold">hồ nấy</mark>: gợi ý trong 10 giây</h2>
+      <p class="sec-sub">KoiViệt không bán hồ mẫu. Bấm vào không gian nhà bạn để xem loại hồ hợp lý, hệ lọc đề xuất, dòng cá phù hợp và chi phí tham khảo.</p>
+    </div>
+    <div class="sp-tabs rv" id="spTabs">
+      <button type="button" class="sp-btn on" data-sp="s0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> Sân vườn biệt thự</button>
+      <button type="button" class="sp-btn" data-sp="s1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 12h16M12 3v9"/></svg> Sân thượng nhà phố</button>
+      <button type="button" class="sp-btn" data-sp="s2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v8a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg> Quán café – nhà hàng</button>
+      <button type="button" class="sp-btn" data-sp="s3"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg> Phòng khách – hồ kính</button>
+      <button type="button" class="sp-btn" data-sp="s4"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7z"/><path d="M12 11C9 11 6 8.5 6 4c4.5 0 6 3.5 6 7z"/></svg> Sân nhỏ – tiểu cảnh</button>
+    </div>
+    <div class="sp-panel">
+      <div class="sp-desc rv" id="spDesc">
+        <h3 id="spTitle">Hồ Koi kè đá – thác nước</h3>
+        <p id="spText">Sân vườn từ 40m² là đủ cho hồ Koi 12–30 m², sâu 1,2–1,5m: kè đá tự nhiên, thác 2–3 bậc cấp oxy, trồng lantern – cỏ cảnh quanh hồ. Cá Koi ở hồ lớn mới lên màu và kích thước chuẩn.</p>
+        <div class="sp-fit" id="spFit"><span>Hồ 12 – 30 m²</span><span>Buồng lọc âm 4 – 6 ngăn</span><span>Thi công 4 – 6 tuần</span></div>
+        <div class="sp-price"><b id="spPrice">3,8 – 6,5 tr</b><span>/ m² mặt nước — báo giá chính thức sau khảo sát</span></div>
+      </div>
+      <div class="sp-specs rv">
+        <h4>Thông số đề xuất cho không gian này</h4>
+        <ul id="spSpecs">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>Diện tích hồ hợp lý</b><span>12 – 30 m², sâu 1,2 – 1,5m, mép cao 40–50cm chống tràn mưa</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>Hệ lọc đề xuất</b><span>Buồng lọc sinh học âm 4 – 6 ngăn + UV, bơm quay vòng 4–6h/lượt</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>Dòng cá phù hợp</b><span>Kohaku, Showa, Sanke cỡ lớn — thả 1 con / 0,5 m³ nước</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>Điểm cần lưu ý</b><span>Kiểm tra hướng nắng trưa (trồng che 1/3 mặt hồ), hướng thoát mưa sân</span></li>
+        </ul>
+        <a class="btn btn-acc" href="#bao-gia" id="spCta" data-cat="Hồ sân vườn biệt thự">Nhận phương án cho sân vườn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAC-THU 2: BUỒNG LỌC SINH HỌC 4 NGĂN ============ -->
+<section class="sec sec-white scales" id="he-loc">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Trái tim của hồ cá</span>
+      <h2 class="sec-title">Buồng lọc sinh học 4 ngăn — <mark>cá khỏe, nước trong</mark> không cần thay</h2>
+      <p class="sec-sub">Hồ cá khác hồ bơi: cá thở, ăn, đi cầu quanh năm. Nước trong bền vững là nhờ men vi sinh ăn sạch chất thải — KoiViệt thiết kế buồng lọc theo đúng chu trình đó.</p>
+    </div>
+    <div class="fl-wrap">
+      <div class="fl-box rv">
+        <svg viewBox="0 0 580 330" role="img" aria-label="Mặt cắt buồng lọc 4 ngăn: hồ cá Koi đáy dốc, ngăn lắng cặn, ngăn chắn lọc vật lý, ngăn vi sinh giá thể K1, khoang bơm UV rồi thác trả về hồ">
+          <defs>
+            <linearGradient id="wtr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F9E7C" stop-opacity=".5"/><stop offset="1" stop-color="#22563F" stop-opacity=".32"/></linearGradient>
+            <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E2611F"/></marker>
+          </defs>
+          <!-- hồ cá -->
+          <rect x="18" y="66" width="168" height="196" rx="16" fill="#EAF3ED" stroke="#22563F" stroke-opacity=".5" stroke-width="2"/>
+          <rect x="26" y="78" width="152" height="150" rx="10" fill="url(#wtr)"/>
+          <path d="M38 100q11-6 22 0t22 0 22 0 22 0 22 0" fill="none" stroke="#7FCBA9" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+          <path d="M38 130q11-6 22 0t22 0 22 0 22 0 22 0" fill="none" stroke="#7FCBA9" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+          <path d="M38 160q11-6 22 0t22 0 22 0 22 0 22 0" fill="none" stroke="#7FCBA9" stroke-width="2.5" stroke-linecap="round" opacity=".65"/>
+          <g class="fl-koi"><ellipse cx="80" cy="205" rx="17" ry="8" fill="#F08A4F"/><path d="M63 205l-9-7v14z" fill="#E2611F"/><circle cx="91" cy="203" r="1.6" fill="#0D2A1E"/></g>
+          <g class="fl-koi" style="animation-delay:-2.2s"><ellipse cx="126" cy="188" rx="13" ry="6" fill="#fff" stroke="#E5DFCB"/><path d="M113 188l-8-6v12z" fill="#F6C69E"/><circle cx="133" cy="187" r="1.4" fill="#0D2A1E"/></g>
+          <g class="fl-koi" style="animation-delay:-4s"><ellipse cx="100" cy="215" rx="11" ry="5" fill="#E9C36A"/><path d="M89 215l-7-5v10z" fill="#CE9B33"/></g>
+          <path d="M26 240 L178 252 L178 264 L26 264 Z" fill="#22563F" opacity=".28"/>
+          <text x="102" y="286" text-anchor="middle" font-size="13" font-weight="800" fill="#1A4030">Hồ cá Koi · đáy dốc hứng cặn</text>
+          <!-- 4 ngăn lọc -->
+          <g font-size="12.5" font-weight="700">
+            <rect x="196" y="66" width="88" height="196" rx="10" fill="#FDF4EA" stroke="#E2611F" stroke-opacity=".45" stroke-width="2"/>
+            <rect x="204" y="82" width="72" height="164" rx="7" fill="url(#wtr)"/>
+            <circle cx="240" cy="58" r="13" fill="#E2611F"/><text x="240" y="63" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">1</text>
+            <circle cx="224" cy="120" r="7" fill="#CE9B33" opacity=".65"/><circle cx="254" cy="150" r="9" fill="#CE9B33" opacity=".5"/><circle cx="230" cy="182" r="6" fill="#CE9B33" opacity=".7"/><circle cx="258" cy="208" r="8" fill="#CE9B33" opacity=".55"/>
+            <text x="240" y="290" text-anchor="middle" fill="#1A4030">Ngăn lắng</text>
+            <text x="240" y="306" text-anchor="middle" fill="#5F7267" font-size="11">tụt cặn</text>
+            <rect x="292" y="66" width="88" height="196" rx="10" fill="#FDF4EA" stroke="#E2611F" stroke-opacity=".45" stroke-width="2"/>
+            <rect x="300" y="82" width="72" height="164" rx="7" fill="url(#wtr)"/>
+            <circle cx="336" cy="58" r="13" fill="#E2611F"/><text x="336" y="63" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">2</text>
+            <path d="M306 108h60M306 130h60M306 152h60M306 174h60M306 196h60" stroke="#22563F" stroke-opacity=".4" stroke-width="5" stroke-linecap="round"/>
+            <text x="336" y="290" text-anchor="middle" fill="#1A4030">Ngăn chắn</text>
+            <text x="336" y="306" text-anchor="middle" fill="#5F7267" font-size="11">chổi lọc</text>
+            <rect x="388" y="66" width="88" height="196" rx="10" fill="#FDF4EA" stroke="#E2611F" stroke-opacity=".45" stroke-width="2"/>
+            <rect x="396" y="82" width="72" height="164" rx="7" fill="url(#wtr)"/>
+            <circle cx="432" cy="58" r="13" fill="#E2611F"/><text x="432" y="63" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">3</text>
+            <g fill="#3F9E7C"><circle cx="414" cy="112" r="5"/><circle cx="432" cy="128" r="5"/><circle cx="450" cy="112" r="5"/><circle cx="414" cy="150" r="5"/><circle cx="450" cy="150" r="5"/><circle cx="432" cy="166" r="5"/><circle cx="414" cy="188" r="5"/><circle cx="450" cy="188" r="5"/><circle cx="432" cy="204" r="5"/><circle cx="414" cy="224" r="5"/><circle cx="450" cy="224" r="5"/></g>
+            <text x="432" y="290" text-anchor="middle" fill="#1A4030">Ngăn vi sinh</text>
+            <text x="432" y="306" text-anchor="middle" fill="#5F7267" font-size="11">giá thể K1</text>
+            <rect x="484" y="66" width="88" height="196" rx="10" fill="#FDF4EA" stroke="#E2611F" stroke-opacity=".45" stroke-width="2"/>
+            <rect x="492" y="82" width="72" height="164" rx="7" fill="url(#wtr)"/>
+            <circle cx="528" cy="58" r="13" fill="#E2611F"/><text x="528" y="63" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">4</text>
+            <circle cx="520" cy="150" r="14" fill="none" stroke="#22563F" stroke-width="3"/><path d="M520 140v20M510 150h20" stroke="#22563F" stroke-width="3" stroke-linecap="round"/>
+            <rect x="544" y="110" width="8" height="84" rx="4" fill="#7FCBA9"/>
+            <text x="528" y="290" text-anchor="middle" fill="#1A4030">Bơm + UV</text>
+            <text x="528" y="306" text-anchor="middle" fill="#5F7267" font-size="11">trả về hồ</text>
+          </g>
+          <!-- dòng nước quay về hồ (thác trả về) -->
+          <path class="fl-dash" d="M528 262 C 560 230, 566 90, 540 44 L 300 40 C 200 40, 160 44, 104 56" fill="none" stroke="#E2611F" stroke-width="3" stroke-linecap="round" marker-end="url(#arw)"/>
+          <path class="fl-dash" style="animation-delay:-.5s" d="M178 258 C 186 258, 188 258, 198 258 M284 258 L 292 258 M380 258 L 388 258 M476 258 L 484 258" fill="none" stroke="#E2611F" stroke-width="3" stroke-linecap="round"/>
+          <text x="330" y="26" text-anchor="middle" font-size="12.5" font-weight="800" fill="#E2611F">Thác trả về hồ — vỗ mặt nước cấp oxy cho cá</text>
+        </svg>
+        <div class="fl-legend">
+          <span><i>1</i> Lắng cặn nặng</span>
+          <span><i>2</i> Lọc vật lý</span>
+          <span><i>3</i> Vi sinh xử lý nguồn</span>
+          <span><i>4</i> UV – bơm trả về</span>
+        </div>
+      </div>
+      <div class="tiers rv">
+        <div class="tier"><i>1</i><div><b>Lọc cơ học</b><p>Chổi lọc + lưới chắn giữ rác thô, đáy dốc – đáy rút hút cặn: công vệ sinh nhẹ, không đục nguồn.</p><span>Giữ rác, không để cặn nổi ngược</span></div></div>
+        <div class="tier"><i>2</i><div><b>Lọc sinh học — quan trọng nhất</b><p>Giá thể K1/K3 nuôi men vi sinh biến amoniac từ phân cá thành chất vô hại. Đây là lý do hồ Koi không hôi, không thay nước.</p><span>Men vi sinh sống bền — nước ổn định quanh năm</span></div></div>
+        <div class="tier"><i>3</i><div><b>UV + tuần hoàn tiết điện</b><p>Đèn UV diệt tảo lơ lửng cho nước trong veo; bơm chọn đúng lưu lượng — quay vòng 4–6h/lượt, chạy 24/7 chỉ tốn 1 bữa cà phê/ngày.</p><span>Nước trong veo, điện thấp</span></div></div>
+      </div>
+    </div>
+    <div class="tech-row rv">
+      <span>Giá thể K1 Micro</span><span>Chổi lọc lông nhọn</span><span>UV 36 – 55W</span><span>Bơm êm 45dB</span><span>Ống uPVC sch40</span><span>Hatch chống tràn</span><span>Đáy rút inox</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAC-THU 3: GIỐNG CÁ KOI CHUẨN ============ -->
+<section class="sec sec-texture" id="giong-koi">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Giống cá Koi chuẩn</span>
+      <h2 class="sec-title">6 giống Koi <mark>tô điểm cho mọi hồ</mark> — chọn theo nước, không chọn theo mù</h2>
+      <p class="sec-sub">Cá đẹp trước hết là cá khỏe: KoiViệt nhập giống có kiểm dịch, soi da – tách riêng cá mới trước khi thả, cam kết cá sống 7 ngày mới tính tiền cá.</p>
+    </div>
+    <div class="koi-grid rv">
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Kohaku</h3><span class="koi-tag">Kinh điển</span></div>
+        <p>Trắng tuyết vằn đỏ — "vua các giống Koi", càng lớn càng giá trị. Nền trắng phải sạch, vằn đỏ đậm viền rõ.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp hồ sân vườn ≥ 10 m², sâu ≥ 1,2m</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Kích cỡ thả chuẩn 18 – 25cm</li>
+        </ul>
+      </article>
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Sanke</h3><span class="koi-tag alt">Thanh lịch</span></div>
+        <p>Nền trắng đỏ điểm đốm đen ít — quý tộc trong họ Koi. Cần nước cực trong nên phải đi kèm hệ lọc sinh học tốt.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp hồ lọc 4 ngăn, UV đầy đủ</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Nổi nhất khi nước trong thấy đáy</li>
+        </ul>
+      </article>
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Showa</h3><span class="koi-tag">Sức sống</span></div>
+        <p>Nền đen vằn đỏ – trắng, dáng bơi khỏe khoắn. Lên màu chậm nhưng càng nuôi càng ấn tượng, hợp hồ rộng.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp hồ sâu ≥ 1,2m, thể tích ≥ 15 m³</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dễ nuôi — hợp người mới chơi Koi</li>
+        </ul>
+      </article>
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Yamabuki Ogon</h3><span class="koi-tag alt">Nhún vàng kim</span></div>
+        <p>Vàng kim nhún lấp lánh như thỏi vàng bơi trong nước xanh — "cây đèn" của hồ, nhìn thấy từ xa.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp mọi hồ có lọc, kể cả hồ mini</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dễ lên màu dưới đèn cảnh quan đêm</li>
+        </ul>
+      </article>
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Butterfly</h3><span class="koi-tag">Vây bướm</span></div>
+        <p>Vây dài như dải lụa, bơi chậm duyên dáng — hợp hồ kính, hồ nông sân thượng nơi ngắm gần, ngắm kỹ.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp hồ kính trong nhà, sân thượng</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Nên tránh dòng chảy quá mạnh</li>
+        </ul>
+      </article>
+      <article class="koi-card">
+        <span class="koi-dot"></span>
+        <div class="koi-top"><h3>Platinum</h3><span class="koi-tag alt">Bạc kim</span></div>
+        <p>Trắng bạc kim như ánh trăng — hợp hồ phong cách nhật tính, quán café tông sáng, hồ thủy sinh tối giản.</p>
+        <ul class="koi-meta">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hợp hồ café – tiểu cảnh tối giản</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Kết nhóm cùng Ogon tạo cặp kim loại</li>
+        </ul>
+      </article>
+    </div>
+    <div class="koi-note rv">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <p><b>Chuẩn thả cá của KoiViệt:</b> nguồn giống có kiểm dịch — nuôi lọc 7–14 ngày, đo nước đạt chuẩn mới thả; tỷ lệ 1 con/0,5–1 m³ nước; cá mới soi da – cách ly 7 ngày. <b>Cá sống trọn 7 ngày mới tính tiền cá</b> — chết thay, miễn phí.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BẢO TRÌ NƯỚC — 3 GÓI ============ -->
+<section class="sec sec-white" id="bao-tri">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Bảo trì nước định kỳ</span>
+      <h2 class="sec-title">Hồ đẹp nhờ nuôi nước — <mark>chọn gói phù hợp nhịp sống bạn</mark></h2>
+      <p class="sec-sub">Mỗi lượt bảo trì đều có báo cáo ảnh + chỉ số nước gửi Zalo. Khách vắng nhà, cho thuê trọn — hồ vẫn trong, cá vẫn khỏe.</p>
+    </div>
+    <div class="care-grid rv">
+      <article class="care-card">
+        <div class="care-top"><h3>Duy trì</h3><span class="care-tag">Cơ bản</span></div>
+        <span class="care-price">1,2 tr<small> / tháng</small></span>
+        <span class="care-freq"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 1 lượt / tháng</span>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hút cặn đáy, lưới mặt hồ, chà mép kè</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Rửa lọc thô, kiểm tra bơm – đèn UV</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Báo cáo ảnh + ghi chú tình trạng hồ</li>
+        </ul>
+        <a class="btn btn-line" href="#bao-gia" data-cat="Bảo trì gói Duy trì">Nhận gói Duy trì</a>
+      </article>
+      <article class="care-card hot">
+        <div class="care-top"><h3>Chuẩn</h3><span class="care-tag">Chọn nhiều nhất</span></div>
+        <span class="care-price">2,2 tr<small> / tháng</small></span>
+        <span class="care-freq"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 2 lượt / tháng</span>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Đủ nội dung gói Duy trì</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Rửa ngầm buồng vi sinh, cân bằng pH</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Xử điểm tảo rìa – cắt lá cây thủy sinh</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Báo cáo chỉ số nước mỗi lượt</li>
+        </ul>
+        <a class="btn btn-acc" href="#bao-gia" data-cat="Bảo trì gói Chuẩn">Nhận gói Chuẩn</a>
+      </article>
+      <article class="care-card">
+        <div class="care-top"><h3>Koi chăm chút</h3><span class="care-tag">Cá cảnh quý</span></div>
+        <span class="care-price">3,8 tr<small> / tháng</small></span>
+        <span class="care-freq"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 4 lượt / tháng</span>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Đủ nội dung gói Chuẩn</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Đo nước 6 chỉ số + bơm men vi sinh</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Soi da cá – phát hiện ký sinh trùng sớm</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Kế hoạch mùa mưa – mùa cá sinh sản</li>
+        </ul>
+        <a class="btn btn-line" href="#bao-gia" data-cat="Bảo trì gói Koi chăm chút">Nhận gói Koi chăm chút</a>
+      </article>
+    </div>
+    <span class="care-note rv">Miễn phí 2 lượt đầu tiên khi ký gói bảo trì cùng thi công hồ — gọi <a class="hotline" href="tel:+84907288118" style="color:var(--accent)">0907 288 118</a> để được tư vấn gói theo số cá và thể tích hồ.</span>
+  </div>
+</section>
+
+<!-- ============ GIỚI THIỆU ============ -->
+<section class="sec sec-texture scales" id="gioi-thieu">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy rv">
+        <div class="sec-head">
+          <span class="eyebrow">Vì sao chọn KoiViệt</span>
+          <h2 class="sec-title">9 năm — 340 hồ cá, chúng tôi chỉ làm <mark>một thứ duy nhất</mark></h2>
+          <p class="sec-sub">Xây nhà có thợ xây, làm hồ cá phải có người làm hồ cá. KoiViệt không làm hổ hợp nghề: từ bản vẽ, buồng lọc, giống cá tới gói bảo trì — tất cả nội bộ, không thầu lại.</p>
+        </div>
+        <ul class="about-points">
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><b>Nước trong là chuẩn bản lề</b><span>Nghiệm thu bằng chất lượng nước, không chỉ bằng màu men gạch.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v6"/><path d="M19 3v6"/><path d="M10.5 9h12v3a6 6 0 0 1-12 0z"/><path d="M16.5 18v3"/></svg><b>Lọc đúng thể tích thật</b><span>Tính lưu lượng theo m³ nước đo được — không lắp quá tay, không thiếu.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><b>Chống thấm 5 năm</b><span>5 lớp + ngâm thử 72h trước khi hoàn thiện — hồ càng dùng càng bền.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Bảo trì trọn đời hồ</b><span>Gói định kỳ + hỗ trợ khẩn 24/7 khi nước đục, bơm hỏng, cá nổi lạ.</span></li>
+        </ul>
+      </div>
+      <div class="about-vis rv">
+        <div class="about-img"><img src="assets/img/intro.webp" alt="Giới thiệu dịch vụ thiết kế, thi công và bảo trì hồ cá của KoiViệt" width="1448" height="1086"><span class="about-cap">Từ bản vẽ tới hồ hoàn thiện — một đầu mối</span></div>
+        <div class="about-img"><img src="assets/img/space.webp" alt="Không gian hồ cá sân vườn xanh mát — thác kè đá, cá Koi sắc màu" width="1086" height="814"><span class="about-cap">Không gian hồ sân vườn — Xanh mát · Thư giãn · Đẳng cấp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 5 BƯỚC ============ -->
+<section class="sec sec-dark scales" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Quy trình làm hồ</span>
+      <h2 class="sec-title">Từ sân trống tới cá bơi — <mark class="gold">5 bước không hồi hộp</mark></h2>
+      <p class="sec-sub">Mỗi bước nghiệm thu riêng, khách duyệt mới sang bước sau. Không có chuyện "thi công xong mới báo thêm tiền".</p>
+    </div>
+    <div class="steps rv">
+      <div class="step"><i>1</i><b>Khảo sát &amp; đo hiện trạng</b><p>Miễn phí 30km: đo diện tích, tải trọng (sân thượng), hướng nắng – gió, nguồn điện – nước.</p></div>
+      <div class="step"><i>2</i><b>Thiết kế 3D &amp; chốt phương án</b><p>3D chỉnh 2 lượt free — chốt kích thước, kè đá, đèn, buồng lọc rồi mới báo giá từng hạng mục.</p></div>
+      <div class="step"><i>3</i><b>Thi công nền – chống thấm – buồng lọc</b><p>Chống thấm 5 lớp ngâm thử 72h; đi ống âm, hộc buồng lọc, dây điện riêng cho bơm.</p></div>
+      <div class="step"><i>4</i><b>Nuôi lọc &amp; thả cá chuẩn</b><p>Chạy lọc 7–14 ngày, đo nước đạt chuẩn rồi mới thả cá — cá sống 7 ngày mới tính tiền cá.</p></div>
+      <div class="step"><i>5</i><b>Bàn giao &amp; bảo trì định kỳ</b><p>Hướng dẫn vận hành 1 buổi, tặng lịch cho ăn – hút cặn; ký gói bảo trì nếu bạn muốn trọn gói.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ĐÁNH GIÁ ============ -->
+<section class="sec sec-white scales" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Khách nói về hồ của mình</span>
+      <h2 class="sec-title">Hồ sống cùng nhà — <mark>khách sống cùng hồ</mark></h2>
+    </div>
+    <div class="rev-shell rv">
+      <div class="rev-viewport">
+        <div class="rev-track" id="revTrack">
+          <div class="rev-slide">
+            <div class="rev-card">
+              <span class="rev-stars">★★★★★</span>
+              <p class="rev-text">Nhờ anh Hậu chọn giúp giống: 3 Kohaku, 2 Ogon thả vào hồ 18m² sau nhà. Nước đã 8 tháng không thay, chỉ hút cặn nhẹ. Chiều nào con tôi cũng đợi cá lên ăn — hồ thành phòng khách thứ hai của nhà.</p>
+              <div class="rev-who"><span class="rev-av">H</span><span><b>Anh Hùng</b><span>Biệt thự sân vườn — Thủ Đức, TP.HCM</span></span></div>
+            </div>
+          </div>
+          <div class="rev-slide">
+            <div class="rev-card">
+              <span class="rev-stars">★★★★★</span>
+              <p class="rev-text">Quán làm hồ ở lối vào, thi công 3 tuần mà không mất một buổi khách nào. Đèn lên tối khách chụp hình liên tục, đúng ý định làm điểm nhấn. Gói bảo trì 2 lượt/tháng nên nước lúc nào cũng trong.</p>
+              <div class="rev-who"><span class="rev-av">T</span><span><b>Anh Tuấn</b><span>Chủ quán café sân vườn — Bình Thạnh, TP.HCM</span></span></div>
+            </div>
+          </div>
+          <div class="rev-slide">
+            <div class="rev-card">
+              <span class="rev-stars">★★★★★</span>
+              <p class="rev-text">Sân thượng 24m² tôi cứ nghĩ không làm được hồ. KoiViệt tính lại tải trọng, làm hồ kính 5m² buồng lọc treo gọn — nhẹ hơn tôi tưởng. Giống Butterfly bơi nhìn xuống từ phòng khách thích lắm.</p>
+              <div class="rev-who"><span class="rev-av">N</span><span><b>Chị Ngọc</b><span>Nhà phố sân thượng — Quận 7, TP.HCM</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="rev-metric">
+        <li><b>340+</b><span>Hồ cá đã bàn giao từ 2017</span></li>
+        <li><b>12.000+</b><span>Con Koi thả theo chuẩn kiểm dịch</span></li>
+        <li><b>97%</b><span>Khách thi công ký tiếp gói bảo trì</span></li>
+        <li><b>4,9/5</b><span>Điểm hài lòng sau 1 năm dùng hồ</span></li>
+      </ul>
+    </div>
+    <div class="rev-dots" id="revDots"></div>
+  </div>
+</section>
+
+<!-- ============ FORM BÁO GIÁ + FAQ ============ -->
+<section class="sec sec-dark scales" id="bao-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Nhận báo giá</span>
+      <h2 class="sec-title">Gửi thông tin — <mark class="gold">kỹ sư gọi lại trong 30 phút</mark></h2>
+      <p class="sec-sub">Miễn phí khảo sát &amp; thiết kế phương án trong 30km. Không báo giá qua loa — mỗi hạng mục đều ghi rõ vật tư và khối lượng.</p>
+    </div>
+    <div class="qf-grid">
+      <div class="qf-box rv">
+        <h3>Form yêu cầu báo giá hồ cá</h3>
+        <span class="fsub">Điền 4 dòng là đủ — phần còn lại để kỹ sư hỏi trực tiếp.</span>
+        <form id="qfForm" novalidate>
+          <div class="f-grid">
+            <div class="field"><label for="qfName">Họ tên *</label><input id="qfName" name="name" type="text" placeholder="VD: Minh Trí" autocomplete="name"></div>
+            <div class="field"><label for="qfPhone">Số điện thoại *</label><input id="qfPhone" name="phone" type="tel" placeholder="VD: 0912 345 678" autocomplete="tel"></div>
+            <div class="field full"><label for="qfCat">Nhu cầu chính</label>
+              <select id="qfCat" name="cat">
+                <option>Thiết kế hồ cá Koi</option>
+                <option>Thi công hồ cá sân vườn</option>
+                <option>Hồ sân vườn biệt thự</option>
+                <option>Hồ sân thượng nhà phố</option>
+                <option>Hồ quán café – nhà hàng</option>
+                <option>Hồ kính trong nhà</option>
+                <option>Lắp hệ thống lọc hồ cá</option>
+                <option>Xử lý nước hồ cá</option>
+                <option>Vệ sinh – bảo trì hồ cá</option>
+                <option>Sửa chữa hồ cá cũ</option>
+                <option>Chiếu sáng hồ cá cảnh quan</option>
+                <option>Tư vấn chọn cá theo hồ</option>
+              </select>
+            </div>
+            <div class="field full"><label for="qfSpace">Không gian dự kiến</label><input id="qfSpace" name="space" type="text" placeholder="VD: sân vườn 40m² ở Thủ Đức / sân thượng 24m²"></div>
+            <div class="field full"><label for="qfNote">Nội dung thêm</label><textarea id="qfNote" name="note" placeholder="Số cá đang nuôi / muốn thả, ngân sách dự kiến, thời gian mong muốn…"></textarea></div>
+          </div>
+          <button class="btn btn-acc" type="submit"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> Gửi yêu cầu — phản hồi 30 phút</button>
+          <span class="qf-secure"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Thông tin chỉ dùng để báo giá — không gọi quảng cáo</span>
+        </form>
+        <div class="qf-hotline"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span><span><span>Gấp? Gọi hotline ngay</span><b class="hotline"><a href="tel:+84907288118">0907 288 118</a></b></span></div>
+      </div>
+      <div class="faq-side rv" id="faq">
+        <h3>Hỏi nhanh — đáp gọn</h3>
+        <span class="fsub">7 thắc mắc khách hỏi nhiều nhất khi làm hồ cá lần đầu.</span>
+        <div id="faqList">
+          <div class="faq-item"><button class="faq-q" type="button">Sân 20–30m² làm được hồ Koi không?<span class="pm">+</span></button><div class="faq-a"><p>Được — hồ 4–8 m² sâu 0,8–1m là nuôi khỏe 5–8 con Koi cỡ vừa. Sân nhỏ nên chọn hồ kính hoặc kè gọn, lọc dọc treo tiết kiệm mặt bằng. KoiViệt khảo sát tải trọng và gợi ý kích thước tối đa an toàn.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Buồng lọc sinh học là gì, vì sao hồ Koi bắt buộc phải có?<span class="pm">+</span></button><div class="faq-a"><p>Là hệ 3–6 ngăn nuôi men vi sinh bám trên giá thể K1 để "ăn" chất thải của cá. Không có bộ phận này, hồ chỉ lọc được rác thô — nước sẽ nhanh đục, cá nhiễm bệnh. Đây là hạng mục KoiViệt đầu tư kỹ nhất vì nó quyết định hồ sống hay chết về lâu dài.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Bao lâu thì nước trong sau khi làm hồ?<span class="pm">+</span></button><div class="faq-a"><p>Chuẩn quy trình: chống thấm xong ngâm thử 72h, sau đó chạy lọc 7–14 ngày để men vi sinh ổn định rồi mới thả cá — nước trong thấy đáy từ ngày thả. Cam kết 14 ngày: chưa đạt, KoiViệt xử lý miễn phí đến khi trong.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Tiền điện chạy hồ mỗi tháng khoảng bao nhiêu?<span class="pm">+</span></button><div class="faq-a"><p>Hồ 15–20 m² với bơm chọn đúng lưu lượng chạy 24/7 tốn khoảng 250k–450k/tháng (tương đương 1 tủ lạnh). Hồ mini sân thượng thấp hơn. KoiViệt luôn ghi rõ công suất thiết bị trong báo giá để bạn tự tính.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Hồ sân thượng có lo tĩnh trọng và tràn nước không?<span class="pm">+</span></button><div class="faq-a"><p>KoiViệt khảo sát kết cấu trước khi nhận: hồ sân thượng thường 3–8 m², sâu 0,6–0,9m, khung thép – kính nhẹ, có hatch chống tràn và đường tràn khẩn nối cống. Nước chỉ chiếm 1 phần tải trọng thiết kế của sân thượng tiêu chuẩn — kỹ sư sẽ tính cụ thể cho nhà bạn.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Quán đang kinh doanh, thi công có ảnh hưởng khách?<span class="pm">+</span></button><div class="faq-a"><p>Được — chia giai đoạn, thi công khu lối vào trước, cắt bớt ồn giờ cao điểm, dọn dẹp sạch mỗi buổi tối. Thông thường hồ quán 5–15 m² hoàn thành trong 2–3 tuần.</p></div></div>
+          <div class="faq-item"><button class="faq-q" type="button">Có hỗ trợ khi nước đục, cá bệnh sau khi bàn giao?<span class="pm">+</span></button><div class="faq-a"><p>Có — 12 tháng đầu mọi sự cố nước và cá thuộc hỗ trợ ưu tiên trong ngày. Sau đó khách ký gói bảo trì vẫn được hỗ trợ khẩn 24/7. Kẹt thật sự thì gọi hotline 0907 288 118, kỹ sư tư vấn qua Zalo video ngay.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIÊN HỆ + BẢN ĐỒ ============ -->
+<section class="sec sec-texture" id="lien-he">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Xưởng &amp; văn phòng</span>
+      <h2 class="sec-title">Ghé xưởng xem hồ mẫu — <mark>uống chè, ngắm Koi</mark></h2>
+    </div>
+    <div class="contact-grid rv">
+      <div class="map-card">
+        <iframe class="gmap" loading="lazy" src="https://www.google.com/maps?q=10.7351,106.7223&amp;z=15&amp;output=embed" title="Bản đồ vị trí KoiViệt" allowfullscreen></iframe>
+        <div class="map-body">
+          <h3>KoiViệt — Hồ cá Koi · Thủy sinh · Tiểu cảnh</h3>
+          <p>Xưởng hồ mẫu + văn phòng: 126 đường số 8, P. Bình Thuận, Q.7, TP.HCM. Có chỗ đậu ô tô, ghé trước 17:30 để kỹ sư dắt xem hồ mẫu ngoài trời.</p>
+          <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=10.7351,106.7223" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Chỉ đường tới xưởng hồ mẫu</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-line"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span><span><b>Hotline / Zalo</b><span><a class="hotline" href="tel:+84907288118">0907 288 118</a> — gọi trực tiếp kỹ sư, không qua tổng đài</span></span></div>
+        <div class="contact-line"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span><b>Phạm vi phục vụ</b><span>TP.HCM · Bình Dương · Long An — khảo sát miễn phí trong 30km</span></span></div>
+        <div class="contact-line"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span><b>Giờ làm việc</b><span>7:30 – 18:30 (T2 – T7) · CN nhận khảo sát khẩn</span></span></div>
+        <div class="contact-line"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span><span><b>Email</b><span>koiviet.hoca@gmail.com — gửi mặt bằng, ảnh hồ cũ để báo giá nhanh</span></span></div>
+        <a class="btn btn-acc" href="#bao-gia">Nhận báo giá ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER GỌN ============ -->
+<footer class="footer scales">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="KoiViệt" style="margin-bottom:14px">
+          <span class="logo-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F08A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.5-4 7-6 11-4.5L19 5l-1 4.5L19 14l-5-2.5C10 13 5.5 12 3 12z"/><circle cx="8" cy="11" r="1" fill="#F08A4F" stroke="none"/><path d="M5 18c1.4.8 2.8.8 4.2 0 1.4-.8 2.8-.8 4.2 0"/></svg></span>
+          <span><b style="color:#fff">Koi<span style="color:var(--accent-2)">Việt</span></b><span style="color:#A8C4B2">Hồ cá Koi · Thủy sinh · Tiểu cảnh</span></span>
+        </a>
+        <p>Chuyên thiết kế, thi công và bảo trì hồ cá từ 2017. Hồ đẹp là hồ nước trong, cá khỏe — và chủ hồ ít phải lo.</p>
+        <div class="foot-social">
+          <a href="#top" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#top" aria-label="Zalo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></a>
+          <a href="#top" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#dich-vu">Thiết kế hồ Koi</a></li>
+          <li><a href="#dich-vu">Thi công sân vườn</a></li>
+          <li><a href="#he-loc">Hệ lọc sinh học</a></li>
+          <li><a href="#bao-tri">Bảo trì nước</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Khám phá</h4>
+        <ul>
+          <li><a href="#khong-gian">Hồ theo không gian</a></li>
+          <li><a href="#giong-koi">6 giống Koi chuẩn</a></li>
+          <li><a href="#quy-trinh">Quy trình 5 bước</a></li>
+          <li><a href="#faq">Hỏi đáp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul class="foot-contact">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 126 đường số 8, P. Bình Thuận, Q.7, TP.HCM</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 7:30 – 18:30 (T2 – T7)</li>
+        </ul>
+        <span class="foot-hot"><span>Hotline 24/7</span><b><a href="tel:+84907288118">0907 288 118</a></b></span>
+      </div>
+    </div>
+    <div class="foot-copy">© 2026 KoiViệt — Thiết kế, thi công &amp; bảo trì hồ cá. Giá tham chiếu trên site có thể điều chỉnh sau khảo sát thực tế.</div>
+  </div>
+</footer>
+
+<!-- ============ FAB + CHAT + TOAST ============ -->
+<div class="fab" id="fab">
+  <a class="fab-main" href="#bao-gia"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg> Nhận báo giá</a>
+  <button type="button" class="fab-chat" id="fabChat" aria-label="Chat tư vấn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span class="fab-label">Chat tư vấn</span></button>
+  <a class="fab-zalo" href="https://zalo.me/84907288118" target="_blank" rel="noopener" aria-label="Zalo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span class="fab-label">Zalo</span></a>
+  <a href="tel:+84907288118" aria-label="Gọi hotline"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg><span class="fab-label">0907 288 118</span></a>
+  <button type="button" id="fabTop" aria-label="Về đầu trang"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span class="fab-label">Về đầu trang</span></button>
+</div>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat tư vấn KoiViệt">
+  <div class="chat-head">
+    <span class="cav">K</span>
+    <span><b>KoiViệt tư vấn</b><span>Trả lời ngay · từ 7:30 – 18:30</span></span>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="chat-msg chat-b">Chào bạn! Mình là kỹ sư KoiViệt. Bạn đang định làm hồ ở không gian nào — sân vườn, sân thượng hay quán café?</div>
+  </div>
+  <div class="chat-quick" id="chatQuick">
+    <button type="button" data-q="Báo giá hồ 15-20m² khoảng bao nhiêu?">Giá hồ 15–20m²</button>
+    <button type="button" data-q="Sân thượng làm được hồ không?">Sân thượng làm được không?</button>
+    <button type="button" data-q="Nước hồ đục phải xử lý sao?">Nước đục xử lý sao?</button>
+    <button type="button" data-q="Bảo trì hồ 1 tháng bao nhiêu tiền?">Bảo trì bao nhiêu/tháng?</button>
+  </div>
+  <div class="chat-foot">
+    <input id="chatInput" type="text" placeholder="Nhập câu hỏi của bạn…" aria-label="Nội dung chat">
+    <button type="button" id="chatSend" aria-label="Gửi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+  <span class="toast-tx"><b id="toastTitle">Đã gửi</b><span id="toastMsg">Cảm ơn bạn!</span></span>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"KoiViệt — Thiết kế, thi công và bảo trì hồ cá","description":"Thiết kế hồ Koi theo không gian, thi công hồ cá sân vườn – sân thượng – quán café, buồng lọc sinh học 4 ngăn, giống Koi kiểm dịch, bảo trì nước định kỳ.","telephone":"+84907288118","address":{"@type":"PostalAddress","streetAddress":"126 đường số 8, P. Bình Thuận, Q.7","addressLocality":"TP. Hồ Chí Minh","addressCountry":"VN"},"openingHours":"Mo-Sa 07:30-18:30","priceRange":"$$","geo":{"@type":"GeoCoordinates","latitude":10.7351,"longitude":106.7223}}
+</script>
+
+<script>
+/*NB93-288: tiện ích trang — toast, reveal có failsafe, bộ lọc khối-8, selector không gian, FAQ, slider đánh giá, form báo giá prefill + validate*/
+(function(){
+  'use strict';
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+  /* toast — title + msg 2 phần tử riêng, pointer-events:none sẵn trong CSS */
+  var tTimer;
+  function toast(title,msg){
+    var t=$('#toast');$('#toastTitle').textContent=title;$('#toastMsg').textContent=msg;
+    t.classList.add('show');clearTimeout(tTimer);
+    tTimer=setTimeout(function(){t.classList.remove('show')},4200);
+  }
+  window.kvToast=toast;
+  /* reveal-on-scroll + failsafe: nếu IntersectionObserver không chạy, 2.5s tự mở hết */
+  var rvs=$$('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    rvs.forEach(function(el){io.observe(el)});
+    setTimeout(function(){rvs.forEach(function(el){el.classList.add('in')})},2500);
+  }else{
+    rvs.forEach(function(el){el.classList.add('in')});
+  }
+  /* bộ lọc khối-8 — đếm thật + toast */
+  var cards=$$('#pGrid .pc');
+  $$('#dChips button').forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('#dChips button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var g=b.getAttribute('data-g'),n=0;
+      cards.forEach(function(c){
+        var show=(g==='all'||c.getAttribute('data-g')===g);
+        c.style.display=show?'':'none';if(show)n++;
+      });
+      if(g!=='all')toast('Lọc dịch vụ','Hiển thị '+n+' dịch vụ thuộc nhóm "'+b.textContent.trim()+'"');
+    });
+  });
+  /* CTA thẻ dịch vụ → prefill select nhu cầu trong form */
+  $$('a[data-cat]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var cat=a.getAttribute('data-cat'),sel=$('#qfCat');
+      if(!cat||!sel)return;
+      [].slice.call(sel.options).forEach(function(o){if(o.text===cat)sel.value=o.text;});
+    });
+  });
+  /* selector không gian — dấu ấn nghề */
+  var SPACES={
+    s0:{t:'Hồ Koi kè đá – thác nước',p:'3,8 – 6,5 tr',fit:['Hồ 12 – 30 m²','Buồng lọc âm 4 – 6 ngăn','Thi công 4 – 6 tuần'],
+      txt:'Sân vườn từ 40m² là đủ cho hồ Koi 12–30 m², sâu 1,2–1,5m: kè đá tự nhiên, thác 2–3 bậc cấp oxy, trồng lá lantern – cỏ cảnh quanh hồ. Cá Koi ở hồ lớn mới lên màu và kích thước chuẩn.',
+      spec:[['Diện tích hồ hợp lý','12 – 30 m², sâu 1,2 – 1,5m, mép cao 40–50cm chống tràn mưa'],['Hệ lọc đề xuất','Buồng lọc sinh học âm 4 – 6 ngăn + UV, bơm quay vòng 4–6h/lượt'],['Dòng cá phù hợp','Kohaku, Showa, Sanke cỡ lớn — thả 1 con / 0,5 m³ nước'],['Điểm cần lưu ý','Che bớt nắng trưa 1/3 mặt hồ, xử lý hướng thoát mưa sân']],
+      cta:'Nhận phương án cho sân vườn',cat:'Hồ sân vườn biệt thự'},
+    s1:{t:'Hồ kính khung thép sân thượng',p:'4,5 – 7,5 tr',fit:['Hồ 3 – 8 m²','Lọc dọc treo + UV','Thi công 2 – 3 tuần'],
+      txt:'Nhà phố vẫn chơi được Koi: hồ 3–8 m² sâu 0,6–0,9m đặt trên khung thép phân tải, kính 10–12mm nhìn xuyên. Buồng lọc dọc treo gọn một góc, không tốn diện tích sân.',
+      spec:[['Diện tích hồ hợp lý','3 – 8 m², sâu 0,6 – 0,9m — tính đúng tải trọng sàn'],['Hệ lọc đề xuất','Lọc dọc treo 3 ngăn + UV 24W, bơm êm 45dB chống ồn trần'],['Dòng cá phù hợp','Butterfly, Yamabuki, Platinum cỡ 15 – 20cm'],['Điểm cần lưu ý','Chống thấm khay chứa + hatch chống tràn nối cống là bắt buộc']],
+      cta:'Nhận phương án cho sân thượng',cat:'Hồ sân thượng nhà phố'},
+    s2:{t:'Hồ cảnh quán café – nhà hàng',p:'4,2 – 7 tr',fit:['Hồ 5 – 20 m²','Lọc tràn + đèn cảnh quan','Không gián đoạn kinh doanh'],
+      txt:'Hồ ở lối vào là "appetizer" của quán: thủy sinh xanh – cá màu nổi – đèn rọi tối cho khách chụp hình. Thi công theo giai đoạn, dọn sạch mỗi buổi tối, quán không mất buổi khách nào.',
+      spec:[['Diện tích hồ hợp lý','5 – 20 m² tại lối vào, sân sau hoặc patio giữa quán'],['Hệ lọc đề xuất','Lọc tràn bờ 3 – 4 ngăn + đèn LED âm nước 12V'],['Dòng cá phù hợp','Koi màu nổi (Ogon, Kohaku) + cá tùy thủy sinh'],['Điểm cần lưu ý','Mép hồ bo góc an toàn trẻ em, rãnh chống trơn quanh hồ']],
+      cta:'Nhận phương án cho quán',cat:'Hồ quán café – nhà hàng'},
+    s3:{t:'Hồ kính âm tường phòng khách',p:'6 – 10 tr',fit:['Hồ 1,5 – 6 m²','Kính 10 – 12mm','Lọc âm tủ trong nhà'],
+      txt:'Hồ kính như một "màn hình sống" trong phòng khách: khung sơn tĩnh âm tường, lọc + bơm giấu trong tủ dưới, đèn trắng ấm — cá bơi nhìn từ sofa thấy rõ từng vây.',
+      spec:[['Diện tích hồ hợp lý','1,5 – 6 m², cao 1,2 – 1,6m làm vách hoặc âm tường'],['Hệ lọc đề xuất','Lọc âm tủ 2 – 3 ngăn, bơm êm 40dB, đèn LED hắt sau kính'],['Dòng cá phù hợp','Thủy sinh + Butterfly, Platinum — ngắm gần, ngắm kỹ'],['Điểm cần lưu ý','Chống ẩm chân tường, ổ điện riêng có aptomat chống rò']],
+      cta:'Nhận phương án hồ kính',cat:'Hồ kính trong nhà'},
+    s4:{t:'Hồ suối mini – tiểu cảnh sân nhỏ',p:'1,8 – 4,5 tr',fit:['Hồ 2 – 6 m²','Lọc treo gọn','Thi công 1 – 2 tuần'],
+      txt:'Góc sân 3–5m² đủ cho một hồ suối nhỏ chảy qua cụm đá, trồng dương xỉ – trắng bình: nước chảy tiếng róc rách, thả vài con Koi F1 hoặc cá bảy màu là góc nhà được "giải nhiệt".',
+      spec:[['Diện tích hồ hợp lý','2 – 6 m², sâu 0,5 – 0,8m, ưu tiên mép thấp gần ghế ngồi'],['Hệ lọc đề xuất','Lọc treo gọn 2 ngăn + bơm hẹn giờ, lắp trong 1 buổi'],['Dòng cá phù hợp','Koi F1, cá vàng, bảy màu — thả ít, nuôi nhàn'],['Điểm cần lưu ý','Bố trí bể trống dự phòng khi ao mưa lớn, lưới chắn lá']],
+      cta:'Nhận phương án hồ mini',cat:'Hồ tiểu cảnh sân nhỏ'}
+  };
+  $$('#spTabs .sp-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('#spTabs .sp-btn').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var s=SPACES[b.getAttribute('data-sp')];if(!s)return;
+      $('#spTitle').textContent=s.t;
+      $('#spText').textContent=s.txt;
+      $('#spPrice').textContent=s.p;
+      $('#spFit').innerHTML=s.fit.map(function(f){return '<span>'+f+'</span>'}).join('');
+      $('#spSpecs').innerHTML=s.spec.map(function(r){return '<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>'+r[0]+'</b><span>'+r[1]+'</span></li>'}).join('');
+      var cta=$('#spCta');cta.textContent=s.cta;cta.setAttribute('data-cat',s.cat);
+    });
+  });
+  /* FAQ accordion — 1 mở tại một thời điểm */
+  $$('#faqList .faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var it=q.parentElement,a=it.querySelector('.faq-a'),open=it.classList.contains('open');
+      $$('#faqList .faq-item').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null;});
+      if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  /* slider đánh giá — auto 5.5s, hover dừng */
+  var track=$('#revTrack'),slides=$$('.rev-slide',track),idx=0,timer;
+  var dots=$('#revDots');
+  slides.forEach(function(_,i){
+    var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Đánh giá '+(i+1));
+    if(i===0)d.className='on';
+    d.addEventListener('click',function(){go(i);restart();});
+    dots.appendChild(d);
+  });
+  function go(i){
+    idx=(i+slides.length)%slides.length;
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    $$('button',dots).forEach(function(d,j){d.classList.toggle('on',j===idx)});
+  }
+  function restart(){clearInterval(timer);timer=setInterval(function(){go(idx+1)},5500);}
+  if(slides.length){restart();
+    var shell=track.closest('.rev-shell');
+    shell.addEventListener('mouseenter',function(){clearInterval(timer)});
+    shell.addEventListener('mouseleave',restart);
+  }
+  /* form báo giá — C3: validate rỗng → toast lỗi; đủ → toast thành công */
+  var form=$('#qfForm');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('#qfName').value.trim(),phone=$('#qfPhone').value.trim(),cat=$('#qfCat').value;
+    if(!name){toast('Thiếu họ tên','Bạn điền giúp họ tên để kỹ sư gọi đúng người nhé.');$('#qfName').focus();return;}
+    if(!phone){toast('Thiếu số điện thoại','Cần số điện thoại để gọi lại báo giá trong 30 phút.');$('#qfPhone').focus();return;}
+    if(!/^[0-9+\s.()-]{8,15}$/.test(phone)){toast('Số điện thoại chưa đúng','Bạn kiểm tra lại số điện thoại giúp mình nhé.');$('#qfPhone').focus();return;}
+    toast('Đã gửi yêu cầu "'+cat+'"','Cảm ơn '+name+'! Kỹ sư KoiViệt sẽ gọi lại trong 30 phút (giờ làm việc).');
+    form.reset();
+  });
+  /* fab hiện sau khi cuộn + về đầu trang */
+  var fab=$('#fab');
+  window.addEventListener('scroll',function(){
+    fab.classList.toggle('show',window.scrollY>420);
+  },{passive:true});
+  $('#fabTop').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+
+<script>
+/*NB93-288: tìm kiếm header chạy thật — quét DOM (dịch vụ + không gian + FAQ), typeahead + Enter cuộn tới*/
+(function(){
+  'use strict';
+  var input=document.getElementById('hdrSearch'),drop=document.getElementById('srDrop'),none=document.getElementById('srNone');
+  function nrm(s){return String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')}
+  function txt(el){return el?String(el.textContent).replace(/\s+/g,' ').trim():''}
+  var INDEX=[];
+  document.querySelectorAll('#pGrid .pc').forEach(function(c){
+    INDEX.push({t:txt(c.querySelector('h3')),d:txt(c.querySelector('.pc-price'))||'Dịch vụ hồ cá',k:c.getAttribute('data-name')||'',el:c,sec:'dich-vu'});
+  });
+  document.querySelectorAll('#spTabs .sp-btn').forEach(function(b){
+    INDEX.push({t:'Hồ cho: '+txt(b),d:'Gợi ý hồ theo không gian',el:b,sec:'khong-gian'});
+  });
+  document.querySelectorAll('#faqList .faq-item').forEach(function(f){
+    INDEX.push({t:txt(f.querySelector('.faq-q')).replace(/\+$/,''),d:txt(f.querySelector('.faq-a')).slice(0,70)+'…',el:f,sec:'faq'});
+  });
+  function clear(){drop.classList.remove('open');drop.querySelectorAll('button').forEach(function(b){b.remove()});}
+  function go(it){
+    clear();input.blur();
+    document.getElementById(it.sec).scrollIntoView({behavior:'smooth'});
+    var el=it.el;
+    setTimeout(function(){
+      el.style.outline='3px solid #E2611F';el.style.outlineOffset='3px';
+      if(it.sec==='faq'&&!el.classList.contains('open'))el.querySelector('.faq-q').click();
+      setTimeout(function(){el.style.outline=''},1800);
+    },450);
+  }
+  input.addEventListener('input',function(){
+    var q=nrm(input.value).trim();clear();
+    if(q.length<2){return;}
+    var toks=q.split(/\s+/),hits=INDEX.filter(function(it){
+      var hay=nrm(it.t+' '+it.d+' '+(it.k||''));return toks.every(function(t){return hay.indexOf(t)>-1});
+    }).slice(0,6);
+    if(!hits.length){none.style.display='block';drop.classList.add('open');return;}
+    none.style.display='none';
+    hits.forEach(function(it){
+      var b=document.createElement('button');b.type='button';
+      b.innerHTML='<span><b>'+it.t+'</b><small>'+it.d+'</small></span>';
+      b.addEventListener('mousedown',function(e){e.preventDefault()});
+      b.addEventListener('click',function(){go(it)});
+      drop.insertBefore(b,none);
+    });
+    drop.classList.add('open');
+  });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      var first=drop.querySelector('button');
+      if(first){e.preventDefault();first.click();}
+    }else if(e.key==='Escape'){clear();}
+  });
+  input.addEventListener('blur',function(){setTimeout(clear,150)});
+  document.addEventListener('click',function(e){if(!drop.contains(e.target)&&e.target!==input)clear();});
+})();
+</script>
+
+<script>
+/*NB93-288: chat mini — chip nhanh + trả lời theo từ khóa + gọi/hẹn SĐT*/
+(function(){
+  'use strict';
+  var panel=document.getElementById('chatPanel'),msgs=document.getElementById('chatMsgs'),
+      input=document.getElementById('chatInput'),fabChat=document.getElementById('fabChat');
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  function add(text,who){var d=document.createElement('div');d.className='chat-msg '+(who==='u'?'chat-u':'chat-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function reply(q){
+    var s=q.toLowerCase();
+    if(/(giá|báo giá|bao nhiêu|chi phí|tốn)/.test(s))return 'Hồ sân vườn 3,8–7,5 tr/m², hồ sân thượng 4,5–7,5 tr/m², hệ lọc 12–45 tr/hệ. Bạn cho biết diện tích + không gian, mình gửi báo giá chi tiết trong 30 phút — hoặc điền form báo giá tại mục "Nhận báo giá" nhé!';
+    if(/(sân thượng|tầng thượng|tải trọng)/.test(s))return 'Sân thượng làm được nhé — hồ kính khung thép 3–8 m², sâu 0,6–0,9m, lọc dọc treo gọn. Kỹ sư sẽ khảo sát tải trọng miễn phí trước khi chốt kích thước an toàn.';
+    if(/(đục|xanh rêu|nước xanh|mùi|tanh)/.test(s))return 'Nước đục/xanh là mất cân bằng vi sinh. Mình xử lý theo lượt 1,5–3,5 tr: đo chỉ số, xử lý gốc rễ, nuôi lại men — nước trong lại sau 1–3 lượt. Gọi 0907 288 118 để được xem ảnh hồ tư vấn trước.';
+    if(/(bảo trì|vệ sinh|chăm)/.test(s))return 'Bảo trì định kỳ có 3 gói: Duy trì 1,2 tr/tháng (1 lượt), Chuẩn 2,2 tr (2 lượt), Koi chăm chút 3,8 tr (4 lượt + soi da cá). Mỗi lượt đều có báo cáo ảnh gửi Zalo.';
+    if(/(koi|cá|giống|kohaku|showa|thả)/.test(s))return 'KoiViệt nhập giống kiểm dịch, soi da – cách ly 7 ngày, cam kết cá sống trọn 7 ngày mới tính tiền. Giống hợp hồ bạn xem tại mục "Giống Koi chuẩn" — chọn theo thể tích nước chứ không chọn theo mù.';
+    if(/(lọc|loc|sinh học|uv)/.test(s))return 'Buồng lọc sinh học 4 ngăn là chuẩn của nhà Koi: lắng cặn → chắn lọc → vi sinh K1 → bơm + UV. Xem mặt cắt trực quan ở mục "Hệ lọc" trên trang này nhé.';
+    if(/(thi công|bao lâu|mấy tuần|thời gian)/.test(s))return 'Hồ sân vườn 12–30 m² thi công 4–6 tuần; hồ sân thượng/kính 2–3 tuần; hồ mini 1–2 tuần. Quán đang kinh doanh thi công theo giai đoạn, không mất buổi khách.';
+    if(/(chào|hello|hi|alo)/.test(s))return 'Chào bạn! Bạn muốn làm hồ ở không gian nào — sân vườn biệt thự, sân thượng nhà phố hay quán café? Mình tư vấn ngay.';
+    return 'Mình chưa chắc đã bắt đúng ý — bạn mô tả thêm giúp mình (không gian, diện tích, nhu cầu). Hoặc gọi 0907 288 118 để nói chuyện trực tiếp với kỹ sư nhé!';
+  }
+  function send(){
+    var v=input.value.trim();if(!v)return;
+    add(v,'u');input.value='';
+    setTimeout(function(){add(reply(v),'b')},480);
+  }
+  fabChat.addEventListener('click',function(){panel.classList.toggle('show');if(panel.classList.contains('show'))input.focus();});
+  document.getElementById('chatSend').addEventListener('click',send);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')send();});
+  document.querySelectorAll('#chatQuick button').forEach(function(b){
+    b.addEventListener('click',function(){input.value=b.getAttribute('data-q');send();});
+  });
+})();
+</script>
+</body>
+</html>

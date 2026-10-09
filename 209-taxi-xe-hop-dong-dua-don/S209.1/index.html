@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sao Mai Taxi — Taxi, xe hợp đồng &amp; đưa đón | Đặt xe trước — đón đúng giờ</title>
+<meta name="description" content="Sao Mai Transport — đặt xe trước đón đúng giờ: sân bay Tân Sơn Nhất từ 320K, taxi nội thành, xe 4–16 chỗ, đường dài khứ hồi, xe ghép, hợp đồng đưa đón nhân viên theo tháng cho doanh nghiệp, gói đưa khách đám cưới. Thanh toán khi lên xe, hóa đơn VAT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ NB93-209 — SAO MAI TAXI — DNA & TOKENS ============ */
+:root{
+  --primary:#173A7A;            /* navy từ poster taxi */
+  --primary-deep:#0E2450;
+  --primary-mid:#2C5AA8;
+  --primary-soft:#E9F0FB;
+  --texture:#F6F8FC;
+  --accent:#F2A814;             /* vàng taxi */
+  --accent-deep:#A87406;
+  --accent-100:#FDEFCF;
+  --grad-accent:linear-gradient(135deg,#FFC93C,#F29B11);
+  --ink:#17202E;
+  --soft:#55637A;
+  --line:#E3E8F0;
+  --white:#FFFFFF;
+  --ok:#1E9E6A;
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+  --sh-1:0 2px 10px rgba(14,36,80,.07);
+  --sh-2:0 10px 30px rgba(14,36,80,.12);
+  --sh-3:0 24px 60px rgba(14,36,80,.22);
+  --grad-dark:linear-gradient(140deg,#1F4796,#173A7A,#0E2450);
+  --font:'Be Vietnam Pro',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--white);line-height:1.6;font-size:16px}
+img{display:block;max-width:100%;height:auto} /*NB93-209: height:auto toàn cục — attr height không được ghi đè aspect-ratio*/
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.mini{min-width:0}
+.block{display:block}
+/* hoạ tiết "ô cờ taxi" — checkerboard đặc trưng nghề */
+.checker{height:10px;background:conic-gradient(var(--primary-deep) 90deg,var(--accent) 90deg 180deg,var(--primary-deep) 180deg 270deg,var(--accent) 270deg);background-size:20px 20px}
+.checker-y{height:8px;background:conic-gradient(var(--accent) 90deg,rgba(14,36,80,.35) 90deg 180deg,var(--accent) 180deg 270deg,rgba(14,36,80,.35) 270deg);background-size:16px 16px;opacity:.5}
+/* dotted route line — nét đường chạy */
+.route-dots{background-image:linear-gradient(90deg,var(--accent) 55%,transparent 0);background-size:14px 3px;background-repeat:repeat-x}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#DCE4F4;font-size:13px;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:38px;flex-wrap:wrap}
+.topbar b{color:#fff;font-weight:700}
+.topbar .tb-left{display:flex;align-items:center;gap:8px;min-width:0}
+.topbar .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(30,158,106,.25);flex:none}
+.topbar .tb-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topbar a:hover{color:var(--accent)}
+
+/* ============ HEADER ============ */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd{display:flex;align-items:center;gap:18px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;flex:none}
+.logo-ic{width:42px;height:42px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;color:#FFC93C;box-shadow:var(--sh-1)}
+.logo-tx{display:block;line-height:1.1}
+.logo-tx .t1{font-weight:900;font-size:1.28rem;letter-spacing:.4px;color:var(--primary-deep)}
+.logo-tx .t2{font-size:.68rem;color:var(--soft);letter-spacing:.14em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:340px;min-width:0}
+.search input{width:100%;padding:10px 14px 10px 40px;border:1.5px solid var(--line);border-radius:999px;background:#F7F9FD;outline:none;transition:.25s}
+.search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.search .s-ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--soft);display:flex}
+.search .s-pop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);box-shadow:var(--sh-2);overflow:hidden;display:none;z-index:70}
+.search .s-pop.on{display:block}
+.search .s-it{display:flex;gap:10px;align-items:center;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.search .s-it:last-child{border-bottom:0}
+.search .s-it:hover{background:var(--texture)}
+.search .s-it img{width:52px;height:38px;object-fit:cover;border-radius:8px;flex:none}
+.search .s-it .st{display:block;line-height:1.3;font-size:.86rem;font-weight:700}
+.search .s-it .sp{display:block;font-size:.76rem;color:var(--soft)}
+nav.mainnav{display:flex;gap:4px;margin-left:auto}
+nav.mainnav a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--ink);transition:.2s}
+nav.mainnav a:hover{background:var(--primary-soft);color:var(--primary)}
+.hd-cta{flex:none;display:flex;align-items:center;gap:10px}
+.call-chip{display:flex;align-items:center;gap:7px;background:var(--primary-soft);color:var(--primary);border:1.5px solid #C9DAF2;padding:8px 13px;border-radius:999px;font-weight:800;font-size:.84rem;cursor:pointer;transition:.2s}
+.call-chip:hover{background:#DBE9FA}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-a{background:var(--grad-accent);color:#fff;box-shadow:0 10px 24px rgba(242,155,17,.38)}
+.btn-a::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(242,155,17,.5)}
+.btn-a:hover::after{left:130%}
+.btn-g{background:#fff;color:var(--primary);border:1.5px solid #C9DAF2}
+.btn-g:hover{border-color:var(--primary);background:var(--primary-soft)}
+.btn-d{background:var(--primary);color:#fff}
+.btn-d:hover{background:var(--primary-deep);transform:translateY(-2px)}
+.btn-s{padding:10px 16px;font-size:.88rem;border-radius:11px}
+.btn-full{width:100%}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(180deg,#F2F6FD 0%,#FFFDF6 100%);overflow:clip;padding:54px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:1.04fr 1fr;gap:46px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1.5px solid #EDDDB6;background:linear-gradient(120deg,#FFF7E4,#FDEFD3);color:var(--accent-deep);font-weight:800;font-size:.82rem;padding:8px 15px;border-radius:999px;box-shadow:var(--sh-1)}
+.eyebrow .dotp{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(2.1rem,4.2vw,3.3rem);line-height:1.12;font-weight:900;letter-spacing:-.5px;margin:18px 0 16px}
+h1 .hl{position:relative;display:inline-block;color:#fff;padding:2px 14px;border-radius:12px;background:var(--grad-accent);transform:rotate(-1.4deg);box-shadow:0 8px 20px rgba(242,155,17,.35)}
+.hero-sub{color:var(--soft);font-size:1.04rem;max-width:540px}
+.hero-cta{display:flex;gap:14px;margin:26px 0 22px;flex-wrap:wrap}
+.trust-chips{display:grid;grid-template-columns:repeat(2,auto);gap:9px 22px;justify-content:start}
+.trust-chips span{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--ink)}
+.trust-chips svg{color:var(--ok);flex:none}
+/* poster bìa 1:1 — giữ nguyên nhận diện poster, không đè chữ lên ảnh */
+.hero-vis{position:relative;display:flex;justify-content:center}
+.hero-poster{width:min(100%,470px);aspect-ratio:1/1;border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.6deg)}
+.hero-poster img{width:100%;height:100%;object-fit:cover}
+.hero-stat-band{position:absolute;left:50%;transform:translateX(-50%) rotate(1deg);bottom:-32px;background:rgba(14,36,80,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;border-radius:16px;padding:11px 20px;display:flex;gap:22px;z-index:3;border:1px solid rgba(255,255,255,.18);white-space:nowrap}
+.hero-stat-band .hv{display:block;font-weight:900;font-size:1.15rem;color:#FFC93C;line-height:1.1}
+.hero-stat-band .hk{display:block;font-size:.68rem;opacity:.85}
+/* quick booking strip trong hero */
+.qbook{margin-top:26px;background:#fff;border:1.5px solid var(--line);border-radius:20px;box-shadow:var(--sh-2);padding:14px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:10px;align-items:end}
+.qb-f label{display:block;font-size:.72rem;font-weight:800;color:var(--soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.qb-f input,.qb-f select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;background:#F9FBFE;outline:none;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.qb-f input:focus,.qb-f select:focus{border-color:var(--accent);background:#fff}
+
+/* ============ TAPE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);margin:-30px 0 0;box-shadow:var(--sh-2);overflow:hidden;position:relative;z-index:5}
+.tape-in{display:flex;gap:0;width:max-content;animation:tapeMove 30s linear infinite;padding:12px 0}
+.tape span{color:#fff;font-weight:800;font-size:.95rem;white-space:nowrap;display:inline-flex;align-items:center;gap:22px;padding:0 11px}
+.tape span::after{content:"◆";opacity:.75;font-size:.7rem}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+
+/* ============ SECTION HEAD ============ */
+section{padding:86px 0}
+.sec-head{max-width:680px;margin-bottom:44px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent-deep);font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.kicker::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--grad-accent)}
+h2{font-size:clamp(1.6rem,3vw,2.35rem);font-weight:900;letter-spacing:-.4px;line-height:1.18;margin:10px 0 12px}
+.sec-head p{color:var(--soft)}
+
+/* ============ KHỐI-8: grid kín ô — featured 2 ô + 7 thẻ = 9 ô / 3 cột ============ */
+#loai-xe{background:linear-gradient(180deg,#fff 0%,var(--texture) 100%)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;grid-auto-flow:dense} /*NB93-209: dense — khối-8 kín ô mọi breakpoint*/
+.svc{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:.3s;position:relative;min-width:0}
+.svc:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.svc::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(242,155,17,.12),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:2}
+.svc:hover::before{opacity:1}
+.svc-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--primary-soft)}
+.svc-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.svc:hover .svc-media img{transform:scale(1.05)}
+.svc-num{position:absolute;top:12px;left:12px;background:#fff;color:var(--primary-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px;box-shadow:var(--sh-1)}
+.svc-hot{position:absolute;top:12px;right:12px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.svc-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.svc-body h3{font-size:1.06rem;font-weight:800}
+.svc-desc{font-size:.86rem;color:var(--soft)}
+.svc-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--soft)}
+.svc-meta span{display:inline-flex;gap:5px;align-items:center}
+.svc-meta svg{color:var(--primary-mid)}
+.svc-price{margin-top:auto;border-top:1.5px dashed var(--line);padding-top:11px;display:flex;align-items:end;justify-content:space-between;gap:8px}
+.svc-price .pp b{font-size:1.12rem;color:var(--primary-deep)}
+.svc-price .pp span{display:block;font-size:.74rem;color:var(--soft)}
+.svc-acts{display:flex;gap:8px}
+.svc-view{border:1.5px solid #C9DAF2;color:var(--primary);font-weight:800;font-size:.82rem;padding:9px 13px;border-radius:10px;transition:.2s;background:#fff}
+.svc-view:hover{border-color:var(--primary);background:var(--primary-soft)}
+.svc-pick{background:var(--grad-accent);color:#fff;font-weight:800;font-size:.82rem;padding:9px 14px;border-radius:10px;box-shadow:0 6px 14px rgba(242,155,17,.3);transition:.2s}
+.svc-pick:hover{transform:translateY(-2px)}
+/* thẻ nổi bật: TO hơn hẳn — chiếm 2 cột */
+.svc.featured{grid-column:span 2;border:2.5px solid var(--accent);box-shadow:0 16px 40px rgba(242,155,17,.16)}
+.svc.featured .svc-body{padding:22px;gap:12px}
+.svc.featured h3{font-size:1.35rem;font-weight:900}
+.svc.featured .svc-desc{font-size:.95rem}
+.svc.featured .svc-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:2px 0}
+.svc.featured .svc-feats span{display:flex;gap:9px;align-items:center;font-size:.88rem;color:var(--ink)}
+.svc.featured .svc-feats svg{color:var(--ok);flex:none}
+.svc.featured .svc-price .pp b{font-size:1.35rem}
+.svc.featured .svc-pick{padding:11px 20px;font-size:.9rem}
+.svc:not(.featured) .svc-feats{display:none}
+/* tablet 2 cột: featured + wide (đi tỉnh) full hàng → 2+2+6 = 10 ô kín */
+@media (max-width:1080px){
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc.featured{grid-column:span 2}
+  .svc.wide{grid-column:span 2}
+}
+
+/* ============ BẢNG GIÁ THEO TUYẾN + MÁY TÍNH ============ */
+#bang-gia{background:var(--texture)}
+.fare-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:24px;align-items:start}
+.ptable-card{background:#fff;border-radius:var(--r-xl);border:1.5px solid var(--line);box-shadow:var(--sh-1);overflow:hidden}
+.ptable-wrap{overflow-x:auto}
+table.ptable{width:100%;border-collapse:collapse;min-width:640px}
+.ptable th{background:var(--primary-soft);color:var(--primary-deep);text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:13px 16px;white-space:nowrap}
+.ptable td{padding:12px 16px;border-top:1px solid var(--line);font-size:.92rem;vertical-align:middle}
+.ptable td:first-child{font-weight:700;min-width:190px}
+.ptable td:first-child small{display:block;font-weight:500;color:var(--soft);font-size:.74rem}
+.ptable .mono{font-variant-numeric:tabular-nums;font-weight:800;color:var(--primary-deep);white-space:nowrap}
+.ptable .km{color:var(--soft);white-space:nowrap}
+.ptable .cm{font-size:.8rem;color:var(--accent-deep);font-weight:700;white-space:nowrap}
+.ptable tbody tr{transition:.15s;cursor:pointer}
+.ptable tbody tr:hover{background:#FFFBEF}
+.ptable tbody tr.on{background:#FFF5DB}
+.ptips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.ptip{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:16px;display:flex;gap:12px;box-shadow:var(--sh-1)}
+.ptip .pi{width:38px;height:38px;border-radius:11px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:none}
+.ptip .pt{display:block;font-weight:800;font-size:.9rem}
+.ptip .pd{display:block;font-size:.82rem;color:var(--soft)}
+/* máy tính giá */
+.calc-card{background:var(--grad-dark);color:#E8EEFA;border-radius:var(--r-xl);padding:26px;position:sticky;top:88px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh-2)}
+.calc-card h3{color:#fff;font-size:1.2rem;font-weight:900}
+.calc-card .csub{font-size:.84rem;color:#B9C9E8;margin-top:-8px}
+.calc-card label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#AFC3E6;margin:2px 0 6px}
+.calc-card select{width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;outline:none}
+.calc-card select option{color:var(--ink)}
+.calc-card select:focus{border-color:var(--accent);background:rgba(255,255,255,.16)}
+.chip-row{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:1.5px solid rgba(255,255,255,.24);color:#CFDCF2;background:transparent;border-radius:999px;padding:8px 14px;font-weight:800;font-size:.82rem;transition:.2s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(242,155,17,.4)}
+.calc-out{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:16px}
+.calc-out .co-route{display:block;font-weight:800;color:#fff;font-size:.95rem;line-height:1.35}
+.calc-out .co-meta{display:flex;gap:14px;font-size:.76rem;color:#B9C9E8;margin:4px 0 10px;flex-wrap:wrap}
+.calc-out .co-price{font-size:2rem;font-weight:900;color:#FFC93C;line-height:1.1}
+.calc-out .co-price small{font-size:.86rem;color:#B9C9E8;font-weight:600}
+.co-lines{display:flex;flex-direction:column;gap:3px;margin-top:8px;border-top:1px dashed rgba(255,255,255,.22);padding-top:8px}
+.co-lines .cl{display:flex;justify-content:space-between;gap:10px;font-size:.8rem;color:#D5DFF2}
+.co-lines .cl b{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ============ BOOKING ENGINE ============ */
+#dat-xe{background:var(--grad-dark);position:relative;overflow:clip;color:#E8EEFA}
+#dat-xe .checker-y{position:absolute;top:0;left:0;right:0}
+#dat-xe .sec-head h2{color:#fff}
+#dat-xe .sec-head p{color:#B9C9E8}
+#dat-xe .kicker{color:#FFC93C}
+.bk-grid{display:grid;grid-template-columns:440px 1fr;gap:26px;align-items:start;position:relative;z-index:2}
+.bk-form{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--r-xl);padding:26px;display:flex;flex-direction:column;gap:15px}
+.bk-form .fg label{display:block;font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#AFC3E6;margin-bottom:6px}
+.bk-form input,.bk-form select{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;outline:none;transition:.2s}
+.bk-form select option{color:var(--ink)}
+.bk-form input:focus,.bk-form select:focus{border-color:var(--accent);background:rgba(255,255,255,.16)}
+.bk-form input[type="date"]{color-scheme:dark}
+.bk-note{font-size:.8rem;color:#9DB6DC;display:flex;gap:8px;align-items:flex-start}
+.bk-note svg{flex:none;margin-top:2px;color:#FFC93C}
+.bk-res{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xl);padding:22px;min-height:400px}
+.bk-res-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.bk-res-top .rt{font-weight:800;font-size:1.05rem;color:#fff}
+.bk-res-top .rc{font-size:.8rem;color:#AFC3E6;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:999px}
+.avail{display:flex;flex-direction:column;gap:12px}
+.av-item{display:flex;gap:14px;background:#fff;color:var(--ink);border-radius:18px;padding:14px;align-items:center;box-shadow:var(--sh-1);transition:.25s;min-width:0}
+.av-item:hover{transform:translateX(5px)}
+.av-ic{width:64px;height:64px;border-radius:14px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none}
+.av-info{flex:1;min-width:0}
+.av-info .an{display:block;font-weight:800;font-size:1rem}
+.av-info .am{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--soft);margin-top:3px}
+.av-info .am span{display:inline-flex;align-items:center;gap:5px}
+.av-meta{display:flex;gap:14px;align-items:center;flex:none;text-align:right}
+.av-pr{display:block;font-weight:900;font-size:1.12rem;color:var(--primary-deep);white-space:nowrap}
+.av-pu{display:block;font-size:.72rem;color:var(--soft);white-space:nowrap}
+.av-btn{background:var(--grad-accent);color:#fff;font-weight:800;padding:10px 16px;border-radius:11px;font-size:.85rem;box-shadow:0 6px 16px rgba(242,155,17,.35);transition:.2s;white-space:nowrap}
+.av-btn:hover{transform:translateY(-2px)}
+.av-full{text-align:center;color:#B9C9E8;padding:40px 20px;font-size:.95rem}
+.av-full .b{font-size:2rem;display:block;margin-bottom:8px;opacity:.5}
+.bk-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px;position:relative;z-index:2}
+.bk-trust .bt-c{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center}
+.bt-c .bi{width:40px;height:40px;border-radius:12px;background:rgba(255,201,60,.16);color:#FFC93C;display:grid;place-items:center;flex:none}
+.bt-c .bt{display:block;font-weight:800;font-size:.9rem;color:#fff;line-height:1.3}
+.bt-c .bs{display:block;font-size:.74rem;color:#9DB6DC}
+
+/* ============ HỢP ĐỒNG THÁNG + GÓI SỰ KIỆN ============ */
+#hop-dong{background:linear-gradient(180deg,var(--texture),#fff)}
+.hd-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:34px;align-items:start}
+.hd-vis{position:relative;padding:0 16px 22px 0}
+.hd-vis .hv-img{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;transform:rotate(1.8deg);box-shadow:var(--sh-3)}
+.hd-vis img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.hd-vis .hv-float{position:absolute;left:-6px;bottom:0;background:#fff;border-radius:16px;box-shadow:var(--sh-2);padding:12px 16px;display:flex;gap:11px;align-items:center;transform:rotate(-2deg)}
+.hd-vis .hv-float .fi{width:38px;height:38px;border-radius:11px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center}
+.hd-vis .hv-float b{display:block;font-size:.92rem;line-height:1.25}
+.hd-vis .hv-float span{display:block;font-size:.74rem;color:var(--soft)}
+.hd-points{display:flex;flex-direction:column;gap:12px;margin:20px 0 24px}
+.hd-point{display:flex;gap:13px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--sh-1);align-items:flex-start;transition:.2s}
+.hd-point:hover{transform:translateX(4px);border-color:#C9DAF2}
+.hd-point .pi{width:40px;height:40px;border-radius:12px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none}
+.hd-point b{display:block;font-size:.94rem}
+.hd-point p{font-size:.83rem;color:var(--soft)}
+.hcalc{background:var(--grad-dark);color:#E8EEFA;border-radius:var(--r-xl);padding:26px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--sh-2)}
+.hcalc h3{color:#fff;font-size:1.2rem;font-weight:900}
+.hcalc .csub{font-size:.84rem;color:#B9C9E8;margin-top:-8px}
+.hcalc label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#AFC3E6;margin:2px 0 6px}
+.hcalc select{width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;outline:none}
+.hcalc select option{color:var(--ink)}
+.hcalc select:focus{border-color:var(--accent);background:rgba(255,255,255,.16)}
+.hcalc .co-lines .cl b{color:#FFC93C}
+/* gói sự kiện */
+.combo-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:56px 0 24px;flex-wrap:wrap}
+.combo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.combo{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;box-shadow:var(--sh-1);transition:.3s}
+.combo:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.combo.hot{border:2.5px solid var(--accent);box-shadow:0 16px 40px rgba(242,155,17,.16)}
+.combo .c-flag{position:absolute;top:-13px;left:24px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:800;padding:5px 13px;border-radius:999px}
+.combo h4{font-size:1.1rem;font-weight:800}
+.combo .c-for{color:var(--soft);font-size:.85rem}
+.combo .c-list{display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+.combo .c-list span{display:flex;gap:9px}
+.combo .c-list svg{color:var(--ok);flex:none;margin-top:3px}
+.c-price{margin-top:auto;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.c-price b{font-size:1.55rem;font-weight:900;color:var(--primary-deep)}
+.c-price s{color:#64748B;font-size:.9rem}
+.c-price .save{background:var(--accent-100);color:var(--accent-deep);font-size:.74rem;font-weight:800;border-radius:999px;padding:4px 10px}
+
+/* ============ QUY TRÌNH 4 BƯỚC ============ */
+#quy-trinh{background:#fff}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.proc{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px 22px;position:relative;transition:.3s}
+.proc:hover{transform:translateY(-6px);border-color:#C9DAF2;box-shadow:var(--sh-2)}
+.proc .pn{position:absolute;top:18px;right:20px;font-size:2.4rem;font-weight:900;color:rgba(23,58,122,.08);line-height:1}
+.proc .pi{width:52px;height:52px;border-radius:16px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;margin-bottom:16px;box-shadow:0 8px 20px rgba(242,155,17,.35)}
+.proc b{display:block;font-size:1.05rem;color:var(--primary-deep);margin-bottom:6px}
+.proc p{font-size:.86rem;color:var(--soft)}
+.proc .pm{display:inline-flex;margin-top:14px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.76rem;border-radius:999px;padding:5px 12px}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
+.about-vis{position:relative;padding:0 18px 26px 0}
+.about-vis .av-img{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;transform:rotate(2deg);box-shadow:var(--sh-3)}
+.about-vis img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.about-vis .av-float{position:absolute;left:-10px;bottom:0;background:#fff;border-radius:16px;box-shadow:var(--sh-2);padding:13px 18px;display:flex;gap:11px;align-items:center;transform:rotate(-2deg)}
+.about-vis .av-float .fi{width:38px;height:38px;border-radius:11px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center}
+.about-vis .av-float b{display:block;font-size:.95rem;line-height:1.2}
+.about-vis .av-float span{display:block;font-size:.74rem;color:var(--soft)}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 26px}
+.str-card{background:var(--texture);border:1.5px solid var(--line);border-radius:18px;padding:20px;transition:.25s}
+.str-card:hover{transform:translateY(-4px);border-color:#C9DAF2;background:#fff;box-shadow:var(--sh-1)}
+.str-card .si{width:44px;height:44px;border-radius:13px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:12px}
+.str-card b{display:block;font-size:.98rem;margin-bottom:4px}
+.str-card p{font-size:.85rem;color:var(--soft)}
+.about-cta{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ STATS ============ */
+.stats{background:var(--grad-dark);position:relative;overflow:clip;padding:58px 0 70px}
+.stats .checker-y{position:absolute;top:0;left:0;right:0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
+.stat{text-align:center;color:#fff;padding:10px}
+.stat .sv{font-size:2.5rem;font-weight:900;color:#FFC93C;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .sv small{font-size:1.3rem}
+.stat .sk{font-size:.86rem;color:#B9C9E8;margin-top:4px}
+
+/* ============ REVIEWS ============ */
+#danh-gia{background:var(--texture)}
+.rev-shell{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:stretch}
+.rev-main{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);overflow:hidden;position:relative}
+.rev-track{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1)}
+.rev-slide{flex:0 0 100%;padding:34px 34px 30px;min-width:0}
+.rev-stars{color:var(--accent-deep);letter-spacing:3px;font-size:1rem}
+.rev-slide p{font-size:1.04rem;margin:14px 0 20px;color:var(--ink)}
+.rev-who{display:flex;gap:13px;align-items:center}
+.rev-who .rw-av{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:#FFC93C;display:grid;place-items:center;font-weight:900;font-size:1.05rem;flex:none}
+.rev-who b{display:block;font-size:.95rem}
+.rev-who span{display:block;font-size:.78rem;color:var(--soft)}
+.rev-dots{display:flex;gap:7px;padding:0 34px 26px}
+.rev-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
+.rev-dots i.on{background:var(--accent);width:26px;border-radius:6px}
+.rev-side{background:var(--grad-dark);border-radius:var(--r-xl);padding:30px;color:#fff;display:flex;flex-direction:column;gap:20px}
+.rev-metric{display:flex;gap:14px;align-items:center}
+.rev-metric .mv{font-size:1.9rem;font-weight:900;color:#FFC93C;min-width:96px;line-height:1.1}
+.rev-metric .mk{font-size:.84rem;color:#B9C9E8}
+.rev-metric .mk b{color:#7BE0AE}
+.partners{margin-top:14px}
+.partners .pk{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#9DB6DC;margin-bottom:12px}
+.partner-chips{display:flex;gap:9px;flex-wrap:wrap}
+.partner-chips i{font-style:normal;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#DCE4F4;font-weight:700;font-size:.8rem;padding:7px 14px;border-radius:999px}
+
+/* ============ QUICK VIEW ============ */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal .m-bg{position:absolute;inset:0;background:rgba(10,22,46,.66);backdrop-filter:blur(5px)}
+.modal .m-card{position:relative;background:#fff;border-radius:var(--r-xl);max-width:660px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-3);animation:popIn .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes popIn{from{transform:translateY(30px) scale(.96);opacity:0}}
+.m-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(14,36,80,.65);color:#fff;display:grid;place-items:center;z-index:5;transition:.2s}
+.m-close:hover{background:var(--accent)}
+.m-hero{aspect-ratio:4/3;overflow:hidden;background:var(--primary-soft)}
+.m-hero img{width:100%;height:100%;object-fit:cover}
+.m-body{padding:24px 26px 26px}
+.m-body h3{font-size:1.35rem;font-weight:900}
+.m-meta{display:flex;gap:16px;color:var(--soft);font-size:.86rem;margin:8px 0 14px;flex-wrap:wrap}
+.m-meta span{display:inline-flex;gap:6px;align-items:center}
+.m-meta svg{color:var(--primary-mid)}
+.m-table{width:100%;border-collapse:collapse;margin:6px 0 16px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.m-table th{background:var(--primary-soft);color:var(--primary-deep);font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;text-align:left}
+.m-table td{padding:10px 14px;border-top:1px solid var(--line);font-size:.9rem}
+.m-table .mp{font-weight:900;color:var(--accent-deep);white-space:nowrap}
+.m-utils{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.m-utils i{font-style:normal;font-size:.76rem;font-weight:700;background:var(--primary-soft);color:var(--primary);border-radius:999px;padding:5px 12px}
+.m-foot{display:flex;gap:12px;flex-wrap:wrap}
+.m-metas{display:flex;gap:18px;margin-top:16px;font-size:.8rem;color:var(--soft);flex-wrap:wrap}
+.m-metas span{display:inline-flex;gap:6px;align-items:center}
+.m-metas svg{color:var(--ok)}
+
+/* ============ BOOKING DRAWER — đặt xe trước ============ */
+.drawer-bg{position:fixed;inset:0;background:rgba(10,22,46,.55);backdrop-filter:blur(4px);z-index:300;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;top:0;right:-460px;width:440px;max-width:94vw;height:100dvh;background:#fff;z-index:310;transition:right .38s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(14,36,80,.25)}
+body.drawer-open .drawer{right:0}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.dw-head{background:var(--grad-dark);color:#fff;padding:18px 24px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.dw-head .dt{font-weight:900;font-size:1.1rem}
+.dw-head .ds{font-size:.78rem;color:#B9C9E8;display:block;margin-top:2px}
+.dw-head .hwrap{padding-bottom:14px}
+.dw-x{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;transition:.2s;flex:none}
+.dw-x:hover{background:var(--accent)}
+.dw-body{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px}
+.dw-sec .dl{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.dw-sec .dl a{color:var(--accent-deep);font-weight:800;white-space:nowrap}
+.dw-route-sel select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#F9FBFE;outline:none;transition:.2s}
+.dw-route-sel select:focus{border-color:var(--accent);background:#fff}
+.dw-days{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.dw-day{border:1.5px solid var(--line);border-radius:11px;padding:7px 2px;text-align:center;transition:.2s;min-width:0}
+.dw-day .dd{display:block;font-size:.66rem;color:var(--soft);text-transform:uppercase}
+.dw-day .dn{display:block;font-weight:900;font-size:1rem}
+.dw-day.on{background:var(--grad-accent);border-color:transparent;color:#fff;box-shadow:0 5px 14px rgba(242,155,17,.35)}
+.dw-day.on .dd{color:#FFF2D2}
+.dw-day.day-more{display:grid;place-items:center;background:#FFF6E0;border:1.5px dashed rgba(242,155,17,.6);color:var(--accent-deep);font-size:1.15rem;font-weight:900}
+.dw-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.dw-slot{border:1.5px solid var(--line);border-radius:10px;padding:9px 4px;font-weight:700;font-size:.86rem;text-align:center;color:var(--ink);transition:.2s}
+.dw-slot.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.dw-car{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.dw-carbtn{border:1.5px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center;transition:.2s;min-width:0}
+.dw-carbtn .cn{display:block;font-weight:800;font-size:.86rem;line-height:1.25}
+.dw-carbtn .cp{display:block;font-size:.72rem;color:var(--soft)}
+.dw-carbtn.on{border-color:var(--accent);background:#FFF6E0;box-shadow:0 5px 14px rgba(242,155,17,.22)}
+.dw-carbtn.on .cp{color:var(--accent-deep);font-weight:700}
+.dw-round{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.dw-round .chip{border-color:var(--line);color:var(--ink);background:#fff}
+.dw-round .chip:hover{border-color:var(--accent)}
+.dw-round .chip.on{background:var(--grad-accent);border-color:transparent;color:#fff}
+.dw-inputs{display:grid;gap:10px}
+.dw-inputs input,.dw-inputs textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;background:#F9FBFD;transition:.2s}
+.dw-inputs input:focus,.dw-inputs textarea:focus{border-color:var(--accent);background:#fff}
+.dw-sum{background:var(--texture);border-radius:16px;padding:16px 18px}
+.dw-row{display:flex;justify-content:space-between;font-size:.88rem;padding:4px 0;gap:10px}
+.dw-row .dv{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dw-row .dv.neg{color:var(--ok)}
+.dw-row.sur .dv{color:var(--accent-deep)}
+.dw-row.total{border-top:1.5px dashed #D9CFB4;margin-top:8px;padding-top:11px;font-weight:900;font-size:1.06rem}
+.dw-row.total .dv{color:var(--accent-deep);font-size:1.3rem}
+.dw-foot{padding:16px 24px;border-top:1.5px solid var(--line);background:#fff}
+.dw-secure{display:flex;gap:7px;align-items:center;justify-content:center;font-size:.74rem;color:var(--soft);margin-top:9px;text-align:center}
+.dw-secure svg{color:var(--ok);flex:none}
+.dw-success{text-align:center;padding:26px 10px}
+.dw-success .ok-ic{width:72px;height:72px;border-radius:50%;background:#E5F7EE;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px;animation:popIn .4s cubic-bezier(.2,.9,.3,1.3)}
+.dw-success h4{font-size:1.2rem;font-weight:900;margin-bottom:6px}
+.dw-success .sub{color:var(--soft);font-size:.9rem;margin-bottom:18px}
+.bk-code{background:var(--grad-dark);color:#fff;border-radius:16px;padding:18px;margin-bottom:16px}
+.bk-code .bl{font-size:.74rem;color:#B9C9E8;text-transform:uppercase;letter-spacing:.1em}
+.bk-code .bv{font-size:1.7rem;font-weight:900;letter-spacing:.06em;color:#FFC93C;margin-top:4px}
+.bk-code .bsum{display:flex;justify-content:space-between;gap:10px;font-size:.82rem;color:#DCE4F4;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.25);flex-wrap:wrap}
+
+/* ============ CONTACT + MAP ============ */
+#lien-he{background:linear-gradient(180deg,var(--texture),#fff)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch;margin-bottom:26px}
+.ct-info{background:var(--grad-dark);border-radius:var(--r-xl);padding:32px;color:#fff;position:relative;overflow:clip;display:flex;flex-direction:column;gap:6px}
+.ct-info h3{font-size:1.5rem;font-weight:900;margin-bottom:4px}
+.ct-info .cs{color:#B9C9E8;font-size:.92rem;margin-bottom:18px}
+.ct-line{display:flex;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.16);align-items:flex-start}
+.ct-line:last-of-type{border-bottom:0}
+.ct-line .ci{width:40px;height:40px;border-radius:12px;background:rgba(255,201,60,.15);color:#FFC93C;display:grid;place-items:center;flex:none}
+.ct-line b{display:block;font-size:.92rem}
+.ct-line span{display:block;color:#B9C9E8;font-size:.84rem}
+.ct-map{border-radius:var(--r-xl);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh-1);min-height:340px;flex:1;position:relative;margin-top:18px}
+.ct-map iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
+.ct-dir{position:absolute;left:12px;bottom:12px;z-index:2}
+.ct-form-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:30px;box-shadow:var(--sh-2)}
+.ct-form-card h3{font-size:1.3rem;font-weight:900}
+.ct-form-card .cs{color:var(--soft);font-size:.9rem;margin:4px 0 18px}
+.ctf{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.ctf .full{grid-column:1/-1}
+.ctf label{display:block;font-size:.76rem;font-weight:800;color:var(--soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.ctf input,.ctf select,.ctf textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;background:#F9FBFD;transition:.2s}
+.ctf input:focus,.ctf select:focus,.ctf textarea:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.ctf-note{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--soft);margin-top:13px;justify-content:center}
+
+/* ============ FAQ ============ */
+#faq{background:var(--texture)}
+.faq-tools{display:flex;gap:12px;margin-bottom:26px;flex-wrap:wrap;align-items:center}
+.faq-search{position:relative;flex:1;min-width:240px}
+.faq-search input{width:100%;padding:13px 16px 13px 44px;border:1.5px solid var(--line);border-radius:999px;background:#fff;outline:none}
+.faq-search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-100)}
+.faq-search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font-weight:700;font-size:.84rem;color:var(--soft);transition:.2s}
+.fchip.on,.fchip:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.faq-list{display:flex;flex-direction:column;gap:11px;max-width:860px;margin:0 auto}
+.faq-it{background:#fff;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s}
+.faq-it.open{border-color:var(--accent);box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:17px 22px;font-weight:700;font-size:.98rem;text-align:left;color:var(--ink)}
+.faq-q .fx{width:30px;height:30px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none;transition:.3s;font-size:.9rem}
+.faq-it.open .fx{transform:rotate(45deg);background:var(--grad-accent);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--soft);font-size:.92rem}
+.faq-a .inner{padding:0 22px 19px}
+.faq-none{text-align:center;color:var(--soft);padding:24px;display:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-deep);color:#B9C9E8;position:relative;overflow:clip}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:34px;padding:52px 0 36px;position:relative;z-index:2}
+.ft-brand p{font-size:.88rem;margin:14px 0 16px}
+footer h5{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px;letter-spacing:.02em}
+.ft-col a,.ft-col span{display:flex;gap:9px;padding:5px 0;font-size:.88rem;color:#B9C9E8;transition:.2s;align-items:flex-start}
+.ft-col a:hover{color:#FFC93C;transform:translateX(4px)}
+.ft-col svg{flex:none;margin-top:4px;color:var(--accent)}
+.ft-hotline{font-size:1.25rem;font-weight:900;color:#FFC93C}
+.ft-copy{border-top:1px solid rgba(255,255,255,.12);padding:16px 0;font-size:.8rem;position:relative;z-index:2}
+.ft-copy .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ft-pay{border-top:1px solid rgba(255,255,255,.12);padding:14px 0;position:relative;z-index:2}
+.ft-pay .wrap{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.ft-pay .pl{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#9DB6DC}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips i{font-style:normal;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#DCE4F4;font-size:.76rem;font-weight:700;padding:6px 12px;border-radius:9px}
+
+/* ============ FAB DOCK ============ */
+.fab{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:150;display:flex;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1.5px solid var(--line);padding:9px;border-radius:999px;box-shadow:var(--sh-3);transition:transform .4s,opacity .4s}
+.fab.hide{transform:translateX(-50%) translateY(120px);opacity:0}
+.fab a,.fab button{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--primary);transition:.2s;position:relative}
+.fab a:hover,.fab button:hover{background:var(--primary-soft);transform:translateY(-3px)}
+.fab .fab-main{width:52px;background:var(--grad-accent);color:#fff;box-shadow:0 8px 20px rgba(242,155,17,.45)}
+.fab .fab-main:hover{background:var(--accent-deep);color:#fff}
+.fab .tip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--primary-deep);color:#fff;font-size:.68rem;font-weight:700;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.fab a:hover .tip,.fab button:hover .tip{opacity:1}
+
+/* ============ TOAST — title + message 2 phần tử riêng, không đè nút ============ */
+.toast{position:fixed;top:20px;right:20px;z-index:400;background:var(--primary-deep);color:#fff;padding:13px 20px;border-radius:14px;box-shadow:var(--sh-3);display:flex;gap:11px;align-items:center;font-size:.9rem;transform:translateX(130%);transition:transform .4s cubic-bezier(.2,.9,.3,1.1);max-width:340px;pointer-events:none}
+.toast.on{transform:none}
+.toast svg{color:#7BE0AE;flex:none}
+.toast .tt{display:block;font-weight:800;font-size:.88rem}
+.toast .tm{display:block;font-weight:500;font-size:.8rem;color:#C9D6EE}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.09s}
+.rv[data-d="2"]{transition-delay:.18s}
+.rv[data-d="3"]{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tape-in{animation:none}}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media (max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-poster{width:min(100%,420px)}
+  .bk-grid,.fare-grid,.hd-grid{grid-template-columns:1fr}
+  .calc-card{position:static}
+  .combo-grid,.ptips{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .rev-shell{grid-template-columns:1fr}
+  .about-grid,.ct-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .bk-trust{grid-template-columns:1fr 1fr}
+  nav.mainnav{display:none}
+}
+
+/* ============ MOBILE ≤680px — thiết kế riêng ============ */
+@media (max-width:680px){
+  section{padding:52px 0}
+  .wrap{padding:0 16px}
+  h1{font-size:1.62rem;margin:14px 0 12px}
+  h2{font-size:1.42rem}
+  .hero{padding:30px 0 74px}
+  .hero-sub{font-size:.96rem}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust-chips{grid-template-columns:1fr}
+  /* poster 1:1 hiển thị trọn vẹn trên mobile */
+  .hero-poster{width:100%;transform:none;border-width:4px}
+  .hero-stat-band{position:static;transform:none;margin:16px auto 0;justify-content:center;flex-wrap:wrap;gap:14px;white-space:normal;text-align:center}
+  .qbook{grid-template-columns:1fr;padding:12px;margin-top:20px}
+  .qbook .btn{width:100%}
+  .tape{margin-top:-24px}
+  .tape span{font-size:.8rem}
+  .svc-grid{grid-template-columns:1fr}
+  .svc.featured,.svc.wide{grid-column:span 1}
+  .svc.featured .svc-feats{grid-template-columns:1fr}
+  .combo-grid,.ptips{grid-template-columns:1fr}
+  .bk-form,.bk-res{padding:18px}
+  .calc-card,.hcalc{padding:20px}
+  .av-item{flex-wrap:wrap}
+  .av-ic{width:100%;height:56px;border-radius:12px}
+  .av-meta{width:100%;justify-content:space-between;text-align:left}
+  .bk-trust{grid-template-columns:1fr 1fr;gap:9px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat .sv{font-size:1.9rem}
+  .proc-grid{grid-template-columns:1fr}
+  .rev-slide{padding:22px 18px}
+  .rev-side{padding:22px 18px}
+  .m-body{padding:18px}
+  .m-foot .btn{width:100%}
+  .drawer{width:100vw;max-width:100vw}
+  .dw-days{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding:2px 2px 7px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .dw-day{flex:0 0 auto;min-width:50px;padding:6px 6px}
+  .dw-day.day-more{min-width:42px}
+  .dw-slots{grid-template-columns:repeat(3,1fr);gap:6px}
+  .dw-foot{padding:13px 16px}
+  .ctf{grid-template-columns:1fr}
+  .ct-info{padding:22px}
+  .fab{bottom:12px;padding:7px;gap:4px}
+  .fab a,.fab button{width:42px;height:42px}
+  .fab .fab-main{width:46px;height:46px}
+  .fab .tip{display:none}
+  footer{padding-top:0}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:40px 0 28px}
+  .ft-pay .wrap{justify-content:flex-start}
+  .toast{left:16px;right:16px;max-width:none;top:14px}
+  .hd{flex-wrap:wrap;padding:10px 0;row-gap:9px;min-height:0}
+  .logo{order:1}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .call-chip span.lbl{display:none}
+  .search{order:3;flex:1 0 100%;max-width:none}
+  nav.mainnav{display:none}
+  /* CTA mobile: không cắt chữ */
+  .btn{white-space:normal;text-align:center}
+}
+/*MOBILE-TAP40: điều khiển cảm ứng >=40px*/
+@media(max-width:640px){
+  .fchip,.chip,.dw-slot,.dw-day,.dw-carbtn,.ptab,.stab,.fab,.dw-x,.m-close,.call-chip,.svc-view,.svc-pick,.av-btn,.car-btn{min-height:40px!important;min-width:40px!important}
+  .btn{min-height:44px!important}
+  .dw-slot,.dw-day{min-height:40px}
+  .dw-carbtn{min-height:52px}
+}
+/*NB93-209: micro-interaction nhấn*/
+button:active{transform:scale(.97)}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Sao Mai Taxi","telephone":"0903456789","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Sao Mai Transport — đặt xe trước đón đúng giờ: sân bay Tân Sơn Nhất từ 320K, taxi nội thành, xe 4–16 chỗ, đường dài khứ hồi, xe ghép, hợp đồng đưa đón nhân viên","url":"http://127.0.0.1:8174/209-taxi-xe-hop-dong-dua-don/"}
+</script>
+<style data-nb93fix="209:ghost">
+/*NB93-FIX-209:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .svc-grid > *{grid-column:auto!important}
+  .combo-grid > *{grid-column:auto!important}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left"><span class="dot"></span><span><b>Tổng đài hoạt động 24/7</b> — xe đón từ 4h sáng đến 24h đêm</span></div>
+    <div class="tb-right">
+      <span>Hotline &amp; Zalo: <b>0903 456 789</b></span>
+      <a href="#dat-xe">Đặt xe trước — đón đúng giờ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Sao Mai Transport">
+      <span class="logo-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/><path d="M9 12h6"/><circle cx="12" cy="4" r="1.4"/><path d="M12 5.4v.8"/></svg>
+      </span>
+      <span class="logo-tx mini"><span class="t1 block">SAO MAI</span><span class="t2 block">Taxi &amp; Xe hợp đồng</span></span>
+    </a>
+    <div class="search mini">
+      <span class="s-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+      <input id="hdSearch" type="text" placeholder="Tìm tuyến: sân bay, Vũng Tàu, xe 7 chỗ…" autocomplete="off" aria-label="Tìm tuyến và loại xe">
+      <div class="s-pop" id="sPop"></div>
+    </div>
+    <nav class="mainnav" aria-label="Điều hướng chính">
+      <a href="#loai-xe">Loại xe</a>
+      <a href="#bang-gia">Bảng giá tuyến</a>
+      <a href="#dat-xe">Đặt xe</a>
+      <a href="#hop-dong">Hợp đồng tháng</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="call-chip" href="tel:0903456789" title="Gọi tổng đài">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg>
+        <span class="lbl">0903 456 789</span>
+      </a>
+      <button class="btn btn-a btn-s" data-open-drawer>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Đặt xe ngay
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="mini">
+      <span class="eyebrow"><span class="dotp"></span>TAXI · XE HỢP ĐỒNG · ĐƯA ĐÓN — TP. THỦ ĐỨC, TP.HCM</span>
+      <h1>Đón đúng giờ,<br>đi đúng <span class="hl">giá niêm yết</span></h1>
+      <p class="hero-sub">Đặt xe trước theo tuyến — nhận <b>mã xác nhận</b> và biển số xe ngay trên Zalo/SMS. Sân bay Tân Sơn Nhất từ <b>320K</b>, đưa đón nhân viên theo tháng cho doanh nghiệp, gói xe đám cưới trọn tiệc.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-open-drawer>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/></svg>
+          Đặt xe — nhận mã xác nhận
+        </button>
+        <a class="btn btn-g" href="#bang-gia">Xem bảng giá theo tuyến</a>
+      </div>
+      <div class="trust-chips">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Xe đến sớm 10 phút</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Thanh toán khi lên xe</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Giá niêm yết theo tuyến</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Hóa đơn VAT đầy đủ</span>
+      </div>
+      <!-- quick booking bar -->
+      <form class="qbook" id="qBook" aria-label="Kiểm tra giá tuyến nhanh">
+        <div class="qb-f"><label for="qbRoute">Tuyến đi</label>
+          <select id="qbRoute"><option value="">— Chọn tuyến —</option></select>
+        </div>
+        <div class="qb-f"><label for="qbDay">Ngày đón</label><input type="date" id="qbDay"></div>
+        <div class="qb-f"><label for="qbTime">Giờ đón</label>
+          <select id="qbTime"><option>05:00</option><option>07:00</option><option selected>09:00</option><option>11:00</option><option>13:00</option><option>15:00</option><option>17:00</option><option>19:00</option><option>21:00</option></select>
+        </div>
+        <button class="btn btn-a" type="submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Kiểm tra giá
+        </button>
+      </form>
+    </div>
+    <div class="hero-vis">
+      <figure class="hero-poster">
+        <img src="assets/img/cover.webp" alt="Dịch vụ taxi, xe hợp đồng và đưa đón Sao Mai" width="1254" height="1254">
+      </figure>
+      <div class="hero-stat-band">
+        <div class="hs"><span class="hv block">120+</span><span class="hk block">xe đời mới</span></div>
+        <div class="hs"><span class="hv block">98%</span><span class="hk block">đón đúng giờ</span></div>
+        <div class="hs"><span class="hv block">15 phút</span><span class="hk block">nhận xe trung bình</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ TAPE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-in" id="tapeIn">
+    <span>Đón đúng giờ cam kết — trễ tính lỗi chúng tôi</span><span>Sân bay Tân Sơn Nhất từ 320K</span><span>Giá niêm yết theo tuyến — không trả thêm</span><span>Xe sạch mỗi ca, khử khuẩn</span><span>Hóa đơn VAT cho khách doanh nghiệp</span><span>Xe ghép HCM – Vũng Tàu 180K/ghế</span><span>Hợp đồng đưa đón nhân viên theo tháng</span><span>Chờ máy bay trễ miễn phí 30 phút</span>
+  </div>
+</div>
+
+<!-- ============ KHỐI-8: LOẠI XE & DỊCH VỤ ============ -->
+<section id="loai-xe">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">8 dòng xe &amp; dịch vụ</span>
+      <h2>Đủ xe cho mọi chuyến — 1 khách đến cả đoàn</h2>
+      <p>Chọn nhanh loại xe để đặt giờ đón. Giá hiển thị là giá niêm yết theo tuyến — thanh toán khi lên xe.</p>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- ============ BẢNG GIÁ THEO TUYẾN + MÁY TÍNH ============ -->
+<section id="bang-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Giá minh bạch theo tuyến</span>
+      <h2>Bảng giá xe theo tuyến — tính sẵn cả km</h2>
+      <p>Giá trọn chuyến 1 chiều đã gồm xăng xe, tài xế. Chạm vào một dòng để tính nhanh, hoặc dùng máy tính bên phải.</p>
+    </div>
+    <div class="fare-grid">
+      <div class="rv">
+        <div class="ptable-card">
+          <div class="ptable-wrap">
+            <table class="ptable">
+              <thead><tr><th>Tuyến</th><th>Quãng đường</th><th>Xe 4 chỗ</th><th>Xe 7 chỗ</th><th>Xe 16 chỗ</th><th>Cam kết</th></tr></thead>
+              <tbody id="fareBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ptips">
+          <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="mini"><span class="pt block">Đón sớm — miễn phí chờ</span><span class="pd block">Xe đến trước giờ hẹn 10 phút, chờ miễn phí 30 phút đầu.</span></span></div>
+          <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><span class="mini"><span class="pt block">Khứ hồi giảm 5%</span><span class="pd block">Đặt 2 chiều cùng lúc trên web — hệ thống trừ thẳng vào giá.</span></span></div>
+          <div class="ptip"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span><span class="mini"><span class="pt block">Phí ngoài giá tuyến</span><span class="pd block">Phí cầu đường, bãi đỗ tính thực chi — báo trước khi xác nhận chuyến.</span></span></div>
+        </div>
+      </div>
+      <!-- máy tính giá tuyến -->
+      <form class="calc-card rv" data-d="1" id="fareCalc" aria-label="Máy tính giá theo tuyến">
+        <h3>Máy tính giá chuyến</h3>
+        <span class="csub">Chọn tuyến + loại xe — giá nhảy ra ngay, kèm giờ cam kết.</span>
+        <div><label for="fcRoute">Tuyến đi</label><select id="fcRoute"><option value="">— Chọn tuyến —</option></select></div>
+        <div><label>Loại chuyến</label>
+          <div class="chip-row" id="fcTrip">
+            <button type="button" class="chip on" data-trip="one">Một chiều</button>
+            <button type="button" class="chip" data-trip="round">Khứ hồi −5%</button>
+          </div>
+        </div>
+        <div><label>Loại xe</label>
+          <div class="chip-row" id="fcCar">
+            <button type="button" class="chip on" data-car="c4">4 chỗ</button>
+            <button type="button" class="chip" data-car="c7">7 chỗ</button>
+            <button type="button" class="chip" data-car="c16">16 chỗ</button>
+            <button type="button" class="chip" data-car="om">Xe ôm</button>
+          </div>
+        </div>
+        <div class="calc-out" id="fcOut"></div>
+        <button class="btn btn-a btn-full" type="submit">Đặt tuyến này — chọn giờ đón</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ENGINE — ĐẶT XE TRƯỚC ============ -->
+<section id="dat-xe">
+  <div class="checker-y" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Đặt xe trước — nhân vật chính</span>
+      <h2>Chọn tuyến &amp; xe → chốt giờ đón → nhận mã</h2>
+      <p>Chọn tuyến đi, xem ngay xe trống và giá tuyến. Chốt giờ đón là nhận mã xác nhận kèm biển số xe qua Zalo/SMS trong 60 giây.</p>
+    </div>
+    <div class="bk-grid">
+      <form class="bk-form rv" id="bkForm" aria-label="Tìm xe theo tuyến">
+        <div class="fg"><label for="bkRoute">Tuyến đi</label><select id="bkRoute"><option value="">— Chọn tuyến —</option></select></div>
+        <div class="fg" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label for="bkDay">Ngày đón</label><input type="date" id="bkDay"></div>
+          <div><label for="bkTime">Giờ đón</label>
+            <select id="bkTime"><option>05:00</option><option>07:00</option><option selected>09:00</option><option>11:00</option><option>13:00</option><option>15:00</option><option>17:00</option><option>19:00</option><option>21:00</option></select>
+          </div>
+        </div>
+        <div class="fg"><label>Loại chuyến</label>
+          <div class="chip-row" id="bkTrip">
+            <button type="button" class="chip on" data-trip="one">Một chiều</button>
+            <button type="button" class="chip" data-trip="round">Khứ hồi −5%</button>
+          </div>
+        </div>
+        <button class="btn btn-a btn-full" type="submit">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Xem xe trống &amp; giá tuyến
+        </button>
+        <span class="bk-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Giờ đón 05:00 sáng sớm cộng phụ thu đêm 20K/chuyến — hiển thị luôn trong tổng tiền.</span>
+      </form>
+      <div class="bk-res rv" data-d="1">
+        <div class="bk-res-top">
+          <span class="rt" id="resTitle">Xe trống theo tuyến</span>
+          <span class="rc" id="resMeta">—</span>
+        </div>
+        <div class="avail" id="availList"></div>
+      </div>
+    </div>
+    <div class="bk-trust rv">
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><span class="mini"><span class="bt block">Chốt giờ trong 60 giây</span><span class="bs block">Mã xác nhận + biển số gửi Zalo/SMS</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span><span class="mini"><span class="bt block">Hủy miễn phí trước 1h</span><span class="bs block">Nội thành trước 1h, đường dài trước 3h</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg></span><span class="mini"><span class="bt block">Tài xế đã kiểm định</span><span class="bs block">10 năm kinh nghiệm, GPLX đối chiếu</span></span></div>
+      <div class="bt-c"><span class="bi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="mini"><span class="bt block">Thanh toán khi lên xe</span><span class="bs block">Tiền mặt / chuyển khoản — không cần cọc</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HỢP ĐỒNG ĐƯA ĐÓN THÁNG + GÓI SỰ KIỆN ============ -->
+<section id="hop-dong">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Dành cho doanh nghiệp &amp; gia đình lớn</span>
+      <h2>Hợp đồng đưa đón nhân viên theo tháng</h2>
+      <p>Chuyên đưa đón công nhân, nhân viên đi ca — cam kết số xe và giờ đón bằng hợp đồng, tài xế cố định tuyến, hóa đơn VAT đối soát cuối tháng.</p>
+    </div>
+    <div class="hd-grid">
+      <div class="rv">
+        <div class="hd-vis">
+          <div class="hv-img"><img src="assets/img/space.webp" alt="Trung tâm điều hành đội xe Sao Mai — tổng đài 24/7" width="1448" height="1086" loading="lazy"></div>
+          <div class="hv-float">
+            <span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <span class="mini"><b class="block">Trung tâm điều hành 24/7</b><span class="block">Theo dõi từng chuyến bằng phần mềm</span></span>
+          </div>
+        </div>
+        <div class="hd-points">
+          <div class="hd-point"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mini"><b class="block">Cam kết bằng hợp đồng</b><span class="block" style="color:var(--soft);display:block;font-size:.83rem">Số xe, giờ đón, tuyến cố định — trễ 5 phút tính lỗi đơn vị vận tải</span></span></div>
+          <div class="hd-point"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mini"><b class="block">Tài xế cố định — thay xe 60 phút</b><span class="block" style="color:var(--soft);display:block;font-size:.83rem">Bác tài quen tuyến quen người, xe hỏng có xe dự phòng thế ngay</span></span></div>
+          <div class="hd-point"><span class="pi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mini"><b class="block">Đối soát theo lượt — VAT đầy đủ</b><span class="block" style="color:var(--soft);display:block;font-size:.83rem">Bảng theo dõi lượt/ngày ký confirm, thanh toán 1 lần cuối tháng</span></span></div>
+        </div>
+        <div class="about-cta">
+          <button class="btn btn-a" data-contract>Nhận báo giá hợp đồng</button>
+          <a class="btn btn-g" href="tel:0903456789">Gọi 0903 456 789 — gặp phòng hợp đồng</a>
+        </div>
+      </div>
+      <!-- máy tính hợp đồng tháng -->
+      <form class="hcalc rv" data-d="1" id="hdCalc" aria-label="Ước tính hợp đồng tháng">
+        <h3>Ước tính chi phí tháng</h3>
+        <span class="csub">Đơn giá theo lượt — càng nhiều lượt giảm càng sâu.</span>
+        <div><label for="hcCar">Loại xe</label>
+          <select id="hcCar"><option value="c16">Xe 16 chỗ — 320K/lượt</option><option value="c29">Xe 29 chỗ — 450K/lượt</option><option value="c4">Xe 4 chỗ — 240K/lượt</option></select>
+        </div>
+        <div><label for="hcTrips">Số lượt/ngày (đón + trả)</label>
+          <select id="hcTrips"><option value="2">2 lượt — đón sáng, về chiều</option><option value="3">3 lượt — thêm ca trưa</option><option value="4">4 lượt — 2 ca sản xuất</option></select>
+        </div>
+        <div><label for="hcDays">Ngày công/tháng</label>
+          <select id="hcDays"><option value="22">22 ngày — hành chính</option><option value="26" selected>26 ngày — sản xuất</option><option value="30">30 ngày — nhà máy chạy liên tục</option></select>
+        </div>
+        <div class="calc-out" id="hcOut"></div>
+        <button class="btn btn-a btn-full" type="submit">Gửi bảng tính — nhận báo giá chính thức</button>
+      </form>
+    </div>
+
+    <!-- gói đoàn: đám cưới / sự kiện / sân bay -->
+    <div class="combo-head rv">
+      <div class="mini">
+        <span class="kicker">Gói xe theo nhu cầu</span>
+        <h2 style="font-size:clamp(1.35rem,2.4vw,1.8rem)">Đám cưới, sự kiện, công tác — lo trọn đoàn</h2>
+      </div>
+      <span style="color:var(--soft);font-size:.9rem">Có trưởng đoàn điều phối — không để khách bị bỏ lại</span>
+    </div>
+    <div class="combo-grid">
+      <div class="combo rv">
+        <h4>Gói công tác sân bay 2 chiều</h4>
+        <span class="c-for">Cho 1–3 khách đi công tác ngắn ngày</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Xe 4 chỗ khứ hồi Tân Sơn Nhất — đặt 1 lần xong 2 chiều</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Theo dõi giờ bay — chờ miễn phí 30 phút nếu trễ</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Nước suối + sạc dự phòng trên xe</span>
+        </div>
+        <div class="c-price"><b>610K</b><s>640K</s><span class="save">Khứ hồi −5%</span></div>
+        <button class="btn btn-g btn-full" data-pick-route="sb|c4|round">Chọn gói — chốt 2 chiều</button>
+      </div>
+      <div class="combo hot rv" data-d="1">
+        <span class="c-flag">MÙA CƯỚI 2026</span>
+        <h4>Gói đám cưới trọn tiệc</h4>
+        <span class="c-for">Cho 60–80 khách — chạy nhiều lượt giữa 2 điểm</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>4 xe 16 chỗ chạy 2 lượt đón khách về nhà hàng</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>1 xe 7 chỗ riêng cho 2 họ — kèm hoa xe miễn phí</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Trưởng đoàn đứng bố trí khách lên xe từng lượt</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Chờ tại tiệc không tính phí — trả khách xong mới về</span>
+        </div>
+        <div class="c-price"><b>7.500K</b><s>8.900K</s><span class="save">Tiết kiệm 16%</span></div>
+        <button class="btn btn-a btn-full" data-event="Gói đám cưới trọn tiệc">Giữ xe mùa cưới — đặt cọc 20%</button>
+      </div>
+      <div class="combo rv" data-d="2">
+        <h4>Gói sự kiện hội nghị</h4>
+        <span class="c-for">Cho hội nghị, team building nửa ngày</span>
+        <div class="c-list">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>2 xe 16 chỗ theo giờ — tối thiểu 6 tiếng</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Tài xế chờ tại điểm đến, di chuyển nhiều điểm trong gói</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Hóa đơn VAT — thanh toán chuyển khoản công ty</span>
+        </div>
+        <div class="c-price"><b>2.880K</b><span class="save">240K/giờ/xe</span></div>
+        <button class="btn btn-g btn-full" data-event="Gói sự kiện hội nghị">Nhận lịch trống &amp; báo giá</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker" style="justify-content:center">Đặt xe trước — không cần gọi điện</span>
+      <h2>4 bước từ web tới mép cửa</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc rv"><span class="pn">01</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg></span><b class="block">Chọn tuyến &amp; loại xe</b><p>Chọn tuyến đi sẵn trong bảng giá — hệ thống tính trọn chuyến ngay tại chỗ.</p><span class="pm">≈ 40 giây</span></div>
+      <div class="proc rv" data-d="1"><span class="pn">02</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><b class="block">Chốt ngày giờ đón</b><p>Chọn ngày + giờ đón, ghi địa chỉ cụ thể — tổng tiền hiện trước khi xác nhận.</p><span class="pm">≈ 20 giây</span></div>
+      <div class="proc rv" data-d="2"><span class="pn">03</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10h8M8 14h5"/></svg></span><b class="block">Nhận mã + biển số</b><p>Tài xế gọi xác nhận trước 30 phút. Mã chuyến, biển số, SĐT tài xế gửi Zalo/SMS.</p><span class="pm">Trước 30 phút</span></div>
+      <div class="proc rv" data-d="3"><span class="pn">04</span><span class="pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><b class="block">Lên xe — trả sau</b><p>Xe có mặt sớm 10 phút. Thanh toán khi lên xe, hóa đơn VAT khi bạn cần.</p><span class="pm">Không cần cọc</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="ve-chung-toi" style="padding-top:0">
+  <div class="wrap about-grid">
+    <div class="about-vis rv">
+      <div class="av-img"><img src="assets/img/intro.webp" alt="Về Sao Mai Transport — an toàn, tiện lợi, tận tâm" width="1536" height="1024" loading="lazy"></div>
+      <div class="av-float">
+        <span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <span class="mini"><b class="block">Bảo hiểm hành khách</b><span class="block">Cho từng chuyến — theo quy định Bộ GTVT</span></span>
+      </div>
+    </div>
+    <div class="mini">
+      <div class="sec-head rv" style="margin-bottom:8px">
+        <span class="kicker">Câu chuyện Sao Mai</span>
+        <h2>8 năm chở người — chưa trễ ca sản xuất nào</h2>
+        <p>Sao Mai khởi đầu năm 2018 với 5 xe 4 chỗ chạy sân bay. Hôm nay là đội 120+ xe 4–29 chỗ, 2 hợp đồng đưa đón nhân viên lớn và hàng trăm chuyến cưới mỗi mùa — nhưng nguyên tắc không đổi: <b>giá niêm yết trước, xe đến sớm 10 phút</b>.</p>
+      </div>
+      <div class="strengths">
+        <div class="str-card rv"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/></svg></span><b>An toàn số 1</b><p>Xe đăng kiểm đúng hạn, bảo hiểm hành khách từng chuyến, tài xế đối chiếu GPLX và cân bằng lái định kỳ 6 tháng.</p></div>
+        <div class="str-card rv" data-d="1"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><b>Đúng giờ như máy bay</b><p>Điều hành nhắc tài xế xuất bến trước 45 phút, xe có mặt trước giờ hẹn 10 phút — trễ tính lỗi chúng tôi theo cam kết.</p></div>
+        <div class="str-card rv" data-d="2"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><b>Giá niêm yết công khai</b><p>Cùng một bảng giá trên web và khi gọi tổng đài. Không phí "giờ cao điểm bất ngờ", hóa đơn VAT đầy đủ.</p></div>
+        <div class="str-card rv" data-d="3"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></span><b>Xe sạch mỗi ca</b><p>Vệ sinh nội thất sau từng chuyến dài, khử khuẩn mỗi ca đêm, ghế da phủ khăn tặng khách sân bay lúc 4h sáng.</p></div>
+      </div>
+      <div class="about-cta rv">
+        <button class="btn btn-a" data-open-drawer>Đặt xe — nhận mã xác nhận</button>
+        <a class="btn btn-g" href="#hop-dong">Xem hợp đồng theo tháng</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<div class="stats">
+  <div class="checker-y" aria-hidden="true"></div>
+  <div class="wrap stats-grid">
+    <div class="stat rv"><span class="sv block"><span class="cnt" data-to="120">0</span><small>+</small></span><span class="sk block">xe 4 – 29 chỗ sẵn sàng</span></div>
+    <div class="stat rv" data-d="1"><span class="sv block"><span class="cnt" data-to="98">0</span><small>%</small></span><span class="sk block">chuyến đón đúng giờ cam kết</span></div>
+    <div class="stat rv" data-d="2"><span class="sv block"><span class="cnt" data-to="360000">0</span><small>+</small></span><span class="sk block">chuyến phục vụ từ 2018</span></div>
+    <div class="stat rv" data-d="3"><span class="sv block"><span class="cnt" data-to="32">0</span></span><span class="sk block">doanh nghiệp đặt xe theo tháng</span></div>
+  </div>
+</div>
+
+<!-- ============ REVIEWS ============ -->
+<section id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khách nói gì</span>
+      <h2>Khách sân bay, xưởng may, nhà đám cưới — ai cũng quay lại</h2>
+    </div>
+    <div class="rev-shell rv">
+      <div class="rev-main">
+        <div class="rev-track" id="revTrack"></div>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+      <div class="rev-side">
+        <div class="rev-metric"><span class="mv">4,9/5</span><span class="mk">điểm hài lòng — <b>1.800+ chuyến được đánh giá</b> trong 12 tháng</span></div>
+        <div class="rev-metric"><span class="mv">98%</span><span class="mk">chuyến đón <b>đúng giờ cam kết</b> — trễ tính lỗi đơn vị</span></div>
+        <div class="rev-metric"><span class="mv">9 phút</span><span class="mk">thời gian xác nhận đặt xe qua <b>Zalo trung bình</b></span></div>
+        <div class="partners">
+          <span class="pk block">Khách doanh nghiệp tin dùng</span>
+          <div class="partner-chips"><i>KCN Sóng Thần</i><i>KCN Tân Tạo</i><i>Cụm CN Vĩnh Lộc</i><i>Nhà máy Bình Dương</i><i>Các nhà hàng tiệc cưới Q.7</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIÊN HỆ + MAP + FORM ============ -->
+<section id="lien-he">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Văn phòng điều hành</span>
+      <h2>Ghé văn phòng hoặc gửi yêu cầu đặt xe</h2>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <h3>Sao Mai Transport</h3>
+        <p class="cs">Tổng đài 24/7 — kể cả 4h sáng chạy sân bay</p>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg></span><span class="mini"><b class="block">Số 12, Đường Số 7, P. Tam Phú, TP. Thủ Đức, TP.HCM</b><span class="block">Bãi xe nội bộ — đón trả khách tại cổng</span></span></div>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg></span><span class="mini"><b class="block">Hotline / Zalo: 0903 456 789</b><span class="block">Xác nhận đặt xe sau 9 phút</span></span></div>
+        <div class="ct-line"><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="mini"><b class="block">Hoạt động 24/7 — cả Lễ Tết</b><span class="block">Khung 22:00–05:00 cộng phụ thu đêm công khai</span></span></div>
+        <div class="ct-map">
+          <iframe src="https://www.google.com/maps?q=10.8658,106.7602&z=15&output=embed" loading="lazy" title="Bản đồ văn phòng Sao Mai Transport Thủ Đức" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="ct-dir"><a class="btn btn-a btn-s" href="https://www.google.com/maps/dir/?api=1&destination=10.8658,106.7602" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            Chỉ đường
+          </a></span>
+        </div>
+      </div>
+      <form class="ct-form-card rv" data-d="1" id="ctForm">
+        <h3>Gửi yêu cầu đặt xe</h3>
+        <p class="cs">Điền nhanh 5 dòng — điều hành gọi lại chốt xe và giá cuối trong 30 phút.</p>
+        <div class="ctf">
+          <div><label for="cfName">Họ tên *</label><input id="cfName" type="text" placeholder="Nguyễn Văn A"></div>
+          <div><label for="cfPhone">Số điện thoại *</label><input id="cfPhone" type="tel" placeholder="09xx xxx xxx"></div>
+          <div><label for="cfNeed">Nhu cầu</label>
+            <select id="cfNeed">
+              <option>Đặt chuyến theo tuyến</option><option>Đưa đón sân bay</option><option>Hợp đồng đưa đón theo tháng</option><option>Gói đám cưới / sự kiện</option><option>Thuê xe theo giờ</option><option>Giao hàng — xe ôm</option>
+            </select>
+          </div>
+          <div><label for="cfWhen">Ngày giờ đón dự kiến</label><input id="cfWhen" type="datetime-local"></div>
+          <div class="full"><label for="cfNote">Ghi chú (địa chỉ đón, số khách, hành lý…)</label><textarea id="cfNote" rows="3" placeholder="VD: Đón 6:00 tại chung cư Him Lam Thủ Đức, 4 khách + 4 vali ra Tân Sơn Nhất"></textarea></div>
+          <div class="full"><button class="btn btn-a btn-full" type="submit">Gửi yêu cầu — xác nhận trong 30 phút</button></div>
+        </div>
+        <span class="ctf-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Thông tin chỉ dùng để xác nhận chuyến đi — không chia sẻ bên thứ ba.</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker" style="justify-content:center">Giải đáp nhanh</span>
+      <h2>Câu hỏi hay gặp khi đặt xe</h2>
+    </div>
+    <div class="rv">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: sân bay, phụ thu đêm, hợp đồng, đám cưới…">
+        </div>
+        <div class="faq-chips" id="faqChips"></div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-none" id="faqNone">Không tìm thấy câu phù hợp — gọi 0903 456 789 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="checker" aria-hidden="true"></div>
+  <div class="wrap ft-grid">
+    <div class="ft-brand">
+      <a class="logo" href="#top">
+        <span class="logo-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg></span>
+        <span class="logo-tx mini"><span class="t1 block" style="color:#fff">SAO MAI</span><span class="t2 block">Taxi &amp; Xe hợp đồng</span></span>
+      </a>
+      <p>Đội xe 4–29 chỗ tại TP. Thủ Đức từ 2018. Giá niêm yết theo tuyến, đón đúng giờ cam kết — từ chuyến sân bay 4h sáng đến hợp đồng đưa đón nhân viên cả tháng.</p>
+      <span class="ft-hotline">0903 456 789</span>
+    </div>
+    <div class="ft-col">
+      <h5>Loại xe</h5>
+      <a href="#loai-xe">Xe 4 chỗ</a>
+      <a href="#loai-xe">Xe 7 chỗ</a>
+      <a href="#loai-xe">Xe 16 chỗ &amp; 29 chỗ</a>
+      <a href="#loai-xe">Xe ghép — đi chung</a>
+      <a href="#loai-xe">Xe ôm — giao hàng</a>
+    </div>
+    <div class="ft-col">
+      <h5>Dịch vụ</h5>
+      <a href="#dat-xe">Đặt xe trước online</a>
+      <a href="#bang-gia">Bảng giá theo tuyến</a>
+      <a href="#hop-dong">Hợp đồng đưa đón tháng</a>
+      <a href="#hop-dong">Gói đám cưới &amp; sự kiện</a>
+      <a href="#faq">Chính sách hủy chuyến</a>
+    </div>
+    <div class="ft-col">
+      <h5>Liên hệ</h5>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg>Số 12, Đường Số 7, P. Tam Phú, TP. Thủ Đức, TP.HCM</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Tổng đài 24/7 — kể cả Lễ Tết</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>hanghieusaomai@gmail.com</span>
+    </div>
+  </div>
+  <div class="ft-pay">
+    <div class="wrap">
+      <span class="pl">Thanh toán khi lên xe qua</span>
+      <div class="pay-chips"><i>Tiền mặt</i><i>Chuyển khoản</i><i>MoMo</i><i>ZaloPay</i><i>VNPay-QR</i><i>Đối soát hợp đồng</i></div>
+    </div>
+  </div>
+  <div class="ft-copy">
+    <div class="wrap"><span>© 2026 Sao Mai Transport — P. Tam Phú, TP. Thủ Đức, TP.HCM. GPKD 0312xxxxxx.</span><span>Giá niêm yết · Hóa đơn VAT · Hủy miễn phí trước 1h</span></div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="fab" id="fab" aria-label="Thanh thao tác nhanh">
+  <button class="fab-main" data-open-drawer aria-label="Đặt xe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg><span class="tip">Đặt xe</span></button>
+  <a href="tel:0903456789" aria-label="Gọi tổng đài"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.27a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9Z"/></svg><span class="tip">Gọi ngay</span></a>
+  <a href="https://zalo.me/84903456789" target="_blank" rel="noopener" aria-label="Chat Zalo"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0 0 20c1.3 0 2.5-.25 3.6-.7L20 22l-.9-3.6A10 10 0 0 0 12 2Zm-2.2 5.5h1.6l2.3 6.6h-1.6l-.5-1.6H9.3l-.5 1.6H7.2l2.6-6.6Zm5.7 0h1.5v6.6h-1.5V7.5ZM10.4 9.4l-.7 2h1.4l-.7-2Z"/></svg><span class="tip">Chat Zalo</span></a>
+  <a href="#lien-he" aria-label="Chỉ đường"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10.5A7 7 0 0 1 19 10.5C19 16.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg><span class="tip">Chỉ đường</span></a>
+  <a href="#faq" aria-label="Hỏi đáp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.5A2.8 2.8 0 0 1 12 7.5c1.5 0 2.7 1 2.7 2.3 0 1.7-2.7 2-2.7 3.7M12 16.8h.01"/></svg><span class="tip">Hỏi đáp</span></a>
+  <button id="toTop" aria-label="Lên đầu trang"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span class="tip">Lên đầu</span></button>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="modal" id="qvModal" role="dialog" aria-modal="true" aria-label="Xem nhanh dịch vụ">
+  <div class="m-bg" data-close-qv></div>
+  <div class="m-card">
+    <button class="m-close" data-close-qv aria-label="Đóng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="m-hero"><img id="qvImg" src="assets/img/p1.webp" alt="Ảnh dịch vụ" width="1448" height="1086"></div>
+    <div class="m-body">
+      <h3 id="qvName">Dịch vụ</h3>
+      <div class="m-meta" id="qvMeta"></div>
+      <table class="m-table"><thead><tr><th>Loại chuyến</th><th>Chi tiết</th><th>Đơn giá</th></tr></thead><tbody id="qvPrices"></tbody></table>
+      <div class="m-utils" id="qvUtils"></div>
+      <div class="m-foot">
+        <button class="btn btn-a" id="qvPick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/></svg>Đặt dịch vụ này — chốt giờ đón</button>
+        <a class="btn btn-g" href="tel:0903456789">Gọi giữ xe</a>
+      </div>
+      <div class="m-metas">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Hủy miễn phí trước 1h</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Thanh toán khi lên xe</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Hóa đơn VAT khi cần</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BOOKING DRAWER — đặt xe trước ============ -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Đặt xe của bạn">
+  <div class="dw-head">
+    <div class="hwrap">
+      <span class="dt block">Đặt xe của bạn</span>
+      <span class="ds">Chốt giờ đón — nhận mã xác nhận qua Zalo/SMS</span>
+    </div>
+    <button class="dw-x" id="dwClose" aria-label="Đóng" style="margin-top:16px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="checker" aria-hidden="true"></div>
+  <div class="dw-body" id="dwBody">
+    <div class="dw-sec dw-route-sel">
+      <span class="dl">1 · Tuyến đi <a href="#bang-gia" id="dwBrowse">xem bảng giá →</a></span>
+      <select id="dwRoute" aria-label="Chọn tuyến đi"><option value="">— Chọn tuyến —</option></select>
+    </div>
+    <div class="dw-sec">
+      <span class="dl">2 · Loại xe &amp; loại chuyến</span>
+      <div class="dw-car" id="dwCar"></div>
+      <div class="dw-round" style="margin-top:7px" id="dwRound">
+        <button type="button" class="chip on" data-round="0">Một chiều</button>
+        <button type="button" class="chip" data-round="1">Khứ hồi −5%</button>
+      </div>
+    </div>
+    <div class="dw-sec">
+      <span class="dl">3 · Ngày đón (14 ngày tới)</span>
+      <div class="dw-days" id="dwDays"></div>
+    </div>
+    <div class="dw-sec">
+      <span class="dl">4 · Giờ đón</span>
+      <div class="dw-slots" id="dwSlots"></div>
+    </div>
+    <div class="dw-sec dw-inputs">
+      <span class="dl">5 · Thông tin đón</span>
+      <input type="text" id="dwAddr" placeholder="Địa chỉ đón cụ thể * (vd: 264 Kha Vạn Cân)">
+      <input type="text" id="dwName" placeholder="Họ tên người đi *">
+      <input type="tel" id="dwPhone" placeholder="Số điện thoại nhận mã (Zalo/SMS) *">
+    </div>
+    <div class="dw-sec dw-sum" id="dwSum"></div>
+  </div>
+  <div class="dw-foot">
+    <button class="btn btn-a btn-full" id="dwConfirm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+      Xác nhận đặt xe — nhận mã trong 60 giây
+    </button>
+    <span class="dw-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="12" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Thanh toán khi lên xe · hủy miễn phí trước 1h (đường dài trước 3h)</span>
+  </div>
+</aside>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span class="mini"><b class="tt" id="toastTitle">Đã thực hiện</b><span class="tm" id="toastMsg"></span></span></div>
+
+<script>
+/* ================= NB93-209 — DATA: TUYẾN + DÒNG XE ================= */
+const ROUTES=[
+  {id:'sb', name:'Thủ Đức / TP.HCM → Sân bay Tân Sơn Nhất', km:18, t:'35–50 phút', p:{c4:320,c7:380,c16:520,om:110}},
+  {id:'q7', name:'Quận 7 → Sân bay Tân Sơn Nhất', km:22, t:'40–55 phút', p:{c4:360,c7:430,c16:580,om:130}},
+  {id:'q1', name:'Thủ Đức → Quận 1 (Bến Thành)', km:14, t:'30–45 phút', p:{c4:240,c7:290,c16:400,om:90}},
+  {id:'vt', name:'TP.HCM → Vũng Tàu', km:95, t:'2h – 2h15', p:{c4:1250,c7:1450,c16:1950,om:0}},
+  {id:'bd', name:'TP.HCM → Thủ Dầu Một (Bình Dương)', km:32, t:'55–70 phút', p:{c4:480,c7:560,c16:760,om:0}},
+  {id:'dh', name:'TP.HCM → Biên Hòa (Đồng Nai)', km:30, t:'50–65 phút', p:{c4:450,c7:530,c16:720,om:0}},
+  {id:'la', name:'TP.HCM → Tân An (Long An)', km:48, t:'≈ 1h10', p:{c4:750,c7:880,c16:1180,om:0}},
+  {id:'tg', name:'TP.HCM → Mỹ Tho (Tiền Giang)', km:75, t:'≈ 1h45', p:{c4:1050,c7:1250,c16:1680,om:0}}
+];
+const CARS_BK=[
+  {id:'c4', name:'Xe 4 chỗ', cap:'4 khách · 2 balo'},
+  {id:'c7', name:'Xe 7 chỗ', cap:'6 khách · 4 balo'},
+  {id:'c16',name:'Xe 16 chỗ',cap:'16 khách · đoàn'},
+  {id:'om', name:'Xe ôm — giao hàng', cap:'1 người · 15kg'}
+];
+const CAR_LABEL={c4:'Xe 4 chỗ',c7:'Xe 7 chỗ',c16:'Xe 16 chỗ',om:'Xe ôm'};
+/* 8 dịch vụ khối-8 — map ảnh p1–p8 */
+const SERVICES=[
+  {id:'sb',  img:'p4', num:'4', name:'Đưa đón sân bay', hot:true, from:'320K', unit:'/chiều · từ TP.HCM',
+   desc:'Dịch vụ đặt nhiều nhất: theo dõi giờ bay, đón đúng cổng D/Quốc tế, chờ miễn phí 30 phút nếu máy bay trễ.',
+   cap:'Mọi dòng xe · 24/7', pick:{route:'sb',cls:'c4'},
+   qv:[['Xe 4 chỗ','Khứ hồi −5%','610K'],['Xe 7 chỗ','1 chiều · 18km','380K'],['Xe 16 chỗ','Đoàn 8–16 khách','520K']],
+   util:['Dõi số hiệu chuyến bay','Chờ trễ miễn 30 phút','Trợ lý xách hành lý','Đón 4h sáng có xe']},
+  {id:'c4',  img:'p1', num:'1', name:'Xe 4 chỗ', hot:false, from:'240K', unit:'/chuyến nội thành',
+   desc:'Tiết kiệm cho 1–3 khách đi nội thành, sân bay. Mở cửa 12K/km, đồng hồ in hóa đơn từng chuyến.',
+   cap:'4 khách · 2 balo', pick:{cls:'c4'},
+   qv:[['Nội thành (<15km)','Giá trọn chuyến','từ 240K'],['Sân bay Tân Sơn Nhất','1 chiều · 18km','320K'],['Thuê theo giờ','Tối thiểu 2 giờ','150K/giờ đầu']],
+   util:['Điều hòa mát','Cảm ứng hỗ trợ đường','Nước suối miễn phí','Hóa đơn VAT']},
+  {id:'c7',  img:'p2', num:'2', name:'Xe 7 chỗ', hot:true, from:'290K', unit:'/chuyến nội thành',
+   desc:'Rộng rãi cho gia đình, nhóm bạn đông hành lý. Cửa trượt dễ lên đồ cho người già và trẻ nhỏ.',
+   cap:'6 khách · 4 balo', pick:{cls:'c7'},
+   qv:[['Nội thành (<15km)','Giá trọn chuyến','từ 290K'],['Sân bay Tân Sơn Nhất','1 chiều · 18km','380K'],['Đường dài Vũng Tàu','1 chiều · 95km','1.450K']],
+   util:['Cốp 4 balo','Cửa trượt tiện trẻ em','Ghế em bé miễn phí','Nước lạnh trên xe']},
+  {id:'om',  img:'p3', num:'3', name:'Xe ôm — giao hàng', hot:false, from:'25K', unit:'/5km đầu · nội thành',
+   desc:'Chạy hồ sơ gấp, gửi đồ nội thành trong 60 phút. Tài xế xác nhận giao bằng ảnh + chữ ký người nhận.',
+   cap:'1 người · ≤15kg', pick:{cls:'om'},
+   qv:[['Nội thành ≤5km','Giao trong 60 phút','25K'],['Gộp km tiếp theo','Từng km sau','4,5K/km'],['Chờ lấy hàng','Mỗi 15 phút','5K']],
+   util:['Xác nhận giao ảnh','Đồ giá trị có biên bản','Đêm đến 22:00','Thanh toán COD']},
+  {id:'hd',  img:'p5', num:'5', name:'Xe hợp đồng theo chuyến', hot:false, from:'liên hệ', unit:'báo giá trong 15 phút',
+   desc:'Thuê nguyên đoàn xe theo chuyến công tác, sự kiện: 4–29 chỗ, có trưởng đoàn điều phối và hợp đồng giá trọn.',
+   cap:'4 – 29 chỗ · đoàn', pick:{},
+   qv:[['Xe 16 chỗ','Theo chuyến nội thành','từ 400K'],['Xe 29 chỗ','Theo chuyến nội thành','từ 560K'],['Đoàn 5 xe trở lên','Báo giá trọn gói','giảm 10–15%']],
+   util:['Hợp đồng giá trọn','Trưởng đoàn điều phối','Xe dự phòng thế chỗ','VAT + đối soát']},
+  {id:'hrs', img:'p6', num:'6', name:'Thuê xe theo giờ', hot:false, from:'150K', unit:'/giờ đầu · tối thiểu 2 giờ',
+   desc:'Thuê xe chạy nhiều điểm trong buổi: gặp khách, xem địa điểm, chụp hình cưới. Tài xế chờ không tính phí giữa các điểm.',
+   cap:'4 – 16 chỗ', pick:{},
+   qv:[['Xe 4 chỗ','Giờ đầu / giờ sau','150K · 120K'],['Xe 7 chỗ','Giờ đầu / giờ sau','180K · 140K'],['Xe 16 chỗ','Giờ đầu / giờ sau','240K · 200K']],
+   util:['Chạy nhiều điểm','Chờ miễn phí giữa tuyến','Linh hoạt giờ tăng thêm','Hóa đơn công ty']},
+  {id:'dl',  img:'p7', num:'7', name:'Đi tỉnh đường dài', hot:false, from:'1.050K', unit:'/chiều · khứ hồi −5%',
+   desc:'Đường xa cho khách gia đình: tài xế 10 năm đường trường, chạy êm, dừng nghỉ theo yêu cầu không tính thêm.',
+   cap:'4 – 16 chỗ', pick:{route:'vt',cls:'c4'},
+   qv:[['Vũng Tàu','1 chiều · 95km','1.250K'],['Mỹ Tho','1 chiều · 75km','1.050K'],['Thủ Dầu Một','1 chiều · 32km','480K']],
+   util:['Tài xế đường trường','Dừng nghỉ thoải mái','Khứ hồi −5%','Cốp để xe đạp, đồ lớn']},
+  {id:'gp',  img:'p8', num:'8', name:'Xe ghép — đi chung', hot:false, from:'180K', unit:'/ghế · HCM – Vũng Tàu',
+   desc:'Đi chung chia phí cho khách lẻ: xuất phát cố định 7:00 và 13:00 mỗi ngày, đón tận điểm hẹn trong nội thành.',
+   cap:'1 ghế · cố định giờ', pick:{route:'vt',cls:'c4'},
+   qv:[['HCM – Vũng Tàu','Chuyến 7:00 &amp; 13:00','180K/ghế'],['HCM – Biên Hòa','Chuyến 8:00','90K/ghế'],['Đón tận nơi','Nội thành thêm','20–40K']],
+   util:['Giờ chạy cố định','Đón trong nội thành','Đặt ghế qua Zalo','Trả khách tận điểm']}
+];
+const fmt=n=>new Intl.NumberFormat('vi-VN').format(n)+'K';
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+
+/* ================= TOAST — title + message riêng ================= */
+let toastT;
+function toast(title,msg){
+  $('#toastTitle').textContent=title;
+  $('#toastMsg').textContent=msg||'';
+  $('#toast').classList.add('on');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>$('#toast').classList.remove('on'),3400);
+}
+
+/* ================= REVEAL + COUNTERS + SPOTLIGHT ================= */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+$$('.rv').forEach(el=>io.observe(el));
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,to=+el.dataset.to,t0=performance.now();
+    function step(t){
+      const p=Math.min((t-t0)/1400,1),v=to*(1-Math.pow(1-p,3));
+      el.textContent=Math.round(v).toLocaleString('vi-VN');
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);cio.unobserve(el);
+  });
+},{threshold:.5});
+$$('.cnt').forEach(el=>cio.observe(el));
+document.addEventListener('pointermove',e=>{
+  const c=e.target.closest('.svc,.combo');
+  if(!c)return;
+  const r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+});
+
+/* ================= TAPE duplicate ================= */
+$('#tapeIn').innerHTML+=$('#tapeIn').innerHTML;
+
+/* ================= NGÀY GIỜ helper ================= */
+function iso(d){const p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
+const todayStr=iso(new Date());
+function addDays(dstr,n){const d=new Date(dstr+'T00:00:00');d.setDate(d.getDate()+n);return iso(d);}
+function dstrVN(dstr){return new Date(dstr+'T00:00:00').toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'});}
+const DW_NAMES=['CN','T2','T3','T4','T5','T6','T7'];
+const TIMES=['05:00','07:00','09:00','11:00','13:00','15:00','17:00','19:00','21:00'];
+
+/* ================= KHỐI-8 render ================= */
+$('#svcGrid').innerHTML=SERVICES.map(s=>`
+  <article class="svc${s.id==='sb'?' featured':''}${s.id==='dl'?' wide':''} rv" data-svc="${s.id}">
+    <div class="svc-media">
+      <img src="assets/img/${s.img}.webp" alt="${s.name} — Sao Mai Transport" width="1448" height="1086" loading="lazy">
+      <span class="svc-num">${s.num}</span>
+      ${s.hot?'<span class="svc-hot">ĐẶT NHIỀU NHẤT</span>':''}
+    </div>
+    <div class="svc-body">
+      <h3>${s.name}</h3>
+      <span class="svc-desc block">${s.desc}</span>
+      ${s.id==='sb'?`<div class="svc-feats">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Theo dõi giờ bay — chờ trễ miễn phí 30 phút</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Đón đúng cổng D / Quốc tế, hỗ trợ xách vali</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Chuyến 4h sáng đặt từ đêm hôm trước</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Gửi biển số + SĐT tài xế trước khi đón</span>
+      </div>`:''}
+      <div class="svc-meta"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 21c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>${s.cap}</span></div>
+      <div class="svc-price">
+        <span class="pp"><b>${s.from}</b><span>${s.unit}</span></span>
+        <div class="svc-acts">
+          <button class="svc-view" data-qv="${s.id}">Chi tiết</button>
+          <button class="svc-pick" data-svc-pick="${s.id}">Đặt xe</button>
+        </div>
+      </div>
+    </div>
+  </article>`).join('');
+/* rv element render động vẫn cần observe */
+$$('#svcGrid .rv').forEach(el=>io.observe(el));
+
+/* ================= BẢNG GIÁ TUYẾN render ================= */
+$('#fareBody').innerHTML=ROUTES.map(r=>`
+  <tr data-row-route="${r.id}" title="Bấm để tính tuyến này">
+    <td>${r.name}<small>${r.t} di chuyển</small></td>
+    <td class="km">≈ ${r.km} km</td>
+    <td class="mono">${fmt(r.p.c4)}</td>
+    <td class="mono">${fmt(r.p.c7)}</td>
+    <td class="mono">${fmt(r.p.c16)}</td>
+    <td class="cm">${r.t}</td>
+  </tr>`).join('');
+
+/* ================= FILL SELECT tuyến (qbook + engine + drawer + calc) ================= */
+const routeOpts='<option value="">— Chọn tuyến —</option>'+ROUTES.map(r=>`<option value="${r.id}">${r.name}</option>`).join('');
+$('#qbRoute').innerHTML=routeOpts;
+$('#bkRoute').innerHTML=routeOpts;
+$('#dwRoute').innerHTML=routeOpts;
+$('#fcRoute').innerHTML=routeOpts;
+
+/* ================= MÁY TÍNH GIÁ TUYẾN ================= */
+let fcTrip='one', fcCar='c4';
+function chipBind(sel,setter){
+  $$(sel+' .chip').forEach(b=>b.addEventListener('click',()=>{
+    $$(sel+' .chip').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');setter(b);
+  }));
+}
+chipBind('#fcTrip',b=>{fcTrip=b.dataset.trip;fcRender();});
+chipBind('#fcCar',b=>{fcCar=b.dataset.car;fcRender();});
+function fareBase(route,cls){
+  if(!route)return null;
+  if(cls==='om'){
+    if(!route.p.om)return null;
+    return route.p.om;
+  }
+  return route.p[cls];
+}
+function fareTotal(route,cls,trip){
+  const base=fareBase(route,cls);
+  if(base==null)return null;
+  const total=trip==='round'?Math.round(base*2*0.95):base;
+  return{base,total};
+}
+function fcRender(){
+  const r=ROUTES.find(x=>x.id===$('#fcRoute').value);
+  const out=$('#fcOut');
+  if(!r){out.innerHTML='<span class="co-route">Chọn tuyến để xem giá trọn chuyến</span><span class="co-meta"><span>8 tuyến niêm yết sẵn</span></span>';return;}
+  const calc=fareTotal(r,fcCar,fcTrip);
+  if(!calc){
+    out.innerHTML='<span class="co-route">'+r.name+'</span><span class="co-meta"><span>Xe ôm chỉ chạy nội thành — chọn 4/7/16 chỗ cho tuyến này.</span></span>';
+    return;
+  }
+  out.innerHTML=`<span class="co-route">${r.name}</span>
+    <span class="co-meta"><span>≈ ${r.km} km</span><span>${r.t}</span><span>${CAR_LABEL[fcCar]}</span><span>${fcTrip==='round'?'khứ hồi':'1 chiều'}</span></span>
+    <span class="co-price">${fmt(calc.total)}<small>${fcTrip==='round'?' · đã trừ 5% khứ hồi':' / 1 chiều'}</small></span>
+    <div class="co-lines">
+      <span class="cl"><span>Giá tuyến ${CAR_LABEL[fcCar]}</span><b>${fmt(calc.base)}${fcTrip==='round'?' × 2':''}</b></span>
+      ${fcTrip==='round'?'<span class="cl"><span>Giảm khứ hồi 5%</span><b>−'+fmt(calc.base*2-calc.total)+'</b></span>':''}
+      <span class="cl"><span>Thanh toán khi lên xe</span><b>không cọc</b></span>
+    </div>`;
+}
+$('#fcRoute').addEventListener('change',fcRender);
+fcRender();
+$('#fareBody').addEventListener('click',e=>{
+  const tr=e.target.closest('tr[data-row-route]');
+  if(!tr)return;
+  $('#fcRoute').value=tr.dataset.rowRoute;
+  fcRender();
+  toast('Đã chọn tuyến','Máy tính bên phải đã cập nhật giá tuyến này');
+});
+$('#fareCalc').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!$('#fcRoute').value){toast('Chưa chọn tuyến','Hãy chọn 1 tuyến để đặt giờ đón');$('#fcRoute').focus();return;}
+  dwState.route=$('#fcRoute').value;dwState.cls=fcCar;dwState.round=fcTrip==='round';
+  openDrawer();
+});
+
+/* ================= BOOKING ENGINE — tìm xe theo tuyến ================= */
+let bkTrip='one';
+chipBind('#bkTrip',b=>{bkTrip=b.dataset.trip;runEngine();});
+$('#bkDay').value=todayStr;$('#bkDay').min=todayStr;
+$('#qbDay').value=todayStr;$('#qbDay').min=todayStr;
+function runEngine(){
+  const rid=$('#bkRoute').value, day=$('#bkDay').value||todayStr, time=$('#bkTime').value;
+  const r=ROUTES.find(x=>x.id===rid);
+  $('#resMeta').textContent=(r?r.t:'—')+' · '+dstrVN(day)+' '+time;
+  const box=$('#availList');
+  if(!r){
+    $('#resTitle').textContent='Xe trống theo tuyến';
+    box.innerHTML='<div class="av-full"><span class="b">⌖</span>Chọn tuyến đi ở khung bên trái — hệ thống liệt kê xe trống kèm giá trọn chuyến.</div>';
+    return;
+  }
+  $('#resTitle').textContent='Xe trống — '+r.name;
+  const list=CARS_BK.map(c=>({...c,calc:fareTotal(r,c.id,bkTrip)})).filter(c=>c.calc);
+  box.innerHTML=list.map(c=>`
+    <div class="av-item">
+      <span class="av-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg></span>
+      <div class="av-info mini">
+        <span class="an block">${c.name}</span>
+        <span class="am block"><span>${c.cap}</span><span>xe đến sớm 10 phút</span></span>
+        <span style="font-size:.78rem;color:var(--soft)">${r.t} · ${dstrVN(day)} ${time}${bkTrip==='round'?' · khứ hồi −5%':''}</span>
+      </div>
+      <div class="av-meta">
+        <span class="mini"><span class="av-pr block">${fmt(c.calc.total)}</span><span class="av-pu block">${bkTrip==='round'?'2 chiều':'1 chiều'} · trọn chuyến</span></span>
+        <button class="av-btn" data-bk-pick="${c.id}">Đặt giờ đón</button>
+      </div>
+    </div>`).join('');
+}
+$('#bkForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!$('#bkRoute').value){toast('Chưa chọn tuyến','Chọn tuyến đi để xem xe trống nhé');$('#bkRoute').focus();return;}
+  runEngine();
+});
+$('#bkRoute').addEventListener('change',runEngine);
+$('#bkTime').addEventListener('change',runEngine);
+$('#bkDay').addEventListener('change',runEngine);
+runEngine();
+
+/* ================= QUICK BOOK (hero) → engine ================= */
+$('#qBook').addEventListener('submit',e=>{
+  e.preventDefault();
+  $('#bkRoute').value=$('#qbRoute').value;
+  $('#bkDay').value=$('#qbDay').value||todayStr;
+  $('#bkTime').value=$('#qbTime').value;
+  document.getElementById('dat-xe').scrollIntoView({behavior:'smooth'});
+  if(!$('#qbRoute').value){toast('Chưa chọn tuyến','Chọn tuyến ở thanh tìm nhanh để xem giá');}
+  setTimeout(runEngine,350);
+});
+
+/* ================= DRAWER — đặt xe trước ================= */
+const drawer=$('#drawer');
+const dwState={route:null,cls:'c4',day:todayStr,time:'09:00',round:false};
+let dwDone=false;
+const dwBodyEl=$('#dwBody');
+const dwBodyHTML=dwBodyEl.innerHTML; /* lưu khung gốc — khôi phục sau khi đặt xong */
+function initDwControls(){
+  /* chips loại xe */
+  $('#dwCar').innerHTML=CARS_BK.map(c=>`<button type="button" class="dw-carbtn${c.id===dwState.cls?' on':''}" data-dwcar="${c.id}"><span class="cn">${c.name}</span><span class="cp">${c.cap}</span></button>`).join('');
+  $$('#dwCar .dw-carbtn').forEach(b=>b.addEventListener('click',()=>{
+    $$('#dwCar .dw-carbtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');dwState.cls=b.dataset.dwcar;renderDrawer();
+  }));
+  /* chips 1 chiều / khứ hồi */
+  $$('#dwRound .chip').forEach(b=>b.classList.toggle('on',dwState.round===(b.dataset.round==='1')));
+  $$('#dwRound .chip').forEach(b=>b.addEventListener('click',()=>{
+    $$('#dwRound .chip').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');dwState.round=b.dataset.round==='1';renderDrawer();
+  }));
+  /* ngày chips — 8 ngày + nút thêm */
+  dwDays=[];for(let i=0;i<8;i++)dwDays.push(addDays(todayStr,i));
+  renderDwDays();
+  /* giờ chips */
+  $('#dwSlots').innerHTML=TIMES.map(t=>`<button type="button" class="dw-slot${t===dwState.time?' on':''}" data-time="${t}">${t}</button>`).join('');
+  $$('#dwSlots .dw-slot').forEach(b=>b.addEventListener('click',()=>{
+    $$('#dwSlots .dw-slot').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');dwState.time=b.dataset.time;renderDrawer();
+  }));
+  $('#dwRoute').value=dwState.route||'';
+  $('#dwRoute').addEventListener('change',()=>{dwState.route=$('#dwRoute').value||null;renderDrawer();});
+}
+function openDrawer(){
+  if(dwDone){ /* sau khi đặt xong — khôi phục form đặt xe mới */
+    dwDone=false;dwBodyEl.innerHTML=dwBodyHTML;initDwControls();
+  }
+  document.body.classList.add('drawer-open');
+  document.body.style.overflow='hidden';
+  renderDrawer();
+}
+function closeDrawer(){document.body.classList.remove('drawer-open');document.body.style.overflow='';}
+$('#drawerBg').addEventListener('click',closeDrawer);
+$('#dwClose').addEventListener('click',closeDrawer);
+/*NB93-209: delegation cho link xem bảng giá trong drawer (chịu cả sau khi khôi phục innerHTML)*/
+document.addEventListener('click',e=>{if(e.target.closest('#dwBrowse'))closeDrawer();});
+$$('[data-open-drawer]').forEach(b=>b.addEventListener('click',()=>openDrawer()));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeQV();}});
+
+/* ngày chips — render + nút ＋ thêm tuần */
+let dwDays=[];
+function renderDwDays(){
+  let html=dwDays.map(d=>{
+    const dt=new Date(d+'T00:00:00');
+    return `<button type="button" class="dw-day${dwState.day===d?' on':''}" data-day="${d}"><span class="dd block">${d===todayStr?'H.nay':DW_NAMES[dt.getDay()]}</span><span class="dn block">${dt.getDate()}</span></button>`;
+  }).join('');
+  html+='<button type="button" class="dw-day day-more" data-daymore="1" aria-label="Thêm tuần">＋</button>';
+  $('#dwDays').innerHTML=html;
+  $$('#dwDays .dw-day[data-day]').forEach(b=>b.addEventListener('click',()=>{
+    $$('#dwDays .dw-day').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');dwState.day=b.dataset.day;renderDrawer();
+  }));
+  const mb=$('#dwDays [data-daymore]');
+  if(mb)mb.addEventListener('click',()=>{
+    const last=dwDays[dwDays.length-1];
+    for(let k=1;k<=6;k++)dwDays.push(addDays(last,k));
+    renderDwDays();
+    const el=$('#dwDays');if(el)el.scrollLeft=el.scrollWidth;
+  });
+}
+initDwControls();
+
+function drawerCalc(){
+  const r=ROUTES.find(x=>x.id===dwState.route);
+  if(!r||dwDone)return null;
+  const c=fareTotal(r,dwState.cls,dwState.round?'round':'one');
+  if(!c)return null;
+  let sur=0;const lines=[];
+  lines.push(['Giá tuyến '+CAR_LABEL[dwState.cls]+(dwState.round?' × 2 chiều':''),c.base]);
+  if(dwState.round&&c.base*2>c.total)lines.push(['Giảm khứ hồi 5%','−'+fmt(c.base*2-c.total),'neg']);
+  if(dwState.time==='05:00'){sur=20;lines.push(['Phụ thu đón sớm 5h sáng','+'+fmt(sur),'sur']);}
+  return{r,c,lines,sur,total:c.total+sur};
+}
+function renderDrawer(){
+  const sum=$('#dwSum');
+  if(!sum)return; /*NB93-209: sau khi đặt xong #dwSum không tồn tại — không throw*/
+  /* đồng bộ highlight chip + select khi route/class được nạp từ ngoài (thẻ, engine, gói) */
+  const rs=$('#dwRoute');if(rs&&rs.value!==(dwState.route||''))rs.value=dwState.route||'';
+  $$('#dwCar .dw-carbtn').forEach(b=>b.classList.toggle('on',b.dataset.dwcar===dwState.cls));
+  $$('#dwRound .chip').forEach(b=>b.classList.toggle('on',(b.dataset.round==='1')===dwState.round));
+  $$('#dwSlots .dw-slot').forEach(b=>b.classList.toggle('on',b.dataset.time===dwState.time));
+  $$('#dwDays .dw-day[data-day]').forEach(b=>b.classList.toggle('on',b.dataset.day===dwState.day));
+  const calc=drawerCalc();
+  if(!calc){
+    const rSel=ROUTES.find(x=>x.id===dwState.route);
+    const why=(dwState.route&&!fareTotal(rSel,dwState.cls,dwState.round?'round':'one'))
+      ?'Xe ôm không chạy tuyến liên tỉnh — chọn 4/7/16 chỗ'
+      :'Chưa chọn tuyến — chọn tuyến ở mục 1';
+    sum.innerHTML='<div class="dw-row"><span>Tuyến</span><span class="dv" data-empty="1">'+why+'</span></div>';
+    return;
+  }
+  sum.innerHTML=calc.lines.map(l=>`<div class="dw-row${l[2]||''}"><span>${l[0]}</span><span class="dv${l[2]==='neg'?' neg':''}">${l[1]}</span></div>`).join('')
+    +`<div class="dw-row"><span>Khung giờ đón</span><span class="dv">${dstrVN(dwState.day)} · ${dwState.time}</span></div>`
+    +`<div class="dw-row total"><span>Tạm tính — trả khi lên xe</span><span class="dv">${fmt(calc.total)}</span></div>`;
+}
+renderDrawer();
+
+/* ================= CONFIRM → MÃ XÁC NHẬN ================= */
+$('#dwConfirm').addEventListener('click',()=>{
+  if(dwDone)return;
+  if(!dwState.route){toast('Chưa chọn tuyến','Chọn tuyến đi ở mục 1 trước nhé');$('#dwRoute').focus();return;}
+  const addr=$('#dwAddr').value.trim(),name=$('#dwName').value.trim(),phone=$('#dwPhone').value.trim();
+  if(addr.length<4){toast('Thiếu địa chỉ đón','Ghi rõ địa chỉ để tài xế đón đúng chỗ');$('#dwAddr').focus();return;}
+  if(name.length<2){toast('Thiếu họ tên','Điền tên người đi để điều hành liên hệ');$('#dwName').focus();return;}
+  if(!/^0\d{8,9}$/.test(phone.replace(/[\s.]/g,''))){toast('SĐT chưa đúng','Ví dụ: 0903456789');$('#dwPhone').focus();return;}
+  const calc=drawerCalc();
+  if(!calc){toast('Chưa tính được giá','Bạn vui lòng chọn lại tuyến nhé');return;}
+  const code='SMTC-'+Math.floor(1000+Math.random()*9000);
+  dwDone=true;
+  $('#dwBody').innerHTML=`
+    <div class="dw-success">
+      <span class="ok-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h4>Đặt xe thành công!</h4>
+      <p class="sub">Mã xác nhận đã tạo — điều hành gọi lại kèm biển số xe trong 60 giây.</p>
+      <div class="bk-code">
+        <span class="bl block">Mã chuyến của bạn</span>
+        <span class="bv block">${code}</span>
+        <div class="bsum"><span>${calc.r.name}</span><span>${dstrVN(dwState.day)} · ${dwState.time}</span></div>
+        <div class="bsum"><span>${CAR_LABEL[dwState.cls]} · ${name} · ${phone}</span><span><b>${fmt(calc.total)}</b></span></div>
+        <div class="bsum"><span>Đón tại: ${addr}</span><span>${dwState.round?'khứ hồi':'1 chiều'}</span></div>
+      </div>
+      <p class="sub" style="font-size:.82rem">Tài xế gọi trước 30 phút, xe đến sớm 10 phút. Thanh toán khi lên xe — hủy miễn phí trước 1h.</p>
+      <button class="btn btn-d btn-full" onclick="location.reload()">Đặt thêm chuyến khác</button>
+    </div>`;
+  toast('Đã tạo mã '+code,'Kiểm tra Zalo/SMS — điều hành gọi lại ngay');
+});
+
+/* ================= DELEGATION: chọn nhanh từ thẻ/bảng ================= */
+document.addEventListener('click',e=>{
+  const sp=e.target.closest('[data-svc-pick]');
+  if(sp){
+    const s=SERVICES.find(x=>x.id===sp.dataset.svcPick);
+    if(s&&s.pick){
+      if(s.pick.route)dwState.route=s.pick.route;
+      if(s.pick.cls)dwState.cls=s.pick.cls;
+      toast('Đã chọn '+s.name,'Chốt ngày giờ đón để nhận mã xác nhận');
+    }
+    openDrawer();return;
+  }
+  const bp=e.target.closest('[data-bk-pick]');
+  if(bp){
+    dwState.route=$('#bkRoute').value;dwState.cls=bp.dataset.bkPick;dwState.round=bkTrip==='round';
+    dwState.day=$('#bkDay').value||todayStr;dwState.time=$('#bkTime').value;
+    toast('Đã chọn '+CAR_LABEL[bp.dataset.bkPick],'Chốt thông tin đón để nhận mã');
+    openDrawer();return;
+  }
+  const pr=e.target.closest('[data-pick-route]');
+  if(pr){
+    const parts=pr.dataset.pickRoute.split('|');
+    dwState.route=parts[0];dwState.cls=parts[1];dwState.round=parts[2]==='round';
+    toast('Đã chọn gói khứ hồi sân bay','Chốt ngày giờ để giữ xe 2 chiều');
+    openDrawer();return;
+  }
+  const ev=e.target.closest('[data-event]');
+  if(ev){
+    $('#cfNeed').value=ev.dataset.event.indexOf('cưới')>-1?'Gói đám cưới / sự kiện':'Gói đám cưới / sự kiện';
+    document.getElementById('lien-he').scrollIntoView({behavior:'smooth'});
+    toast('Đã ghi nhận '+ev.dataset.event,'Điền form để nhận lịch trống + báo giá trọn gói');
+    return;
+  }
+  const ct=e.target.closest('[data-contract]');
+  if(ct){
+    $('#cfNeed').value='Hợp đồng đưa đón theo tháng';
+    document.getElementById('lien-he').scrollIntoView({behavior:'smooth'});
+    toast('Form hợp đồng đã sẵn','Ghi thêm số nhân viên + tuyến để nhận báo giá nhanh');
+    return;
+  }
+  const qv=e.target.closest('[data-qv]');
+  if(qv){openQV(qv.dataset.qv);return;}
+});
+
+/* ================= HỢP ĐỒNG THÁNG — máy tính ================= */
+const HC_PRICE={c16:320,c29:450,c4:240};
+function hcRender(){
+  const cls=$('#hcCar').value,trips=+$('#hcTrips').value,days=+$('#hcDays').value;
+  const unit=HC_PRICE[cls],slots=trips*days;
+  const gross=unit*slots;
+  const rate=slots>=200?0.12:(slots>=120?0.08:0);
+  const disc=Math.round(gross*rate);
+  const label={c16:'Xe 16 chỗ',c29:'Xe 29 chỗ',c4:'Xe 4 chỗ'}[cls];
+  $('#hcOut').innerHTML=`
+    <span class="co-route">${label} · ${trips} lượt/ngày × ${days} ngày</span>
+    <span class="co-meta"><span>${slots} lượt/tháng</span><span>tài xế cố định</span><span>VAT đầy đủ</span></span>
+    <span class="co-price">${fmt(gross-disc)}<small> /tháng</small></span>
+    <div class="co-lines">
+      <span class="cl"><span>Đơn giá/lượt</span><b>${fmt(unit)}</b></span>
+      <span class="cl"><span>Thành tiền ${slots} lượt</span><b>${fmt(gross)}</b></span>
+      <span class="cl"><span>Giảm sản lượng ${rate>0?'−'+Math.round(rate*100)+'%':''}</span><b>${disc>0?'−'+fmt(disc):'—'}</b></span>
+      <span class="cl"><span>Xe dự phòng khi hỏng</span><b>miễn phí</b></span>
+    </div>`;
+}
+$('#hcCar').addEventListener('change',hcRender);
+$('#hcTrips').addEventListener('change',hcRender);
+$('#hcDays').addEventListener('change',hcRender);
+hcRender();
+$('#hdCalc').addEventListener('submit',e=>{
+  e.preventDefault();
+  $('#cfNeed').value='Hợp đồng đưa đón theo tháng';
+  document.getElementById('lien-he').scrollIntoView({behavior:'smooth'});
+  toast('Bảng tính đã lưu','Điền tên + SĐT — phòng hợp đồng gọi lại trong 30 phút');
+});
+
+/* ================= QUICK VIEW ================= */
+const qvModal=$('#qvModal');
+function openQV(id){
+  const s=SERVICES.find(x=>x.id===id);if(!s)return;
+  $('#qvImg').src='assets/img/'+s.img+'.webp';$('#qvImg').alt=s.name;
+  $('#qvName').textContent=s.name;
+  $('#qvMeta').innerHTML=`<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 21c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>${s.cap}</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19h16M7 15l5-6 5 6"/></svg>${s.from} ${s.unit}</span>`;
+  $('#qvPrices').innerHTML=s.qv.map(x=>`<tr><td><b>${x[0]}</b></td><td style="color:var(--soft)">${x[1]}</td><td class="mp">${x[2]}</td></tr>`).join('');
+  $('#qvUtils').innerHTML=s.util.map(u=>'<i>'+u+'</i>').join('');
+  $('#qvPick').onclick=()=>{closeQV();
+    if(s.pick){if(s.pick.route)dwState.route=s.pick.route;if(s.pick.cls)dwState.cls=s.pick.cls;}
+    openDrawer();};
+  qvModal.classList.add('on');document.body.style.overflow='hidden';
+}
+function closeQV(){qvModal.classList.remove('on');document.body.style.overflow='';}
+$$('[data-close-qv]').forEach(b=>b.addEventListener('click',closeQV));
+
+/* ================= REVIEWS ================= */
+const REVS=[
+  {n:'Lan Anh',t:'Khách sân bay · 4h30 sáng',s:5,x:'Đặt chuyến 4h30 ra Tân Sơn Nhất, xe có mặt trước 15 phút, tài xế hỗ trợ xách vali. Từ đêm hôm trước đã nhận Zalo mã chuyến + biển số — yên tâm tuyệt đối.'},
+  {n:'Anh Quốc',t:'Hợp đồng tháng · xưởng may 32 nhân viên',s:5,x:'32 công nhân đi ca 6h sáng. Ba tháng nay không ngày nào thiếu xe, hợp đồng ghi trễ 5 phút tính lỗi bên vận tải — chưa phải trừ lần nào. Cuối tháng đối soát lượt cực gọn.'},
+  {n:'Ý Nhi',t:'Đưa khách đám cưới · Q.7',s:5,x:'8 lượt chở họ hàng giữa 2 điểm, bác trưởng đoàn đứng xếp khách lên xe nên không ai bị bỏ lại. Chi cuối ngày đúng với báo giá, không phát sinh.'},
+  {n:'Minh Đạt',t:'Vũng Tàu khứ hồi · xe 7 chỗ',s:4,x:'Xe sạch, chạy êm, ghé trạm dừng không tính thêm. Chiều về giờ cao điểm chậm hơn cam kết 15 phút nên chấm 4/5 — bù lại tài xế chủ động báo trước.'},
+  {n:'Phương Thảo',t:'Thuê xe theo giờ · công tác',s:5,x:'Chạy 5 điểm gặp khách trong buổi sáng, tài xế nhớ tuyến và chờ không than phí. Hóa đơn VAT xuất ngay đầu tháng sau, kế toán khỏi phải hỏi lại.'}
+];
+let revIdx=0,revTimer;
+$('#revTrack').innerHTML=REVS.map(r=>`
+  <div class="rev-slide">
+    <div class="rev-stars">${'★'.repeat(r.s)}${'☆'.repeat(5-r.s)}</div>
+    <p>"${r.x}"</p>
+    <div class="rev-who"><span class="rw-av">${r.n.charAt(0)}</span><span class="mini"><b class="block">${r.n}</b><span class="block">${r.t}</span></span></div>
+  </div>`).join('');
+$('#revDots').innerHTML=REVS.map((_,i)=>`<i class="${i===0?'on':''}" data-ri="${i}"></i>`).join('');
+function revGo(i){
+  revIdx=(i+REVS.length)%REVS.length;
+  $('#revTrack').style.transform='translateX(-'+revIdx*100+'%)';
+  $$('#revDots i').forEach((d,j)=>d.classList.toggle('on',j===revIdx));
+}
+function revAuto(){clearInterval(revTimer);revTimer=setInterval(()=>revGo(revIdx+1),6000);}
+$$('#revDots i').forEach(d=>d.addEventListener('click',()=>{revGo(+d.dataset.ri);revAuto();}));
+revAuto();
+
+/* ================= FAQ ================= */
+const FAQ=[
+  {t:'Đặt trước bao lâu thì có xe?',c:'dat',a:'Nội thành tối thiểu trước 30 phút; sân bay và đường dài đặt trước 3 tiếng. Khung 4h–5h sáng nên đặt từ đêm hôm trước để điều hành xếp xe sớm nhất. Đơn gấp gọi 0903 456 789 — xe gần nhất vẫn ghép được trong 15 phút.'},
+  {t:'Máy bay trễ có tính phí chờ không?',c:'dat',a:'Không — chúng tôi theo dõi số hiệu chuyến bay của bạn. Chờ miễn phí 30 phút sau giờ hạ cánh; quá 30 phút tính 100K/30 phút, và bạn nhắn trước thì miễn toàn bộ. Tài xế đón đúng cổng D (nội địa) hoặc cổng Quốc tế.'},
+  {t:'Giá tính thế nào, có phát sinh không?',c:'gia',a:'Giá niêm yết trọn chuyến theo bảng tuyến trên web — đã gồm xăng xe, tài xế. Chỉ có phí cầu đường, bãi đỗ tính thực chi nếu có và được báo trước khi xác nhận chuyến. Khung 22:00–05:00 cộng phụ thu đêm 20K/chuyến, hiển thị thẳng trong tổng tiền khi đặt.'},
+  {t:'Thanh toán và hóa đơn ra sao?',c:'tien',a:'Thanh toán khi lên xe: tiền mặt, chuyển khoản, MoMo/ZaloPay/VNPay-QR. Khách cá nhân nhận hóa đơn VAT qua email; khách doanh nghiệp hợp đồng đối soát theo lượt cuối tháng, xuất hóa đơn cả kỳ.'},
+  {t:'Hợp đồng đưa đón tháng hoạt động thế nào?',c:'hd',a:'Ký từ 3 tháng trở lên: cam kết số xe, giờ đón, tuyến cố định bằng văn bản; tài xế cố định quen tuyến; xe hỏng có xe dự phòng thế trong 60 phút; trễ 5 phút tính lỗi bên vận tải. Đối soát theo bảng lượt/ngày ký confirm, giảm 8–12% theo sản lượng.'},
+  {t:'Đám cưới tính xe thế nào?',c:'cuoi',a:'Tính theo gói lượt giữa 2 điểm (nhà → nhà hàng). Có trưởng đoàn đứng bố trí khách lên từng lượt, chờ tại tiệc không tính phí, trang trí hoa xe miễn phí cho xe chính. Thanh toán cuối ngày theo số lượt thực chạy — cọc chỉ giữ 20% lịch.'},
+  {t:'Hủy hoặc đổi chuyến thế nào?',c:'dat',a:'Nội thành hủy/đổi miễn phí trước 1h; sân bay và đường dài trước 3h. Trong khung đó giữ 30% giá chuyến. Đổi giờ cùng ngày miễn phí nếu còn xe — nhắn Zalo là điều hành xử lý ngay.'}
+];
+const CATS={all:'Tất cả',dat:'Đặt xe & sân bay',gia:'Giá & phụ thu',hd:'Hợp đồng tháng',cuoi:'Đám cưới',tien:'Thanh toán'};
+let faqCat='all',faqQ='';
+function faqRender(){
+  const list=FAQ.map((f,i)=>({...f,i})).filter(f=>
+    (faqCat==='all'||f.c===faqCat)&&(f.t+' '+f.a).toLowerCase().includes(faqQ));
+  $('#faqNone').style.display=list.length?'none':'block';
+  $('#faqList').innerHTML=list.map(f=>`
+    <div class="faq-it" data-fi="${f.i}">
+      <button class="faq-q">${f.t}<span class="fx">+</span></button>
+      <div class="faq-a"><div class="inner">${f.a}</div></div>
+    </div>`).join('');
+  $$('#faqList .faq-it').forEach(it=>it.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    $$('#faqList .faq-it').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){
+      it.classList.add('open');
+      const a=it.querySelector('.faq-a');
+      a.style.maxHeight=a.scrollHeight+'px';
+    }
+  }));
+}
+$('#faqChips').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="fchip${k==='all'?' on':''}" data-fc="${k}">${v}</button>`).join('');
+$$('#faqChips .fchip').forEach(c=>c.addEventListener('click',()=>{
+  $$('#faqChips .fchip').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');faqCat=c.dataset.fc;faqRender();
+}));
+$('#faqSearch').addEventListener('input',e=>{faqQ=e.target.value.trim().toLowerCase();faqRender();});
+faqRender();
+
+/* ================= HEADER SEARCH — typeahead tuyến & dịch vụ ================= */
+const hdSearch=$('#hdSearch'),sPop=$('#sPop');
+const SEARCH_IDX=[
+  ...SERVICES.map(s=>({label:s.name,sub:s.from+' '+s.unit,img:s.img,act:()=>openQV(s.id)})),
+  ...ROUTES.map(r=>({label:r.name,sub:'≈ '+r.km+' km · từ '+fmt(Math.min(r.p.c4,r.p.c7,r.p.c16)),img:null,act:()=>{
+    $('#bkRoute').value=r.id;runEngine();
+    document.getElementById('dat-xe').scrollIntoView({behavior:'smooth'});
+    toast('Đã nạp tuyến','Xem xe trống và chốt giờ đón nhé');
+  }}))
+];
+hdSearch.addEventListener('input',()=>{
+  const q=hdSearch.value.trim().toLowerCase();
+  if(!q){sPop.classList.remove('on');return;}
+  const hits=SEARCH_IDX.filter(x=>x.label.toLowerCase().includes(q)).slice(0,5);
+  sPop.innerHTML=hits.length
+    ?hits.map((h,i)=>`<div class="s-it" data-si="${i}">${h.img?`<img src="assets/img/${h.img}.webp" alt="" width="52" height="38">`:'<span style="width:52px;height:38px;border-radius:8px;background:var(--primary-soft);display:grid;place-items:center;color:var(--primary);flex:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 16 6.2 9.5A2 2 0 0 1 8.2 8h7.6a2 2 0 0 1 2 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/></svg></span>'}<span class="mini"><span class="st block">${h.label}</span><span class="sp block">${h.sub}</span></span></div>`).join('')
+    :'<div class="s-it"><span class="mini"><span class="st block">Không thấy khớp</span><span class="sp block">Thử: sân bay, Vũng Tàu, 7 chỗ, ghép</span></span></div>';
+  $$('#sPop .s-it[data-si]').forEach(el=>el.addEventListener('click',()=>{
+    sPop.classList.remove('on');hdSearch.value='';
+    SEARCH_IDX[+el.dataset.si].act();
+  }));
+  sPop.classList.add('on');
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.search'))sPop.classList.remove('on');});
+hdSearch.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){e.preventDefault();sPop.classList.remove('on');document.getElementById('loai-xe').scrollIntoView({behavior:'smooth'});}
+});
+
+/* ================= FAB hide ở hero + toTop ================= */
+const fab=$('#fab');
+new IntersectionObserver(es=>{fab.classList.toggle('hide',es[0].isIntersecting);},{threshold:.2}).observe($('.hero'));
+$('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ================= CONTACT FORM ================= */
+$('#ctForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=$('#cfName').value.trim(),p=$('#cfPhone').value.trim();
+  if(n.length<2){toast('Thiếu họ tên','Điền tên để điều hành gọi lại nhé');$('#cfName').focus();return;}
+  if(!/^0\d{8,9}$/.test(p.replace(/[\s.]/g,''))){toast('SĐT chưa đúng','Ví dụ: 0903456789');$('#cfPhone').focus();return;}
+  toast('Đã gửi yêu cầu','Điều hành gọi lại chốt xe trong 30 phút');
+  e.target.reset();
+});
+</script>
+<script>
+/*NB93-209: FAILSAFE — element reveal bị kẹt tự hiện sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in');}
+});
+}catch(e){}},1600);})();
+</script>
+<script>
+/*NB93-209: dock tự ẩn khi cuộn xuống — không che CTA*/
+(function(){var f=document.getElementById('fab');if(!f)return;var last=window.scrollY;
+window.addEventListener('scroll',function(){var y=window.scrollY;
+if(y>last&&y>240){f.classList.add('hide')}else if(y<last){f.classList.remove('hide')}last=y;},{passive:true});})();
+</script>
+</body>
+</html>

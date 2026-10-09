@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gas Bếp Ấm — Cửa hàng gas &amp; nhiên liệu gia đình | Đổi bình tận nơi trong 2 giờ</title>
+<meta name="description" content="Gas Bếp Ấm — bình gas 12kg đổi tận nhà trong 2 giờ, bếp gas, van điều áp, dây dẫn an toàn, kiểm tra rò rỉ miễn phí, gói gas định kỳ. Tính 'bình còn mấy ngày' ngay trên web.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"GroceryStore","name":"Gas Bếp Ấm","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"24 Ngõ Bếp Ấm, P. An Tâm","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7905,"longitude":106.6883},"openingHours":"Mo-Su 06:30-21:30","priceRange":"45.000đ-790.000đ"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*NB110-373*/
+:root{
+  --teal:#0E6B5B; --teal-2:#0F8168; --teal-deep:#073E34; --teal-soft:#E4F0EA; --teal-mist:#F0F6F1;
+  --red:#CE3A34; --red-2:#A82822; --amber:#F2A93B;
+  --bg:#FAF6EE; --paper:#FFFDF8; --ink:#25332E; --mut:#6E7F78; --line:#E3DCCE;
+  --ok:#2F9E6E; --bad:#C93B3B;
+  --sh:0 10px 26px rgba(7,62,52,.10);
+  --r:16px;
+  --head:'Baloo 2','Segoe UI',system-ui,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,.head{font-family:var(--head);line-height:1.28;letter-spacing:.2px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--red);font-weight:700}
+.kicker svg{width:15px;height:15px;flex:none}
+.sec-head h2{font-size:clamp(26px,4vw,36px);margin:8px 0 10px;color:var(--teal-deep)}
+.sec-head p{color:var(--mut)}
+
+/* van gas — thiết bị lặp lại của site */
+.valve{width:30px;height:16px;border-radius:99px 99px 4px 4px;background:linear-gradient(180deg,#3E5750,#26352F);position:relative;margin:0 auto;box-shadow:inset 0 2px 0 rgba(255,255,255,.25)}
+.valve::before{content:"";position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:12px;height:8px;border-radius:99px 99px 0 0;background:linear-gradient(180deg,#5E7A72,#31443E)}
+.valve::after{content:"";position:absolute;left:50%;top:-9px;transform:translateX(-50%);width:5px;height:6px;border-radius:99px;background:#8AA39A}
+
+/* ===== TOPBAR + HEADER ===== */
+.topbar{background:var(--teal-deep);color:#CFE4DB;font-size:12.5px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:38px;flex-wrap:wrap;padding-top:4px;padding-bottom:4px}
+.topbar span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar b{color:#fff}
+header{position:sticky;top:0;z-index:60;background:rgba(250,246,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:14px 14px 10px 10px;background:var(--teal);color:#FFE9C7;display:grid;place-items:center;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+.logo .mark svg{width:24px;height:24px}
+.logo b{font-family:var(--head);font-size:18px;color:var(--teal-deep);display:block;line-height:1.15;white-space:nowrap}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 12px;border-radius:10px;font-size:14px;font-weight:700;color:var(--teal);white-space:nowrap}
+nav.main a:hover{background:var(--teal-soft)}
+.hd-right{display:flex;align-items:center;gap:8px;margin-left:8px}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 13px;font-weight:800;font-size:13.5px;color:var(--teal-deep);min-height:42px;white-space:nowrap}
+.call:hover{border-color:var(--teal-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-a{background:var(--red);color:#fff;box-shadow:0 8px 18px rgba(206,58,52,.30)}
+.btn-a:hover{background:var(--red-2)}
+.btn-g{background:var(--paper);color:var(--teal-deep);border:1.5px solid var(--line)}
+.btn-g:hover{border-color:var(--teal-2);color:var(--teal-2)}
+.btn-t{background:var(--teal);color:#fff}
+.btn-t:hover{background:var(--teal-2)}
+
+/* ===== HERO — vòm bếp: panel teal trái + poster nguyên khung phải ===== */
+.hero{background:linear-gradient(180deg,var(--teal-mist) 0%,var(--bg) 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(14,107,91,.05) 0 2px,transparent 2px 88px);pointer-events:none}
+.hero-g{display:grid;grid-template-columns:1.02fr .98fr;gap:38px;align-items:center;padding:50px 0 54px;position:relative}
+.hero .kicker{margin-bottom:12px}
+.hero h1{font-size:clamp(30px,4.6vw,46px);color:var(--teal-deep);margin-bottom:14px;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--red);position:relative;white-space:nowrap}
+.hero h1 em svg{width:.72em;height:.72em;vertical-align:-.06em}
+.hero p.lead{color:#4C5F58;font-size:15.5px;max-width:490px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap}
+.hero-stats div b{font-family:var(--head);font-size:22px;color:var(--teal-deep);display:block;line-height:1.2}
+.hero-stats div span{font-size:12.5px;color:var(--mut)}
+.hero-pic{position:relative;padding-top:10px}
+/*NB110-373 — khung "tem bình": poster nguyên khung 3:2, nắp van trên đỉnh, tem đỏ tím sát*/
+.tkt{background:var(--teal-deep);padding:14px 14px 16px;border-radius:20px 20px 14px 14px;box-shadow:var(--sh)}
+.tkt img{border-radius:10px;width:100%}
+.tkt .valve{margin:-24px auto 10px}
+.stamp{position:absolute;top:26px;right:-8px;background:var(--red);color:#fff;font-family:var(--head);font-weight:700;font-size:12.5px;letter-spacing:.6px;padding:9px 14px;border-radius:12px 12px 12px 2px;box-shadow:0 8px 18px rgba(206,58,52,.35);transform:rotate(2deg)}
+.poster-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid var(--line);border-radius:99px;padding:9px 15px;font-size:13px;font-weight:700;color:var(--teal-deep)}
+.pchip i{font-style:normal;background:var(--teal-soft);border-radius:99px;width:26px;height:26px;display:grid;place-items:center;font-size:13px}
+
+/* ===== TIỆN ÍCH 3 ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start}
+.svc .ic{width:46px;height:46px;flex:none;border-radius:14px 14px 8px 8px;background:var(--teal-soft);display:grid;place-items:center;font-size:21px}
+.svc b{display:block;font-family:var(--head);font-size:15px;color:var(--teal-deep)}
+.svc span{font-size:13px;color:var(--mut)}
+
+/* ===== BẢNG MẶT HÀNG — KHỐI 8: lưới kín ô 3×3, 1 thẻ nổi bật rộng 2 ô ===== */
+/*NB110-373 — ngữ pháp riêng: mỗi thẻ có nắp van trên đỉnh như một bình gas đứng,
+  poster hiển thị NGUYÊN KHUNG 3:2 (không crop cắt chữ)*/
+.rack-sec{background:linear-gradient(180deg,var(--bg),var(--teal-mist))}
+.rack-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 18px}
+/*NB110-373 — thẻ nổi bật = banner rộng cả hàng (ảnh poster 3:2 trái + nội dung phải);
+  6 thẻ thường 3+3; dải "giao nhanh miễn phí" trải rộng dưới lưới → mọi hàng kín ô*/
+.card.wide{grid-column:1/-1;flex-direction:row;align-items:center}
+.card.wide .ph{width:56%;flex:none;background:transparent}
+.card.wide .ph img{margin:0 auto}
+.card.wide .bd{padding:10px 2px 10px 0}
+.card.wide h3{font-size:clamp(20px,2.4vw,26px)}
+.card.wide p{font-size:13.5px}
+.free-strip{margin-top:20px;background:var(--paper);border:1.5px dashed var(--teal-2);border-radius:var(--r);padding:16px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.free-strip .fl{width:42px;height:42px;flex:none;border-radius:14px 14px 8px 8px;background:var(--teal-soft);display:grid;place-items:center;font-size:20px}
+.free-strip .tx{min-width:0;flex:1}
+.free-strip .tx b{display:block;font-family:var(--head);font-size:16px;color:var(--teal-deep)}
+.free-strip .tx span{font-size:13px;color:var(--mut)}
+.free-strip .pri{margin-left:auto}
+.card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:6px 6px var(--r) var(--r);padding:22px 14px 0;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.card .valve{margin:-30px auto 10px}
+.card .ph{border-radius:10px;overflow:hidden;background:var(--teal-mist)}
+.card .ph img{width:100%}
+.card .bd{padding:13px 4px 15px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);border-radius:99px;padding:4px 11px}
+.card h3{font-size:16.5px;color:var(--teal-deep);line-height:1.3}
+.card.feat h3{font-size:20px}
+.card p{font-size:12.8px;color:var(--mut);flex:1}
+.card .ft{display:flex;align-items:center;gap:10px}
+.pri{font-weight:800;color:var(--red);font-size:16px;line-height:1.25}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.card.feat .pri{font-size:19px}
+.add{margin-left:auto;border:0;background:var(--teal);color:#fff;border-radius:11px;padding:10px 15px;font-weight:700;font-size:13px;min-height:42px;white-space:normal;text-align:center}
+.add:hover{background:var(--red)}
+.badge{position:absolute;top:-12px;left:12px;background:var(--red);color:#fff;font-family:var(--head);font-size:11.5px;font-weight:700;border-radius:99px;padding:6px 13px;letter-spacing:.5px;z-index:2;box-shadow:0 6px 14px rgba(206,58,52,.35)}
+.card.feat{border:2px solid var(--teal);box-shadow:var(--sh)}
+
+/* ===== COMBO ===== */
+.combo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.combo{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.combo .valve{margin:-30px auto 0}
+.combo.hot{border-color:var(--red);background:linear-gradient(180deg,#FDF1EE,var(--paper))}
+.combo h3{font-size:18px;color:var(--teal-deep)}
+.combo ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#48584F}
+.combo ul li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.combo .pr{display:flex;align-items:baseline;gap:9px;margin-top:auto}
+.combo .pr b{font-size:23px;color:var(--red);font-family:var(--head)}
+.combo .pr s{color:var(--mut);font-size:13.5px}
+.combo .add{margin-left:0;width:100%}
+
+/* ===== dacThu — "BÌNH CÒN MẤY NGÀY?" ===== */
+.days-sec{background:var(--teal-deep);color:#E7F2EC;border-radius:26px;padding:44px clamp(18px,4vw,44px);position:relative;overflow:hidden}
+.days-sec::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,transparent 2px 88px);pointer-events:none}
+.days-sec .kicker{color:var(--amber)}
+.days-sec h2{font-size:clamp(24px,3.6vw,34px);margin:8px 0 8px;color:#fff}
+.days-sec .sub{color:#AECBC0;max-width:600px;font-size:14.5px;margin-bottom:22px;position:relative}
+.days-g{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;position:relative}
+.days-pick label{font-family:var(--head);font-size:12.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9DC0B2;display:block;margin:16px 0 8px}
+.days-pick label:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#E7F2EC;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:700;min-height:40px}
+.chips button.on{background:var(--amber);border-color:var(--amber);color:#3B2A05}
+.days-note{font-size:12px;color:#9DC0B2;margin-top:14px}
+.days-out{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:20px}
+.days-out .tag{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:#9DC0B2;font-weight:700}
+.days-out .big{font-family:var(--head);font-size:clamp(30px,4vw,42px);font-weight:800;color:var(--amber);line-height:1.15;margin:6px 0 2px}
+.days-out .when{font-size:13.5px;color:#CFE4DB;margin-bottom:14px}
+.days-out .when b{color:#fff}
+/*NB110-373 — vạch đo mức bình: thiết bị hình ảnh lặp lại của nghề*/
+.gz{height:14px;border-radius:99px;background:rgba(255,255,255,.12);position:relative;overflow:visible;margin:8px 0 4px}
+.gz i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#3FBF8F,var(--amber) 78%,var(--red));transition:width .45s}
+.gz .mark45{position:absolute;left:100%;top:-4px;bottom:-4px;width:2px;background:rgba(255,255,255,.5)}
+.gz-lbl{display:flex;justify-content:space-between;font-size:11px;color:#9DC0B2;margin-bottom:14px}
+.kg-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;border-top:1px dashed rgba(255,255,255,.18);padding:10px 2px 0;color:#CFE4DB}
+.kg-row b{color:#fff}
+.days-cta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.days-cta .btn-a{flex:1;min-width:200px}
+.days-sub{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:#E7F2EC;border-radius:13px;min-height:46px;padding:12px 16px;font-weight:700;font-size:13.5px}
+.days-sub:hover{border-color:var(--amber);color:var(--amber)}
+.days-out .tiny{font-size:11.5px;color:#9DC0B2;text-align:center;margin-top:10px}
+
+/* ===== VỀ CHÚNG TÔI ===== */
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.about-txt h2{font-size:clamp(24px,3.6vw,34px);color:var(--teal-deep);margin:8px 0 14px}
+.about-txt p{color:#4C5F58;font-size:14.5px;margin-bottom:12px}
+.about-txt .sign{font-family:var(--head);font-style:italic;color:var(--red);font-size:15px}
+.about-imgs{display:grid;gap:14px}
+.about-imgs .im{background:var(--teal-deep);border-radius:14px;padding:8px;box-shadow:var(--sh)}
+.about-imgs .im img{border-radius:9px;width:100%}
+.about-imgs .im figcaption{color:#AECBC0;font-size:11.5px;padding:8px 4px 2px;display:flex;align-items:center;gap:7px}
+.about-imgs .im figcaption svg{width:13px;height:13px;flex:none;color:var(--amber)}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
+.rev .st{color:var(--amber);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#48584F;flex:1}
+.rev b{font-size:13px;color:var(--teal-deep)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:var(--teal-deep)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#48584F}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:12px 12px 7px 7px;background:var(--teal-soft);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--teal-deep)}
+.ct-card .tel{font-size:21px;font-weight:800;color:var(--red);font-family:var(--head)}
+.ct-card iframe{width:100%;height:230px;border:0;border-radius:12px;flex:1;min-height:230px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--teal-deep);min-height:48px}
+.qa>button i{font-style:normal;color:var(--red);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#48584F}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--teal-deep);color:#B7D2C6;margin-top:40px}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:32px 0 22px}
+.ft-g h4{color:#FFE9C7;font-family:var(--head);font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#B7D2C6;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--amber)}
+.ft-brand b{font-family:var(--head);font-size:17px;color:#FFE9C7;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.10);padding:12px 0;text-align:center;font-size:11.5px;color:#7FA396}
+
+/* ===== CART DRAWER ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(7,40,33,.5);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#cartDrawer{position:fixed;top:0;right:0;width:400px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.18)}
+#cartDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dr-head h3{font-size:17px;color:var(--teal-deep);flex:1;font-family:var(--head)}
+.dr-x{border:0;background:var(--teal-soft);width:38px;height:38px;border-radius:11px;font-size:16px;color:var(--teal-deep)}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:14px 18px}
+.dr-empty{text-align:center;color:var(--mut);padding:44px 10px;font-size:14px}
+.dr-empty .big{font-size:40px;display:block;margin-bottom:10px}
+.ci{display:flex;gap:11px;padding:11px 0;border-bottom:1px dashed var(--line);align-items:center}
+.ci img{width:64px;height:48px;object-fit:cover;border-radius:9px;flex:none}
+.ci .nm{font-size:13px;font-weight:700;color:var(--teal-deep);line-height:1.35}
+.ci .pr{font-size:12px;color:var(--red);font-weight:700}
+.qty{display:flex;align-items:center;gap:7px;margin-left:auto}
+.qty button{width:38px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);font-weight:800;color:var(--teal-deep);font-size:16px}
+.qty span{min-width:20px;text-align:center;font-weight:800;font-size:13.5px}
+.dr-foot{border-top:1px solid var(--line);padding:14px 18px 18px;background:var(--teal-mist);flex-shrink:0;max-height:calc(100dvh - 90px);overflow-y:auto}
+.dr-tot{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px;color:#48584F}
+.dr-tot.big{font-size:16.5px;font-weight:800;color:var(--teal-deep)}
+.dr-tot.big b{color:var(--red);font-size:20px;font-family:var(--head)}
+.dr-cta{width:100%;margin-top:12px}
+.dr-form{display:none;flex-direction:column;gap:9px}
+.dr-form.on{display:flex}
+.dr-form label{font-size:12px;font-weight:700;color:var(--teal-deep)}
+.dr-form input,.dr-form textarea,.dr-form select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:14px;font-family:inherit;background:#fff}
+.dr-form input.err{border-color:var(--bad);background:#FFF5F5}
+.dr-form textarea{resize:vertical;min-height:56px}
+.dr-opt{font-size:12px;font-weight:700;color:var(--mut);margin-top:6px}
+.dr-back{border:0;background:none;color:var(--mut);font-size:13px;padding:8px 0;text-align:left;min-height:38px}
+.dr-back:hover{color:var(--red)}
+
+/* ===== FAB GIỎ (SVG giỏ hàng — icon chính) xếp trên chat ===== */
+.cart-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--teal);color:#fff;display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(14,107,91,.40);transition:opacity .25s,transform .25s}
+.cart-fab:hover{background:var(--red);transform:translateY(-2px)}
+.cart-fab .pkc-dot{position:absolute;top:2px;right:2px}
+.cart-fab[hidden]{display:none}
+body.chat-open .cart-fab{opacity:0;pointer-events:none}
+#cartN{position:absolute;top:-5px;right:-5px;background:var(--red);color:#fff;border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:11.5px;padding:0 6px;font-weight:800;border:2px solid var(--paper)}
+#cartN[hidden]{display:none}
+
+/* ===== CHAT WIDGET (pkc) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--red);color:#fff;font-size:23px;box-shadow:0 10px 24px rgba(206,58,52,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(7,40,33,.22);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--teal-deep);color:#FFE9C7}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#FFE9C7;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:var(--teal-mist)}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--red);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--teal-deep);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--red);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST: 2 phần tử title/message ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--teal-deep);color:#EAF4EE;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:var(--amber);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#CFE4DB}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:26px;padding:34px 0}
+  .hero p.lead{max-width:none}
+  .rack-g{grid-template-columns:repeat(2,1fr)}
+  .card.wide .ph{width:48%}
+  .days-g{grid-template-columns:1fr}
+  .about-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:repeat(2,1fr)}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .stamp{right:8px}
+}
+@media (max-width:640px){
+  .sec{padding:40px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .hd-right .btn-a{min-height:42px;padding:10px 14px;font-size:13px}
+  .call span{display:none}
+  .call{padding:10px 12px}
+  .svc-g{grid-template-columns:1fr}
+  .rack-g{grid-template-columns:1fr;gap:26px}
+  .card.wide{flex-direction:column;align-items:stretch}
+  .card.wide .ph{width:100%}
+  .card.wide .ph img{margin:0}
+  .card.wide .bd{padding:12px 4px 14px}
+  .free-strip{padding:14px 16px}
+  .free-strip .pri{margin-left:0;width:100%;display:flex;align-items:baseline;gap:8px}
+  .free-strip .add{width:100%;margin-top:8px}
+  /*NB110-373 — mobile: thẻ nổi bật THẬT nổi: viền đỏ accent + đứng đầu kệ + CTA full*/
+  .card.feat{order:-1;border-color:var(--red);box-shadow:0 12px 26px rgba(206,58,52,.16)}
+  .card.feat .bd h3{font-size:19px}
+  .card.feat .pri{font-size:18px}
+  .card.feat .add{width:100%}
+  .combo-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 18px}
+  .ft-brand{grid-column:1/-1}
+  .ft-brand p{margin-bottom:0}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  #cartDrawer{width:100vw;max-width:100vw}
+  .dr-foot{padding-bottom:60px}
+  .hero h1{font-size:29px}
+  .days-sec{padding:32px 18px}
+  .days-cta .btn-a{min-width:100%}
+  .topbar .wrap{justify-content:center}
+  .topbar span:nth-child(2){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <span>🕰 Mở cửa <b>06:30 – 21:30</b> tất cả các ngày</span>
+    <span>📍 24 Ngõ Bếp Ấm, P. An Tâm</span>
+    <span>🔥 Gọi là có — <b><a href="tel:0034567899">0034567899</a></b></span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg></span>
+      <span><b>Gas Bếp Ấm</b><small>Cửa hàng gas &amp; nhiên liệu gia đình</small></span>
+    </a>
+    <nav class="main">
+      <a href="#mat-hang">Mặt hàng</a>
+      <a href="#combo">Combo</a>
+      <a href="#con-may-ngay">Bình còn mấy ngày?</a>
+      <a href="#ve-chung-toi">Về chúng tôi</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+      <a class="btn btn-a" href="#mat-hang">Đổi bình ngay</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Ngõ Bếp Ấm · Gas Bếp Ấm</span>
+      <h1>Bếp nhà không bao giờ<br><em>cạn gas giữa bữa<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg></em></h1>
+      <p class="lead">Bình gas 12kg đổi tận nhà trong 2 giờ, niêm phong nguyên tem, kèm kiểm tra rò rỉ miễn phí ngay tại cửa — bếp của bạn chỉ việc bật lửa lên nấu.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#mat-hang">🛒 Đổi bình 12kg — 370.000đ</a>
+        <a class="btn btn-g" href="#con-may-ngay">🔥 Bình nhà còn mấy ngày?</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>2 giờ</b><span>giao đổi tận nhà</span></div>
+        <div><b>4.500+</b><span>bình đã giao năm ngoái</span></div>
+        <div><b>Miễn phí</b><span>kiểm tra rò rỉ khi đổi bình</span></div>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="tkt">
+        <div class="valve" aria-hidden="true"></div>
+        <img src="assets/img/cover.webp" alt="Gas Bếp Ấm — cửa hàng gas và nhiên liệu gia đình, giao bình tận nơi" width="1536" height="1024" fetchpriority="high">
+      </div>
+      <span class="stamp">GIAO TRONG 2 GIỜ</span>
+      <div class="poster-chips">
+        <a class="pchip" href="#mat-hang"><i>🛵</i> Giao tận nơi</a>
+        <a class="pchip" href="#mat-hang"><i>🔧</i> Lắp đặt tại nhà</a>
+        <a class="pchip" href="#con-may-ngay"><i>🧯</i> Kiểm tra an toàn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIỆN ÍCH ===== -->
+<section class="sec" id="tien-ich">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Tiện ích cửa hàng</span>
+      <h2>Đổi gas ở Gas Bếp Ấm, nhẹ cả tay lẫn lòng</h2>
+      <p>Ba việc nhỏ mình làm kỹ để bạn chỉ việc nấu ăn, không phải lo thêm điều gì.</p>
+    </div>
+    <div class="svc-g">
+      <div class="svc rv"><div class="ic">🛵</div><div><b>Giao đổi trong 2 giờ nội thành</b><span>Đặt trước 21:00 — bình tới trước bữa sáng hôm sau.</span></div></div>
+      <div class="svc rv"><div class="ic">🧯</div><div><b>Kiểm tra rò rỉ miễn phí</b><span>Thợ thử xà phòng từng điểm nối mỗi lần giao bình — không thu phí.</span></div></div>
+      <div class="svc rv"><div class="ic">🔁</div><div><b>Trừ tiền gas còn lại</b><span>Bình cũ còn gas được cân và trừ đúng kg vào đơn mới.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI 8 — BẢNG MẶT HÀNG ===== -->
+<section class="sec rack-sec" id="mat-hang">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Bảng mặt hàng</span>
+      <h2>Giá niêm yết ngay đây — chạm là thêm vào giỏ</h2>
+      <p>Từ bình gas đến dây dẫn, mỗi mặt hàng đều niêm yết công khai như dán ngay trên kệ hàng.</p>
+    </div>
+    <div class="rack-g" id="rackGrid"></div>
+    <div class="free-strip rv" id="rackStrip"></div>
+  </div>
+</section>
+
+<!-- ===== COMBO ===== -->
+<section class="sec" id="combo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Combo &amp; khuyến mãi</span>
+      <h2>Gộp lại mua, giảm hẳn giá</h2>
+      <p>Ba combo gói sẵn theo việc thật của bếp nhà — đỡ chọn, lại tiết kiệm hơn mua lẻ.</p>
+    </div>
+    <div class="combo-g">
+      <div class="combo rv">
+        <div class="valve" aria-hidden="true"></div>
+        <h3>🧯 Combo an toàn bếp nhà</h3>
+        <ul><li>1 van điều áp chính hãng</li><li>1 dây dẫn gas cao cấp 2 đầu ren</li><li>Kiểm tra rò rỉ + lắp đặt tận nhà</li><li>Hướng dẫn dùng an toàn tận tay</li></ul>
+        <div class="pr"><b>165.000đ</b><s>205.000đ</s></div>
+        <button class="add" onclick="addCombo(0)">Thêm combo vào giỏ</button>
+      </div>
+      <div class="combo hot rv">
+        <span class="badge">ĐANG ĐƯỢC ĐẶT NHIỀU</span>
+        <div class="valve" aria-hidden="true"></div>
+        <h3>🔥 Combo bếp mới về</h3>
+        <ul><li>1 bếp gas đôi âm hoặc dương</li><li>Tặng van điều áp + dây dẫn mới</li><li>Lắp đặt + thử lửa tại nhà miễn phí</li><li>Bảo hành bếp 12 tháng tại cửa</li></ul>
+        <div class="pr"><b>790.000đ</b><s>890.000đ</s></div>
+        <button class="add" onclick="addCombo(1)">Thêm combo vào giỏ</button>
+      </div>
+      <div class="combo rv">
+        <div class="valve" aria-hidden="true"></div>
+        <h3>🛒 Combo 2 bình 12kg</h3>
+        <ul><li>2 bình gas 12kg niêm phong nguyên tem</li><li>Miễn phí giao đổi cả 2 lượt</li><li>Kiểm tra rò rỉ miễn phí khi giao</li><li>Dùng dần, giữ bình dự phòng trong nhà</li></ul>
+        <div class="pr"><b>729.000đ</b><s>740.000đ</s></div>
+        <button class="add" onclick="addCombo(2)">Thêm combo vào giỏ</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== dacThu: BÌNH CÒN MẤY NGÀY ===== -->
+<section class="sec" id="con-may-ngay">
+  <div class="wrap">
+    <div class="days-sec rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Công cụ đặc biệt của Gas Bếp Ấm</span>
+      <h2>🔥 Bình gas nhà bạn còn mấy ngày?</h2>
+      <p class="sub">Đừng đợi giữa bữa lửa tắt mới biết bình cạn. Nhỏ vài con số của nhà mình vào — mình ước tính xem bình 12kg còn dùng được bao lâu, và nhắc bạn đổi bình trước khi hết.</p>
+      <div class="days-g">
+        <div class="days-pick">
+          <label>1 · Nhà bạn có mấy người ăn?</label>
+          <div class="chips" id="dPeople">
+            <button data-v="1.5">1 – 2 người</button>
+            <button data-v="3.5" class="on">3 – 4 người</button>
+            <button data-v="5.5">5 – 6 người</button>
+            <button data-v="7.5">7 người trở lên</button>
+          </div>
+          <label>2 · Ngày nấu mấy bữa?</label>
+          <div class="chips" id="dMeals">
+            <button data-v="1">1 bữa</button>
+            <button data-v="2" class="on">2 bữa</button>
+            <button data-v="3">3 bữa</button>
+          </div>
+          <label>3 · Nhà mình nấu kiểu nào?</label>
+          <div class="chips" id="dMode">
+            <button data-v="0.045">Tiết kiệm — nấu nhanh gọn</button>
+            <button data-v="0.055" class="on">Vừa phải — như hộp gia đình</button>
+            <button data-v="0.07">Nấu nhiều — canh hầm, nấu ăn thương</button>
+          </div>
+          <p class="days-note">💡 Mức tính theo kinh nghiệm 4.500+ bình mình đã giao: bình 12kg đủ dùng cho hộ 4 người · 2 bữa khoảng 1 tháng. Số thực tế còn tùy bếp, tùy nồi — khi giao bình, thợ sẽ đo giùm lần đầu.</p>
+        </div>
+        <div class="days-out">
+          <span class="tag">Ước tính cho bình 12kg</span>
+          <div class="big" id="dDays">— ngày</div>
+          <div class="when" id="dWhen">Hết gas khoảng ngày <b>—</b></div>
+          <div class="gz"><i id="dGauge" style="width:60%"></i><span class="mark45" aria-hidden="true"></span></div>
+          <div class="gz-lbl"><span>0 ngày</span><span>30 ngày</span><span>45+ ngày</span></div>
+          <div class="kg-row"><span>Lượng gas hao trung bình</span><b id="dKg">— kg/ngày</b></div>
+          <div class="days-cta">
+            <button class="btn btn-a" id="dOrder">🛒 Đổi bình 12kg ngay — 370.000đ</button>
+            <button class="days-sub" id="dSub">📝 Đăng ký gói gas định kỳ</button>
+          </div>
+          <p class="tiny">Ước tính tham khảo · Gói định kỳ: thợ nhắc lịch + giao đúng chu kỳ, giá khóa cả năm</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VỀ CHÚNG TÔI ===== -->
+<section class="sec" id="ve-chung-toi">
+  <div class="wrap about-g">
+    <div class="about-txt rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Về chúng tôi</span>
+      <h2>Một tiệm gas ngay ngõ Bếp Ấm, mở cửa từ 6 giờ rưỡi sáng</h2>
+      <p>Gas Bếp Ấm bắt đầu từ một xe đạp chở ba cái bình đi giao trong ngõ, nay đã có showroom bếp gas, kệ van điều áp và đội thợ giao đổi riêng cho từng khu phố. Cái giữ nguyên từ ngày đầu: mỗi bình rời cửa hàng đều phải niêm phong nguyên tem và thử xà phòng trước khi đưa tay cho khách.</p>
+      <p>Gần 4.500 bình mỗi năm đi qua con ngõ nhỏ này — nhà nào mới cưới, nhà nào vừa sinh em bé, nhà nào nấu ăn thương cuối tuần, mình đều nhớ và gửi đúng kiểu bình, đúng lịch giao.</p>
+      <p class="sign">— Tâm Bếp, chủ tiệm gas —</p>
+    </div>
+    <div class="about-imgs rv">
+      <figure class="im">
+        <img src="assets/img/intro.webp" alt="An toàn bắt đầu từ lần kiểm tra — thợ Gas Bếp Ấm đo điểm nối gas tại nhà khách" width="1536" height="1024">
+        <figcaption><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> An toàn bắt đầu từ lần kiểm tra — miễn phí mỗi lần giao bình</figcaption>
+      </figure>
+      <figure class="im">
+        <img src="assets/img/space.webp" alt="Showroom Gas Bếp Ấm: bếp gas trưng bày và kệ bình gas nhiều màu" width="1536" height="1024">
+        <figcaption><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Showroom Ngõ Bếp Ấm — ghé chọn bếp, chờ 10 phút là lắp xong</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Khách nói về Gas Bếp Ấm</span>
+      <h2>Bếp nhà nào cũng từng được cứu một lần</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"6 giờ sáng sôi bánh chưng, bình cạn đúng lúc. Gọi xong 40 phút có bình mới kèm thử xà phòng — cứu cả nồi bánh của tôi."</p><b>Cô Hai Phương</b><span>hộ nấu bánh · P. An Tâm</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Máy tính 'bình còn mấy ngày' đúng ghê: nó báo hết ngay tuần tôi thật sự hết. Giờ đặt gói định kỳ, khỏi phải canh."</p><b>Anh Quốc Bảo</b><span>bố 2 con nhỏ · tổ 5</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Thợ đến thay dây dẫn, ngửi thấy mùi hăng ngay chỗ cũ mà tôi tưởng bình thường. Kiểm tra miễn phí mà cứu cả nhà."</p><b>Chị Thu Hà</b><span>hộ chung cư mini · ngõ Ấm</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Mua bếp kèm lắp đặt, thợ thử lửa chỉnh gió rất kỹ. Chấm thêm nếu cuối tuần có thêm khung giờ chiều tối."</p><b>Anh Thành Nam</b><span>nhà mới cưới · P. An Tâm</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏠 Ghé tiệm gas Ngõ Bếp Ấm</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>24 Ngõ Bếp Ấm, P. An Tâm</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo — gọi là có bình</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ mở cửa</b><br>06:30 – 21:30 tất cả các ngày trong tuần</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.7905,106.6883&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới đây</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.7905,106.6883 -->
+      <iframe src="https://www.google.com/maps?q=10.7905,106.6883&z=15&output=embed&hl=vi" title="Bản đồ Gas Bếp Ấm — 24 Ngõ Bếp Ấm, P. An Tâm"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.2-1.5 4.9-2.8 6.5C7.9 10.1 7 11.7 7 13.7A6.6 6.6 0 0 0 13.6 20c3.3-.5 5.4-3.1 5.4-6.5 0-2.3-1-4-2-5.5-.3 1.4-1 2.3-2 3-.1-3.5-1.2-6.6-3-9Z"/></svg> Hỏi &amp; đáp</span>
+      <h2>Vài điều khách hay hỏi trước khi đổi bình</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Đổi bình gas bao lâu thì có mặt?<i>+</i></button><div class="a">Nội thành trong 2 giờ kể từ lúc gọi; đơn đặt trước 21:00 được giao sáng hôm sau. Khi thợ tới sẽ kèm kiểm tra rò rỉ và đỡ bình lên vị trí giúp bạn.</div></div>
+      <div class="qa rv"><button>Bình cũ còn gas có được trừ tiền không?<i>+</i></button><div class="a">Có — thợ cân trực tiếp tại nhà, phần gas còn lại được trừ đúng kg theo giá niêm yết vào đơn bình mới. Không ép đổi hết, không ép mua kèm.</div></div>
+      <div class="qa rv"><button>Làm sao biết bình gas nhà còn bao nhiêu?<i>+</i></button><div class="a">Cách nhanh: đổ nước ấm quanh thân bình rồi sờ — chỗ lạnh là còn gas, chỗ nóng là cạn. Chính xác hơn: dùng máy tính "Bình còn mấy ngày?" ngay trên trang này, hoặc nhờ thợ đo khi giao bình định kỳ.</div></div>
+      <div class="qa rv"><button>Ngửi thấy mùi gas thì phải làm sao?<i>+</i></button><div class="a">Tuyệt đối KHÔNG bật/tắt công tắc điện, không đốt lửa. Khóa van bình, mở hết cửa sổ cho khí thoát, mọi người ra ngoài rồi gọi hotline 0034567899 — thợ ứng cứu có mặt trong 30 phút nội thành.</div></div>
+      <div class="qa rv"><button>Dây dẫn và van gas bao lâu thì thay?<i>+</i></button><div class="a">Dây dẫn rời nên thay 2 năm/lần, van điều áp 3–5 năm/lần; kiểm tra 6 tháng/lần. Dây nứt, chai cứng, van kêu ù hay lửa vàng đỏ là dấu hiệu phải thay ngay — gọi thợ tới, đừng tự thay.</div></div>
+      <div class="qa rv"><button>Bình gas có phải chính hãng, niêm phong không?<i>+</i></button><div class="a">Mọi bình đều niêm phong tem trọng lượng của hãng khi rời kho và được nhập theo lô có giấy tờ. Thợ giao bình sẽ khoe tem trước — tem rách, bạn có quyền trả lại không mất phí.</div></div>
+      <div class="qa rv"><button>Gói gas định kỳ hoạt động thế nào?<i>+</i></button><div class="a">Đăng ký một lần, mình nhớ chu kỳ dùng của nhà bạn: đến hạn là nhắn tin xác nhận rồi giao đúng giờ bạn chọn. Giá khóa cả năm, miễn phí kiểm tra an toàn mỗi lần giao, hủy bất cứ lúc nào.</div></div>
+      <div class="qa rv"><button>Mua bếp mới có được lắp đặt tại nhà không?<i>+</i></button><div class="a">Có — combos bếp đã gồm van + dây mới và lắp đặt miễn phí: thợ bắt nối chuẩn lực, thử xà phòng từng mối nối, chỉnh lửa xanh đều rồi mới hướng dẫn dùng và bàn giao phiếu bảo hành 12 tháng.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🔥 Gas Bếp Ấm</b>
+      <p>Đổi bình tận nơi trong 2 giờ · bếp nhà không bao giờ cạn giữa bữa. Cửa hàng gas &amp; nhiên liệu gia đình tại Ngõ Bếp Ấm.</p>
+    </div>
+    <div>
+      <h4>Khám phá</h4>
+      <a href="#mat-hang">Bảng mặt hàng &amp; giá</a>
+      <a href="#combo">Combo &amp; khuyến mãi</a>
+      <a href="#con-may-ngay">Bình còn mấy ngày?</a>
+      <a href="#faq">Hỏi &amp; đáp an toàn gas</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 24 Ngõ Bếp Ấm, P. An Tâm</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 06:30 – 21:30 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Gas Bếp Ấm · Giá tham khảo, có thể điều chỉnh theo đợt nhập hàng · Dùng gas an toàn — kiểm tra định kỳ 6 tháng/lần</div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="cartDrawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <h3>🛒 Giỏ gas của bạn</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng giỏ hàng">✕</button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="dr-tot"><span>Số món</span><span id="drDisc">0 món</span></div>
+    <div class="dr-tot big"><span>Tạm tính</span><b id="drTotal">0đ</b></div>
+    <button class="btn btn-a dr-cta" id="checkoutBtn">Tiến hành đặt hàng</button>
+    <div class="dr-form" id="drForm">
+      <button class="dr-back" id="drBack">← Quay lại xem giỏ</button>
+      <label for="fName">Họ tên *</label>
+      <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Bích">
+      <label for="fPhone">Số điện thoại *</label>
+      <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
+      <label for="fAddr">Địa chỉ giao bình *</label>
+      <input id="fAddr" data-nghe-order="address" type="text" placeholder="Số nhà, ngõ/hẻm, phường">
+      <label for="fTime">Khung giờ giao mong muốn (tuỳ chọn)</label>
+      <select id="fTime">
+        <option>Càng nhanh càng tốt — trong 2 giờ</option>
+        <option>Sáng (06:30 – 10:00)</option>
+        <option>Trưa (10:00 – 13:00)</option>
+        <option>Chiều (13:00 – 17:00)</option>
+        <option>Tối (17:00 – 21:00)</option>
+      </select>
+      <label for="fNote">Ghi chú (bình cũ trừ kg, kiểm tra thêm điểm nào…)</label>
+      <textarea id="fNote" data-nghe-order="note" placeholder="VD: còn bình cũ hơi cạn, nhờ cân trừ giùm"></textarea>
+      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>📩 Gửi đơn cho Gas Bếp Ấm</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== FAB GIỎ HÀNG — icon giỏ SVG là chính ===== -->
+<button class="cart-fab" id="cartOpen" aria-label="Mở giỏ hàng">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+  <b id="cartN" hidden>0</b>
+</button>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">Gas Bếp Ấm</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🔥 Đổi bình 12kg giá hôm nay?</button>
+    <button class="pkc-chip">🛵 Giao trong bao lâu?</button>
+    <button class="pkc-chip">🧯 Kiểm tra rò rỉ miễn phí?</button>
+    <button class="pkc-chip">📦 Gói gas định kỳ thế nào?</button>
+    <button class="pkc-chip">🔧 Lắp đặt bếp mới?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho tiệm gas…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-373*/
+'use strict';
+var P = [
+  {id:'binh-12',   n:'Bình gas 12kg đổi tận nơi',        price:370000, img:'assets/img/p1.webp', cat:'Bình gas',   d:'Niêm phong nguyên tem, giao đúng hẹn, kèm thử xà phòng từng điểm nối miễn phí.'},
+  {id:'bep-gas',   n:'Bếp gas &amp; bếp kết hợp',        price:690000, img:'assets/img/p2.webp', cat:'Bếp nấu',    d:'Bếp đôi, bếp đơn, bếp âm – dương; chọn vừa không gian bếp nhà, thợ lắp miễn phí.'},
+  {id:'van-day',   n:'Van điều áp &amp; dây dẫn an toàn',price:95000,  img:'assets/img/p3.webp', cat:'Phụ kiện',   d:'Van chính hãng, dây dẫn 2 đầu ren — thợ thay tại nhà, bắt nối chuẩn lực.'},
+  {id:'binh-mini', n:'Bình gas mini cho nhu cầu phù hợp',price:45000,  img:'assets/img/p4.webp', cat:'Bình gas',   d:'Bình mini 0,8–2kg cho dã ngoại, đi học trọ — gọn nhẹ, dùng đúng hướng dẫn.'},
+  {id:'kiem-tra',  n:'Lắp đặt &amp; kiểm tra rò rỉ gas', price:90000,  img:'assets/img/p5.webp', cat:'Dịch vụ',    d:'Thợ đến nhà thử xà phòng từng mối nối — miễn phí khi thay van/dây hoặc đổi bình.'},
+  {id:'bao-tri',   n:'Bảo trì bếp &amp; thiết bị gas',   price:150000, img:'assets/img/p6.webp', cat:'Dịch vụ',    d:'Vệ sinh đầu đốt, chỉnh gió lửa xanh đều, siết nối — bếp sạch, lửa đều, đỡ tốn gas.'},
+  {id:'goi-dinh-ky',n:'Gói gas định kỳ cho gia đình',    price:380000, img:'assets/img/p7.webp', cat:'Gói tháng',  d:'Thợ nhắc lịch, giao đúng chu kỳ dùng của nhà bạn — giá khóa cả năm, hủy bất cứ lúc nào.'},
+  {id:'giao-tu-van',n:'Giao gas nhanh &amp; tư vấn sử dụng',price:0,   img:'assets/img/p8.webp', cat:'Dịch vụ',    d:'Gọi là có trong 2 giờ, hướng dẫn dùng an toàn tận tay — miễn phí cho mọi khách hàng.'}
+];
+var FEAT = { 'binh-12':'BÁN CHẠY NHẤT — ĐỔI TẬN NƠI' };
+var COMBOS = [
+  {n:'Combo an toàn bếp nhà', price:165000},
+  {n:'Combo bếp mới về', price:790000},
+  {n:'Combo 2 bình 12kg', price:729000}
+];
+var CART = [];
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+var byId = function(id){ for (var i=0;i<P.length;i++){ if(P[i].id===id) return P[i]; } return null; };
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== RENDER KHỐI 8 — banner nổi bật cả hàng + 6 thẻ thường (3+3) + dải miễn phí: kín ô ===== */
+var CAT_IC = { 'Bình gas':'🔥', 'Bếp nấu':'🍳', 'Phụ kiện':'🔧', 'Dịch vụ':'🛠', 'Gói tháng':'📅' };
+function priceHtml(p){
+  return p.price>0 ? '<div class="pri">'+fmt(p.price)+'<small>'+(p.id==='goi-dinh-ky'?'trên bình 12kg/tháng':'giá từ · tùy loại')+'</small></div>'
+                   : '<div class="pri">Miễn phí<small>cho mọi khách hàng</small></div>';
+}
+function renderRack(){
+  var g = document.getElementById('rackGrid');
+  var html = '';
+  for (var i=0;i<P.length;i++){
+    var p = P[i];
+    if (p.id==='giao-tu-van') continue; /* render thành dải rộng dưới lưới */
+    var feat = FEAT[p.id] ? ' feat wide' : '';
+    var badge = FEAT[p.id] ? '<span class="badge">'+FEAT[p.id]+'</span>' : '';
+    html += '<article class="card'+feat+' rv">'
+      + '<div class="valve" aria-hidden="true"></div>'
+      + badge
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.n+'" width="600" height="400"></div>'
+      + '<div class="bd"><span class="cat">'+(CAT_IC[p.cat]||'✦')+' '+p.cat+'</span>'
+      + '<h3>'+p.n+'</h3><p>'+p.d+'</p>'
+      + '<div class="ft">'+priceHtml(p)
+      + '<button class="add" data-add="'+p.id+'">+ Giỏ</button></div></div></article>';
+  }
+  g.innerHTML = html;
+  var free = byId('giao-tu-van');
+  document.getElementById('rackStrip').innerHTML = ''
+    + '<span class="fl">🔥</span>'
+    + '<div class="tx"><b>'+free.n+'</b><span>'+free.d+'</span></div>'
+    + priceHtml(free)
+    + '<button class="add" data-add="'+free.id+'">Nhận</button>';
+  document.getElementById('mat-hang').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-add]');
+    if (!btn) return;
+    addToCart(btn.getAttribute('data-add'), 1);
+  });
+}
+
+/* ===== GIỎ HÀNG ===== */
+function addToCart(id, qty){
+  var p = byId(id); if (!p) return;
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; renderCart(); return; } }
+  CART.push({id:id, qty:qty});
+  renderCart();
+  toast('Đã thêm vào giỏ', p.n.replace(/&amp;/g,'&') + (p.price>0 ? ' — '+fmt(p.price) : ' — miễn phí'));
+}
+function addCombo(i){
+  var c = COMBOS[i];
+  var key = 'combo-'+i;
+  for (var k=0;k<CART.length;k++){ if (CART[k].id===key){ CART[k].qty++; renderCart(); toast('Đã thêm vào giỏ', c.n); return; } }
+  CART.push({id:key, qty:1, name:c.n, price:c.price});
+  renderCart();
+  toast('Đã thêm vào giỏ', c.n + ' — ' + fmt(c.price));
+}
+function cartCount(){ var s=0; for(var i=0;i<CART.length;i++) s+=CART[i].qty; return s; }
+function cartTotal(){
+  var s=0;
+  for (var i=0;i<CART.length;i++){
+    var it = CART[i], price = it.price;
+    if (price === undefined){ var p = byId(it.id); price = p ? p.price : 0; }
+    s += price * it.qty;
+  }
+  return s;
+}
+function renderCart(){
+  var n = document.getElementById('cartN');
+  var cnt = cartCount();
+  n.textContent = cnt; n.hidden = cnt===0;
+  var body = document.getElementById('drBody');
+  if (CART.length===0){
+    body.innerHTML = '<div class="dr-empty"><span class="big">🔥</span>Giỏ đang trống.<br>Bếp nhà đang chờ một bình gas đầy đặn lắm!</div>';
+  } else {
+    var html = '';
+    for (var i=0;i<CART.length;i++){
+      var it = CART[i];
+      var p = byId(it.id);
+      var name = it.name || (p ? p.n.replace(/&amp;/g,'&') : it.id);
+      var price = it.price !== undefined ? it.price : (p ? p.price : 0);
+      var img = p ? p.img : 'assets/img/p1.webp';
+      html += '<div class="ci"><img src="'+img+'" alt="">'
+        + '<div><div class="nm">'+name+'</div><div class="pr">'+(price>0?fmt(price):'Miễn phí')+'</div></div>'
+        + '<div class="qty"><button data-dec="'+it.id+'" aria-label="Giảm">−</button><span>'+it.qty+'</span><button data-inc="'+it.id+'" aria-label="Tăng">+</button></div></div>';
+    }
+    body.innerHTML = html;
+  }
+  document.getElementById('drDisc').textContent = cnt + ' món';
+  document.getElementById('drTotal').textContent = fmt(cartTotal());
+  document.getElementById('checkoutBtn').disabled = CART.length===0;
+}
+document.getElementById('drBody').addEventListener('click', function(e){
+  var inc = e.target.getAttribute('data-inc'), dec = e.target.getAttribute('data-dec');
+  if (inc){ for (var i=0;i<CART.length;i++){ if (CART[i].id===inc) CART[i].qty++; } renderCart(); }
+  if (dec){
+    for (var j=0;j<CART.length;j++){
+      if (CART[j].id===dec){ CART[j].qty--; if (CART[j].qty<=0) CART.splice(j,1); break; }
+    }
+    renderCart();
+  }
+});
+function openDrawer(){
+  showCartView();
+  document.getElementById('cartDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  document.getElementById('cartDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function showCartView(){
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+}
+document.getElementById('cartOpen').addEventListener('click', openDrawer);
+document.getElementById('drClose').addEventListener('click', closeDrawer);
+document.getElementById('drMask').addEventListener('click', closeDrawer);
+document.getElementById('checkoutBtn').addEventListener('click', function(){
+  if (CART.length===0) return;
+  document.getElementById('drForm').classList.add('on');
+  document.getElementById('checkoutBtn').style.display='none';
+});
+document.getElementById('drBack').addEventListener('click', showCartView);
+document.getElementById('drSubmit').addEventListener('click', function(){
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var addr = document.getElementById('fAddr');
+  var ok = true;
+  [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho mình xin họ tên, số điện thoại và địa chỉ để thợ giao bình nhé!'); return; }
+  var total = fmt(cartTotal());
+  var slot = document.getElementById('fTime').value;
+  CART = []; renderCart(); closeDrawer(); showCartView();
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+  toast('Đã nhận đơn — cảm ơn '+name.value.trim()+'!', 'Thợ gọi xác nhận trong ít phút · khung giờ: '+slot+'. Tổng tạm tính: '+total+' · Hotline 0034567899');
+});
+
+/* ===== dacThu: BÌNH CÒN MẤY NGÀY ===== */
+var dPeople = 3.5, dMeals = 2, dMode = 0.055;
+function chipBind(id, setV){
+  document.getElementById(id).addEventListener('click', function(e){
+    var b = e.target.closest('button[data-v]'); if (!b) return;
+    var bs = this.querySelectorAll('button'); for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+    b.classList.add('on');
+    setV(parseFloat(b.getAttribute('data-v')));
+    renderDays();
+  });
+}
+function renderDays(){
+  var kgDay = dPeople * dMeals * dMode;
+  var days = Math.floor(12 / kgDay);
+  var capped = days > 120;
+  if (capped) days = 120;
+  document.getElementById('dDays').textContent = (capped ? '120+ ngày' : '~' + days + ' ngày');
+  var when = document.getElementById('dWhen');
+  if (capped){
+    when.innerHTML = 'Nhà mình dùng rất tiết kiệm — bình <b>trên 4 tháng</b> mới hết, nhớ kiểm tra van định kỳ nhé.';
+  } else {
+    var d = new Date(); d.setDate(d.getDate() + days);
+    when.innerHTML = 'Hết gas khoảng ngày <b>' + ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '</b>' + (days <= 5 ? ' — <b>sắp cạn rồi, đổi ngay kẻo dở bữa!</b>' : '. Đổi trước 2 ngày là an toàn nhất.');
+  }
+  document.getElementById('dGauge').style.width = Math.max(4, Math.min(days/45, 1) * 100) + '%';
+  document.getElementById('dKg').textContent = (Math.round(kgDay*100)/100).toLocaleString('vi-VN') + ' kg/ngày';
+}
+chipBind('dPeople', function(v){ dPeople = v; });
+chipBind('dMeals', function(v){ dMeals = v; });
+chipBind('dMode', function(v){ dMode = v; });
+document.getElementById('dOrder').addEventListener('click', function(){
+  addToCartSilent('binh-12', 1);
+  renderCart();
+  var kgDay = dPeople * dMeals * dMode;
+  var days = Math.min(Math.floor(12/kgDay), 120);
+  toast('Đã thêm bình 12kg vào giỏ', 'Theo số nhà mình nhập, nên đổi trước khi hết (~'+days+' ngày). Mở giỏ để gửi đơn!');
+  openDrawer();
+});
+document.getElementById('dSub').addEventListener('click', function(){
+  addToCartSilent('goi-dinh-ky', 1);
+  renderCart();
+  toast('Đã thêm gói gas định kỳ', '380.000đ/tháng — thợ nhắc lịch và giao đúng chu kỳ của nhà bạn.');
+  openDrawer();
+});
+function addToCartSilent(id, qty){
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; return; } }
+  CART.push({id:id, qty:qty});
+}
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderRack();
+renderCart();
+renderDays();
+initReveal();
+</script>
+</body>
+</html>

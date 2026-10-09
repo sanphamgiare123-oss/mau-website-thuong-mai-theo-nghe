@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cún Miêu Express — Vận chuyển &amp; dịch vụ tại nhà cho thú cưng | Đưa yêu thương đến mọi nơi</title>
+<meta name="description" content="Cún Miêu Express — đưa đón thú cưng đi khám, vận chuyển liên tỉnh, grooming &amp; khám bệnh tại nhà. Xe chuyên dụng, lồng an toàn, theo dõi hành trình. Báo giá sơ bộ trong ngày, hotline 0034567899.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231E4E8C'/%3E%3Cellipse cx='16' cy='20' rx='5.6' ry='4.8' fill='%23FCE9EE'/%3E%3Ccircle cx='9.2' cy='12.6' r='2.7' fill='%23FCE9EE'/%3E%3Ccircle cx='14.4' cy='9.4' r='2.8' fill='%23FCE9EE'/%3E%3Ccircle cx='19.8' cy='9.8' r='2.7' fill='%23FCE9EE'/%3E%3Ccircle cx='24' cy='13.6' r='2.5' fill='%23FCE9EE'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Cún Miêu Express","description":"Vận chuyển và dịch vụ tại nhà cho thú cưng: đưa đón đi khám, vận chuyển liên tỉnh, grooming và khám bệnh tại nhà.","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"56 12, Đường Mặt Trăng, Phường Sao Biển, Quận Mây Trắng","addressLocality":"Thành Phố Thủ Cung","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.4110,"longitude":107.1360},"openingHours":"Mo-Su 00:00-23:59","priceRange":"80.000đ-6.500.000đ"}
+</script>
+<style>
+/*NB110-285 — Cún Miêu Express · pattern #5 tờ báo giá, BIẾN THỂ "PHIẾU TUYẾN" (boarding-pass): mỗi dịch vụ =
+  1 tấm vé chuyến có cuống stub + đường perforation + bậc giá theo tuyến km / kích cỡ boss, dấu pawsơ，
+  palette PASTEL lấy từ poster (xanh navy tiêu đề + cam peach + hồng pastel + mint), dấu paw đục trên cuống vé. KHÁM: 174 (công văn mộc đỏ),
+  186 (dashboard), 023 (bảng giá băng giá), 214 (tờ đục lỗ + mã vạch), 376 (sổ phân khu bậc sỉ), 281/284 (K24).*/
+:root{
+  --navy:#1E4E8C; --navy-2:#2E64AD; --navy-deep:#143566;
+  --blue:#3E7CC2; --blue-soft:#DCEBF8;
+  --peach:#F6A45B; --peach-deep:#D97B2E; --peach-soft:#FDEBDA;
+  --pink:#E48CA6; --pink-deep:#C95F80; --pink-soft:#FCE9EE;
+  --mint:#4E9B6F; --mint-2:#7FC29B; --mint-soft:#E3F4EA;
+  --lav:#7A72C4; --lav-soft:#ECE9F9;
+  --bg:#F3F8FD; --paper:#FFFFFF; --ink:#2C3A55; --mut:#66758F;
+  --line:#DDE8F3; --line-2:#C7D8EA;
+  --ok:#2E9E6B; --bad:#D64545;
+  --sh:0 10px 26px rgba(30,78,140,.10); --sh-2:0 16px 40px rgba(30,78,140,.18);
+  --r:18px;
+  --disp:'Baloo 2','Quicksand','Segoe UI',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Quicksand','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;font-weight:600}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4,.disp{font-family:var(--disp);line-height:1.22;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--peach-deep);font-weight:700;background:var(--peach-soft);border:1.5px dashed var(--peach);border-radius:99px;padding:7px 15px}
+.sec-head h2{font-size:clamp(25px,3.8vw,35px);margin:12px 0 10px;color:var(--navy-deep)}
+.sec-head p{color:var(--mut)}
+.i{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== NÚT ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;font-weight:700;min-height:47px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap;font-family:var(--disp)}
+.btn-a{background:var(--peach);color:#fff;box-shadow:0 8px 18px rgba(217,123,46,.30)}
+.btn-a:hover{background:var(--peach-deep);transform:translateY(-2px)}
+.btn-n{background:var(--navy);color:#fff}
+.btn-n:hover{background:var(--navy-2);transform:translateY(-2px)}
+.btn-g{background:var(--paper);color:var(--navy-deep);border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--peach);color:var(--peach-deep)}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(243,248,253,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;border-radius:14px;background:var(--navy);color:#FCE9EE;display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(30,78,140,.28)}
+.logo .mark svg{width:24px;height:24px;fill:#FCE9EE;stroke:none}
+.logo b{font-family:var(--disp);font-size:17.5px;color:var(--navy-deep);display:block;line-height:1.15;white-space:nowrap}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:11px;font-size:13.5px;font-weight:700;color:var(--navy)}
+nav.main a:hover{background:var(--blue-soft)}
+.hd-call{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--peach);background:#fff;border-radius:14px;padding:9px 14px;font-family:var(--disp);font-weight:700;font-size:14.5px;color:var(--peach-deep);box-shadow:0 6px 14px rgba(217,123,46,.18);white-space:nowrap}
+.hd-call:hover{background:var(--peach);color:#fff}
+
+/* ===== HERO — CỬA SỔ LÊN XE ===== */
+.hero{background:
+  radial-gradient(720px 300px at 88% -8%,rgba(246,164,91,.16),transparent 70%),
+  radial-gradient(640px 320px at 6% 6%,rgba(62,124,194,.14),transparent 70%),
+  linear-gradient(180deg,#EAF3FC 0%,var(--bg) 100%);border-bottom:1px solid var(--line)}
+.hero-g{display:grid;grid-template-columns:1.04fr .96fr;gap:40px;align-items:center;padding:50px 0 54px}
+.hero .kicker{margin-bottom:14px}
+.hero h1{font-size:clamp(30px,4.6vw,46px);color:var(--navy-deep);margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--peach-deep);background:linear-gradient(transparent 62%,var(--peach-soft) 62%);padding:0 4px;border-radius:6px}
+.hero p.lead{color:#51628A;font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero p.lead b{color:var(--navy-deep)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+/*NB110-285 — hotline TO trong hero (lặp 2/5): thẻ gọi khẩn kiểu cuống vé*/
+.hot-card{display:inline-flex;align-items:center;gap:13px;background:var(--paper);border:2px dashed var(--peach);border-radius:16px;padding:11px 18px 11px 13px;box-shadow:var(--sh);margin-bottom:22px;position:relative}
+.hot-card .hc-ic{width:44px;height:44px;border-radius:13px;background:var(--peach);color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 6px 12px rgba(217,123,46,.35)}
+.hot-card .hc-ic svg{width:22px;height:22px}
+.hot-card small{display:block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mut)}
+.hot-card b{font-family:var(--disp);font-size:21px;color:var(--peach-deep);line-height:1.1}
+.hot-card span{display:block;font-size:11.5px;color:var(--mut)}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap;border-top:1.5px dashed var(--line-2);padding-top:16px}
+.hero-stats div b{font-family:var(--disp);font-size:21px;color:var(--navy);display:block}
+.hero-stats div span{font-size:12px;color:var(--mut)}
+/* poster trong "khung vé lên xe": cuống trái + đường perforation + dấu paw */
+.hero-pic{position:relative}
+.ve-frame{display:grid;grid-template-columns:54px minmax(0,1fr);background:var(--paper);border:1.5px solid var(--line-2);border-radius:20px;box-shadow:var(--sh-2);position:relative}
+.ve-stub{border-right:2px dashed var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:10px;padding:16px 0;border-radius:18px 0 0 18px;background:linear-gradient(180deg,var(--blue-soft),#fff)}
+.ve-stub .vt{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:2.6px;color:var(--navy);text-transform:uppercase}
+.ve-stub svg{width:20px;height:20px;fill:var(--peach);stroke:none}
+.ve-frame .ph{padding:12px}
+.ve-frame .ph img{border-radius:13px;width:100%}
+.ve-code{position:absolute;top:-13px;left:70px;background:var(--navy);color:#fff;font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:1px;border-radius:99px;padding:5px 13px;box-shadow:0 6px 12px rgba(20,53,102,.3);z-index:2}
+.ve-foot{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 14px}
+.pchip{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1.5px solid var(--line);border-radius:99px;padding:7px 13px;font-size:12.5px;font-weight:700;color:var(--navy-deep)}
+.pchip svg{width:14px;height:14px;stroke:var(--peach-deep)}
+
+/* ===== DẢI TUYẾN HỨA (route ribbon) ===== */
+.strip{background:var(--navy-deep);color:#DCE8F8;padding:15px 0}
+.strip-g{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.strip-g .lbl{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;color:#F6C48F;white-space:nowrap}
+.stops{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-left:auto}
+.stop{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:6px 13px;font-size:12.5px;font-weight:700;min-height:34px}
+.stop svg{width:13px;height:13px;fill:#F6A45B;stroke:none}
+.hop{color:#F6C48F;font-size:13px;font-weight:700;letter-spacing:2px}
+
+/* ===== KHỐI-8: PHIẾU TUYẾN (pattern #5 biến thể) ===== */
+.tk-sec{background:var(--bg)}
+.tk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.tk{display:grid;grid-template-columns:52px minmax(160px,42%) minmax(0,1fr);background:var(--paper);border:1.5px solid var(--line-2);border-radius:var(--r);box-shadow:var(--sh);position:relative;transition:transform .22s,box-shadow .22s,border-color .22s;overflow:visible}
+.tk:hover{transform:translateY(-4px) rotate(-.35deg);box-shadow:var(--sh-2);border-color:var(--tone,var(--blue))}
+/* lỗ perforation trên-thân-dưới tại ranh giới cuống */
+.tk::before,.tk::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--bg);border:1.5px solid var(--line-2);left:44px;z-index:3}
+.tk::before{top:-9px}
+.tk::after{bottom:-9px}
+.tk-stub{grid-row:1/3;border-right:2px dashed var(--line-2);background:linear-gradient(180deg,var(--tone-soft,#EAF3FC),#fff);border-radius:16px 0 0 16px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;padding:13px 0}
+.tk-stub svg{width:18px;height:18px;fill:var(--tone,var(--blue));stroke:none}
+.tk-code{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--disp);font-size:11.5px;font-weight:700;letter-spacing:2px;color:var(--tone,var(--blue))}
+.tk-media{padding:12px 4px 12px 12px;display:flex}
+.tk-media img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border-radius:11px;border:1px solid var(--line);transition:transform .35s}
+.tk:hover .tk-media img{transform:scale(1.035)}
+.tk-body{padding:13px 15px 13px 10px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tk-grp{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:var(--tone-soft,#EAF3FC);color:var(--tone,var(--blue));border:1.5px solid var(--tone,var(--blue));border-radius:99px;padding:3.5px 11px;font-size:10.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.tk h3{font-size:15.5px;color:var(--navy-deep);line-height:1.28}
+.tk.feat h3{font-size:20px}
+.tk p.d{font-size:12.3px;color:var(--mut);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* bậc giá theo tuyến km / kích cỡ boss — bảng giá nhỏ trong vé */
+.ladder{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:2px 0}
+.ladder.feat-row{grid-template-columns:repeat(4,1fr)}
+.rung{background:var(--bg);border:1px dashed var(--line-2);border-radius:9px;padding:5px 8px 6px;line-height:1.25}
+.rung small{display:block;font-size:10px;font-weight:700;color:var(--mut);letter-spacing:.2px}
+.rung b{font-family:var(--disp);font-size:12.5px;color:var(--tone,var(--blue))}
+.rung.on{background:var(--tone-soft,#EAF3FC);border-color:var(--tone,var(--blue))}
+.rung.on b{color:var(--tone,var(--blue))}
+.tk-ft{display:flex;align-items:flex-end;gap:10px;margin-top:auto;padding-top:8px;border-top:1.5px dashed var(--line)}
+.pri{font-family:var(--disp);font-weight:700;color:var(--peach-deep);font-size:17px;line-height:1.1}
+.pri small{display:block;font-family:'Quicksand',sans-serif;font-size:10.5px;color:var(--mut);font-weight:700}
+.quote-btn{margin-left:auto;border:0;background:var(--navy);color:#fff;border-radius:11px;padding:10px 14px;font-family:var(--disp);font-weight:700;font-size:12.5px;min-height:40px;transition:background .16s;white-space:nowrap}
+.quote-btn:hover{background:var(--peach-deep)}
+/* thẻ nổi bật TO — dùng lại đúng dịch vụ của khối-8, TO hơn hẳn + badge + CTA riêng */
+.tk.feat{grid-column:1/-1;border:2px solid var(--peach);box-shadow:0 16px 38px rgba(217,123,46,.16)}
+.tk.feat .tk-media{padding:14px 6px 14px 14px}
+.tk.feat p.d{-webkit-line-clamp:3;font-size:13px}
+.tk-badge{position:absolute;top:-12px;left:70px;z-index:4;background:var(--peach);color:#fff;font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:99px;padding:5px 14px;box-shadow:0 6px 14px rgba(217,123,46,.4)}
+.tk-badge.b2{background:var(--mint)}
+.tk.feat .quote-btn{min-height:46px;padding:12px 20px;font-size:14px}
+.feat-list{display:flex;flex-direction:column;gap:4px;margin:2px 0}
+.feat-list span{font-size:12.3px;color:#51628A;display:flex;gap:7px;align-items:flex-start}
+.feat-list svg{width:13px;height:13px;stroke:var(--mint);margin-top:3px}
+.tone-blue{--tone:var(--blue);--tone-soft:var(--blue-soft)}
+.tone-bluec{--tone:var(--blue);--tone-soft:var(--blue-soft)}
+.tone-mint{--tone:var(--mint);--tone-soft:var(--mint-soft)}
+.tone-peach{--tone:var(--peach-deep);--tone-soft:var(--peach-soft)}
+.tone-lav{--tone:var(--lav);--tone-soft:var(--lav-soft)}
+.tone-pink{--tone:var(--pink-deep);--tone-soft:var(--pink-soft)}
+.tk-note{display:flex;align-items:center;gap:9px;justify-content:center;margin-top:16px;font-size:12.5px;color:var(--mut);flex-wrap:wrap;text-align:center}
+.tk-note b{color:var(--peach-deep)}
+
+/* ===== DAC THU — PHIẾU BÁO GIÁ SƠ BỘ 4 BƯỚC ===== */
+.q-sec{background:linear-gradient(180deg,var(--bg),#E7F0FA)}
+.q-sheet{display:grid;grid-template-columns:1.06fr .94fr;gap:0;background:var(--paper);border:1.5px solid var(--line-2);border-radius:22px;box-shadow:var(--sh-2);overflow:hidden;position:relative}
+/* mép vé trên: nửa khuyên cắt giấy */
+.q-sheet::before,.q-sheet::after{content:"";position:absolute;top:-1px;width:26px;height:26px;border-radius:50%;background:var(--bg);border:1.5px solid var(--line-2);z-index:3}
+.q-sheet::before{left:36%}
+.q-sheet::after{right:36%}
+.q-head{grid-column:1/-1;background:var(--navy);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.q-head svg.paw{width:26px;height:26px;fill:#F6A45B;stroke:none;flex:none}
+.q-head h2{font-size:clamp(19px,2.6vw,25px);flex:1;min-width:220px}
+.q-head .q-no{font-family:var(--disp);font-size:11.5px;letter-spacing:1.4px;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.4);border-radius:99px;padding:6px 14px;white-space:nowrap}
+.q-left{padding:24px clamp(18px,3vw,30px);border-right:2px dashed var(--line-2);min-width:0}
+.q-step{margin-bottom:16px}
+.q-step-h{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.q-num{width:30px;height:30px;border-radius:10px;background:var(--peach-soft);color:var(--peach-deep);border:1.5px solid var(--peach);display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:14px;flex:none}
+.q-step-h label{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--navy-deep)}
+.q-step-h small{font-size:11.5px;color:var(--mut);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips button{border:1.5px solid var(--line-2);background:var(--bg);color:var(--navy-deep);border-radius:12px;padding:8px 13px;font-size:12.5px;font-weight:700;min-height:38px;transition:all .15s}
+.chips button:hover{border-color:var(--peach)}
+.chips button.on{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 5px 12px rgba(30,78,140,.3)}
+.addons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.addon{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-2);background:var(--bg);border-radius:12px;padding:8px 11px;font-size:12.3px;font-weight:700;color:var(--navy-deep);cursor:pointer;transition:all .15s;min-height:40px}
+.addon:hover{border-color:var(--mint-2)}
+.addon.on{border-color:var(--mint);background:var(--mint-soft)}
+.addon .box{width:19px;height:19px;border-radius:6px;border:2px solid var(--line-2);background:#fff;flex:none;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
+.addon.on .box{background:var(--mint);border-color:var(--mint)}
+.addon small{display:block;font-size:10.5px;color:var(--mint);font-weight:700}
+.q-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.q-form .field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.q-form label{font-size:11.5px;font-weight:700;color:var(--navy-deep)}
+.q-form input{width:100%;padding:11px 13px;border:1.5px solid var(--line-2);border-radius:12px;font-size:14px;background:#fff;min-height:44px}
+.q-form input:focus{outline:none;border-color:var(--peach)}
+.q-form input.err{border-color:var(--bad);background:#FFF5F5}
+.q-submit{grid-column:1/-1}
+.q-fine{grid-column:1/-1;font-size:11.5px;color:var(--mut)}
+/* phiếu nháp giá bên phải */
+.q-right{padding:24px clamp(18px,3vw,30px);background:linear-gradient(180deg,#FBFDFF,#F3F8FD);display:flex;flex-direction:column;gap:12px}
+.q-right h3{font-size:15.5px;color:var(--navy-deep);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.q-right h3 small{font-size:10.5px;color:var(--mut);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.q-lines{display:flex;flex-direction:column;min-height:104px}
+.q-line{display:flex;align-items:baseline;gap:8px;padding:8px 1px;border-bottom:1.5px dashed var(--line);font-size:13px}
+.q-line .n{flex:1;min-width:0}
+.q-line .n small{display:block;font-size:11px;color:var(--mut)}
+.q-line .m{font-family:var(--disp);font-weight:700;color:var(--navy);white-space:nowrap}
+.q-line.empty{color:var(--mut);justify-content:center;border-bottom:0;padding:22px 0;font-size:12.5px}
+.q-total{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--navy);color:#fff;border-radius:14px;padding:13px 16px;margin-top:4px}
+.q-total span{font-size:12.5px;font-weight:700;line-height:1.3}
+.q-total b{font-family:var(--disp);font-size:20px;color:#F6C48F;white-space:nowrap}
+.q-warn{display:flex;gap:8px;font-size:11.8px;color:var(--mut);background:var(--peach-soft);border:1px dashed var(--peach);border-radius:12px;padding:9px 12px;line-height:1.45}
+.q-warn b{color:var(--peach-deep)}
+
+/* ===== CAM KẾT ===== */
+.commit-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.commit{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:20px 18px;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+.commit::after{content:"";position:absolute;right:-14px;bottom:-14px;width:64px;height:64px;border-radius:50%;background:var(--tone-soft,#EAF3FC);transform:rotate(0deg)}
+.commit .ic{width:46px;height:46px;border-radius:14px;background:var(--tone-soft,#EAF3FC);color:var(--tone,var(--blue));display:grid;place-items:center;position:relative;z-index:1}
+.commit .ic svg{width:23px;height:23px}
+.commit b{font-family:var(--disp);font-size:15px;color:var(--navy-deep);position:relative;z-index:1}
+.commit span{font-size:12.5px;color:var(--mut);position:relative;z-index:1}
+.tone-mintc{--tone:var(--mint);--tone-soft:var(--mint-soft)}
+.tone-pinkc{--tone:var(--pink-deep);--tone-soft:var(--pink-soft)}
+.tone-lavc{--tone:var(--lav);--tone-soft:var(--lav-soft)}
+.tone-peachc{--tone:var(--peach-deep);--tone-soft:var(--peach-soft)}
+
+/* ===== QUY TRÌNH — DẤU CHÂN ĐƯỜNG TUYẾN ===== */
+.qt-sec{background:var(--paper);border-top:1.5px dashed var(--line-2);border-bottom:1.5px dashed var(--line-2)}
+.qt-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.qt-g::before{content:"";position:absolute;top:37px;left:6%;right:6%;border-top:2.5px dashed var(--line-2);z-index:0}
+.qt{position:relative;z-index:1;text-align:center;padding:0 8px}
+.qt .step-ic{width:74px;height:74px;margin:0 auto 12px;border-radius:22px;background:var(--bg);border:2px solid var(--line-2);display:grid;place-items:center;font-size:30px;position:relative;transition:transform .2s}
+.qt:hover .step-ic{transform:rotate(-4deg) scale(1.05);border-color:var(--peach)}
+.qt .step-ic em{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--peach);color:#fff;font-style:normal;font-family:var(--disp);font-weight:700;font-size:13px;display:grid;place-items:center;box-shadow:0 4px 10px rgba(217,123,46,.4)}
+.qt b{font-family:var(--disp);font-size:15px;color:var(--navy-deep);display:block;margin-bottom:5px}
+.qt p{font-size:12.5px;color:var(--mut)}
+.qt p small{color:var(--mint);font-weight:700}
+
+/* ===== GIỚI THIỆU — M4: NỀN MỜ + THẺ NỔI ===== */
+.about-sec{position:relative;overflow:hidden}
+.about-bg{position:absolute;inset:0;background:url('assets/img/space.webp') center/cover no-repeat;filter:blur(26px) saturate(1.05);opacity:.55;transform:scale(1.12);animation:kb 26s ease-in-out infinite alternate}
+.about-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(243,248,253,.55),rgba(243,248,253,.82))}
+@keyframes kb{from{transform:scale(1.12) translate(0,0)}to{transform:scale(1.2) translate(-1.6%,1.4%)}}
+.about-in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.about-card{background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,.9);border-radius:22px;box-shadow:var(--sh-2);padding:clamp(20px,3vw,32px)}
+.about-card h2{font-size:clamp(23px,3.4vw,32px);color:var(--navy-deep);margin:10px 0 12px}
+.about-card p{color:#51628A;font-size:14.5px;margin-bottom:11px}
+.about-card .sign{font-family:var(--disp);font-style:normal;color:var(--peach-deep);font-size:14.5px}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.fact{background:var(--bg);border:1.5px dashed var(--line-2);border-radius:14px;padding:11px 14px}
+.fact b{font-family:var(--disp);font-size:19px;color:var(--navy);display:block;line-height:1.15}
+.fact span{font-size:11.5px;color:var(--mut);font-weight:700}
+.about-media{position:relative}
+.about-media img{border-radius:20px;box-shadow:var(--sh-2);border:6px solid #fff}
+.about-media .cap{position:absolute;left:16px;bottom:16px;background:rgba(20,53,102,.88);color:#fff;font-family:var(--disp);font-size:12.5px;font-weight:700;border-radius:12px;padding:9px 15px;opacity:0;transform:translateY(8px);transition:all .4s;max-width:calc(100% - 32px)}
+.about-media:hover .cap{opacity:1;transform:none}
+
+/* ===== ĐÁNH GIÁ ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:9px}
+.rev .st{color:var(--peach);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#51628A;flex:1}
+.rev b{font-size:13px;color:var(--navy-deep);font-family:var(--disp)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:stretch}
+.ct-card{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:13px}
+.ct-card h3{font-size:19px;color:var(--navy-deep)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:#51628A}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:12px;background:var(--blue-soft);color:var(--navy);display:grid;place-items:center}
+.ct-line .ic svg{width:19px;height:19px}
+.ct-line b{color:var(--navy-deep)}
+.ct-tel{font-family:var(--disp);font-size:24px;font-weight:700;color:var(--peach-deep)}
+.ct-note{font-size:12px;color:var(--mut);background:var(--mint-soft);border:1px dashed var(--mint-2);border-radius:12px;padding:9px 12px;line-height:1.5}
+.ct-lead{display:flex;flex-direction:column;gap:9px}
+.ct-lead label{font-size:11.5px;font-weight:700;color:var(--navy-deep)}
+.ct-lead input,.ct-lead select{width:100%;padding:11px 13px;border:1.5px solid var(--line-2);border-radius:12px;font-size:14px;background:#fff;min-height:44px}
+.ct-lead input.err{border-color:var(--bad);background:#FFF5F5}
+.ct-lead .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ct-card iframe{width:100%;height:240px;border:0;border-radius:14px;flex:1;min-height:240px}
+
+/* ===== FAQ ===== */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1.5px solid var(--line);border-radius:15px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border:0;background:none;text-align:left;font-family:var(--disp);font-size:14.5px;font-weight:700;color:var(--navy-deep);min-height:50px}
+.qa>button i{font-style:normal;color:var(--peach-deep);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.5px;color:#51628A}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-deep);color:#B9CBE4;margin-top:44px;position:relative}
+footer::before{content:"🐾 🐾 🐾";display:block;text-align:center;padding-top:16px;font-size:13px;letter-spacing:14px;opacity:.35}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:26px 0 20px}
+.ft-g h4{color:#fff;font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#B9CBE4;display:block;margin-bottom:6px}
+.ft-g a:hover{color:#F6A45B}
+.ft-brand b{font-family:var(--disp);font-size:17px;color:#fff;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.12);padding:12px 0;text-align:center;font-size:11.5px;color:#7E96B8}
+
+/* ===== CHAT WIDGET (pkc — không bot) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--peach);color:#fff;font-size:23px;box-shadow:0 10px 24px rgba(217,123,46,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1.5px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(20,53,102,.24);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--navy);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:700;font-size:14px;font-family:var(--disp)}
+.pkc-on{font-size:11.5px;opacity:.85;font-weight:600}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F7FAFE}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--peach);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1.5px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--navy-deep);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1.5px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line-2);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--peach);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== THANH GỌI MOBILE (hotline TO — lặp 5/5) ===== */
+.m-callbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:79;background:var(--peach-deep);color:#fff;border:0;font-family:var(--disp);font-weight:700;font-size:15px;padding:13px 16px;align-items:center;justify-content:center;gap:10px;box-shadow:0 -8px 22px rgba(20,53,102,.25)}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(440px,92vw)}
+.toast{background:var(--navy-deep);color:#EAF2FC;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(20,53,102,.4);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:#F6C48F;margin-bottom:2px;font-family:var(--disp)}
+.toast span{font-size:12.8px;color:#C9D9EE}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px){
+  .commit-g{grid-template-columns:repeat(2,1fr)}
+  .rev-g{grid-template-columns:repeat(2,1fr)}
+  .qt-g{grid-template-columns:repeat(2,1fr);gap:22px 16px}
+  .qt-g::before{display:none}
+  nav.main a{padding:9px 8px;font-size:12.5px}
+}
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:28px;padding:36px 0}
+  .hero p.lead{max-width:none}
+  .about-in{grid-template-columns:1fr}
+  .q-sheet{grid-template-columns:1fr}
+  .q-left{border-right:0;border-bottom:2px dashed var(--line-2)}
+  .q-sheet::before{left:24px}
+  .q-sheet::after{display:none}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .tk-grid{grid-template-columns:1fr 1fr;gap:14px}
+  /* tablet: vé đổi sang khối dọc — cuống thành dải ngang, ảnh trên, chữ dưới (P11) */
+  .tk{grid-template-columns:1fr}
+  .tk-stub{grid-row:auto;flex-direction:row;justify-content:flex-start;padding:9px 13px;border-right:0;border-bottom:2px dashed var(--line-2);border-radius:16px 16px 0 0}
+  .tk-code{writing-mode:horizontal-tb;transform:none}
+  .tk-stub svg{order:-1}
+  .tk::before,.tk::after{display:none}
+  .tk-media{padding:12px 12px 0}
+  .tk-body{padding:11px 14px 14px}
+}
+@media (max-width:640px){
+  .sec{padding:40px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1;min-width:0}
+  .hd-call{order:2;padding:9px 12px;font-size:13px}
+  .hero h1{font-size:29px}
+  .hot-card{width:100%;justify-content:flex-start}
+  .tk-grid{grid-template-columns:1fr}
+  /*NB110-285 — mobile: thẻ nổi bật phải THẬT nổi (luật 369): đứng đầu khối + viền cam + CTA to*/
+  .tk.feat{order:-1}
+  .tk.feat .quote-btn{width:100%}
+  /* gọn thẻ nổi bật để ảnh poster giữ tỷ lệ đủ lớn trên vé (imgPct ≥40) */
+  .tk.feat h3{font-size:17px}
+  .tk.feat p.d{-webkit-line-clamp:2;font-size:11.8px}
+  .tk.feat .tk-body{padding:11px 13px 12px}
+  .tk.feat .feat-list{display:none}
+  .tk .ladder{gap:4px}
+  .rung{padding:4px 7px 5px}
+  .ladder.feat-row{grid-template-columns:1fr 1fr}
+  .commit-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  .qt-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:24px 0 16px}
+  .ft-brand{grid-column:1/-1}
+  .addons{grid-template-columns:1fr}
+  .q-form{grid-template-columns:1fr}
+  .ladder{grid-template-columns:1fr 1fr}
+  .m-callbar{display:flex}
+  .pkc-fab{bottom:64px}
+  .pkc-panel{bottom:128px}
+  .toast-zone{bottom:78px}
+  .stops{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- SPRITE SVG: dấu chân + tiện ích (nghề-hóa bằng nét vẽ tay) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-paw" viewBox="0 0 32 32">
+    <ellipse cx="16" cy="20.5" rx="6" ry="5"/>
+    <circle cx="8.6" cy="12.8" r="2.9"/>
+    <circle cx="14.2" cy="9.2" r="3"/>
+    <circle cx="20" cy="9.6" r="2.9"/>
+    <circle cx="24.6" cy="13.8" r="2.7"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-van" viewBox="0 0 24 24"><path d="M1 8h13v9H1z"/><path d="M14 11h4l4 3v3h-8z"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-track" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark"><svg aria-hidden="true"><use href="#i-paw"/></svg></span>
+      <span><b>Cún Miêu Express</b><small>Vận chuyển &amp; dịch vụ tại nhà cho thú cưng</small></span>
+    </a>
+    <nav class="main">
+      <a href="#bang-gia">Bảng giá</a>
+      <a href="#bao-gia">Báo giá nhanh</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#gioi-thieu">Về chúng tôi</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <a class="hd-call" href="tel:0034567899"><svg class="i"><use href="#i-phone"/></svg>0034567899</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">Thành Phố Thủ Cung · An tâm · Chu đáo · Tận tâm</span>
+      <h1>Đưa yêu thương<br><em>đến mọi nơi</em> — an toàn từng bước</h1>
+      <p class="lead">Đưa đón boss đi khám, vận chuyển liên tỉnh, grooming và khám bệnh <b>tại nhà</b> — xe chuyên dụng, lồng an toàn, theo dõi hành trình trực tiếp. Thú cưng lớn nhỏ đều phù hợp.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#bao-gia">🐾 Nhận báo giá trong ngày</a>
+        <a class="btn btn-g" href="#bang-gia">Xem bảng giá theo tuyến</a>
+      </div>
+      <!-- hotline TO (lặp 2/5) -->
+      <a class="hot-card" href="tel:0034567899">
+        <span class="hc-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+        <span><small>Hotline · Zalo — gọi là đi ngay</small><b>0034567899</b><span>Phục vụ 24/7 · có mặt trước giờ hẹn 10 phút</span></span>
+      </a>
+      <div class="hero-stats">
+        <div><b>1.800+</b><span>chuyến an toàn</span></div>
+        <div><b>24/7</b><span>linh hoạt giờ giấc</span></div>
+        <div><b>12 quận</b><span>phủ nội thành</span></div>
+        <div><b>4.9/5</b><span>chủ boss đánh giá</span></div>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="ve-frame">
+        <span class="ve-code">VÉ CHUYẾN · CM-285</span>
+        <div class="ve-stub">
+          <svg aria-hidden="true"><use href="#i-paw"/></svg>
+          <span class="vt">Cún Miêu Express</span>
+          <svg aria-hidden="true"><use href="#i-paw"/></svg>
+        </div>
+        <div class="ph">
+          <img src="assets/img/cover.webp" alt="Cún Miêu Express — xe vận chuyển và dịch vụ tại nhà cho thú cưng" width="1408" height="939" fetchpriority="high">
+        </div>
+        <div class="ve-foot">
+          <span class="pchip"><svg class="i"><use href="#i-van"/></svg>Đưa đón tận nơi</span>
+          <span class="pchip"><svg class="i"><use href="#i-home"/></svg>Dịch vụ tại nhà</span>
+          <span class="pchip"><svg class="i"><use href="#i-shield"/></svg>An toàn tín cậy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DẢI TUYẾN HỨA -->
+<div class="strip" role="presentation">
+  <div class="wrap strip-g">
+    <span class="lbl">Tuyến hôm nay</span>
+    <div class="stops" aria-hidden="true">
+      <span class="stop"><svg><use href="#i-paw"/></svg>Sao Biển</span><span class="hop">→</span>
+      <span class="stop"><svg><use href="#i-paw"/></svg>Hồ Tâm Xanh</span><span class="hop">→</span>
+      <span class="stop"><svg><use href="#i-paw"/></svg>Ngã Sáu Hoa Sữa</span><span class="hop">→</span>
+      <span class="stop"><svg><use href="#i-paw"/></svg>Mây Trắng</span><span class="hop">🐾</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== KHỐI-8: BẢNG GIÁ DỊCH VỤ — PHIẾU TUYẾN (pattern #5 biến thể) ===== -->
+<section class="sec tk-sec" id="bang-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Bảng giá dịch vụ theo tuyến</span>
+      <h2>8 phiếu tuyến — mỗi chuyến một tấm vé, giá ghi rõ</h2>
+      <p>Giá bậc thang theo <b>tuyến km</b> và <b>kích cỡ boss</b>. Muốn chính xác chuyến của bạn? Cuối mỗi vé có nút nhận báo giá — điều phối viên chốt trong ngày.</p>
+    </div>
+    <div class="tk-grid rv" id="tkGrid"></div>
+    <p class="tk-note">🐾 Giá vé là <b>giá từ</b> theo bảng — đã gồm xe chuyên dụng &amp; nhân viên phù hợp; lồng, grooming, khám tại nhà tính thêm theo phiếu báo giá.</p>
+  </div>
+</section>
+
+<!-- ===== DAC THU: PHIẾU BÁO GIÁ SƠ BỘ 4 BƯỚC ===== -->
+<section class="sec q-sec" id="bao-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Công cụ đặc biệt của Cún Miêu</span>
+      <h2>Bộ câu hỏi nhu cầu 4 bước — ra phiếu báo giá sơ bộ</h2>
+      <p>Trả lời 4 câu là biết khoảng giá chuyến của boss. Để số điện thoại, điều phối viên <b>gọi lại trong ngày</b> chốt giá đúng tuyến.</p>
+    </div>
+    <div class="q-sheet rv">
+      <div class="q-head">
+        <svg class="paw" aria-hidden="true"><use href="#i-paw"/></svg>
+        <h2>Phiếu báo giá sơ bộ</h2>
+        <span class="q-no">No. CM-285 · điều phối 24/7</span>
+      </div>
+      <div class="q-left">
+        <div class="q-step">
+          <div class="q-step-h"><span class="q-num">1</span><label>Bạn cần gì cho boss?</label></div>
+          <div class="chips" id="qSvc"></div>
+        </div>
+        <div class="q-step">
+          <div class="q-step-h"><span class="q-num">2</span><label>Tuyến của bạn dài bao xa?</label><small id="qKmHint"></small></div>
+          <div class="chips" id="qKm"></div>
+        </div>
+        <div class="q-step">
+          <div class="q-step-h"><span class="q-num">3</span><label>Boss của bạn là ai — muốn thêm gì?</label></div>
+          <div class="chips" id="qPet" style="margin-bottom:8px"></div>
+          <div class="addons" id="qAdd"></div>
+        </div>
+        <div class="q-step" style="margin-bottom:0">
+          <div class="q-step-h"><span class="q-num">4</span><label>Để điều phối viên gọi lại trong ngày</label></div>
+          <div class="q-form">
+            <div class="field"><label for="qName">Họ tên *</label><input id="qName" type="text" placeholder="VD: Nguyễn Thu Hà"></div>
+            <div class="field"><label for="qPhone">Số điện thoại / Zalo *</label><input id="qPhone" type="tel" placeholder="VD: 0901 234 567"></div>
+            <button class="btn btn-a q-submit" id="qSubmit" type="button">📩 Gửi phiếu — hẹn gọi lại trong ngày</button>
+            <p class="q-fine">Gửi phiếu xong điều phối viên gọi xác nhận tuyến + giờ đón. Không hỏi thêm gì lúc đến nơi.</p>
+          </div>
+        </div>
+      </div>
+      <div class="q-right">
+        <h3>📝 Phiếu nháp giá <small>ước tính</small></h3>
+        <div class="q-lines" id="qLines"><div class="q-line empty">Trả lời 4 câu — phiếu nháp tự ghi giá từng dòng.</div></div>
+        <div class="q-total"><span>Khoảng giá ước tính<br>cho chuyến này</span><b id="qTotal">—</b></div>
+        <p class="q-warn">⚠️ Đây là <b>giá sơ bộ</b> để bạn chủ động — giá chốt sau khi điều phối viên xác nhận đúng tuyến km, kích cỡ boss và thời điểm. <b>Hotline 0034567899</b> gọi lại trong ngày.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAM KẾT AN TOÀN ===== -->
+<section class="sec" id="cam-ket">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Cam kết Cún Miêu</span>
+      <h2>Bốn điều chủ boss nhận trước khi boss lên xe</h2>
+    </div>
+    <div class="commit-g">
+      <div class="commit tone-bluec rv"><div class="ic"><svg class="i"><use href="#i-shield"/></svg></div><b>Lồng khoá kép, thoáng khí</b><span>Lồng chuyên dụng có khoá an toàn, lót đệm thấm — boss lớn nhỏ đều có size vừa người.</span></div>
+      <div class="commit tone-peachc rv"><div class="ic"><svg class="i"><use href="#i-track"/></svg></div><b>Theo dõi hành trình</b><span>Chủ nhà nhận link xem xe đang tới đâu — hết cảnh gọi điện dồn dập hỏi "xe tới chưa".</span></div>
+      <div class="commit tone-mintc rv"><div class="ic"><svg class="i"><use href="#i-check"/></svg></div><b>Nhân viên hiểu boss hoảng</b><span>Được dạy xử lý thú nhút nhát, hoảng loạn: gian lồng phủ vải, chờ boss bình tĩnh mới di chuyển.</span></div>
+      <div class="commit tone-lavc rv"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><b>Đúng giờ 24/7</b><span>Có mặt trước giờ hẹn 10 phút; chuyến khám sáng sớm, về khuya đều nhận.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH 4 BƯỚC — DẤU CHÂN ĐƯỜNG TUYẾN ===== -->
+<section class="sec qt-sec" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Một chuyến diễn ra thế nào</span>
+      <h2>Bốn bước — boss lên xe vui, về nhà khỏe</h2>
+    </div>
+    <div class="qt-g">
+      <div class="qt rv"><div class="step-ic">📝<em>1</em></div><b>Gửi phiếu tuyến</b><p>Chọn dịch vụ + tuyến km ở phiếu báo giá, hoặc gọi <small>0034567899</small>.</p></div>
+      <div class="qt rv"><div class="step-ic">☎️<em>2</em></div><b>Chốt giá &amp; giờ đón</b><p>Điều phối gọi lại trong ngày, báo giá chính thức và chiếc xe phù hợp.</p></div>
+      <div class="qt rv"><div class="step-ic">🐾<em>3</em></div><b>Boss lên xe</b><p>Nhân viên đến tận nhà, dẫn boss vào lồng khoá kép — bạn theo dõi hành trình.</p></div>
+      <div class="qt rv"><div class="step-ic">🏠<em>4</em></div><b>Về nhà an toàn</b><p>Đưa boss tới nơi, báo cáo ảnh + tình trạng xuyên chuyến cho chủ.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIỚI THIỆU — M4: NỀN MỜ + THẺ NỔI ===== -->
+<section class="sec about-sec" id="gioi-thieu">
+  <div class="about-bg" aria-hidden="true"></div>
+  <div class="wrap about-in">
+    <div class="about-card rv">
+      <span class="kicker">Về chúng tôi</span>
+      <h2>Xuất phát từ chuyến đưa bé mèo đầu tiên đi khám</h2>
+      <p>Cún Miêu Express bắt đầu từ một chiếc xe máy và câu hỏi "cho mình chở bé giúp bạn nhé" — giờ là đội xe chuyên dụng phủ 12 quận Thành Phố Thủ Cung và các tuyến liên tỉnh. Việc mình giữ nguyên từ ngày đầu: <b>không bao giờ cất boss lên thùng hàng</b> — mỗi boss đều có lồng riêng, khoá kép, có người ngồi kèm.</p>
+      <p>Khách cần grooming hay khám sức khỏe định kỳ nhưng không đưa boss đi được — đội grooming và bác sĩ đến tận nhà. Bạn chuyển nhà sang tỉnh, thậm chí sang nước ngoài — hồ sơ, lồng IATA, giấy tờ kiểm dịch lo trọn.</p>
+      <p class="sign">— Hạ Vy, điều phối viên đầu tiên của Cún Miêu Express —</p>
+      <div class="about-facts">
+        <div class="fact"><b>1.800+</b><span>chuyến an toàn từ 2022</span></div>
+        <div class="fact"><b>3 bác sĩ</b><span>khám tại nhà theo lịch</span></div>
+        <div class="fact"><b>12 quận</b><span>nội thành + tuyến tỉnh</span></div>
+        <div class="fact"><b>0 boss</b><span>lạc chuyến — theo dõi 24/7</span></div>
+      </div>
+    </div>
+    <div class="about-media rv">
+      <img src="assets/img/intro.webp" alt="Đội Cún Miêu Express — đưa đón và chăm sóc thú cưng tại nhà" width="1280" height="960" loading="lazy">
+      <span class="cap">Đội đưa đón tại nhà — phục vụ 24/7, luôn đúng giờ 🐾</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ ===== -->
+<section class="sec" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Chủ boss nói gì</span>
+      <h2>Gửi đúng người, nhận lại đúng hẹn</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Bé corgi nhà mình 17kg, mình sợ chở không nổi. Anh tài xế mang lồng đúng size, bé lên ngoan ngoan, về tới phòng khám rồi mình mới kịp lo.".</p><b>Chị Bích Thảo</b><span>Quận Mây Trắng · đưa đón đi khám</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Mèo hoàng nhà mình sợ xe cực kỳ. Cún Miêu phủ vải lồng, đi êm, tới nơi bé vẫn tỉnh bơ. Link theo dõi hành trình xem suốt chuyến luôn."</p><b>Anh Quốc Bảo</b><span>Phường Sao Biển · vận chuyển liên tỉnh</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Grooming tại nhà cho bé poodle già sợ chỗ đông người. Cô grooming vui vẻ, cắt xong bé chạy vòng vòng — đi chỗ khác chưa thấy ai kỹ vậy."</p><b>Chị Hà My</b><span>Quận Hồ Tâm · grooming tại nhà</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Chuyển bé sang Úc, hồ sơ kiểm dịch mình nghĩ sẽ mệt lắm. Cún Miêu làm hết giấy tờ, hướng dẫn lồng IATA — trừ 1 sao vì mùa cao điểm phải chờ 2 ngày."</p><b>Anh Minh Đức</b><span>Quận Hoa Sữa · thủ tục quốc tế</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ + MAP + PHIẾU TƯ VẤN NHANH ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏠 Gọi Cún Miêu — xe tới tận cổng</h3>
+      <div class="ct-line"><div class="ic"><svg class="i"><use href="#i-pin"/></svg></div><div><b>Điều phối</b><br>56 12, Đường Mặt Trăng, Phường Sao Biển, Quận Mây Trắng, Thành Phố Thủ Cung</div></div>
+      <div class="ct-line"><div class="ic"><svg class="i"><use href="#i-phone"/></svg></div><div><b>Hotline &amp; Zalo (lặp chính thức)</b><br><a class="ct-tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><b>Giờ phục vụ</b><br>24/7 — chuyến khuya, sáng sớm đều nhận (đặt trước 60 phút)</div></div>
+      <p class="ct-note">🐾 Đang có boss hoảng loạn, khó di chuyển? Gọi hotline — nhân viên hướng dẫn cách giữ boss bình tĩnh chờ xe tới.</p>
+      <a class="btn btn-g" href="https://www.google.com/maps?q=10.4110,107.1360&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới điều phối</a>
+    </div>
+    <div class="ct-card rv">
+      <h3>📩 Phiếu tư vấn nhanh</h3>
+      <div class="ct-lead">
+        <div class="two">
+          <div><label for="cName">Họ tên *</label><input id="cName" type="text" placeholder="VD: Trần Hoàng"></div>
+          <div><label for="cPhone">Số điện thoại *</label><input id="cPhone" type="tel" placeholder="VD: 0901 234 567"></div>
+        </div>
+        <label for="cSvc">Dịch vụ cần</label>
+        <select id="cSvc"></select>
+        <label for="cKm">Tuyến của bạn</label>
+        <select id="cKm">
+          <option>Dưới 5km — trong cùng quận</option>
+          <option>5 – 15km — sang quận bên cạnh</option>
+          <option>15 – 30km — vươn ngoại thành</option>
+          <option>Trên 30km — liên tỉnh / quốc tế</option>
+        </select>
+        <button class="btn btn-a" id="cSubmit" type="button">🐾 Gửi — nhận báo giá trong ngày</button>
+      </div>
+      <!-- NB110-MAP: 10.4110,107.1360 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.4110,107.1360&z=15&output=embed&hl=vi" title="Bản đồ điều phối Cún Miêu Express"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều chủ boss hay hỏi trước khi đặt chuyến</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Bé nhà mình hay hoảng loạn khi lên xe, chở được không?<i>+</i></button><div class="a">Được — đây là tình huống mình gặp hằng ngày. Lồng được phủ vải giảm ánh sáng, xe chạy êm tuyến ngắn nhất, nhân viên ngồi kèm chờ boss bình tĩnh mới khởi hành. Boss nhút nhát nặng: hẹn trước 30 phút để bé quen mùi người đưa, bạn cũng có thể ngồi cùng chuyến.</div></div>
+      <div class="qa rv"><button>Có lồng vận chuyển không hay mình phải chuẩn bị?<i>+</i></button><div class="a">Có sẵn lồng chuyên dụng đủ size — từ mèo con, chó nhỏ tới chó 35kg+. Lồng khoá kép, lót đệm thấm, thoáng khí. Bạn thêm "Lồng vận chuyển +50.000đ" trong phiếu báo giá là chuyến nào cũng có lồng kèm.</div></div>
+      <div class="qa rv"><button>Chó cỡ lớn trên 25kg, 40kg có chở được không?<i>+</i></button><div class="a">Chở được — xe chuyên dụng có khoang rộng cho boss trên 35kg, có cửa trượt để boss bước lên tự nhiên thay vì bê ngang (bê ngang dễ đau lưng chó lớn). Giá chó lớn chênh hơn theo bậc kích cỡ ghi trên từng phiếu tuyến.</div></div>
+      <div class="qa rv"><button>Grooming và khám bệnh tại nhà cần chuẩn bị gì?<i>+</i></button><div class="a">Chỉ cần một góc nhà yên tĩnh, có điện và nước. Mình mang bàn grooming, máy sấy, dụng cụ đã tiệt trùng; khám tại nhà có bác sĩ kèm túi thuốc cơ bản. Boss hung dữ hoặc quá hoảng, bác sĩ sẽ tư vấn buổi đầu gặp tại phòng khám cho an toàn.</div></div>
+      <div class="qa rv"><button>Vận chuyển liên tỉnh mất bao lâu, giá tính thế nào?<i>+</i></button><div class="a">Giá theo độ dài tuyến ghi trên phiếu (từ 350.000đ cho tuyến dưới 50km). Thời gian tuỳ tuyến: nội vùng 1–3 giờ, liên tỉnh xa đi trong ngày hoặc qua đêm có nghỉ ăn uống cho boss mỗi 3–4 giờ. Chủ nhà theo dõi hành trình xuyên chuyến.</div></div>
+      <div class="qa rv"><button>Muốn gửi boss ra nước ngoài thì làm thế nào?<i>+</i></button><div class="a">Mình lo trọn hồ sơ: microchip, giấy tiêm chủng, kiểm dịch, lồng chuẩn IATA và đặt chỗ hãng bay nhận thú. Giá theo nhóm nước ghi ở phiếu "Hỗ trợ thủ tục vận chuyển quốc tế" — hồ sơ bắt đầu trước tối thiểu 30 ngày để kịp xét nghiệm.</div></div>
+      <div class="qa rv"><button>Đặt chuyến trước bao lâu? Thanh toán thế nào?<i>+</i></button><div class="a">Chuyến trong thành phố: đặt trước 60 phút là được; liên tỉnh và quốc tế nên báo trước 1–3 ngày. Thanh toán tiền mặt, chuyển khoản hoặc quét QR sau khi boss tới nơi an toàn — khách quen đặt nhiều chuyến có bảng giá hợp đồng riêng.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🐾 Cún Miêu Express</b>
+      <p>Đưa yêu thương đến mọi nơi. Vận chuyển và dịch vụ tại nhà cho thú cưng — an tâm, chu đáo, tận tâm tại Thành Phố Thủ Cung.</p>
+    </div>
+    <div>
+      <h4>Khám phá</h4>
+      <a href="#bang-gia">Bảng giá theo tuyến</a>
+      <a href="#bao-gia">Báo giá nhanh 4 bước</a>
+      <a href="#quy-trinh">Quy trình một chuyến</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 56 12, Đường Mặt Trăng, P. Sao Biển, Q. Mây Trắng</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 Phục vụ 24/7 · đặt trước 60 phút</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Cún Miêu Express · Giá phiếu tuyến là giá tham khảo, chốt theo tuyến thực tế khi điều phối xác nhận</div>
+</footer>
+
+<!-- ===== CHAT WIDGET (pkc — không bot, gửi là lưu + hẹn chủ nhà) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🐾</div>
+    <div><div class="pkc-name">Điều phối <span data-pkc="brand">Cún Miêu Express</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🚕 Đưa bé đi khám giá bao nhiêu?</button>
+    <button class="pkc-chip">🛣 Chở chó 30kg được không?</button>
+    <button class="pkc-chip">✂️ Grooming tại nhà cần chuẩn bị gì?</button>
+    <button class="pkc-chip">✈️ Gửi bé ra nước ngoài?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho điều phối…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<!-- Thanh gọi mobile — hotline TO (lặp 5/5) -->
+<a class="m-callbar" href="tel:0034567899"><svg class="i"><use href="#i-phone"/></svg>Gọi điều phối 0034567899 — có mặt trong 60 phút</a>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-285*/
+'use strict';
+var HOTLINE = '0034567899';
+var fmtK = function(k){ return (k*1000).toLocaleString('vi-VN') + 'đ'; };
+
+/* ===== DỮ LIỆU 8 PHIẾU TUYẾN (khối-8) — nguồn duy nhất cho bảng giá + phiếu báo giá =====
+   axis: 'tuyen' = bậc theo tuyến km (nhân hệ số kích cỡ boss) · 'size' = bậc theo kích cỡ boss
+   'goi' = bậc theo gói/nước đến (không nhân hệ số) */
+var DV = [
+ {id:'lien-tinh', grp:'Chuyến xe', code:'T·01', tone:'tone-blue', name:'Vận chuyển thú cưng liên tỉnh', sh:'Vận chuyển liên tỉnh', img:'assets/img/p1.webp', w:1024, h:768,
+  d:'Chuyển boss về nhà mới hoặc gửi về quê theo xe chuyên dụng — nghỉ ăn uống mỗi 3-4 giờ, chủ theo dõi hành trình xuyên chuyến.',
+  axis:'tuyen', unit:'mỗi chuyến', feat:true, featLabel:'Chuyến được đặt nhiều nhất', featTag:'Chiếc vé quan trọng nhất — chuyển nhà, về quê cùng boss',
+  tiers:[['Dưới 50km',350],['50 – 150km',550],['150 – 300km',950],['Trên 300km',1450]]},
+ {id:'don-don-kham', grp:'Chuyến xe', code:'T·02', tone:'tone-blue', name:'Đưa đón thú cưng đi khám', sh:'Đưa đón đi khám', img:'assets/img/p2.webp', w:1280, h:960,
+  d:'Đưa tới phòng khám, chờ khám rồi đưa về — hoặc giữ chỗ của bạn ở phòng khám đối tác, báo kết quả về nhà.',
+  axis:'tuyen', unit:'mỗi lượt đưa đón',
+  tiers:[['Dưới 5km',90],['5 – 15km',130],['15 – 30km',180],['Trên 30km',260]]},
+ {id:'grooming', grp:'Tại nhà', code:'H·03', tone:'tone-mint', name:'Grooming tại nhà', sh:'Grooming tại nhà', img:'assets/img/p3.webp', w:1280, h:960,
+  d:'Cắt tỉa, tắm sấy, vệ sinh tai-mắt-cắt móng ngay trong góc nhà bạn — dụng cụ tiệt trùng, bàn gập mang theo.',
+  axis:'size', unit:'mỗi buổi', feat:true, featLabel:'Khách quen đặt lặp lại', featTag:'Boss già, boss sợ chỗ đông — grooming ngay tại nhà',
+  tiers:[['Mèo & chó nhỏ',180],['Chó 10 – 20kg',260],['Chó 20 – 35kg',350],['Trên 35kg',450]]},
+ {id:'kham-tai-nha', grp:'Tại nhà', code:'H·04', tone:'tone-mint', name:'Khám bệnh tại nhà cho thú cưng', sh:'Khám bệnh tại nhà', img:'assets/img/p4.webp', w:1024, h:768,
+  d:'Bác sĩ đến nhà khám tổng quát, tiêm phòng, lấy mẫu xét nghiệm — túi thuốc cơ bản theo người, không phải bế boss đi đâu.',
+  axis:'size', unit:'mỗi lượt khám',
+  tiers:[['Mèo & chó nhỏ',250],['Chó 10 – 20kg',320],['Chó 20 – 35kg',400],['Trên 35kg',500]]},
+ {id:'xe-chuyen-dung', grp:'Đội xe', code:'X·05', tone:'tone-peach', name:'Xe chuyên dụng chở thú cưng', sh:'Xe chuyên dụng', img:'assets/img/p5.webp', w:1280, h:960,
+  d:'Khoang lái riêng có điều hòa, khoá kép,camera theo dõi — thuê trọn chuyến cho sự kiện, chụp ảnh kỷ yếu thú cưng.',
+  axis:'tuyen', unit:'trọn chuyến',
+  tiers:[['Dưới 5km',120],['5 – 15km',160],['15 – 30km',220],['Trên 30km',320]]},
+ {id:'quoc-te', grp:'Hồ sơ quốc tế', code:'Q·06', tone:'tone-lav', name:'Hỗ trợ thủ tục vận chuyển quốc tế', sh:'Thủ tục quốc tế', img:'assets/img/p6.webp', w:1152, h:864,
+  d:'Microchip, giấy tiêm chủng, xét nghiệm, lồng IATA, đặt chỗ hãng bay nhận thú — lo trọn từ A đến lúc boss lên máy bay.',
+  axis:'goi', unit:'mỗi hồ sơ',
+  tiers:[['Hồ sơ cơ bản',1500],['Nhóm nước châu Á',2500],['Châu Âu – Mỹ',4500],['Trọn gói kèm lồng IATA',6500]]},
+ {id:'long', grp:'Tiện ích', code:'U·07', tone:'tone-pink', name:'Lồng vận chuyển an toàn', sh:'Lồng vận chuyển', img:'assets/img/p7.webp', w:1280, h:960,
+  d:'Lồng khoá kép, thoáng khí, lót đệm thấm — kèm chuyến hoặc thuê riêng cho bạn tự di chuyển lần đầu với boss.',
+  axis:'size', unit:'kèm chuyến / thuê ngày',
+  tiers:[['Size nhỏ dưới 8kg',80],['Size vừa 8 – 20kg',120],['Size lớn 20 – 35kg',160],['Lồng IATA quốc tế',350]]},
+ {id:'tracking', grp:'Tiện ích', code:'U·08', tone:'tone-pink', name:'Theo dõi hành trình', sh:'Theo dõi hành trình', img:'assets/img/p8.webp', w:1024, h:768,
+  d:'Link xem trực tiếp xe đang tới đâu, nhận ảnh chốt bước lên-xe và tới-nơi — hết cảnh gọi điện dồn dập hỏi "xe tới chưa".',
+  axis:'goi', unit:'mỗi chuyến / gói tháng',
+  tiers:[['Gói 1 chuyến',40],['Gói theo tháng',120],['Đội 3 boss',200],['Doanh nghiệp',450]]}
+];
+var PET = ['Mèo hoặc chó nhỏ dưới 10kg','Chó cỡ vừa 10 – 25kg','Chó cỡ lớn 25 – 35kg','Chó rất lớn trên 35kg'];
+var PETM = [1, 1.15, 1.3, 1.5];
+var KM = ['Dưới 5km','5 – 15km','15 – 30km','Trên 30km — liên tỉnh'];
+var ADD = [
+ {id:'long', n:'Lồng vận chuyển an toàn', k:50},
+ {id:'grooming', n:'Grooming vệ sinh trước giờ đón', k:150},
+ {id:'kham', n:'Khám sức khỏe tại nhà', k:200},
+ {id:'track', n:'Theo dõi hành trình', k:30}
+];
+
+/* ===== TOAST ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 4200);
+}
+
+/* ===== RENDER KHỐI-8: 8 PHIẾU TUYẾN (2 vé nổi bật TO full-width + 6 vé đồng đều, kín ô) ===== */
+function ladderHtml(s, feat){
+  var h = '<div class="ladder'+(feat?' feat-row':'')+'" aria-label="Bậc giá '+s.name+'">';
+  for (var i=0;i<s.tiers.length;i++){
+    h += '<div class="rung"><small>'+s.tiers[i][0]+'</small><b>từ '+fmtK(s.tiers[i][1])+'</b></div>';
+  }
+  return h + '</div>';
+}
+function renderTickets(){
+  var g = document.getElementById('tkGrid');
+  var html = '';
+  for (var i=0;i<DV.length;i++){
+    var s = DV[i];
+    var feat = s.feat;
+    html += '<article class="tk '+s.tone+(feat?' feat':'')+'"'+(feat?' style="order:-1"':'')+'>'
+      + (feat ? '<span class="tk-badge'+(i===2?' b2':'')+'">🐾 '+s.featLabel+'</span>' : '')
+      + '<div class="tk-stub"><svg aria-hidden="true"><use href="#i-paw"/></svg><span class="tk-code">'+s.code+'</span></div>'
+      + '<div class="tk-media"><img src="'+s.img+'" alt="'+s.name+'" width="'+s.w+'" height="'+s.h+'" loading="lazy"></div>'
+      + '<div class="tk-body">'
+      +   '<span class="tk-grp">'+s.grp+'</span>'
+      +   '<h3>'+s.name+'</h3>'
+      +   '<p class="d">'+s.d+'</p>'
+      +   (feat ? '<div class="feat-list"><span><svg class="i"><use href="#i-check"/></svg>'+s.featTag+'</span><span><svg class="i"><use href="#i-check"/></svg>Giá bậc thang công khai — điều phối chốt đúng tuyến trong ngày</span></div>' : '')
+      +   ladderHtml(s, feat)
+      +   '<div class="tk-ft"><div class="pri">từ '+fmtK(s.tiers[0][1])+'<small>'+s.unit+' · giá theo bậc</small></div>'
+      +   '<button class="quote-btn" data-quote="'+s.id+'">'+(feat?'🐾 Nhận báo giá chuyến này':'Nhận báo giá')+'</button></div>'
+      + '</div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var b = e.target.closest('[data-quote]'); if (!b) return;
+    pickService(b.getAttribute('data-quote'));
+    document.getElementById('bao-gia').scrollIntoView({behavior:'smooth'});
+    toast('Đã chọn dịch vụ vào phiếu', byId(b.getAttribute('data-quote')).name + ' — trả lời tiếp 3 câu nữa là có khoảng giá.');
+  });
+}
+function byId(id){ for (var i=0;i<DV.length;i++){ if (DV[i].id===id) return DV[i]; } return DV[0]; }
+
+/* ===== DAC THU: PHIẾU BÁO GIÁ 4 BƯỚC (tuyến km × loại thú × dịch vụ thêm → khoảng giá ước tính) ===== */
+var Q = { svc:'lien-tinh', km:2, pet:0, add:[] };
+function chips(el, arr, cur, onPick){
+  el.innerHTML = '';
+  for (var i=0;i<arr.length;i++){
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = arr[i]; b.setAttribute('data-i', i);
+    if (i===cur) b.classList.add('on');
+    b.addEventListener('click', function(){ onPick(+this.getAttribute('data-i')); });
+    el.appendChild(b);
+  }
+}
+function renderQ(){
+  var s = byId(Q.svc);
+  chips(document.getElementById('qSvc'), DV.map(function(x){ return x.sh; }), DV.indexOf(s), function(i){ pickService(DV[i].id); });
+  chips(document.getElementById('qKm'), KM, Q.km, function(i){ Q.km = i; renderQ(); });
+  chips(document.getElementById('qPet'), PET, Q.pet, function(i){ Q.pet = i; renderQ(); });
+  var hint = document.getElementById('qKmHint');
+  hint.textContent = (s.axis==='tuyen') ? '— bậc giá đổi theo tuyến' : (s.axis==='size' ? '— dịch vụ tại nhà: giá theo kích cỡ boss, tuyến để sắp xe' : '— dịch vụ này giá theo gói, tuyến để sắp xe');
+  var addBox = document.getElementById('qAdd');
+  addBox.innerHTML = '';
+  for (var a=0;a<ADD.length;a++){
+    (function(ad){
+      var l = document.createElement('button');
+      l.type = 'button'; l.className = 'addon' + (Q.add.indexOf(ad.id)>=0 ? ' on' : '');
+      l.innerHTML = '<span class="box">✓</span><span>'+ad.n+'<small>+'+fmtK(ad.k)+'</small></span>';
+      l.addEventListener('click', function(){
+        var p = Q.add.indexOf(ad.id);
+        if (p>=0) Q.add.splice(p,1); else Q.add.push(ad.id);
+        renderQ();
+      });
+      addBox.appendChild(l);
+    })(ADD[a]);
+  }
+  renderQuote(s);
+}
+function renderQuote(s){
+  var tier = 0;
+  if (s.axis==='tuyen') tier = Q.km;
+  else if (s.axis==='size') tier = Q.pet;
+  var pm = (s.axis==='tuyen') ? PETM[Q.pet] : 1;
+  var lines = '';
+  var base = Math.round(s.tiers[tier][1]*pm/10)*10;
+  var total = base;
+  lines += '<div class="q-line"><span class="n">'+s.name+'<small>'+(s.axis==='goi' ? s.tiers[tier][0] : (s.axis==='tuyen' ? KM[Q.km]+' · '+PET[Q.pet] : PET[Q.pet]+' · '+s.tiers[tier][0]))+'</small></span><span class="m">'+fmtK(base)+'</span></div>';
+  for (var a=0;a<ADD.length;a++){
+    if (Q.add.indexOf(ADD[a].id)>=0){ total += ADD[a].k; lines += '<div class="q-line"><span class="n">'+ADD[a].n+'</span><span class="m">+'+fmtK(ADD[a].k)+'</span></div>'; }
+  }
+  var lo = Math.round(total/10)*10;
+  var hi = Math.round(total*1.18/10)*10;
+  document.getElementById('qLines').innerHTML = lines;
+  document.getElementById('qTotal').textContent = fmtK(lo) + ' – ' + fmtK(hi);
+  return {lo:lo, hi:hi, s:s};
+}
+function pickService(id){ Q.svc = id; renderQ(); }
+document.getElementById('qSubmit').addEventListener('click', function(){
+  var s = byId(Q.svc);
+  var r = renderQuote(s);
+  var name = document.getElementById('qName'), phone = document.getElementById('qPhone');
+  name.classList.remove('err'); phone.classList.remove('err');
+  var ok = true;
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho mình xin họ tên và số điện thoại — điều phối gọi lại chốt tuyến trong ngày.'); return; }
+  toast('Đã nhận phiếu — cảm ơn '+name.value.trim()+'!', 'Báo giá sơ bộ: '+fmtK(r.lo)+' – '+fmtK(r.hi)+' · '+s.name+'. Điều phối gọi lại trong ngày — Hotline '+HOTLINE);
+  name.value = ''; phone.value = '';
+});
+
+/* ===== PHIẾU TƯ VẤN NHANH (liên hệ) ===== */
+(function(){
+  var sel = document.getElementById('cSvc');
+  for (var i=0;i<DV.length;i++){
+    var o = document.createElement('option'); o.textContent = DV[i].name; sel.appendChild(o);
+  }
+  document.getElementById('cSubmit').addEventListener('click', function(){
+    var n = document.getElementById('cName'), p = document.getElementById('cPhone');
+    n.classList.remove('err'); p.classList.remove('err');
+    var ok = true;
+    if (!n.value.trim()){ n.classList.add('err'); ok = false; }
+    if (!/^0\d{8,10}$/.test(p.value.replace(/[\s.]/g,''))){ p.classList.add('err'); ok = false; }
+    if (!ok){ toast('Thiếu thông tin', 'Cho mình xin họ tên và số điện thoại để điều phối gọi lại nhé!'); return; }
+    toast('Đã nhận yêu cầu — cảm ơn '+n.value.trim()+'!', sel.value + ' · ' + document.getElementById('cKm').value.split('—')[0].trim() + '. Điều phối gọi lại trong ngày — Hotline '+HOTLINE);
+    n.value = ''; p.value = '';
+  });
+})();
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+document.getElementById('pkcFab').addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){ pkcSendMsg(document.getElementById('pkcInput').value); });
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderTickets();
+renderQ();
+initReveal();
+</script>
+</body>
+</html>

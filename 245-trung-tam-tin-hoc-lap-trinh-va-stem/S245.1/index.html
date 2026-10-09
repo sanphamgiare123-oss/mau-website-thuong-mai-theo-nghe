@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Mầm — Trung tâm Tin học, Lập trình &amp; STEM | Lộ trình 8 bậc từ mù code đến dự án đầu tay</title>
+<meta name="description" content="Code Mầm — trung tâm tin học, lập trình và STEM cho học sinh, sinh viên và người đi làm: 8 bậc lộ trình từ tin học văn phòng đến AI – dữ liệu, lớp tối đa 15 học viên, học thử miễn phí, báo giá sơ bộ trong ngày. Hotline 0034567899.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Code Mầm — Trung tâm Tin học, Lập trình & STEM","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Ngõ Mã Lệnh Vui, Phường Robot Tí Hon","addressLocality":"Thành Phố Bấm Phím Hay","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":21.0278,"longitude":105.8342},"openingHours":"Mo-Su 08:00-20:30","description":"Trung tâm tin học, lập trình và STEM với lộ trình 8 bậc: tin học văn phòng, lập trình cơ bản, robotics STEM, web-app cho trẻ em, luyện thi chứng chỉ, đồ họa, AI – dữ liệu."}
+</script>
+<style>
+/*NB110-245*/
+:root{
+  --teal:#0E6B5F; --teal-2:#0A554B; --teal-3:#073D36; --teal-ink:#0F332D;
+  --yellow:#F5C400; --yellow-2:#FFD84D; --amber:#E0A800; --yellow-soft:#FFF6D6;
+  --bg:#F1F7F4; --paper:#FFFFFF; --mint:#E3F0EA; --ink:#17332C; --mut:#5E7A72;
+  --line:#D7E6DE; --line-2:#BFDCCE; --ok:#1E9E6A; --bad:#D84545;
+  --sh:0 10px 26px rgba(14,107,95,.12); --sh-y:0 8px 20px rgba(245,196,0,.30);
+  --r:12px; --mono:Consolas,'Courier New',monospace;
+  --trace:repeating-linear-gradient(90deg,var(--line-2) 0 8px,transparent 8px 16px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 28px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--teal);font-weight:700;background:var(--mint);border:1px solid var(--line-2);border-radius:8px;padding:5px 12px}
+.kicker::before{content:"//";color:var(--amber);font-weight:800}
+.sec-head h2{font-size:clamp(25px,4vw,35px);margin:12px 0 10px;color:var(--teal-ink);font-weight:800;letter-spacing:-.4px;line-height:1.25}
+.mk{background:linear-gradient(transparent 58%,var(--yellow-2) 58%);padding:0 3px;border-radius:3px}
+.sec-head p{color:var(--mut)}
+h1,h2,h3{line-height:1.25}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(241,247,244,.95);backdrop-filter:blur(8px);border-bottom:2px solid var(--teal-3)}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:42px;height:42px;border-radius:10px;background:var(--teal);color:var(--yellow-2);display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:15px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22);flex:none}
+.logo b{font-size:17.5px;color:var(--teal-ink);font-weight:800;letter-spacing:-.3px;display:block;line-height:1.2}
+.logo small{display:block;font-family:var(--mono);font-size:10px;color:var(--mut);letter-spacing:.4px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--teal-2)}
+nav.main a:hover{background:var(--mint);color:var(--teal)}
+.hd-right{display:flex;align-items:center;gap:8px}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line-2);background:var(--paper);border-radius:10px;padding:9px 12px;font-weight:800;font-size:13px;color:var(--teal-ink);min-height:42px;white-space:nowrap;font-family:var(--mono)}
+.call:hover{border-color:var(--teal)}
+.cta-a{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-weight:800;min-height:44px;padding:11px 18px;font-size:14px;border:0;white-space:nowrap;background:var(--teal);color:#fff;box-shadow:0 6px 14px rgba(14,107,95,.30);transition:transform .2s}
+.cta-a:hover{background:var(--teal-2);transform:translateY(-1px)}
+.hd-right .cta-a{padding:11px 14px}
+
+/* ===== HERO ===== */
+.hero{position:relative;background:
+  radial-gradient(circle at 8% 20%,rgba(245,196,0,.10) 0 90px,transparent 90px),
+  radial-gradient(circle at 92% 78%,rgba(14,107,95,.08) 0 120px,transparent 120px),
+  linear-gradient(180deg,#EAF4EF 0%,var(--bg) 100%);border-bottom:1px solid var(--line);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(rgba(14,107,95,.05) 1.5px,transparent 1.5px),
+  linear-gradient(90deg,rgba(14,107,95,.05) 1.5px,transparent 1.5px);
+  background-size:44px 44px;mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 78%);pointer-events:none}
+.hero-g{position:relative;display:grid;grid-template-columns:1.04fr .96fr;gap:40px;align-items:center;padding:54px 0 58px}
+.hero .kicker{background:var(--paper)}
+.hero h1{font-size:clamp(30px,4.6vw,45px);color:var(--teal-ink);margin:16px 0 14px;font-weight:800;letter-spacing:-.8px;line-height:1.18}
+.hero p.lead{color:#41615A;font-size:15.5px;max-width:490px;margin-bottom:22px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.btn-y{background:var(--yellow);color:#3D3200;box-shadow:var(--sh-y)}
+.btn-y:hover{background:var(--yellow-2);transform:translateY(-1px)}
+.btn-g{background:var(--paper);color:var(--teal-ink);border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--teal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap;transition:transform .2s,background .2s}
+.hero-stats{display:flex;gap:0;flex-wrap:wrap;border:1.5px dashed var(--line-2);border-radius:12px;background:rgba(255,255,255,.6);overflow:hidden}
+.hero-stats div{padding:12px 18px;flex:1;min-width:120px;border-right:1.5px dashed var(--line-2)}
+.hero-stats div:last-child{border-right:0}
+.hero-stats b{font-family:var(--mono);font-size:19px;color:var(--teal);display:block}
+.hero-stats span{font-size:12px;color:var(--mut)}
+/* khung "cửa sổ IDE" bọc poster — thiết bị nghề lặp lại */
+.ide{background:var(--teal-3);border-radius:14px;padding:0 0 12px;box-shadow:0 18px 44px rgba(7,61,54,.35);overflow:hidden}
+.ide-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--teal-ink)}
+.ide-bar .dot{width:11px;height:11px;border-radius:99px}
+.ide-bar .d1{background:#FF6B57}.ide-bar .d2{background:var(--yellow)}.ide-bar .d3{background:#35D07F}
+.ide-tab{font-family:var(--mono);font-size:12px;color:#BFE3D6;background:rgba(255,255,255,.10);border-radius:7px;padding:4px 12px;margin-left:6px}
+.ide-tab i{font-style:normal;color:var(--yellow-2)}
+.ide-body{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:10px 10px 0}
+.ide-gut{font-family:var(--mono);font-size:11px;color:rgba(191,227,214,.45);text-align:right;padding-top:4px;line-height:2.05;user-select:none}
+.ide img{border-radius:8px;width:100%}
+.ide-chip{position:absolute;left:-14px;bottom:22px;background:var(--yellow);color:#3D3200;font-weight:800;font-size:13px;border-radius:10px;padding:10px 14px;box-shadow:var(--sh-y);display:flex;align-items:center;gap:8px}
+.ide-chip .mono{font-family:var(--mono)}
+.hero-pic{position:relative}
+
+/* ===== STRIP CAM KẾT ===== */
+.strip-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.strip{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:13px;align-items:flex-start}
+.strip .ic{width:44px;height:44px;flex:none;border-radius:10px;background:var(--mint);border:1px solid var(--line-2);display:grid;place-items:center;font-size:20px}
+.strip b{display:block;font-size:14.5px;color:var(--teal-ink)}
+.strip span{font-size:12.8px;color:var(--mut)}
+
+/* ===== KHUNG NỔI BẬT RIÊNG (#noibat) — khóa được đăng ký nhiều nhất ===== */
+.nb-sec{background:linear-gradient(180deg,var(--bg),#E7F1EB)}
+.nb-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);background:var(--paper);border:2px solid var(--teal);border-radius:16px;overflow:hidden;box-shadow:0 20px 48px rgba(14,107,95,.18);position:relative}
+.nb-ph{position:relative;background:var(--mint)}
+.nb-ph img{width:100%;height:auto} /*NB110-245 poster nguyên khung, không crop*/
+.nb-badge{position:absolute;top:14px;left:14px;background:var(--yellow);color:#3D3200;font-weight:800;font-size:12px;letter-spacing:.8px;border-radius:99px;padding:7px 14px;box-shadow:var(--sh-y);z-index:2}
+.nb-bd{padding:26px clamp(18px,3vw,32px) 26px;display:flex;flex-direction:column;gap:12px}
+.nb-bd .fkick{font-family:var(--mono);font-size:12px;color:var(--amber);font-weight:700}
+.nb-bd h3{font-size:clamp(20px,2.6vw,26px);color:var(--teal-ink);font-weight:800;letter-spacing:-.4px}
+.nb-bd>p{color:var(--mut);font-size:14px}
+.nb-list{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13.8px;color:#3E5A52}
+.nb-list li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:9px}
+.nb-ft{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.nb-pri b{font-family:var(--mono);font-size:24px;color:var(--teal)}
+.nb-pri small{display:block;font-size:11.5px;color:var(--mut)}
+.nb-cta{margin-left:auto}
+
+/* ===== KHỐI-8: BẬC THANG LỘ TRÌNH HỌC TẬP ===== */
+.lt-sec{background:var(--teal-3);color:#DFF0E9;position:relative;overflow:hidden}
+.lt-sec::before{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.045) 1.5px,transparent 1.5px),
+  linear-gradient(90deg,rgba(255,255,255,.045) 1.5px,transparent 1.5px);background-size:44px 44px;pointer-events:none}
+.lt-sec .wrap{position:relative}
+.lt-sec .kicker{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--yellow-2)}
+.lt-sec .kicker::before{color:var(--yellow-2)}
+.lt-sec .sec-head h2{color:#fff}
+.lt-sec .sec-head p{color:#9EC4B8}
+/* thanh tiến độ "từ mù code đến dự án đầu tay" */
+.meter{max-width:860px;margin:0 auto 34px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 22px 20px}
+.meter-cap{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:#9EC4B8;margin-bottom:12px;flex-wrap:wrap}
+.meter-cap b{color:var(--yellow-2)}
+.meter-track{position:relative;height:12px;border-radius:99px;background:rgba(255,255,255,.10)}
+.meter-fill{position:absolute;inset:2px auto 2px 2px;width:8%;min-width:8%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--yellow));transition:width 1.2s ease}
+.meter-ticks{display:flex;justify-content:space-between;margin-top:-17px;padding:0 2px}
+.meter-ticks i{width:8px;height:8px;border-radius:99px;background:rgba(255,255,255,.35);border:2px solid var(--teal-3);font-style:normal}
+.meter-ticks i.on{background:var(--yellow);box-shadow:0 0 8px rgba(245,196,0,.6)}
+/* lưới bậc thang — 8 khóa leo dần */
+.lt-g{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start}
+.bac{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;position:relative;color:var(--ink);margin-top:var(--lift,0);transition:transform .25s,box-shadow .25s}
+.bac:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+/* vệt mạch nối giữa các bậc (chỉ desktop) */
+@media (min-width:1101px){
+  .bac:not(:nth-child(4n))::after{content:"";position:absolute;top:38px;right:-21px;width:21px;border-top:2.5px dashed var(--yellow);z-index:3}
+  .bac:not(:nth-child(4n))::before{content:"";position:absolute;top:33.5px;right:-25px;width:9px;height:9px;border-radius:99px;background:var(--yellow);box-shadow:0 0 6px rgba(245,196,0,.7);z-index:3}
+}
+.b-top{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--mint);border-bottom:1px solid var(--line)}
+.b-no{font-family:var(--mono);font-weight:800;font-size:12.5px;color:#fff;background:var(--teal);border-radius:7px;padding:3px 9px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+.b-lv{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;color:var(--teal-2);font-weight:800}
+.b-age{margin-left:auto;font-size:11px;color:var(--mut);border:1px solid var(--line-2);border-radius:99px;padding:2px 9px;font-weight:700;white-space:nowrap}
+.b-ph{padding:8px 9px 0}
+.b-ph img{border-radius:8px;width:100%}
+.bac h3{font-size:15px;color:var(--teal-ink);padding:10px 13px 0;font-weight:800;letter-spacing:-.2px}
+.bac>p{font-size:12.2px;line-height:1.45;color:var(--mut);padding:6px 13px 11px}
+.b-ft{display:flex;align-items:center;gap:7px;padding:10px 12px;border-top:1.5px dashed var(--line);background:#FAFDFB;margin-top:auto}
+.b-pri{font-family:var(--mono);font-weight:800;font-size:12.5px;color:var(--teal);white-space:nowrap}
+.b-pri small{display:block;font-size:9.5px;color:var(--mut);font-weight:600;white-space:normal;line-height:1.3}
+.b-cta{margin-left:auto;border:0;background:var(--yellow);color:#3D3200;border-radius:9px;padding:8px 11px;font-weight:800;font-size:12px;min-height:36px;box-shadow:0 4px 10px rgba(245,196,0,.35);flex:none}
+.b-cta:hover{background:var(--yellow-2)}
+.bac.hot{border:2px solid var(--amber);box-shadow:0 12px 30px rgba(224,168,0,.22)}
+.bac.hot .b-top{background:var(--yellow-soft)}
+.b-hotb{position:absolute;top:-11px;right:10px;background:var(--amber);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.6px;border-radius:99px;padding:5px 11px;z-index:4;box-shadow:0 4px 10px rgba(224,168,0,.4)}
+.bac.top{background:var(--teal-ink);border-color:var(--yellow)}
+.bac.top h3{color:#fff}
+.bac.top>p{color:#A9CCC0}
+.bac.top .b-top{background:rgba(255,255,255,.08);border-bottom-color:rgba(255,255,255,.12)}
+.bac.top .b-no{background:var(--yellow);color:#3D3200}
+.bac.top .b-lv{color:var(--yellow-2)}
+.bac.top .b-age{color:#A9CCC0;border-color:rgba(255,255,255,.25)}
+.bac.top .b-ft{background:rgba(255,255,255,.05);border-top-color:rgba(255,255,255,.14)}
+.bac.top .b-pri{color:var(--yellow-2)}
+.bac.top .b-pri small{color:#A9CCC0}
+
+.lt-hint{display:none;text-align:center;font-family:var(--mono);font-size:11.5px;color:#8FB5A9;margin:-16px 0 18px}
+
+/* ===== MỤC LỤC CHƯƠNG TRÌNH (cờ TO-CHUC) ===== */
+.ml-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ml-col{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;display:flex;flex-direction:column}
+.ml-col>h3{font-size:15.5px;color:var(--teal-ink);padding-bottom:10px;border-bottom:2.5px dashed var(--line-2);margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.ml-col>h3 .code{font-family:var(--mono);font-size:11px;background:var(--mint);color:var(--teal-2);border-radius:6px;padding:3px 8px;font-weight:800}
+.ml-row{display:flex;align-items:baseline;gap:8px;padding:8px 0;font-size:13px}
+.ml-row .nm{color:#3E5A52;font-weight:600}
+.ml-row .dots{flex:1;border-bottom:2px dotted var(--line-2);transform:translateY(-3px);min-width:12px}
+.ml-row .pr{font-family:var(--mono);font-size:11.5px;color:var(--teal);font-weight:700;white-space:nowrap}
+.ml-col .ml-note{margin-top:auto;padding-top:12px;font-size:11.8px;color:var(--mut)}
+
+/* ===== DAC THU: BỘ CÂU HỎI NHU CẦU 4 BƯỚC ===== */
+.qz-sec{background:linear-gradient(180deg,#E7F1EB,var(--bg))}
+.qz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:24px;align-items:start}
+.qz-ask{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:24px clamp(16px,3vw,28px)}
+.qz-step{display:grid;grid-template-columns:34px 1fr;gap:14px;position:relative;padding-bottom:20px}
+.qz-step:last-child{padding-bottom:0}
+.qz-step::before{content:"";position:absolute;left:16.5px;top:38px;bottom:2px;border-left:2.5px dashed var(--line-2)}
+.qz-step:last-child::before{display:none}
+.qz-no{width:34px;height:34px;border-radius:99px;background:var(--mint);border:2px solid var(--line-2);color:var(--teal-2);font-family:var(--mono);font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;z-index:1}
+.qz-step.done .qz-no{background:var(--yellow);border-color:var(--amber);color:#3D3200}
+.qz-step h3{font-size:14.5px;color:var(--teal-ink);margin:7px 0 10px;font-weight:800}
+.qz-chips{display:flex;flex-wrap:wrap;gap:8px}
+.qz-chips button{border:1.5px solid var(--line-2);background:#FBFDFC;color:var(--teal-ink);border-radius:99px;padding:9px 15px;font-size:13px;font-weight:700;min-height:40px;transition:border-color .2s,background .2s}
+.qz-chips button:hover{border-color:var(--teal)}
+.qz-chips button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.qz-out{background:var(--teal-3);color:#DFF0E9;border-radius:16px;padding:24px clamp(16px,3vw,28px);position:sticky;top:76px}
+.qz-out h3{color:#fff;font-size:17px;display:flex;align-items:center;gap:9px}
+.qz-out .qz-tag{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.10);border-radius:6px;padding:3px 9px;color:var(--yellow-2)}
+.qz-path{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.qz-path .stp{font-family:var(--mono);font-size:12px;font-weight:800;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.22);border-radius:8px;padding:6px 10px}
+.qz-path .stp b{color:var(--yellow-2)}
+.qz-path .arr{color:var(--yellow);font-weight:800}
+.qz-goi{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:13.3px}
+.qz-goi .ic{font-size:19px}
+.qz-goi b{color:#fff}
+.qz-uoc{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 4px}
+.qz-uoc b{font-family:var(--mono);font-size:26px;color:var(--yellow-2)}
+.qz-uoc span{font-size:12.3px;color:#9EC4B8}
+.qz-out .tiny{font-size:11.5px;color:#8FB5A9;margin:4px 0 14px}
+.qz-cta{width:100%;border:0;background:var(--yellow);color:#3D3200;font-weight:800;border-radius:12px;padding:14px;font-size:14.5px;min-height:48px;box-shadow:var(--sh-y)}
+.qz-cta:hover{background:var(--yellow-2)}
+.qz-out .mini{display:flex;align-items:center;gap:12px;margin-top:14px;background:rgba(255,255,255,.06);border-radius:12px;padding:10px}
+.qz-out .mini img{width:74px;border-radius:8px;flex:none;border:2px solid rgba(255,255,255,.2)}
+.qz-out .mini p{font-size:12px;color:#BFD9D0;line-height:1.5}
+
+/* ===== GIỚI THIỆU + KHÔNG GIAN — M4: nền mờ + thẻ nổi ===== */
+.gt-sec{position:relative;overflow:hidden}
+.gt-sec::before{content:"";position:absolute;inset:0;background:url("assets/img/space.webp") center/cover;filter:blur(26px) saturate(.92);opacity:.20}
+.gt-sec .wrap{position:relative}
+.gt-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:30px;align-items:center}
+.gt-card{background:var(--paper);border-radius:16px;padding:14px;box-shadow:0 22px 54px rgba(7,61,54,.28);transform:rotate(-1.4deg);border:1px solid var(--line)}
+.gt-card img{border-radius:10px;width:100%}
+.gt-card figcaption{font-family:var(--mono);font-size:11.5px;color:var(--mut);padding:10px 4px 2px;display:flex;justify-content:space-between;gap:10px}
+.gt-txt h2{font-size:clamp(24px,3.6vw,34px);color:var(--teal-ink);margin:12px 0 14px;font-weight:800;letter-spacing:-.5px}
+.gt-txt p{color:#41615A;font-size:14.5px;margin-bottom:12px}
+.gt-quote{font-family:var(--mono);font-size:13.5px;color:var(--teal-2);background:var(--paper);border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;box-shadow:var(--sh)}
+.gt-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.gt-metrics div{background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:13px 16px}
+.gt-metrics b{font-family:var(--mono);font-size:21px;color:var(--teal);display:block}
+.gt-metrics span{font-size:12px;color:var(--mut)}
+
+/* ===== FORM ĐĂNG KÝ HỌC THỬ ===== */
+.dk-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:22px;align-items:start}
+.dk-form{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:26px clamp(16px,3vw,30px)}
+.dk-form h3{font-size:19px;color:var(--teal-ink);margin-bottom:4px}
+.dk-form .sub{font-size:13px;color:var(--mut);margin-bottom:18px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dk-form label{font-size:12.5px;font-weight:800;color:var(--teal-ink);display:block;margin:13px 0 6px}
+.dk-form input,.dk-form select,.dk-form textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line-2);border-radius:11px;font-size:14px;font-family:inherit;background:#FBFDFC;color:var(--ink)}
+.dk-form input:focus,.dk-form select:focus,.dk-form textarea:focus{outline:none;border-color:var(--teal);background:#fff}
+.dk-form input.err,.dk-form select.err{border-color:var(--bad);background:#FFF5F5}
+.dk-form textarea{resize:vertical;min-height:64px}
+.dk-chips{display:flex;flex-wrap:wrap;gap:8px}
+.dk-chips button{border:1.5px solid var(--line-2);background:#FBFDFC;border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:700;color:var(--teal-ink);min-height:38px}
+.dk-chips button.on{background:var(--yellow);border-color:var(--amber);color:#3D3200}
+.dk-submit{width:100%;margin-top:18px}
+.dk-side{background:var(--teal-3);color:#DFF0E9;border-radius:16px;padding:26px clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:14px}
+.dk-side h3{color:#fff;font-size:18px}
+.dk-line{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:#BFD9D0}
+.dk-line .ic{width:38px;height:38px;flex:none;border-radius:10px;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:17px}
+.dk-line b{color:#fff;display:block;font-size:13.5px}
+.dk-tel{font-family:var(--mono);font-size:23px;font-weight:800;color:var(--yellow-2);display:block}
+.dk-side .btn{margin-top:2px}
+
+/* ===== REVIEW ===== */
+.rv-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
+.rev .st{color:var(--amber);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#3E5A52;flex:1}
+.rev b{font-size:13px;color:var(--teal-ink)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:var(--teal-ink)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#3E5A52}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:10px;background:var(--mint);border:1px solid var(--line-2);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--teal-ink)}
+.ct-card .tel{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--teal)}
+.ct-card iframe{width:100%;height:240px;border:0;border-radius:12px;flex:1;min-height:240px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--teal-ink);min-height:48px}
+.qa>button i{font-style:normal;color:var(--amber);font-size:18px;transition:transform .25s;flex:none;font-family:var(--mono)}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#3E5A52}
+.qa.open .a{display:block}
+
+/* ===== FOOTER (cấu trúc — cờ TO-CHUC) ===== */
+footer{background:var(--teal-3);color:#9EC4B8;margin-top:44px;border-top:3px dashed var(--yellow)}
+.ft-g{display:grid;grid-template-columns:1.5fr 1.1fr 1fr 1.2fr;gap:26px;padding:36px 0 24px}
+.ft-g h4{color:var(--yellow-2);font-size:13px;margin-bottom:11px;letter-spacing:.8px;font-family:var(--mono)}
+.ft-g p,.ft-g a{font-size:12.8px;color:#9EC4B8;display:block;margin-bottom:7px}
+.ft-g a:hover{color:var(--yellow-2)}
+.ft-brand b{font-size:17px;color:#fff;display:block;margin-bottom:7px}
+.ft-brand .mono{font-family:var(--mono);color:var(--yellow-2)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.10);padding:13px 0;text-align:center;font-size:11.5px;color:#6E948A}
+
+/* ===== CHAT WIDGET (pkc) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--teal);color:#fff;font-size:23px;box-shadow:0 10px 24px rgba(14,107,95,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 44px rgba(7,61,54,.25);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--teal-ink);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F4FAF7}
+.mg{max-width:82%;padding:9px 12px;border-radius:12px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--teal-ink);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line-2);border-radius:10px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--teal);color:#fff;border-radius:10px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+.toast{background:var(--teal-ink);color:#E3F3EC;border-radius:13px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s;border-left:4px solid var(--yellow)}
+.toast b{display:block;font-size:13.5px;color:var(--yellow-2);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#C6DED5}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== THANH GỌI MOBILE ===== */
+.mbar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:75;gap:10px}
+.mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;padding:13px 10px;font-weight:800;font-size:14px;min-height:48px}
+.mbar .m-call{background:var(--yellow);color:#3D3200;box-shadow:var(--sh-y)}
+.mbar .m-try{background:var(--teal);color:#fff;box-shadow:0 8px 20px rgba(14,107,95,.4)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+.gt-card.rv{transform:rotate(-1.4deg) translateY(22px)}
+.gt-card.rv.in{transform:rotate(-1.4deg)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px){
+  nav.main{display:none}
+  .lt-g{grid-template-columns:repeat(2,1fr)}
+  .bac{margin-top:0!important}
+  .bac::after,.bac::before{display:none!important}
+  .ml-g{grid-template-columns:repeat(2,1fr)}
+  /* mobile/tablet: khóa HOT lên đầu + viền vàng đậm (luật thẻ nổi bật) — poster nguyên khung */
+  .bac.hot{order:-1;grid-column:1/-1;border-width:2.5px}
+  .b-hotb{top:8px;right:8px}
+  .bac.top{grid-column:1/-1}
+}
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:38px 0 44px}
+  .hero p.lead{max-width:none}
+  .strip-g{grid-template-columns:1fr}
+  .nb-card{grid-template-columns:1fr}
+  .nb-ph{min-height:220px}
+  .qz{grid-template-columns:1fr}
+  .qz-out{position:static}
+  .gt-grid{grid-template-columns:1fr}
+  .dk-g{grid-template-columns:1fr}
+  .rv-g{grid-template-columns:repeat(2,1fr)}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2;margin-left:auto}
+  .hd-right .cta-a span{display:none}
+  .call span{display:none}
+  .call{padding:9px 11px}
+  .hero h1{font-size:29px}
+  /*NB110-245 mobile: khối-8 về dải cuộn ngang bắt điểm (P10) — thẻ rộng hơn, ảnh đủ lớn (imgPct ≥40)*/
+  .lt-hint{display:block}
+  .lt-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 4px 16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .bac{flex:0 0 238px;scroll-snap-align:center;margin:0!important}
+  .bac.hot{flex:0 0 272px}
+  .bac.top{flex:0 0 262px}
+  .bac>p{-webkit-line-clamp:2}
+  .b-ft{padding:9px 11px;gap:6px}
+  .b-pri{font-size:12px}
+  .hero-stats div{min-width:46%;border-right:0;border-bottom:1.5px dashed var(--line-2)}
+  .ide-chip{left:8px;bottom:12px;font-size:12px;padding:8px 11px}
+  .ml-g{grid-template-columns:1fr}
+  .rv-g{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr;gap:20px;padding:28px 0 20px}
+  .btn{white-space:normal;text-align:center}
+  .nb-ft .nb-cta{margin-left:0;width:100%}
+  body{padding-bottom:74px}
+  .mbar{display:flex}
+  .pkc-fab{bottom:86px}
+  .pkc-panel{bottom:152px}
+  .toast-zone{bottom:88px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark">&lt;/&gt;</span>
+      <span><b>Code Mầm</b><small>TIN HỌC · LẬP TRÌNH · STEM</small></span>
+    </a>
+    <nav class="main">
+      <a href="#noibat">Khóa nổi bật</a>
+      <a href="#lo-trinh">Lộ trình 8 bậc</a>
+      <a href="#muc-luc">Mục lục chương trình</a>
+      <a href="#goi-y">Gợi ý lộ trình</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+      <a class="cta-a" href="#dang-ky"><span>Học thử miễn phí</span>✍️</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">trung-tam-stem $ mo-lo-trinh --cho-moi-nguoi</span>
+      <h1>Từ <em>mù code</em> đến <span class="mk">dự án đầu tay</span> — đi đúng 8 bậc</h1>
+      <p class="lead">Code Mầm là trung tâm tin học, lập trình và STEM cho học sinh, sinh viên và người đi làm. Mỗi học viên được đo trình độ, lên lộ trình 8 bậc riêng và học thực hành từ buổi đầu — phụ huynh nhận báo cáo sau mỗi chặng.</p>
+      <div class="hero-cta">
+        <a class="btn btn-y" href="#dang-ky">✍️ Đăng ký học thử miễn phí</a>
+        <a class="btn btn-g" href="#lo-trinh">🪜 Xem lộ trình 8 bậc</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>1.800+</b><span>học viên đã học</span></div>
+        <div><b>8 bậc</b><span>một lộ trình liền mạch</span></div>
+        <div><b>≤ 15</b><span>học viên / lớp</span></div>
+        <div><b>24 giờ</b><span>gọi lại sau đăng ký</span></div>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="ide">
+        <div class="ide-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="ide-tab">lo-trinh-8-bac<i>.js</i></span></div>
+        <div class="ide-body">
+          <div class="ide-gut">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
+          <img src="assets/img/cover.webp" alt="Code Mầm — Trung tâm tin học, lập trình và STEM: học viên lắp robot cùng thầy" width="1536" height="1024" fetchpriority="high">
+        </div>
+      </div>
+      <div class="ide-chip">🎁 Học thử <span class="mono">0đ</span> cuối tuần · hotline <span class="mono">0034567899</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tien-ich" style="padding-top:40px">
+  <div class="wrap strip-g">
+    <div class="strip rv"><div class="ic">🧪</div><div><b>Học thử miễn phí 1 buổi</b><span>Đo trình độ + trải nghiệm lớp thật trước khi đóng học phí.</span></div></div>
+    <div class="strip rv"><div class="ic">🧭</div><div><b>Lộ trình cá nhân theo độ tuổi</b><span>Thầy cô đo đầu vào và ghép bậc học phù hợp — không đông cả lớp một bài.</span></div></div>
+    <div class="strip rv"><div class="ic">📩</div><div><b>Báo giá sơ bộ trong ngày</b><span>Trả lời bộ câu hỏi 4 bước là biết ngay gói học phí ước tính.</span></div></div>
+  </div>
+</section>
+
+<!-- ===== KHUNG NỔI BẬT RIÊNG — khóa đăng ký nhiều nhất (dùng lại đúng khóa của khối-8) ===== -->
+<section class="sec nb-sec" id="noibat" style="padding-top:16px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">khoa-duoc-dang-ky-nhieu-nhat</span>
+      <h2>Bậc được phụ huynh chọn nhiều nhất quý này</h2>
+      <p>Lập trình web – app cho trẻ em: học sinh tự tay dựng trang web và mini-app đầu tiên sau 14 buổi.</p>
+    </div>
+    <div class="nb-card rv">
+      <div class="nb-ph">
+        <span class="nb-badge">🔥 ĐĂNG KÝ NHIỀU NHẤT</span>
+        <img src="assets/img/p4.webp" alt="Lập trình web - app cho trẻ em tại Code Mầm" loading="lazy">
+      </div>
+      <div class="nb-bd">
+        <span class="fkick">// bậc B4 · phù hợp 9–15 tuổi</span>
+        <h3>Lập trình web – app cho trẻ em</h3>
+        <p>Chưa biết gì vẫn học được: bắt đầu bằng kéo–thả khối lệnh, kết thúc bằng một trang web tự chọn đề tài (giới thiệu lớp, sổ tay bungi bắn, game đo phản xạ…).</p>
+        <ul class="nb-list">
+          <li>14 buổi · 2 buổi/tuần · tối đa 15 học viên</li>
+          <li>Từng em một dự án web/app ra sản phẩm chạy thật</li>
+          <li>Báo cáo tiến độ gửi phụ huynh sau mỗi 4 buổi</li>
+          <li>Học thử miễn phí 1 buổi trước khi nhập lớp</li>
+        </ul>
+        <div class="nb-ft">
+          <div class="nb-pri"><b>từ 2.790.000đ</b><small>/ trọn khóa 14 buổi · đã gồm tài liệu</small></div>
+          <a class="cta-a nb-cta" href="#dang-ky" data-mon="Lập trình web - app cho trẻ em">✍️ Giữ chỗ học thử</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8: BẬC THANG LỘ TRÌNH HỌC TẬP (pattern #16 — biến thể lộ trình) ===== -->
+<section class="sec lt-sec" id="lo-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">lo-trinh-8-bac</span>
+      <h2>8 bậc — từ mù code đến dự án đầu tay</h2>
+      <p>Đứng ở bậc nào cũng có lớp vừa sức: leo từng bậc hay rẽ nhánh theo sở thích đều được, thầy cô định vị lại sau mỗi chặng.</p>
+    </div>
+    <div class="meter rv" id="meter">
+      <div class="meter-cap"><span>🧱 BẬT ĐẦU: <b>mù code</b></span><span id="meterCap">chạm từng bậc để thấy hành trình</span><span>🏁 ĐÍCH: <b>dự án đầu tay</b></span></div>
+      <div class="meter-track"><span class="meter-fill" id="meterFill"></span>
+        <div class="meter-ticks" id="meterTicks"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+    <div class="lt-g" id="gridBac"></div>
+    <p class="lt-hint">◂ vuốt ngang để đi đủ 8 bậc ▸</p>
+  </div>
+</section>
+
+<!-- ===== MỤC LỤC CHƯƠNG TRÌNH (cờ TO-CHUC: mục lục khóa con) ===== -->
+<section class="sec" id="muc-luc">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">muc-luc-chuong-trinh</span>
+      <h2>Mục lục khóa con theo nhóm tuổi</h2>
+      <p>Chương trình được tách khóa con theo nhóm tuổi và mục tiêu — phụ huynh đối chiếu nhanh trước khi đặt lịch học thử.</p>
+    </div>
+    <div class="ml-g">
+      <div class="ml-col rv">
+        <h3><span class="code">4–6 TUỔI</span> Mầm non</h3>
+        <div class="ml-row"><span class="nm">Làm quen máy tính an toàn</span><span class="dots"></span><span class="pr">8 buổi</span></div>
+        <div class="ml-row"><span class="nm">Robotics khám phá — lắp &amp; vận hành</span><span class="dots"></span><span class="pr">10 buổi</span></div>
+        <div class="ml-row"><span class="nm">STEM khám phá: nhẹ – nặng – bền</span><span class="dots"></span><span class="pr">10 buổi</span></div>
+        <div class="ml-row"><span class="nm">Kể chuyện bằng hình khối</span><span class="dots"></span><span class="pr">8 buổi</span></div>
+        <p class="ml-note">Mỗi lớp có trợ giảng; phụ huynh xem cuối buổi 10 phút.</p>
+      </div>
+      <div class="ml-col rv">
+        <h3><span class="code">7–12 TUỔI</span> Tiểu học</h3>
+        <div class="ml-row"><span class="nm">Lập trình cơ bản (khối lệnh)</span><span class="dots"></span><span class="pr">14 buổi</span></div>
+        <div class="ml-row"><span class="nm">Robotics – STEM vận dụng</span><span class="dots"></span><span class="pr">12 buổi</span></div>
+        <div class="ml-row"><span class="nm">Web – app cho trẻ em</span><span class="dots"></span><span class="pr">14 buổi</span></div>
+        <div class="ml-row"><span class="nm">Đánh máy 10 ngón + tin học nền</span><span class="dots"></span><span class="pr">10 buổi</span></div>
+        <p class="ml-note">Xếp lớp theo tuổi &amp; trình độ đầu vào miễn phí.</p>
+      </div>
+      <div class="ml-col rv">
+        <h3><span class="code">13–18 TUỔI</span> THCS – THPT</h3>
+        <div class="ml-row"><span class="nm">Lập trình Python cơ bản</span><span class="dots"></span><span class="pr">14 buổi</span></div>
+        <div class="ml-row"><span class="nm">Thiết kế đồ họa</span><span class="dots"></span><span class="pr">14 buổi</span></div>
+        <div class="ml-row"><span class="nm">AI – dữ liệu cơ bản</span><span class="dots"></span><span class="pr">15 buổi</span></div>
+        <div class="ml-row"><span class="nm">Luyện thi chứng chỉ tin học</span><span class="dots"></span><span class="pr">15 buổi</span></div>
+        <p class="ml-note">Có lớp tăng cường hè và lớp ôn thi HSG tin học.</p>
+      </div>
+      <div class="ml-col rv">
+        <h3><span class="code">16+ / ĐI LÀM</span> Sinh viên &amp; người lớn</h3>
+        <div class="ml-row"><span class="nm">Tin học văn phòng ứng dụng</span><span class="dots"></span><span class="pr">12 buổi</span></div>
+        <div class="ml-row"><span class="nm">Luyện thi chứng chỉ MOS / IC3</span><span class="dots"></span><span class="pr">15 buổi</span></div>
+        <div class="ml-row"><span class="nm">Excel ứng dụng công việc</span><span class="dots"></span><span class="pr">10 buổi</span></div>
+        <div class="ml-row"><span class="nm">AI – dữ liệu cho người đi làm</span><span class="dots"></span><span class="pr">15 buổi</span></div>
+        <p class="ml-note">Lịch tối &amp; cuối tuần, học bù linh hoạt trong tháng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAC THU: BỘ CÂU HỎI NHU CẦU 4 BƯỚC → LỘ TRÌNH + GÓI ƯỚC TÍNH ===== -->
+<section class="sec qz-sec" id="goi-y">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">bo-cau-hoi-nhu-cau</span>
+      <h2>4 câu — nhận ngay lộ trình &amp; gói học phí ước tính</h2>
+      <p>Trả lời nhanh 4 câu bên trái, khung bên phải tự ghép lộ trình đề xuất kèm học phí giai đoạn đầu. Trung tâm gọi lại trong ngày để chốt lớp.</p>
+    </div>
+    <div class="qz">
+      <div class="qz-ask rv">
+        <div class="qz-step" data-step="1" id="qs1">
+          <span class="qz-no">1</span>
+          <div>
+            <h3>Học cho ai?</h3>
+            <div class="qz-chips" data-q="ai">
+              <button data-v="con-4-6">Con 4–6 tuổi</button>
+              <button data-v="con-7-12">Con 7–12 tuổi</button>
+              <button data-v="con-13-17">Con 13–17 tuổi</button>
+              <button data-v="sinh-vien">Bản thân — sinh viên</button>
+              <button data-v="di-lam">Bản thân — đi làm</button>
+            </div>
+          </div>
+        </div>
+        <div class="qz-step" data-step="2" id="qs2">
+          <span class="qz-no">2</span>
+          <div>
+            <h3>Mục tiêu chính là gì?</h3>
+            <div class="qz-chips" data-q="mucTieu">
+              <button data-v="may-tinh">Dùng máy tính thạo, tin học VP</button>
+              <button data-v="tu-duy">Rèn tư duy lập trình từ đầu</button>
+              <button data-v="robot">Robotics – STEM lắp ráp</button>
+              <button data-v="web-game">Tự làm web, app, game</button>
+              <button data-v="chung-chi">Thi chứng chỉ tin học</button>
+              <button data-v="do-hoa">Thiết kế đồ họa</button>
+              <button data-v="ai">AI &amp; dữ liệu</button>
+            </div>
+          </div>
+        </div>
+        <div class="qz-step" data-step="3" id="qs3">
+          <span class="qz-no">3</span>
+          <div>
+            <h3>Trình độ hiện tại?</h3>
+            <div class="qz-chips" data-q="trinhDo">
+              <button data-v="mu-code">Chưa biết gì — mù code</button>
+              <button data-v="bit-chut">Biết chút, từng tự mò</button>
+              <button data-v="da-hoc">Đã học lập trình cơ bản</button>
+            </div>
+          </div>
+        </div>
+        <div class="qz-step" data-step="4" id="qs4">
+          <span class="qz-no">4</span>
+          <div>
+            <h3>Thời gian học thuận tiện?</h3>
+            <div class="qz-chips" data-q="thoiGian">
+              <button data-v="t2-t4">Tối T2 – T4 trong tuần</button>
+              <button data-v="t3-t5">Tối T3 – T5 trong tuần</button>
+              <button data-v="cuoi-tuan">Cuối tuần (T7 / CN)</button>
+              <button data-v="ca-tuan">Cả tuần — học hè chuyên tâm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="qz-out rv" id="qzOut">
+        <h3>📋 Lộ trình đề xuất <span class="qz-tag" id="qzTag">chờ 4 câu trả lời</span></h3>
+        <div class="qz-path" id="qzPath"><span class="stp" style="border-style:dashed;background:none">Trả lời đủ 4 câu để ghép lộ trình ↔</span></div>
+        <div class="qz-goi"><span class="ic">🎒</span><div><b>Gói đề xuất: —</b><br><span id="qzGoiDesc">Ví dụ: gói Cơ bản 2 buổi/tuần, học trong 7 tuần/khóa.</span></div></div>
+        <div class="qz-uoc"><b id="qzUoc">—</b><span id="qzUocNote">học phí giai đoạn đầu (số ước tính)</span></div>
+        <p class="tiny">* Số ước tính để đối chiếu nhanh — báo giá chính thức theo lớp xếp sau khi trung tâm đo trình độ miễn phí.</p>
+        <button class="qz-cta" id="qzCta">📩 Nhận báo giá &amp; hẹn gọi lại trong ngày</button>
+        <div class="mini">
+          <img src="assets/img/p8.webp" alt="Bảng lộ trình học theo độ tuổi" loading="lazy">
+          <p><b style="color:#fff">Lộ trình học theo độ tuổi (bậc B8)</b> — thầy cô dùng bảng này để định vị học viên vào đúng bậc khởi đầu, tránh học lại phần đã biết.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIỚI THIỆU + KHÔNG GIAN — M4: nền mờ + thẻ nổi ===== -->
+<section class="sec gt-sec" id="gioi-thieu">
+  <div class="wrap gt-grid">
+    <figure class="gt-card rv">
+      <img src="assets/img/intro.webp" alt="Học công nghệ theo cách dễ hiểu tại Code Mầm" width="1536" height="1024" loading="lazy">
+      <figcaption><span>phòng học thực hành · tầng 2</span><span>#hoc-cong-nghe</span></figcaption>
+    </figure>
+    <div class="gt-txt rv">
+      <span class="kicker">ve-chung-toi</span>
+      <h2>Học công nghệ theo cách <span class="mk">dễ hiểu</span>, không học vẹt</h2>
+      <p>Code Mầm mở từ một phòng máy 12 bộ máy tính trong ngõ Mã Lệnh Vui, nay là trung tâm tin học – lập trình – STEM với 6 phòng học, xưởng robotics và phòng máy đồ họa. Nguyên tắc từ ngày đầu: mỗi khái niệm mới phải chạm tay vào được — học xong buổi là làm được một thứ nhỏ.</p>
+      <p>Giáo trình tự biên soạn theo độ tuổi, chia bậc rõ ràng; học viên giữa lộ trình được xét chuyển lớp miễn phí nếu đang quá dễ hoặc quá khó.</p>
+      <div class="gt-quote">"Con từng sợ máy tính, giờ tối nào cũng khoe trang web con tự làm." — phụ huynh học viên B4</div>
+      <div class="gt-metrics">
+        <div><b>1.800+</b><span>học viên từ 2017</span></div>
+        <div><b>6 phòng</b><span>máy + xưởng robotics</span></div>
+        <div><b>92%</b><span>tiếp tục bậc kế tiếp</span></div>
+        <div><b>15 hv</b><span>số học viên tối đa/lớp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM ĐĂNG KÝ HỌC THỬ ===== -->
+<section class="sec" id="dang-ky" style="padding-top:44px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">dang-ky-hoc-thu</span>
+      <h2>Giữ chỗ học thử miễn phí 1 buổi</h2>
+      <p>Điền phiếu bên dưới — trung tâm gọi lại <b>trong ngày</b> để xếp lớp thử đúng trình độ.</p>
+    </div>
+    <div class="dk-g">
+      <div class="dk-form rv">
+        <h3>✍️ Phiếu đăng ký học thử</h3>
+        <p class="sub">Miễn phí 100% · không cam kết đóng học phí sau buổi thử.</p>
+        <div class="frow">
+          <div>
+            <label for="fName">Họ tên phụ huynh / học sinh *</label>
+            <input id="fName" type="text" placeholder="VD: Nguyễn Thu Hà">
+          </div>
+          <div>
+            <label for="fPhone">Số điện thoại *</label>
+            <input id="fPhone" type="tel" placeholder="VD: 0901 234 567">
+          </div>
+        </div>
+        <div class="frow">
+          <div>
+            <label for="fRole">Bạn là *</label>
+            <select id="fRole">
+              <option value="">— chọn —</option>
+              <option>Phụ huynh — đăng ký cho con</option>
+              <option>Học sinh / Sinh viên</option>
+              <option>Người đi làm</option>
+            </select>
+          </div>
+          <div>
+            <label for="fGrade">Khối lớp / độ tuổi *</label>
+            <select id="fGrade">
+              <option value="">— chọn —</option>
+              <option>Mầm non (4–6 tuổi)</option>
+              <option>Tiểu học (7–12 tuổi)</option>
+              <option>THCS (13–15 tuổi)</option>
+              <option>THPT (16–18 tuổi)</option>
+              <option>Sinh viên</option>
+              <option>Người đi làm</option>
+            </select>
+          </div>
+        </div>
+        <label for="fMon">Môn / khóa quan tâm *</label>
+        <select id="fMon">
+          <option value="">— chọn môn —</option>
+          <option>Khóa học tin học văn phòng</option>
+          <option>Khóa học lập trình cơ bản</option>
+          <option>Lớp học robotics - STEM</option>
+          <option>Lập trình web - app cho trẻ em</option>
+          <option>Luyện thi chứng chỉ tin học</option>
+          <option>Khóa học thiết kế đồ họa</option>
+          <option>Lớp học AI - dữ liệu cơ bản</option>
+          <option>Chưa rõ — cần tư vấn lộ trình theo độ tuổi</option>
+        </select>
+        <label>Thời gian thuận tiện (tuỳ chọn)</label>
+        <div class="dk-chips" id="dkTime">
+          <button type="button">Sáng T7 – CN</button>
+          <button type="button">Chiều T7 – CN</button>
+          <button type="button">Tối trong tuần</button>
+        </div>
+        <label for="fNote">Ghi chú cho trung tâm</label>
+        <textarea id="fNote" placeholder="VD: con 9 tuổi, chưa học lập trình bao giờ, muốn học thử lớp web cuối tuần"></textarea>
+        <button class="cta-a dk-submit" id="dkSubmit">📩 Gửi phiếu — trung tâm gọi lại trong ngày</button>
+      </div>
+      <div class="dk-side rv">
+        <h3>🤝 Cam kết khi đăng ký học thử</h3>
+        <div class="dk-line"><div class="ic">⏱</div><div><b>Gọi lại trong ngày</b>Nhận phiếu trước 19:00 — gọi xác nhận cùng ngày, sau đó xếp lớp trong 48 giờ.</div></div>
+        <div class="dk-line"><div class="ic">🧪</div><div><b>Đo trình độ miễn phí</b>15 phút kiểm tra đầu vào để vào đúng bậc — không đúng lớp đổi miễn phí.</div></div>
+        <div class="dk-line"><div class="ic">👩‍🏫</div><div><b>Lớp thật, thầy thật</b>Học thử trong lớp đang học — không lớp "diễn" riêng cho khách xem.</div></div>
+        <div class="dk-line"><div class="ic">📞</div><div><b>Hotline tuyển sinh</b><a class="dk-tel" href="tel:0034567899">0034567899</a>Gặp trực tiếp phòng tuyển sinh 08:00 – 20:30.</div></div>
+        <a class="btn btn-y" href="tel:0034567899">📞 Gọi ngay: 0034567899</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">phu-huynh-va-hoc-vien-noi</span>
+      <h2>Học xong bậc này, xin học tiếp bậc kia</h2>
+    </div>
+    <div class="rv-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Bé 6 tuổi lắp robot chạy được từ buổi 3, tối nào cũng kể chuyện lớp STEM. Giáo trình chia nhỏ nên cháu không bị choáng."</p><b>Chị Kim Ngân</b><span>phụ huynh bé 6 tuổi · bậc B3</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Học B4 xong tự làm web giới thiệu lớp mình. Giờ lên B7 học AI, thầy cô vẫn theo sát từng bài trên GitHub."</p><b>Bảo Nam</b><span>học sinh lớp 9 · bậc B7</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Mình mù code thật sự, học B1 rồi B2 buổi tối. Thầy dạy chậm mà rõ, hỏi lại bao lần cũng kiên nhẫn."</p><b>Anh Quốc Bảo</b><span>sinh viên năm 2 · bậc B2</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Đăng ký lúc 9 giờ sáng, trưa đã có gọi xếp lịch học thử — đúng cam kết gọi lại trong ngày. Excel lớp học áp dụng được ngay."</p><b>Cô Thu Hương</b><span>kế toán · bậc B1</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏫 Ghé trung tâm</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>Ngõ Mã Lệnh Vui, Phường Robot Tí Hon, Thành Phố Bấm Phím Hay</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline tuyển sinh &amp; Zalo</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ mở cửa</b><br>08:00 – 20:30 tất cả các ngày trong tuần (kể cả hè)</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=21.0278,105.8342&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới trung tâm</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 21.0278,105.8342 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=21.0278,105.8342&z=15&output=embed&hl=vi" title="Bản đồ Trung tâm Code Mầm"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">hoi-dap</span>
+      <h2>Vài điều phụ huynh hay hỏi trước khi học thử</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Học phí đóng thế nào, có báo giá chính thức không?<i>+</i></button><div class="a">Học phí đóng theo khóa (12–15 buổi), mức "từ" niêm yết trên từng bậc. Sau khi con bạn học thử và đo trình độ, trung tâm gửi báo giá chính thức kèm lịch — số trên trang chỉ là ước tính để đối chiếu. Được đóng 2 đợt/khóa, có ưu đãi khi học tiếp bậc kế tiếp.</div></div>
+      <div class="qa rv"><button>Lộ trình 8 bậc học hết mất bao lâu?<i>+</i></button><div class="a">Tùy điểm bắt đầu và nhịp học: trung bình mỗi bậc 2–3 tháng (học 2 buổi/tuần). Trẻ bắt đầu từ tiểu học đi trọn lộ trình khoảng 3–4 năm; người lớn chỉ cần 1–2 bậc là đạt mục tiêu việc làm hoặc chứng chỉ.</div></div>
+      <div class="qa rv"><button>Trung tâm có lớp online không?<i>+</i></button><div class="a">Có — các bậc tin học văn phòng, lập trình, đồ họa và AI – dữ liệu đều có lớp online trực tiếp với giảng viên (không ghi hình thay người). Riêng robotics – STEM cần dụng cụ lắp ráp nên học tại trung tâm; lớp online được xem lại bài tối đa 30 ngày.</div></div>
+      <div class="qa rv"><button>Buổi học thử miễn phí gồm những gì?<i>+</i></button><div class="a">15 phút đo trình độ + học thử trọn 1 buổi trong lớp thật đúng bậc, kết thúc phụ huynh nhận nhận định đầu vào và lộ trình đề xuất bằng giấy. Không bắt buộc đóng học phí sau buổi thử.</div></div>
+      <div class="qa rv"><button>Con chưa biết gì, chữ còn chưa riết có học được không?<i>+</i></button><div class="a">Được — bậc mầm non (4–6 tuổi) thiết kế cho trẻ chưa thành thạo chữ: điều khiển robot bằng nút, kéo–thả hình khối. Lớp tối đa 15 học viên có cả trợ giảng, phụ huynh xem 10 phút cuối mỗi buổi.</div></div>
+      <div class="qa rv"><button>Người đi làm, mù code hoàn toàn học lớp nào?<i>+</i></button><div class="a">Bắt đầu bậc B1 tin học văn phòng (12 buổi, lịch tối và cuối tuần), sau đó rẽ sang Excel ứng dụng hoặc luyện thi chứng chỉ MOS/IC3 tùy mục tiêu. Lớp người lớn không lẫn với lớp thiếu nhi.</div></div>
+      <div class="qa rv"><button>Nghỉ bài có được học bù không?<i>+</i></button><div class="a">Có — báo trước buổi đó, trung tâm xếp học bù trong tháng với nội dung tương đương (online hoặc tại lớp). Học viên trúng tuyển học bổng kỹ năng được ưu tiên lịch bù linh hoạt nhất.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b><span class="mono">&lt;/&gt;</span> Code Mầm</b>
+      <p>Trung tâm tin học, lập trình và STEM — lộ trình 8 bậc từ mù code đến dự án đầu tay, cho học sinh, sinh viên và người đi làm tại Thành Phố Bấm Phím Hay.</p>
+      <p class="mono">hoc-dieu-moi · tao-dieu-hay</p>
+    </div>
+    <div>
+      <h4>CHƯƠNG TRÌNH</h4>
+      <a href="#lo-trinh">Lộ trình 8 bậc</a>
+      <a href="#muc-luc">Mục lục khóa con theo tuổi</a>
+      <a href="#noibat">Khóa đăng ký nhiều nhất</a>
+      <a href="#goi-y">Bộ câu hỏi nhu cầu 4 bước</a>
+    </div>
+    <div>
+      <h4>TRUNG TÂM</h4>
+      <a href="#gioi-thieu">Về Code Mầm</a>
+      <a href="#dang-ky">Đăng ký học thử</a>
+      <a href="#review">Phụ huynh nói gì</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>LIÊN HỆ</h4>
+      <p>📍 Ngõ Mã Lệnh Vui, Phường Robot Tí Hon, Thành Phố Bấm Phím Hay</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 08:00 – 20:30 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Trung tâm Code Mầm · Học phí tham khảo "từ", báo giá chính thức sau buổi đo trình độ miễn phí</div>
+</footer>
+
+<!-- ===== THANH GỌI MOBILE ===== -->
+<div class="mbar">
+  <a class="m-call" href="tel:0034567899">📞 0034567899</a>
+  <a class="m-try" href="#dang-ky">✍️ Học thử miễn phí</a>
+</div>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">Code Mầm</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🧪 Học thử miễn phí thế nào?</button>
+    <button class="pkc-chip">🪜 Con 8 tuổi nên học bậc nào?</button>
+    <button class="pkc-chip">💰 Học phí khóa robotics?</button>
+    <button class="pkc-chip">💻 Có lớp online tối không?</button>
+    <button class="pkc-chip">📜 Luyện thi MOS – IC3</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho trung tâm…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-245*/
+'use strict';
+var HOTLINE = '0034567899';
+
+/* ===== DỮ LIỆU 8 BẬC LỘ TRÌNH (đúng 8 sản phẩm của kho) ===== */
+var BAC = [
+  {id:'B1', ten:'Khóa học tin học văn phòng',      lv:'KHỞI ĐỘNG', age:'16+ / đi làm',    gia:2290000, buoi:12, img:'assets/img/p1.webp', d:'Thạo Word – Excel – PowerPoint, đánh máy 10 ngón, soạn văn bản chuẩn văn phòng.'},
+  {id:'B2', ten:'Khóa học lập trình cơ bản',       lv:'NỀN TẢNG',  age:'7–15 tuổi',       gia:2590000, buoi:14, img:'assets/img/p2.webp', d:'Bước đầu tư duy thuật toán bằng khối lệnh trực quan, viết được mini-game đầu tiên.'},
+  {id:'B3', ten:'Lớp học robotics - STEM',         lv:'KHÁM PHÁ',  age:'4–12 tuổi',       gia:2890000, buoi:12, img:'assets/img/p3.webp', d:'Tự tay lắp robot, lập trình cảm biến, học khoa học qua dự án.'},
+  {id:'B4', ten:'Lập trình web - app cho trẻ em',  lv:'SÁNG TẠO',  age:'9–15 tuổi',       gia:2790000, buoi:14, img:'assets/img/p4.webp', d:'Kéo–thả khối lệnh, tự tay làm web và mini-app đầu tiên.', hot:true},
+  {id:'B5', ten:'Luyện thi chứng chỉ tin học',     lv:'CHỨNG NHẬN',age:'sinh viên / đi làm', gia:3290000, buoi:15, img:'assets/img/p5.webp', d:'Ôn đúng trọng tâm MOS, IC3, chứng chỉ tin học quốc gia — luyện đề trên máy thật.'},
+  {id:'B6', ten:'Khóa học thiết kế đồ họa',        lv:'THIẾT KẾ',  age:'13+ tuổi',        gia:2990000, buoi:14, img:'assets/img/p6.webp', d:'Bộ công cụ thiết kế chuyên nghiệp, màu sắc – bố cục – bộ nhận diện mini.'},
+  {id:'B7', ten:'Lớp học AI - dữ liệu cơ bản',     lv:'NÂNG CAO',  age:'15+ / đi làm',    gia:3490000, buoi:15, img:'assets/img/p7.webp', d:'Đọc dữ liệu bằng biểu đồ, hiểu AI, dựng dự án dữ liệu nhỏ.'},
+  {id:'B8', ten:'Lộ trình học theo độ tuổi',       lv:'ĐỊNH VỊ',   age:'mọi độ tuổi',     gia:0,       buoi:0,  img:'assets/img/p8.webp', d:'Thầy cô đo trình độ, ghép lộ trình 8 bậc riêng cho từng em.', top:true}
+];
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+
+/* ===== TOAST ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3800);
+}
+
+/* ===== KHỐI-8: RENDER 8 BẬC THANG (mỗi bậc nâng lên 26px) ===== */
+function renderBac(){
+  var g = document.getElementById('gridBac');
+  var html = '';
+  for (var i=0;i<BAC.length;i++){
+    var b = BAC[i];
+    var cls = 'bac' + (b.hot ? ' hot' : '') + (b.top ? ' top' : '');
+    var lift = 78 - (i % 4) * 26; /* bậc 1 thấp nhất → bậc 4 cao nhất, lặp chu kỳ hàng */
+    var price = b.gia > 0 ? 'từ ' + fmt(b.gia) : '0đ tư vấn';
+    var priceSub = b.gia > 0 ? '/ ' + b.buoi + ' buổi · trọn khóa' : 'định vị lộ trình miễn phí';
+    var hotb = b.hot ? '<span class="b-hotb">🔥 ĐĂNG KÝ NHIỀU</span>' : '';
+    var age = b.age === 'mọi độ tuổi' ? '4–60+' : b.age;
+    html += '<article class="' + cls + ' rv" data-bac="' + i + '" style="--lift:' + lift + 'px">'
+      + hotb
+      + '<div class="b-top"><span class="b-no">' + b.id + '</span><span class="b-lv">' + b.lv + '</span><span class="b-age">' + age + '</span></div>'
+      + '<div class="b-ph"><img src="' + b.img + '" alt="' + b.ten + ' — Code Mầm" width="1280" height="853" loading="lazy"></div>'
+      + '<h3>' + b.ten + '</h3>'
+      + '<p>' + b.d + '</p>'
+      + '<div class="b-ft"><span class="b-pri">' + price + '<small>' + priceSub + '</small></span>'
+      + '<button class="b-cta" data-mon="' + (b.gia > 0 ? b.ten : 'Chưa rõ — cần tư vấn lộ trình theo độ tuổi') + '">Học thử</button></div>'
+      + '</article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-mon]');
+    if (!btn) return;
+    var card = e.target.closest('.bac');
+    meterShow(parseInt(card.getAttribute('data-bac'), 10) + 1);
+    prefillForm({mon: btn.getAttribute('data-mon'), scroll: true, note: 'Quan tâm: ' + btn.getAttribute('data-mon') + ' (bậc ' + BAC[parseInt(card.getAttribute('data-bac'),10)].id + ')'});
+  });
+}
+
+/* ===== THANH TIẾN ĐỘ LỘ TRÌNH ===== */
+function meterShow(n){
+  var fill = document.getElementById('meterFill');
+  var ticks = document.getElementById('meterTicks').children;
+  var pct = Math.max(8, Math.round(n / 8 * 100));
+  fill.style.width = pct + '%';
+  for (var i=0;i<ticks.length;i++) ticks[i].className = i < n ? 'on' : '';
+  document.getElementById('meterCap').textContent = 'bậc ' + n + '/8 · ' + BAC[n-1].ten;
+}
+document.getElementById('meter').addEventListener('click', function(e){
+  var card = e.target.closest('.bac');
+  if (card) meterShow(parseInt(card.getAttribute('data-bac'), 10) + 1);
+});
+
+/* ===== DAC THU: BỘ CÂU HỎI 4 BƯỚC ===== */
+var QZ = {ai:null, mucTieu:null, trinhDo:null, thoiGian:null};
+var TEN_AI = {'con-4-6':'Con 4–6 tuổi','con-7-12':'Con 7–12 tuổi','con-13-17':'Con 13–17 tuổi','sinh-vien':'Sinh viên','di-lam':'Người đi làm'};
+var TEN_MT = {'may-tinh':'Tin học VP','tu-duy':'Tư duy lập trình','robot':'Robotics – STEM','web-game':'Web · app · game','chung-chi':'Chứng chỉ tin học','do-hoa':'Đồ họa','ai':'AI & dữ liệu'};
+
+function qzRecommend(){
+  var age = QZ.ai, mt = QZ.mucTieu, td = QZ.trinhDo, tg = QZ.thoiGian;
+  var start = 1; /* bậc khởi đầu mặc định B1 */
+  if (mt === 'robot') start = 3;
+  if (mt === 'web-game') start = 4;
+  if (mt === 'chung-chi') start = 5;
+  if (mt === 'do-hoa') start = 6;
+  if (mt === 'ai') start = 7;
+  if (mt === 'tu-duy') start = 2;
+  if (mt === 'may-tinh') start = 1;
+  /* ghép tuổi */
+  if (age === 'con-4-6'){ if (mt !== 'robot') start = 3; }
+  if (age === 'con-7-12' && (mt === 'may-tinh' || mt === 'chung-chi')) start = 2;
+  if (age === 'con-13-17' && start <= 2) start = 2;
+  if ((age === 'sinh-vien' || age === 'di-lam') && start === 3) start = 1;
+  /* trình độ đã học → tiến lên 1 bậc */
+  if (td === 'da-hoc' && start < 7) start = start + 1;
+  if (td === 'bit-chut' && (start === 1 || start === 2) ) start = 2;
+  /* lộ trình 3 chặng */
+  var mid = Math.min(8, start + 2);
+  var target = Math.min(8, start + 4);
+  var path = [start, mid, target];
+  /* gói học */
+  var goi = (tg === 'ca-tuan' || age === 'con-4-6') ? 'Chuyên tâm — 3 buổi/tuần' : 'Cơ bản — 2 buổi/tuần';
+  var tuan = (tg === 'ca-tuan') ? 5 : 7;
+  var b0 = BAC[start - 1];
+  var uoc = b0.gia > 0 ? b0.gia : 0;
+  var uocNote = b0.gia > 0 ? 'từ — / khóa ' + b0.buoi + ' buổi đầu (số ước tính)' : 'bậc định vị miễn phí — học phí tính theo lộ trình ghép riêng';
+  return {start:start, path:path, goi:goi, tuan:tuan, uoc:uoc, uocNote:uocNote, b0:b0};
+}
+function renderQz(){
+  var answered = 0;
+  for (var k in QZ) if (QZ[k]) answered++;
+  /* đánh dấu bước hoàn thành */
+  var steps = document.querySelectorAll('.qz-step');
+  var keys = ['ai','mucTieu','trinhDo','thoiGian'];
+  for (var i=0;i<steps.length;i++) steps[i].classList.toggle('done', !!QZ[keys[i]]);
+  document.getElementById('qzTag').textContent = answered + '/4 câu · ' + (answered === 4 ? 'đủ rồi!' : 'trả lời thêm nhé');
+  if (answered === 0){
+    document.getElementById('qzPath').innerHTML = '<span class="stp" style="border-style:dashed;background:none">Trả lời đủ 4 câu để ghép lộ trình ↔</span>';
+    document.getElementById('qzGoiDesc').textContent = 'Ví dụ: gói Cơ bản 2 buổi/tuần, học trong 7 tuần/khóa.';
+    document.querySelector('.qz-goi b').textContent = 'Gói đề xuất: —';
+    document.getElementById('qzUoc').textContent = '—';
+    document.getElementById('qzUocNote').textContent = 'học phí giai đoạn đầu (số ước tính)';
+    return;
+  }
+  var r = qzRecommend();
+  var p = document.getElementById('qzPath');
+  var html = '';
+  for (var j=0;j<r.path.length;j++){
+    var b = BAC[r.path[j]-1];
+    html += '<span class="stp"><b>' + b.id + '</b> ' + b.ten.replace('Khóa học ','').replace('Lớp học ','').replace('Luyện thi ','') + '</span>';
+    if (j < r.path.length - 1) html += '<span class="arr">→</span>';
+  }
+  p.innerHTML = html;
+  document.querySelector('.qz-goi b').textContent = 'Gói đề xuất: ' + r.goi;
+  document.getElementById('qzGoiDesc').textContent = 'Học trong ' + r.tuan + ' tuần/khóa · lớp tối đa 15 học viên · bảo lưu lịch khi bận học kỳ.';
+  document.getElementById('qzUoc').textContent = r.uoc > 0 ? 'từ ' + fmt(r.uoc) : '0đ';
+  document.getElementById('qzUocNote').textContent = r.uocNote;
+}
+document.querySelectorAll('.qz-chips').forEach(function(box){
+  box.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-v]'); if (!btn) return;
+    var q = box.getAttribute('data-q');
+    QZ[q] = btn.getAttribute('data-v');
+    var bs = box.querySelectorAll('button');
+    for (var i=0;i<bs.length;i++) bs[i].classList.toggle('on', bs[i] === btn);
+    renderQz();
+  });
+});
+
+/* ===== ĐIỀN PHIẾU HỌC THỬ TỪ DAC THU / THẺ BẬC ===== */
+function prefillForm(opt){
+  if (opt.mon){
+    var sel = document.getElementById('fMon');
+    var ops = sel.options;
+    for (var i=0;i<ops.length;i++){ if (ops[i].text === opt.mon) sel.selectedIndex = i; }
+  }
+  if (opt.role){
+    var selR = document.getElementById('fRole'), opsR = selR.options;
+    for (var j=0;j<opsR.length;j++){ if (opsR[j].text.indexOf(opt.role) >= 0) selR.selectedIndex = j; }
+  }
+  if (opt.grade){
+    var selG = document.getElementById('fGrade'), opsG = selG.options;
+    for (var m=0;m<opsG.length;m++){ if (opsG[m].text.indexOf(opt.grade) >= 0) selG.selectedIndex = m; }
+  }
+  if (opt.note){
+    var n = document.getElementById('fNote');
+    n.value = n.value ? n.value + ' · ' + opt.note : opt.note;
+  }
+  if (opt.scroll){
+    document.getElementById('dang-ky').scrollIntoView({behavior:'smooth'});
+    toast('Đã điền sẵn phiếu học thử', 'Kiểm tra vài ô còn thiếu rồi bấm Gửi — trung tâm gọi lại trong ngày, hotline ' + HOTLINE);
+  }
+}
+document.getElementById('qzCta').addEventListener('click', function(){
+  var answered = 0; for (var k in QZ) if (QZ[k]) answered++;
+  if (answered === 0){
+    toast('Chọn ít nhất 1 câu nhé', 'Bộ câu hỏi 4 bước cần vài gợi ý để ghép lộ trình — hoặc gọi ngay ' + HOTLINE);
+    return;
+  }
+  var r = qzRecommend();
+  var tenMT = QZ.mucTieu ? TEN_MT[QZ.mucTieu] : '';
+  var tenAI = QZ.ai ? TEN_AI[QZ.ai] : '';
+  var TEN_TD = {'mu-code':'mù code','bit-chut':'biết chút','da-hoc':'đã học cơ bản'};
+  var TEN_TG = {'t2-t4':'tối T2-T4','t3-t5':'tối T3-T5','cuoi-tuan':'cuối tuần','ca-tuan':'cả tuần'};
+  var note = 'Từ bộ câu hỏi: ' + [tenAI, tenMT, 'trình độ: ' + (TEN_TD[QZ.trinhDo] || '?'), 'lịch: ' + (TEN_TG[QZ.thoiGian] || '?')].join(' · ')
+    + ' → lộ trình B' + r.start + ' + gói ' + (r.goi.indexOf('Chuyên') === 0 ? 'Chuyên tâm' : 'Cơ bản') + ', ước tính ' + (r.uoc > 0 ? fmt(r.uoc) : 'theo lộ trình');
+  prefillForm({mon: r.b0.gia > 0 ? r.b0.ten : 'Chưa rõ — cần tư vấn lộ trình theo độ tuổi', note: note, scroll: true});
+  var mapRole = {'con-4-6':'Phụ huynh','con-7-12':'Phụ huynh','con-13-17':'Phụ huynh','sinh-vien':'Học sinh','di-lam':'Người đi làm'};
+  if (QZ.ai && mapRole[QZ.ai]) prefillForm({role: mapRole[QZ.ai]});
+  var mapGrade = {'con-4-6':'Mầm non','con-7-12':'Tiểu học','con-13-17':'THCS','sinh-vien':'Sinh viên','di-lam':'Người đi làm'};
+  if (QZ.ai && mapGrade[QZ.ai]) prefillForm({grade: mapGrade[QZ.ai]});
+});
+
+/* ===== GỬI PHIẾU ĐĂNG KÝ HỌC THỬ ===== */
+document.getElementById('dkSubmit').addEventListener('click', function(){
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var role = document.getElementById('fRole'), grade = document.getElementById('fGrade'), mon = document.getElementById('fMon');
+  var ok = true;
+  [name, phone, role, grade, mon].forEach(function(el){ el.classList.remove('err'); });
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!role.value){ role.classList.add('err'); ok = false; }
+  if (!grade.value){ grade.classList.add('err'); ok = false; }
+  if (!mon.value){ mon.classList.add('err'); ok = false; }
+  if (!ok){
+    toast('Thiếu thông tin', 'Cho trung tâm xin: họ tên, số điện thoại, đối tượng, khối lớp và môn quan tâm để xếp lớp thử nhé!');
+    return;
+  }
+  var ten = name.value.trim();
+  name.value = ''; phone.value = ''; role.selectedIndex = 0; grade.selectedIndex = 0; mon.selectedIndex = 0;
+  document.getElementById('fNote').value = '';
+  var chips = document.querySelectorAll('#dkTime button');
+  for (var i=0;i<chips.length;i++) chips[i].classList.remove('on');
+  toast('Đã nhận đăng ký học thử — cảm ơn ' + ten + '!', 'Trung tâm gọi lại TRONG NGÀY để xếp lớp thử đúng trình độ · Hotline ' + HOTLINE);
+});
+document.getElementById('dkTime').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  b.classList.toggle('on');
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key === 'Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== CTA "GIỮ CHỮ HỌC THỬ" Ở KHUNG NỔI BẬT ===== */
+document.querySelector('.nb-cta').addEventListener('click', function(){
+  prefillForm({mon: 'Lập trình web - app cho trẻ em', note: 'Quan tâm khóa được đăng ký nhiều nhất (B4)'});
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderBac();
+renderQz();
+initReveal();
+</script>
+</body>
+</html>

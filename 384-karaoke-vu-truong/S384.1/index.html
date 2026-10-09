@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Vui — Karaoke &amp; Vũ trường | Đặt phòng hát theo giờ, giữ phòng 20 phút</title>
+<meta name="description" content="Neon Vui — karaoke &amp; vũ trường cho nhóm bạn và tiệc công ty. Đặt phòng theo số người, chọn giờ vàng 19–23 hay giờ thường, xem giá từng phòng, giữ phòng 20 phút với mã xác nhận tại trang.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"NightClub","name":"Neon Vui — Karaoke & Vũ trường","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"68 Đường Nhịp Vui, P. Ánh Đèn","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.8468,"longitude":106.7533},"openingHours":"Mo-Su 14:00-02:00","priceRange":"120.000đ-1.190.000đ"}
+</script>
+<style>
+/*NB110-384*/
+:root{
+  --bg0:#150724; --bg1:#1C0A30; --bg2:#220D3A;
+  --panel:#251043; --panel-2:#2D1652; --panel-3:#371C63;
+  --line:#3D2168; --line-2:#4A2A7D;
+  --ink:#F4EDFF; --ink-soft:#D3C4EF; --mut:#9E8AC8;
+  --neon:#FF3D9A; --neon-2:#FF7AC0;
+  --vio:#A64DFF; --vio-2:#C589FF;
+  --gold:#FFB84D; --gold-2:#FFD08A;
+  --ok:#3DDC97; --bad:#FF5D6E;
+  --sh:0 12px 32px rgba(8,2,20,.5);
+  --glow:0 0 0 1.5px rgba(255,61,154,.55), 0 8px 26px rgba(255,61,154,.22);
+  --r:16px;
+  --disp:'Baloo 2','Segoe UI',system-ui,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg0);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,.serif,.disp{font-family:var(--disp);line-height:1.22;letter-spacing:.2px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+.sec{padding:58px 0;position:relative}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--neon-2);font-weight:700}
+.sec-head h2{font-size:clamp(26px,4vw,37px);margin:8px 0 10px;color:#fff}
+.sec-head h2 em{font-style:normal;color:var(--neon-2)}
+.sec-head p{color:var(--mut)}
+/*NB110-384 — motif riêng của site: thanh nhạc equalizer 5 cột, lặp ở hero/dacThu/board/drawer*/
+.eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:14px;flex:none}
+.eq i{width:3.5px;border-radius:3px;background:var(--neon);display:block}
+.eq i:nth-child(1){height:6px;animation:eqb 1.1s .0s ease-in-out infinite}
+.eq i:nth-child(2){height:12px;animation:eqb 1.1s .15s ease-in-out infinite;background:var(--vio-2)}
+.eq i:nth-child(3){height:9px;animation:eqb 1.1s .3s ease-in-out infinite}
+.eq i:nth-child(4){height:14px;animation:eqb 1.1s .45s ease-in-out infinite;background:var(--gold)}
+.eq i:nth-child(5){height:7px;animation:eqb 1.1s .6s ease-in-out infinite;background:var(--vio-2)}
+@keyframes eqb{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.45)}}
+@media (prefers-reduced-motion:reduce){.eq i{animation:none}}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(21,7,36,.92);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(140deg,var(--neon),var(--vio));display:grid;place-items:center;color:#fff;flex:none;box-shadow:0 6px 16px rgba(255,61,154,.35)}
+.logo b{font-family:var(--disp);font-size:17.5px;color:#fff;white-space:nowrap;display:block;line-height:1.15}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;letter-spacing:.6px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-soft)}
+nav.main a:hover{background:var(--panel);color:#fff}
+.hd-right{display:flex;align-items:center;gap:8px}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line-2);background:var(--panel);border-radius:12px;padding:10px 13px;font-weight:700;font-size:13px;color:#fff;min-height:42px;white-space:nowrap}
+.hd-bk{display:inline-flex;align-items:center;gap:7px;border:0;background:var(--neon);color:#fff;border-radius:12px;padding:10px 15px;font-weight:800;font-size:13.5px;min-height:42px;font-family:var(--disp);box-shadow:0 8px 20px rgba(255,61,154,.35)}
+.hd-bk:hover{background:#E92E88}
+
+/* ===== HERO ===== */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:
+ radial-gradient(900px 420px at 85% -10%, rgba(166,77,255,.28), transparent 60%),
+ radial-gradient(700px 380px at -8% 108%, rgba(255,61,154,.22), transparent 60%),
+ linear-gradient(180deg,#1A082D 0%,var(--bg0) 100%)}
+.beam{position:absolute;width:340px;height:900px;top:-260px;pointer-events:none;opacity:.5;
+ background:linear-gradient(180deg,rgba(197,137,255,.5),rgba(197,137,255,0) 70%);transform:rotate(24deg)}
+.beam.b1{left:6%}.beam.b2{left:44%;width:220px;opacity:.35;transform:rotate(-18deg);background:linear-gradient(180deg,rgba(255,122,192,.5),rgba(255,122,192,0) 70%)}
+.hero-g{display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center;padding:56px 0 60px;position:relative}
+.hero .kicker{margin-bottom:14px}
+.hero .kicker .dot{width:8px;height:8px;border-radius:99px;background:var(--ok);box-shadow:0 0 0 4px rgba(61,220,151,.18);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(61,220,151,.18)}50%{box-shadow:0 0 0 7px rgba(61,220,151,.06)}}
+.hero h1{font-size:clamp(31px,4.7vw,47px);color:#fff;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--neon-2);text-shadow:0 0 26px rgba(255,122,192,.5)}
+.hero p.lead{color:var(--ink-soft);font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap;font-family:var(--disp)}
+.btn-a{background:var(--neon);color:#fff;box-shadow:0 10px 24px rgba(255,61,154,.35)}
+.btn-a:hover{background:#E92E88;transform:translateY(-1px)}
+.btn-g{background:var(--panel);color:#fff;border:1.5px solid var(--line-2)}
+.btn-g:hover{border-color:var(--vio);color:var(--vio-2)}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap}
+.hero-stats div b{font-family:var(--disp);font-size:21px;color:#fff;display:block}
+.hero-stats div span{font-size:12.5px;color:var(--mut)}
+/*NB110-384 — hero poster = màn hình karaoke: nguyên khung 3:2, viền LED phát sáng*/
+.tv{position:relative}
+.tv-live{position:absolute;top:14px;right:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(12,3,24,.82);border:1px solid var(--line-2);border-radius:99px;padding:7px 13px;font-size:12px;font-weight:800;color:#fff;letter-spacing:.8px}
+.tv-frame{background:#0D0318;border:2px solid var(--line-2);border-radius:22px;padding:10px;box-shadow:var(--sh),0 0 44px rgba(166,77,255,.28)}
+.tv-frame .scr{border-radius:12px;overflow:hidden;position:relative}
+.tv-frame .scr::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 34%);pointer-events:none}
+.tv-frame img{width:100%}
+.tv-stand{height:12px;width:44%;margin:0 auto;background:linear-gradient(180deg,var(--line-2),#2A1250);border-radius:0 0 10px 10px;box-shadow:0 10px 22px rgba(0,0,0,.5)}
+.poster-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1.5px solid var(--line-2);border-radius:99px;padding:9px 15px;font-size:13px;font-weight:700;color:#fff;min-height:40px}
+.pchip i{font-style:normal;border-radius:99px;width:26px;height:26px;display:grid;place-items:center;font-size:13px;background:var(--panel-3)}
+.pchip:hover{border-color:var(--neon)}
+
+/* ===== TIỆN ÍCH ===== */
+.svc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:13px;align-items:flex-start;transition:border-color .2s}
+.svc:hover{border-color:var(--line-2)}
+.svc .ic{width:46px;height:46px;flex:none;border-radius:13px;background:var(--panel-3);display:grid;place-items:center;font-size:21px}
+.svc b{display:block;font-size:14.5px;color:#fff;font-family:var(--disp)}
+.svc span{font-size:12.8px;color:var(--mut)}
+
+/* ===== KHỐI-8 — BẢNG LỊCH PHÒNG (pattern 6 biến thể: thời khóa biểu phòng hát) ===== */
+.sched-sec{background:linear-gradient(180deg,var(--bg1),var(--bg0));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rail{display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:4px}
+.rail i{width:9px;height:9px;border-radius:99px;background:var(--panel-3);border:1.5px solid var(--line-2)}
+.sched-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sc{position:relative;background:var(--panel);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,border-color .22s,box-shadow .22s}
+.sc:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--sh)}
+.sc-strip{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:11.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--ink-soft);background:var(--panel-2);border-bottom:1px dashed var(--line-2)}
+.sc-strip .rm{color:var(--gold-2)}
+.sc-strip .tm{margin-left:auto;display:inline-flex;align-items:center;gap:5px;color:var(--vio-2)}
+.sc-strip .tm svg{width:12px;height:12px}
+.sc .ph{aspect-ratio:3/2;background:var(--bg2)}
+.sc .ph img{width:100%;height:100%;object-fit:contain}
+.sc .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.sc h3{font-size:16px;color:#fff}
+.sc.feat h3{font-size:20px}
+.sc p{font-size:12.6px;color:var(--mut);flex:1}
+.sc .ft{display:flex;align-items:flex-end;gap:10px}
+.pri{font-weight:800;color:var(--gold);font-size:16px;font-family:var(--disp)}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.sc.feat .pri{font-size:19px}
+.bk{margin-left:auto;border:0;background:var(--panel-3);color:#fff;border-radius:11px;padding:10px 14px;font-weight:800;font-size:13px;min-height:42px;font-family:var(--disp);transition:.18s;white-space:normal;text-align:center}
+.bk:hover{background:var(--neon)}
+.badge{position:absolute;top:10px;left:10px;z-index:2;font-size:11px;font-weight:800;border-radius:99px;padding:5px 11px;letter-spacing:.5px;color:#2A0E00;background:var(--gold);box-shadow:0 4px 12px rgba(255,184,77,.4)}
+.badge.pink{background:var(--neon);color:#fff;box-shadow:0 4px 12px rgba(255,61,154,.4)}
+/*NB110-384 — 2 thẻ nổi bật TO: chiếm 2 cột, ảnh lớn, CTA riêng*/
+.sc.feat{grid-column:span 2;border-color:var(--line-2);background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+.sc.feat:hover{box-shadow:0 0 0 1.5px rgba(255,122,192,.4),var(--sh)}
+.sc.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.sc.wide .ph{height:100%;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;padding:12px;background:var(--bg2)}
+.sc.wide .ph img{width:100%;height:auto;border-radius:8px}
+.sc.wide .bd{padding:16px 18px}
+.sc.wide h3{font-size:17.5px}
+/* bảng lịch tối nay — lưới khung giờ × phòng */
+.board-card{margin-top:22px;background:var(--panel);border:1.5px solid var(--line-2);border-radius:var(--r);padding:18px 18px 20px;position:relative;overflow:hidden}
+.board-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--neon),var(--vio),var(--gold))}
+.board-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.board-head h3{font-size:17.5px;color:#fff}
+.board-head p{font-size:12.5px;color:var(--mut);margin-left:auto}
+.board{display:grid;grid-template-columns:minmax(96px,128px) repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.board .bh{display:grid;place-items:center;text-align:center;background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:9px 6px;font-size:12.5px;font-weight:800;color:var(--ink-soft);min-height:46px}
+.board .bh small{display:block;font-weight:600;color:var(--mut);font-size:11px}
+.board .bz{display:flex;flex-direction:column;justify-content:center;background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:9px 10px;min-height:56px}
+.board .bz b{font-size:13px;color:#fff;font-family:var(--disp)}
+.board .bz span{font-size:11px;color:var(--mut)}
+.board .bz.vang b{color:var(--gold)}
+.cell{border:1.5px solid var(--ok);background:rgba(61,220,151,.10);color:var(--ok);border-radius:11px;font-weight:800;font-size:12.5px;min-height:56px;display:grid;place-items:center;transition:.18s;min-width:0}
+.cell small{display:block;font-size:10.5px;font-weight:600;color:var(--ink-soft)}
+.cell:hover{background:var(--ok);color:#04160D;transform:translateY(-2px)}
+.cell:hover small{color:#04160D}
+.kin{border:1.5px solid var(--line);background:repeating-linear-gradient(-45deg,var(--panel-2) 0 8px,var(--bg2) 8px 16px);color:var(--mut);border-radius:11px;font-weight:800;font-size:12.5px;min-height:56px;display:grid;place-items:center;cursor:not-allowed}
+.kin small{display:block;font-size:10.5px;font-weight:600}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--mut);align-items:center}
+.legend i{width:13px;height:13px;border-radius:4px;display:inline-block;vertical-align:-2px;margin-right:6px}
+.legend .li{border:1.5px solid var(--ok);background:rgba(61,220,151,.10)}
+.legend .lk{border:1.5px solid var(--line);background:repeating-linear-gradient(-45deg,var(--panel-2) 0 8px,var(--bg2) 8px 16px)}
+
+/* ===== DAC THU — CHỌN PHÒNG THEO NHÓM ===== */
+.pick-sec .pick-box{background:linear-gradient(160deg,#241040 0%,#1C0A30 100%);border:1.5px solid var(--line-2);border-radius:24px;padding:36px clamp(18px,4vw,42px);position:relative;overflow:hidden}
+.pick-box::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-90px;top:-120px;background:radial-gradient(circle,rgba(255,61,154,.18),transparent 70%);pointer-events:none}
+.pick-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:28px;align-items:start;position:relative}
+.pick-pick label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--vio-2);display:block;margin:16px 0 9px}
+.pick-pick label:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid var(--line-2);background:var(--panel);color:var(--ink);border-radius:99px;padding:9px 16px;font-size:13.5px;font-weight:700;min-height:42px;transition:.16s}
+.chips button:hover{border-color:var(--vio)}
+.chips button.on{background:var(--neon);border-color:var(--neon);color:#fff;box-shadow:0 6px 16px rgba(255,61,154,.32)}
+.chips button.on small{color:#FFD9EA}
+.chips button small{color:var(--mut);font-weight:600}
+.pick-note{font-size:12.5px;color:var(--mut);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+.pick-note b{color:var(--gold)}
+/* kết quả: phòng gợi ý + bảng giá từng phòng */
+.pick-out{background:var(--bg1);border:1px solid var(--line);border-radius:18px;padding:20px}
+.po-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.po-head h3{font-size:16.5px;color:#fff;flex:1}
+.po-room{display:flex;gap:14px;align-items:center;background:var(--panel);border:1.5px solid var(--line-2);border-radius:14px;padding:12px;margin-bottom:14px}
+.po-room .im{width:132px;flex:none;border-radius:10px;overflow:hidden;aspect-ratio:3/2;background:var(--bg2)}
+.po-room .im img{width:100%;height:100%;object-fit:contain}
+.po-room .tx b{display:block;font-family:var(--disp);font-size:16.5px;color:#fff}
+.po-room .tx span{font-size:12.5px;color:var(--mut);display:block}
+.po-room .tx .pr{color:var(--gold);font-weight:800;font-size:15px;margin-top:3px;display:block}
+.ptable{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:14px}
+.ptable th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);padding:7px 8px;border-bottom:1px solid var(--line-2)}
+.ptable td{padding:9px 8px;border-bottom:1px dashed var(--line);color:var(--ink-soft)}
+.ptable td.v{font-weight:800;color:#fff;white-space:nowrap}
+.ptable tr.hit td{background:rgba(255,61,154,.10)}
+.ptable tr.hit td:first-child{border-left:3px solid var(--neon);border-radius:6px 0 0 6px}
+.ptable .who{display:block;font-size:11px;color:var(--mut)}
+.po-cta{width:100%;min-height:48px;border:0;border-radius:13px;background:var(--neon);color:#fff;font-weight:800;font-size:15px;font-family:var(--disp);box-shadow:0 10px 24px rgba(255,61,154,.3);display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.po-cta:hover{background:#E92E88}
+.po-tiny{font-size:11.5px;color:var(--mut);text-align:center;margin-top:9px}
+
+/* ===== COMBO ĐẶT TRƯỚC (khu phụ) ===== */
+.combo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.combo{background:var(--panel);border:1.5px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.combo.hot{border-color:var(--gold);background:linear-gradient(180deg,#2C1A45,#251043)}
+.combo h3{font-size:18px;color:#fff}
+.combo .cap{font-size:12px;color:var(--vio-2);font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.combo ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:var(--ink-soft)}
+.combo ul li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.combo .pr{display:flex;align-items:baseline;gap:9px;margin-top:auto}
+.combo .pr b{font-size:23px;color:var(--gold);font-family:var(--disp)}
+.combo .pr s{color:var(--mut);font-size:13px}
+.combo .add{border:0;background:var(--panel-3);color:#fff;border-radius:12px;padding:12px;font-weight:800;font-size:14px;min-height:46px;font-family:var(--disp);transition:.18s}
+.combo .add:hover{background:var(--neon)}
+
+/* ===== QUY TRÌNH + CAM KẾT ===== */
+.qt-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.qt{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;position:relative}
+.qt .no{width:44px;height:44px;border-radius:13px;background:linear-gradient(140deg,var(--neon),var(--vio));display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:17px;color:#fff;margin-bottom:12px;box-shadow:0 6px 16px rgba(166,77,255,.3)}
+.qt h3{font-size:15.5px;color:#fff;margin-bottom:5px}
+.qt p{font-size:12.8px;color:var(--mut)}
+.commit{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.commit span{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1.5px dashed var(--line-2);border-radius:99px;padding:9px 16px;font-size:13px;font-weight:700;color:var(--ink-soft);min-height:40px}
+.commit span b{color:var(--gold)}
+
+/* ===== VỀ CHÚNG TÔI — M4: nền mờ + thẻ nổi ===== */
+.about{position:relative;overflow:hidden}
+.about::before{content:"";position:absolute;inset:-40px;background:url(assets/img/space.webp) center/cover no-repeat;filter:blur(22px) saturate(1.15);opacity:.5}
+.about::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,7,36,.86),rgba(21,7,36,.94))}
+.about .wrap{position:relative;z-index:2}
+.about-card{display:grid;grid-template-columns:.94fr 1.06fr;gap:32px;align-items:center;background:rgba(28,10,48,.82);border:1.5px solid var(--line-2);border-radius:24px;padding:clamp(18px,3.4vw,36px);backdrop-filter:blur(6px);box-shadow:var(--sh)}
+.about-pic{position:relative;transform:rotate(-1.4deg)}
+.about-pic img{border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.about-pic .tape{position:absolute;width:96px;height:26px;background:rgba(255,208,138,.65);top:-12px;left:50%;transform:translateX(-50%) rotate(2deg);border-radius:3px}
+.about-badge{position:absolute;bottom:14px;left:14px;background:var(--gold);color:#2A0E00;font-size:12.5px;font-weight:800;border-radius:99px;padding:8px 14px;box-shadow:0 8px 18px rgba(0,0,0,.4);font-family:var(--disp)}
+.about-txt .kicker{margin-bottom:10px}
+.about-txt h2{font-size:clamp(23px,3.4vw,33px);color:#fff;margin-bottom:12px}
+.about-txt p{color:var(--ink-soft);font-size:14.5px;margin-bottom:11px}
+.about-txt .sign{font-family:var(--disp);font-style:italic;color:var(--gold-2);font-size:14.5px;margin:6px 0 14px}
+.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 18px}
+.about-stats div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center}
+.about-stats b{display:block;font-family:var(--disp);font-size:17px;color:var(--neon-2)}
+.about-stats span{font-size:11px;color:var(--mut)}
+.about-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:1.02fr 2fr;gap:16px;align-items:stretch}
+.rev-panel{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1.5px solid var(--line-2);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
+.rev-panel .big{font-family:var(--disp);font-size:44px;color:#fff;line-height:1}
+.rev-panel .big small{font-size:15px;color:var(--mut)}
+.rev-panel .st{color:var(--gold);letter-spacing:2.5px;font-size:15px}
+.rev-panel .sub{font-size:12.5px;color:var(--mut)}
+.bar{font-size:12px;color:var(--ink-soft)}
+.bar .tr{height:8px;border-radius:99px;background:var(--bg2);margin-top:5px;overflow:hidden}
+.bar .tr i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--neon),var(--vio));box-shadow:0 0 10px rgba(255,61,154,.5)}
+.rev-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rev{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:17px;display:flex;flex-direction:column;gap:9px}
+.rev .st{color:var(--gold);font-size:13.5px;letter-spacing:2px}
+.rev p{font-size:13px;color:var(--ink-soft);flex:1}
+.rev b{font-size:13px;color:#fff}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.ct-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:#fff}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--ink-soft)}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--panel-3);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:#fff}
+.ct-card .tel{font-size:22px;font-weight:800;color:var(--gold);font-family:var(--disp)}
+.ct-card iframe{width:100%;height:232px;border:0;border-radius:12px;flex:1;min-height:232px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:#fff;min-height:48px}
+.qa>button i{font-style:normal;color:var(--neon-2);font-size:19px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:var(--ink-soft)}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:#10051D;color:var(--mut);margin-top:44px;border-top:1px solid var(--line)}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:32px 0 20px}
+.ft-g h4{color:#fff;font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--neon-2)}
+.ft-brand b{font-family:var(--disp);font-size:17px;color:#fff;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.08);padding:12px 0;text-align:center;font-size:11.5px;color:#7A68A3}
+
+/* ===== FAB ĐẶT PHÒNG (icon micro SVG — funnel chính dạng B) ===== */
+.bk-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:linear-gradient(140deg,var(--neon),var(--vio));color:#fff;display:grid;place-items:center;padding:0;box-shadow:0 10px 26px rgba(255,61,154,.45);transition:opacity .25s,transform .25s}
+.bk-fab:hover{transform:translateY(-2px)}
+.bk-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:var(--gold);border:2.5px solid var(--bg0)}
+body.chat-open .bk-fab{opacity:0;pointer-events:none}
+
+/* ===== DRAWER ĐẶT PHÒNG ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(8,2,20,.62);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#bkDrawer{position:fixed;top:0;right:0;width:420px;max-width:96vw;height:100dvh;background:var(--bg1);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 44px rgba(0,0,0,.5);border-left:1px solid var(--line)}
+#bkDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+.dr-head h3{font-size:16.5px;color:#fff;flex:1;font-family:var(--disp)}
+.dr-x{border:0;background:var(--panel-3);width:38px;height:38px;border-radius:11px;font-size:16px;color:#fff;flex:none}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 20px;display:flex;flex-direction:column;gap:15px}
+.bk-step>label{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--vio-2);display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.bk-step>label .n{width:21px;height:21px;border-radius:7px;background:var(--panel-3);color:var(--gold-2);display:grid;place-items:center;font-size:11.5px;flex:none}
+.room-chips{display:flex;flex-direction:column;gap:8px}
+.room-chips button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:var(--panel);border:1.5px solid var(--line);border-radius:13px;padding:10px 12px;color:var(--ink);min-height:60px;transition:.16s}
+.room-chips button .code{width:40px;height:40px;border-radius:11px;background:var(--panel-3);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:13px;color:var(--gold-2);flex:none}
+.room-chips button b{display:block;font-size:14px;font-family:var(--disp)}
+.room-chips button small{display:block;font-size:11.5px;color:var(--mut)}
+.room-chips button .pz{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--gold);white-space:nowrap}
+.room-chips button.on{border-color:var(--neon);box-shadow:var(--glow);background:var(--panel-2)}
+.g-step{display:flex;align-items:center;gap:12px}
+.g-step button{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--panel);color:#fff;font-size:19px;font-weight:800}
+.g-step output{min-width:74px;text-align:center;font-family:var(--disp);font-size:21px;font-weight:800;color:#fff}
+.g-step .unit{font-size:12px;color:var(--mut)}
+.g-hint{font-size:12px;color:var(--vio-2);margin-top:7px;min-height:18px}
+.g-hint.warn{color:var(--gold)}
+.day-zone{display:flex;flex-direction:column;gap:9px}
+.dz-row{display:flex;gap:8px;flex-wrap:wrap}
+.dz-row .lbl{flex-basis:100%;font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+.dz-row button{border:1.5px solid var(--line-2);background:var(--panel);color:var(--ink);border-radius:11px;padding:8px 13px;font-size:12.5px;font-weight:700;min-height:44px;transition:.16s}
+.dz-row button b{display:block;font-size:13px}
+.dz-row button small{color:var(--mut);font-size:11px}
+.dz-row button.on{border-color:var(--neon);background:var(--panel-2);box-shadow:var(--glow)}
+.dz-row button.on small{color:var(--gold)}
+.combo-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.combo-chips button{border:1.5px solid var(--line);background:var(--panel);color:var(--ink);border-radius:11px;padding:9px 11px;text-align:left;min-height:52px;transition:.16s}
+.combo-chips button b{display:block;font-size:12.5px}
+.combo-chips button small{font-size:11px;color:var(--gold);font-weight:700}
+.combo-chips button.on{border-color:var(--neon);background:var(--panel-2);box-shadow:var(--glow)}
+.sum{background:var(--panel-2);border:1px dashed var(--line-2);border-radius:13px;padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.sum .r{display:flex;justify-content:space-between;font-size:12.8px;color:var(--ink-soft)}
+.sum .r.big{font-size:15px;font-weight:800;color:#fff;border-top:1px dashed var(--line-2);padding-top:8px;margin-top:3px}
+.sum .r.big b{color:var(--gold);font-family:var(--disp);font-size:19px}
+.dr-form input{width:100%;padding:12px 13px;border:1.5px solid var(--line-2);border-radius:12px;font-size:15px;font-family:inherit;background:var(--bg2);color:#fff;min-height:46px}
+.dr-form input::placeholder{color:#6E5A96}
+.dr-form input.err{border-color:var(--bad);background:#2B0F1C}
+.dr-submit{width:100%;min-height:50px;border:0;border-radius:13px;background:var(--neon);color:#fff;font-weight:800;font-size:15.5px;font-family:var(--disp);box-shadow:0 10px 24px rgba(255,61,154,.32);display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.dr-submit:hover{background:#E92E88}
+.dr-camket{font-size:11.8px;color:var(--mut);line-height:1.55}
+.dr-camket b{color:var(--gold-2)}
+/* xác nhận giữ phòng tại trang */
+.bk-done{display:none;flex-direction:column;gap:14px;text-align:center}
+.bk-done.on{display:flex}
+.stamp{margin:4px auto 0;width:64px;height:64px;border-radius:99px;background:rgba(61,220,151,.14);border:2px solid var(--ok);display:grid;place-items:center;font-size:28px;color:var(--ok)}
+.bk-done h4{font-family:var(--disp);font-size:21px;color:#fff}
+.code-big{font-family:'Consolas','Courier New',monospace;font-size:26px;letter-spacing:2px;color:var(--gold);background:var(--panel);border:1.5px dashed var(--gold);border-radius:13px;padding:13px 10px;font-weight:800}
+.done-sum{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px 15px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-soft)}
+.done-sum .r{display:flex;justify-content:space-between;gap:12px}
+.done-sum .r b{color:#fff;text-align:right}
+.bk-done .btn-g{align-self:center}
+
+/* ===== CHAT WIDGET (pkc) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--neon-2);font-size:22px;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid var(--bg0)}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--bg1);border:1px solid var(--line-2);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.55);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--panel);color:#fff}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:var(--panel-3);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.8}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#fff;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:var(--bg2)}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--neon);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line-2);background:var(--panel);border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--ink-soft);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--panel)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line-2);border-radius:11px;font-size:13.5px;min-height:42px;background:var(--bg2);color:#fff}
+#pkcSend{border:0;background:var(--neon);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(440px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:#2A0F3F;color:#F4EDFF;border:1px solid var(--line-2);border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.5);animation:tin .3s;pointer-events:auto}
+.toast b{display:block;font-size:13.5px;color:var(--gold-2);margin-bottom:2px}
+.toast span{font-size:12.8px;color:var(--ink-soft)}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1020px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:40px 0 46px}
+  .hero p.lead{max-width:none}
+  .sched-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc-g{grid-template-columns:repeat(2,1fr)}
+  .qt-g{grid-template-columns:repeat(2,1fr)}
+  .pick-grid{grid-template-columns:1fr}
+  .combo-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  .about-card{grid-template-columns:1fr}
+  .about-pic{max-width:520px;margin:0 auto}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+}
+@media (max-width:640px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .call span{display:none}
+  .call{padding:10px 12px}
+  .svc-g{grid-template-columns:1fr}
+  .qt-g{grid-template-columns:1fr}
+  /*NB110-384 — mobile: 2 thẻ nổi bật LÊN ĐẦU + viền vàng cam + CTA full-width (đúng luật thẻ nổi bật)*/
+  .sc.feat{order:-1;border:2px solid var(--gold);box-shadow:0 12px 28px rgba(255,184,77,.20)}
+  .sc.feat .bd h3{font-size:19px}
+  .sc.feat .bk{width:100%}
+  .sched-grid{grid-template-columns:1fr}
+  /*NB110-384 — hủy span 2 khi còn 1 cột: kẻo cột implicit thứ hai "nuốt" track 1fr*/
+  .sc.feat,.sc.wide{grid-column:auto}
+  .sc.wide{grid-template-columns:1fr}
+  .sc.wide .ph{aspect-ratio:3/2}
+  .board-card{padding:14px 12px 16px}
+  .board-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;margin:0 -12px;padding:0 12px}
+  .board{min-width:520px;gap:6px}
+  .board>*{scroll-snap-align:start}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 16px}
+  .ft-brand{grid-column:1/-1}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  .hero h1{font-size:30px}
+  #bkDrawer{width:100vw;max-width:100vw}
+  .combo-chips{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:repeat(2,1fr)}
+  .dr-body{padding:14px 14px 66px}
+  .rev-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg></span>
+      <span><b>Neon Vui</b><small>Karaoke · Vũ trường</small></span>
+    </a>
+    <nav class="main">
+      <a href="#lich-phong">Lịch phòng</a>
+      <a href="#chon-phong">Chọn phòng</a>
+      <a href="#combo-tiec">Combo tiệc</a>
+      <a href="#ve-chung-toi">Về Neon Vui</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+      <button class="hd-bk" data-open-bk>🎙 Đặt phòng</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <span class="beam b1" aria-hidden="true"></span>
+  <span class="beam b2" aria-hidden="true"></span>
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker"><span class="dot"></span>ĐANG MỞ · 14:00 – 02:00 · P. Ánh Đèn</span>
+      <h1>Hẹn nhau vui <em>hết mình</em> —<br>phòng hát đã sẵn sàng</h1>
+      <p class="lead">12 phòng Thường – VIP – Premium cho nhóm bạn và tiệc công ty. Chọn phòng theo số người, chốt khung giờ vàng 19–23 hay giờ thường, giữ chỗ 20 phút với mã xác nhận ngay trên trang.</p>
+      <div class="hero-cta">
+        <button class="btn btn-a" data-open-bk>🎙 Đặt phòng karaoke</button>
+        <a class="btn btn-g" href="#lich-phong">🗓 Xem lịch phòng tối nay</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>12 phòng</b><span>8 – 40 khách</span></div>
+        <div><b>20 phút</b><span>giữ phòng miễn phí</span></div>
+        <div><b>Đến 02:00</b><span>mở cả tuần</span></div>
+      </div>
+    </div>
+    <div class="tv rv">
+      <span class="tv-live"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>LIVE · SÀN ĐANG SÔI</span>
+      <div class="tv-frame">
+        <div class="scr">
+          <img src="assets/img/cover.webp" alt="Neon Vui — Karaoke Vũ trường, hẹn nhau vui hết mình" width="1280" height="853" fetchpriority="high">
+        </div>
+      </div>
+      <div class="tv-stand" aria-hidden="true"></div>
+      <div class="poster-chips">
+        <a class="pchip" href="#lich-phong"><i>🎤</i> Phòng hát</a>
+        <a class="pchip" href="#tien-ich"><i>🎵</i> Âm nhạc</a>
+        <a class="pchip" href="#combo-tiec"><i>🍸</i> Đặt tiệc</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tien-ich">
+  <div class="wrap">
+    <div class="svc-g">
+      <div class="svc rv"><div class="ic">🎟</div><div><b>Giữ phòng 20 phút</b><span>Nhận mã xác nhận tại trang — tới trễ quá 20 phút phòng tự mở lại.</span></div></div>
+      <div class="svc rv"><div class="ic">🍹</div><div><b>Combo đặt trước</b><span>Nước + snack lên bàn ngay khi nhóm bước vào phòng.</span></div></div>
+      <div class="svc rv"><div class="ic">🎂</div><div><b>Trang trí sinh nhật</b><span>Miễn phí dây kim tuyến, bảng chúc, nến — đặt trước 1 ngày.</span></div></div>
+      <div class="svc rv"><div class="ic">🏢</div><div><b>Tiệc công ty 40+</b><span>Phòng Premium, kỹ thuật âm thanh riêng và hóa đơn VAT.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sched-sec" id="lich-phong">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="kicker">Thời khóa biểu phòng hát</span>
+      <h2>8 lý do thuê phòng — <em>chọn giờ là có chỗ</em></h2>
+      <p>Mỗi ô trên bảng là một phòng kèm khung giờ gợi ý. Bấm “Chọn phòng này” là phiếu giữ chỗ tự điền.</p>
+    </div>
+
+    <div class="sched-grid" id="schedGrid">
+      <article class="sc feat rv">
+        <span class="badge">ĐẶT NHIỀU NHẤT</span>
+        <div class="sc-strip"><span class="rm">PHÒNG THƯỜNG · P1–P5</span><span class="tm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>180 PHÚT</span></div>
+        <div class="ph"><img src="assets/img/p5.webp" alt="Combo phòng hát theo giờ — chọn khung giờ hợp cuộc hẹn" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Combo phòng hát theo giờ</h3>
+          <p>Gói 3 giờ phòng Thường kèm 8 nước + 2 đĩa snack — nhóm 6–10 người chỉ việc vào hát.</p>
+          <div class="ft"><div class="pri">690.000đ<small>3 giờ · đã gồm nước + snack</small></div><button class="bk" data-open-bk data-room="thuong" data-zone="thuong">Chọn phòng này</button></div>
+        </div>
+      </article>
+
+      <article class="sc feat rv">
+        <span class="badge pink">CHỐT NHANH NHÓM BẠN</span>
+        <div class="sc-strip"><span class="rm">PHÒNG VIP · V1–V4</span><span class="tm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>240 PHÚT</span></div>
+        <div class="ph"><img src="assets/img/p2.webp" alt="Phòng VIP cho nhóm bạn — thoải mái gặp gỡ và ca hát" width="1152" height="768"></div>
+        <div class="bd">
+          <h3>Phòng VIP cho nhóm bạn</h3>
+          <p>Sofa da, màn hình laser 4K và quầy bar mini trong phòng — sinh nhật, họp lớp càng đông càng vui.</p>
+          <div class="ft"><div class="pri">350.000đ<small>mỗi giờ khung giờ vàng 19–23</small></div><button class="bk" data-open-bk data-room="vip" data-zone="vang">Chọn phòng này</button></div>
+        </div>
+      </article>
+
+      <article class="sc rv">
+        <div class="sc-strip"><span class="rm">PHÒNG THƯỜNG · P1–P5</span><span class="tm">60–180 PHÚT</span></div>
+        <div class="ph"><img src="assets/img/p1.webp" alt="Phòng karaoke gia đình — cùng hát, cùng vui mỗi dịp" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Phòng karaoke gia đình</h3>
+          <p>Cách âm tốt, danh mục bài thiếu nhi + nhạc vàng đầy đủ — cả nhà cùng cầm mic.</p>
+          <div class="ft"><div class="pri">150.000đ<small>mỗi giờ · 8–12 khách</small></div><button class="bk" data-open-bk data-room="thuong">+</button></div>
+        </div>
+      </article>
+
+      <article class="sc rv">
+        <div class="sc-strip"><span class="rm">SÀN NHẠC · T7 + CN</span><span class="tm">21:00 – 02:00</span></div>
+        <div class="ph"><img src="assets/img/p4.webp" alt="Đêm nhạc và sàn nhảy — bắt nhịp cuộc vui cuối tuần" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Đêm nhạc và sàn nhảy</h3>
+          <p>DJ theo chủ đề mỗi tối cuối tuần, hiệu ứng đèn sân khấu — đặt vé khu đứng trước khỏi xếp hàng.</p>
+          <div class="ft"><div class="pri">120.000đ<small>vé khu đứng mỗi người</small></div><button class="bk" data-open-bk data-room="vip" data-zone="khuya">+</button></div>
+        </div>
+      </article>
+
+      <article class="sc rv">
+        <div class="sc-strip"><span class="rm">PHÒNG PREMIUM · PR1–PR3</span><span class="tm">120–300 PHÚT</span></div>
+        <div class="ph"><img src="assets/img/p3.webp" alt="Phòng hát sức chứa lớn — đủ chỗ cho buổi sum họp" width="1152" height="768"></div>
+        <div class="bd">
+          <h3>Phòng hát sức chứa lớn</h3>
+          <p>Premium 20–40 khách, bàn dài tiệc nhẹ và hai màn hình — đủ chỗ cho buổi sum họp.</p>
+          <div class="ft"><div class="pri">400.000đ<small>mỗi giờ giờ thường</small></div><button class="bk" data-open-bk data-room="premium">+</button></div>
+        </div>
+      </article>
+
+      <article class="sc rv">
+        <div class="sc-strip"><span class="rm">GỌI TẠI PHÒNG</span><span class="tm">PHỤC VỤ 10 PHÚT</span></div>
+        <div class="ph"><img src="assets/img/p6.webp" alt="Đồ uống và món ăn nhẹ — thêm món ngon cho giờ hát" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Đồ uống và món ăn nhẹ</h3>
+          <p>Trà đào, nước ép, mực khô, gà rán — gọi tại phòng bất cứ lúc nào, phục vụ trong 10 phút.</p>
+          <div class="ft"><div class="pri">35.000đ<small>món từ · gọi tại phòng</small></div><button class="bk" data-open-bk data-combo="nhom-vui">Chọn combo</button></div>
+        </div>
+      </article>
+
+      <article class="sc wide rv">
+        <div class="ph"><img src="assets/img/p7.webp" alt="Âm thanh ánh sáng sự kiện — sẵn sàng cho mọi sân khấu" width="1280" height="853"></div>
+        <div class="bd">
+          <div class="sc-strip" style="margin:-16px -18px 12px"><span class="rm">TIỆC CÔNG TY</span><span class="tm">KỸ THUẬT RIÊNG</span></div>
+          <h3>Âm thanh ánh sáng sự kiện</h3>
+          <p>Kỹ thuật viên chạy buổi riêng cho nhóm: kiểm tra thiết bị, cân chỉnh âm thanh, hậu kỳ ánh sáng từng tiết mục.</p>
+          <p>Phù hợp tiệc tất niên, ra mắt sản phẩm hay sinh nhật công ty ngay tại phòng Premium.</p>
+          <div class="ft"><div class="pri">1.500.000đ<small>trọn buổi · kèm 1 kỹ thuật viên</small></div><button class="bk" data-open-bk data-room="premium" data-zone="vang">Đặt kỹ thuật</button></div>
+        </div>
+      </article>
+
+      <article class="sc wide rv">
+        <div class="ph"><img src="assets/img/p8.webp" alt="Đặt phòng và tổ chức tiệc — đặt chỗ, lên tiệc thật gọn" width="1280" height="853"></div>
+        <div class="bd">
+          <div class="sc-strip" style="margin:-16px -18px 12px"><span class="rm">TRỌN GÓI</span><span class="tm">ĐẶT TRƯỚC 1–2 NGÀY</span></div>
+          <h3>Đặt phòng và tổ chức tiệc</h3>
+          <p>Trọn gói cho sinh nhật, tất niên, họp lớp: trang trí theo dịp, chọn menu, hỗ trợ suốt buổi.</p>
+          <p>Bạn chỉ đưa danh sách khách — phần còn lại Neon Vui lo từ bàn ghế đến micro dự phòng.</p>
+          <div class="ft"><div class="pri">190.000đ<small>mỗi khách · nhóm 20 trở lên</small></div><button class="bk" data-open-bk data-room="premium">Đặt trọn gói</button></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="board-card rv">
+      <div class="board-head">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <h3>Bảng lịch tối nay · Thứ Bảy 04/10</h3>
+        <p>Bấm ô <b style="color:var(--ok)">TRỐNG</b> để chọn ngay phòng + khung giờ</p>
+      </div>
+      <div class="board-wrap">
+        <div class="board" id="tonightBoard" aria-label="Bảng lịch phòng tối nay"></div>
+      </div>
+      <div class="legend">
+        <span><i class="li"></i>Trống — bấm để đặt</span>
+        <span><i class="lk"></i>Đã kín — chọn khung khác</span>
+        <span>Giờ vàng 19:00–23:00 giá phòng cao hơn giờ thường ~40% · sau 23:00 giảm 20%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec pick-sec" id="chon-phong">
+  <div class="wrap">
+    <div class="pick-box rv">
+      <div class="pick-grid">
+        <div class="pick-pick">
+          <span class="kicker">Công cụ đặc biệt của Neon Vui</span>
+          <h2 style="font-size:clamp(22px,3.2vw,31px);color:#fff;margin:8px 0 4px">🎙 Nhóm mấy người, hát khung giờ nào?</h2>
+          <p style="color:var(--mut);font-size:14px;margin-bottom:6px">Trả lời 2 câu — Neon Vui chỉ phòng vừa sức nhóm và giá từng phòng ngay lập tức.</p>
+          <label>1 · Nhóm của bạn có bao nhiêu người?</label>
+          <div class="chips" id="gChips">
+            <button data-g="4-8" class="on">4–8<small> người</small></button>
+            <button data-g="9-12">9–12<small> người</small></button>
+            <button data-g="13-20">13–20<small> người</small></button>
+            <button data-g="21-40">21–40<small> người</small></button>
+            <button data-g="40+">Trên 40<small> người</small></button>
+          </div>
+          <label>2 · Hát khung giờ nào?</label>
+          <div class="chips" id="zChips">
+            <button data-z="thuong">Giờ thường<small> · 14:00–19:00</small></button>
+            <button data-z="vang" class="on">Giờ vàng<small> · 19:00–23:00</small></button>
+            <button data-z="khuya">Khuya<small> · 23:00–02:00 −20%</small></button>
+          </div>
+          <p class="pick-note">💡 <span>Giờ vàng <b>19:00–23:00</b> phòng đông nhất — muốn giá mềm hơn, hát sớm khung 14:00–19:00 hoặc khuya sau 23:00 (đã giảm 20%).</span></p>
+        </div>
+        <div class="pick-out">
+          <div class="po-head">
+            <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <h3 id="poTitle">Phòng gợi ý cho nhóm của bạn</h3>
+          </div>
+          <div class="po-room">
+            <div class="im"><img id="poImg" src="assets/img/p2.webp" alt="Phòng được gợi ý" width="1152" height="768"></div>
+            <div class="tx">
+              <b id="poName">Phòng VIP · V1</b>
+              <span id="poRange">Phù hợp 12–20 khách · sofa, quầy bar mini</span>
+              <span class="pr" id="poPrice">350.000đ / giờ · khung giờ vàng</span>
+            </div>
+          </div>
+          <table class="ptable">
+            <thead><tr><th>Phòng</th><th>Sức chứa</th><th style="text-align:right">Giá / giờ</th></tr></thead>
+            <tbody id="poBody"></tbody>
+          </table>
+          <button class="po-cta" id="poCta">🎙 Giữ phòng này — miễn phí 20 phút</button>
+          <p class="po-tiny">Hủy miễn phí trước 2 giờ · không cần cọc với nhóm dưới 15 người</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="combo-tiec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Combo đặt trước — tùy chọn</span>
+      <h2>Chọn combo, vào phòng là <em>đồ sẵn trên bàn</em></h2>
+      <p>Đặt kèm phiếu giữ phòng để tiết kiệm 10% so với gọi lẻ. Muốn gọi thêm tại phòng vẫn được thoải mái.</p>
+    </div>
+    <div class="combo-g">
+      <div class="combo rv">
+        <span class="cap">Nhóm 4–8 người</span>
+        <h3>🍹 Combo Nhóm Vui</h3>
+        <ul><li>8 nước bất kỳ (trà đào, nước ép, soda)</li><li>2 đĩa snack + 1 khay trái cây</li><li>Đồ lên bàn ngay khi nhận phòng</li></ul>
+        <div class="pr"><b>240.000đ</b><s>265.000đ</s></div>
+        <button class="add" data-open-bk data-combo="nhom-vui">Chọn combo này</button>
+      </div>
+      <div class="combo hot rv">
+        <span class="badge">THÍCH HỢP SINH NHẬT</span>
+        <span class="cap">Nhóm 10–20 người</span>
+        <h3>🍺 Combo Bia Nhóm Bạn</h3>
+        <ul><li>2 thùng bia + 12 nước mixed</li><li>4 đĩa snack + gỏi cuốn + trái cây</li><li>Tặng trang trí sinh nhật + bảng chúc</li></ul>
+        <div class="pr"><b>590.000đ</b><s>660.000đ</s></div>
+        <button class="add" data-open-bk data-combo="bia">Chọn combo này</button>
+      </div>
+      <div class="combo rv">
+        <span class="cap">Tiệc công ty 20–40 người</span>
+        <h3>🏢 Combo Tiệc Công Ty</h3>
+        <ul><li>Nước suối + soft drink không giới hạn 3 giờ</li><li>Đĩa nóng chia bàn + tráng miệng</li><li>Hóa đơn VAT + trang trí bàn theo thương hiệu</li></ul>
+        <div class="pr"><b>1.190.000đ</b><s>1.320.000đ</s></div>
+        <button class="add" data-open-bk data-combo="cong-ty">Chọn combo này</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="quy-trinh" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Đặt phòng 4 bước</span>
+      <h2>Từ chọn phòng tới <em>cầm micro</em> trong 1 phút</h2>
+    </div>
+    <div class="qt-g">
+      <div class="qt rv"><div class="no">01</div><h3>Chọn phòng &amp; số người</h3><p>Nhóm 4–8 người hát Phòng Thường, 12–20 khách lên VIP, tiệc lớn chọn Premium.</p></div>
+      <div class="qt rv"><div class="no">02</div><h3>Chốt ngày + khung giờ</h3><p>Giờ thường 14:00–19:00, giờ vàng 19:00–23:00, khuya 23:00–02:00 giảm 20%.</p></div>
+      <div class="qt rv"><div class="no">03</div><h3>Thêm combo (tùy chọn)</h3><p>Nước + snack đặt trước 10% rẻ hơn gọi lẻ — hoặc gọi thêm tại phòng lúc nào cũng được.</p></div>
+      <div class="qt rv"><div class="no">04</div><h3>Nhận mã giữ phòng</h3><p>Mã dạng NV-V1-1900 hiện ngay tại trang — phòng giữ 20 phút kể từ giờ hẹn.</p></div>
+    </div>
+    <div class="commit">
+      <span>✅ Giữ phòng <b>20 phút</b> từ giờ hẹn</span>
+      <span>✅ Hủy miễn phí trước <b>2 giờ</b></span>
+      <span>✅ Giá minh bạch theo <b>bảng phòng</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec about" id="ve-chung-toi">
+  <div class="wrap">
+    <div class="about-card rv">
+      <div class="about-pic">
+        <span class="tape" aria-hidden="true"></span>
+        <img src="assets/img/intro.webp" alt="Không gian riêng cho cuộc vui chung tại Neon Vui" width="1536" height="1024">
+        <span class="about-badge">12 phòng · 8–40 khách · mở đến 02:00</span>
+      </div>
+      <div class="about-txt">
+        <span class="kicker">Về Neon Vui</span>
+        <h2>Không gian riêng cho cuộc vui chung</h2>
+        <p>Neon Vui mở cửa từ một dãy phòng hát nhỏ ở Đường Nhịp Vui, nay có 12 phòng Thường – VIP – Premium cùng sàn nhạc cuối tuần. Từ phòng hát gia đình ấm cúng đến đêm nhạc sôi động, luôn có lựa chọn phù hợp cho nhóm của bạn.</p>
+        <p>Nhóm bạn đặt phòng VIP sinh nhật, công ty book nguyên Premium cho tất niên — việc của chúng mình là bật đèn, chỉnh loa và để đồ lên bàn đúng giờ hẹn.</p>
+        <p class="sign">— Quân Huy, quản lý cuộc vui —</p>
+        <div class="about-stats">
+          <div><b>12</b><span>phòng hát</span></div>
+          <div><b>350+</b><span>sức chứa cả khu</span></div>
+          <div><b>14–02</b><span>mở cả tuần</span></div>
+          <div><b>4.8/5</b><span>1.200+ nhóm đã vui</span></div>
+        </div>
+        <div class="about-cta">
+          <button class="btn btn-a" data-open-bk>🎙 Đặt phòng ngay</button>
+          <a class="btn btn-g" href="#lich-phong">Xem lịch tối nay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="review">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khách nói về Neon Vui</span>
+      <h2>Nhóm bạn quay lại, công ty giới thiệu thêm</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev-panel rv">
+        <div class="big">4.8<small>/5</small></div>
+        <div class="st">★★★★★</div>
+        <p class="sub">Từ 1.200+ nhóm đã đặt phòng 6 tháng gần nhất</p>
+        <div class="bar">Đúng phòng đã đặt <b>98%</b><div class="tr"><i style="width:98%"></i></div></div>
+        <div class="bar">Đồ lên bàn trong 10 phút <b>95%</b><div class="tr"><i style="width:95%"></i></div></div>
+        <div class="bar">Nhóm quay lại lần 2 <b>76%</b><div class="tr"><i style="width:76%"></i></div></div>
+      </div>
+      <div class="rev-cards">
+        <div class="rev rv"><div class="st">★★★★★</div><p>"Đặt V1 sinh nhật nhóm 14 người, combo bia lên bàn đúng giờ, micro dự phòng có sẵn — hát từ 19h tới 23h không phải dừng lần nào."</p><b>Lan Anh</b><span>nhóm bạn · Q.Thủ Đức</span></div>
+        <div class="rev rv"><div class="st">★★★★★</div><p>"Tất niên công ty 35 người ở PR2: kỹ thuật chạy vẻo từng tiết mục, VAT xuất nhanh, sếp khen chọn chỗ khéo."</p><b>Anh Việt Khang</b><span>phòng HCNS công ty · Q.1</span></div>
+        <div class="rev rv"><div class="st">★★★★☆</div><p>"Chiều chủ nhật gói gia đình 150k/giờ, bé cầm mic hát suốt 2 tiếng. Khung 14h–19h vắng, giá lại mềm."</p><b>Chị Thu Trang</b><span>gia đình 3 thế hệ · Bình Thạnh</span></div>
+        <div class="rev rv"><div class="st">★★★★★</div><p>"Chọn ô trống trên lịch tối ngay trên web, 20 phút sau nhận điện thoại xác nhận. Mã NV-V1-1900 báo lễ tân là vào phòng luôn."</p><b>Bảo Nam</b><span>nhóm 8 người · Q.Bình Thạnh</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🎤 Tìm tới Neon Vui tối nay</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>68 Đường Nhịp Vui, P. Ánh Đèn</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo đặt phòng</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ mở cửa</b><br>14:00 – 02:00 tất cả các ngày trong tuần<br><span style="color:var(--mut);font-size:12.5px">Sàn nhạc Đêm nhạc: 21:00 – 02:00 tối T7 + CN</span></div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.8468,106.7533&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới đây</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.8468,106.7533 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.8468,106.7533&z=15&output=embed&hl=vi" title="Bản đồ Neon Vui — Karaoke & Vũ trường"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều nhóm nào cũng hỏi trước khi đặt</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Khách dưới 18 tuổi có vào hát được không?<i>+</i></button><div class="a">Được — nhóm dưới 18 vui lòng có người lớn đi cùng và rời quán trước 23:00. Sau 23:00 và khu sàn nhạc Đêm nhạc chỉ phục vụ khách 18 trở lên.</div></div>
+      <div class="qa rv"><button>Có mang đồ uống ngoài vào được không?<i>+</i></button><div class="a">Không mang đồ uống ngoài vào phòng — đó cũng là cách mình giữ phòng sạch và loa mát. Trong phòng có bảng giá gọi tại phòng, hoặc đặt combo trước để tiết kiệm 10%.</div></div>
+      <div class="qa rv"><button>Giờ vàng khác giờ thường thế nào?<i>+</i></button><div class="a">Khung 19:00–23:00 là giờ vàng, giá phòng cao hơn giờ thường khoảng 40%. Hát sớm 14:00–19:00 hoặc khuya 23:00–02:00 giá mềm hơn, khuya đã giảm 20%.</div></div>
+      <div class="qa rv"><button>"Giữ phòng 20 phút" hoạt động ra sao, hủy thế nào?<i>+</i></button><div class="a">Sau khi đặt, bạn nhận mã giữ chỗ dạng NV-V1-1900 ngay trên trang. Phòng giữ 20 phút kể từ giờ hẹn — quá 20 phút không thấy đại diện, phòng tự mở cho nhóm khác. Hủy miễn phí trước 2 giờ, gọi hotline 0034567899.</div></div>
+      <div class="qa rv"><button>Tiệc công ty 30–40 người cần đặt trước bao lâu?<i>+</i></button><div class="a">Nên đặt trước 1–2 ngày để bố trí phòng Premium, kỹ thuật âm thanh và trang trí theo thương hiệu. Nhóm trên 40 người — gọi hotline để mở toàn khu kèm báo giá riêng.</div></div>
+      <div class="qa rv"><button>Combo nước/snack đặt trước hay gọi tại phòng?<i>+</i></button><div class="a">Cả hai đều được. Combo đặt trước đi kèm phiếu giữ phòng nên đồ lên bàn ngay khi nhận phòng và rẻ hơn 10%. Trong buổi vẫn gọi thêm món bất cứ lúc nào.</div></div>
+      <div class="qa rv"><button>Sinh nhật có được trang trí miễn phí?<i>+</i></button><div class="a">Có — đặt trước 1 ngày, phòng được trang trí dây kim tuyến, bảng chúc tên và nến miễn phí. Combo Bia Nhóm Bạn còn tặng cả bóng bay; bánh kem đặt thêm theo yêu cầu.</div></div>
+      <div class="qa rv"><button>Có cần đặt cọc không?<i>+</i></button><div class="a">Nhóm dưới 15 người không cần cọc — giữ phòng bằng mã miễn phí. Phòng Premium và tiệc tổ chức cọc 30% qua chuyển khoản khi Neon Vui gọi xác nhận, trừ hết vào hóa đơn.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>🎙 Neon Vui — Karaoke &amp; Vũ trường</b>
+      <p>Hẹn nhau vui hết mình. 12 phòng Thường – VIP – Premium cho nhóm bạn và tiệc công ty tại 68 Đường Nhịp Vui, P. Ánh Đèn.</p>
+    </div>
+    <div>
+      <h4>Khám phá</h4>
+      <a href="#lich-phong">Lịch phòng tối nay</a>
+      <a href="#chon-phong">Chọn phòng theo nhóm</a>
+      <a href="#combo-tiec">Combo đặt trước</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 68 Đường Nhịp Vui, P. Ánh Đèn</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 14:00 – 02:00 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Neon Vui · Giá tham khảo theo bảng phòng · Khuyến nghị khách 18+ cho khu vực sàn nhạc</div>
+</footer>
+
+<!-- ===== FAB ĐẶT PHÒNG (SVG icon micro — đặt phía trên chat) ===== -->
+<button class="bk-fab" id="bkFab" aria-label="Mở phiếu đặt phòng">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="9" y="2" width="6" height="12" rx="3"/>
+    <path d="M5 10a7 7 0 0 0 14 0"/>
+    <path d="M12 17v4"/>
+    <path d="M8 21h8"/>
+  </svg>
+  <span class="pkc-dot"></span>
+</button>
+
+<!-- ===== DRAWER ĐẶT PHÒNG — FUNNEL CHÍNH (phòng → số người → ngày + giờ → combo → SĐT) ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="bkDrawer" aria-label="Phiếu đặt phòng">
+  <div class="dr-head">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h3>Phiếu giữ phòng · Neon Vui</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng phiếu đặt phòng">✕</button>
+  </div>
+  <div class="dr-body">
+    <div id="bkForm" class="dr-form" style="display:flex;flex-direction:column;gap:15px">
+      <div class="bk-step">
+        <label><span class="n">1</span> Chọn phòng</label>
+        <div class="room-chips" id="roomChips"></div>
+      </div>
+      <div class="bk-step">
+        <label><span class="n">2</span> Số người</label>
+        <div class="g-step">
+          <button type="button" id="gMinus" aria-label="Giảm số người">−</button>
+          <output id="gOut">10</output>
+          <span class="unit">người</span>
+          <button type="button" id="gPlus" aria-label="Tăng số người" style="margin-left:auto">+</button>
+        </div>
+        <p class="g-hint" id="gHint"></p>
+      </div>
+      <div class="bk-step">
+        <label><span class="n">3</span> Ngày &amp; khung giờ</label>
+        <div class="day-zone">
+          <div class="dz-row" id="dayChips">
+            <span class="lbl">Ngày</span>
+            <button data-day="Tối nay · T7 04/10" class="on"><b>Tối nay</b><small>T7 04/10</small></button>
+            <button data-day="CN 05/10"><b>Chủ nhật</b><small>CN 05/10</small></button>
+            <button data-day="Thứ 7 tới 11/10"><b>Cuối tuần tới</b><small>T7 11/10</small></button>
+          </div>
+          <div class="dz-row" id="zoneChips">
+            <span class="lbl">Khung giờ</span>
+            <button data-z="thuong"><b>14:00 – 19:00</b><small id="zp-thuong">150k/h</small></button>
+            <button data-z="vang" class="on"><b>19:00 – 23:00</b><small id="zp-vang">220k/h · giờ vàng</small></button>
+            <button data-z="khuya"><b>23:00 – 02:00</b><small id="zp-khuya">120k/h · −20%</small></button>
+          </div>
+        </div>
+      </div>
+      <div class="bk-step">
+        <label><span class="n">4</span> Combo nước / snack <span style="text-transform:none;letter-spacing:0;color:var(--mut);font-weight:600">(tùy chọn)</span></label>
+        <div class="combo-chips" id="comboChips">
+          <button data-c="none" class="on"><b>Không cần combo</b><small>gọi tại phòng sau</small></button>
+          <button data-c="nhom-vui"><b>Combo Nhóm Vui</b><small>+240.000đ · 4–8 người</small></button>
+          <button data-c="bia"><b>Combo Bia Nhóm Bạn</b><small>+590.000đ · 10–20 người</small></button>
+          <button data-c="cong-ty"><b>Combo Tiệc Công Ty</b><small>+1.190.000đ · 20–40 người</small></button>
+        </div>
+      </div>
+      <div class="sum" id="bkSum"></div>
+      <div class="bk-step dr-form" style="display:flex;flex-direction:column;gap:9px">
+        <label for="fPhone" style="font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--vio-2)"><span class="n" style="width:21px;height:21px;border-radius:7px;background:var(--panel-3);color:var(--gold-2);display:inline-grid;place-items:center;font-size:11.5px">5</span> Số điện thoại nhận xác nhận</label>
+        <input id="fPhone" type="tel" placeholder="VD: 0901 234 567" autocomplete="tel">
+        <button class="dr-submit" id="drSubmit" type="button">🎙 GIỮ PHÒNG · MIỄN PHÍ 20 PHÚT</button>
+        <p class="dr-camket">Bấm giữ phòng = đồng ý: <b>phòng giữ 20 phút</b> kể từ giờ hẹn, quá 20 phút tự mở lại; <b>hủy miễn phí trước 2 giờ</b>. Neon Vui gọi xác nhận trong ít phút.</p>
+      </div>
+    </div>
+
+    <div class="bk-done" id="bkDone">
+      <div class="stamp">✓</div>
+      <h4>Đã giữ phòng — tới là hát!</h4>
+      <div class="code-big" id="doneCode">NV-V1-1900</div>
+      <div class="done-sum" id="doneSum"></div>
+      <p class="dr-camket" style="text-align:left">Phòng giữ <b>20 phút</b> kể từ giờ hẹn — báo mã này cho lễ tân khi tới. Hủy miễn phí trước 2 giờ qua hotline <b>0034567899</b>. Neon Vui gọi xác nhận trong ít phút.</p>
+      <button class="btn btn-a" data-open-bk-reset>🎙 Đặt thêm phòng khác</button>
+      <button class="btn btn-g" id="doneClose">Đóng phiếu</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">Neon Vui</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">🎤 Giờ vàng còn phòng trống?</button>
+    <button class="pkc-chip">🏢 Tiệc công ty 40 người?</button>
+    <button class="pkc-chip">🍺 Combo bia giá bao nhiêu?</button>
+    <button class="pkc-chip">🎂 Trang trí sinh nhật miễn phí?</button>
+    <button class="pkc-chip">🧭 Đường tới Neon Vui?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho Neon Vui…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-384*/
+'use strict';
+var BRAND = 'Neon Vui';
+var HOTLINE = '0034567899';
+var ROOMS = {
+  thuong:  { code:'P2', name:'Phòng Thường · P2', range:'8–12 khách',  desc:'Cách âm tốt, danh mục nhạc gia đình', img:'assets/img/p1.webp', price:{ thuong:150000, vang:220000, khuya:120000 } },
+  vip:     { code:'V1', name:'Phòng VIP · V1',    range:'12–20 khách', desc:'Sofa da, màn hình laser 4K, quầy bar mini', img:'assets/img/p2.webp', price:{ thuong:250000, vang:350000, khuya:200000 } },
+  premium: { code:'PR2', name:'Phòng Premium · PR2', range:'20–40 khách', desc:'Bàn dài tiệc nhẹ, hai màn hình', img:'assets/img/p3.webp', price:{ thuong:400000, vang:550000, khuya:320000 } }
+};
+var ROOM_ORDER = ['thuong','vip','premium'];
+var ZONES = {
+  thuong: { start:'14:00', end:'19:00', label:'Giờ thường', code:'1400', hours:5, dayPart:'giờ thường' },
+  vang:   { start:'19:00', end:'23:00', label:'Giờ vàng',   code:'1900', hours:4, dayPart:'khung giờ vàng 19–23' },
+  khuya:  { start:'23:00', end:'02:00', label:'Khuya vui dài', code:'2300', hours:3, dayPart:'khuya sau 23:00 (−20%)' }
+};
+var ZONE_ORDER = ['thuong','vang','khuya'];
+var COMBOS = {
+  'none':      { name:'Không combo', price:0 },
+  'nhom-vui':  { name:'Combo Nhóm Vui', price:240000 },
+  'bia':       { name:'Combo Bia Nhóm Bạn', price:590000 },
+  'cong-ty':   { name:'Combo Tiệc Công Ty', price:1190000 }
+};
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+var fmtk = function(n){ return Math.round(n/1000) + 'k'; };
+
+/* trạng thái phiếu đặt phòng */
+var ST = { room:'vip', guests:10, day:'Tối nay · T7 04/10', zone:'vang', combo:'none' };
+var bookingId = 0;
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== BẢNG LỊCH TỐI NAY (ô trống/kín màu khác — bấm trống là đặt) ===== */
+var TONIGHT = [
+  { col:'thuong',  row:'thuong', open:true  },
+  { col:'vip',     row:'thuong', open:false },
+  { col:'premium', row:'thuong', open:true  },
+  { col:'thuong',  row:'vang',   open:true  },
+  { col:'vip',     row:'vang',   open:true  },
+  { col:'premium', row:'vang',   open:false },
+  { col:'thuong',  row:'khuya',  open:false },
+  { col:'vip',     row:'khuya',  open:true  },
+  { col:'premium', row:'khuya',  open:true  }
+];
+function renderBoard(){
+  var board = document.getElementById('tonightBoard');
+  var html = '<div class="bh">Khung giờ<small>04/10</small></div>';
+  html += '<div class="bh">Thường<small>P1 · P2 · P3</small></div>';
+  html += '<div class="bh">VIP<small>V1 · V2 · V3</small></div>';
+  html += '<div class="bh">Premium<small>PR1 · PR2</small></div>';
+  for (var r = 0; r < ZONE_ORDER.length; r++){
+    var z = ZONE_ORDER[r], zi = ZONES[z];
+    html += '<div class="bz'+(z==='vang'?' vang':'')+'"><b>'+zi.start+' – '+zi.end+'</b><span>'+zi.label+(z==='vang'?' 🔥':'')+'</span></div>';
+    for (var c = 0; c < ROOM_ORDER.length; c++){
+      var cell = TONIGHT[r*3 + c];
+      if (cell.open){
+        html += '<button class="cell" data-col="'+cell.col+'" data-row="'+cell.row+'">TRỐNG<small>bấm chọn · '+fmtk(ROOMS[cell.col].price[cell.row])+'/h</small></button>';
+      } else {
+        html += '<div class="kin">ĐÃ KÍN<small>chọn khung khác</small></div>';
+      }
+    }
+  }
+  board.innerHTML = html;
+}
+document.getElementById('tonightBoard').addEventListener('click', function(e){
+  var c = e.target.closest('.cell'); if (!c) return;
+  ST.room = c.getAttribute('data-col');
+  ST.zone = c.getAttribute('data-row');
+  syncPickFromST();
+  openDrawer();
+  toast('Đã chọn ' + ROOMS[ST.room].name + ' · ' + ZONES[ST.zone].start + '–' + ZONES[ST.zone].end,
+        'Điền số điện thoại là phiếu giữ phòng chốt — giữ chỗ miễn phí 20 phút.');
+});
+
+/* ===== DRAWER ĐẶT PHÒNG ===== */
+function renderRoomChips(){
+  var box = document.getElementById('roomChips');
+  var html = '';
+  for (var i = 0; i < ROOM_ORDER.length; i++){
+    var id = ROOM_ORDER[i], r = ROOMS[id];
+    html += '<button data-room="'+id+'"'+(ST.room===id?' class="on"':'')+'>'
+      + '<span class="code">'+r.code+'</span>'
+      + '<span><b>'+r.name+'</b><small>'+r.range+' · '+r.desc+'</small></span>'
+      + '<span class="pz">'+fmtk(r.price[ST.zone])+'/h</span></button>';
+  }
+  box.innerHTML = html;
+}
+function guestsHint(){
+  var g = ST.guests, el = document.getElementById('gHint');
+  var r = ROOMS[ST.room], lo = parseInt(r.range, 10), hi = parseInt(r.range.split('–')[1], 10);
+  el.classList.remove('warn');
+  if (g > 40){
+    el.textContent = 'Trên 40 người — Neon Vui mở toàn khu + sàn nhạc, gọi ' + HOTLINE + ' nhận báo giá riêng.';
+    el.classList.add('warn');
+  } else if (g > hi){
+    el.textContent = 'Nhóm ' + g + ' người — nên chọn phòng rộng hơn (' + suggestRoom(g) + ').';
+    el.classList.add('warn');
+  } else if (g < lo){
+    el.textContent = 'Nhóm ' + g + ' người — phòng ' + r.code + ' thoải mái, hoặc chọn phòng nhỏ hơn cho mềm giá.';
+  } else {
+    el.textContent = 'Nhóm ' + g + ' người vừa đẹp với ' + r.name + ' (' + r.range + ').';
+  }
+}
+function suggestRoom(g){
+  if (g <= 12) return 'thuong';
+  if (g <= 20) return 'vip';
+  return 'premium';
+}
+function renderZonePrices(){
+  for (var i = 0; i < ZONE_ORDER.length; i++){
+    var z = ZONE_ORDER[i];
+    document.getElementById('zp-' + z).textContent =
+      fmtk(ROOMS[ST.room].price[z]) + '/h' + (z === 'vang' ? ' · giờ vàng' : (z === 'khuya' ? ' · −20%' : ''));
+  }
+}
+function bkTotal(){
+  return ROOMS[ST.room].price[ST.zone] * ZONES[ST.zone].hours + COMBOS[ST.combo].price;
+}
+function renderSum(){
+  var r = ROOMS[ST.room], z = ZONES[ST.zone], cb = COMBOS[ST.combo];
+  var rows = '<div class="r"><span>' + r.name + ' · ' + z.start + '–' + z.end + '</span><b>' + fmt(r.price[ST.zone]) + '×' + z.hours + 'h</b></div>';
+  rows += '<div class="r"><span>Combo</span><b>' + (cb.price > 0 ? cb.name + ' +' + fmt(cb.price) : 'Không (gọi tại phòng sau)') + '</b></div>';
+  rows += '<div class="r big"><span>Tạm tính buổi hát</span><b>' + fmt(bkTotal()) + '</b></div>';
+  document.getElementById('bkSum').innerHTML = rows;
+}
+function renderBK(){
+  document.getElementById('gOut').textContent = ST.guests;
+  renderRoomChips();
+  renderZonePrices();
+  guestsHint();
+  renderSum();
+}
+function syncPickFromST(){
+  var gc = document.getElementById('gChips').querySelectorAll('button');
+  for (var i = 0; i < gc.length; i++){
+    var seg = gc[i].getAttribute('data-g').split('-');
+    var lo = parseInt(seg[0], 10), hi = seg[1] ? parseInt(seg[1], 10) : 999;
+    gc[i].classList.toggle('on', ST.guests >= lo && ST.guests <= hi);
+  }
+  var zc = document.getElementById('zChips').querySelectorAll('button');
+  for (var j = 0; j < zc.length; j++) zc[j].classList.toggle('on', zc[j].getAttribute('data-z') === ST.zone);
+  var cc = document.getElementById('comboChips').querySelectorAll('button');
+  for (var k = 0; k < cc.length; k++) cc[k].classList.toggle('on', cc[k].getAttribute('data-c') === ST.combo);
+  renderBK();
+}
+document.getElementById('roomChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-room]'); if (!b) return;
+  ST.room = b.getAttribute('data-room');
+  renderBK();
+});
+document.getElementById('gMinus').addEventListener('click', function(){ if (ST.guests > 2){ ST.guests--; renderBK(); } });
+document.getElementById('gPlus').addEventListener('click', function(){ if (ST.guests < 120){ ST.guests++; renderBK(); } });
+document.getElementById('dayChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-day]'); if (!b) return;
+  var bs = this.querySelectorAll('button');
+  for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  ST.day = b.getAttribute('data-day');
+});
+document.getElementById('zoneChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-z]'); if (!b) return;
+  var bs = this.querySelectorAll('button');
+  for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  ST.zone = b.getAttribute('data-z');
+  renderBK();
+});
+document.getElementById('comboChips').addEventListener('click', function(e){
+  var b = e.target.closest('[data-c]'); if (!b) return;
+  var bs = this.querySelectorAll('button');
+  for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  ST.combo = b.getAttribute('data-c');
+  renderSum();
+});
+function showBKForm(){
+  document.getElementById('bkForm').style.display = 'flex';
+  document.getElementById('bkDone').classList.remove('on');
+}
+function openDrawer(){
+  showBKForm();
+  renderBK();
+  document.getElementById('bkDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  document.getElementById('bkDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+document.getElementById('bkFab').addEventListener('click', function(){ openDrawer(); });
+document.getElementById('drClose').addEventListener('click', closeDrawer);
+document.getElementById('drMask').addEventListener('click', closeDrawer);
+document.getElementById('doneClose').addEventListener('click', closeDrawer);
+
+/* mọi nút data-open-bk: đặt phòng, prefill theo data-room/zone/combo nếu có */
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-open-bk]'); if (!b) return;
+  var room = b.getAttribute('data-room');
+  var zone = b.getAttribute('data-zone');
+  var combo = b.getAttribute('data-combo');
+  if (room && ROOMS[room]) ST.room = room;
+  if (zone && ZONES[zone]) ST.zone = zone;
+  if (combo && COMBOS[combo]) ST.combo = combo;
+  if (combo && COMBOS[combo] && COMBOS[combo].price > 0 && !room){
+    toast('Đã chọn ' + COMBOS[combo].name, 'Chọn phòng + khung giờ rồi điền SĐT — combo sẽ lên bàn cùng giờ hẹn.');
+  }
+  syncPickFromST();
+  openDrawer();
+});
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-open-bk-reset]'); if (!b) return;
+  ST.combo = 'none';
+  showBKForm();
+  renderBK();
+});
+
+/* gửi phiếu — xác nhận giữ phòng TẠI TRANG kèm mã phòng-giờ */
+document.getElementById('drSubmit').addEventListener('click', function(){
+  var phone = document.getElementById('fPhone');
+  phone.classList.remove('err');
+  var p = phone.value.replace(/[\s.\-]/g, '');
+  if (!/^0\d{8,10}$/.test(p)){ phone.classList.add('err'); toast('Thiếu số điện thoại', 'Cho Neon Vui xin số điện thoại để gọi xác nhận giữ phòng nhé!'); return; }
+  bookingId++;
+  var r = ROOMS[ST.room], z = ZONES[ST.zone], cb = COMBOS[ST.combo];
+  var code = 'NV-' + r.code + '-' + z.code;
+  document.getElementById('doneCode').textContent = code;
+  var rows = '<div class="r"><span>Phòng</span><b>' + r.name + ' (' + r.range + ')</b></div>'
+    + '<div class="r"><span>Số người</span><b>' + ST.guests + ' người</b></div>'
+    + '<div class="r"><span>Thời gian</span><b>' + ST.day + ' · ' + z.start + '–' + z.end + '</b></div>'
+    + '<div class="r"><span>Combo</span><b>' + (cb.price > 0 ? cb.name + ' (+' + fmt(cb.price) + ')' : 'Gọi tại phòng sau') + '</b></div>'
+    + '<div class="r"><span>Tạm tính</span><b>' + fmt(bkTotal()) + '</b></div>'
+    + '<div class="r"><span>Điện thoại</span><b>' + phone.value.trim() + '</b></div>';
+  document.getElementById('doneSum').innerHTML = rows;
+  document.getElementById('bkForm').style.display = 'none';
+  document.getElementById('bkDone').classList.add('on');
+  document.getElementById('bkDrawer').querySelector('.dr-body').scrollTop = 0;
+  phone.value = '';
+  toast('Đã giữ phòng — mã ' + code, r.name + ' · ' + ST.day + ' · ' + z.start + '–' + z.end + ' · giữ 20 phút, gọi xác nhận trong ít phút.');
+});
+
+/* ===== DAC THU — CHỌN PHÒNG THEO NHÓM ===== */
+var pickG = '4-8', pickZ = 'vang';
+function pickGuestsNum(){
+  if (pickG === '40+') return 45;
+  var seg = pickG.split('-');
+  return parseInt(seg[0], 10) + Math.floor((parseInt(seg[1], 10) - parseInt(seg[0], 10)) / 2);
+}
+function renderPick(){
+  var g = pickGuestsNum(), out = document.getElementById('poBody');
+  var rows = '';
+  if (pickG === '40+'){
+    document.getElementById('poTitle').textContent = 'Trên 40 người — mở toàn khu';
+    document.getElementById('poImg').src = 'assets/img/p4.webp';
+    document.getElementById('poImg').alt = 'Sàn nhảy và đêm nhạc cho nhóm trên 40 khách';
+    document.getElementById('poName').textContent = 'Toàn khu + sàn nhạc Đêm nhạc';
+    document.getElementById('poRange').textContent = 'Sức chứa 350 khách · kỹ thuật viên riêng · trang trí theo thương hiệu';
+    document.getElementById('poPrice').textContent = 'Báo giá riêng · gọi ' + HOTLINE;
+    rows = '<tr><td>Phòng Premium<span class="who">20–40 khách</span></td><td>20–40</td><td class="v" style="text-align:right">' + fmt(ROOMS.premium.price[pickZ]) + '/h</td></tr>'
+      + '<tr><td>Toàn khu + sàn nhạc<span class="who">báo giá theo buổi</span></td><td>350</td><td class="v" style="text-align:right">Gọi hotline</td></tr>';
+    document.getElementById('poCta').textContent = '📞 Gọi ' + HOTLINE + ' — nhận báo giá toàn khu';
+  } else {
+    var pick = ROOMS[suggestRoom(g)];
+    document.getElementById('poTitle').textContent = 'Phòng gợi ý cho nhóm ' + g + ' người';
+    document.getElementById('poImg').src = pick.img;
+    document.getElementById('poImg').alt = pick.name + ' — phòng gợi ý cho nhóm ' + g + ' người';
+    document.getElementById('poName').textContent = pick.name;
+    document.getElementById('poRange').textContent = 'Phù hợp ' + pick.range + ' · ' + pick.desc;
+    document.getElementById('poPrice').textContent = fmt(pick.price[pickZ]) + ' / giờ · ' + ZONES[pickZ].dayPart;
+    for (var i = 0; i < ROOM_ORDER.length; i++){
+      var id = ROOM_ORDER[i], r = ROOMS[id];
+      rows += '<tr'+(id===suggestRoom(g)?' class="hit"':'')+'><td>' + r.name + '<span class="who">' + r.desc + '</span></td><td>' + r.range + '</td><td class="v" style="text-align:right">' + fmt(r.price[pickZ]) + '/h</td></tr>';
+    }
+    document.getElementById('poCta').textContent = '🎙 Giữ ' + pick.code + ' khung ' + ZONES[pickZ].start + ' — miễn phí 20 phút';
+  }
+  out.innerHTML = rows;
+}
+document.getElementById('gChips').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-g]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  pickG = b.getAttribute('data-g');
+  renderPick();
+});
+document.getElementById('zChips').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-z]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  pickZ = b.getAttribute('data-z');
+  renderPick();
+});
+document.getElementById('poCta').addEventListener('click', function(){
+  if (pickG === '40+'){
+    toast('Nhóm trên 40 người', 'Gọi hotline ' + HOTLINE + ' — Neon Vui mở toàn khu + sàn nhạc, báo giá trong 5 phút.');
+    return;
+  }
+  ST.room = suggestRoom(pickGuestsNum());
+  var seg = pickG.split('-');
+  ST.guests = pickGuestsNum();
+  ST.zone = pickZ;
+  syncPickFromST();
+  openDrawer();
+  toast('Phiếu tự điền: ' + ROOMS[ST.room].code + ' · ' + ZONES[ST.zone].start + '–' + ZONES[ST.zone].end,
+        'Kiểm tra lại số người + combo rồi điền SĐT để chốt giữ phòng 20 phút.');
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key === 'Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/, '');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j = 0; j < els.length; j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderBoard();
+renderBK();
+renderPick();
+initReveal();
+</script>
+</body>
+</html>

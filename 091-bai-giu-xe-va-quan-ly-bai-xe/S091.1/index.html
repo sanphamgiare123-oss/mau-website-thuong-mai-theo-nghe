@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bãi Xe Thành Thới — Bãi giữ xe &amp; quản lý bãi xe | Giữ chỗ 48 giờ miễn phí</title>
+<meta name="description" content="Bãi Xe Thành Thới — giữ xe máy theo giờ, ô tô vé tháng, bãi sự kiện, vận hành bãi chung cư. 484 ô có mái che, 48 camera 24/24, giữ chỗ thử 48 giờ miễn phí. Hotline 0034567899.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ParkingFacility","name":"Bãi Xe Thành Thới","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Ngõ Đỗ Xe Thành Thới, Phường Bãi Rộng Vui Vẻ","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7622,"longitude":106.6816},"openingHours":"Mo-Su 00:00-23:59","priceRange":"5.000đ-1.650.000đ"}
+</script>
+<style>
+/*NB110-091 — Bãi Xe Thành Thới · pattern #14 biến thể SƠ ĐỒ BÃI ĐỖ (khu A/B/C, ô trống-đầy, lối vào-ra) · dạng B đặt lịch/vé tháng*/
+:root{
+  --navy:#0E2A52; --navy-2:#153C6E; --navy-3:#081B37; --asphalt:#0D1B30; --asphalt-2:#122340;
+  --gold:#F5C518; --gold-2:#FFDD66; --gold-deep:#B98F00; --cam:#FF8A3D;
+  --paper:#F6F8FB; --bg:#EBEFF5; --ink:#132A47; --mut:#5D7290;
+  --ok:#1FA36B; --bad:#D64545; --line:#D7DFEA;
+  --sh:0 12px 30px rgba(14,42,82,.12); --r:10px;
+  --disp:'Arial Narrow','Segoe UI',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,.sign{font-family:var(--disp);text-transform:uppercase;line-height:1.15;letter-spacing:.4px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:58px 0;scroll-margin-top:74px}
+.sec-head{max-width:660px;margin:0 auto 30px;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:12.5px;color:var(--navy-2);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:7px 13px}
+.kicker i{font-style:normal;width:22px;height:22px;border-radius:6px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:12.5px;flex:none}
+.sec-head h2{font-size:clamp(27px,4vw,38px);color:var(--navy);margin:13px 0 10px}
+.sec-head h2 em{font-style:normal;color:var(--gold-deep);position:relative}
+.sec-head p{color:var(--mut);font-size:15px}
+/* vạch sơn đường — thiết bị hình ảnh lặp lại của nghề */
+.paint{height:4px;background:repeating-linear-gradient(90deg,var(--gold) 0 34px,transparent 34px 58px);border-radius:99px;opacity:.85}
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.on{opacity:1;transform:none}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(14,42,82,.97);backdrop-filter:blur(7px);border-bottom:3px solid var(--gold)}
+.hd{display:flex;align-items:center;gap:13px;padding:9px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0;color:#fff}
+.logo .plate{width:42px;height:42px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 2.5px #fff6,0 3px 0 var(--gold-deep)}
+.logo .plate b{font-family:var(--disp);font-size:23px;line-height:1}
+.logo b{font-family:var(--disp);text-transform:uppercase;font-size:16.5px;letter-spacing:.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo small{display:block;font-size:10.5px;color:#B9CBE4;font-weight:400;text-transform:none;letter-spacing:.3px}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:8px;font-size:13.5px;font-weight:600;color:#D8E4F4;white-space:nowrap}
+nav.main a:hover{background:var(--navy-2);color:#fff}
+.hd-right{display:flex;align-items:center;gap:8px}
+.hd-tel{display:inline-flex;align-items:center;gap:7px;border:1.5px solid #3A5C8C;border-radius:9px;padding:9px 12px;font-weight:800;font-size:13px;color:#fff;min-height:42px;white-space:nowrap}
+.hd-tel:hover{border-color:var(--gold)}
+.hd-book{border:0;background:var(--gold);color:var(--navy);border-radius:9px;padding:10px 15px;font-weight:800;font-size:13.5px;min-height:42px;box-shadow:0 3px 0 var(--gold-deep)}
+.hd-book:hover{background:var(--gold-2)}
+/*NB110-091 nút chạm tối thiểu 40px trên mọi điều khiển*/
+nav.main a,.hd-tel,.hd-book,.chip,.chip-x,.qx-btn,.zone,.ve-opt,.day,.bk-fab,.pkc-fab,.pkc-chip,.faq-q,.btn,.ft-nav a{min-height:40px}
+
+/* ===== HERO — cổng bãi barrier ===== */
+.hero{background:linear-gradient(180deg,#DFE7F1 0%,var(--bg) 82%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.gantry{display:block;width:100%;height:auto;background:linear-gradient(180deg,#CBDAEA,#DFE7F1)}
+.hero-g{display:grid;grid-template-columns:1.04fr .96fr;gap:38px;align-items:center;padding:46px 0 54px}
+.hero .kicker{margin-bottom:14px}
+.hero h1{font-size:clamp(31px,4.7vw,48px);color:var(--navy);margin-bottom:13px}
+.hero h1 em{font-style:normal;color:var(--gold-deep)}
+.hero p.lead{color:#41556F;font-size:15.5px;max-width:500px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;font-weight:800;min-height:47px;padding:12px 19px;font-size:14px;border:0;white-space:nowrap}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 0 var(--gold-deep)}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid #C3CFDF}
+.btn-ghost:hover{border-color:var(--navy-2)}
+.btn-cam{background:var(--cam);color:#fff;box-shadow:0 4px 0 #C25E12}
+.btn-cam:hover{filter:brightness(1.06)}
+.hero-chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:8px 13px;font-size:12.8px;font-weight:700;color:var(--navy)}
+.chip i{font-style:normal;width:20px;height:20px;border-radius:5px;background:#EDF2F9;display:grid;place-items:center;font-size:11.5px;flex:none}
+.chip b{color:var(--gold-deep)}
+/* khung barrier quanh poster: vạch sơn + bo góc vuông nghề-hóa */
+.gate{position:relative;background:var(--navy-3);padding:14px;border-radius:12px;box-shadow:var(--sh)}
+.gate::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(245,197,24,.5);border-radius:8px;pointer-events:none;z-index:2}
+.gate::after{content:"";position:absolute;top:-9px;left:22px;width:74px;height:16px;background:repeating-linear-gradient(45deg,#E5372B 0 10px,#fff 10px 20px);border-radius:5px;box-shadow:0 2px 5px rgba(8,27,55,.4)}
+.gate img{border-radius:6px;width:100%}
+.gate .gate-chip{position:absolute;top:-15px;right:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border:1.5px solid var(--gold);border-radius:8px;padding:7px 13px;font-weight:800;font-size:12.5px;letter-spacing:.5px;font-family:var(--disp);text-transform:uppercase;box-shadow:0 4px 12px rgba(8,27,55,.35)}
+.gate .gate-chip i{font-style:normal;width:9px;height:9px;border-radius:99px;background:#35D07F;box-shadow:0 0 8px #35D07F}
+.gate-note{margin-top:12px;display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--mut);text-align:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:0;border:1.5px solid var(--line);background:#fff;border-radius:12px;overflow:hidden;margin-top:24px}
+.hero-stats div{flex:1;padding:13px 10px;text-align:center;border-left:1px dashed var(--line)}
+.hero-stats div:first-child{border-left:0}
+.hero-stats b{font-family:var(--disp);text-transform:uppercase;font-size:21px;color:var(--navy);display:block;letter-spacing:.5px}
+.hero-stats span{font-size:11.8px;color:var(--mut)}
+
+/* ===== MARQUEE BIỂN ĐÈN LED (chạy chậm, nghề biển báo) ===== */
+.led{background:var(--navy-3);color:var(--gold);overflow:hidden;border-top:1px solid #23477A;border-bottom:1px solid #23477A}
+.led-track{display:flex;gap:44px;padding:9px 0;white-space:nowrap;font-family:var(--disp);text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:700;animation:led 30s linear infinite;width:max-content}
+.led-track i{font-style:normal;color:#3A5C8C}
+@keyframes led{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== QUY TRÌNH VÀO-RA ===== */
+.pr-sec{background:var(--paper)}
+.pr-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pr{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px 16px 16px;position:relative;display:flex;flex-direction:column;gap:9px;transition:transform .25s,box-shadow .25s}
+.pr:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.pr .no{position:absolute;top:-11px;left:14px;background:var(--navy);color:var(--gold);font-family:var(--disp);text-transform:uppercase;font-weight:700;font-size:13px;border-radius:7px;padding:3px 11px;box-shadow:0 2px 0 var(--gold);letter-spacing:1px}
+.pr .ic{width:44px;height:44px;flex:none;border-radius:9px;background:var(--navy);color:var(--gold);display:grid;place-items:center}
+.pr h3{font-size:16px;color:var(--navy);letter-spacing:.3px}
+.pr p{font-size:12.8px;color:var(--mut)}
+.pr .t{margin-top:auto;font-family:var(--disp);text-transform:uppercase;font-size:11.5px;font-weight:700;color:var(--gold-deep);letter-spacing:1px}
+
+/* ===== KHỐI 8 — SƠ ĐỒ BÃI ĐỖ (pattern #14 biến thể) ===== */
+.k8-sec{background:radial-gradient(1100px 480px at 50% -60px,#1A3C6E 0%,var(--asphalt) 58%);position:relative}
+.k8-sec::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 54px,
+  repeating-linear-gradient(90deg,rgba(245,197,24,.05) 0 26px,transparent 26px 52px);pointer-events:none}
+.k8-head{position:relative;display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.k8-plate{background:var(--navy-2);border:2.5px solid var(--gold);border-radius:12px;padding:15px 18px;display:flex;align-items:center;gap:14px;color:#fff;flex:1 1 340px;box-shadow:0 5px 0 rgba(0,0,0,.35)}
+.k8-plate .p-big{width:52px;height:52px;border-radius:10px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-family:var(--disp);font-size:30px;font-weight:700;flex:none;box-shadow:inset 0 0 0 2.5px #fff6}
+.k8-plate b{font-family:var(--disp);text-transform:uppercase;font-size:20px;letter-spacing:1px;display:block}
+.k8-plate small{color:#B9CBE4;font-size:12px}
+.k8-live{background:rgba(255,255,255,.06);border:1.5px dashed rgba(245,197,24,.45);border-radius:12px;padding:12px 16px;color:#DFE9F6;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.k8-live .num b{font-family:var(--disp);font-size:24px;color:var(--gold);text-transform:uppercase}
+.k8-live .num span{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#9FB6D4}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto;align-items:center;font-size:11.8px;color:#C6D5E9}
+.legend i{font-style:normal;width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.k8{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+/* thẻ = ô đỗ sơn vạch */
+.bay{position:relative;background:#F6F8FB;border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;border:2px solid #223F68;transition:transform .25s,box-shadow .25s,border-color .25s}
+.bay:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.bay::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(14,42,82,.22);border-radius:7px;pointer-events:none;z-index:2}
+.bay::after{content:"";position:absolute;top:9px;left:9px;width:20px;height:20px;border-left:3.5px solid var(--gold);border-top:3.5px solid var(--gold);z-index:3}
+.bay .zrow{display:flex;align-items:center;gap:8px;padding:11px 13px 9px;position:relative;z-index:1;min-height:40px}
+.bay .ztag{font-family:var(--disp);text-transform:uppercase;font-weight:700;font-size:11.5px;letter-spacing:1.2px;color:#fff;background:var(--navy-2);border-radius:5px;padding:3px 9px;white-space:nowrap}
+.bay .st{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:10.8px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;border-radius:99px;padding:4px 9px;white-space:nowrap}
+.bay .st.ok{background:#DFF4EA;color:#0E7A4E}
+.bay .st.ok::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--ok)}
+.bay .st.info{background:#E8EDF5;color:var(--navy-2)}
+.bay .ph{padding:0 13px;position:relative;z-index:1}
+.bay .ph img{border-radius:5px;width:100%;background:#DDE5EF}
+.bay .bd{padding:11px 13px 14px;display:flex;flex-direction:column;gap:7px;flex:1;position:relative;z-index:1}
+.bay h3{font-size:16.5px;color:var(--navy);letter-spacing:.3px}
+.bay p{font-size:12.6px;color:var(--mut);flex:1}
+.bay .ft{display:flex;align-items:center;gap:9px}
+.bay .pri{font-weight:800;color:var(--navy);font-size:15px}
+.bay .pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;text-transform:none}
+.bay .go{margin-left:auto;border:0;background:var(--navy);color:#fff;border-radius:8px;padding:9px 13px;font-weight:700;font-size:12.5px;box-shadow:0 3px 0 var(--gold)}
+.bay .go:hover{background:var(--navy-2)}
+/* thẻ nổi bật TO — dịch vụ chủ lực vé tháng: chiếm ô 2x2 như ô đỗ kép */
+.bay.feat{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,#FFFBEA,#F6F8FB 68%);border:3px solid var(--gold);box-shadow:0 0 0 5px rgba(245,197,24,.14),0 16px 34px rgba(0,0,0,.42)}
+.bay.feat::before{border-color:rgba(185,143,0,.4)}
+.bay.feat::after{width:26px;height:26px;border-color:var(--cam)}
+.bay.feat .ztag{background:var(--cam)}
+.bay.feat h3{font-size:23px}
+.bay.feat p{font-size:13.4px}
+.bay.feat .pri{font-size:20px;color:var(--gold-deep)}
+.bay.feat .bd{justify-content:space-between;gap:10px}
+.bay.feat .ticks{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12.8px;color:#41556F}
+.bay.feat .ticks li::before{content:"✓ ";color:var(--gold-deep);font-weight:800}
+.bay.feat .hot{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;background:var(--cam);color:#fff;border-radius:7px;padding:5px 11px;font-family:var(--disp);text-transform:uppercase;font-weight:700;font-size:11.5px;letter-spacing:1.4px;box-shadow:0 3px 0 #C25E12}
+.bay.feat .go{background:var(--cam);box-shadow:0 3px 0 #C25E12;color:#fff;font-size:13px;padding:11px 16px}
+/* thẻ ngang cuối = ô dài ven tường (hợp đồng dài hạn) */
+.bay.wide{grid-column:span 2;flex-direction:row;align-items:stretch}
+.bay.wide .zrow{position:absolute;top:0;left:0;right:0;z-index:2;background:linear-gradient(180deg,rgba(246,248,251,.92),rgba(246,248,251,0));padding:11px 13px 16px}
+.bay.wide .ph{width:46%;max-width:320px;flex:none;padding:44px 13px 13px}
+.bay.wide .bd{padding:48px 16px 16px 6px}
+.bay.wide h3{font-size:20px}
+.bay.wide p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* làn xe giữa khối-8 và khối tiếp */
+.lane{position:relative;margin-top:22px;border:1.5px dashed rgba(245,197,24,.4);border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:14px;color:#DFE9F6;background:rgba(255,255,255,.04)}
+.lane svg{flex:none}
+.lane b{font-family:var(--disp);text-transform:uppercase;letter-spacing:1.6px;font-size:13px;color:var(--gold)}
+.lane span{font-size:12.5px;color:#B9CBE4}
+.lane .arrows{margin-left:auto;display:flex;gap:6px;color:var(--gold)}
+
+/* ===== DAC THU — QUÉT KHU TRỐNG ===== */
+.vt-sec{background:linear-gradient(180deg,var(--bg),#F3E3BC33 55%,var(--bg))}
+.vt-g{display:grid;grid-template-columns:.92fr 1.08fr;gap:30px;align-items:start}
+.price-board{background:var(--navy);border-radius:14px;padding:20px;color:#EAF1FA;box-shadow:var(--sh);position:sticky;top:86px}
+.price-board .pb-title{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--gold);padding-bottom:11px;margin-bottom:6px}
+.price-board .pb-title b{font-family:var(--disp);text-transform:uppercase;font-size:17px;letter-spacing:1px}
+.price-board .pb-title small{margin-left:auto;font-size:11px;color:#9FB6D4;text-transform:uppercase;letter-spacing:1px}
+.pb-row{display:flex;align-items:baseline;gap:10px;padding:10px 2px;border-bottom:1px dashed #2C4E80;font-size:13.5px}
+.pb-row:last-child{border-bottom:0}
+.pb-row span{color:#C9D8EC}
+.pb-row b{margin-left:auto;font-family:var(--disp);font-size:15.5px;color:var(--gold);white-space:nowrap;text-transform:uppercase}
+.pb-note{margin-top:11px;font-size:11.8px;color:#9FB6D4;background:rgba(255,255,255,.05);border-radius:8px;padding:9px 12px}
+/* máy quét */
+.scan-box{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--sh)}
+.scan-box .sb-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.scan-box .sb-head b{font-family:var(--disp);text-transform:uppercase;font-size:18px;color:var(--navy);letter-spacing:.6px}
+.scan-box .sb-head .hint{margin-left:auto;font-size:11.5px;color:var(--mut);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.f-label{display:block;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut);margin:13px 0 7px}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip,.chip-x{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:9px 13px;font-size:13px;font-weight:700;color:var(--navy)}
+.chip:hover{border-color:var(--navy-2)}
+.chip.sel{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 3px 0 var(--gold)}
+.ve-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ve-opt{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 11px;text-align:left;display:flex;flex-direction:column;gap:2px}
+.ve-opt b{font-size:13px;color:var(--navy)}
+.ve-opt span{font-size:11.3px;color:var(--mut)}
+.ve-opt.sel{border-color:var(--gold);background:#FFFBEA;box-shadow:0 0 0 3px rgba(245,197,24,.18)}
+.ve-opt.sel b::after{content:" ✓";color:var(--gold-deep)}
+.scan-cta{margin-top:16px;width:100%;border:0;background:var(--navy);color:var(--gold);border-radius:11px;padding:14px;font-family:var(--disp);text-transform:uppercase;font-weight:700;font-size:16px;letter-spacing:2px;box-shadow:0 4px 0 var(--navy-3);position:relative;overflow:hidden}
+.scan-cta:hover{background:var(--navy-2)}
+.scan-cta:disabled{opacity:.55;box-shadow:none}
+.scan-cta.busy{color:#fff}
+.scan-cta .bar{position:absolute;top:0;bottom:0;width:56px;background:linear-gradient(90deg,transparent,rgba(245,197,24,.75),transparent);animation:sweep 1s linear infinite;display:none}
+.scan-cta.busy .bar{display:block}
+@keyframes sweep{from{left:-70px}to{left:110%}}
+/* bản đồ khu */
+.zmap{margin-top:16px;position:relative;border:2px dashed #C4D1E2;border-radius:12px;padding:14px;background:#F2F6FB;overflow:hidden;display:none}
+.zmap.on{display:block}
+.zmap .gate-in{display:flex;align-items:center;gap:10px;color:var(--mut);font-family:var(--disp);text-transform:uppercase;font-size:12px;letter-spacing:1.6px;margin-bottom:12px}
+.zmap .gate-in .dash{flex:1;border-top:3px dashed #9FB0C8;position:relative}
+.zmap .gate-in .dash::after{content:"";position:absolute;right:-2px;top:-6.5px;border:6px solid transparent;border-left:9px solid #9FB0C8}
+.zg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.zone{border:2px solid var(--line);background:#fff;border-radius:10px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:8px;opacity:.25;transform:translateY(10px);transition:opacity .5s,transform .5s,border-color .2s,box-shadow .2s;position:relative}
+.zone.show{opacity:1;transform:none}
+.zone:disabled{opacity:.32}
+.zone:not(:disabled).show:hover{border-color:var(--navy-2)}
+.zone.sel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.25);background:#FFFBEA}
+.zone .zi{display:flex;align-items:center;gap:9px}
+.zone .zb{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:1px;color:#fff;background:var(--navy-2);border-radius:6px;padding:4px 10px}
+.zone .zn{font-size:12px;font-weight:700;color:var(--navy);line-height:1.3}
+.zone .bar{height:9px;border-radius:99px;background:#E4EAF3;overflow:hidden}
+.zone .bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--ok);transition:width .8s ease .2s}
+.zone .bar i.low{background:var(--cam)}
+.zone .bar i.full{background:var(--bad)}
+.zone .zc{display:flex;align-items:center;flex-wrap:wrap;row-gap:2px;font-size:11.6px;color:var(--mut)}
+.zone .zc b{margin-left:auto;font-family:var(--disp);text-transform:uppercase;font-size:12px;letter-spacing:.8px}
+.zone .zc b.free{color:var(--ok)}
+.zone .zc b.none{color:var(--bad)}
+.zone .lane-a{position:absolute;bottom:-1px;left:12px;right:12px;border-bottom:2.5px dashed rgba(159,176,200,.55)}
+.scan-sum{display:none;margin-top:14px;background:#FFFBEA;border:2px solid var(--gold);border-radius:12px;padding:15px;align-items:center;gap:14px;flex-wrap:wrap}
+.scan-sum.on{display:flex}
+.scan-sum .ss-t b{font-family:var(--disp);text-transform:uppercase;font-size:16.5px;color:var(--navy);display:block;letter-spacing:.5px}
+.scan-sum .ss-t span{font-size:12.6px;color:#6B5A22}
+.scan-sum .btn{margin-left:auto}
+
+/* ===== CAM KẾT ===== */
+.ck-sec{background:var(--paper)}
+.ck-g{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:stretch}
+.ck-metrics{display:grid;grid-template-columns:1fr;gap:12px;align-content:space-between}
+.ck{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--gold);border-radius:var(--r);padding:16px;display:flex;gap:13px;align-items:flex-start;transition:transform .25s,box-shadow .25s}
+.ck:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.ck .ic{width:44px;height:44px;flex:none;border-radius:9px;background:var(--navy);color:var(--gold);display:grid;place-items:center}
+.ck b{font-family:var(--disp);text-transform:uppercase;font-size:17px;color:var(--navy);display:block;letter-spacing:.5px}
+.ck span{font-size:12.6px;color:var(--mut)}
+.ck-proof{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:13px}
+.ck-proof .big{display:flex;align-items:center;gap:12px;border-bottom:1.5px dashed var(--line);padding-bottom:13px}
+.ck-proof .big b{font-family:var(--disp);font-size:37px;color:var(--navy);text-transform:uppercase;line-height:1}
+.ck-proof .big span{font-size:12.4px;color:var(--mut)}
+.pbar{display:flex;flex-direction:column;gap:6px}
+.pbar .row{display:flex;flex-direction:column;gap:4px}
+.pbar .row em{font-style:normal;display:flex;font-size:12.4px;color:var(--ink);font-weight:600}
+.pbar .row em b{margin-left:auto;color:var(--gold-deep)}
+.pbar .tr{height:8px;border-radius:99px;background:#EAEFF6;overflow:hidden}
+.pbar .tr i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--navy-2),var(--gold));transition:width 1s ease .15s}
+.ck-pic{border:1.5px dashed #C8D4E4;border-radius:10px;padding:6px;background:#F2F6FB;margin-top:auto}
+.ck-pic img{border-radius:7px;width:100%}
+.ck-pic figcaption{font-size:11.3px;color:var(--mut);padding:6px 4px 2px;text-align:center}
+
+/* ===== GIỚI THIỆU + KHÔNG GIAN — M5 CỬA SỔ NGHỀ (booth) ===== */
+.ab-sec{background:linear-gradient(180deg,var(--bg),#E2E9F2)}
+.ab-g{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.ab-txt h2{font-size:clamp(24px,3.4vw,32px);color:var(--navy);margin:12px 0 12px;text-transform:uppercase}
+.ab-txt h2 em{font-style:normal;color:var(--gold-deep)}
+.ab-txt p{color:#41556F;font-size:14.5px;margin-bottom:12px}
+.ab-facts{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px}
+.ab-mini{margin-top:16px;background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--gold);border-radius:11px;padding:15px 17px;display:flex;flex-direction:column;gap:8px}
+.ab-mini b{font-family:var(--disp);text-transform:uppercase;letter-spacing:.8px;color:var(--navy);font-size:14.5px}
+.ab-mini div{display:flex;gap:10px;align-items:baseline;font-size:13px;color:#41556F}
+.ab-mini div i{font-style:normal;width:22px;height:22px;flex:none;border-radius:6px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-family:var(--disp);font-size:12px;transform:translateY(3px)}
+.ab-mini a{color:var(--gold-deep);font-weight:700}
+/* khung booth trực — "cửa sổ" nghề */
+.booth{position:relative;background:#fff;border:2.5px solid #B9C7D9;border-radius:14px;padding:46px 16px 16px;box-shadow:var(--sh)}
+.booth::before{content:"";position:absolute;top:12px;left:12px;right:12px;height:20px;border-radius:8px;background:linear-gradient(180deg,var(--navy-2),var(--navy));box-shadow:inset 0 -3px 0 var(--gold)}
+.booth::after{content:"BOOTH TRỰC · 24/24";position:absolute;top:15px;left:0;right:0;text-align:center;color:var(--gold);font-family:var(--disp);font-weight:700;font-size:11.5px;letter-spacing:2.6px}
+.booth .win{position:relative;border-radius:8px;overflow:hidden;border:1.5px solid #C8D4E4}
+.booth .win img{width:100%;transition:transform .5s ease}
+.booth:hover .win img{transform:scale(1.045)}
+.booth .win figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(8,27,55,.82));color:#fff;font-size:12px;padding:26px 12px 9px;opacity:0;transition:opacity .35s}
+.booth:hover .win figcaption{opacity:1}
+.booth .intercom{position:absolute;bottom:26px;right:26px;width:44px;height:44px;border-radius:99px;background:var(--cam);border:3px solid #fff;display:grid;place-items:center;color:#fff;box-shadow:0 4px 10px rgba(194,94,18,.5)}
+.booth-note{display:flex;justify-content:space-between;gap:10px;margin-top:11px;font-size:11.5px;color:var(--mut)}
+/* khung lối ra vào */
+.driveway{position:relative;border:2.5px solid var(--navy-3);border-radius:14px;overflow:hidden;background:var(--navy-3);box-shadow:var(--sh)}
+.driveway img{width:100%;transition:transform .5s ease}
+.driveway:hover img{transform:scale(1.045)}
+.driveway .board{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap}
+.driveway .board span{background:var(--navy);border:1.5px solid var(--gold);color:#fff;font-family:var(--disp);text-transform:uppercase;font-size:11px;font-weight:700;letter-spacing:1.4px;border-radius:6px;padding:5px 10px}
+.driveway .board span i{font-style:normal;color:#35D07F}
+.driveway figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(8,27,55,.85));color:#fff;font-size:12px;padding:30px 14px 10px;opacity:0;transition:opacity .35s}
+.driveway:hover figcaption{opacity:1}
+.ab-note{display:flex;gap:8px;align-items:center;margin-top:11px;font-size:11.5px;color:var(--mut)}
+
+/* ===== REVIEW ===== */
+.rv-sec{background:var(--paper)}
+.rvg{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:start}
+.score{background:var(--navy);color:#EAF1FA;border-radius:14px;padding:20px;box-shadow:var(--sh)}
+.score .top{display:flex;align-items:center;gap:14px;border-bottom:1.5px dashed #2C4E80;padding-bottom:13px;margin-bottom:13px}
+.score .top b{font-family:var(--disp);font-size:42px;color:var(--gold);line-height:1}
+.score .top .stars{color:var(--gold);font-size:15px;letter-spacing:2px}
+.score .top span{display:block;font-size:11.5px;color:#9FB6D4;text-transform:uppercase;letter-spacing:1px}
+.score ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:12.8px;color:#C9D8EC}
+.score ul li::before{content:"✓";color:var(--gold);font-weight:800;margin-right:8px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.qt{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:17px;display:flex;flex-direction:column;gap:10px;position:relative}
+.qt::before{content:"“";position:absolute;top:2px;right:13px;font-size:52px;color:#E3EAF4;font-family:Georgia,serif;line-height:1}
+.qt p{font-size:13px;color:#41556F;flex:1}
+.qt .who{display:flex;align-items:center;gap:10px}
+.qt .who i{font-style:normal;width:38px;height:38px;border-radius:9px;background:#EDF2F9;border:1.5px solid var(--line);display:grid;place-items:center;font-size:17px;flex:none}
+.qt .who b{font-size:13px;color:var(--navy);display:block}
+.qt .who span{font-size:11.3px;color:var(--mut)}
+.qt .stars{color:var(--gold-deep);font-size:12.5px;letter-spacing:1.5px}
+
+/* ===== LIÊN HỆ ===== */
+.ct-sec{position:relative;background:var(--bg)}
+.ct-sec::before{content:"";position:absolute;inset:0;background:url("assets/img/space.webp") center/cover no-repeat;filter:blur(26px) saturate(.8);opacity:.16;pointer-events:none}
+.ct-sec .wrap{position:relative}
+.ctg{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:stretch}
+.ct-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:13px}
+.ct-card h3{font-size:20px;color:var(--navy);text-transform:uppercase;letter-spacing:.5px}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:13.6px;color:#41556F}
+.ct-line .ic{width:40px;height:40px;flex:none;border-radius:9px;background:#EDF2F9;border:1.5px solid var(--line);display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--navy)}
+.tel-big{display:inline-flex;align-items:center;gap:11px;background:var(--navy);color:#fff;border-radius:11px;padding:13px 17px;font-family:var(--disp);font-size:23px;font-weight:700;letter-spacing:1.5px;box-shadow:0 4px 0 var(--navy-3)}
+.tel-big:hover{background:var(--navy-2)}
+.tel-big small{font-family:'Segoe UI',sans-serif;font-size:10.5px;letter-spacing:1.4px;color:var(--gold);display:block;text-transform:uppercase;font-weight:700}
+.ct-map{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;min-height:330px;box-shadow:var(--sh);background:#DDE5EF;position:relative}
+.ct-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ===== FAQ ===== */
+.faq-sec{background:var(--paper)}
+.faq-l{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-i{background:#fff;border:1.5px solid var(--line);border-radius:11px;overflow:hidden}
+.faq-q{width:100%;border:0;background:none;display:flex;align-items:center;gap:12px;text-align:left;padding:15px 16px;font-size:14.5px;font-weight:700;color:var(--navy)}
+.faq-q .pf{margin-left:auto;width:28px;height:28px;flex:none;border-radius:7px;background:#EDF2F9;border:1.5px solid var(--line);display:grid;place-items:center;font-weight:800;color:var(--navy-2);transition:transform .3s}
+.faq-i.open .pf{transform:rotate(45deg);background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.faq-a{display:none;padding:0 16px 15px;font-size:13.6px;color:#41556F}
+.faq-i.open .faq-a{display:block}
+.faq-a b{color:var(--navy)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-3);color:#B9CBE4;margin-top:0}
+.ft-road{height:5px;background:repeating-linear-gradient(90deg,var(--gold) 0 44px,transparent 44px 76px)}
+.ft-g{display:grid;grid-template-columns:1.25fr .8fr 1fr;gap:28px;padding:38px 0 26px}
+.ft-g h4{font-family:var(--disp);text-transform:uppercase;color:#fff;font-size:14.5px;letter-spacing:1.4px;margin-bottom:12px}
+.ft-g p,.ft-g li{font-size:12.8px}
+.ft-nav{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-nav a:hover{color:var(--gold)}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.ft-brand .plate{width:40px;height:40px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-family:var(--disp);font-size:21px;font-weight:700}
+.ft-brand b{color:#fff;font-family:var(--disp);text-transform:uppercase;font-size:16px;letter-spacing:.8px}
+.ft-commit{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ft-commit span{border:1px dashed #3A5C8C;border-radius:7px;padding:5px 10px;font-size:11.5px;color:#C9D8EC}
+.ft-bot{border-top:1px solid #1D3B66;padding:15px 0 20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;font-size:11.8px;color:#7E96B8}
+
+/* ===== FAB ĐẶT CHỔ + CHAT + TOAST ===== */
+.bk-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:58px;height:58px;border-radius:99px;border:0;background:var(--gold);color:var(--navy);display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(185,143,0,.45),0 0 0 3px #fff inset;transition:opacity .25s,transform .25s}
+.bk-fab:hover{transform:translateY(-2px);background:var(--gold-2)}
+.bk-fab .pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:99px;background:var(--cam);border:2.5px solid #fff;box-shadow:0 0 8px rgba(255,138,61,.7)}
+body.chat-open .bk-fab{opacity:0;pointer-events:none}
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--navy);color:var(--gold);font-size:22px;box-shadow:0 10px 24px rgba(14,42,82,.45);border:2px solid var(--gold)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid var(--navy-3)}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 44px rgba(8,27,55,.25);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--navy);color:#EAF1FA}
+.pkc-ava{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#EAF1FA;font-size:17px;width:34px;height:38px}
+.pkc-msgs{max-height:230px;overflow:auto;padding:12px 13px;display:flex;flex-direction:column;gap:8px;background:#F6F8FB}
+.pkc-m{max-width:86%;padding:8px 11px;border-radius:11px;font-size:12.8px;line-height:1.45}
+.pkc-m.them{background:#fff;border:1px solid var(--line);border-radius:11px 11px 11px 3px;align-self:flex-start}
+.pkc-m.me{background:var(--navy);color:#fff;border-radius:11px 11px 3px 11px;align-self:flex-end}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--navy)}
+.pkc-chip:hover{border-color:var(--navy-2)}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:#fff}
+.pkc-inrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13px}
+.pkc-inrow input:focus{outline:none;border-color:var(--navy-2)}
+.pkc-send{border:0;background:var(--gold);color:var(--navy);border-radius:9px;padding:0 14px;font-weight:800}
+.toasts{position:fixed;left:18px;bottom:18px;z-index:95;display:flex;flex-direction:column;gap:9px;max-width:min(360px,calc(100vw - 36px))}
+.toast{background:var(--navy);color:#fff;border-left:5px solid var(--gold);border-radius:11px;padding:12px 15px;box-shadow:0 12px 30px rgba(8,27,55,.4);animation:tin .3s ease}
+.toast b{display:block;font-size:13.5px;color:var(--gold)}
+.toast span{font-size:12.5px;color:#D8E4F4}
+@keyframes tin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ===== DRAWER ĐĂNG KÝ VÉ (funnel chính — dạng B) ===== */
+.drawer-bg{position:fixed;inset:0;background:rgba(8,27,55,.55);z-index:88;opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:430px;max-width:100vw;background:#fff;z-index:90;transform:translateX(105%);transition:transform .32s ease;display:flex;flex-direction:column;box-shadow:-18px 0 44px rgba(8,27,55,.3)}
+.drawer.open{transform:none}
+.drawer-head{background:var(--navy);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--gold)}
+.drawer-head b{font-family:var(--disp);text-transform:uppercase;font-size:17px;letter-spacing:1px;display:block}
+.drawer-head small{font-size:11.8px;color:#B9CBE4}
+.drawer-x{margin-left:auto;border:0;background:rgba(255,255,255,.12);color:#fff;width:38px;height:38px;border-radius:9px;display:grid;place-items:center;flex:none}
+.drawer-body{padding:18px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:14px}
+.dr-step{display:flex;gap:9px;align-items:center;font-family:var(--disp);text-transform:uppercase;font-size:12.5px;letter-spacing:1.6px;color:var(--gold-deep);font-weight:700}
+.dr-step i{font-style:normal;width:24px;height:24px;border-radius:7px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:12px;flex:none}
+.drawer select,.drawer input[type=text],.drawer input[type=tel]{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:14px;color:var(--ink);background:#fff;min-height:46px}
+.drawer select:focus,.drawer input:focus{outline:none;border-color:var(--gold)}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.day{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;gap:1px}
+.day b{font-size:15px;color:var(--navy)}
+.day span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+.day.sel{border-color:var(--gold);background:#FFFBEA;box-shadow:0 0 0 3px rgba(245,197,24,.2)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f2 .fld label,.fld>label{display:block;font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
+.dr-commit{background:#F2F6FB;border:1.5px dashed #B9C7D9;border-radius:11px;padding:12px 14px;display:flex;flex-direction:column;gap:7px}
+.dr-commit div{display:flex;gap:9px;align-items:center;font-size:12.6px;color:#41556F}
+.dr-commit div::before{content:"✓";color:var(--ok);font-weight:800}
+.dr-ok{display:none;background:#FFFBEA;border:2px solid var(--gold);border-radius:13px;padding:16px}
+.dr-ok.on{display:block}
+.dr-ok .code{font-family:var(--disp);font-size:25px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;border:2px dashed var(--gold);border-radius:9px;padding:9px 13px;text-align:center;margin:9px 0}
+.dr-ok p{font-size:12.8px;color:#5B4E1E}
+.dr-ok ul{list-style:none;margin:9px 0 0;display:flex;flex-direction:column;gap:6px;font-size:12.4px;color:#41556F}
+.dr-ok ul li::before{content:"✓ ";color:var(--ok);font-weight:800}
+.dr-hot{display:flex;align-items:center;gap:11px;background:var(--navy);color:#fff;border-radius:11px;padding:12px 14px}
+.dr-hot small{display:block;font-size:10px;letter-spacing:1.4px;color:var(--gold);text-transform:uppercase;font-weight:700}
+.dr-hot b{font-family:var(--disp);font-size:18px;letter-spacing:1px}
+.dr-hot a{margin-left:auto;background:var(--gold);color:var(--navy);border-radius:8px;padding:9px 13px;font-weight:800;font-size:12.5px}
+
+/* ===== RESPONSIVE — tablet + mobile ===== */
+@media (max-width:1099px){
+  .hero-g{grid-template-columns:1fr;gap:30px;padding:38px 0 46px}
+  .hero p.lead{max-width:none}
+  .k8{grid-template-columns:repeat(2,1fr)}
+  .bay.feat{grid-column:span 2;grid-row:auto}
+  .pr-g{grid-template-columns:repeat(2,1fr)}
+  .vt-g{grid-template-columns:1fr}
+  .price-board{position:static}
+  .ck-g{grid-template-columns:1fr}
+  .ab-g{grid-template-columns:1fr}
+  .rvg{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr 1fr}
+  .ctg{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){nav.main{display:none}}
+@media (max-width:640px){
+  .sec{padding:46px 0}
+  .logo small{display:none}
+  .hd{gap:8px}
+  .hd-tel{padding:9px 10px;font-size:12px;gap:5px}
+  .hd-book{white-space:nowrap;padding:10px 11px;font-size:12.5px}
+  .k8{grid-template-columns:repeat(2,1fr);gap:11px}
+  /* thẻ nổi bật: viền cam + đứng đầu trên mobile */
+  .bay.feat{grid-column:1/-1;order:-1;border-color:var(--cam);box-shadow:0 0 0 4px rgba(255,138,61,.16)}
+  .bay.feat h3{font-size:20px}
+  .bay.feat .ticks{display:none}
+  .bay.wide{flex-direction:column}
+  .bay.wide .ph{width:100%;max-width:none;padding:42px 13px 0}
+  .bay.wide .bd{padding:13px 13px 16px}
+  .pr-g{grid-template-columns:1fr 1fr}
+  .ve-g{grid-template-columns:1fr}
+  .zg{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+  .ck-metrics{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap}
+  .hero-stats div{flex:1 1 46%}
+  .hero-stats div:nth-child(3){border-left:0;border-top:1px dashed var(--line)}
+  .hero-stats div:nth-child(4){border-top:1px dashed var(--line)}
+  .days{grid-template-columns:repeat(4,1fr)}
+  .f2{grid-template-columns:1fr}
+  .drawer{width:100vw}
+  .ft-g{grid-template-columns:1fr}
+  .legend{margin-left:0}
+  .toasts{left:12px;right:12px;bottom:150px}
+}
+@media (max-width:400px){.k8{grid-template-columns:1fr}.pr-g{grid-template-columns:1fr}.bay.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap"><div class="hd">
+    <a class="logo" href="#top">
+      <span class="plate"><b>P</b></span>
+      <span><b>Bãi xe Thành Thới</b><small>Bãi giữ xe &amp; quản lý bãi xe · mở 24/7</small></span>
+    </a>
+    <nav class="main" aria-label="Mục chính">
+      <a href="#quytrinh">Vào bãi 60 giây</a>
+      <a href="#so-do-bai">Sơ đồ bãi</a>
+      <a href="#ve-thang">Vé tháng</a>
+      <a href="#ve-bai">Booth &amp; bãi</a>
+      <a href="#faq">Hỏi đáp</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="hd-tel" href="tel:0034567899" aria-label="Gọi hotline 0034567899">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+        0034 567 899
+      </a>
+      <button class="hd-book" data-open-drawer>Giữ chỗ 48h</button>
+    </div>
+  </div></div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO: CỔNG BÃI BARRIER ================= -->
+<section class="hero" id="hero">
+  <!-- cổng bãi: biển P + thanh barrier + bảng còn trống -->
+  <svg class="gantry" viewBox="0 0 1200 132" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <rect x="30" y="10" width="14" height="122" rx="4" fill="#0E2A52"/>
+    <rect x="1156" y="10" width="14" height="122" rx="4" fill="#0E2A52"/>
+    <rect x="20" y="0" width="34" height="20" rx="5" fill="#F5C518"/>
+    <rect x="1146" y="0" width="34" height="20" rx="5" fill="#F5C518"/>
+    <line x1="60" y1="126" x2="1140" y2="126" stroke="#AFC0D6" stroke-width="4" stroke-dasharray="30 20"/>
+    <!-- boom barrier sọc đỏ trắng nhấc lên -->
+    <g transform="rotate(-16 37 30)">
+      <rect x="37" y="24" width="560" height="16" rx="8" fill="#fff" stroke="#C9D4E2"/>
+      <rect x="56" y="24" width="58" height="16" fill="#E5372B"/>
+      <rect x="172" y="24" width="58" height="16" fill="#E5372B"/>
+      <rect x="288" y="24" width="58" height="16" fill="#E5372B"/>
+      <rect x="404" y="24" width="58" height="16" fill="#E5372B"/>
+      <rect x="520" y="24" width="58" height="16" fill="#E5372B"/>
+      <circle cx="597" cy="32" r="8" fill="#E5372B"/>
+    </g>
+    <!-- biển P treo gantry -->
+    <rect x="790" y="12" width="360" height="66" rx="12" fill="#0E2A52" stroke="#F5C518" stroke-width="3"/>
+    <rect x="808" y="24" width="42" height="42" rx="9" fill="#F5C518"/>
+    <text x="829" y="55" text-anchor="middle" font-family="Arial Narrow,Arial" font-size="34" font-weight="700" fill="#0E2A52">P</text>
+    <text x="866" y="40" font-family="Arial Narrow,Arial" font-size="24" font-weight="700" fill="#fff" letter-spacing="1" textLength="270" lengthAdjust="spacingAndGlyphs">CÒN TRỐNG 98/484 Ô</text>
+    <text x="866" y="64" font-family="Arial Narrow,Arial" font-size="16" fill="#F5C518" letter-spacing="3" textLength="270" lengthAdjust="spacingAndGlyphs">QUÉT THẺ · MỞ 24/7</text>
+  </svg>
+
+  <div class="wrap"><div class="hero-g">
+    <div>
+      <span class="kicker"><i>P</i> Ngõ Đỗ Xe Thành Thới · Phường Bãi Rộng Vui Vẻ · mở 24/7</span>
+      <h1>Đỗ đúng ô — <em>nhận xe</em> trong 60 giây</h1>
+      <p class="lead">Bãi xe Thành Thới giữ xe máy lẻ theo giờ, ô tô vé tháng có mái che, trưng quân giữ xe sự kiện và nhận vận hành bãi chung cư. Vào quét thẻ, ra quét thẻ — 48 mắt camera ghi hình suốt 30 ngày.</p>
+      <div class="hero-cta">
+        <button class="btn btn-gold" data-open-drawer>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M10.5 14.5h3"/></svg>
+          Đăng ký vé tháng — giữ chỗ 48h
+        </button>
+        <a class="btn btn-ghost" href="#so-do-bai">Xem sơ đồ còn trống</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip"><i>☂</i>Khu A · B <b>100% mái che</b></span>
+        <span class="chip"><i>◉</i><b>48 camera</b> ghi hình 30 ngày</span>
+        <span class="chip"><i>48h</i>Giữ chỗ thử <b>miễn phí</b></span>
+      </div>
+      <div class="hero-stats">
+        <div><b>484 ô</b><span>sức chứa 3 khu</span></div>
+        <div><b>60 giây</b><span>từ cổng vào ô đỗ</span></div>
+        <div><b>24/7</b><span>bảo vệ 3 ca trực</span></div>
+        <div><b>30 ngày</b><span>camera xem lại</span></div>
+      </div>
+    </div>
+    <div>
+      <figure class="gate">
+        <img src="assets/img/cover.webp" alt="Bãi giữ xe và quản lý bãi xe Thành Thới — bãi có mái che, barrier tự động, bảo vệ dẫn xe" width="1408" height="939" fetchpriority="high">
+        <span class="gate-chip"><i></i>Đang mở · còn 98/484 ô</span>
+      </figure>
+      <div class="gate-note"><span>SĐT &amp; địa chỉ bãi: <b>0034 567 899</b> — Ngõ Đỗ Xe Thành Thới</span><span>Vé tháng giữ thử 48 giờ</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- BIỂN ĐÈN LED chạy -->
+<div class="led" aria-hidden="true">
+  <div class="led-track" id="ledTrack">
+    <span>KHU A — XE MÁY MÁI CHE, CÒN 86 Ô <i>◆</i></span>
+    <span>KHU B — Ô TÔ VÉ THÁNG, CÒN 12 Ô <i>◆</i></span>
+    <span>KHU C — ĐÃ ĐẦY, VÉ THÁNG XẾP KHU B <i>◆</i></span>
+    <span>GIỮ CHỖ THỬ 48 GIỜ — MIỄN PHÍ <i>◆</i></span>
+    <span>QUÉT THẺ RA VÀO — KHỎI VIẾT PHIẾU <i>◆</i></span>
+  </div>
+</div>
+
+<!-- ================= QUY TRÌNH VÀO-RA ================= -->
+<section class="sec pr-sec" id="quytrinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>↔</i> Quy trình chuẩn 4 bước</span>
+      <h2>Vào bãi trong <em>60 giây</em> — ra bãi không xếp hàng</h2>
+      <p>Một lối vào, một lối ra, booth trực giữa bãi. Khách lẻ cầm phiếu, khách vé tháng quét thẻ là thanh cửa tự nhấc.</p>
+    </div>
+    <div class="pr-g">
+      <article class="pr rv">
+        <span class="no">Bước 1</span>
+        <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="18" rx="2"/><path d="M7 9h6M7 13h6M17 8l3 3-4 4-3-3z"/></svg></span>
+        <h3>Quét thẻ tại cổng</h3>
+        <p>Vé tháng quẹt thẻ điện tử; khách lẻ bấm nút nhận phiếu in giờ vào. Thanh barrier nhấc trong 2 giây.</p>
+        <span class="t">2 giây / lượt</span>
+      </article>
+      <article class="pr rv">
+        <span class="no">Bước 2</span>
+        <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <h3>Bảo vệ dẫn tới ô trống</h3>
+        <p>Bộ phận trực chỉ đúng ô còn trống gần lối đi — khỏi chạy vòng tìm chỗ, khỏi đè lên vạch của người khác.</p>
+        <span class="t">khoảng 40 giây</span>
+      </article>
+      <article class="pr rv">
+        <span class="no">Bước 3</span>
+        <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 13h18"/></svg></span>
+        <h3>Đỗ trong mái che — khóa xe</h3>
+        <p>Khóa cổ, nhận tem/thẻ giữ xe. Xe đè lên tem lò xo tự teo — khách cầm một nửa làm chứng nhận ra bãi.</p>
+        <span class="t">tem chống lật</span>
+      </article>
+      <article class="pr rv">
+        <span class="no">Bước 4</span>
+        <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M9 3v3h6V3M4 11h16M9 15h6"/></svg></span>
+        <h3>Ra bãi quét thẻ — xong</h3>
+        <p>Vé tháng tự trừ hạn; khách lẻ trả tại booth theo giờ in trên phiếu, nhận xe ngay tại lối ra có người đỡ.</p>
+        <span class="t">không xếp hàng</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KHỐI 8: SƠ ĐỒ BÃI ĐỖ (pattern #14 biến thể bãi đỗ) ================= -->
+<section class="sec k8-sec" id="so-do-bai">
+  <div class="wrap">
+    <div class="k8-head rv">
+      <div class="k8-plate">
+        <span class="p-big">P</span>
+        <span><b>Sơ đồ khu đỗ — 8 dịch vụ</b><small>Mỗi ô dưới đây là một dịch vụ của bãi — bấm “Giữ chỗ” để đăng ký</small></span>
+      </div>
+      <div class="k8-live">
+        <span class="num"><b>98/484</b><span>ô còn trống hôm nay</span></span>
+        <span class="num"><b>3 khu</b><span>A xe máy · B ô tô mái che · C ngoài trời</span></span>
+        <span class="legend">
+          <span><i style="background:var(--ok)"></i>Còn nhận</span>
+          <span><i style="background:var(--bad)"></i>Đã đầy</span>
+          <span><i style="background:var(--gold)"></i>Chủ lực</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="k8">
+      <!-- THẺ NỔI BẬT TO — vé tháng ô tô (chủ lực): đầu khối, viền cam trên mobile -->
+      <article class="bay feat rv">
+        <div class="zrow"><span class="ztag">Khu B · 01</span><span class="st ok">Còn 12 ô</span></div>
+        <span class="hot">★ Dịch vụ chủ lực — vé tháng</span>
+        <div class="ph"><img src="assets/img/p2.webp" alt="Giữ xe ô tô theo tháng tại khu B có mái che — quét thẻ ra vào" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Giữ xe ô tô theo tháng</h3>
+          <p>Ô cố định trong khu mái che, quét thẻ ra vào, camera chụp từng lượt. Đăng ký hôm nay — giữ chỗ thử <b>48 giờ miễn phí</b>, đổi ý không mất gì.</p>
+          <ul class="ticks">
+            <li>Ô cố định gần lối đi, đánh số theo phiếu</li>
+            <li>Quét thẻ ra vào — khỏi chờ viết phiếu</li>
+            <li>Hóa đơn tháng gửi Zalo, nhắc hạn trước 3 ngày</li>
+          </ul>
+          <div class="ft">
+            <span class="pri">Từ 1.350.000đ<small>/tháng · 24/24 là 1.650.000đ</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="thang24" data-prefill-zone="B">Giữ chỗ khu B</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">Khu A · 02</span><span class="st ok">Còn nhận</span></div>
+        <div class="ph"><img src="assets/img/p1.webp" alt="Giữ xe máy theo giờ khu A mái che — dẫn xe tới ô trống" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Giữ xe máy theo giờ</h3>
+          <p>5.000đ cả ngày, gửi 5 phút cũng nhận. Xe xịn dán tem riêng, đỗ có người đỡ.</p>
+          <div class="ft">
+            <span class="pri">5.000đ<small>/lượt cả ngày</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="xemay" data-prefill-ve="luot" data-prefill-zone="A">Giữ chỗ</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">Sự kiện · 03</span><span class="st ok">Còn nhận</span></div>
+        <div class="ph"><img src="assets/img/p3.webp" alt="Bãi giữ xe sự kiện — phân luồng khách đám cưới, khai trương" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Bãi giữ xe sự kiện</h3>
+          <p>Đám cưới, khai trương, hội chợ: trưng quân đội giữ xe, phân luồng có hiệu — 30.000đ/lượt.</p>
+          <div class="ft">
+            <span class="pri">30.000đ<small>/lượt · tính theo gói</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="luot" data-prefill-zone="B">Đặt đội xe</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">Khu dân cư · 04</span><span class="st ok">Còn nhận</span></div>
+        <div class="ph"><img src="assets/img/p4.webp" alt="Bãi xe chung cư — kiểm soát ra vào, hỗ trợ cư dân" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Bãi xe chung cư</h3>
+          <p>Vận hành trọn gói cho ban quản lý: thẻ cư dân, lối ra vào, sổ theo dõi từng đêm.</p>
+          <div class="ft">
+            <span class="pri">Từ 950.000đ<small>/tháng · theo hợp đồng</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="thangngay" data-prefill-zone="B">Nhận báo giá</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">An ninh · 05</span><span class="st info">Khảo sát</span></div>
+        <div class="ph"><img src="assets/img/p5.webp" alt="Hệ thống camera an ninh 48 mắt giám sát bãi xe" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Hệ thống camera an ninh</h3>
+          <p>48 mắt camera ghi hình 30 ngày, xem lại có tem thời gian khi có sự việc.</p>
+          <div class="ft">
+            <span class="pri">Khảo sát<small>miễn phí trong 3 km</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="thang24" data-prefill-zone="B">Hẹn khảo sát</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">Thẻ từ · 06</span><span class="st ok">Còn nhận</span></div>
+        <div class="ph"><img src="assets/img/p6.webp" alt="Thẻ giữ xe điện tử quét mở barrier" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Thẻ giữ xe điện tử</h3>
+          <p>Quẹt là mở thanh, khỏi viết phiếu. Mất thẻ khóa ô trong 1 phút.</p>
+          <div class="ft">
+            <span class="pri">45.000đ<small>/thẻ (đặt cọc)</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="xemay" data-prefill-ve="thang24" data-prefill-zone="A">Làm thẻ</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bay rv">
+        <div class="zrow"><span class="ztag">Trực ca · 07</span><span class="st ok">3 ca/ngày</span></div>
+        <div class="ph"><img src="assets/img/p7.webp" alt="Bảo vệ trông giữ 24/7 — dẫn xe, giữ gìn trật tự bãi" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Bảo vệ trông giữ 24/7</h3>
+          <p>Ba ca liên tục, dẫn xe vào ô, giữ gìn trật tự bãi.</p>
+          <div class="ft">
+            <span class="pri">Trực 24/7<small>đã gồm trong vé</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="thang24" data-prefill-zone="B">Gặp tổ trực</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ô dài ven tường — hợp đồng dài hạn -->
+      <article class="bay wide rv">
+        <div class="zrow"><span class="ztag">Hợp đồng · 08</span><span class="st ok">Nhận ký Q4</span></div>
+        <div class="ph"><img src="assets/img/p8.webp" alt="Hợp đồng giữ xe dài hạn cho doanh nghiệp và chung cư" loading="lazy" width="1280" height="853"></div>
+        <div class="bd">
+          <h3>Hợp đồng giữ xe dài hạn</h3>
+          <p>Cho doanh nghiệp và chung cư: ký theo năm, thẻ riêng cho từng nhân viên, báo cáo tháng gửi Zalo rõ ràng.</p>
+          <div class="ft">
+            <span class="pri">Từ 850.000đ<small>/tháng · ký từ 6 tháng</small></span>
+            <button class="go" data-open-drawer data-prefill-vehicle="oto" data-prefill-ve="thang24" data-prefill-zone="B">Nhận hợp đồng mẫu</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- làn xe nội bộ -->
+    <div class="lane rv" aria-hidden="true">
+      <svg width="30" height="22" viewBox="0 0 30 22" fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h24M19 4l7 7-7 7"/></svg>
+      <b>Làn xe nội bộ — ra vào quét thẻ</b>
+      <span>Đi bộ bên hông bãi có lối riêng, khỏi chèn xe</span>
+      <span class="arrows">
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14V2M4 2l-3 3M4 2l3 3"/></svg>
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14V2M4 2l-3 3M4 2l3 3"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAC THU: QUÉT KHU TRỐNG + ĐĂNG KÝ VÉ THÁNG ================= -->
+<section class="sec vt-sec" id="ve-thang">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>P</i> Đặc thù bãi xe — quét chỗ trước, tới là có ô</span>
+      <h2>Quét khu trống — <em>giữ chỗ 48 giờ</em> trong một phút</h2>
+      <p>Chọn xe và loại vé, máy quét chỉ ra khu nào còn ô theo sơ đồ bãi. Chọn khu xong là phiếu giữ chỗ điền sẵn — tới bãi xuất mã là nhận ô.</p>
+    </div>
+
+    <div class="vt-g">
+      <!-- bảng giá niêm yết -->
+      <aside class="price-board rv" aria-label="Bảng giá giữ xe niêm yết">
+        <div class="pb-title"><b>Bảng giá niêm yết</b><small>công khai tại booth</small></div>
+        <div class="pb-row"><span>Xe máy — lượt cả ngày</span><b>5.000đ</b></div>
+        <div class="pb-row"><span>Xe máy — vé tháng ban ngày</span><b>130.000đ/th</b></div>
+        <div class="pb-row"><span>Xe máy — vé tháng 24/24</span><b>160.000đ/th</b></div>
+        <div class="pb-row"><span>Ô tô — lượt đầu đến 2 giờ</span><b>25.000đ</b></div>
+        <div class="pb-row"><span>Ô tô — giờ tiếp theo</span><b>5.000đ/h</b></div>
+        <div class="pb-row"><span>Ô tô — vé tháng ban ngày 6h–18h</span><b>1.350.000đ/th</b></div>
+        <div class="pb-row"><span>Ô tô — vé tháng 24/24 có ô cố định</span><b>1.650.000đ/th</b></div>
+        <div class="pb-note">Trần lượt ô tô 60.000đ/ngày. Vé tháng giữ thử 48 giờ miễn phí — hủy, đổi khu không mất gì.</div>
+      </aside>
+
+      <!-- máy quét -->
+      <div class="scan-box rv">
+        <div class="sb-head">
+          <b>Máy quét chỗ trống</b>
+          <span class="hint">cập nhật 5 phút trước</span>
+        </div>
+
+        <label class="f-label">1 · Bạn gửi xe gì?</label>
+        <div class="chip-row" id="vehicleRow">
+          <button class="chip sel" data-vehicle="xemay">🏍 Xe máy</button>
+          <button class="chip" data-vehicle="oto">🚗 Ô tô ≤ 9 chỗ</button>
+          <button class="chip" data-vehicle="cahai">🏍+🚗 Cả hai</button>
+        </div>
+
+        <label class="f-label">2 · Loại vé?</label>
+        <div class="ve-g" id="veRow">
+          <button class="ve-opt sel" data-ve="luot"><b>Vé lượt</b><span>gửi theo giờ, phù hợp ghé ngang</span></button>
+          <button class="ve-opt" data-ve="thangngay"><b>Vé tháng 6h–18h</b><span>đi làm ban ngày, tối về</span></button>
+          <button class="ve-opt" data-ve="thang24"><b>Vé tháng 24/24</b><span>ô cố định, quét thẻ cả đêm</span></button>
+        </div>
+
+        <button class="scan-cta" id="scanBtn">
+          <span class="bar"></span>
+          <span id="scanLabel">Quét chỗ trống theo sơ đồ</span>
+        </button>
+
+        <!-- sơ đồ 3 khu -->
+        <div class="zmap" id="zmap" aria-live="polite">
+          <div class="gate-in"><span>LỐI VÀO</span><span class="dash"></span><span>BOOTH TRỰC GIỮA BÃI</span></div>
+          <div class="zg" id="zoneGrid"></div>
+        </div>
+
+        <div class="scan-sum" id="scanSum">
+          <div class="ss-t"><b id="sumTitle">—</b><span id="sumSub">—</span></div>
+          <button class="btn btn-cam" id="sumBtn">Giữ chỗ 48 giờ — miễn phí</button>
+        </div>
+        <p style="font-size:11.8px;color:var(--mut);margin-top:10px">Số ô thay đổi theo giờ cao điểm 11h30–13h và 17h30–20h — giữ chỗ trước khỏi phải chờ lối vào.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAM KẾT BẰNG SỐ ================= -->
+<section class="sec ck-sec" id="cam-ket">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>✓</i> Cam kết bằng số</span>
+      <h2>Xe có mái che — <em>camera 24/24</em> — giữ chỗ 48 giờ</h2>
+      <p>Ba điều khách vé tháng quan tâm nhất. Bãi cam kết bằng số liệu, không cam kết suông.</p>
+    </div>
+    <div class="ck-g">
+      <div class="ck-metrics">
+        <article class="ck rv">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 12h18"/></svg></span>
+          <div><b>484 ô · 100% mái che</b><span>Khu A và B đón mưa hắt hết — khu C dành cho xe luôn về muộn.</span></div>
+        </article>
+        <article class="ck rv">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg></span>
+          <div><b>48 camera · 24/24</b><span>Ghi hình 30 ngày, có tem thời gian — xuất clip trong 24 giờ khi có sự việc.</span></div>
+        </article>
+        <article class="ck rv">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <div><b>Giữ chỗ 48 giờ</b><span>Đăng ký xong được giữ ô thử 2 ngày — đổi ý không mất gì, không cần cọc.</span></div>
+        </article>
+        <article class="ck rv">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div><b>3 ca bảo vệ</b><span>Dẫn xe, đỡ đồ cồng kềnh, hỗ trợ cua đề khi ắc quy yếu — miễn phí.</span></div>
+        </article>
+      </div>
+      <aside class="ck-proof rv">
+        <div class="big"><b>92%</b><span>khách vé tháng năm trước<br>gia hạn tiếp năm nay</span></div>
+        <div class="pbar" id="proofBars">
+          <div class="row"><em>Giữ chỗ đúng ô đã hẹn <b>100%</b></em><span class="tr"><i data-w="100"></i></span></div>
+          <div class="row"><em>Khách vé tháng gia hạn <b>92%</b></em><span class="tr"><i data-w="92"></i></span></div>
+          <div class="row"><em>Sự cố trong bãi xử lý dưới 10 phút <b>98%</b></em><span class="tr"><i data-w="98"></i></span></div>
+        </div>
+        <figure class="ck-pic">
+          <img src="assets/img/p7.webp" alt="Tổ trực ca đêm dẫn xe vào ô tại khu B" loading="lazy" width="1280" height="853">
+          <figcaption>Tổ trực ca đêm — dẫn xe vào ô, khóa lối sau 23 giờ</figcaption>
+        </figure>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GIỚI THIỆU + KHÔNG GIAN — M5 CỬA SỔ NGHỀ ================= -->
+<section class="sec ab-sec" id="ve-bai">
+  <div class="wrap ab-g">
+    <div class="ab-txt rv">
+      <span class="kicker"><i>▣</i> Ghé bãi · ngoài booth — trong bãi</span>
+      <h2>Booth trực <em>sáng đèn</em> — bãi sạch vạch, xe đỡ hắt mưa</h2>
+      <p>Bãi nằm ngay ngõ Đỗ Xe Thành Thới — đường vào xe tải né được, ra ngõ là ra đường lớn. Booth trực đặt giữa bãi: quẹt thẻ, hỏi ô trống, mượn bơm lốp đều có người.</p>
+      <p>Mỗi khu sơn vạch riêng, biển khu A · B · C treo cao 3 mét nhìn từ cổng là thấy. Nền bãi quét nước mỗi sáng, rãnh thoát nước chạy dọc lối đi nên chân không lầy sau mưa.</p>
+      <div class="ab-facts">
+        <span class="chip"><i>🕘</i>Mở cửa <b>24/7</b></span>
+        <span class="chip"><i>P</i>3 khu · 484 ô</span>
+        <span class="chip"><i>↔</i>Lối vào · ra riêng biệt</span>
+      </div>
+      <div class="ab-mini">
+        <b>Đi tới ô của bạn — 3 nhịp</b>
+        <div><i>1</i>Rẽ vào ngõ Đỗ Xe Thành Thới — biển P treo cao thấy từ đầu ngõ</div>
+        <div><i>2</i>Quét thẻ/vé ở lối vào — barrier nhấc, bảo vệ vẫy đúng hướng</div>
+        <div><i>3</i>Booth trực giữa bãi chỉ ô trống — giá từ 5.000đ, <a href="#ve-thang">xem bảng giá</a></div>
+      </div>
+    </div>
+    <div>
+      <figure class="booth rv">
+        <div class="win">
+          <img src="assets/img/intro.webp" alt="Booth trực của bãi xe — nhân viên hỗ trợ kiểm soát ra vào" loading="lazy" width="1536" height="1024">
+          <figcaption>Booth trực 24/24 — quẹt thẻ, hỏi ô trống, mượn bơm lốp miễn phí</figcaption>
+        </div>
+        <span class="intercom" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-7H7a5 5 0 0 1 10 0h-2v7h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7z"/></svg></span>
+        <div class="booth-note"><span>Cửa sổ booth — giao thẻ, đổi tiền lẻ</span><span>Nút chuông gọi tổ trực</span></div>
+      </figure>
+      <figure class="driveway rv" style="margin-top:16px">
+        <img src="assets/img/space.webp" alt="Không gian bãi xe — lối vào có barrier, ô đỗ sơn vạch, mái che toàn khu" loading="lazy" width="1536" height="1024">
+        <div class="board">
+          <span><i>●</i> Mở 24/7</span>
+          <span>VÀO — QUÉT THẺ</span>
+          <span>RA — TRẢ PHIẾU</span>
+        </div>
+        <figcaption>Lối vào khu B nhìn từ cổng — ô đỗ sơn vạch, cột bọc cảnh báo, mái che toàn khu</figcaption>
+      </figure>
+      <div class="ab-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/></svg> Ngõ Đỗ Xe Thành Thới — xe tải 2 tầng vẫn vào được, ra ngõ gặp đường lớn</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ĐÁNH GIÁ ================= -->
+<section class="sec rv-sec" id="review">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>★</i> Khách gửi xe nói gì</span>
+      <h2>Khách vé tháng <em>quay lại</em> — khách sự kiện giới thiệu tiếp</h2>
+    </div>
+    <div class="rvg">
+      <aside class="score rv">
+        <div class="top">
+          <b>4.8</b>
+          <div><div class="stars">★★★★★</div><span>1.240+ lượt đánh giá của khách gửi xe</span></div>
+        </div>
+        <ul>
+          <li>Giữ chỗ đúng ô đã hẹn — không dời dạc</li>
+          <li>Nhân viên dẫn xe, đỡ đồ cồng kềnh</li>
+          <li>Xuất clip camera trong 24 giờ khi có sự việc</li>
+          <li>Hóa đơn vé tháng gửi Zalo cuối tháng</li>
+        </ul>
+      </aside>
+      <div class="quotes">
+        <article class="qt rv">
+          <div class="stars">★★★★★</div>
+          <p>Đăng ký vé tháng khu B từ tháng nhạc này. 8 giờ sáng tới vẫn còn ô vì giữ chỗ trước — ô cố định gần thang bộ, mưa to xe vẫn khô ráo.</p>
+          <div class="who"><i>👩</i><div><b>Chị Minh Tâm</b><span>Vé tháng khu B · đi làm phố trên</span></div></div>
+        </article>
+        <article class="qt rv">
+          <div class="stars">★★★★★</div>
+          <p>Cưới ở nhà hàng cạnh, 50 xe khách đổ về trong 40 phút mà không cấn nhau một lượt — đội giữ xe phân luồng rất ra, ai cũng được dẫn tới ô.</p>
+          <div class="who"><i>🤵</i><div><b>Anh Quốc Bảo</b><span>Bãi sự kiện · trọn gói buổi tiệc</span></div></div>
+        </article>
+        <article class="qt rv">
+          <div class="stars">★★★★☆</div>
+          <p>Ban quản lý ký hợp đồng vận hành bãi chung cư. Sổ ra vào rõ ràng, tháng nào cũng có báo cáo gửi Zalo — cư dân hết kêu mất chỗ, thẻ quẹt êm.</p>
+          <div class="who"><i>🏢</i><div><b>BQL Chung cư Hà Độ</b><span>Hợp đồng vận hành 2 năm</span></div></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIÊN HỆ + BẢN ĐỒ ================= -->
+<section class="sec ct-sec" id="lien-he">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>📍</i> Ghé bãi hoặc nhắn trước một dòng</span>
+      <h2>Bãi mở cửa <em>24/7</em> — giữ chỗ qua form, khỏi chờ điện thoại</h2>
+    </div>
+    <div class="ctg">
+      <div class="ct-card rv">
+        <h3>Bãi xe Thành Thới</h3>
+        <div class="ct-line"><span class="ic">📍</span><div><b>Địa chỉ bãi</b><br>Ngõ Đỗ Xe Thành Thới, Phường Bãi Rộng Vui Vẻ</div></div>
+        <div class="ct-line"><span class="ic">🕰</span><div><b>Giờ nhận xe</b><br>Mở cửa 24/7 — bảo vệ trực đủ 3 ca, kể cả Tết</div></div>
+        <div class="ct-line"><span class="ic">🅿️</span><div><b>Giữ chỗ thử</b><br>48 giờ miễn phí qua nút “Giữ chỗ” — có mã giữ chỗ ngay tại trang</div></div>
+        <a class="tel-big" href="tel:0034567899"><span><small>Hotline &amp; Zalo</small>0034 567 899</span></a>
+        <button class="btn btn-gold" data-open-drawer>Đăng ký vé tháng ngay</button>
+      </div>
+      <div class="ct-map rv">
+        <!-- NB110-MAP: 10.7622,106.6816 -->
+        <iframe loading="lazy" src="https://www.google.com/maps?q=10.7622,106.6816&z=16&output=embed&hl=vi" title="Bản đồ Bãi Xe Thành Thới — Ngõ Đỗ Xe Thành Thới"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec faq-sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker"><i>?</i> Hỏi trước khi gửi xe</span>
+      <h2>Vài điều khách <em>hay hỏi</em> bãi xe nhất</h2>
+    </div>
+    <div class="faq-l" id="faqList">
+      <div class="faq-i rv">
+        <button class="faq-q">Lỡ làm mất vé giấy thì ra bãi thế nào?<span class="pf">+</span></button>
+        <div class="faq-a">Xuất trình giấy tờ xe cùng căn cước, tổ trực đối chiếu giờ vào qua camera và làm biên bản mất vé trong khoảng 3 phút — <b>không phạt thêm</b>, chỉ trả đúng phí gửi xe theo giờ.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Gửi xe hơi — ô tô tính giá thế nào?<span class="pf">+</span></button>
+        <div class="faq-a">Lượt: <b>25.000đ</b> cho 2 giờ đầu, giờ tiếp <b>5.000đ</b>, trần <b>60.000đ/ngày</b>. Gửi thường xuyên nên lấy vé tháng: <b>1.350.000đ/tháng</b> ban ngày (6h–18h) hoặc <b>1.650.000đ/tháng</b> 24/24 có ô cố định khu B.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Camera có xem lại được không khi có sự việc?<span class="pf">+</span></button>
+        <div class="faq-a">Có. Bãi có <b>48 mắt camera</b> phủ kín lối vào, làn đi và từng khu đỗ, lưu hình 30 ngày. Báo tổ trực, bãi xuất clip có tem thời gian trong 24 giờ để làm việc với bảo hiểm hoặc công an phường.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Vé tháng có ô cố định không?<span class="pf">+</span></button>
+        <div class="faq-a">Ô tô vé tháng 24/24 được <b>xếp ô cố định</b> khu B theo thứ tự đăng ký. Xe máy vé tháng giữ nguyên khu A nhưng không chốt ô — tới là có chỗ vì khu luôn trống tối thiểu 30 ô cho vé.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Xe hết pin, chết máy trong bãi có giúp không?<span class="pf">+</span></button>
+        <div class="faq-a">Có. Xe máy cua đề, bơm lốp <b>miễn phí</b>; ô tô hết pin cử kỹ thuật với bình kích trong khoảng 15 phút. Cuối tuần đông, ưu tiên khách vé tháng trước.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Thanh toán vé tháng bằng cách nào?<span class="pf">+</span></button>
+        <div class="faq-a">Tiền mặt tại booth, chuyển khoản hoặc quét QR. Khách vé tháng nhận <b>hóa đơn tháng qua Zalo</b>, hết hạn bãi nhắn trước 3 ngày — khỏi lo quẹt thẻ bị từ chối ở cổng.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Có gửi xe nhiều ngày, qua đêm dài được không?<span class="pf">+</span></button>
+        <div class="faq-a">Được — khách công tác, bay xa gửi cả tuần rất nhiều. Tính theo ngày, khóa ô riêng, bãi lập biên bản nhận xe có ảnh 4 góc lúc giao — lấy xe xuất tin nhắn xác nhận.</div>
+      </div>
+      <div class="faq-i rv">
+        <button class="faq-q">Khách vãng lai có cần đặt chỗ trước không?<span class="pf">+</span></button>
+        <div class="faq-a">Không bắt buộc. Nhưng giờ cao điểm 11h30–13h và 17h30–20h khu B hay đầy — xem ô trống trên <a href="#ve-thang" style="color:var(--gold-deep);font-weight:700">máy quét chỗ</a> hoặc giữ chỗ trước 48 giờ là tới là có ô.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="ft-road" aria-hidden="true"></div>
+  <div class="wrap"><div class="ft-g">
+    <div>
+      <div class="ft-brand"><span class="plate">P</span><b>Bãi xe Thành Thới</b></div>
+      <p>Bãi giữ xe và quản lý bãi xe — giữ xe máy lẻ, ô tô vé tháng, trưng quân sự kiện, vận hành bãi chung cư. Vào quét thẻ, ra quét thẻ; 484 ô có người trông, có camera, có mái che.</p>
+      <div class="ft-commit"><span>Mái che 100% khu A · B</span><span>Camera 24/24</span><span>Giữ chỗ 48h</span></div>
+    </div>
+    <div>
+      <h4>Khu &amp; dịch vụ</h4>
+      <ul class="ft-nav">
+        <li><a href="#so-do-bai">Khu A — xe máy mái che</a></li>
+        <li><a href="#so-do-bai">Khu B — ô tô vé tháng</a></li>
+        <li><a href="#so-do-bai">Bãi sự kiện &amp; chung cư</a></li>
+        <li><a href="#ve-thang">Bảng giá &amp; máy quét chỗ</a></li>
+        <li><a href="#quytrinh">Quy trình vào — ra</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Booth trực &amp; liên hệ</h4>
+      <p>Ngõ Đỗ Xe Thành Thới, Phường Bãi Rộng Vui Vẻ<br>Mở cửa 24/7 — bảo vệ trực đủ 3 ca</p>
+      <p style="margin-top:10px"><a href="tel:0034567899" style="font-family:var(--disp);font-size:21px;color:var(--gold);letter-spacing:1px">0034 567 899</a><br>Hotline &amp; Zalo — trả lời trong ít phút</p>
+      <button class="btn btn-gold" data-open-drawer style="margin-top:12px">Giữ chỗ 48 giờ — miễn phí</button>
+    </div>
+  </div></div>
+  <div class="wrap ft-bot">
+    <span>© 2026 Bãi Xe Thành Thới — giữ xe gọn gàng, thuận tiện mỗi ngày</span>
+    <span>NB110-091 · sơ đồ khu đỗ cập nhật theo ngày</span>
+  </div>
+</footer>
+
+<!-- ================= FAB ĐẶT CHỔ (biển P — đúng đặc thù dạng B, không giỏ) ================= -->
+<button class="bk-fab" id="bkFab" data-open-drawer aria-label="Đăng ký vé tháng — mở phiếu giữ chỗ">
+  <svg width="27" height="27" viewBox="0 0 24 24" fill="none">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="#0E2A52" stroke="#fff" stroke-width="1.6"/>
+    <path d="M9 17.5V6.5h3.6a3.4 3.4 0 0 1 0 6.8H9" stroke="#F5C518" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="pkc-dot"></span>
+</button>
+
+<!-- ================= CHAT TƯ VẤN (không bot) ================= -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" role="dialog" aria-label="Chat tư vấn bãi xe">
+  <div class="pkc-head">
+    <span class="pkc-ava">🅿️</span>
+    <div><div class="pkc-name">Booth trực Thành Thới</div><div class="pkc-on"><i></i>Người thật trả lời — 24/7</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs">
+    <div class="pkc-m them">Chào bạn, tổ trực bãi xe đây. Hỏi gì về ô trống, vé tháng hay giá sự kiện cứ nhắn — hoặc gọi 0034 567 899 nếu cần ngay.</div>
+  </div>
+  <div class="pkc-chips">
+    <button class="pkc-chip" data-q="Khu nào còn ô trống?">Khu nào còn ô?</button>
+    <button class="pkc-chip" data-q="Vé tháng ô tô giá bao nhiêu?">Giá vé tháng?</button>
+    <button class="pkc-chip" data-q="Mất vé giấy xử lý thế nào?">Mất vé?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho tổ trực…" aria-label="Nội dung nhắn">
+    <button class="pkc-send" id="pkcSend">Gửi</button>
+  </div>
+</div>
+
+<!-- ================= DRAWER ĐĂNG KÝ VÉ (funnel chính) ================= -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Đăng ký vé tháng — phiếu giữ chỗ">
+  <div class="drawer-head">
+    <span class="plate" style="width:42px;height:42px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-family:var(--disp);font-size:22px;font-weight:700;flex:none">P</span>
+    <div><b>Phiếu giữ chỗ 48 giờ</b><small>Chọn xe → vé → khu còn trống → nhận mã tại trang</small></div>
+    <button class="drawer-x" id="drawerX" aria-label="Đóng phiếu">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <form class="drawer-body" id="bkForm">
+    <div class="dr-step"><i>1</i> Loại xe gửi</div>
+    <div class="fld">
+      <select id="fVehicle" data-nghe-order="loai_xe">
+        <option value="xemay">🏍 Xe máy</option>
+        <option value="oto">🚗 Ô tô (dưới 9 chỗ)</option>
+        <option value="cahai">🏍+🚗 Cả xe máy và ô tô</option>
+      </select>
+    </div>
+
+    <div class="dr-step"><i>2</i> Loại vé</div>
+    <div class="ve-g" id="fVeRow">
+      <button type="button" class="ve-opt" data-ve="luot"><b>Vé lượt</b><span>theo giờ</span></button>
+      <button type="button" class="ve-opt" data-ve="thangngay"><b>Tháng 6h–18h</b><span>đi làm ngày</span></button>
+      <button type="button" class="ve-opt sel" data-ve="thang24"><b>Tháng 24/24</b><span>ô cố định</span></button>
+    </div>
+
+    <div class="dr-step"><i>3</i> Khu vực còn trống (theo sơ đồ)</div>
+    <div class="fld">
+      <select id="fZone" data-nghe-order="khu"></select>
+    </div>
+
+    <div class="dr-step"><i>4</i> Ngày bắt đầu giữ chỗ</div>
+    <div class="days" id="fDays"></div>
+
+    <div class="f2">
+      <div class="fld">
+        <label for="fName">Họ tên *</label>
+        <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Tâm">
+      </div>
+      <div class="fld">
+        <label for="fPhone">Số điện thoại *</label>
+        <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
+      </div>
+    </div>
+
+    <div class="dr-commit">
+      <div>Xe có <b>&nbsp;mái che&nbsp;</b> — khu A, B phủ kín mưa hắt</div>
+      <div><b>&nbsp;Camera 24/24&nbsp;</b> ghi hình 30 ngày, xem lại có tem giờ</div>
+      <div>Giữ chỗ <b>&nbsp;48 giờ&nbsp;</b> — hủy, đổi khu miễn phí, không cọc</div>
+    </div>
+
+    <button type="submit" class="btn btn-gold" id="drSubmit" data-nghe-order-submit style="width:100%">Nhận mã giữ chỗ 48 giờ</button>
+
+    <div class="dr-ok" id="drOk">
+      <b style="font-family:var(--disp);text-transform:uppercase;letter-spacing:1px;color:var(--navy)">Đã giữ chỗ — mã của bạn</b>
+      <div class="code" id="okCode">BX-0000</div>
+      <p id="okLine">—</p>
+      <ul>
+        <li>Tổ trực gọi xác nhận trong 15 phút (giờ cao điểm trong 1 giờ)</li>
+        <li>Đến bãi xuất mã tại booth — nhận đúng khu đã chọn</li>
+        <li>Hết 48 giờ không tới, chỗ tự mở lại cho khách sau — không phí</li>
+      </ul>
+    </div>
+
+    <div class="dr-hot">
+      <div><small>Cần ngay — gọi tổ trực</small><b>0034 567 899</b></div>
+      <a href="tel:0034567899">Gọi</a>
+    </div>
+  </form>
+</aside>
+
+<div class="toasts" id="toastZone" aria-live="polite"></div>
+
+<script>
+/*NB110-091 — dữ liệu + máy quét + phiếu giữ chỗ (dạng B: đặt lịch/vé tháng là chính, KHÔNG giỏ)*/
+(function(){
+"use strict";
+
+/* ===== dữ liệu khu đỗ (khớp biển LED + hero: còn 98/484) ===== */
+var ZONES = [
+  {id:"A", name:"Xe máy mái che", total:240, free:86, vehicles:["xemay","cahai"]},
+  {id:"B", name:"Ô tô mái che · ô cố định", total:64, free:12, vehicles:["oto","cahai"]},
+  {id:"C", name:"Ô tô ngoài trời", total:180, free:0, vehicles:["oto","cahai"]}
+];
+var PRICES = {
+  xemay:{luot:"5.000đ/lượt", thangngay:"130.000đ/tháng", thang24:"160.000đ/tháng"},
+  oto:{luot:"25.000đ/lượt đầu", thangngay:"1.350.000đ/tháng", thang24:"1.650.000đ/tháng"},
+  cahai:{luot:"5.000đ + 25.000đ/lượt", thangngay:"từ 1.350.000đ/tháng", thang24:"từ 1.650.000đ/tháng"}
+};
+var VE_NAMES = {luot:"Vé lượt", thangngay:"Vé tháng 6h–18h", thang24:"Vé tháng 24/24"};
+var VEHICLE_NAMES = {xemay:"Xe máy", oto:"Ô tô", cahai:"Xe máy + ô tô"};
+
+var $ = function(s){ return document.querySelector(s); };
+var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+/* ===== toast 2 phần tử (title + message) ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div'); t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s); zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 4200);
+}
+
+/* ===== state ===== */
+var st = { vehicle:"xemay", ve:"luot", zone:null, scanned:false };
+var drawerSel = { vehicle:"xemay", ve:"thang24", zone:"B" };
+
+/* ===== LED marquee: nhân đôi track để chạy liền ===== */
+(function(){
+  var tr = document.getElementById('ledTrack');
+  tr.innerHTML = tr.innerHTML + tr.innerHTML;
+})();
+
+/* ===== reveal on scroll + thanh % cam kết ===== */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if (!e.isIntersecting) return;
+    e.target.classList.add('on');
+    $$('#proofBars .tr i').forEach(function(i){
+      if (i.closest('.rv') && i.closest('.rv').classList.contains('on')) i.style.width = i.getAttribute('data-w') + '%';
+    });
+    io.unobserve(e.target);
+  });
+}, {threshold:.14});
+$$('.rv').forEach(function(el){ io.observe(el); });
+
+/* ===== máy quét chỗ trống ===== */
+function zonesFor(vehicle){
+  return ZONES.filter(function(z){ return z.vehicles.indexOf(vehicle) !== -1; });
+}
+function renderZones(){
+  var grid = document.getElementById('zoneGrid');
+  grid.innerHTML = "";
+  ZONES.forEach(function(z, idx){
+    var full = z.free === 0;
+    var wrong = z.vehicles.indexOf(st.vehicle) === -1;
+    var off = full || wrong;
+    var pct = Math.max(6, Math.round(z.free / z.total * 100));
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'zone' + (st.zone === z.id ? ' sel' : '');
+    btn.disabled = off;
+    btn.setAttribute('data-zone', z.id);
+    var note = wrong ? 'Không nhận loại xe này — xem khu phù hợp'
+             : (full ? 'Khu đã đầy — vé tháng xếp khu B' : 'Còn trống');
+    btn.innerHTML =
+      '<span class="lane-a"></span>' +
+      '<span class="zi"><span class="zb">Khu ' + z.id + '</span><span class="zn">' + z.name + '</span></span>' +
+      '<span class="bar"><i class="' + (full ? 'full' : (pct < 25 ? 'low' : '')) + '" style="width:' + (full ? 100 : pct) + '%"></i></span>' +
+      '<span class="zc">' + note +
+      (wrong ? '' : (full ? '<b class="none">Đầy</b>' : '<b class="free">Còn ' + z.free + '/' + z.total + '</b>')) + '</span>';
+    if (!off) btn.addEventListener('click', function(){ pickZone(z.id); });
+    grid.appendChild(btn);
+    setTimeout(function(){ btn.classList.add('show'); }, 120 + idx * 140);
+  });
+}
+function pickZone(id){
+  st.zone = id;
+  $$('#zoneGrid .zone').forEach(function(z){ z.classList.toggle('sel', z.getAttribute('data-zone') === id); });
+  var z = ZONES.filter(function(x){ return x.id === id; })[0];
+  $('#sumTitle').textContent = 'Khu ' + z.id + ' · ' + VEHICLE_NAMES[st.vehicle] + ' · ' + VE_NAMES[st.ve];
+  $('#sumSub').textContent = PRICES[st.vehicle][st.ve] + ' · còn ' + z.free + ' ô trống — giữ chỗ 48 giờ miễn phí';
+  $('#sumBtn').textContent = 'Giữ chỗ khu ' + z.id + ' — 48 giờ';
+  $('#scanSum').classList.add('on');
+}
+$('#scanBtn').addEventListener('click', function(){
+  var btn = this;
+  st.scanned = true; st.zone = null;
+  $('#scanSum').classList.remove('on');
+  var zm = document.getElementById('zmap');
+  zm.classList.add('on');
+  btn.classList.add('busy'); btn.disabled = true;
+  $('#scanLabel').textContent = 'Đang quét sơ đồ 3 khu…';
+  renderZones();
+  setTimeout(function(){
+    btn.classList.remove('busy'); btn.disabled = false;
+    var list = zonesFor(st.vehicle);
+    var free = list.reduce(function(a, z){ return a + z.free; }, 0);
+    $('#scanLabel').textContent = 'Quét lại — đang trống ' + free + ' ô';
+    toast('Đã quét xong sơ đồ bãi', 'Đang trống ' + free + ' ô phù hợp xe của bạn — chạm khu để giữ chỗ.');
+  }, 1250);
+});
+$$('#vehicleRow .chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    $$('#vehicleRow .chip').forEach(function(x){ x.classList.remove('sel'); });
+    c.classList.add('sel');
+    st.vehicle = c.getAttribute('data-vehicle');
+    if (st.scanned) { renderZones(); $('#scanSum').classList.remove('on'); st.zone = null; }
+  });
+});
+$$('#veRow .ve-opt').forEach(function(v){
+  v.addEventListener('click', function(){
+    $$('#veRow .ve-opt').forEach(function(x){ x.classList.remove('sel'); });
+    v.classList.add('sel');
+    st.ve = v.getAttribute('data-ve');
+    if (st.zone) pickZone(st.zone);
+  });
+});
+$('#sumBtn').addEventListener('click', function(){
+  if (!st.zone) return;
+  openDrawer(st.vehicle, st.ve, st.zone);
+  toast('Chuyển sang phiếu giữ chỗ', 'Khu ' + st.zone + ' · ' + VE_NAMES[st.ve] + ' đã điền sẵn — điền tên và SĐT là xong.');
+});
+
+/* ===== drawer phiếu giữ chỗ ===== */
+var drawer = $('#drawer'), drawerBg = $('#drawerBg');
+function fillZoneSelect(){
+  var sel = $('#fZone');
+  sel.innerHTML = '';
+  zonesFor(drawerSel.vehicle).forEach(function(z){
+    var o = document.createElement('option');
+    if (z.free === 0){ o.disabled = true; o.textContent = 'Khu ' + z.id + ' — ' + z.name + ' (đã đầy)'; }
+    else { o.textContent = 'Khu ' + z.id + ' — ' + z.name + ' (còn ' + z.free + ' ô)'; }
+    o.value = z.id;
+    if (z.id === drawerSel.zone && z.free > 0) o.selected = true;
+    sel.appendChild(o);
+  });
+  if (!sel.value && sel.options.length) { for (var i = 0; i < sel.options.length; i++){ if (!sel.options[i].disabled){ sel.selectedIndex = i; break; } } }
+}
+function renderDays(){
+  var box = $('#fDays'); box.innerHTML = '';
+  var d = ['CN','T2','T3','T4','T5','T6','T7'];
+  for (var i = 0; i < 4; i++){
+    var dt = new Date(); dt.setDate(dt.getDate() + i);
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'day' + (i === 0 ? ' sel' : '');
+    b.innerHTML = '<b>' + dt.getDate() + '/' + (dt.getMonth() + 1) + '</b><span>' + d[dt.getDay()] + (i === 0 ? ' · nay' : '') + '</span>';
+    b.addEventListener('click', function(){
+      $$('#fDays .day').forEach(function(x){ x.classList.remove('sel'); });
+      this.classList.add('sel');
+    });
+    box.appendChild(b);
+  }
+}
+function syncVeRow(){
+  $$('#fVeRow .ve-opt').forEach(function(x){ x.classList.toggle('sel', x.getAttribute('data-ve') === drawerSel.ve); });
+}
+function openDrawer(vehicle, ve, zone){
+  if (vehicle) drawerSel.vehicle = vehicle;
+  if (ve) drawerSel.ve = ve;
+  if (zone) drawerSel.zone = zone;
+  $('#fVehicle').value = drawerSel.vehicle;
+  syncVeRow(); fillZoneSelect(); renderDays();
+  drawer.classList.add('open'); drawerBg.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ $('#fName').focus(); }, 350);
+}
+function closeDrawer(){
+  drawer.classList.remove('open'); drawerBg.classList.remove('open');
+  document.body.style.overflow = '';
+}
+$$('#fVeRow .ve-opt').forEach(function(v){
+  v.addEventListener('click', function(){
+    drawerSel.ve = v.getAttribute('data-ve'); syncVeRow();
+  });
+});
+$('#fVehicle').addEventListener('change', function(){
+  drawerSel.vehicle = this.value;
+  if (drawerSel.vehicle === 'xemay') drawerSel.zone = 'A';
+  fillZoneSelect();
+});
+$$('[data-open-drawer]').forEach(function(b){
+  b.addEventListener('click', function(){
+    openDrawer(b.getAttribute('data-prefill-vehicle'), b.getAttribute('data-prefill-ve'), b.getAttribute('data-prefill-zone'));
+  });
+});
+$('#drawerX').addEventListener('click', closeDrawer);
+drawerBg.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ closeDrawer(); } });
+
+/* ===== submit phiếu: xác nhận tại trang + toast ===== */
+$('#bkForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('#fName').value.trim();
+  var phone = $('#fPhone').value.trim();
+  if (name.length < 2){ toast('Thiếu họ tên', 'Điền họ tên để tổ trực gọi xác nhận chỗ.'); $('#fName').focus(); return; }
+  if (!/^0\d{8,10}$/.test(phone.replace(/[\s.]/g, ''))){ toast('Số điện thoại chưa đúng', 'Nhập số bắt đầu bằng 0, đủ 9–11 chữ số.'); $('#fPhone').focus(); return; }
+  var zid = $('#fZone').value || 'B';
+  var day = $('#fDays .day.sel b');
+  var code = 'BX-' + zid + String(Math.floor(1000 + Math.random() * 9000));
+  $('#okCode').textContent = code;
+  $('#okLine').textContent = name + ' · ' + VEHICLE_NAMES[drawerSel.vehicle] + ' · ' + VE_NAMES[drawerSel.ve] + ' · Khu ' + zid + ' · giữ từ ' + (day ? day.textContent : 'hôm nay') + ' — mã đã gửi kèm tin nhắn xác nhận.';
+  $('#drOk').classList.add('on');
+  $('#drOk').scrollIntoView({behavior:'smooth', block:'nearest'});
+  toast('Đã nhận phiếu giữ chỗ — mã ' + code, 'Chỗ giữ 48 giờ tại khu ' + zid + '. Tổ trực sẽ gọi lại số ' + phone + ' để xác nhận.');
+});
+
+/* ===== chat booth trực (không bot — chips dẫn tới thông tin thật) ===== */
+var panel = $('#pkcPanel');
+$('#pkcFab').addEventListener('click', function(){
+  panel.classList.toggle('on');
+  document.body.classList.toggle('chat-open', panel.classList.contains('on'));
+  if (panel.classList.contains('on')) $('#pkcInput').focus();
+});
+$('#pkcClose').addEventListener('click', function(){
+  panel.classList.remove('on');
+  document.body.classList.remove('chat-open');
+});
+function say(text, who){
+  var m = document.createElement('div');
+  m.className = 'pkc-m ' + who;
+  m.textContent = text;
+  $('#pkcMsgs').appendChild(m);
+  $('#pkcMsgs').scrollTop = 1e6;
+}
+function send(){
+  var v = $('#pkcInput').value.trim();
+  if (!v) return;
+  say(v, 'me');
+  $('#pkcInput').value = '';
+  setTimeout(function(){
+    say('Đã nhận — tổ trực trả lời trong ít phút. Cần ngay thì gọi 0034 567 899, hoặc mở phiếu giữ chỗ để có mã trong 1 phút.', 'them');
+  }, 600);
+}
+$('#pkcSend').addEventListener('click', send);
+$('#pkcInput').addEventListener('keydown', function(e){ if (e.key === 'Enter') send(); });
+$$('.pkc-chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var q = c.getAttribute('data-q');
+    say(q, 'me');
+    var ans = {
+      'Khu nào còn ô trống?': 'Giờ này: khu A còn 86 ô (xe máy), khu B còn 12 ô (ô tô), khu C đã đầy. Xem máy quét chỗ ở mục “Vé tháng” để giữ trước.',
+      'Vé tháng ô tô giá bao nhiêu?': 'Ô tô vé tháng: 1.350.000đ/tháng ban ngày (6h–18h), 1.650.000đ/tháng 24/24 có ô cố định khu B. Giữ thử 48 giờ miễn phí.',
+      'Mất vé giấy xử lý thế nào?': 'Xuất trình giấy tờ xe + căn cước, tổ trực đối chiếu camera và làm biên bản ~3 phút — không phạt thêm.'
+    }[q] || 'Đã nhận câu hỏi — tổ trực sẽ trả lời ngay.';
+    setTimeout(function(){ say(ans, 'them'); }, 550);
+  });
+});
+
+/* ===== FAQ accordion ===== */
+$$('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    var item = q.parentElement;
+    var open = item.classList.contains('open');
+    $$('.faq-i').forEach(function(i){ i.classList.remove('open'); });
+    if (!open) item.classList.add('open');
+  });
+});
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIA TRANG — Cửa hàng tranh, khung tranh &amp; đồ trang trí | In tranh theo yêu cầu, đóng khung theo size</title>
+<meta name="description" content="Gia Trang — xưởng tranh & khung tranh 12 năm: in tranh canvas, sơn dầu theo yêu cầu, đóng khung theo mọi kích thước, set 3 tranh đồng bộ, gương - đèn - bình hoa decor. Giao & treo tận nhà, đổi trả 7 ngày.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   NB93-153 — GIA TRANG DESIGN SYSTEM
+   Niche Color Psychology (tranh & đồ trang trí — gallery sang trọng):
+   • Primary : Espresso gallery #241C14 → tường trưng bày tối, nổi tranh
+   • Accent  : Vàng đồng khung tranh #C79A3B → CTA, giá, viền khung
+   • Texture : Kem lụa #FAF5EA → nền sáng xen kẽ section
+   Hoạ tiết nghề: khung tranh viền kép + góc khung + dây treo tranh
+   ============================================================ */
+:root{
+  --wood-900:#17110B;
+  --wood-800:#241C14;
+  --wood-700:#382C1F;
+  --wood-600:#4E3D2B;
+  --wood-500:#6B5539;
+  --wood-300:#C3A878;
+  --cream-100:#FAF5EA;
+  --cream-200:#F2EADA;
+  --cream-300:#E6D8BE;
+  --cream-700:#7A6448;
+  --gold:#C79A3B;
+  --gold-600:#AC7F22;
+  --gold-100:#F6EBD2;
+  --amber:#E4B65E;
+  --green:#3F7D5A;
+  --green-100:#E2F1E9;
+  --red:#C05040;
+  --white:#FFFFFF;
+  --ink:#292219;
+  --ink-soft:#716452;
+  --line:rgba(56,44,31,.14);
+  --shadow-sm:0 2px 10px rgba(56,44,31,.08);
+  --shadow-md:0 10px 30px -8px rgba(56,44,31,.22);
+  --shadow-lg:0 30px 60px -18px rgba(23,17,11,.35);
+  --shadow-glow:0 12px 40px -6px rgba(199,154,59,.45);
+  --r-sm:10px; --r-md:16px; --r-lg:24px; --r-xl:32px;
+  --glass:rgba(250,245,234,.78);
+  --glass-wood:rgba(56,44,31,.55);
+  --grad-gold:linear-gradient(135deg,#E9C36B 0%,#C79A3B 55%,#AC7F22 100%);
+  --grad-wood:linear-gradient(140deg,#463626 0%,#241C14 60%,#17110B 100%);
+  --frame-texture:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.32 0 0 0 0 0.25 0 0 0 0 0.14 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  --gallery-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120' viewBox='0 0 240 120'%3E%3Cg fill='none' stroke='%23C3A878' stroke-opacity='.18' stroke-width='1.6'%3E%3Crect x='10' y='14' width='42' height='32'/%3E%3Crect x='62' y='22' width='28' height='36'/%3E%3Crect x='100' y='10' width='52' height='40'/%3E%3Crect x='162' y='18' width='34' height='30'/%3E%3Crect x='30' y='70' width='52' height='38'/%3E%3Crect x='96' y='76' width='36' height='30'/%3E%3Crect x='144' y='66' width='48' height='42'/%3E%3Cpath d='M0 62h240'/%3E%3C/g%3E%3C/svg%3E");
+  --font:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:clip}
+body{font-family:var(--font);color:var(--ink);background:var(--cream-100);line-height:1.6;overflow-x:clip}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select{font-family:inherit}
+::selection{background:var(--gold);color:#fff}
+.container{width:min(1240px,92%);margin:0 auto}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--cream-200)}
+::-webkit-scrollbar-thumb{background:var(--wood-300);border-radius:8px;border:2px solid var(--cream-200)}
+::-webkit-scrollbar-thumb:hover{background:var(--wood-500)}
+
+/* ============ 0. TOPBAR ============ */
+.topbar{background:var(--wood-900);color:#E7D9C2;font-size:.8rem;padding:7px 0;position:relative;z-index:60}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.topbar-items{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.topbar-item{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.topbar-item svg{width:14px;height:14px;color:var(--amber)}
+.topbar-item b{color:#fff;font-weight:600}
+.topbar .hotline-hot{color:var(--amber);font-weight:700;letter-spacing:.2px}
+@media(max-width:760px){.topbar-items.top-left{display:none}.topbar .container{justify-content:center}}
+
+/* ============ 1. HEADER (sticky glass) ============ */
+.header{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid var(--line);box-shadow:0 6px 24px -12px rgba(56,44,31,.25);transition:box-shadow .3s}
+.header.scrolled{box-shadow:0 14px 34px -14px rgba(56,44,31,.38)}
+.header-inner{display:flex;align-items:center;gap:26px;padding:13px 0}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo-mark{width:46px;height:46px;border-radius:13px;background:var(--grad-wood);display:grid;place-items:center;position:relative;box-shadow:var(--shadow-md);overflow:hidden}
+.logo-mark::before{content:'';position:absolute;inset:6px;border:1.5px solid rgba(228,182,94,.65);border-radius:7px}
+.logo-mark svg{width:24px;height:24px;position:relative;z-index:1}
+.logo-text{line-height:1.15}
+.logo-text .lt1{font-weight:900;font-size:1.28rem;letter-spacing:.5px;color:var(--wood-800)}
+.logo-text .lt1 span{color:var(--gold-600)}
+.logo-text .lt2{font-size:.66rem;color:var(--ink-soft);font-weight:500;letter-spacing:1.6px;text-transform:uppercase}
+/* Search */
+.searchbox{flex:1;position:relative;max-width:520px;min-width:0}
+.searchbox input{width:100%;min-width:0;padding:11px 108px 11px 44px;border:1.5px solid var(--line);border-radius:999px;background:var(--white);font-size:.88rem;transition:.25s;color:var(--ink)}
+.searchbox input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(199,154,59,.13)}
+.searchbox .s-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--ink-soft)}
+.searchbox .s-hint{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:.68rem;background:var(--cream-200);color:var(--cream-700);padding:5px 11px;border-radius:999px;font-weight:600;pointer-events:none}
+.search-drop{position:absolute;top:calc(100% + 10px);left:0;right:0;background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);border:1px solid var(--line);overflow:hidden auto;opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;z-index:75;max-height:430px}
+.search-drop.show{opacity:1;visibility:visible;transform:none}
+.sd-head{padding:11px 16px;font-size:.68rem;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);background:var(--cream-100);display:flex;justify-content:space-between;gap:10px;position:sticky;top:0}
+.sd-item{display:flex;gap:12px;align-items:center;padding:10px 14px;width:100%;text-align:left;transition:.15s;border-bottom:1px solid var(--cream-100)}
+.sd-item:hover{background:var(--cream-100)}
+.sd-item img{width:58px;height:40px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1px solid var(--line)}
+.sd-item .st{font-size:.82rem;font-weight:700;color:var(--wood-800);line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.sd-item .sp{font-size:.76rem;font-weight:800;color:var(--gold-600)}
+.sd-item .sc{margin-left:auto;font-size:.62rem;color:var(--ink-soft);background:var(--cream-200);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.sd-empty{padding:24px 16px;text-align:center;font-size:.82rem;color:var(--ink-soft)}
+.sd-all{display:block;padding:12px;text-align:center;font-weight:800;font-size:.82rem;color:var(--gold-600);background:var(--gold-100);transition:.2s}
+.sd-all:hover{background:#EFD9A8}
+/* Nav */
+.nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav>a,.nav .navdrop>button{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:10px;font-size:.87rem;font-weight:600;color:var(--wood-800);transition:.2s;position:relative}
+.nav>a:hover,.nav .navdrop>button:hover{background:rgba(199,154,59,.12);color:var(--gold-600)}
+.navdrop{position:relative}
+.navdrop .dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,8px);background:#fff;border-radius:var(--r-md);box-shadow:var(--shadow-lg);border:1px solid var(--line);min-width:520px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:4px;opacity:0;visibility:hidden;transition:.25s;z-index:70}
+.navdrop:hover .dd,.navdrop:focus-within .dd{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd a{display:flex;gap:11px;align-items:center;padding:9px 10px;border-radius:10px;transition:.15s}
+.dd a:hover{background:var(--cream-200)}
+.dd .dd-ico{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+.dd .dd-ico svg{width:19px;height:19px}
+.dd .dd-t{font-weight:700;font-size:.84rem;color:var(--wood-800)}
+.dd .dd-s{font-size:.72rem;color:var(--ink-soft);display:block}
+/* Header actions */
+.h-actions{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.btn-icon{position:relative;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--white);border:1.5px solid var(--line);color:var(--wood-800);transition:.2s}
+.btn-icon:hover{border-color:var(--gold);color:var(--gold-600);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-icon svg{width:20px;height:20px}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:var(--grad-gold);color:#fff;font-size:.64rem;font-weight:800;min-width:19px;height:19px;border-radius:999px;display:grid;place-items:center;padding:0 4px;border:2px solid var(--cream-100);transform:scale(0);transition:transform .3s cubic-bezier(.68,-.55,.27,1.55)}
+.cart-badge.show{transform:scale(1)}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--grad-gold);color:#fff;font-weight:700;font-size:.87rem;padding:11px 20px;border-radius:12px;box-shadow:var(--shadow-glow);transition:.25s;position:relative;overflow:hidden}
+.btn-cta::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 16px 46px -6px rgba(172,127,34,.55)}
+.btn-cta:hover::after{left:130%}
+.btn-cta svg{width:16px;height:16px}
+.burger{display:none}
+
+/* ============ 2. HERO — gallery wall ============ */
+.hero{position:relative;background:var(--cream-200);overflow:hidden;padding:72px 0 96px}
+.hero::before{content:'';position:absolute;inset:0;background-image:var(--frame-texture);pointer-events:none}
+.hero-wall{position:absolute;inset:0;background-image:var(--gallery-pattern);background-size:240px 120px;mask-image:radial-gradient(78% 88% at 32% 38%,#000 26%,transparent 100%);-webkit-mask-image:radial-gradient(78% 88% at 32% 38%,#000 26%,transparent 100%)}
+.hero::after{content:'';position:absolute;top:-12%;right:-14%;width:62%;height:130%;background:var(--grad-wood);border-radius:0 0 0 46%/0 0 0 38%;box-shadow:-30px 30px 80px rgba(23,17,11,.35);pointer-events:none}
+.hero-rails{position:absolute;top:0;right:0;width:52%;height:100%;background-image:var(--gallery-pattern);opacity:.55;border-radius:0 0 0 46%/0 0 0 38%;pointer-events:none}
+.hero .container{position:relative;z-index:5;display:grid;grid-template-columns:.94fr 1.06fr;gap:48px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);padding:8px 16px;border-radius:999px;font-size:.78rem;font-weight:700;color:var(--wood-700);box-shadow:var(--shadow-sm);margin-bottom:22px}
+.hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(199,154,59,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(199,154,59,.07)}}
+.hero h1{font-size:clamp(2.1rem,4.2vw,3.35rem);line-height:1.13;font-weight:900;color:var(--wood-800);letter-spacing:-.5px;margin-bottom:20px}
+.hero h1 .hl{position:relative;color:#fff;padding:0 10px;white-space:nowrap}
+.hero h1 .hl::before{content:'';position:absolute;inset:4px -2px;background:var(--grad-gold);transform:skew(-8deg) rotate(-1.2deg);border-radius:8px;z-index:-1;box-shadow:var(--shadow-glow)}
+.hero-sub{font-size:1.02rem;color:var(--ink-soft);max-width:520px;margin-bottom:30px}
+.hero-sub b{color:var(--wood-800)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.btn-hero{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:14px;font-weight:800;font-size:.95rem;transition:.25s;position:relative;overflow:hidden}
+.btn-hero svg{width:18px;height:18px}
+.btn-hero.primary{background:var(--grad-gold);color:#fff;box-shadow:var(--shadow-glow)}
+.btn-hero.primary::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .55s}
+.btn-hero.primary:hover::after{left:135%}
+.btn-hero.primary:hover{transform:translateY(-3px)}
+.btn-hero.ghost{background:rgba(255,255,255,.85);color:var(--wood-800);border:1.5px solid var(--line);backdrop-filter:blur(8px)}
+.btn-hero.ghost:hover{border-color:var(--wood-800);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.hero-trust{display:flex;gap:10px;flex-wrap:wrap}
+.trust-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.75);border:1px dashed rgba(56,44,31,.25);padding:8px 14px;border-radius:999px;font-size:.76rem;font-weight:600;color:var(--wood-800)}
+.trust-chip svg{width:15px;height:15px;color:var(--green)}
+/* hero visual — poster giữ nguyên nhận diện trong khung vàng đồng */
+.hero-visual{position:relative}
+.hv-frame{position:relative;border-radius:6px;background:var(--grad-gold);padding:12px;box-shadow:var(--shadow-lg),0 24px 70px -18px rgba(23,17,11,.5);transform:rotate(-1deg);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.hv-frame:hover{transform:rotate(0) scale(1.015)}
+.hv-frame::before{content:'';position:absolute;inset:4px;border:1.5px solid rgba(255,255,255,.5);border-radius:3px;pointer-events:none;z-index:2}
+.hv-frame img{width:100%;border-radius:2px}
+.hv-caption{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--glass-wood);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;color:#fff;box-shadow:var(--shadow-md);margin-top:18px;transform:none}
+.hv-cap-note{display:flex;align-items:center;gap:9px;font-size:.78rem;font-weight:700}
+.hv-cap-note svg{width:19px;height:19px;color:var(--amber);flex-shrink:0}
+.hv-stats{display:flex;gap:22px}
+.hv-stat .n{font-size:1.28rem;font-weight:900;color:var(--amber);line-height:1.1;font-variant-numeric:tabular-nums}
+.hv-stat .l{font-size:.62rem;opacity:.85;letter-spacing:.3px}
+
+/* ============ 3. GOLD TAPE MARQUEE ============ */
+.tape-marquee{background:var(--grad-gold);padding:14px 0;transform:rotate(-1.1deg) scale(1.02);margin:-6px 0;box-shadow:0 12px 34px -10px rgba(172,127,34,.5);position:relative;z-index:10}
+.tape-marquee::before,.tape-marquee::after{content:'';position:absolute;left:0;right:0;height:9px;background-image:var(--gallery-pattern);opacity:.75}
+.tape-marquee::before{top:0}
+.tape-marquee::after{bottom:0}
+.marquee{overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:0;animation:scroll 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee-item{display:inline-flex;align-items:center;gap:14px;color:#fff;font-weight:800;font-size:.95rem;letter-spacing:1px;text-transform:uppercase;padding:0 26px}
+.marquee-item svg{width:17px;height:17px;opacity:.9}
+
+/* ============ 4. SECTION BASE + FEATURED + COMPACT ============ */
+.section{padding:84px 0;position:relative}
+.section.cream{background:var(--cream-200)}
+.section.cream::before{content:'';position:absolute;inset:0;background-image:var(--frame-texture)}
+.section.white{background:var(--cream-100)}
+.section.navy{background:var(--grad-wood);color:#EDE0C9}
+.section.navy .sec-title{color:#fff}
+.section.navy .sec-desc{color:rgba(237,224,201,.72)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.sec-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold-600);margin-bottom:12px}
+.sec-kicker::before{content:'';width:26px;height:3px;background:var(--grad-gold);border-radius:2px}
+.sec-title{font-size:clamp(1.55rem,2.8vw,2.25rem);font-weight:900;color:var(--wood-800);line-height:1.2;letter-spacing:-.4px}
+.sec-desc{color:var(--ink-soft);max-width:560px;margin-top:10px;font-size:.95rem}
+/* ---- 4A. 2 dịch vụ lớn ---- */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.feat-card{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#fff;box-shadow:var(--shadow-md);border:1px solid var(--line);display:flex;flex-direction:column;transition:.4s cubic-bezier(.22,1,.36,1);isolation:isolate}
+.feat-card:hover{transform:translateY(-9px);box-shadow:var(--shadow-lg),0 0 0 2px rgba(199,154,59,.45)}
+.feat-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--wood-800)}
+.feat-media img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.feat-card:hover .feat-media img{transform:scale(1.06)}
+.feat-media::after{content:'';position:absolute;inset:0;background:linear-gradient(190deg,rgba(23,17,11,0) 42%,rgba(23,17,11,.72))}
+.feat-num{position:absolute;top:14px;left:14px;z-index:2;font-size:.66rem;font-weight:900;letter-spacing:1.8px;color:#fff;background:rgba(23,17,11,.62);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:999px}
+.feat-price{position:absolute;bottom:12px;left:14px;right:14px;z-index:2;color:#fff;font-weight:900;font-size:1.06rem;text-shadow:0 2px 8px rgba(23,17,11,.7)}
+.feat-price small{font-weight:600;font-size:.66rem;opacity:.85;display:block;letter-spacing:.2px}
+.feat-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1;position:relative}
+.feat-title{font-size:1.12rem;font-weight:900;color:var(--wood-800);line-height:1.3;display:flex;gap:11px;align-items:center}
+.feat-title .fi{width:40px;height:40px;border-radius:12px;background:var(--gold-100);display:grid;place-items:center;flex-shrink:0}
+.feat-title .fi svg{width:20px;height:20px;color:var(--gold-600)}
+.feat-desc{font-size:.84rem;color:var(--ink-soft);line-height:1.6}
+.feat-list{list-style:none;display:grid;gap:7px;margin-top:2px}
+.feat-list li{display:flex;gap:9px;align-items:flex-start;font-size:.8rem;color:var(--ink);line-height:1.5}
+.feat-list li::before{content:'✓';color:var(--green);font-weight:900;flex-shrink:0}
+.feat-card .f-cta{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-weight:800;font-size:.86rem;background:var(--grad-gold);color:#fff;box-shadow:var(--shadow-glow);transition:.25s}
+.feat-card .f-cta svg{width:16px;height:16px;transition:transform .25s}
+.feat-card .f-cta:hover{transform:translateY(-2px)}
+.feat-card .f-cta:hover svg{transform:translateX(4px)}
+.feat-card .f-cta.ghosty{background:var(--wood-800);box-shadow:var(--shadow-md)}
+/* ---- 4B. Compact strip: treo ở đâu cũng đẹp ---- */
+.compact-label{margin:44px 0 14px;font-size:.8rem;font-weight:800;color:var(--ink-soft);display:flex;align-items:center;gap:12px;letter-spacing:.2px}
+.compact-label::after{content:'';flex:1;height:1.5px;background:var(--line)}
+.compact-strip{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:10px;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;box-shadow:var(--shadow-sm)}
+.compact-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;transition:.25s;border:1.5px dashed transparent;cursor:pointer;min-width:0}
+.compact-item:hover{background:var(--cream-100);border-color:rgba(199,154,59,.4);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.compact-item .ci{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.compact-item .ci svg{width:21px;height:21px}
+.compact-item .ct{font-weight:800;font-size:.8rem;color:var(--wood-800);line-height:1.25;display:block}
+.compact-item .cs{font-size:.67rem;color:var(--ink-soft);display:block}
+.compact-item .arrow{margin-left:auto;color:var(--gold-600);opacity:0;transform:translateX(-6px);transition:.25s;flex-shrink:0}
+.compact-item .arrow svg{width:16px;height:16px}
+.compact-item:hover .arrow{opacity:1;transform:none}
+
+/* ============ 5. DAC THU — MÁY BÁO GIÁ IN TRANH + ĐÓNG KHUNG THEO SIZE ============ */
+.cfg-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:stretch}
+.cfg-form{background:var(--glass-wood);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border:1px solid rgba(255,255,255,.22);border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow-lg)}
+.cfg-form h3{color:#fff;font-size:1.3rem;font-weight:900;margin-bottom:6px;display:flex;align-items:center;gap:11px}
+.cfg-form h3 svg{width:26px;height:26px;color:var(--amber)}
+.cfg-form .cf-sub{color:rgba(237,224,201,.85);font-size:.84rem;margin-bottom:20px}
+.cfg-lbl{display:block;color:rgba(237,224,201,.85);font-size:.72rem;font-weight:800;margin-bottom:9px;letter-spacing:.6px;text-transform:uppercase}
+.cfg-mats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
+.cfg-mat{text-align:left;border:1.5px solid rgba(255,255,255,.2);background:rgba(23,17,11,.4);border-radius:13px;padding:12px 13px;color:#EDE0C9;transition:.2s;min-width:0}
+.cfg-mat:hover{border-color:rgba(228,182,94,.55)}
+.cfg-mat.on{border-color:var(--amber);background:rgba(228,182,94,.16);box-shadow:0 0 0 3px rgba(228,182,94,.12)}
+.cfg-mat .cm-t{font-weight:800;font-size:.82rem;color:#fff;display:block}
+.cfg-mat .cm-s{font-size:.68rem;color:rgba(237,224,201,.65);display:block}
+.cfg-mat .cm-p{font-weight:900;font-size:.78rem;color:var(--amber);display:block;margin-top:4px}
+.cfg-sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.cfg-size{border:1.5px solid rgba(255,255,255,.2);background:rgba(23,17,11,.4);color:#EDE0C9;font-weight:700;font-size:.78rem;padding:9px 14px;border-radius:999px;transition:.2s;display:inline-flex;gap:6px;align-items:center}
+.cfg-size:hover{border-color:rgba(228,182,94,.55)}
+.cfg-size.on{background:var(--grad-gold);border-color:transparent;color:#fff}
+.cfg-size small{opacity:.75;font-weight:600}
+.cfg-custom{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:18px}
+.cfg-custom input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.22);background:rgba(23,17,11,.45);color:#fff;font-size:.9rem;font-weight:600}
+.cfg-custom input:focus{outline:none;border-color:var(--amber)}
+.cfg-custom .x{color:rgba(237,224,201,.6);font-weight:800}
+.cfg-frames{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:16px}
+.cfg-frame{display:flex;gap:10px;align-items:center;border:1.5px solid rgba(255,255,255,.2);background:rgba(23,17,11,.4);border-radius:12px;padding:10px 12px;font-size:.78rem;font-weight:600;color:#EDE0C9;cursor:pointer;transition:.2s}
+.cfg-frame:hover{background:rgba(255,255,255,.07)}
+.cfg-frame input{accent-color:var(--gold);width:16px;height:16px;flex-shrink:0}
+.cfg-frame .fp{margin-left:auto;font-weight:900;color:var(--amber);white-space:nowrap;font-size:.74rem}
+.cfg-extras{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.cfg-extra{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:10px 11px;font-size:.74rem;font-weight:600;color:#EDE0C9;cursor:pointer;transition:.2s}
+.cfg-extra input{accent-color:var(--gold);width:15px;height:15px;flex-shrink:0}
+.cfg-extra input:checked+span{color:#fff}
+.cfg-result{background:#fff;border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.cfg-result::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad-gold)}
+.cr-box{border:1.5px dashed rgba(199,154,59,.5);background:var(--gold-100);border-radius:14px;padding:16px 18px}
+.cr-box .t{font-size:.72rem;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-600);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.cr-box .t svg{width:15px;height:15px}
+.cr-lines{display:grid;gap:7px}
+.cr-line{display:flex;justify-content:space-between;gap:12px;font-size:.86rem}
+.cr-line .k{color:var(--ink-soft)}
+.cr-line .v{font-weight:800;color:var(--wood-800);text-align:right}
+.cr-total{display:flex;justify-content:space-between;align-items:center;background:var(--green-100);border-radius:14px;padding:16px 18px;border:1.5px solid rgba(63,125,90,.3)}
+.cr-total .k{font-weight:700;color:var(--green);font-size:.86rem}
+.cr-total .k small{display:block;color:var(--ink-soft);font-weight:500;font-size:.7rem}
+.cr-total .v{font-size:1.6rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
+.cr-note{font-size:.72rem;color:var(--ink-soft);display:flex;gap:6px;align-items:flex-start}
+.cr-note svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;color:var(--wood-500)}
+.cr-actions{display:flex;gap:10px;margin-top:auto}
+.cr-actions .btn-cta{flex:1;justify-content:center;padding:14px;font-size:.88rem;white-space:normal}
+.cr-actions .btn-outline-d{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);color:var(--wood-800);font-weight:700;padding:14px 18px;border-radius:12px;font-size:.84rem;background:#fff;transition:.2s;white-space:normal}
+.cr-actions .btn-outline-d:hover{border-color:var(--wood-800)}
+
+/* ============ 6. SET 3 TRANH ĐỒNG BỘ (bundle) ============ */
+.bundle-wrap{background:var(--wood-900);border-radius:var(--r-xl);padding:8px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.bundle-wrap::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.3;pointer-events:none}
+.bundle-tabs{display:flex;gap:6px;padding:14px 14px 0;position:relative;flex-wrap:wrap}
+.bundle-tab{padding:11px 20px;border-radius:12px;font-weight:700;font-size:.86rem;color:rgba(237,224,201,.65);transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.bundle-tab svg{width:16px;height:16px}
+.bundle-tab:hover{color:#fff;background:rgba(255,255,255,.07)}
+.bundle-tab.active{background:var(--grad-gold);color:#fff;box-shadow:var(--shadow-glow)}
+.bundle-panels{position:relative;padding:26px 26px 30px}
+.bundle-panel{display:none;animation:fadeUp .45s ease both}
+.bundle-panel.active{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.bp-info{color:#EDE0C9;min-width:0}
+.bp-tag{display:inline-block;background:rgba(228,182,94,.15);border:1px solid rgba(228,182,94,.4);color:var(--amber);font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:6px 13px;border-radius:999px;margin-bottom:16px}
+.bp-title{font-size:1.7rem;font-weight:900;color:#fff;line-height:1.25;margin-bottom:12px}
+.bp-desc{font-size:.92rem;color:rgba(237,224,201,.75);margin-bottom:22px}
+.bp-list{display:grid;gap:10px;margin-bottom:24px}
+.bp-item{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:11px 14px;border-radius:12px;transition:.25s}
+.bp-item:hover{background:rgba(255,255,255,.09);transform:translateX(5px)}
+.bp-item .ck{width:30px;height:30px;border-radius:9px;background:rgba(63,125,90,.25);display:grid;place-items:center;flex-shrink:0}
+.bp-item .ck svg{width:15px;height:15px;color:#6FCB9B}
+.bp-item .bi-t{display:block;font-size:.86rem;font-weight:700;color:#fff}
+.bp-item .bi-s{display:block;font-size:.72rem;color:rgba(237,224,201,.6)}
+.bp-item .bi-p{margin-left:auto;font-weight:900;color:var(--amber);font-size:.9rem;white-space:nowrap}
+.bp-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.bp-total{color:#fff;font-size:.82rem}
+.bp-total b{color:var(--amber);font-size:1.35rem;font-weight:900}
+.btn-addkit{display:inline-flex;align-items:center;gap:9px;background:var(--grad-gold);color:#fff;font-weight:800;padding:13px 24px;border-radius:12px;font-size:.88rem;box-shadow:var(--shadow-glow);transition:.25s}
+.btn-addkit:hover{transform:translateY(-2px)}
+.btn-addkit svg{width:17px;height:17px}
+.bp-gallery{background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.2);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.bpg-head{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.92rem}
+.bpg-head .n{width:27px;height:27px;border-radius:50%;background:var(--grad-gold);display:grid;place-items:center;font-size:.8rem;flex-shrink:0}
+.bpg-head .s{margin-left:auto;font-size:.68rem;color:rgba(237,224,201,.62);font-weight:600}
+.bpg-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;flex:1}
+.bpg-item{background:#fff;border-radius:13px;overflow:hidden;position:relative;transition:.25s;display:flex;flex-direction:column}
+.bpg-item:hover{transform:translateY(-4px);box-shadow:0 16px 30px -10px rgba(0,0,0,.5)}
+.bpg-item img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.bpg-item .bi-n{padding:9px 11px 10px;font-size:.73rem;font-weight:700;color:var(--wood-800);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.bpg-item .bi-q{position:absolute;top:7px;right:7px;background:rgba(23,17,11,.8);color:#fff;font-size:.62rem;font-weight:800;padding:3px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.bpg-note{display:flex;gap:9px;align-items:center;font-size:.7rem;color:rgba(237,224,201,.7);background:rgba(228,182,94,.1);border:1px solid rgba(228,182,94,.32);border-radius:11px;padding:9px 12px}
+.bpg-note svg{width:15px;height:15px;color:var(--amber);flex-shrink:0}
+
+/* ============ 7. DEAL + KHỐI-8 (grid kín ô, 1 thẻ nổi bật 2 cột) ============ */
+.deal-strip{display:flex;align-items:center;gap:18px;background:var(--wood-800);border-radius:var(--r-md);padding:14px 22px;margin-bottom:34px;color:#fff;box-shadow:var(--shadow-md);flex-wrap:wrap;position:relative;overflow:hidden}
+.deal-strip::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.25}
+.deal-strip .flame{font-size:1.5rem;animation:flick 1.2s infinite}
+@keyframes flick{50%{transform:scale(1.15) rotate(-4deg)}}
+.deal-strip .dt{font-weight:900;font-size:1rem}
+.deal-strip .dt span{color:var(--amber)}
+.deal-count{display:flex;gap:6px;margin-left:auto}
+.dc-cell{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:9px;min-width:52px;padding:7px 8px;text-align:center}
+.dc-cell .v{font-weight:900;font-size:1.15rem;font-variant-numeric:tabular-nums;color:var(--amber)}
+.dc-cell .l{font-size:.58rem;letter-spacing:1.4px;opacity:.65;text-transform:uppercase}
+.deal-strip .note{font-size:.76rem;color:rgba(255,255,255,.65)}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.p-card{background:#fff;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line);transition:.4s cubic-bezier(.22,1,.36,1);position:relative;display:flex;flex-direction:column;isolation:isolate;min-width:0}
+.p-card::before{content:'';position:absolute;inset:0;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(199,154,59,.1),transparent 65%);opacity:0;transition:opacity .35s;z-index:1;pointer-events:none}
+.p-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg),0 0 0 2px rgba(199,154,59,.5)}
+.p-card:hover::before{opacity:1}
+/* viền khung tranh kép — hoạ tiết nghề trên thẻ */
+.p-card::after{content:'';position:absolute;inset:9px;border:1px solid rgba(199,154,59,.28);border-radius:9px;pointer-events:none;z-index:2}
+.p-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--cream-200)}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.p-card:hover .p-media img{transform:scale(1.06)}
+.p-badges{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:6px;z-index:3}
+.pb{font-size:.64rem;font-weight:900;padding:4px 10px;border-radius:999px;letter-spacing:.5px;color:#fff;display:inline-flex;align-items:center;gap:5px}
+.pb.hot{background:var(--red)}
+.pb.craft{background:var(--grad-gold);color:var(--wood-900)}
+.pb.new{background:var(--wood-500)}
+.pb.sale{background:var(--amber);color:var(--wood-900)}
+.p-quick{position:absolute;inset:auto 10px 10px 10px;display:flex;gap:8px;z-index:4;transform:translateY(14px);opacity:0;transition:.35s}
+.p-card:hover .p-quick{transform:none;opacity:1}
+.pq-btn{flex:1;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-radius:10px;padding:9px;font-weight:800;font-size:.76rem;color:var(--wood-800);display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:.2s;border:1px solid rgba(255,255,255,.6)}
+.pq-btn svg{width:14px;height:14px}
+.pq-btn.buy{background:var(--grad-gold);color:#fff;box-shadow:var(--shadow-glow)}
+.pq-btn:hover{transform:translateY(-2px)}
+.p-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;position:relative;z-index:3;min-width:0}
+.p-cat{font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-600)}
+.p-name{font-weight:800;font-size:.94rem;color:var(--wood-800);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.55em}
+.p-mats{display:flex;gap:5px;flex-wrap:wrap}
+.p-mat{font-size:.63rem;font-weight:800;padding:4px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--cream-100);color:var(--wood-600);transition:.18s}
+.p-mat:hover{border-color:var(--gold);transform:translateY(-1px)}
+.p-mat.on{background:var(--gold-100);border-color:var(--gold);color:var(--gold-600)}
+.p-mdesc{font-size:.71rem;color:var(--ink-soft);line-height:1.45;min-height:3em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.p-price-row{margin-top:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p-price{font-weight:900;color:var(--gold-600);font-size:1.06rem}
+.p-old{font-size:.75rem;color:var(--ink-soft);text-decoration:line-through}
+.p-tier{display:flex;align-items:center;gap:7px;background:linear-gradient(90deg,var(--gold-100),transparent);border-left:3px solid var(--gold);padding:6px 10px;border-radius:0 8px 8px 0;font-size:.68rem;color:var(--cream-700);font-weight:600}
+.p-tier b{color:var(--gold-600)}
+/* thẻ nổi bật — chiếm 2 cột, bố cục ngang ảnh | nội dung */
+.p-card.big{grid-column:span 2;flex-direction:row;border:2px solid var(--gold);box-shadow:var(--shadow-md)}
+.p-card.big::after{inset:10px}
+.p-card.big .p-media{aspect-ratio:auto;width:46%;flex-shrink:0}
+.p-card.big .p-body{padding:22px 22px 20px}
+.p-card.big .p-name{font-size:1.22rem;min-height:0}
+.p-card.big .p-mdesc{min-height:0;font-size:.78rem;-webkit-line-clamp:4}
+.p-card.big .p-price{font-size:1.2rem}
+.p-card.big .pb{font-size:.72rem}
+.pcard-ctrl{display:flex;align-items:center;gap:16px;margin-top:2px}
+.pcar-btn{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--wood-800);transition:.25s;box-shadow:var(--shadow-sm);flex-shrink:0}
+.pcar-btn:hover{background:var(--grad-gold);color:#fff;border-color:transparent;box-shadow:var(--shadow-glow);transform:scale(1.06)}
+.pcar-btn svg{width:19px;height:19px}
+.pcar-progress{flex:1;height:6px;background:var(--cream-300);border-radius:99px;overflow:hidden}
+.pcar-fill{height:100%;width:0;background:var(--grad-gold);border-radius:99px;transition:width .3s}
+.pcar-count{font-size:.78rem;font-weight:800;color:var(--wood-800);white-space:nowrap;font-variant-numeric:tabular-nums;flex-shrink:0}
+
+/* ============ 8. STATS BAND ============ */
+.stats-band{background:var(--grad-wood);position:relative;overflow:hidden;padding:74px 0}
+.stats-band::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.22}
+.stats-band .diag{position:absolute;top:-10%;bottom:-10%;left:-6%;width:34%;background:rgba(199,154,59,.12);transform:skewX(-12deg);border-right:2px dashed rgba(228,182,94,.4)}
+.stats-band .diag:nth-child(2){left:auto;right:-6%;width:20%;border:none;border-left:2px dashed rgba(228,182,94,.4)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;position:relative;z-index:2}
+.stat-cell{text-align:center;padding:26px 14px;border-radius:var(--r-md);background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);transition:.35s}
+.stat-cell:hover{background:rgba(255,255,255,.1);transform:translateY(-5px)}
+.stat-cell .n{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;color:#fff;font-variant-numeric:tabular-nums}
+.stat-cell .n em{font-style:normal;color:var(--amber)}
+.stat-cell .l{color:rgba(237,224,201,.72);font-size:.84rem;margin-top:4px}
+.stat-cell .bar{width:44px;height:4px;background:var(--grad-gold);margin:12px auto 0;border-radius:2px}
+
+/* ============ 9. ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center}
+.about-media{position:relative}
+.about-frame{background:var(--grad-gold);padding:10px;border-radius:8px;box-shadow:var(--shadow-lg);transform:rotate(.8deg)}
+.about-frame img{width:100%;border-radius:3px}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+.about-point{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;display:flex;gap:12px;transition:.25s}
+.about-point:hover{border-color:rgba(199,154,59,.45);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.about-point .ap-ico{width:42px;height:42px;border-radius:12px;background:var(--cream-200);display:grid;place-items:center;flex-shrink:0}
+.about-point .ap-ico svg{width:21px;height:21px;color:var(--wood-600)}
+.about-point .ap-t{display:block;font-weight:800;font-size:.86rem;color:var(--wood-800);margin-bottom:3px}
+.about-point .ap-s{display:block;font-size:.72rem;color:var(--ink-soft);line-height:1.5}
+.about-cta-row{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ 10. QUY TRÌNH 4 BƯỚC ============ */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;counter-reset:step}
+.proc-grid::before{content:'';position:absolute;top:44px;left:9%;right:9%;height:3px;background:repeating-linear-gradient(90deg,var(--wood-300) 0 14px,transparent 14px 26px);opacity:.6}
+.proc-cell{padding:0 18px;text-align:center;position:relative}
+.proc-ico{width:88px;height:88px;margin:0 auto 18px;border-radius:26px;background:#fff;box-shadow:var(--shadow-md);display:grid;place-items:center;position:relative;z-index:2;transition:.35s;border:1.5px solid var(--line)}
+.proc-cell:hover .proc-ico{transform:translateY(-7px) rotate(-4deg);border-color:var(--gold);box-shadow:var(--shadow-lg)}
+.proc-ico svg{width:38px;height:38px;color:var(--wood-600)}
+.proc-ico .step-n{position:absolute;top:-9px;right:-9px;width:30px;height:30px;border-radius:50%;background:var(--grad-gold);color:#fff;font-weight:900;font-size:.82rem;display:grid;place-items:center;border:3px solid var(--cream-100)}
+.proc-t{font-weight:900;color:var(--wood-800);font-size:1rem;margin-bottom:7px}
+.proc-s{font-size:.8rem;color:var(--ink-soft)}
+.proc-meta{margin-top:10px;display:inline-block;font-size:.68rem;font-weight:800;color:var(--gold-600);background:var(--gold-100);padding:4px 12px;border-radius:999px}
+
+/* ============ 11. SOCIAL PROOF ============ */
+.sp-wrap{position:relative}
+.sp-viewport{overflow:hidden;border-radius:var(--r-lg)}
+.sp-track{display:flex;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.sp-slide{flex:0 0 100%;padding:6px}
+.sp-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow-md);border:1px solid var(--line);padding:36px 40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.sp-quote-mark{font-size:4.6rem;line-height:.8;color:var(--gold);opacity:.3;font-weight:900;font-family:Georgia,serif}
+.sp-text .stars{display:flex;gap:3px;margin-bottom:13px}
+.sp-text .stars svg{width:17px;height:17px;color:var(--amber)}
+.sp-text .body{font-size:1.02rem;color:var(--ink);line-height:1.72;font-weight:500}
+.sp-text .body b{color:var(--gold-600)}
+.sp-who{display:flex;gap:13px;align-items:center;margin-top:20px}
+.sp-ava{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;color:#fff;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.sp-name{font-weight:800;color:var(--wood-800);font-size:.92rem}
+.sp-role{font-size:.75rem;color:var(--ink-soft)}
+.sp-metric{margin-left:auto;text-align:right;background:var(--green-100);border-radius:12px;padding:9px 16px;border:1.5px solid rgba(63,125,90,.25)}
+.sp-metric .v{font-weight:900;color:var(--green);font-size:1.05rem}
+.sp-metric .l{font-size:.64rem;color:var(--green);font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.sp-ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px}
+.sp-btn{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--wood-800);transition:.25s}
+.sp-btn:hover{background:var(--grad-gold);color:#fff;border-color:transparent;box-shadow:var(--shadow-glow);transform:scale(1.08)}
+.sp-btn svg{width:19px;height:19px}
+.sp-dots{display:flex;gap:8px}
+.sp-dot{width:9px;height:9px;border-radius:99px;background:rgba(195,168,120,.55);transition:.3s;cursor:pointer}
+.sp-dot.active{width:30px;background:var(--grad-gold)}
+.partners{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:44px}
+.partner{padding:12px 24px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:rgba(237,224,201,.75);font-weight:800;font-size:.84rem;letter-spacing:.6px;transition:.3s;display:inline-flex;gap:9px;align-items:center}
+.partner svg{width:16px;height:16px;color:var(--amber)}
+.partner:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-3px)}
+
+/* ============ 12. FAQ ============ */
+.faq-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:44px;align-items:start}
+.faq-side{position:sticky;top:110px}
+.faq-hero{background:var(--grad-wood);border-radius:var(--r-lg);padding:32px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.faq-hero::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.28}
+.faq-hero .fh-ico{width:56px;height:56px;border-radius:16px;background:rgba(228,182,94,.18);border:1px solid rgba(228,182,94,.4);display:grid;place-items:center;margin-bottom:18px}
+.faq-hero .fh-ico svg{width:27px;height:27px;color:var(--amber)}
+.faq-hero h3{font-size:1.4rem;font-weight:900;margin-bottom:8px;position:relative}
+.faq-hero p{font-size:.86rem;color:rgba(237,224,201,.75);margin-bottom:22px;position:relative}
+.faq-hero .btn-cta{position:relative}
+.kb-search{margin-top:18px;position:relative}
+.kb-search input{width:100%;padding:13px 16px 13px 44px;border-radius:13px;border:1.5px solid var(--line);background:#fff;font-size:.88rem}
+.kb-search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(199,154,59,.13)}
+.kb-search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--ink-soft)}
+.kb-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.kb-chip{font-size:.74rem;font-weight:700;padding:8px 14px;border-radius:999px;background:#fff;border:1.5px solid var(--line);color:var(--wood-600);transition:.2s;cursor:pointer}
+.kb-chip:hover{border-color:var(--gold);color:var(--gold-600);transform:translateY(-2px)}
+.faq-list{display:grid;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.faq-item.open{border-color:rgba(199,154,59,.55);box-shadow:var(--shadow-md)}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;padding:19px 22px;text-align:left;font-weight:800;font-size:.94rem;color:var(--wood-800)}
+.faq-q .fq-n{flex-shrink:0;font-size:.68rem;font-weight:900;color:var(--gold-600);background:var(--gold-100);border-radius:8px;width:30px;height:30px;display:grid;place-items:center}
+.faq-q .fq-ico{margin-left:auto;flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--cream-200);display:grid;place-items:center;transition:.35s}
+.faq-q .fq-ico svg{width:15px;height:15px;color:var(--wood-600)}
+.faq-item.open .fq-ico{background:var(--grad-gold);transform:rotate(45deg)}
+.faq-item.open .fq-ico svg{color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.22,1,.36,1)}
+.faq-a .inner{padding:0 22px 21px 66px;color:var(--ink-soft);font-size:.88rem;line-height:1.75}
+.faq-a .inner b{color:var(--wood-800)}
+
+/* ============ 13. CONTACT — card + chỉ đường (không iframe) ============ */
+.contact-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:28px;align-items:stretch}
+.contact-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow-md);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;gap:17px}
+.contact-card .cc-row{display:flex;gap:13px;align-items:flex-start}
+.contact-card .cc-row .ic{width:42px;height:42px;border-radius:12px;background:var(--gold-100);display:grid;place-items:center;flex-shrink:0}
+.contact-card .cc-row .ic svg{width:20px;height:20px;color:var(--gold-600)}
+.contact-card .cc-row b{color:var(--wood-800);font-size:.88rem;display:block}
+.contact-card .cc-row p{font-size:.8rem;color:var(--ink-soft);line-height:1.55}
+.contact-card .cc-row a{color:var(--gold-600);font-weight:800}
+.contact-card .cc-row a:hover{text-decoration:underline}
+.contact-strip{margin-top:auto;border-radius:14px;overflow:hidden;position:relative}
+.contact-strip img{width:100%;height:150px;object-fit:cover}
+.contact-strip .cap{position:absolute;left:10px;bottom:10px;background:rgba(23,17,11,.76);backdrop-filter:blur(8px);color:#fff;font-size:.68rem;font-weight:700;padding:6px 12px;border-radius:9px}
+.contact-side{border-radius:var(--r-lg);overflow:hidden;position:relative;background:var(--grad-wood);color:#fff;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-md)}
+.contact-side::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.2;pointer-events:none}
+.cs-title{font-size:1.3rem;font-weight:900;position:relative}
+.cs-sub{font-size:.85rem;color:rgba(237,224,201,.75);position:relative}
+.cs-mapmock{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.2);flex:1;min-height:190px;background:linear-gradient(140deg,#3A2E20,#241C14)}
+.cs-road{position:absolute;background:rgba(228,182,94,.35)}
+.cs-road.h{left:0;right:0;top:46%;height:12px}
+.cs-road.v{top:0;bottom:0;left:58%;width:12px}
+.cs-pin{position:absolute;left:58%;top:46%;transform:translate(-50%,-92%);display:flex;flex-direction:column;align-items:center;gap:2px;z-index:2}
+.cs-pin svg{width:30px;height:30px;color:var(--amber);filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.cs-pin span{font-size:.66rem;font-weight:800;background:rgba(23,17,11,.8);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.cs-road-lbl{position:absolute;font-size:.58rem;letter-spacing:1.5px;color:rgba(237,224,201,.5);text-transform:uppercase}
+.btn-direction{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--grad-gold);color:#fff;font-weight:800;font-size:.9rem;padding:14px 20px;border-radius:12px;box-shadow:var(--shadow-glow);transition:.25s;position:relative}
+.btn-direction:hover{transform:translateY(-2px)}
+.btn-direction svg{width:17px;height:17px}
+
+/* ============ 14. CONSULT FORM ============ */
+.consult{position:relative;background:var(--grad-wood);overflow:hidden}
+.consult::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.2}
+.consult .container{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;position:relative;z-index:2}
+.consult-info h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.22;margin-bottom:16px}
+.consult-info h2 span{color:var(--amber)}
+.consult-info p{color:rgba(237,224,201,.75);margin-bottom:26px;max-width:480px}
+.consult-checklist{display:grid;gap:12px;margin-bottom:30px}
+.consult-check{display:flex;gap:12px;align-items:center;color:#EDE0C9;font-size:.9rem}
+.consult-check .cc-ico{width:26px;height:26px;border-radius:8px;background:rgba(63,125,90,.28);display:grid;place-items:center;flex-shrink:0}
+.consult-check .cc-ico svg{width:14px;height:14px;color:#6FCB9B}
+.consult-form{background:var(--glass-wood);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1px solid rgba(255,255,255,.28);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-lg)}
+.consult-form h3{color:#fff;font-size:1.25rem;font-weight:900;margin-bottom:4px}
+.consult-form .cf-note{color:rgba(237,224,201,.65);font-size:.78rem;margin-bottom:20px}
+.cform-field{margin-bottom:13px}
+.cform-field input,.cform-field select,.cform-field textarea{width:100%;padding:13px 15px;border-radius:12px;border:1.5px solid rgba(255,255,255,.22);background:rgba(23,17,11,.4);color:#fff;font-size:.9rem;transition:.2s}
+.cform-field textarea{resize:vertical;min-height:74px}
+.cform-field input::placeholder,.cform-field textarea::placeholder{color:rgba(237,224,201,.4)}
+.cform-field input:focus,.cform-field select:focus,.cform-field textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 4px rgba(228,182,94,.16)}
+.cform-field select option{color:var(--ink)}
+.consult-form .btn-cta{width:100%;justify-content:center;padding:15px;font-size:.95rem;margin-top:6px;white-space:normal}
+.consult-form .cf-safe{display:flex;align-items:center;justify-content:center;gap:7px;color:rgba(237,224,201,.55);font-size:.7rem;margin-top:13px}
+.consult-form .cf-safe svg{width:13px;height:13px}
+
+/* ============ 15. FOOTER GỌN ============ */
+.footer{background:var(--wood-900);color:#CBB596;position:relative;overflow:hidden;padding-bottom:72px}
+.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--grad-gold)}
+.footer::after{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.12;pointer-events:none}
+.footer-main{display:grid;grid-template-columns:1.4fr 1fr 1.1fr;gap:40px;padding:56px 0 40px;position:relative;z-index:2}
+.f-logo{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.f-about{font-size:.84rem;line-height:1.75;color:rgba(203,181,150,.8);max-width:340px;margin-bottom:20px}
+.f-title{color:#fff;font-weight:800;font-size:.95rem;margin-bottom:18px;position:relative;padding-bottom:11px}
+.f-title::after{content:'';position:absolute;left:0;bottom:0;width:34px;height:3px;background:var(--grad-gold);border-radius:2px}
+.f-links{list-style:none;display:grid;gap:10px}
+.f-links a{font-size:.84rem;color:rgba(203,181,150,.8);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.f-links a::before{content:'›';color:var(--gold);font-weight:900}
+.f-links a:hover{color:#fff;transform:translateX(4px)}
+.f-contact{display:grid;gap:13px;font-size:.84rem}
+.f-contact .fc-item{display:flex;gap:12px;align-items:flex-start}
+.f-contact .fc-item svg{width:17px;height:17px;color:var(--amber);flex-shrink:0;margin-top:3px}
+.f-contact .fc-item b{color:#EDE0C9;font-weight:700}
+.f-badges{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.f-badge{border:1px dashed rgba(228,182,94,.45);color:var(--amber);font-size:.68rem;font-weight:800;padding:7px 13px;border-radius:999px;letter-spacing:.6px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;justify-content:space-between;gap:16px;font-size:.76rem;color:rgba(203,181,150,.6);flex-wrap:wrap;position:relative;z-index:2}
+.footer-bottom .pay{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chip{border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:3px 10px;font-size:.68rem;font-weight:800;letter-spacing:1px;color:rgba(237,224,201,.75)}
+
+/* ============ 16. FAB DOCK ============ */
+.fab-dock{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:6px;background:var(--glass);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.55);border-radius:20px;padding:9px;box-shadow:var(--shadow-lg);transition:.35s}
+.fab-dock.hidden{transform:translate(-50%,140%)}
+.fab{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 15px;border-radius:14px;color:var(--wood-800);font-size:.62rem;font-weight:800;transition:.22s;letter-spacing:.3px}
+.fab svg{width:21px;height:21px}
+.fab:hover{background:rgba(199,154,59,.14);color:var(--gold-600);transform:translateY(-4px)}
+.fab.cart-fab .cart-badge{border-color:#fff}
+.fab .fab-dot{position:absolute;top:5px;right:7px;width:8px;height:8px;background:var(--red);border-radius:50%;border:2px solid #fff;animation:pulse-red 1.5s infinite}
+@keyframes pulse-red{50%{box-shadow:0 0 0 9px rgba(192,80,64,.12)}}
+
+/* ============ 17. CART DRAWER ============ */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(23,17,11,.55);backdrop-filter:blur(4px);z-index:90;opacity:0;visibility:hidden;transition:.35s}
+.drawer-backdrop.show{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:var(--cream-100);z-index:95;transform:translateX(105%);transition:transform .45s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(23,17,11,.3)}
+.cart-drawer.show{transform:none}
+.cd-head{background:var(--grad-wood);padding:20px 24px;color:#fff;display:flex;align-items:center;gap:13px;position:relative}
+.cd-head::before{content:'';position:absolute;inset:0;background-image:var(--gallery-pattern);opacity:.28}
+.cd-head h3{font-size:1.1rem;font-weight:900;position:relative}
+.cd-head .cd-count{font-size:.72rem;color:rgba(237,224,201,.7);position:relative}
+.cd-close{margin-left:auto;width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff;transition:.2s;position:relative}
+.cd-close:hover{background:var(--red)}
+.cd-close svg{width:17px;height:17px}
+.cd-tier{padding:15px 24px;background:#fff;border-bottom:1px solid var(--line)}
+.cd-tier .ct-lbl{font-size:.76rem;color:var(--ink-soft);margin-bottom:9px}
+.cd-tier .ct-lbl b{color:var(--gold-600)}
+.cd-tier-bar{height:10px;background:var(--cream-200);border-radius:99px;overflow:hidden;position:relative}
+.cd-tier-fill{height:100%;background:var(--grad-gold);border-radius:99px;width:0;transition:width .6s cubic-bezier(.22,1,.36,1);position:relative}
+.cd-tier-fill::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.25) 0 8px,transparent 8px 16px)}
+.cd-tier-legend{display:flex;justify-content:space-between;font-size:.62rem;color:var(--ink-soft);margin-top:7px;font-weight:700}
+.cd-items{flex:1;overflow-y:auto;padding:18px 20px;display:grid;gap:13px;align-content:start}
+.cd-empty{text-align:center;color:var(--ink-soft);margin:auto;padding:30px}
+.cd-empty .big{font-size:3.2rem;margin-bottom:12px}
+.cd-empty .t{font-weight:800;color:var(--wood-800);margin-bottom:5px}
+.cd-item{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;gap:13px;box-shadow:var(--shadow-sm);animation:fadeUp .3s both}
+.cd-item .ci-img{width:66px;height:56px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid var(--line)}
+.cd-item .ci-img img{width:100%;height:100%;object-fit:cover}
+.ci-body{flex:1;min-width:0}
+.ci-name{font-size:.8rem;font-weight:800;color:var(--wood-800);line-height:1.3;margin-bottom:3px}
+.ci-price{font-size:.78rem;font-weight:900;color:var(--gold-600)}
+.ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.qty-ctrl{display:inline-flex;align-items:center;background:var(--cream-200);border-radius:9px;overflow:hidden}
+.qty-btn{width:27px;height:27px;display:grid;place-items:center;color:var(--wood-800);font-weight:900;transition:.15s;font-size:.95rem}
+.qty-btn:hover{background:var(--gold);color:#fff}
+.qty-val{min-width:34px;text-align:center;font-weight:800;font-size:.82rem}
+.ci-total{font-weight:900;font-size:.86rem;color:var(--wood-800)}
+.ci-del{color:var(--ink-soft);width:28px;height:28px;border-radius:8px;display:grid;place-items:center;transition:.2s;align-self:flex-start}
+.ci-del:hover{background:rgba(192,80,64,.1);color:var(--red)}
+.ci-del svg{width:15px;height:15px}
+.cd-foot{border-top:1px solid var(--line);background:#fff;padding:18px 22px 20px;box-shadow:0 -10px 30px -18px rgba(56,44,31,.3)}
+.cd-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--ink-soft);margin-bottom:6px}
+.cd-row .v{font-weight:800;color:var(--wood-800)}
+.cd-row.discount .v{color:var(--green)}
+.cd-row.total{font-size:1rem;margin:10px 0 14px;padding-top:11px;border-top:1.5px dashed var(--line)}
+.cd-row.total .k{font-weight:900;color:var(--wood-800);font-size:.95rem}
+.cd-row.total .v{font-size:1.45rem;font-weight:900;color:var(--gold-600)}
+.btn-checkout{width:100%;background:var(--grad-gold);color:#fff;font-weight:900;font-size:.98rem;padding:16px;border-radius:14px;box-shadow:var(--shadow-glow);transition:.25s;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn-checkout:hover{transform:translateY(-2px)}
+.btn-checkout svg{width:18px;height:18px}
+.cd-ship-note{display:flex;gap:7px;align-items:center;justify-content:center;font-size:.68rem;color:var(--ink-soft);margin-top:10px}
+.cd-ship-note svg{width:13px;height:13px;color:var(--green)}
+
+/* ============ 18. QUICK VIEW ============ */
+.qv-backdrop{position:fixed;inset:0;background:rgba(23,17,11,.6);backdrop-filter:blur(6px);z-index:96;opacity:0;visibility:hidden;transition:.3s;display:grid;place-items:center;padding:20px}
+.qv-backdrop.show{opacity:1;visibility:visible}
+.qv-modal{background:#fff;border-radius:var(--r-lg);width:min(780px,100%);max-height:92vh;overflow:auto;box-shadow:var(--shadow-lg);transform:scale(.92) translateY(20px);transition:.4s cubic-bezier(.22,1,.36,1);position:relative}
+.qv-backdrop.show .qv-modal{transform:none}
+.qv-close{position:absolute;top:14px;right:14px;z-index:5;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:grid;place-items:center;color:var(--wood-800);box-shadow:var(--shadow-sm);transition:.2s}
+.qv-close:hover{background:var(--red);color:#fff}
+.qv-close svg{width:17px;height:17px}
+.qv-media{position:relative;aspect-ratio:4/3;background:var(--cream-200)}
+.qv-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg) var(--r-lg) 0 0}
+.qv-body{padding:26px 32px 30px}
+.qv-cat{font-size:.68rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-600);margin-bottom:8px}
+.qv-name{font-size:1.35rem;font-weight:900;color:var(--wood-800);line-height:1.3;margin-bottom:10px}
+.qv-stars{display:flex;align-items:center;gap:9px;font-size:.76rem;color:var(--ink-soft);margin-bottom:15px}
+.qv-stars .stars{display:flex;gap:2px}
+.qv-stars .stars svg{width:14px;height:14px;color:var(--amber)}
+.qv-price{display:flex;align-items:baseline;gap:11px;margin-bottom:6px;flex-wrap:wrap}
+.qv-price .now{font-size:1.9rem;font-weight:900;color:var(--gold-600)}
+.qv-price .old{color:var(--ink-soft);text-decoration:line-through;font-size:.95rem}
+.qv-price .save{background:var(--red);color:#fff;font-size:.64rem;font-weight:900;padding:4px 10px;border-radius:999px}
+.qv-unit{font-size:.76rem;color:var(--ink-soft);margin-bottom:19px}
+.qv-tier-box{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:19px}
+.qv-tier-head{display:grid;grid-template-columns:1.1fr .9fr 1.4fr;background:var(--cream-200);font-size:.68rem;font-weight:900;letter-spacing:.6px;color:var(--cream-700);text-transform:uppercase}
+.qv-tier-head span{padding:9px 6px;text-align:center}
+.qv-tier-head span+span{border-left:1.5px solid var(--line)}
+.qv-tier-row{display:grid;grid-template-columns:1.1fr .9fr 1.4fr;text-align:center;font-size:.8rem;cursor:pointer;transition:.15s}
+.qv-tier-row span{padding:10px 6px;border-top:1.5px solid var(--line);display:flex;align-items:center;justify-content:center}
+.qv-tier-row .b{font-weight:900;color:var(--wood-800)}
+.qv-tier-row.sel{background:var(--gold-100)}
+.qv-tier-row.sel .b{color:var(--gold-600)}
+.qv-tier-row .p{font-weight:900;color:var(--wood-800);font-variant-numeric:tabular-nums}
+.qv-qty-row{display:flex;align-items:center;gap:15px;margin-bottom:18px;flex-wrap:wrap}
+.qv-qty-row .lbl{font-size:.82rem;font-weight:700;color:var(--wood-800)}
+.qv-qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+.qv-qty .qty-btn{width:38px;height:42px}
+.qv-qty .qty-val{min-width:52px;font-size:.95rem}
+.qv-livprice{margin-left:auto;text-align:right}
+.qv-livprice .l{font-size:.66rem;color:var(--ink-soft)}
+.qv-livprice .v{font-weight:900;color:var(--gold-600);font-size:1.05rem;font-variant-numeric:tabular-nums}
+.qv-cta-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.btn-qv-add{background:var(--grad-gold);color:#fff;font-weight:800;padding:14px;border-radius:12px;font-size:.88rem;box-shadow:var(--shadow-glow);transition:.25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-qv-add:hover{transform:translateY(-2px)}
+.btn-qv-buy{background:var(--wood-800);color:#fff;font-weight:800;padding:14px;border-radius:12px;font-size:.88rem;transition:.25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-qv-buy:hover{background:var(--wood-700);transform:translateY(-2px)}
+.btn-qv-add svg,.btn-qv-buy svg{width:16px;height:16px}
+.qv-meta{display:grid;gap:8px;margin-top:20px;padding-top:18px;border-top:1.5px dashed var(--line)}
+.qv-meta .m{display:flex;gap:9px;align-items:center;font-size:.76rem;color:var(--ink-soft)}
+.qv-meta .m svg{width:15px;height:15px;color:var(--green);flex-shrink:0}
+
+/* ============ 19. TOAST (pointer-events none — không đè nút) ============ */
+.toast-zone{position:fixed;top:20px;right:20px;z-index:120;display:grid;gap:10px;pointer-events:none}
+.toast{pointer-events:auto;background:var(--wood-900);color:#fff;border-radius:14px;padding:14px 18px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow-lg);border-left:4px solid var(--green);animation:toastIn .4s cubic-bezier(.22,1,.36,1) both;max-width:340px;font-size:.84rem}
+.toast.warn{border-left-color:var(--amber)}
+.toast.out{animation:toastOut .35s both}
+.toast .t-ico{width:32px;height:32px;border-radius:10px;background:rgba(111,203,155,.2);display:grid;place-items:center;flex-shrink:0}
+.toast.warn .t-ico{background:rgba(228,182,94,.2)}
+.toast .t-ico svg{width:16px;height:16px;color:#6FCB9B}
+.toast.warn .t-ico svg{color:var(--amber)}
+.toast b{display:block;font-size:.84rem}
+.toast span{font-size:.72rem;color:rgba(237,224,201,.65);display:block}
+@keyframes toastIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(60px)}}
+
+/* ============ Reveal on scroll (có failsafe ở JS) ============ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.1s}
+.reveal[data-d="2"]{transition-delay:.2s}
+.reveal[data-d="3"]{transition-delay:.3s}
+.reveal[data-d="4"]{transition-delay:.4s}
+
+/* ============ RESPONSIVE 1080px ============ */
+@media(max-width:1080px){
+  .nav{display:none}
+  .searchbox{max-width:none}
+  .hero .container{grid-template-columns:1fr;gap:44px}
+  .hero-visual{max-width:640px;margin:0 auto;width:100%}
+  .feat-grid{grid-template-columns:1fr}
+  .compact-strip{grid-template-columns:repeat(3,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-media{max-width:680px;margin:0 auto;width:100%}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-grid,.cfg-wrap,.faq-wrap,.consult .container{grid-template-columns:1fr}
+  .bundle-panel.active{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proc-grid{grid-template-columns:repeat(2,1fr);gap:34px 0}
+  .proc-grid::before{display:none}
+  .footer-main{grid-template-columns:1fr 1fr}
+  .faq-side{position:static}
+}
+/* ============================================================
+   MOBILE DESIGN BRANCH (≤680px) — bố cục riêng cho điện thoại
+   ============================================================ */
+@media(max-width:680px){
+  .topbar{font-size:.72rem}
+  .header-inner{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .logo{order:1;flex:1;gap:8px;min-width:0}
+  .logo-mark{width:38px;height:38px;border-radius:10px}
+  .logo-text .lt1{font-size:1.02rem}
+  .logo-text .lt2{font-size:.62rem;letter-spacing:1px}
+  .h-actions{order:2}
+  .searchbox{order:3;flex-basis:100%;max-width:none}
+  .searchbox input{padding:11px 16px 11px 40px;font-size:.85rem}
+  .searchbox .s-ico{left:13px;width:15px;height:15px}
+  .searchbox .s-hint{display:none}
+  .search-drop{max-height:56vh;border-radius:14px}
+  .sd-item img{width:50px;height:36px}
+  .btn-cta.hd-cta{display:none}
+  .btn-icon{width:40px;height:40px}
+
+  .hero{padding:30px 0 46px}
+  .hero::after,.hero-wall,.hero-rails{display:none}
+  .hero-eyebrow{font-size:.7rem;padding:7px 12px;margin-bottom:14px}
+  .hero h1{font-size:1.76rem;margin-bottom:12px}
+  .hero h1 .hl{white-space:normal;display:inline-block}
+  .hero-sub{font-size:.88rem;margin-bottom:20px}
+  .hero-cta{flex-direction:column;gap:10px;margin-bottom:0}
+  .btn-hero{width:100%;justify-content:center;padding:14px;white-space:normal}
+  .hero-trust{display:none}
+  .hero-visual{margin-top:26px}
+  .hv-frame{padding:8px;border-radius:6px;transform:none}
+  .hv-caption{flex-direction:column;align-items:stretch;gap:10px;margin-top:12px;padding:12px 14px}
+  .hv-stats{justify-content:space-between;gap:8px}
+  .hv-stat .n{font-size:1.1rem}
+
+  .section{padding:50px 0}
+  .sec-head{margin-bottom:24px}
+  .sec-title{font-size:1.42rem}
+  .sec-desc{font-size:.86rem}
+
+  .tape-marquee{transform:rotate(-.6deg) scale(1.03);padding:10px 0}
+  .marquee-item{font-size:.74rem;padding:0 14px;gap:9px;white-space:normal}
+  .marquee-item svg{width:13px;height:13px}
+
+  .feat-grid{grid-template-columns:1fr;gap:16px}
+  .feat-media{aspect-ratio:4/3}
+  .feat-body{padding:17px 17px 19px;gap:10px}
+  .feat-title{font-size:.98rem}
+  .feat-title .fi{width:34px;height:34px;border-radius:10px}
+  .feat-desc{font-size:.8rem}
+  .feat-list li{font-size:.76rem}
+  .compact-strip{grid-template-columns:1fr;gap:4px;padding:8px}
+  .compact-item{padding:12px}
+
+  /* Cấu hình in tranh: 1 cột, nút chạm đủ lớn */
+  .cfg-form,.cfg-result{padding:20px;border-radius:20px}
+  .cfg-form h3{font-size:1.08rem}
+  .cfg-mats{grid-template-columns:1fr;gap:8px}
+  .cfg-size{padding:11px 14px;font-size:.8rem}
+  .cfg-frames{grid-template-columns:1fr}
+  .cfg-extras{grid-template-columns:1fr}
+  .cr-total{flex-direction:column;gap:6px;text-align:center}
+  .cr-total .v{font-size:1.3rem}
+  .cr-actions{flex-direction:column}
+  .cr-actions a,.cr-actions button{justify-content:center}
+
+  .bundle-wrap{border-radius:20px}
+  .bundle-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:12px 12px 0}
+  .bundle-tabs::-webkit-scrollbar{display:none}
+  .bundle-tab{white-space:nowrap;flex-shrink:0;padding:12px 14px;font-size:.78rem}
+  .bundle-panels{padding:15px}
+  .bp-title{font-size:1.26rem}
+  .bp-desc{font-size:.82rem}
+  .bp-item{padding:10px 12px;gap:9px;flex-wrap:wrap}
+  .bp-item .bi-p{font-size:.78rem}
+  .bp-actions{flex-direction:column;align-items:stretch;gap:10px}
+  .btn-addkit{justify-content:center}
+  .bp-total{text-align:center}
+  .bp-gallery{padding:12px;gap:9px;order:-1}
+  .bpg-head{font-size:.8rem}
+  .bpg-item .bi-n{font-size:.72rem;padding:7px 9px 8px}
+  .bpg-note{font-size:.7rem;padding:8px 10px}
+
+  .deal-strip{justify-content:flex-start;padding:14px 16px;gap:10px}
+  .deal-strip .dt{font-size:.84rem}
+  .deal-strip .note{display:none}
+  .deal-count{margin:2px 0 0 auto}
+  .dc-cell{min-width:46px;padding:5px 6px}
+  .dc-cell .v{font-size:1rem}
+  /* Khối-8 mobile: 1 cột, thẻ nổi bật về dọc */
+  .prod-grid{grid-template-columns:1fr;gap:16px}
+  .p-card.big{grid-column:auto;flex-direction:column}
+  .p-card.big .p-media{width:100%;aspect-ratio:4/3}
+  .p-name{font-size:.86rem}
+  .p-mdesc{min-height:0;font-size:.75rem}
+  .p-tier{font-size:.7rem;padding:6px 9px}
+  .p-quick{opacity:1;transform:none}
+  .pcard-ctrl{gap:10px;margin-top:14px}
+  .pcar-btn{width:44px;height:44px}
+
+  .stats-band{padding:46px 0}
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .stat-cell{padding:15px 8px}
+  .stat-cell .n{font-size:1.65rem}
+  .stat-cell .l{font-size:.75rem}
+
+  .proc-grid{grid-template-columns:1fr;gap:26px}
+  .proc-cell{padding:0 6px}
+
+  .sp-card{grid-template-columns:1fr;padding:19px;gap:0}
+  .sp-quote-mark{display:none}
+  .sp-text .body{font-size:.86rem}
+  .sp-who{flex-wrap:wrap;gap:10px}
+  .sp-metric{margin-left:0;text-align:left;width:100%}
+  .partner{padding:9px 15px;font-size:.75rem}
+
+  .faq-hero{padding:20px}
+  .faq-hero h3{font-size:1.12rem}
+  .faq-q{padding:15px 16px;font-size:.84rem;gap:10px}
+  .faq-a .inner{padding:0 16px 16px 16px;font-size:.8rem}
+  .kb-chip{font-size:.75rem;padding:9px 13px}
+
+  .about-points{grid-template-columns:1fr;gap:10px;margin:18px 0}
+  .about-cta-row .btn-hero{width:100%;justify-content:center}
+  .contact-card{padding:19px;gap:13px}
+  .contact-card .cc-row .ic{width:36px;height:36px}
+  .contact-card .cc-row b{font-size:.82rem}
+  .contact-card .cc-row p{font-size:.75rem}
+  .contact-strip img{height:110px}
+  .contact-grid{gap:16px}
+  .contact-side{padding:20px}
+  .consult .container{gap:30px}
+  .consult-form{padding:20px}
+  .consult-check{font-size:.8rem}
+
+  .qv-media{aspect-ratio:4/3}
+  .qv-body{padding:20px}
+  .qv-name{font-size:1.15rem}
+  .qv-price .now{font-size:1.5rem}
+  .qv-cta-row{grid-template-columns:1fr}
+  .qv-livprice{margin-left:auto}
+
+  .footer-main{grid-template-columns:1fr;gap:28px;padding:44px 0 34px}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;gap:10px}
+  .fab-dock{bottom:12px;padding:7px;border-radius:18px}
+  .fab{padding:10px 12px}
+  .fab span:not(.cart-badge):not(.fab-dot){display:none}
+  .cd-head,.cd-tier{padding-left:16px;padding-right:16px}
+  .footer{padding-bottom:96px}
+}
+/* NB93-153-MOBILEFIX: nút không cắt chữ + vùng chạm >=40px */
+@media(max-width:680px){
+  .btn-cta,.btn-hero,.btn-addkit,.btn-checkout,.btn-qv-add,.btn-qv-buy,.btn-cfg-add,.btn-direction,.pq-btn,.f-cta{white-space:normal}
+  .qty-ctrl .qty-btn{width:34px;height:34px}
+  .ci-del{width:36px;height:36px}
+  .cd-close,.qv-close{width:40px;height:40px}
+  .faq-q{min-height:44px}
+  .cfg-size{min-height:40px}
+  .sp-btn,.pcar-btn{width:44px;height:44px}
+}
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+  .pq-btn,.p-mat,.qty button,.qv-qty button,.fab,.cd-close,.qv-close,.kb-chip,.bundle-tab,.cfg-size,.cfg-extra,.cfg-frame,.qty-btn,.sp-dot{min-height:40px!important;min-width:40px!important}
+}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+/*NB93-IMGFIX: 153 anh SP dich vu — img bi max-height 560 cat doc; tra lai day khung theo AR goc 4:3*/
+#san-pham .feat-media img{width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center top!important}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"GIA TRANG","telephone":"0903456789","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Gia Trang — xưởng tranh & khung tranh 12 năm: in tranh canvas, sơn dầu theo yêu cầu, đóng khung theo mọi kích thước, set 3 tranh đồng bộ, gương - đèn - bình hoa","url":"http://127.0.0.1:8174/153-cua-hang-tranh-khung-tranh-do-trang-tri/"}
+</script>
+<style data-nb93fix="153:ghost">
+/*NB93-FIX-153:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .feat-grid > *{grid-column:auto!important}
+  .prod-grid.reveal.in > *{grid-column:auto!important}
+}
+</style>
+<style data-nb93fix="153:pquick">
+/*NB93-FIX-153:pquick strip hanh dong ve cuoi khung anh, khong bi cat*/
+@media(max-width:768px){
+  .p-card .p-quick{position:absolute!important;inset:auto 0 0!important;transform:none!important;background:linear-gradient(transparent,rgba(30,20,8,.55))!important;padding:12px!important;justify-content:center!important}
+}
+</style>
+<style>
+/* FACTORY-NGHE-21-SURFACE: 153 — tai breakpoint dien thoai (680px) .marquee-item bi white-space:normal + flex-item co lai, chu cam xep thanh cot dung tung chu; bao dam min-width max-content de moi muc giu do rong toi thieu, ngat dong binh thuong */
+@media (max-width:680px){
+  .marquee-item{min-width:max-content;flex:none;white-space:normal}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ 0. TOPBAR ═══════════════ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-items top-left">
+      <span class="topbar-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg> Xưởng &amp; cửa hàng mở cửa T2–CN · 8h00–21h00</span>
+      <span class="topbar-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3zM16 10h4l1 3v4h-5"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg> Miễn phí treo lắp nội thành cho đơn từ 3 triệu</span>
+    </div>
+    <div class="topbar-items">
+      <span class="topbar-item">🖼️ Đóng khung <b>mọi kích thước</b> — lấy trong 2–3 ngày</span>
+      <span class="topbar-item">☎ Hotline: <a class="hotline-hot" href="tel:0903456789">0903 456 789</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 1. HEADER ═══════════════ -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a class="logo" href="#" aria-label="Gia Trang trang chủ">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="#E4B65E" stroke-width="1.7"/><rect x="7.5" y="7.5" width="9" height="9" rx="1" fill="#C79A3B"/><path d="M9 14.5l2.4-3 2 2.2 1.4-1.6 1.7 2.4z" fill="#241C14"/><circle cx="10.4" cy="10" r="1" fill="#241C14"/></svg>
+      </div>
+      <div class="logo-text">
+        <div class="lt1">GIA<span>TRANG</span></div>
+        <div class="lt2">Tranh &amp; đồ trang trí</div>
+      </div>
+    </a>
+    <div class="searchbox">
+      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Tìm tranh canvas, khung gỗ, gương, đèn, bình hoa…" aria-label="Tìm sản phẩm tranh và đồ trang trí">
+      <span class="s-hint">8 dòng sản phẩm</span>
+      <div class="search-drop" id="searchDrop" role="listbox"></div>
+    </div>
+    <nav class="nav" aria-label="Điều hướng chính">
+      <div class="navdrop">
+        <button type="button">Danh mục
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="dd">
+          <a href="#hot"><span class="dd-ico" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg></span><span><span class="dd-t">Tranh treo tường</span><span class="dd-s">Canvas · sơn dầu · mọi size</span></span></a>
+          <a href="#dong-khung"><span class="dd-ico" style="background:#E2F1E9"><svg viewBox="0 0 24 24" fill="none" stroke="#3F7D5A" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M8 4v16M16 4v16"/></svg></span><span><span class="dd-t">Khung tranh theo yêu cầu</span><span class="dd-s">Nhôm · gỗ óc chó · cổ điển</span></span></a>
+          <a href="#hot"><span class="dd-ico" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><path d="M7 3h10l2 5-7 13L5 8z"/><path d="M5 8h14"/></svg></span><span><span class="dd-t">Bình hoa &amp; đồ decor</span><span class="dd-s">Gốm men · thủy tinh · kim loại</span></span></a>
+          <a href="#hot"><span class="dd-ico" style="background:#E2F1E9"><svg viewBox="0 0 24 24" fill="none" stroke="#3F7D5A" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></span><span><span class="dd-t">Tượng trang trí</span><span class="dd-s">Resin · gỗ · mạ vàng PVD</span></span></a>
+          <a href="#hot"><span class="dd-ico" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><circle cx="12" cy="10" r="5"/><path d="M12 15v6M9 21h6"/></svg></span><span><span class="dd-t">Đèn trang trí bàn - tường</span><span class="dd-s">Thủy tinh · ánh vàng ấm</span></span></a>
+          <a href="#dong-khung"><span class="dd-ico" style="background:#382C1F"><svg viewBox="0 0 24 24" fill="none" stroke="#E4B65E" stroke-width="2"><path d="M12 3l2.4 4.9L20 8l-4 3.9.9 5.6L12 14.9 7.1 17.5 8 11.9 4 8l5.6-1.1L12 2z"/></svg></span><span><span class="dd-t">In tranh theo yêu cầu</span><span class="dd-s">Từ ảnh chụp — duyệt bản in</span></span></a>
+        </div>
+      </div>
+      <a href="#set-3-tranh">Set 3 tranh</a>
+      <a href="#dong-khung">Đóng khung theo size</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="h-actions">
+      <a class="btn-cta hd-cta" href="#dong-khung" style="padding:11px 18px">In tranh theo ảnh của bạn</a>
+      <button class="btn-icon" id="cartBtn" aria-label="Mở giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ 2. HERO ═══════════════ -->
+<section class="hero" id="trang-chu">
+  <div class="hero-wall"></div>
+  <div class="hero-rails"></div>
+  <div class="container">
+    <div class="hero-info">
+      <div class="hero-eyebrow"><span class="dot"></span> Xưởng khung riêng 800m² · 12 năm làm tranh cho nhà đẹp</div>
+      <h1>Bức tường nhà bạn xứng đáng<br>một <span class="hl">bức tranh đúng ý</span></h1>
+      <p class="hero-sub">Tranh canvas, sơn dầu, khung tranh đóng theo mọi kích thước, set 3 tranh đồng bộ, gương - đèn - bình hoa decor. <b>In từ chính ảnh của bạn</b>, duyệt bản in trước khi đóng khung, <b>thợ treo tận nhà</b> không làm bẩn tường.</p>
+      <div class="hero-cta">
+        <a class="btn-hero primary" href="#dong-khung">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="M4 19l5.5-5.5 3 3L17 12l3 3"/></svg>
+          Báo giá in tranh + đóng khung
+        </a>
+        <a class="btn-hero ghost" href="#set-3-tranh">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="8" y="13" width="8" height="8" rx="1"/></svg>
+          Xem set 3 tranh đồng bộ
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Khung đóng tại xưởng — không qua trung gian</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> In theo yêu cầu mọi kích thước</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Thợ treo tranh chuyên trách</span>
+        <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Đổi trả 7 ngày</span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-frame"><img src="assets/img/cover.webp" fetchpriority="high" width="1448" height="1086" alt="Gian trưng bày tranh và khung tranh Gia Trang"></div>
+      <div class="hv-caption">
+        <span class="hv-cap-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.4 4.9L20 8l-4 3.9.9 5.6L12 14.9 7.1 17.5 8 11.9 4 8l5.6-1.1L12 2z"/></svg> Gian trưng bày thật — xem tranh trực tiếp trước khi chốt</span>
+        <span class="hv-stats">
+          <span class="hv-stat"><span class="n">12+</span><span class="l">Năm xưởng khung</span></span>
+          <span class="hv-stat"><span class="n">48.000+</span><span class="l">Bức đã treo</span></span>
+          <span class="hv-stat"><span class="n">98%</span><span class="l">Giao đúng hẹn</span></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. GOLD MARQUEE ═══════════════ -->
+<div class="tape-marquee" aria-hidden="true">
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="marquee-item">🖼️ Canvas · sơn dầu · gương · đèn · bình hoa</span>
+      <span class="marquee-item">·</span>
+      <span class="marquee-item">📐 Đóng khung theo mọi kích thước</span>
+      <span class="marquee-item">·</span>
+      <span class="marquee-item">📸 In tranh từ ảnh của bạn</span>
+      <span class="marquee-item">·</span>
+      <span class="marquee-item">🪆 Set 3 tranh đồng bộ phòng khách - quán - văn phòng</span>
+      <span class="marquee-item">·</span>
+      <span class="marquee-item">🔧 Thợ treo tận nhà — sạch sẽ, đúng vị trí</span>
+      <span class="marquee-item">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 4. 2 DỊCH VỤ CHỦ LỰC + TREO Ở ĐÂU CŨNG ĐẸP ═══════════════ -->
+<section class="section white" id="san-pham">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Dịch vụ chủ lực của xưởng</div>
+        <h2 class="sec-title">Hai việc Gia Trang làm tốt nhất</h2>
+        <p class="sec-desc">Không chỉ bán tranh có sẵn — chúng tôi <b>in lại từ chính kỷ niệm của bạn</b> và <b>đóng khung vừa khít từng centimet bức tường</b> của bạn.</p>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <article class="feat-card reveal">
+        <div class="feat-media">
+          <img loading="lazy" src="assets/img/p1.webp" alt="In tranh canvas theo yêu cầu từ ảnh chụp">
+          <span class="feat-num">DỊCH VỤ 01</span>
+          <div class="feat-price">từ 350.000đ/tranh<small>in canvas · vẽ sơn dầu — duyệt bản in trước khi đóng khung</small></div>
+        </div>
+        <div class="feat-body">
+          <h3 class="feat-title"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="M4 19l5.5-5.5 3 3L17 12l3 3"/></svg></span> In tranh theo yêu cầu — từ ảnh của bạn</h3>
+          <p class="feat-desc">Ảnh cưới, ảnh gia đình, ảnh bé, logo quán… in canvas màu chuẩn 5 năm hoặc vẽ sơn dầu tay 100%. Gửi ảnh qua Zalo là có báo giá trong 15 phút.</p>
+          <ul class="feat-list">
+            <li>Duyệt bản in/ảnh vẽ qua Zalo trước — ưng mới đóng khung</li>
+            <li>Canvas Hàn Quốc phủ UV chống nắng mốc · sơn dầu vẽ tay 100%</li>
+            <li>Đủ mọi kích thước từ 20cm đến 3m2 cho bức tường lớn</li>
+          </ul>
+          <a class="f-cta" href="#dong-khung">Tính giá in tranh của bạn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="feat-card reveal" data-d="1">
+        <div class="feat-media">
+          <img loading="lazy" src="assets/img/p2.webp" alt="Đóng khung tranh theo kích thước yêu cầu tại xưởng Gia Trang">
+          <span class="feat-num">DỊCH VỤ 02</span>
+          <div class="feat-price">từ 250.000đ/bức<small>đóng khung theo size — chốt giá trên bản đo</small></div>
+        </div>
+        <div class="feat-body">
+          <h3 class="feat-title"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M8 4v16M16 4v16M4 8h16"/></svg></span> Đóng khung tranh theo mọi kích thước</h3>
+          <p class="feat-desc">Tranh mua ngoài, ảnh cũ, chứng chỉ, thêu, áo đấu… đóng khung vừa khít tại xưởng: 60+ mẫu nẹp, pas-partout, kính chống chói, mica gương.</p>
+          <ul class="feat-list">
+            <li>Khung nhôm tân cổ điển, gỗ óc chó, gỗ cổ điển chạm khảm</li>
+            <li>Lấy trong 2–3 ngày — khẩn 24 giờ cho ngày kỷ niệm</li>
+            <li>Bảo hành khung 3 năm: keo, móc, dây treo chỉnh miễn phí</li>
+          </ul>
+          <a class="f-cta ghosty" href="#dong-khung">Chọn khung &amp; tính giá theo size <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+    <div class="compact-label reveal">TREO ĐẸP Ở MỌI KHÔNG GIAN — GIA TRANG PHỤC VỤ</div>
+    <div class="compact-strip reveal" data-d="1">
+      <a class="compact-item" href="#set-3-tranh">
+        <span class="ci" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg></span>
+        <span><span class="ct">Nhà ở — phòng khách</span><span class="cs">Set 3 tranh · gương</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="compact-item" href="#set-3-tranh">
+        <span class="ci" style="background:#E2F1E9"><svg viewBox="0 0 24 24" fill="none" stroke="#3F7D5A" stroke-width="2"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M6 10V7h12v3"/></svg></span>
+        <span><span class="ct">Quán cà phê — nhà hàng</span><span class="cs">Tranh vintage theo concept</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="compact-item" href="#set-3-tranh">
+        <span class="ci" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg></span>
+        <span><span class="ct">Văn phòng — công ty</span><span class="cs">Tranh trừu tượng + logo</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="compact-item" href="#hot">
+        <span class="ci" style="background:#E2F1E9"><svg viewBox="0 0 24 24" fill="none" stroke="#3F7D5A" stroke-width="2"><path d="M4 21V9l8-5 8 5v12M9 21v-5h6v5"/></svg></span>
+        <span><span class="ct">Hành lang — cầu thang</span><span class="cs">Gallery wall nhiều bức</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="compact-item" href="#hot">
+        <span class="ci" style="background:#F6EBD2"><svg viewBox="0 0 24 24" fill="none" stroke="#C79A3B" stroke-width="2"><circle cx="12" cy="10" r="5"/><path d="M12 15v6M9 21h6"/></svg></span>
+        <span><span class="ct">Phòng ngủ — bàn Makeup</span><span class="cs">Đèn + tranh tone nhẹ</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="compact-item" href="#lien-he">
+        <span class="ci" style="background:#E2F1E9"><svg viewBox="0 0 24 24" fill="none" stroke="#3F7D5A" stroke-width="2"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <span><span class="ct">Khảo sát tận nhà</span><span class="cs">Miễn phí nội thành</span></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5. ĐẶC THÙ NGHỀ — MÁY BÁO GIÁ IN TRANH + ĐÓNG KHUNG THEO SIZE ═══════════════ -->
+<section class="section navy" id="dong-khung">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Điểm nhấn Gia Trang — Báo giá tức thì</div>
+        <h2 class="sec-title">Chọn chất liệu &amp; size — biết ngay giá in tranh + đóng khung</h2>
+        <p class="sec-desc">Máy báo giá theo đúng bảng giá xưởng: <b style="color:#fff">giá tranh theo mét vuông + giá khung theo mét viền</b>. Chốt cấu hình rồi gửi ảnh qua Zalo — kỹ thuật viên xác nhận lại trong 15 phút.</p>
+      </div>
+    </div>
+    <div class="cfg-wrap">
+      <div class="cfg-form reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h3M8 14h3M8 18h3M15 10v8"/></svg> Cấu hình bức tranh của bạn</h3>
+        <div class="cf-sub">Giá tham chiếu xưởng Gia Trang · cập nhật tháng 9/2026</div>
+        <label class="cfg-lbl">1 · Chất liệu tranh</label>
+        <div class="cfg-mats" id="cfgMats">
+          <button class="cfg-mat on" data-mat="canvas-anh" type="button"><span class="cm-t">In canvas từ ảnh</span><span class="cm-s">Màu chuẩn · duyệt bản in</span><span class="cm-p">350.000đ/m²</span></button>
+          <button class="cfg-mat" data-mat="canvas-mau" type="button"><span class="cm-t">Canvas mẫu có sẵn</span><span class="cm-s">3.000+ mẫu chọn nhanh</span><span class="cm-p">290.000đ/m²</span></button>
+          <button class="cfg-mat" data-mat="son-dau" type="button"><span class="cm-t">Sơn dầu vẽ tay</span><span class="cm-s">Họa sĩ vẽ 100%</span><span class="cm-p">1.350.000đ/m²</span></button>
+        </div>
+        <label class="cfg-lbl">2 · Kích thước tranh</label>
+        <div class="cfg-sizes" id="cfgSizes">
+          <button class="cfg-size on" data-w="40" data-h="60" type="button">40×60<small>cm</small></button>
+          <button class="cfg-size" data-w="50" data-h="70" type="button">50×70<small>cm</small></button>
+          <button class="cfg-size" data-w="70" data-h="100" type="button">70×100<small>cm</small></button>
+          <button class="cfg-size" data-w="100" data-h="140" type="button">100×140<small>cm</small></button>
+          <button class="cfg-size" data-w="custom" data-h="custom" type="button">Tự nhập size</button>
+        </div>
+        <div class="cfg-custom" id="cfgCustom" style="display:none">
+          <input type="number" id="cfgW" min="15" max="300" placeholder="Rộng (cm)" aria-label="Chiều rộng cm">
+          <span class="x">×</span>
+          <input type="number" id="cfgH" min="15" max="300" placeholder="Cao (cm)" aria-label="Chiều cao cm">
+        </div>
+        <label class="cfg-lbl">3 · Nẹp khung (tính theo viền)</label>
+        <div class="cfg-frames" id="cfgFrames">
+          <label class="cfg-frame"><input type="radio" name="cfgFrame" value="none"><span>Chỉ tranh — không khung</span><span class="fp">0đ</span></label>
+          <label class="cfg-frame"><input type="radio" name="cfgFrame" value="nhom" checked><span>Nhôm mảnh đen/đồng</span><span class="fp">90k/m</span></label>
+          <label class="cfg-frame"><input type="radio" name="cfgFrame" value="occho"><span>Gỗ óc chó sơn mờ</span><span class="fp">150k/m</span></label>
+          <label class="cfg-frame"><input type="radio" name="cfgFrame" value="codien"><span>Gỗ cổ điển vàng đồng</span><span class="fp">260k/m</span></label>
+        </div>
+        <label class="cfg-lbl">4 · Phụ kiện thêm (tùy chọn)</label>
+        <div class="cfg-extras" id="cfgExtras">
+          <label class="cfg-extra"><input type="checkbox" value="paspartout"><span>Pas-partout kem</span></label>
+          <label class="cfg-extra"><input type="checkbox" value="kinh"><span>Kính chống chói</span></label>
+          <label class="cfg-extra"><input type="checkbox" value="treo"><span>Thợ treo tận nhà</span></label>
+        </div>
+      </div>
+      <div class="cfg-result reveal" data-d="1" id="cfgResult">
+        <div class="cr-box">
+          <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v18M15 3v18M3 9h18M3 15h18" opacity=".4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Bảng giá chi tiết</div>
+          <div class="cr-lines" id="cfgLines">
+            <div class="cr-line"><span class="k">Tranh canvas theo ảnh 40×60cm (0,24m²)</span><span class="v">150.000đ</span></div>
+            <div class="cr-line"><span class="k">Khung nhôm mảnh — viền 2m</span><span class="v">180.000đ</span></div>
+          </div>
+        </div>
+        <div class="cr-total">
+          <span class="k">Tổng dự kiến<small>đã gồm gia công tại xưởng — chưa gồm vận chuyển</small></span>
+          <span class="v" id="cfgTotal">330.000đ</span>
+        </div>
+        <div class="cr-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16.5v.01"/><circle cx="12" cy="12" r="9"/></svg> Giá làm tròn tới 10.000đ · phần tranh tối thiểu 150.000đ/bức (gồm xử lý ảnh + in thử). Đơn ≥ 3 bức giảm thêm 5% — báo chính xác sau khi xem ảnh gửi qua Zalo 0903 456 789.</div>
+        <div class="cr-actions">
+          <button class="btn-cta btn-cfg-add" id="btnCfgAdd" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg> Thêm cấu hình này vào giỏ</button>
+          <a class="btn-outline-d" href="#tu-van">Gửi ảnh qua tư vấn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 6. SET 3 TRANH ĐỒNG BỘ ═══════════════ -->
+<section class="section cream" id="set-3-tranh">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Điểm nhấn Gia Trang — Combo đồng bộ</div>
+        <h2 class="sec-title">Set 3 tranh treo đẹp ngay — theo đúng không gian của bạn</h2>
+        <p class="sec-desc">Mỗi set là <b>một bố cục 3 bức đã được chỉnh tone màu và tỉ lệ sẵn</b>: 2 bức 40×60 kẹp 2 bên, 1 bức lớn ở giữa. Thêm cả set vào giỏ 1 nút — kèm bản vẽ vị trí treo miễn phí.</p>
+      </div>
+    </div>
+    <div class="bundle-wrap reveal">
+      <div class="bundle-tabs" role="tablist">
+        <button class="bundle-tab active" data-tab="giadinh" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg> Nhà ở — gia đình</button>
+        <button class="bundle-tab" data-tab="quan" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a3 3 0 010 6h-1M4 8h13v6a4 4 0 01-4 4H8a4 4 0 01-4-4z"/></svg> Quán cà phê — nhà hàng</button>
+        <button class="bundle-tab" data-tab="vanphong" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg> Văn phòng — công ty</button>
+      </div>
+      <div class="bundle-panels">
+        <!-- SET GIA ĐÌNH -->
+        <div class="bundle-panel active" data-panel="giadinh">
+          <div class="bp-info">
+            <span class="bp-tag">Phòng khách nhà ở · tường 2,2–3m · tông ấm vàng đồng</span>
+            <h3 class="bp-title">Set 3 tranh "Nắng Vàng Nhà Mình"</h3>
+            <p class="bp-desc">Hoa lá vàng đồng + phong cảnh tông nâu kem, hợp sofa da, tường kem hoặc xám khói. Kèm bản vẽ vị trí treo + móc không khoan tường.</p>
+            <div class="bp-list">
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">2 tranh canvas 40×60 — hoa lớpcanh vàng</span><span class="bi-s">Khung gỗ óc chó mờ · treo 2 bên</span></span><span class="bi-p">2 × 590.000đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">1 tranh canvas 50×70 — hồ thu tông ấm</span><span class="bi-s">Khung gỗ óc chó · treo chính giữa</span></span><span class="bi-p">890.000đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">Quà kèm: 1 bình hoa gốm men kem (20cm)</span><span class="bi-s">Để bàn kệ TV — đồng bộ set</span></span><span class="bi-p">Tặng 0đ</span></div>
+            </div>
+            <div class="bp-actions">
+              <button class="btn-addkit" data-kit="giadinh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg> Thêm cả set vào giỏ</button>
+              <span class="bp-total">Trọn set: <b data-kit-price="giadinh">1.790.000đ</b><br><small style="opacity:.6;font-size:.75rem">Mua lẻ 2.070.000đ · tiết kiệm 14%</small></span>
+            </div>
+          </div>
+          <div class="bp-gallery">
+            <div class="bpg-head"><span class="n">3</span> Tranh trong set <span class="s">Giao + treo trong 3 ngày</span></div>
+            <div class="bpg-grid">
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p1.webp" alt="Tranh canvas treo tường set gia đình"><span class="bi-q">×2</span><span class="bi-n">Canvas 40×60 — hoa lớpcanh vàng đồng</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/space.webp" alt="Bố cục set 3 tranh trên tường phòng khách"><span class="bi-q">bố cục</span><span class="bi-n">Treo chữ nhật 3 bức — kèm bản vẽ vị trí</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p3.webp" alt="Bình hoa gốm men kem tặng kèm set"><span class="bi-q">tặng</span><span class="bi-n">Bình hoa gốm men kem 20cm đồng bộ</span></div>
+            </div>
+            <div class="bpg-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16.5v.01"/><circle cx="12" cy="12" r="9"/></svg> Đổi mẫu tranh trong set miễn phí trong 7 ngày — chưa treo vẫn đổi</div>
+          </div>
+        </div>
+        <!-- SET QUÁN -->
+        <div class="bundle-panel" data-panel="quan">
+          <div class="bp-info">
+            <span class="bp-tag">Quán cà phê · nhà hàng · tường 4–6m · tông vintage</span>
+            <h3 class="bp-title">Set 3 tranh "Sài Gòn Xưa" cho quán</h3>
+            <p class="bp-desc">3 bức 70×100 in canvas mờ tông nâu cổ điển, khung nhôm đen bền khói — khách chụp ảnh sống ảo là nghiện. Có hóa đơn VAT cho quán.</p>
+            <div class="bp-list">
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">3 tranh canvas 70×100 — phố cổ, xích lô, quán cóc</span><span class="bi-s">Canvas mờ chống nắng · khung nhôm đen</span></span><span class="bi-p">3 × 2.100.000đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">Thợ treo trọn set + chỉnh độ thẳng bằng máy</span><span class="bi-s">Treo trước giờ mở cửa, không ảnh hưởng kinh doanh</span></span><span class="bi-p">0đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">Ưu đãi quán: in logo/name quán thành 1 tranh chữ treo quầy</span><span class="bi-s">Giảm 50% tranh chữ khi làm set</span></span><span class="bi-p">−50%</span></div>
+            </div>
+            <div class="bp-actions">
+              <button class="btn-addkit" data-kit="quan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg> Thêm cả set vào giỏ</button>
+              <span class="bp-total">Trọn set: <b data-kit-price="quan">6.900.000đ</b><br><small style="opacity:.6;font-size:.75rem">Mua lẻ 7.950.000đ · tiết kiệm 13%</small></span>
+            </div>
+          </div>
+          <div class="bp-gallery">
+            <div class="bpg-head"><span class="n">3</span> Tranh trong set <span class="s">Xưởng in 5–7 ngày</span></div>
+            <div class="bpg-grid">
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p1.webp" alt="Tranh canvas 70x100 cho quán"><span class="bi-q">×3</span><span class="bi-n">Canvas 70×100 tông Sài Gòn xưa — chống nắng</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/space.webp" alt="Không gian quán treo tranh đồng bộ"><span class="bi-q">tham khảo</span><span class="bi-n">Bố cục hàng ngang trên tường dài quán</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p5.webp" alt="Đèn tường vàng đồng cho quán"><span class="bi-q">gợi ý</span><span class="bi-n">Thêm đèn tường vàng đồng — rọi tranh đúng kiểu gallery</span></div>
+            </div>
+            <div class="bpg-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16.5v.01"/><circle cx="12" cy="12" r="9"/></svg> Quán mở chuỗi: chốt concept 1 lần — các chi nhánh in đồng bộ</div>
+          </div>
+        </div>
+        <!-- SET VĂN PHÒNG -->
+        <div class="bundle-panel" data-panel="vanphong">
+          <div class="bp-info">
+            <span class="bp-tag">Văn phòng · sảnh chờ · phòng họp · tông ghi — xanh trầm</span>
+            <h3 class="bp-title">Set 3 tranh "Tập Trung &amp; Sáng Tạo"</h3>
+            <p class="bp-desc">Trừu tượng nét bút tông ghi xám — xanh cổ vịt, khung nhôm bạc mảnh. Đầy đủ hóa đơn VAT, xuất chứng từ đầy đủ cho công ty.</p>
+            <div class="bp-list">
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">2 tranh canvas 40×60 — trừu tượng mực nhảy</span><span class="bi-s">Khung nhôm bạc · treo khu tiếp khách</span></span><span class="bi-p">2 × 720.000đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">1 tranh canvas 50×70 — sóng trừu tượng xanh</span><span class="bi-s">Khung nhôm bạc · phòng họp lớn</span></span><span class="bi-p">1.150.000đ</span></div>
+              <div class="bp-item"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="bi-t">Quà kèm: đồng hồ treo tường kim loại đen 40cm</span><span class="bi-s">Đồng bộ khung — treo khu lễ tân</span></span><span class="bi-p">Tặng 0đ</span></div>
+            </div>
+            <div class="bp-actions">
+              <button class="btn-addkit" data-kit="vanphong"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg> Thêm cả set vào giỏ</button>
+              <span class="bp-total">Trọn set: <b data-kit-price="vanphong">2.290.000đ</b><br><small style="opacity:.6;font-size:.75rem">Mua lẻ 2.590.000đ · tiết kiệm 12%</small></span>
+            </div>
+          </div>
+          <div class="bp-gallery">
+            <div class="bpg-head"><span class="n">3</span> Tranh trong set <span class="s">Xuất VAT đầy đủ</span></div>
+            <div class="bpg-grid">
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p1.webp" alt="Tranh trừu tượng cho văn phòng"><span class="bi-q">×3</span><span class="bi-n">Canvas trừu tượng ghi — xanh, khung nhôm bạc</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/space.webp" alt="Không gian văn phòng treo tranh"><span class="bi-q">tham khảo</span><span class="bi-n">Sảnh chờ + phòng họp — bố cục đối xứng</span></div>
+              <div class="bpg-item"><img loading="lazy" src="assets/img/p8.webp" alt="Đóng khung logo chứng nhận cho văn phòng"><span class="bi-q">dịch vụ</span><span class="bi-n">Đóng khung logo, chứng nhận, giải thưởng công ty</span></div>
+            </div>
+            <div class="bpg-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16.5v.01"/><circle cx="12" cy="12" r="9"/></svg> Khảo sát tường văn phòng miễn phí — đề xuất bố cục bằng hình 3D đơn giản</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 7. KHỐI-8: DEAL + 8 DÒNG SẢN PHẨM ═══════════════ -->
+<section class="section white" id="hot">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Sẵn mẫu tại cửa hàng — giao ngay</div>
+        <h2 class="sec-title">8 dòng tranh &amp; đồ trang trí bán chạy nhất</h2>
+        <p class="sec-desc">Bấm <b>chọn chất liệu / khung</b> ngay trên thẻ để đổi mô tả và khoảng giá. Mỗi dòng một kiểu — không trùng lặp, đủ từ tranh lớn đến món decor nhỏ.</p>
+      </div>
+    </div>
+    <div class="deal-strip reveal">
+      <span class="flame">🔥</span>
+      <span class="dt">Deal tuần này: <span>Set 3 tranh "Nắng Vàng Nhà Mình" — 1,79tr còn 1,69tr</span> khi đặt trong hôm nay</span>
+      <span class="note">Kết thúc sau</span>
+      <div class="deal-count" id="dealCount">
+        <div class="dc-cell"><div class="v" id="dcH">00</div><div class="l">Giờ</div></div>
+        <div class="dc-cell"><div class="v" id="dcM">00</div><div class="l">Phút</div></div>
+        <div class="dc-cell"><div class="v" id="dcS">00</div><div class="l">Giây</div></div>
+      </div>
+    </div>
+    <div class="prod-grid reveal" id="prodGrid"><!-- render bằng JS --></div>
+    <div class="pcard-ctrl reveal" data-d="1">
+      <button class="pcar-btn" id="pcPrev" aria-label="Xem nhóm sản phẩm trước">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="pcar-progress"><div class="pcar-fill" id="pcFill"></div></div>
+      <span class="pcar-count" id="pcCount">Tất cả 8 dòng hiển thị</span>
+      <button class="pcar-btn" id="pcNext" aria-label="Xem nhóm sản phẩm sau">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <a class="btn-hero ghost" href="#dong-khung" style="padding:13px 26px">Không thấy mẫu ưng? In riêng tranh của bạn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 8. STATS BAND ═══════════════ -->
+<section class="stats-band">
+  <div class="diag"></div><div class="diag"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-cell reveal"><div class="n" data-count="12">0<em>+</em></div><div class="l">Năm xưởng khung &amp; in tranh</div><div class="bar"></div></div>
+      <div class="stat-cell reveal" data-d="1"><div class="n" data-count="48000">0<em>+</em></div><div class="l">Bức tranh đã đóng khung &amp; treo</div><div class="bar"></div></div>
+      <div class="stat-cell reveal" data-d="2"><div class="n" data-count="60">0<em>+</em></div><div class="l">Mẫu nẹp khung tại xưởng</div><div class="bar"></div></div>
+      <div class="stat-cell reveal" data-d="3"><div class="n" data-count="98">0<em>%</em></div><div class="l">Đơn giao — treo đúng hẹn</div><div class="bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. VỀ GIA TRANG ═══════════════ -->
+<section class="section white" id="gioi-thieu">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <div class="about-frame"><img loading="lazy" src="assets/img/intro.webp" alt="Gia Trang — 12 năm làm tranh và khung tranh cho nhà đẹp"></div>
+      </div>
+      <div class="about-info reveal" data-d="1">
+        <div class="sec-kicker">Về Gia Trang</div>
+        <h2 class="sec-title">12 năm một xưởng khung,<br>một chữ tín với bức tường nhà bạn</h2>
+        <p class="sec-desc">Gia Trang mở ra từ một tiệm đóng khung nhỏ năm 2014. Hôm nay chúng tôi có <b>xưởng khung 800m² và máy in canvas khổ 3,2m</b> — nhưng giữ nguyên cách làm từ ngày đầu: <b>duyệt bản in trước khi đóng khung, treo thẳng mới nghiễm thu</b>.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <span class="ap-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg></span>
+            <span><span class="ap-t">Xưởng khung 800m²</span><span class="ap-s">Tự cắt nẹp, tự lắp — giá tốt hơn 20% so với đặt ngoài</span></span>
+          </div>
+          <div class="about-point">
+            <span class="ap-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="M4 19l5.5-5.5 3 3L17 12l3 3"/></svg></span>
+            <span><span class="ap-t">Máy in canvas 3,2m</span><span class="ap-s">In được tranh lớn cho sảnh, quán — màu giữ 5 năm</span></span>
+          </div>
+          <div class="about-point">
+            <span class="ap-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/></svg></span>
+            <span><span class="ap-t">3.000+ mẫu tranh chọn sẵn</span><span class="ap-s">Đủ tông hiện đại, tân cổ điển, vintage, Á Đông</span></span>
+          </div>
+          <div class="about-point">
+            <span class="ap-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 7a4 4 0 10-5 5L4 17l3 3 5-5a4 4 0 005-5"/></svg></span>
+            <span><span class="ap-t">Thợ treo chuyên trách</span><span class="ap-s">Đo bằng máy laser — treo thẳng, sạch tường, dọn dẹp khi ra về</span></span>
+          </div>
+        </div>
+        <div class="about-cta-row">
+          <a class="btn-hero primary" style="padding:13px 24px;font-size:.88rem" href="#lien-he">Ghé cửa hàng xem tranh thật</a>
+          <a class="btn-hero ghost" style="padding:13px 24px;font-size:.88rem" href="#danh-gia">Xem khách nói gì</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 10. QUY TRÌNH 4 BƯỚC ═══════════════ -->
+<section class="section cream" id="quy-trinh">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Từ tấm tường trống đến bức tranh treo thẳng</div>
+        <h2 class="sec-title">4 bước — bạn chỉ cần gửi ảnh, phần còn Gia Trang lo</h2>
+        <p class="sec-desc">Đơn in theo yêu cầu trung bình 3–5 ngày, đơn có sẵn mẫu 1–2 ngày. Mọi bước đều có ảnh chụp gửi qua Zalo để bạn duyệt.</p>
+      </div>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-cell reveal">
+        <div class="proc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg><span class="step-n">1</span></div>
+        <div class="proc-t">Gửi ảnh &amp; đo tường</div>
+        <div class="proc-s">Gửi ảnh qua Zalo hoặc ghé cửa hàng. Có thể khảo sát tận nhà — đo bằng laser, chốt vị trí treo.</div>
+        <div class="proc-meta">⏱ Báo giá trong 15 phút</div>
+      </div>
+      <div class="proc-cell reveal" data-d="1">
+        <div class="proc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="M4 19l5.5-5.5 3 3L17 12l3 3"/></svg><span class="step-n">2</span></div>
+        <div class="proc-t">Duyệt bản in / ảnh vẽ</div>
+        <div class="proc-s">Gửi bản in thử qua Zalo — chỉnh sáng, màu, crop đúng ý. Sơn dầu sẽ gửi ảnh tiến độ họa sĩ vẽ.</div>
+        <div class="proc-meta">🖼️ Ưng rồi mới in thật</div>
+      </div>
+      <div class="proc-cell reveal" data-d="2">
+        <div class="proc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M8 4v16M16 4v16M4 8h16M4 16h16"/></svg><span class="step-n">3</span></div>
+        <div class="proc-t">Đóng khung tại xưởng</div>
+        <div class="proc-s">Cắt nẹp 45°, ép keo, gắn pas-partout/kính — chụp ảnh thành phẩm gửi bạn trước khi giao.</div>
+        <div class="proc-meta">🪵 2–3 ngày · khẩn 24h</div>
+      </div>
+      <div class="proc-cell reveal" data-d="3">
+        <div class="proc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v4M5 7l2 2M19 7l-2 2"/><path d="M3 13h18M7 13l-2 8h14l-2-8"/></svg><span class="step-n">4</span></div>
+        <div class="proc-t">Giao &amp; treo tận nhà</div>
+        <div class="proc-s">Thợ treo bằng máy đo laser, dán băng che bụi khi khoan — treo thẳng, dọn sạch khi ra về.</div>
+        <div class="proc-meta">🛡️ Bảo hành khung 3 năm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 11. KHÁCH NÓI GÌ ═══════════════ -->
+<section class="section navy" id="danh-gia">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Khách hàng nói gì</div>
+        <h2 class="sec-title">Nhà đẹp, quán đông khách, văn phòng sang hơn — nhờ đúng bức tranh</h2>
+        <p class="sec-desc">Khách của Gia Trang trải đều 3 nhóm: gia đình trẻ lần đầu treo tranh, chủ quán cần không gian "lên hình", và văn phòng cần sự chỉn chu.</p>
+      </div>
+    </div>
+    <div class="sp-wrap reveal">
+      <div class="sp-viewport">
+        <div class="sp-track" id="spTrack"><!-- render JS --></div>
+      </div>
+      <div class="sp-ctrl">
+        <button class="sp-btn" id="spPrev" aria-label="Đánh giá trước"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <div class="sp-dots" id="spDots"></div>
+        <button class="sp-btn" id="spNext" aria-label="Đánh giá tiếp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="partners reveal" data-d="1">
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a3 3 0 010 6h-1M4 8h13v6a4 4 0 01-4 4H8a4 4 0 01-4-4z"/></svg> The Mộc Coffee</span>
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/></svg> Sen Vàng Restaurant</span>
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> VPLaw &amp; Associates</span>
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg> Aurum Residence</span>
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M5 12V6h4v6M15 12V8h4v4"/></svg> Galaxy Office</span>
+      <span class="partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.4 4.9L20 8l-4 3.9.9 5.6L12 14.9 7.1 17.5 8 11.9 4 8l5.6-1.1L12 2z"/></svg> Hồng Hạc Bakery</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 12. FAQ ═══════════════ -->
+<section class="section cream" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">FAQ — câu hỏi thật của khách</div>
+        <h2 class="sec-title">Vấn đề khách hay hỏi trước khi treo bức tranh đầu tiên</h2>
+        <p class="sec-desc">Chưa thấy câu trả lời? Gõ từ khóa vào ô tìm bên dưới hoặc gọi <b>0903 456 789</b> (8h–21h) — thợ xưởng trả lời ngay, không qua tổng đài.</p>
+      </div>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-side reveal">
+        <div class="faq-hero">
+          <div class="fh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/><path d="M9 7h7M9 11h5"/></svg></div>
+          <h3>Cẩm nang treo tranh Gia Trang</h3>
+          <p>Chọn size theo tường, độ cao treo chuẩn 145cm tâm tranh, bố cục set 3 bức — xem nhanh 1 trang.</p>
+          <a class="btn-cta" href="#dong-khung" style="padding:12px 20px;font-size:.85rem">Tính giá tranh của bạn</a>
+        </div>
+        <div class="kb-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="kbSearch" placeholder="Tìm: in ảnh, đóng khung, treo tận nhà, đổi trả…">
+        </div>
+        <div class="kb-chips">
+          <button class="kb-chip" data-kb="in ảnh">#in-tranh-từ-ảnh</button>
+          <button class="kb-chip" data-kb="đóng khung">#đóng-khung-theo-size</button>
+          <button class="kb-chip" data-kb="treo">#thợ-treo-tận-nhà</button>
+          <button class="kb-chip" data-kb="sơn dầu">#sơn-dầu-vẽ-tay</button>
+          <button class="kb-chip" data-kb="đổi trả">#đổi-trả</button>
+          <button class="kb-chip" data-kb="vận chuyển">#vận-chuyển-decor</button>
+          <button class="kb-chip" data-kb="số lượng">#mua-số-lượng-quán</button>
+        </div>
+      </div>
+      <div class="faq-list reveal" data-d="1" id="faqList"><!-- render JS --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 13. LIÊN HỆ + CHỈ ĐƯỜNG ═══════════════ -->
+<section class="section white" id="lien-he">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">Liên hệ &amp; chỉ đường</div>
+        <h2 class="sec-title">Ghé cửa hàng xem tranh thật — hoặc để thợ đến đo tường nhà bạn</h2>
+        <p class="sec-desc">Mở cửa cả cuối tuần. Ghé trước nên gọi hotline để xưởng chừa người tư vấn riêng cho bạn — miễn phí, không bắt buộc mua.</p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="cc-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span><b>Cửa hàng &amp; xưởng khung</b><p>88 Đường Mậu Mơ, Phường Khung Xinh,<br>TP. Rồn Răng<br><small>— bãi đỗ xe rộng, khu trưng bày 2 tầng</small></p></span>
+        </div>
+        <div class="cc-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006.4 6.4l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.6 2.6.7a2 2 0 011.7 2z"/></svg></span>
+          <span><b>Hotline &amp; Zalo gửi ảnh in tranh</b><p><a href="tel:0903456789">0903 456 789</a> — bấm để gọi / gửi ảnh qua Zalo<br>Phụ trách đơn: thợ trưởng Gia Trang</p></span>
+        </div>
+        <div class="cc-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><b>Giờ mở cửa</b><p>Thứ 2 – Chủ nhật · 8h00 – 21h00<br>Xưởng tham quan theo hẹn trước</p></span>
+        </div>
+        <div class="cc-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <span><b>Email</b><p>xuong@giatrang.vn<br>Quán / văn phòng mua số lượng: gửi yêu cầu qua email để nhận bảng giá dự án</p></span>
+        </div>
+        <div class="contact-strip">
+          <img loading="lazy" src="assets/img/space.webp" alt="Không gian trưng bày tranh và khung tranh Gia Trang">
+          <span class="cap">Không gian trưng bày — xem tranh thật trước khi chốt</span>
+        </div>
+      </div>
+      <div class="contact-side reveal" data-d="1">
+        <div class="cs-title">Chỉ đường đến Gia Trang</div>
+        <p class="cs-sub">Giao lộ Mậu Mơ — Khung Xinh, cách chợ trung tâm 500m. Nhận xe tải giao hàng cổng sau xưởng.</p>
+        <div class="cs-mapmock" role="img" aria-label="Sơ đồ chỉ đường đến cửa hàng Gia Trang">
+          <span class="cs-road h"></span><span class="cs-road v"></span>
+          <span class="cs-road-lbl" style="left:14px;top:40%">Đường Mậu Mơ</span>
+          <span class="cs-road-lbl" style="left:64%;top:14px;writing-mode:vertical-rl">Phố Khung Xinh</span>
+          <span class="cs-pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#241C14"/></svg><span>GIA TRANG — Số 88</span></span>
+        </div>
+        <a class="btn-direction" href="https://www.google.com/maps/search/?api=1&query=88+Duong+Mau+Mo+Ron+Rang" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.5-2.5V4L9 6.5 15 4l5.5 2.5V20L15 17.5 9 20zM9 6.5V20M15 4v13.5"/></svg>
+          Mở Google Maps — chỉ đường
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 14. CTA — NHẬN TƯ VẤN GALLERY WALL ═══════════════ -->
+<section class="section consult" id="tu-van">
+  <div class="container">
+    <div class="consult-info reveal">
+      <h2>Nhận <span>bố cục treo tranh gợi ý miễn phí</span><br>cho đúng bức tường nhà bạn</h2>
+      <p>Gửi ảnh bức tường qua Zalo, thợ xưởng vẽ nhanh bố cục treo: size từng bức, khoảng cách, độ cao — <b style="color:#fff">bạn duyệt xong mới in và đóng khung</b>. Không mất phí, không ràng buộc.</p>
+      <div class="consult-checklist">
+        <div class="consult-check"><span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> Đề xuất size + bố cục theo đúng bức tường — chỉnh thoải mái</div>
+        <div class="consult-check"><span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> Báo giá chốt trên cấu hình đã chọn — không phát sinh sau này</div>
+        <div class="consult-check"><span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> Quán / văn phòng: khảo sát + bảng giá dự án riêng trong 24 giờ</div>
+        <div class="consult-check"><span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> Thợ 12 năm kinh nghiệm trực tiếp phụ trách đến khi treo xong</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);padding:12px 18px;border-radius:14px">
+          <span style="font-size:1.6rem">🖼️</span>
+          <span><b style="color:#fff;font-size:.85rem">Thợ trưởng Anh Tú</b><br><span style="font-size:.7rem;color:rgba(237,224,201,.6)">Trưởng xưởng khung · 12 năm nghề đóng khung</span></span>
+        </div>
+        <img loading="lazy" src="assets/img/p8.webp" alt="Thợ xưởng Gia Trang đóng khung tranh thủ công" style="width:184px;height:64px;object-fit:cover;border-radius:11px;border:2px solid rgba(255,255,255,.3)">
+      </div>
+    </div>
+    <form class="consult-form reveal" data-d="1" id="consultForm" novalidate>
+      <h3>Nhận tư vấn + báo giá trong 30 phút</h3>
+      <div class="cf-note">Phản hồi trong giờ làm việc · Không spam · Không ràng buộc</div>
+      <div class="cform-field"><input type="text" id="cfName" placeholder="Họ tên của bạn *"></div>
+      <div class="cform-field"><input type="tel" id="cfPhone" placeholder="Số điện thoại / Zalo *"></div>
+      <div class="cform-field">
+        <select id="cfNeed">
+          <option value="">Bạn cần gì? *</option>
+          <option>In tranh theo ảnh của tôi</option>
+          <option>Đóng khung tranh / ảnh / chứng chỉ</option>
+          <option>Set 3 tranh cho nhà ở</option>
+          <option>Tranh cho quán cà phê — nhà hàng</option>
+          <option>Tranh cho văn phòng — công ty</option>
+          <option>Gương, đèn, bình hoa decor</option>
+        </select>
+      </div>
+      <div class="cform-field"><textarea id="cfNote" placeholder="Mô tả thêm: bức tường rộng bao nhiêu, tông màu nội thất, ngày cần treo…"></textarea></div>
+      <button type="submit" class="btn-cta">🖼️ Nhận bố cục + báo giá miễn phí</button>
+      <div class="cf-safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Thông tin của bạn chỉ dùng để tư vấn đơn hàng</div>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════ 15. FOOTER GỌN ═══════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <div class="f-logo">
+          <div class="logo-mark" style="width:42px;height:42px"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="#E4B65E" stroke-width="1.7"/><rect x="7.5" y="7.5" width="9" height="9" rx="1" fill="#C79A3B"/><path d="M9 14.5l2.4-3 2 2.2 1.4-1.6 1.7 2.4z" fill="#241C14"/><circle cx="10.4" cy="10" r="1" fill="#241C14"/></svg></div>
+          <div class="logo-text"><div class="lt1" style="color:#fff">GIA<span>TRANG</span></div><div class="lt2" style="color:rgba(203,181,150,.7)">Tranh &amp; đồ trang trí</div></div>
+        </div>
+        <p class="f-about">Xưởng tranh &amp; khung từ 2014 — 48.000+ bức đã treo với tiêu chí: <b style="color:#EDE0C9">duyệt bản in trước, đóng khung vừa khít, treo thẳng mới nghiễm thu</b>.</p>
+        <div class="f-badges">
+          <span class="f-badge">✔ GPKD 0312xxxxxx</span>
+          <span class="f-badge">⛨ Bảo hành khung 3 năm</span>
+        </div>
+      </div>
+      <div>
+        <div class="f-title">Khám phá nhanh</div>
+        <ul class="f-links">
+          <li><a href="#dong-khung">In tranh theo yêu cầu</a></li>
+          <li><a href="#dong-khung">Đóng khung theo size</a></li>
+          <li><a href="#set-3-tranh">Set 3 tranh đồng bộ</a></li>
+          <li><a href="#hot">Tranh &amp; decor bán chạy</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+          <li><a href="#lien-he">Cửa hàng &amp; chỉ đường</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-title">Cửa hàng &amp; xưởng</div>
+        <div class="f-contact">
+          <div class="fc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>88 Đường Mậu Mơ,</b> Phường Khung Xinh, TP. Rồn Răng</span></div>
+          <div class="fc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v4l3 3"/></svg><span><b>T2–CN:</b> 8h00 – 21h00</span></div>
+          <div class="fc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006.4 6.4l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.6 2.6.7a2 2 0 011.7 2z"/></svg><span><b>Hotline / Zalo:</b> 0903 456 789<br><b>Email:</b> xuong@giatrang.vn</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Gia Trang Decor — Website mẫu phục vụ mục đích thiết kế giao diện (sample site).</span>
+      <div class="pay">
+        <span class="pay-chip">VISA</span><span class="pay-chip">MOMO</span><span class="pay-chip">BANKING</span><span class="pay-chip">CỌC 30%</span><span class="pay-chip">VAT ĐỦ</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ 16. FAB DOCK ═══════════════ -->
+<nav class="fab-dock" id="fabDock" aria-label="Thanh thao tác nhanh">
+  <button class="fab cart-fab" id="fabCart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg>
+    <span>Giỏ hàng</span>
+    <span class="cart-badge" id="fabCartBadge">0</span>
+    <span class="fab-dot" id="fabDot" style="display:none"></span>
+  </button>
+  <a class="fab" href="#dong-khung">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M8 4v16M16 4v16"/></svg>
+    <span>Đóng khung</span>
+  </a>
+  <a class="fab" href="#set-3-tranh">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="8" y="13" width="8" height="8" rx="1"/></svg>
+    <span>Set 3 tranh</span>
+  </a>
+  <a class="fab" href="tel:0903456789">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006.4 6.4l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.6 2.6.7a2 2 0 011.7 2z"/></svg>
+    <span>Gọi ngay</span>
+  </a>
+  <button class="fab" id="fabTop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    <span>Lên đầu</span>
+  </button>
+</nav>
+
+<!-- ═══════════════ 17. CART DRAWER ═══════════════ -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Giỏ hàng">
+  <div class="cd-head">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E4B65E" stroke-width="2" style="position:relative"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg>
+    <div><h3>Giỏ tranh của bạn</h3><div class="cd-count" id="cdCount">Chưa có sản phẩm</div></div>
+    <button class="cd-close" id="cdClose" aria-label="Đóng giỏ hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="cd-tier">
+    <div class="ct-lbl" id="ctLbl">Đơn từ <b>3 triệu</b> được <b>chiết khấu −2%</b></div>
+    <div class="cd-tier-bar"><div class="cd-tier-fill" id="ctFill"></div></div>
+    <div class="cd-tier-legend">
+      <span>Giá chuẩn</span><span>−2% · 3tr</span><span>−4% · 6tr</span><span>−7% · 12tr</span>
+    </div>
+  </div>
+  <div class="cd-items" id="cdItems">
+    <div class="cd-empty">
+      <div class="big">🖼️</div>
+      <div class="t">Giỏ hàng đang trống</div>
+      <div style="font-size:.8rem">Thêm tranh, set 3 bức hoặc cấu hình in tranh riêng — chiết khấu tự áp theo giá trị đơn.</div>
+    </div>
+  </div>
+  <div class="cd-foot" id="cdFoot" style="display:none">
+    <div class="cd-row"><span>Tạm tính</span><span class="v" id="cdSubtotal">0đ</span></div>
+    <div class="cd-row discount"><span>Chiết khấu theo giá trị đơn</span><span class="v" id="cdDiscount">−0đ</span></div>
+    <div class="cd-row total"><span class="k">Tổng cộng</span><span class="v" id="cdTotal">0đ</span></div>
+    <button class="btn-checkout" id="btnCheckout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Gửi yêu cầu đặt tranh
+    </button>
+    <div class="cd-ship-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Miễn phí thợ treo nội thành cho đơn từ 3 triệu</div>
+  </div>
+</aside>
+
+<!-- ═══════════════ 18. QUICK VIEW ═══════════════ -->
+<div class="qv-backdrop" id="qvBackdrop">
+  <div class="qv-modal" role="dialog" aria-modal="true" aria-label="Xem nhanh sản phẩm">
+    <button class="qv-close" id="qvClose" aria-label="Đóng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="qv-media"><img id="qvImg" src="assets/img/cover.webp" alt=""></div>
+    <div class="qv-body">
+      <div class="qv-cat" id="qvCat"></div>
+      <h3 class="qv-name" id="qvName"></h3>
+      <div class="qv-stars"><span class="stars" id="qvStars"></span><span id="qvReviews"></span></div>
+      <div class="qv-price"><span class="now" id="qvPrice"></span><span class="old" id="qvOld"></span><span class="save" id="qvSave"></span></div>
+      <div class="qv-unit" id="qvUnit"></div>
+      <div class="qv-tier-box">
+        <div class="qv-tier-head"><span>Chất liệu / khung</span><span>Giá từ</span><span>Khoảng giá</span></div>
+        <div id="qvMats"><!-- render JS --></div>
+      </div>
+      <div class="qv-qty-row">
+        <span class="lbl">Số lượng:</span>
+        <div class="qv-qty">
+          <button class="qty-btn" id="qvMinus">−</button>
+          <span class="qty-val" id="qvQty">1</span>
+          <button class="qty-btn" id="qvPlus">+</button>
+        </div>
+        <div class="qv-livprice"><div class="l">Thành tiền</div><div class="v" id="qvLivPrice">0đ</div></div>
+      </div>
+      <div class="qv-cta-row">
+        <button class="btn-qv-add" id="qvAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2L21 8H6"/></svg> Thêm vào giỏ</button>
+        <button class="btn-qv-buy" id="qvBuy">Đặt ngay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="qv-meta">
+        <span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h11V7H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg> Sẵn mẫu giao trong 24–48 giờ — hoặc in riêng theo yêu cầu</span>
+        <span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4.4-3 8.2-7 9-4-.8-7-4.6-7-9V7l7-4z"/></svg> Bảo hành khung 3 năm — chỉnh móc, dây treo miễn phí trọn đời</span>
+        <span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/></svg> Hóa đơn VAT đầy đủ · cọc 30%, thu đủ khi giao treo xong</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 19. TOAST ZONE ═══════════════ -->
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/* ============================================================
+   NB93-153 — GIA TRANG Front-end logic (vanilla JS)
+   ============================================================ */
+'use strict';
+const VND = n => new Intl.NumberFormat('vi-VN').format(Math.round(n)) + 'đ';
+
+/* ---------- 8 dòng sản phẩm (đúng 8 — không trùng) + chất liệu/khung đổi giá ---------- */
+const PRODUCTS = [
+  {id:'p1', big:true, name:'Tranh canvas treo tường — in theo yêu cầu', cat:'Tranh treo tường', img:'assets/img/p1.webp', unit:'bức', price:590000, badge:'hot', badgeTxt:'🔥 Bán chạy nhất',
+   specs:['Mọi kích thước','duyệt bản in','canvas chống nắng'], combo:'Set 3 tranh phòng khách tiết kiệm 15%',
+   mats:[
+    {k:'cv', label:'Canvas mẫu có sẵn', price:590000, old:690000, range:'590k – 2,9tr', desc:'Canvas Hàn Quốc phủ UV, 3.000+ mẫu chọn ngay, khung gỗ óc chó mờ — giao trong 24–48 giờ.'},
+    {k:'cv-in', label:'Canvas in từ ảnh', price:750000, old:880000, range:'từ 750k', desc:'In từ ảnh chụp của bạn, duyệt bản in qua Zalo trước — ảnh cưới, ảnh gia đình, logo quán đều làm được.'},
+    {k:'sd', label:'Sơn dầu vẽ tay', price:2900000, old:3400000, range:'2,9tr – 12tr', desc:'Họa sĩ vẽ tay 100% theo ảnh hoặc ý tưởng, chiều sâu màu bền 20 năm — món quà kỷ niệm xứng đáng.'}
+   ]},
+  {id:'p2', name:'Khung tranh đóng theo yêu cầu', cat:'Khung tranh theo size', img:'assets/img/p2.webp', unit:'khung', price:320000, badge:'craft', badgeTxt:'★ Nghề nhà Gia Trang',
+   specs:['60+ mẫu nẹp','đúng cm','lấy 2–3 ngày'], combo:'Đóng khung 3 bức cùng lúc giảm 5%',
+   mats:[
+    {k:'nhom', label:'Nhôm mảnh', price:320000, old:380000, range:'320k – 690k', desc:'Nẹp nhôm đen/đồng tối giản, viền 8–12mm — hợp tranh trừu tượng, ảnh văn phòng.'},
+    {k:'occho', label:'Gỗ óc chó', price:520000, old:610000, range:'520k – 1,2tr', desc:'Gỗ óc chó sơn mờ sang trọng, kèm pas-partout kem — chuẩn gallery hiện đại.'},
+    {k:'codien', label:'Gỗ cổ điển', price:890000, old:1050000, range:'890k – 2,4tr', desc:'Nẹp gỗ chạm khảm vàng đồng cho tranh sơn dầu, tranh thêu, gương tân cổ điển.'}
+   ]},
+  {id:'p3', name:'Bình hoa & đồ decor để bàn', cat:'Đồ trang trí decor', img:'assets/img/p3.webp', unit:'món', price:250000, badge:'sale', badgeTxt:'Giá sốc',
+   specs:['gốm men','thủy tinh','kim loại'], combo:'Mua 2 món decor giảm 10% món thứ 2',
+   mats:[
+    {k:'gom', label:'Gốm men', price:250000, old:290000, range:'250k – 890k', desc:'Bình hoa, khay, hộp gốm men kem/nâu mờ — đồng bộ tông tranh phòng khách.'},
+    {k:'thuytinh', label:'Thủy tinh', price:390000, old:460000, range:'390k – 1,2tr', desc:'Bình thủy tinh đục, lọ nến — bắt sáng đèn vàng cực đẹp buổi tối.'},
+    {k:'kimloai', label:'Kim loại mạ vàng', price:690000, old:820000, range:'690k – 1,8tr', desc:'Khay mạ vàng PVD, cây trang trí — điểm nhấn cho kệ kể chuyện.'}
+   ]},
+  {id:'p4', name:'Tượng trang trí nội thất', cat:'Tượng trang trí', img:'assets/img/p4.webp', unit:'bộ', price:590000, badge:'new', badgeTxt:'Mới về',
+   specs:['resin sơn tay','chân đá','cao 30–60cm'], combo:'Tượng + khay gốm đồng bộ giảm 8%',
+   mats:[
+    {k:'resin', label:'Resin sơn tay', price:590000, old:690000, range:'590k – 1,5tr', desc:'Tượng thời hiện đại trắng — vàng, sơn tay từng lớp, chân đá đen sang trọng.'},
+    {k:'go', label:'Gỗ nguyên khối', price:1200000, old:1420000, range:'1,2tr – 3,2tr', desc:'Gỗ nguyên khối chạm tay, vân gỗ tự nhiên — món để truyền đời.'},
+    {k:'pvd', label:'Mạ vàng PVD', price:1900000, old:2240000, range:'1,9tr – 4,5tr', desc:'Mạ vàng PVD chống xước — vị trí quầy lễ tân, sảnh khách larger.'}
+   ]},
+  {id:'p5', name:'Đèn trang trí bàn & tường', cat:'Đèn decor', img:'assets/img/p5.webp', unit:'cái', price:690000, badge:'new', badgeTxt:'Mới về',
+   specs:['ánh vàng ấm','thủy tinh','220V an toàn'], combo:'Rọi tranh: đèn tường + tranh giảm 10%',
+   mats:[
+    {k:'ban', label:'Đèn bàn', price:690000, old:820000, range:'690k – 1,9tr', desc:'Chao thủy tinh vặn xoắn, chân đồng — đặt đầu giường, bàn trang điểm, quầy bar.'},
+    {k:'tuong', label:'Đèn tường', price:990000, old:1180000, range:'990k – 2,4tr', desc:'Đèn tường rọi tranh kiểu gallery, ánh 2700K làm màu tranh lên sâu hơn.'}
+   ]},
+  {id:'p6', name:'Gương trang trí treo tường', cat:'Gương trang trí', img:'assets/img/p6.webp', unit:'cái', price:890000, badge:'hot', badgeTxt:'🔥 Bán chạy',
+   specs:['tròn/hình học','mảnh ghép','khung chắc'], combo:'Gương + set tranh tường hết 10% cho combo',
+   mats:[
+    {k:'tron', label:'Gương viền kim loại', price:890000, old:1050000, range:'890k – 2,2tr', desc:'Gương tròn viền kim loại hình học — hành lang, bàn trang điểm, quán cà phê.'},
+    {k:'manh', label:'Gương mảnh ghép', price:1600000, old:1890000, range:'1,6tr – 3,6tr', desc:'Viền mảnh ghép tân cổ điển vàng đồng — bức tường điểm nhấn của phòng khách.'}
+   ]},
+  {id:'p7', name:'Kệ trang trí decor', cat:'Kệ trang trí', img:'assets/img/p7.webp', unit:'cái', price:1290000, badge:'sale', badgeTxt:'Giá sốc',
+   specs:['sắt + gỗ','chịu 25kg','kèm đèn LED'], combo:'Kệ + tượng + sách decor trọn góc trưng bày',
+   mats:[
+    {k:'satgo', label:'Sắt nướng + gỗ óc chó', price:1290000, old:1520000, range:'1,29tr – 2,9tr', desc:'Khung sắt nướng sơn tĩnh điện, tầng gỗ óc chó — góc trưng bày tranh nhỏ, tượng, sách.'},
+    {k:'go', label:'Gỗ CNC nguyên tấm', price:1900000, old:2240000, range:'1,9tr – 3,9tr', desc:'Gỗ CNC khoét họa tiết, kèm dải LED âm — để bình hoa, đèn về đêm rất lên hình.'}
+   ]},
+  {id:'p8', name:'Đóng khung tranh, ảnh & kỷ niệm theo mẫu', cat:'Đóng khung theo mẫu', img:'assets/img/p8.webp', unit:'bức', price:250000, badge:'craft', badgeTxt:'★ Xưởng gia công',
+   specs:['ảnh cũ','chứng chỉ','áo - thêu'], combo:'Đóng 5 bức trở lên miễn phí lấy tận nhà',
+   mats:[
+    {k:'glass', label:'Kính thường', price:250000, old:290000, range:'từ 250k', desc:'Đóng khung ảnh gia đình, chứng chỉ, bằng khen — kính trong, gio chặt, lấy 2–3 ngày.'},
+    {k:'chongchoi', label:'Kính chống chói', price:420000, old:490000, range:'từ 420k', desc:'Kính chống chói bảo màu tranh/ảnh cũ — treo chỗ nhiều sáng vẫn nhìn rõ từng nét.'},
+    {k:'mica', label:'Mica gương bo cạnh', price:690000, old:820000, range:'từ 690k', desc:'Mica trong bo cạnh sang trọng, nhẹ và an toàn cho phòng trẻ em, hành lang chung cư.'}
+   ]}
+];
+
+/* ---------- Set 3 tranh theo không gian (total = giá set, items.price = giá lẻ tham chiếu) ---------- */
+const SETS = {
+  giadinh:{name:'Set 3 tranh "Nắng Vàng Nhà Mình" — nhà ở', total:1790000, retail:2070000, days:'3 ngày', img:'assets/img/p1.webp',
+    items:[
+      {name:'2 tranh canvas 40×60 — hoa lớpcanh vàng', spec:'Khung gỗ óc chó · treo 2 bên', price:1180000, img:'assets/img/p1.webp'},
+      {name:'1 tranh canvas 50×70 — hồ thu tông ấm', spec:'Khung gỗ óc chó · treo chính giữa', price:890000, img:'assets/img/p1.webp'},
+      {name:'Bình hoa gốm men kem 20cm (quà kèm)', spec:'Đồng bộ set · để bàn kệ TV', price:0, img:'assets/img/p3.webp'}
+    ]},
+  quan:{name:'Set 3 tranh "Sài Gòn Xưa" — quán cà phê', total:6900000, retail:7950000, days:'5–7 ngày', img:'assets/img/p1.webp',
+    items:[
+      {name:'3 tranh canvas 70×100 — phố cổ, xích lô, quán cóc', spec:'Canvas chống nắng · khung nhôm đen', price:6300000, img:'assets/img/p1.webp'},
+      {name:'Thợ treo trọn set chỉnh laser', spec:'Treo trước giờ mở cửa', price:0, img:'assets/img/space.webp'},
+      {name:'Tranh chữ logo quán (giảm 50%)', spec:'In theo brand màu quán', price:600000, img:'assets/img/p2.webp'}
+    ]},
+  vanphong:{name:'Set 3 tranh "Tập Trung & Sáng Tạo" — văn phòng', total:2290000, retail:2590000, days:'4–6 ngày', img:'assets/img/p1.webp',
+    items:[
+      {name:'2 tranh canvas 40×60 — trừu tượng mực nhảy', spec:'Khung nhôm bạc · khu tiếp khách', price:1440000, img:'assets/img/p1.webp'},
+      {name:'1 tranh canvas 50×70 — sóng trừu tượng xanh', spec:'Khung nhôm bạc · phòng họp', price:1150000, img:'assets/img/p1.webp'},
+      {name:'Đồng hồ treo tường kim loại đen 40cm (quà kèm)', spec:'Đồng bộ khung · khu lễ tân', price:0, img:'assets/img/p6.webp'}
+    ]}
+};
+
+/* ---------- Máy báo giá in tranh + đóng khung ---------- */
+const CFG_MATS = {
+  'canvas-anh':{label:'Canvas theo ảnh', perM2:350000},
+  'canvas-mau':{label:'Canvas mẫu có sẵn', perM2:290000},
+  'son-dau':{label:'Sơn dầu vẽ tay', perM2:1350000}
+};
+const CFG_FRAMES = {
+  none:{label:'Chỉ tranh (không khung)', perM:0},
+  nhom:{label:'Khung nhôm mảnh', perM:90000},
+  occho:{label:'Khung gỗ óc chó', perM:150000},
+  codien:{label:'Khung gỗ cổ điển', perM:260000}
+};
+const CFG_EXTRAS = {
+  paspartout:{label:'Pas-partout kem', price:120000},
+  kinh:{label:'Kính chống chói', price:180000},
+  treo:{label:'Thợ treo tận nhà', price:90000}
+};
+const cfgState = {mat:'canvas-anh', w:40, h:60, frame:'nhom', extras:new Set()};
+const cfgCustom = document.getElementById('cfgCustom');
+const cfgW = document.getElementById('cfgW');
+const cfgH = document.getElementById('cfgH');
+
+function round10k(n){ return Math.round(n/10000)*10000; }
+function cfgCalc(){
+  const w = Math.min(300, Math.max(10, cfgState.w || 0));
+  const h = Math.min(300, Math.max(10, cfgState.h || 0));
+  const area = (w*h)/10000;
+  const per = 2*((w+h)/100);
+  const m = CFG_MATS[cfgState.mat], f = CFG_FRAMES[cfgState.frame];
+  const pTranh = Math.max(round10k(area * m.perM2), 150000); /* tối thiểu 150k/bức — phí xử lý ảnh + in thử */
+  const pKhung = round10k(per * f.perM);
+  let lines = [
+    {k:`Tranh ${m.label.toLowerCase()} — ${w}×${h}cm (${area.toFixed(2)}m²)`, v:pTranh}
+  ];
+  if(f.perM > 0) lines.push({k:`${f.label} — viền ${per.toFixed(1)}m`, v:pKhung});
+  cfgState.extras.forEach(x => lines.push({k:CFG_EXTRAS[x].label, v:CFG_EXTRAS[x].price}));
+  const total = lines.reduce((s,l)=>s+l.v, 0);
+  return {lines, total, w, h};
+}
+function cfgRender(){
+  const r = cfgCalc();
+  document.getElementById('cfgLines').innerHTML = r.lines.map(l =>
+    `<div class="cr-line"><span class="k">${l.k}</span><span class="v">${VND(l.v)}</span></div>`).join('');
+  document.getElementById('cfgTotal').textContent = VND(r.total);
+  cfgState.last = r;
+}
+document.getElementById('cfgMats').addEventListener('click', e=>{
+  const b = e.target.closest('.cfg-mat'); if(!b) return;
+  document.querySelectorAll('#cfgMats .cfg-mat').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  cfgState.mat = b.dataset.mat;
+  cfgRender();
+});
+document.getElementById('cfgSizes').addEventListener('click', e=>{
+  const b = e.target.closest('.cfg-size'); if(!b) return;
+  document.querySelectorAll('#cfgSizes .cfg-size').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  if(b.dataset.w === 'custom'){
+    cfgCustom.style.display = 'grid';
+    cfgState.w = +cfgW.value || 0; cfgState.h = +cfgH.value || 0;
+  } else {
+    cfgCustom.style.display = 'none';
+    cfgState.w = +b.dataset.w; cfgState.h = +b.dataset.h;
+  }
+  cfgRender();
+});
+[cfgW, cfgH].forEach(inp => inp.addEventListener('input', ()=>{
+  cfgState.w = +cfgW.value || 0; cfgState.h = +cfgH.value || 0; cfgRender();
+}));
+document.getElementById('cfgFrames').addEventListener('change', e=>{
+  if(e.target.name === 'cfgFrame'){ cfgState.frame = e.target.value; cfgRender(); }
+});
+document.getElementById('cfgExtras').addEventListener('change', e=>{
+  if(e.target.type === 'checkbox'){
+    e.target.checked ? cfgState.extras.add(e.target.value) : cfgState.extras.delete(e.target.value);
+    cfgRender();
+  }
+});
+cfgRender();
+
+/* ---------- Giỏ hàng ---------- */
+const cart = new Map(); // id -> qty
+const $ = s => document.querySelector(s);
+const ALL_ITEMS = () => PRODUCTS.concat(window._extras || []);
+function findItem(id){ return ALL_ITEMS().find(x=>x.id===id); }
+function cartCount(){ let n=0; cart.forEach(q=>n+=q); return n; }
+function cartSum(){ let s=0; cart.forEach((q,id)=>{ const p=findItem(id); if(p) s += p.price*q; }); return s; }
+
+/* chiết khấu theo giá trị đơn — đơn decor nhẹ hơn nội thất */
+const VTIERS = [
+  {min:12000000, off:.07, name:'−7% dự án quán / văn phòng'},
+  {min:6000000,  off:.04, name:'−4% trọn bộ không gian'},
+  {min:3000000,  off:.02, name:'−2% bộ tranh'},
+  {min:0,        off:0,   name:'giá chuẩn'}
+];
+const tierOfVal = v => VTIERS.find(t => v >= t.min) || VTIERS[VTIERS.length-1];
+
+function toast(title, msg, warn){
+  const zone = $('#toastZone');
+  const el = document.createElement('div');
+  el.className = 'toast' + (warn?' warn':'');
+  el.innerHTML = `<span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>${title}</b><span>${msg}</span></span>`;
+  zone.appendChild(el);
+  setTimeout(()=>{ el.classList.add('out'); setTimeout(()=>el.remove(), 380); }, 3200);
+}
+
+function pushExtra(pseudo){
+  window._extras = window._extras || [];
+  const idx = window._extras.findIndex(x=>x.id===pseudo.id);
+  if(idx>=0) window._extras[idx]=pseudo; else window._extras.push(pseudo);
+}
+
+function addToCart(id, qty=1, silent=false){
+  const p = findItem(id);
+  cart.set(id, (cart.get(id)||0) + qty);
+  renderCart();
+  if(!silent) toast('Đã thêm vào giỏ', `${p?p.name:'Sản phẩm'} × ${qty}`);
+  $('#fabDot').style.display = 'grid';
+  clearTimeout(addToCart._t);
+  addToCart._t = setTimeout(()=>{ $('#fabDot').style.display='none'; }, 2600);
+}
+
+function renderCart(){
+  const n = cartCount(), sum = cartSum(), t = tierOfVal(sum);
+  ['#cartBadge','#fabCartBadge'].forEach(s => { const el=$(s); el.textContent=n; el.classList.toggle('show', n>0); });
+  const items = $('#cdItems');
+  if(n===0){
+    items.innerHTML = `<div class="cd-empty"><div class="big">🖼️</div><div class="t">Giỏ hàng đang trống</div><div style="font-size:.8rem">Thêm tranh, set 3 bức hoặc cấu hình in tranh riêng — chiết khấu tự áp theo giá trị đơn.</div></div>`;
+    $('#cdFoot').style.display='none';
+    $('#cdCount').textContent='Chưa có sản phẩm';
+    return;
+  }
+  $('#cdCount').textContent = `${n} sản phẩm · ${cart.size} mã`;
+  $('#cdFoot').style.display='block';
+  items.innerHTML = [...cart.entries()].map(([id,q])=>{
+    const p = findItem(id); if(!p) return '';
+    return `<div class="cd-item">
+      <div class="ci-img"><img src="${p.img}" alt=""></div>
+      <div class="ci-body">
+        <div class="ci-name">${p.name}</div>
+        <div class="ci-price">${p.price>0 ? VND(p.price)+'/'+p.unit : 'Tặng kèm'}</div>
+        <div class="ci-row">
+          <div class="qty-ctrl">
+            <button class="qty-btn" data-dec="${id}">−</button>
+            <span class="qty-val">${q}</span>
+            <button class="qty-btn" data-inc="${id}">+</button>
+          </div>
+          <span class="ci-total">${VND(p.price*q)}</span>
+        </div>
+      </div>
+      <button class="ci-del" data-del="${id}" aria-label="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg></button>
+    </div>`;
+  }).join('');
+  const disc = sum*t.off, total = sum-disc;
+  $('#cdSubtotal').textContent = VND(sum);
+  $('#cdDiscount').textContent = '−' + VND(disc) + (t.off?` (${Math.round(t.off*100)}%)`:'');
+  $('#cdTotal').textContent = VND(total);
+  const STEPS = [3000000,6000000,12000000];
+  const next = STEPS.find(v=>sum<v);
+  const fill = $('#ctFill');
+  if(next){
+    const prev = next===3000000?0:(next===6000000?3000000:6000000);
+    const pct = Math.min(100, Math.max(3, (sum-prev)/(next-prev)*100));
+    fill.style.width = pct + '%';
+    const tName = next===3000000?'chiết khấu −2%':(next===6000000?'chiết khấu −4%':'chiết khấu −7%');
+    $('#ctLbl').innerHTML = `Thêm <b>${VND(next-sum)}</b> nữa để đạt <b>${tName}</b>`;
+  } else {
+    fill.style.width = '100%';
+    $('#ctLbl').innerHTML = `🎉 Bạn đang hưởng <b>chiết khấu −7% mức dự án</b> — cao nhất!`;
+  }
+}
+
+$('#cdItems').addEventListener('click', e=>{
+  const inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]'), del = e.target.closest('[data-del]');
+  if(inc){ cart.set(inc.dataset.inc, cart.get(inc.dataset.inc)+1); renderCart(); }
+  if(dec){ const q=cart.get(dec.dataset.dec)-1; q<=0?cart.delete(dec.dataset.dec):cart.set(dec.dataset.dec,q); renderCart(); }
+  if(del){ cart.delete(del.dataset.del); renderCart(); }
+});
+
+const drawer=$('#cartDrawer'), backdrop=$('#drawerBackdrop');
+function openDrawer(){ drawer.classList.add('show'); backdrop.classList.add('show'); document.body.style.overflow='hidden'; }
+function closeDrawer(){ drawer.classList.remove('show'); backdrop.classList.remove('show'); document.body.style.overflow=''; }
+$('#cartBtn').onclick=openDrawer;
+$('#fabCart').onclick=openDrawer;
+$('#cdClose').onclick=closeDrawer;
+backdrop.onclick=closeDrawer;
+$('#btnCheckout').onclick=()=>{ toast('Đã nhận yêu cầu 🎉','Thợ xưởng Gia Trang gọi xác nhận trong 30 phút.'); cart.clear(); renderCart(); closeDrawer(); };
+
+/* ---------- Render khối-8 (thẻ nổi bật 2 cột + 7 thẻ thường — grid kín 3×3) ---------- */
+const prodGrid = document.getElementById('prodGrid');
+prodGrid.innerHTML = PRODUCTS.map((p,i) => `
+  <article class="p-card reveal ${p.big?'big':''}" data-d="${i<2?(i%2)+1:((i%3)+1)}" data-id="${p.id}" tabindex="0">
+    <div class="p-media">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="p-badges"><span class="pb ${p.badge}">${p.badgeTxt}</span></div>
+      <div class="p-quick">
+        <button class="pq-btn" data-view="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Xem nhanh</button>
+        <button class="pq-btn buy" data-add="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Thêm giỏ</button>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="p-cat">${p.cat}</div>
+      <h3 class="p-name">${p.name}</h3>
+      <div class="p-mats" role="group" aria-label="Chọn chất liệu">${p.mats.map((m,j)=>`<button class="p-mat ${j===0?'on':''}" data-mat="${j}">${m.label}</button>`).join('')}</div>
+      <div class="p-mdesc" data-mdesc>${p.mats[0].desc}</div>
+      <div class="p-price-row">
+        <span class="p-price" data-mprice>${p.mats[0].range}</span>
+        <span class="p-old" data-mold>từ ${VND(p.mats[0].price)}</span>
+      </div>
+      <div class="p-tier">💡 ${p.combo}</div>
+    </div>
+  </article>`).join('');
+
+/* FX: spotlight theo con trỏ */
+document.querySelectorAll('.p-card').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+prodGrid.addEventListener('click', e => {
+  const chip = e.target.closest('.p-mat');
+  if(chip){
+    const card = chip.closest('.p-card');
+    const p = PRODUCTS.find(x=>x.id===card.dataset.id);
+    const m = p.mats[+chip.dataset.mat];
+    card.querySelectorAll('.p-mat').forEach(c=>c.classList.remove('on'));
+    chip.classList.add('on');
+    card.querySelector('[data-mdesc]').textContent = m.desc;
+    card.querySelector('[data-mprice]').textContent = m.range;
+    card.querySelector('[data-mold]').textContent = 'từ ' + VND(m.price);
+    return;
+  }
+  const add = e.target.closest('[data-add]');
+  if(add){ addToCart(add.dataset.add, 1); return; }
+  const view = e.target.closest('[data-view]');
+  if(view){ openQuickView(view.dataset.view); return; }
+});
+
+/* Điều khiển cuộn lưới khối-8 trên mobile (nút ⇄ cuộn tới thẻ đầu/cuối) */
+const pcPrev = document.getElementById('pcPrev');
+const pcNext = document.getElementById('pcNext');
+function pcTo(start){
+  const cards = document.querySelectorAll('#prodGrid .p-card');
+  if(!cards.length) return;
+  const target = cards[Math.max(0, Math.min(cards.length-1, start))];
+  target.scrollIntoView({behavior:'smooth', block:'center'});
+}
+let pcIdx = 0;
+pcPrev.addEventListener('click', ()=>{ pcIdx = Math.max(0, pcIdx-3); pcTo(pcIdx); updatePcBar(); });
+pcNext.addEventListener('click', ()=>{ pcIdx = Math.min(7, pcIdx+3); pcTo(pcIdx); updatePcBar(); });
+function updatePcBar(){
+  const pct = pcIdx/7*100;
+  document.getElementById('pcFill').style.width = Math.max(6, pct) + '%';
+  document.getElementById('pcCount').textContent = pcIdx===0 ? 'Tất cả 8 dòng hiển thị' : `Đang xem từ dòng ${pcIdx+1} / 8`;
+}
+
+/* ---------- Quick View ---------- */
+let qvCurrent=null, qvQtyVal=1, qvMat=null;
+function openQuickView(id){
+  const p = PRODUCTS.find(x=>x.id===id); qvCurrent=p; qvQtyVal=1; qvMat=p.mats[0];
+  $('#qvImg').src=p.img; $('#qvImg').alt=p.name;
+  $('#qvCat').textContent=p.cat; $('#qvName').textContent=p.name;
+  $('#qvStars').innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 16.8 6.2 19.9l1.1-6.5L2.6 8.8l6.5-.9L12 2z"/></svg>'.repeat(5);
+  $('#qvReviews').textContent=`4.9/5 · ${120+PRODUCTS.indexOf(p)*23} đánh giá`;
+  $('#qvPrice').innerHTML=`${VND(qvMat.price)} <small style="font-size:.5em">/${p.unit}</small>`;
+  $('#qvOld').textContent = VND(qvMat.old);
+  $('#qvSave').textContent = `−${Math.round((1-qvMat.price/qvMat.old)*100)}%`;
+  $('#qvUnit').textContent='Bấm chọn chất liệu / khung — giá thay đổi theo lựa chọn:';
+  $('#qvMats').innerHTML = p.mats.map((m,j)=>`
+    <div class="qv-tier-row ${j===0?'sel':''}" data-m="${j}">
+      <span class="b">${m.label}</span><span class="p">${VND(m.price)}</span><span style="font-size:.7rem;color:var(--ink-soft)">${m.range}</span>
+    </div>`).join('');
+  $('#qvQty').textContent=1; $('#qvLivPrice').textContent=VND(qvMat.price);
+  $('#qvBackdrop').classList.add('show'); document.body.style.overflow='hidden';
+}
+function closeQuickView(){ $('#qvBackdrop').classList.remove('show'); document.body.style.overflow=''; }
+$('#qvClose').onclick=closeQuickView;
+$('#qvBackdrop').addEventListener('click', e=>{ if(e.target===$('#qvBackdrop')) closeQuickView(); });
+$('#qvMats').addEventListener('click', e=>{
+  const row = e.target.closest('.qv-tier-row'); if(!row || !qvCurrent) return;
+  qvMat = qvCurrent.mats[+row.dataset.m];
+  document.querySelectorAll('#qvMats .qv-tier-row').forEach(r=>r.classList.remove('sel'));
+  row.classList.add('sel');
+  $('#qvPrice').innerHTML=`${VND(qvMat.price)} <small style="font-size:.5em">/${qvCurrent.unit}</small>`;
+  $('#qvOld').textContent = VND(qvMat.old);
+  $('#qvSave').textContent = `−${Math.round((1-qvMat.price/qvMat.old)*100)}%`;
+  $('#qvLivPrice').textContent = VND(qvMat.price * qvQtyVal);
+});
+$('#qvMinus').onclick=()=>{ if(qvQtyVal>1){ qvQtyVal--; $('#qvQty').textContent=qvQtyVal; $('#qvLivPrice').textContent=VND(qvMat.price*qvQtyVal); } };
+$('#qvPlus').onclick=()=>{ qvQtyVal++; $('#qvQty').textContent=qvQtyVal; $('#qvLivPrice').textContent=VND(qvMat.price*qvQtyVal); };
+$('#qvAdd').onclick=()=>{
+  pushExtra({id:qvCurrent.id+'-'+qvMat.k, name:`${qvCurrent.name} (${qvMat.label})`, img:qvCurrent.img, unit:qvCurrent.unit, price:qvMat.price});
+  addToCart(qvCurrent.id+'-'+qvMat.k, qvQtyVal);
+  closeQuickView(); openDrawer();
+};
+$('#qvBuy').onclick=()=>{
+  pushExtra({id:qvCurrent.id+'-'+qvMat.k, name:`${qvCurrent.name} (${qvMat.label})`, img:qvCurrent.img, unit:qvCurrent.unit, price:qvMat.price});
+  addToCart(qvCurrent.id+'-'+qvMat.k, qvQtyVal);
+  closeQuickView(); openDrawer();
+};
+
+/* ---------- Thêm cả set 3 tranh ---------- */
+document.querySelectorAll('.bundle-tab').forEach(tab => tab.addEventListener('click', ()=>{
+  document.querySelectorAll('.bundle-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.bundle-panel').forEach(p=>p.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelector(`.bundle-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+}));
+document.querySelectorAll('.btn-addkit[data-kit]').forEach(btn => btn.addEventListener('click', ()=>{
+  const set = SETS[btn.dataset.kit];
+  pushExtra({id:'set-'+btn.dataset.kit, name:set.name, img:set.img, unit:'set', price:set.total});
+  addToCart('set-'+btn.dataset.kit, 1);
+  openDrawer();
+}));
+
+/* ---------- Thêm cấu hình in tranh vào giỏ ---------- */
+$('#btnCfgAdd').addEventListener('click', ()=>{
+  const r = cfgState.last || cfgCalc();
+  if(r.total <= 0){ toast('Chưa chọn đủ cấu hình','Hãy chọn kích thước tranh trước khi thêm vào giỏ.', true); return; }
+  const m = CFG_MATS[cfgState.mat], f = CFG_FRAMES[cfgState.frame];
+  const pseudo = {
+    id:'cfg-'+cfgState.mat+'-'+r.w+'x'+r.h+'-'+cfgState.frame,
+    name:`In tranh ${m.label} ${r.w}×${r.h}cm` + (f.perM>0?` + ${f.label.toLowerCase()}`:''),
+    img:'assets/img/p1.webp', unit:'bức', price:r.total
+  };
+  pushExtra(pseudo);
+  addToCart(pseudo.id, 1);
+  openDrawer();
+});
+
+/* ---------- Search typeahead thật ---------- */
+const searchInput = $('#searchInput');
+const searchDrop = $('#searchDrop');
+function doSearch(q){
+  q = q.trim().toLowerCase();
+  if(!q){ searchDrop.classList.remove('show'); return; }
+  const hits = PRODUCTS.filter(p => (p.name+' '+p.cat+' '+p.mats.map(m=>m.label).join(' ')).toLowerCase().includes(q));
+  const setHits = Object.entries(SETS).filter(([k,s]) => s.name.toLowerCase().includes(q)).map(([k,s])=>({type:'set',k,s}));
+  const rows = hits.map(p=>`<button class="sd-item" data-go="#hot" data-id="${p.id}"><img src="${p.img}" alt=""><span><span class="st">${p.name}</span><span class="sp">${p.mats[0].range}</span></span><span class="sc">${p.cat}</span></button>`).join('')
+    + setHits.map(({k,s})=>`<button class="sd-item" data-go="#set-3-tranh"><img src="${s.img}" alt=""><span><span class="st">${s.name}</span><span class="sp">${VND(s.total)}</span></span><span class="sc">Set 3 tranh</span></button>`).join('');
+  searchDrop.innerHTML = `<div class="sd-head"><span>Tìm thấy ${hits.length + setHits.length} kết quả</span><span>GIA TRANG</span></div>`
+    + (rows || `<div class="sd-empty">Không thấy — hãy gọi 0903 456 789, xưởng làm riêng cho bạn.</div>`)
+    + `<a class="sd-all" href="#dong-khung">In tranh riêng theo ảnh của bạn →</a>`;
+  searchDrop.classList.add('show');
+}
+searchInput.addEventListener('input', ()=>doSearch(searchInput.value));
+searchInput.addEventListener('keydown', e=>{
+  if(e.key === 'Enter'){
+    const q = searchInput.value.trim().toLowerCase();
+    const n = PRODUCTS.filter(p => (p.name+' '+p.cat).toLowerCase().includes(q)).length;
+    if(q){ toast(`Tìm thấy ${n} sản phẩm`, 'Cuộn tới khu trưng bày để xem chi tiết.'); location.hash = '#hot'; }
+    searchDrop.classList.remove('show');
+  }
+});
+searchDrop.addEventListener('click', e=>{
+  const item = e.target.closest('.sd-item');
+  if(item){ searchDrop.classList.remove('show'); if(item.dataset.go) location.hash = item.dataset.go; }
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('.searchbox')) searchDrop.classList.remove('show'); });
+
+/* ---------- Countdown deal cuối ngày ---------- */
+function tickDeal(){
+  const now = new Date();
+  const end = new Date(now); end.setHours(21,0,0,0);
+  if(now > end) end.setDate(end.getDate()+1);
+  let diff = Math.max(0, Math.floor((end-now)/1000));
+  const h = String(Math.floor(diff/3600)).padStart(2,'0');
+  const m = String(Math.floor(diff%3600/60)).padStart(2,'0');
+  const s = String(diff%60).padStart(2,'0');
+  $('#dcH').textContent=h; $('#dcM').textContent=m; $('#dcS').textContent=s;
+}
+tickDeal(); setInterval(tickDeal, 1000);
+
+/* ---------- Reviews carousel ---------- */
+const REVIEWS = [
+  {text:'Đặt <b>set 3 tranh phòng khách</b>, thợ đến đo tường vẽ luôn bố cục ra giấy. Treo xong cả nhà cứ đứng ngắm — đúng tone sofa hơn cả mình tưởng tượng.', name:'Chị Ngọc Hằng', role:'Nhà riêng — KĐT mới Rồn Răng', ava:'H', color:'#C79A3B', metric:'3 bức · treo trong 40 phút', mlabel:'Set gia đình'},
+  {text:'Quán mình cần <b>tranh vintage đúng concept Sài Gòn xưa</b>. Xưởng in lại từ ảnh tư liệu cũ, chỉnh màu 2 lần không lấy thêm tiền. Khách vào là chụp ảnh ngay bức tường tranh.', name:'Anh Minh Tuấn', role:'Chủ The Mộc Coffee', ava:'T', color:'#3F7D5A', metric:'12 bức · xong trước khai trương', mlabel:'Quán cà phê'},
+  {text:'Công ty cần <b>tranh hành lang + đóng khung chứng nhận ISO</b>. Có VAT đầy đủ, treo ngày chủ nhật không ảnh hưởng giờ làm. Lần sau lắp thêm chi nhánh vẫn dùng Gia Trang.', name:'Cô Thanh Mai', role:'Hành chính — công ty logistics', ava:'M', color:'#4E3D2B', metric:'10 bức · hóa đơn VAT đủ', mlabel:'Văn phòng'}
+];
+const STAR = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 16.8 6.2 19.9l1.1-6.5L2.6 8.8l6.5-.9L12 2z"/></svg>';
+const spTrack = $('#spTrack');
+spTrack.innerHTML = REVIEWS.map(r => `
+  <div class="sp-slide"><div class="sp-card">
+    <div class="sp-quote-mark">“</div>
+    <div class="sp-text">
+      <div class="stars">${STAR.repeat(5)}</div>
+      <div class="body">${r.text}</div>
+      <div class="sp-who">
+        <span class="sp-ava" style="background:${r.color}">${r.ava}</span>
+        <span><span class="sp-name">${r.name}</span><span class="sp-role">${r.role}</span></span>
+        <span class="sp-metric"><span class="v">${r.metric}</span><span class="l">${r.mlabel}</span></span>
+      </div>
+    </div>
+  </div></div>`).join('');
+let spIdx = 0;
+function spGo(i){
+  spIdx = (i + REVIEWS.length) % REVIEWS.length;
+  spTrack.style.transform = `translateX(-${spIdx*100}%)`;
+  document.querySelectorAll('.sp-dot').forEach((d,j)=>d.classList.toggle('active', j===spIdx));
+}
+$('#spDots').innerHTML = REVIEWS.map((_,j)=>`<button class="sp-dot ${j===0?'active':''}" data-i="${j}" aria-label="Đánh giá ${j+1}"></button>`).join('');
+$('#spDots').addEventListener('click', e=>{ const d=e.target.closest('.sp-dot'); if(d) spGo(+d.dataset.i); });
+$('#spPrev').addEventListener('click', ()=>spGo(spIdx-1));
+$('#spNext').addEventListener('click', ()=>spGo(spIdx+1));
+
+/* ---------- FAQ render + accordion + lọc KB ---------- */
+const FAQ = [
+  {q:'Tôi chỉ có ảnh chụp điện thoại — in tranh lên canvas được không?', a:'Được, đây là việc Gia Trang làm nhiều nhất. Ảnh ≥ 1MB là in đẹp ở size 40×60 đến 70×100. Chúng tôi <b>gửi bản in thử qua Zalo để bạn duyệt màu, crop</b> trước khi in thật — chưa ưng chưa in.'},
+  {q:'Đóng khung theo kích thước riêng bao lâu thì xong?', a:'Đơn thường <b>2–3 ngày</b>, đơn khẩn 24 giờ (phụ thu 15%) cho ngày kỷ niệm, tang lễ, biếu tặng. Xưởng tự cắt nẹp 45° nên không phụ thuộc xưởng ngoài.'},
+  {q:'Sơn dầu vẽ tay khác canvas in ở điểm nào — nên chọn loại nào?', a:'Canvas in <b>nhanh, chuẩn ảnh, giá từ 350k/m²</b> — hợp ảnh gia đình, mẫu có sẵn. Sơn dầu vẽ tay <b>họa sĩ vẽ 100%, có chiều dày màu</b>, bền 20 năm, giá từ 1,35tr/m² — hợp quà kỷ niệm, tranh lớn phòng khách.'},
+  {q:'Có thợ treo tận nhà không? Khoan tường có làm bẩn không?', a:'Có — thợ treo chuyên trách, đo bằng <b>máy laser</b> nên treo thẳng tuyệt đối. Trước khi khoan, thợ dán băng che bụi quanh vị trí khoan và dọn dẹp sạch sẽ khi ra về. Miễn phí cho đơn từ 3 triệu.'},
+  {q:'Mua gương, đèn, bình hoa online có bị vỡ khi giao không?', a:'Đồ dễ vỡ được đóng thùng xốp ép + góc carton. Nếu vỡ hoặc móp khi nhận, <b>đổi món mới 1-1 trong 48 giờ</b> không hỏi lý do — chỉ cần quay lại video mở thùng.'},
+  {q:'Tranh mua rồi không hợp tường có đổi trả được không?', a:'Tranh mẫu có sẵn <b>đổi trong 7 ngày</b>, chưa treo, còn nguyên tem. Riêng tranh in từ ảnh của bạn hoặc sơn dầu vẽ riêng thì không trả — nhưng nếu lỗi do xưởng (màu lệch, khung mẻ) thì <b>làm lại hoàn toàn miễn phí</b>.'},
+  {q:'Quán, văn phòng mua số lượng có giá riêng không?', a:'Có. Đơn từ 5 bức trở lên được <b>bảng giá dự án riêng, giảm thêm 5–7%</b>, xuất hóa đơn VAT đầy đủ. Quán mở chuỗi được chốt concept một lần để in đồng bộ các chi nhánh.'}
+];
+const faqList = $('#faqList');
+function renderFaq(filter){
+  let data = FAQ;
+  if(filter){
+    const q = filter.toLowerCase();
+    data = FAQ.filter(f => (f.q+f.a).toLowerCase().includes(q));
+  }
+  faqList.innerHTML = data.length ? data.map((f,i)=>`
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false"><span class="fq-n">${String(i+1).padStart(2,'0')}</span> ${f.q}<span class="fq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
+      <div class="faq-a"><div class="inner">${f.a}</div></div>
+    </div>`).join('') : `<div class="faq-item"><div class="faq-q">Không thấy câu phù hợp — gọi 0903 456 789 để hỏi thợ trực tiếp.</div></div>`;
+}
+renderFaq();
+faqList.addEventListener('click', e=>{
+  const q = e.target.closest('.faq-q'); if(!q) return;
+  const item = q.parentElement;
+  const a = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(o=>{ o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight='0'; });
+  if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+});
+$('#kbSearch').addEventListener('input', e=>{
+  const v = e.target.value.trim();
+  if(v.length >= 2){ renderFaq(v); } else { renderFaq(); }
+});
+document.querySelectorAll('.kb-chip').forEach(chip => chip.addEventListener('click', ()=>{
+  document.querySelectorAll('.kb-chip').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on');
+  renderFaq(chip.dataset.kb);
+}));
+
+/* ---------- Form tư vấn: tự kiểm trống + toast ---------- */
+$('#consultForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = $('#cfName').value.trim();
+  const phone = $('#cfPhone').value.trim();
+  const need = $('#cfNeed').value;
+  if(!name || !phone || !need){
+    toast('Thiếu thông tin', 'Bạn điền giúp họ tên, số điện thoại và nhu cầu nhé.', true);
+    return;
+  }
+  if(!/^[0-9+\s.]{9,12}$/.test(phone)){
+    toast('Số điện thoại chưa đúng', 'Kiểm tra lại SĐT / Zalo giúp Gia Trang nhé.', true);
+    return;
+  }
+  toast('Đã gửi yêu cầu 🎉', `Cảm ơn ${name}! Thợ xưởng gọi lại trong 30 phút.`);
+  e.target.reset();
+});
+
+/* ---------- Stats counter ---------- */
+const counters = document.querySelectorAll('[data-count]');
+const cObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const el = en.target;
+    const to = +el.dataset.count;
+    const t0 = performance.now();
+    const dur = 1400;
+    function step(t){
+      const p = Math.min(1,(t-t0)/dur);
+      el.innerHTML = new Intl.NumberFormat('vi-VN').format(Math.round(to*p)) + (el.querySelector('em')?el.querySelector('em').outerHTML:'');
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    cObs.unobserve(el);
+  });
+},{threshold:.4});
+counters.forEach(c=>cObs.observe(c));
+
+/* ---------- Reveal on scroll + failsafe (không kẹt khi nhảy anchor) ---------- */
+function initReveal(){
+  const els = Array.from(document.querySelectorAll('.reveal'));
+  if(!els.length) return;
+  function check(){
+    const vh = innerHeight;
+    els.forEach(el=>{
+      if(el.classList.contains('in')) return;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.94 || r.bottom < vh) el.classList.add('in');
+    });
+  }
+  check();
+  addEventListener('scroll', check, {passive:true});
+  addEventListener('resize', check);
+  addEventListener('hashchange', ()=>setTimeout(check, 200));
+  setTimeout(check, 600);
+  setTimeout(check, 2000);
+}
+initReveal();
+
+/* ---------- Header shadow + fab dock ẩn khi ở đỉnh ---------- */
+const header = $('#header');
+const fabDock = $('#fabDock');
+addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', scrollY > 8);
+  fabDock.classList.toggle('hidden', scrollY < 300);
+}, {passive:true});
+$('#fabTop').addEventListener('click', ()=>scrollTo({top:0, behavior:'smooth'}));
+
+/* ESC đóng drawer + quickview */
+addEventListener('keydown', e=>{
+  if(e.key === 'Escape'){ closeDrawer(); closeQuickView(); }
+});
+</script>
+<!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

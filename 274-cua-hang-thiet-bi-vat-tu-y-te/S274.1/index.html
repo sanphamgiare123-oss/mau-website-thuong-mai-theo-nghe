@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tâm An — Cửa hàng thiết bị, vật tư y tế | Máy đo huyết áp, xe lăn, vật tư tiêu hao</title>
+<meta name="description" content="Tâm An — thiết bị y tế chính hãng đủ số công bố: máy đo huyết áp, đường huyết, xe lăn, giường bệnh, vật tư tiêu hao. Chọn theo nhu cầu chăm sóc người già, bệnh nhân tại nhà, phòng khám. Giao gấp 2 giờ nội thành, hoá đơn VAT đầy đủ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-274: root + palette xanh-trang tin cay sach se cho nghe thiet bi y te*/
+:root{
+  --primary:#0A4D7E;          /* xanh y te dam — header, tieu de, footer */
+  --primary-2:#11639E;
+  --primary-3:#07395E;
+  --texture:#EFF6FB;          /* xanh bang — nen xen k */
+  --accent:#0E9488;           /* xanh ngoc — CTA, gia, badge */
+  --accent-100:#DFF3F0;
+  --accent-200:#BBE4DE;
+  --warn:#B45309;--warn-bg:#FEF6E7;--warn-line:#F3DBAE;
+  --grad-accent:linear-gradient(135deg,#17B3A0,#0C8C80);
+  --ink:#152A38;--soft:#4E6779;
+  --line:rgba(10,77,126,.14);
+  --w:#fff;
+  --r-s:12px;--r-m:18px;--r-l:26px;--r-xl:34px;   /* y te = bo tron mem */
+  --sh-1:0 2px 10px rgba(10,77,126,.06);
+  --sh-2:0 10px 30px rgba(10,77,126,.10);
+  --sh-3:0 24px 60px rgba(10,77,126,.18);
+  --grad-dark:linear-gradient(140deg,var(--primary-2),var(--primary) 55%,var(--primary-3));
+  --crosses:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%230E9488' stroke-opacity='.12' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip;scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:var(--w);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}   /*FIX-274: height auto toan cuc, khong de height ghi de aspect-ratio*/
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{position:relative}
+.sec{padding:84px 0}
+.sec-t{font-size:2.1rem;font-weight:900;line-height:1.25;letter-spacing:-.5px}
+.sec-t .hl{display:inline;background:linear-gradient(120deg,var(--accent-200),var(--accent-100));padding:2px 12px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;transform:rotate(-1deg)}
+.sec-sub{display:block;color:var(--soft);margin-top:12px;max-width:660px;font-size:1.02rem}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:#0A7A6F;font-weight:800;font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1.5px solid var(--accent-200)}
+.mini-t{display:block;font-weight:900;font-size:1.16rem;margin-bottom:4px}
+.mini-s{display:block;color:var(--soft);font-size:.9rem}
+
+/*NB93-274: FX chung*/
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.12s}
+.rv[data-d="2"]{transition-delay:.24s}
+.rv[data-d="3"]{transition-delay:.36s}
+.spot{position:relative;overflow:hidden}
+.spot::before{content:"";position:absolute;inset:0;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(14,148,136,.10),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
+.spot:hover::before{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:.95rem;padding:14px 26px;border-radius:999px;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-a{background:var(--grad-accent);color:#fff;box-shadow:0 10px 24px rgba(14,148,136,.35)}
+.btn-a::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(14,148,136,.45)}
+.btn-a:hover::after{left:120%}
+.btn-g{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-d{background:#fff;color:var(--accent);border:1.5px solid var(--accent-200)}
+.btn-d:hover{background:var(--accent);color:#fff}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.84rem;font-weight:600;color:var(--soft)}
+.chip svg{width:15px;height:15px;color:var(--accent);flex:none}
+.tick{color:#0E9488;font-weight:900}
+.cb{display:inline-flex;align-items:center;gap:5px;background:var(--accent-100);color:#0A7A6F;border:1px solid var(--accent-200);border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:800}
+.cb::before{content:"✚";font-size:.66rem}
+
+/*NB93-274: topbar*/
+.topbar{background:var(--grad-dark);color:#D8E9F5;font-size:.82rem;padding:9px 0;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.topbar b{color:#fff}
+.tb-l{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.tb-r{display:flex;gap:18px;align-items:center}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:#5EEAD4;display:inline-block;margin-right:7px;box-shadow:0 0 0 3px rgba(94,234,212,.2)}
+.topbar a{color:#fff;font-weight:700}
+
+/*NB93-274: header*/
+header{position:sticky;top:0;z-index:55;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:.3s}
+header.scrolled{box-shadow:0 8px 30px rgba(10,77,126,.10)}
+.hd{display:flex;align-items:center;gap:20px;padding:14px 24px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-ic{width:44px;height:44px;border-radius:14px;background:var(--grad-dark);color:#8EE6DB;display:grid;place-items:center;font-weight:900;font-size:1.05rem;position:relative}
+.logo-ic::after{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(142,230,219,.5);border-radius:10px}
+.logo b{display:block;font-size:1.28rem;font-weight:900;letter-spacing:-.4px;color:var(--primary);line-height:1.1}
+.logo span{display:block;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.hd-search{flex:1;min-width:0;position:relative}
+.hd-search input{width:100%;padding:12px 18px 12px 44px;border:1.5px solid var(--line);border-radius:999px;background:var(--texture);outline:none;transition:.25s}
+.hd-search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.hd-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--soft)}
+nav.main{display:flex;gap:2px}
+nav.main a{padding:9px 12px;border-radius:999px;font-weight:700;font-size:.87rem;color:var(--primary);transition:.2s;white-space:nowrap}
+nav.main a:hover{background:var(--accent-100);color:var(--accent)}
+.cart-btn{position:relative;width:48px;height:48px;border-radius:16px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;transition:.25s;flex:none}
+.cart-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cart-btn svg{width:21px;height:21px}
+.cart-n{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:999px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;padding:0 5px;box-shadow:0 3px 8px rgba(14,148,136,.4)}
+
+/*NB93-274: hero — poster bia giu nguyen nhan dien, khong trang tri de len chu*/
+.hero{background:var(--texture);background-image:var(--crosses);padding:60px 0 88px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.04fr 1fr;gap:54px;align-items:center}
+.hero-tag{margin-bottom:18px}
+h1{font-size:clamp(2.1rem,4.2vw,3.2rem);font-weight:900;line-height:1.14;letter-spacing:-1px;color:var(--primary)}
+h1 .hl{display:inline;background:var(--grad-accent);color:#fff;padding:1px 14px 3px;border-radius:12px;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(14,148,136,.3)}
+.hero-sub{display:block;color:var(--soft);margin:18px 0 26px;font-size:1.05rem;max-width:530px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:500px}
+.trust .chip{justify-content:flex-start}
+.hero-vis{position:relative}
+.hv-main{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.2deg);aspect-ratio:16/9.2;background:#fff}
+.hv-main img{width:100%;height:100%;object-fit:cover}
+.hero-stat{display:flex;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.95);border-radius:20px;padding:14px 18px;box-shadow:var(--sh-2);margin-top:-30px;margin-left:18px;margin-right:18px;position:relative;z-index:4;justify-content:space-between}
+.hs-i{flex:1;text-align:center;border-right:1.5px dashed var(--line)}
+.hs-i:last-child{border-right:none}
+.hs-i b{display:block;font-size:1.22rem;font-weight:900;color:var(--primary)}
+.hs-i span{display:block;font-size:.72rem;color:var(--soft);font-weight:600}
+
+/*NB93-274: tape marquee*/
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);padding:14px 0;overflow:hidden;box-shadow:var(--sh-2);position:relative;z-index:5;margin:-24px 0}
+.tape-in{display:flex;width:max-content;animation:tape 28s linear infinite}
+.tape span{color:#fff;font-weight:900;font-size:.92rem;letter-spacing:1.2px;text-transform:uppercase;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.tape span::after{content:"✚";font-size:.72rem;opacity:.85}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/*NB93-274: dai 5 nhom hang*/
+.strip{background:#fff;padding:6px 0 70px}
+.strip-in{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.s-item{display:flex;align-items:center;gap:12px;background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-m);padding:15px 17px;font-weight:800;font-size:.88rem;color:var(--primary);transition:.25s}
+.s-item:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:var(--accent-200);background:#fff}
+.s-ic{width:40px;height:40px;flex:none;border-radius:12px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center}
+.s-ic svg{width:20px;height:20px}
+.s-item i{margin-left:auto;font-style:normal;color:var(--accent);font-weight:900;transition:.25s}
+.s-item:hover i{transform:translateX(4px)}
+
+/*NB93-274: DAC THU — bo cham soc theo doi tuong (tabs + combo them gioi)*/
+.bos{background:var(--texture);background-image:var(--crosses)}
+.bos-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.need-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--accent-200);border-radius:999px;padding:9px 16px;font-size:.82rem;font-weight:800;color:var(--accent)}
+.tabs{display:flex;gap:10px;margin:34px 0 26px;flex-wrap:wrap}
+.tab{padding:12px 22px;border-radius:999px;font-weight:800;font-size:.92rem;background:#fff;border:1.5px solid var(--line);color:var(--soft);transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.tab b{font-size:.72rem;background:var(--accent);color:#fff;border-radius:999px;padding:2px 8px}
+.tab.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:var(--sh-2)}
+.tab:not(.on):hover{border-color:var(--accent);color:var(--accent)}
+.set-panel{display:none;animation:fadeUp .45s ease}
+.set-panel.on{display:grid;grid-template-columns:1fr 1.12fr;gap:26px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.set-info{background:#fff;border-radius:var(--r-l);padding:28px;border:1.5px solid var(--line);box-shadow:var(--sh-1);display:flex;flex-direction:column}
+.set-info h3{font-size:1.5rem;font-weight:900;color:var(--primary);margin:6px 0 4px}
+.set-info .mini-s{margin-bottom:18px}
+.set-info ul{display:flex;flex-direction:column;gap:11px;margin-bottom:20px}
+.set-info li{display:flex;justify-content:space-between;gap:14px;font-size:.93rem;padding:11px 14px;background:var(--texture);border-radius:12px}
+.set-info li b{font-weight:700;color:var(--ink)}
+.set-info li span{font-weight:900;color:var(--primary);white-space:nowrap}
+.set-info li span s{color:var(--soft);font-weight:500;margin-right:6px}
+.set-total{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--grad-dark);border-radius:var(--r-m);padding:17px 20px;color:#fff;margin-bottom:16px}
+.set-total b{font-size:1.3rem;font-weight:900}
+.set-total small{display:block;color:#BFDCEE;font-weight:600}
+.set-total .off{background:var(--grad-accent);border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:900;white-space:nowrap}
+.set-note{display:flex;gap:9px;align-items:flex-start;font-size:.8rem;color:var(--soft);margin-top:14px}
+.set-gal{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-content:start}
+.sg{position:relative;border-radius:var(--r-m);overflow:hidden;aspect-ratio:5/4;border:4px solid #fff;box-shadow:var(--sh-2);background:var(--texture)}
+.sg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.sg:hover img{transform:scale(1.05)}
+.sg .q{position:absolute;top:10px;left:10px;background:var(--grad-accent);color:#fff;font-size:.7rem;font-weight:900;border-radius:999px;padding:4px 10px;z-index:2}
+.sg .n{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(7,57,94,.78));color:#fff;font-weight:800;font-size:.82rem;padding:22px 12px 10px;z-index:2}
+.sg.ac{display:grid;place-items:center;background:var(--accent-100);border:2px dashed var(--accent-200);box-shadow:none}
+.sg.ac .ac-in{text-align:center;color:var(--accent);padding:14px}
+.sg.ac svg{width:32px;height:32px;margin:0 auto 8px}
+.sg.ac b{display:block;font-size:.92rem}
+.sg.ac span{display:block;font-size:.76rem;color:#0A7A6F;font-weight:600;margin-top:3px}
+
+/*NB93-274: KHOI-8 — bento 3x3 kin o, the noi bat chiem 2 cot*/
+.catalog{background:#fff}
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:26px;flex-wrap:wrap}
+.need-chips{display:flex;gap:10px;margin:30px 0 26px;flex-wrap:wrap}
+.need-chips button{padding:12px 20px;border-radius:999px;font-weight:800;font-size:.9rem;background:#fff;border:1.5px solid var(--line);color:var(--soft);transition:.25s;display:inline-flex;gap:8px;align-items:center;min-height:40px}
+.need-chips button b{font-size:.72rem;background:var(--texture);color:var(--primary);border-radius:999px;padding:2px 8px}
+.need-chips button.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:var(--sh-2)}
+.need-chips button.on b{background:var(--grad-accent);color:#fff}
+.need-chips button:not(.on):hover{border-color:var(--accent);color:var(--accent)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;grid-auto-flow:dense}
+.p-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);transition:.3s;display:flex;flex-direction:column}
+.p-card:hover{transform:translateY(-6px);box-shadow:var(--sh-3)}
+.p-card.big{grid-column:span 2;border:2px solid var(--accent-200)}
+.p-media{position:relative;aspect-ratio:5/4;overflow:hidden;background:var(--texture)}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.p-card:hover .p-media img{transform:scale(1.05)}
+.p-tag{position:absolute;top:12px;left:12px;background:var(--grad-accent);color:#fff;font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.8px;border-radius:999px;padding:6px 12px;z-index:2}
+.p-off{position:absolute;top:12px;right:12px;background:#fff;color:var(--accent);font-weight:900;font-size:.74rem;border-radius:999px;padding:5px 10px;box-shadow:var(--sh-1);z-index:2}
+.p-body{padding:17px 18px 19px;display:flex;flex-direction:column;gap:9px;flex:1}
+.p-cat{display:block;font-size:.72rem;color:var(--soft);font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.p-body h3{font-size:1.04rem;font-weight:800;color:var(--primary);line-height:1.35}
+.p-card.big .p-body h3{font-size:1.35rem}
+.p-desc{display:none;font-size:.86rem;color:var(--soft)}
+.p-card.big .p-desc{display:block}
+.p-foot{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:auto}
+.p-pr{display:flex;align-items:baseline;gap:8px;margin-right:auto}
+.p-pr em{font-style:normal;font-weight:900;font-size:1.16rem;color:var(--accent)}
+.p-card.big .p-pr em{font-size:1.4rem}
+.p-pr s{color:var(--soft);font-size:.8rem}
+.p-acts{display:flex;gap:8px}
+.p-acts button{min-height:40px;padding:9px 15px;border-radius:12px;font-weight:800;font-size:.82rem;transition:.2s}
+.pa-qv{background:#fff;color:var(--primary);border:1.5px solid var(--line)}
+.pa-add{background:var(--grad-accent);color:#fff;box-shadow:0 6px 16px rgba(14,148,136,.35)}
+.p-need{display:flex;gap:5px;flex-wrap:wrap}
+.p-need i{font-style:normal;font-size:.66rem;font-weight:800;color:#0A7A6F;background:var(--accent-100);border-radius:7px;padding:3px 8px}
+.big .p-need i{font-size:.72rem}
+
+/*NB93-274: bang uu dai + dai can gap*/
+.promo{background:#fff;padding:10px 0 64px}
+.promo-card{background:linear-gradient(140deg,#E7F4F1,#DFF3F0);border:1.5px solid var(--accent-200);border-radius:var(--r-l);padding:26px 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pr-i{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.75);border-radius:var(--r-m);padding:15px 16px}
+.pr-i .ic{width:40px;height:40px;flex:none;border-radius:12px;background:var(--grad-accent);color:#fff;display:grid;place-items:center}
+.pr-i .ic svg{width:20px;height:20px}
+.pr-i b{display:block;font-size:.92rem;color:var(--primary)}
+.pr-i span{display:block;font-size:.78rem;color:var(--soft);margin-top:2px}
+.pr-i.hot{background:var(--primary);color:#fff}
+.pr-i.hot b{color:#8EE6DB}
+.pr-i.hot span{color:#CFE4F2}
+
+/*NB93-274: stats*/
+.stats{background:var(--texture);padding:64px 0;position:relative}
+.stats::before,.stats::after{content:"";position:absolute;left:0;right:0;height:46px;background:var(--grad-dark)}
+.stats::before{top:-23px;transform:skewY(-1.2deg)}
+.stats::after{bottom:-23px;transform:skewY(-1.2deg)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.st{text-align:center;padding:26px 12px;background:#fff;border-radius:var(--r-l);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+.st b{display:block;font-size:2.2rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.st span{display:block;font-size:.85rem;color:var(--soft);font-weight:700;margin-top:4px}
+
+/*NB93-274: ho so cong bo*/
+.hoso{background:#fff}
+.ho-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:42px}
+.ho-card{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-l);padding:24px;transition:.25s}
+.ho-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);background:#fff;border-color:var(--accent-200)}
+.ho-card .ic{width:48px;height:48px;border-radius:14px;background:#fff;border:1.5px solid var(--accent-200);color:var(--accent);display:grid;place-items:center;margin-bottom:14px}
+.ho-card .ic svg{width:23px;height:23px}
+.ho-card b{display:block;font-size:1rem;color:var(--primary);margin-bottom:6px}
+.ho-card p{font-size:.85rem;color:var(--soft)}
+.ho-note{margin-top:24px;background:var(--warn-bg);border:1.5px solid var(--warn-line);border-radius:var(--r-m);padding:15px 20px;font-size:.86rem;color:var(--warn);display:flex;gap:11px;align-items:flex-start}
+.ho-note b{color:#92400E}
+
+/*NB93-274: about + showroom*/
+.about{background:var(--texture);background-image:var(--crosses)}
+.ab-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.ab-img{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.2deg);aspect-ratio:4/3}
+.ab-img img{width:100%;height:100%;object-fit:cover}
+.ab-since{position:relative;display:inline-flex;gap:22px;background:var(--grad-dark);color:#fff;border-radius:18px;padding:14px 22px;box-shadow:var(--sh-2);margin-top:-30px;margin-left:20px;z-index:3}
+.ab-since b{font-size:1.3rem;font-weight:900;color:#8EE6DB}
+.ab-since span{font-size:.76rem;color:#CFE4F2;font-weight:600;align-self:center}
+.ab-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 28px}
+.ab-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:20px;transition:.25s}
+.ab-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:var(--accent-200)}
+.ab-card .ic{width:44px;height:44px;border-radius:14px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;margin-bottom:12px}
+.ab-card .ic svg{width:21px;height:21px}
+.ab-card b{display:block;font-size:.98rem;color:var(--primary)}
+.ab-card span{display:block;font-size:.82rem;color:var(--soft);margin-top:3px}
+.ab-cta{display:flex;gap:14px;flex-wrap:wrap}
+.showroom{background:var(--texture);background-image:var(--crosses);padding:0 0 84px}
+.sr-box{max-width:980px;margin:0 auto}
+.sr-img{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);aspect-ratio:16/8.6}
+.sr-img img{width:100%;height:100%;object-fit:cover}
+.sr-chips{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+
+/*NB93-274: process 4 buoc*/
+.proc{background:#fff}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:46px}
+.pr-card{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;position:relative;transition:.25s}
+.pr-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2);background:#fff}
+.pr-ic{width:56px;height:56px;border-radius:18px;background:var(--grad-accent);color:#fff;display:grid;place-items:center;position:relative;box-shadow:0 10px 22px rgba(14,148,136,.3);margin-bottom:16px}
+.pr-ic svg{width:25px;height:25px}
+.pr-num{position:absolute;top:-9px;right:-6px;width:27px;height:27px;border-radius:50%;background:var(--primary);color:#fff;font-size:.78rem;font-weight:900;display:grid;place-items:center;border:2.5px solid #fff}
+.pr-card b{display:block;font-size:1.02rem;color:var(--primary)}
+.pr-card p{font-size:.86rem;color:var(--soft);margin-top:6px}
+.pr-meta{display:inline-flex;margin-top:13px;background:#fff;border:1.5px solid var(--accent-200);color:var(--accent);font-size:.72rem;font-weight:900;border-radius:999px;padding:5px 12px;letter-spacing:.4px}
+
+/*NB93-274: reviews*/
+.reviews{background:var(--texture);background-image:var(--crosses)}
+.rw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}
+.rw{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-1);display:flex;flex-direction:column;gap:14px}
+.rw-q{font-size:.95rem;color:var(--ink);line-height:1.7}
+.rw-q::before{content:"“";display:block;font-size:2.8rem;line-height:.6;color:var(--accent);font-weight:900;margin-bottom:10px}
+.rw-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rw-av{width:46px;height:46px;border-radius:16px;background:var(--grad-accent);color:#fff;font-weight:900;display:grid;place-items:center;font-size:1rem;flex:none}
+.rw-who b{display:block;font-size:.92rem;color:var(--primary)}
+.rw-who span{display:block;font-size:.76rem;color:var(--soft)}
+.rw-stars{color:#F59E0B;font-size:.85rem;letter-spacing:2px}
+.partners{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.partners span{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:.8rem;font-weight:800;color:var(--soft)}
+
+/*NB93-274: contact + map that*/
+.contact{background:#fff}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px;align-items:stretch}
+.ct-map{border-radius:var(--r-l);overflow:hidden;border:1.5px solid var(--line);min-height:380px;box-shadow:var(--sh-1);display:flex;flex-direction:column}
+.ct-map iframe{width:100%;height:100%;border:0;min-height:330px;flex:1}
+.ct-dir{display:flex}
+.ct-dir a{flex:1;background:var(--grad-dark);color:#fff;font-weight:800;font-size:.88rem;padding:13px;text-align:center;transition:.25s}
+.ct-dir a:hover{background:var(--grad-accent)}
+.ct-info{display:flex;flex-direction:column;gap:14px}
+.ct-line{display:flex;gap:15px;align-items:flex-start;background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-m);padding:17px 19px}
+.ct-line .ic{width:42px;height:42px;flex:none;border-radius:13px;background:#fff;border:1.5px solid var(--accent-200);color:var(--accent);display:grid;place-items:center}
+.ct-line .ic svg{width:20px;height:20px}
+.ct-line b{display:block;font-size:.92rem;color:var(--primary)}
+.ct-line p,.ct-line a{display:block;font-size:.88rem;color:var(--soft);font-weight:600}
+.ct-line a:hover{color:var(--accent)}
+.ct-hotline{background:var(--grad-accent);border:none;color:#fff}
+.ct-hotline .ic{background:rgba(255,255,255,.2);border-color:transparent;color:#fff}
+.ct-hotline b,.ct-hotline a{color:#fff}
+.ct-hotline a{font-size:1.25rem;font-weight:900}
+
+/*NB93-274: form tu van tren nen xanh dam*/
+.formband{background:var(--grad-dark);position:relative;overflow:hidden}
+.formband::before{content:"";position:absolute;inset:0;background-image:var(--crosses);opacity:.55}
+.fb-grid{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center;color:#fff}
+.fb-grid h2{color:#fff;font-size:2rem;font-weight:900;line-height:1.25}
+.fb-grid .sec-sub{color:#CFE4F2}
+.fb-list{display:flex;flex-direction:column;gap:13px;margin-top:24px}
+.fb-list li{display:flex;gap:11px;align-items:center;font-size:.94rem;color:#DDEBF6;font-weight:600}
+.fb-list li::before{content:"✓";width:24px;height:24px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-size:.75rem;font-weight:900}
+.fb-form{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(142,230,219,.3);border-radius:var(--r-xl);padding:32px}
+.fb-form h3{font-size:1.2rem;font-weight:900;margin-bottom:20px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-field{margin-bottom:14px}
+.f-field label{display:block;font-size:.78rem;font-weight:800;color:#8EE6DB;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px}
+.f-field input,.f-field select,.f-field textarea{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid rgba(142,230,219,.3);background:rgba(255,255,255,.1);color:#fff;outline:none;transition:.25s}
+.f-field textarea{resize:vertical;min-height:84px}
+.f-field input::placeholder,.f-field textarea::placeholder{color:#9DBBD0}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.16);box-shadow:0 0 0 4px rgba(14,148,136,.25)}
+.f-field select option{color:var(--ink)}
+.fb-form .btn{width:100%;margin-top:8px}
+.fb-safe{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.75rem;color:#9DBBD0;margin-top:14px;font-weight:600}
+
+/*NB93-274: FAQ gon*/
+.faq{background:#fff}
+.faq-in{max-width:820px;margin:40px auto 0}
+.faq-search{position:relative;margin-bottom:18px}
+.faq-search input{width:100%;padding:16px 20px 16px 50px;border:1.5px solid var(--line);border-radius:999px;background:var(--texture);outline:none;font-size:.95rem;transition:.25s}
+.faq-search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.faq-search svg{position:absolute;left:19px;top:50%;transform:translateY(-50%);width:19px;height:19px;color:var(--soft)}
+.faq-chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+.faq-chips button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:.8rem;font-weight:700;color:var(--soft);transition:.2s;min-height:40px}
+.faq-chips button:hover,.faq-chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.faq-item{border:1.5px solid var(--line);border-radius:var(--r-m);margin-bottom:12px;overflow:hidden;background:#fff;transition:.25s}
+.faq-item.open{border-color:var(--accent-200);box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:18px 22px;font-weight:800;font-size:.96rem;color:var(--primary)}
+.faq-q .pm{width:30px;height:30px;flex:none;border-radius:50%;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;font-weight:900;transition:.3s;font-size:1.05rem}
+.faq-item.open .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 22px 20px;color:var(--soft);font-size:.92rem}
+.faq-empty{text-align:center;color:var(--soft);padding:30px;display:none}
+
+/*NB93-274: DISCLAIMER Y TE — bat buoc*/
+.disclaim{background:var(--warn-bg);border-top:1.5px solid var(--warn-line);border-bottom:1.5px solid var(--warn-line);padding:34px 0}
+.dc-box{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1.5px solid var(--warn-line);border-radius:var(--r-l);padding:24px 28px;box-shadow:var(--sh-1)}
+.dc-ic{width:52px;height:52px;flex:none;border-radius:16px;background:var(--warn-bg);border:1.5px solid var(--warn-line);color:var(--warn);display:grid;place-items:center;font-size:1.4rem;font-weight:900}
+.dc-box h3{font-size:1.02rem;font-weight:900;color:#92400E;margin-bottom:8px}
+.dc-box p{font-size:.86rem;color:#7C5A20;line-height:1.7}
+.dc-box p+p{margin-top:6px}
+.dc-box b{color:#92400E}
+
+/*NB93-274: footer gon 1 tang chinh*/
+footer{background:var(--grad-dark);color:#D8E9F5;position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;inset:0;background-image:var(--crosses);opacity:.4}
+.ft-grid{position:relative;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:38px;padding:56px 0 40px}
+.ft-col h4{color:#fff;font-size:.92rem;font-weight:900;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:16px}
+.ft-col p{font-size:.85rem;color:#9DBBD0}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.ft-brand .logo-ic{width:40px;height:40px;font-size:.95rem}
+.ft-brand b{color:#fff;font-size:1.18rem;font-weight:900;display:block;line-height:1.1}
+.ft-brand span{display:block;font-size:.62rem;letter-spacing:2px;color:#8EE6DB;font-weight:700;text-transform:uppercase}
+.ft-col ul{display:flex;flex-direction:column;gap:9px}
+.ft-col ul a{font-size:.87rem;color:#9DBBD0;font-weight:600;transition:.2s}
+.ft-col ul a:hover{color:#fff;padding-left:5px}
+.ft-addr li{display:flex;gap:10px;font-size:.85rem;color:#9DBBD0;align-items:flex-start}
+.ft-addr svg{width:16px;height:16px;flex:none;color:#8EE6DB;margin-top:4px}
+.ft-pay{position:relative;border-top:1.5px solid rgba(142,230,219,.2);padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.ft-pay span{font-size:.78rem;color:#9DBBD0;font-weight:600}
+.ft-pay .pms{display:flex;gap:8px;flex-wrap:wrap}
+.ft-pay .pms i{font-style:normal;background:rgba(255,255,255,.1);border:1.5px solid rgba(142,230,219,.25);border-radius:9px;padding:6px 13px;font-size:.7rem;font-weight:900;color:#DDEBF6;letter-spacing:.5px}
+.ft-copy{position:relative;border-top:1.5px solid rgba(142,230,219,.2);padding:16px 0;text-align:center;font-size:.75rem;color:#9DBBD0;line-height:1.7}
+
+/*NB93-274: fab dock*/
+.fab{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1.5px solid var(--line);border-radius:999px;padding:8px;box-shadow:var(--sh-3);transition:.35s}
+.fab.hide{transform:translateX(-50%) translateY(120px)}
+.fab a,.fab button{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;color:var(--primary);transition:.22s;position:relative}
+.fab a:hover,.fab button:hover{background:var(--accent-100);color:var(--accent);transform:translateY(-3px)}
+.fab svg{width:22px;height:22px}
+.fab .fab-main{background:var(--grad-accent);color:#fff;box-shadow:0 8px 20px rgba(14,148,136,.4)}
+.fab .tip-t{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.68rem;font-weight:700;border-radius:8px;padding:5px 10px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;z-index:5}
+.fab a:hover .tip-t,.fab button:hover .tip-t{opacity:1}
+
+/*NB93-274: cart drawer*/
+.ovl{position:fixed;inset:0;background:rgba(7,57,94,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+.ovl.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:-440px;width:min(430px,100vw);height:100dvh;background:#fff;z-index:85;transition:right .4s cubic-bezier(.22,1,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh-3)}
+.drawer.on{right:0}
+.dw-head{padding:22px 24px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.dw-head b{font-size:1.12rem;font-weight:900;color:var(--primary)}
+.dw-close{width:40px;height:40px;border-radius:12px;background:var(--texture);display:grid;place-items:center;font-size:1.1rem;font-weight:900;color:var(--primary);transition:.2s}
+.dw-close:hover{background:var(--accent-100);color:var(--accent)}
+.dw-ship{margin:16px 24px 0;background:var(--accent-100);border:1.5px solid var(--accent-200);border-radius:14px;padding:12px 15px;font-size:.8rem;font-weight:700;color:#0A7A6F}
+.dw-ship .bar{height:7px;border-radius:99px;background:#fff;margin-top:9px;overflow:hidden}
+.dw-ship .bar i{display:block;height:100%;background:var(--grad-accent);border-radius:99px;transition:width .5s}
+.dw-tier{margin:12px 24px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:.68rem;font-weight:800;text-align:center;color:var(--soft)}
+.dw-tier span{background:var(--texture);border:1.5px solid var(--line);border-radius:10px;padding:7px 4px;transition:.3s}
+.dw-tier span.on{background:var(--grad-accent);color:#fff;border-color:transparent}
+.dw-items{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:14px}
+.dw-item{display:grid;grid-template-columns:74px 1fr auto;gap:13px;align-items:center;border:1.5px solid var(--line);border-radius:var(--r-m);padding:11px}
+.dw-item img{width:74px;height:74px;object-fit:cover;border-radius:11px}
+.dw-item .nm{font-size:.85rem;font-weight:800;color:var(--primary);line-height:1.35}
+.dw-item .pr{font-size:.85rem;font-weight:900;color:var(--accent);margin-top:3px}
+.dw-qty{display:flex;align-items:center;gap:2px;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.dw-qty button{width:28px;height:28px;border-radius:50%;font-weight:900;color:var(--primary);display:grid;place-items:center}
+.dw-qty button:hover{background:var(--accent-100);color:var(--accent)}
+.dw-qty b{min-width:24px;text-align:center;font-size:.85rem}
+.dw-del{color:var(--soft);font-size:.72rem;font-weight:700;text-decoration:underline;margin-top:5px;display:inline-block;background:none}
+.dw-del:hover{color:var(--accent)}
+.dw-empty{margin:auto;text-align:center;color:var(--soft);padding:30px}
+.dw-empty .ic{width:74px;height:74px;border-radius:24px;background:var(--texture);display:grid;place-items:center;margin:0 auto 14px;color:var(--accent)}
+.dw-empty .ic svg{width:32px;height:32px}
+.dw-foot{border-top:1.5px solid var(--line);padding:18px 24px 22px;background:var(--texture)}
+.dw-row{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600;color:var(--soft);margin-bottom:8px}
+.dw-row.tot{font-size:1.15rem;font-weight:900;color:var(--primary);margin-top:4px}
+.dw-row .minus{color:var(--accent);font-weight:900}
+.dw-foot .btn{width:100%;margin-top:12px}
+.dw-note{text-align:center;font-size:.72rem;color:var(--soft);margin-top:11px;line-height:1.6}
+
+/*NB93-274: quick view modal*/
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.3s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-box{width:min(720px,100%);max-height:92dvh;overflow-y:auto;background:#fff;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-3);transform:translateY(26px) scale(.97);transition:.35s}
+.modal.on .modal-box{transform:none}
+.mv-media{position:relative;aspect-ratio:16/8;background:var(--texture)}
+.mv-media img{width:100%;height:100%;object-fit:cover}
+.mv-tag{position:absolute;top:16px;left:16px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;border-radius:999px;padding:6px 13px}
+.mv-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;font-weight:900;color:var(--primary);box-shadow:var(--sh-1)}
+.mv-body{padding:26px 30px 30px}
+.mv-body h3{font-size:1.4rem;font-weight:900;color:var(--primary);margin:4px 0 8px}
+.mv-desc{font-size:.92rem;color:var(--soft);margin-bottom:14px}
+.mv-cb{display:inline-flex;gap:7px;align-items:center;background:var(--accent-100);border:1px solid var(--accent-200);color:#0A7A6F;font-size:.78rem;font-weight:800;border-radius:12px;padding:9px 14px;margin-bottom:16px}
+.mv-tier{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.mv-tier div{border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:.75rem;font-weight:700;color:var(--soft)}
+.mv-tier div b{display:block;font-size:.95rem;color:var(--primary)}
+.mv-tier div.hot{border-color:var(--accent);background:var(--accent-100);color:#0A7A6F}
+.mv-tier div.hot b{color:var(--accent)}
+.mv-act{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.mv-qty{display:flex;align-items:center;gap:4px;border:1.5px solid var(--line);border-radius:999px;padding:5px}
+.mv-qty button{width:40px;height:40px;border-radius:50%;font-weight:900;font-size:1.05rem;color:var(--primary)}
+.mv-qty button:hover{background:var(--accent-100);color:var(--accent)}
+.mv-qty b{min-width:30px;text-align:center}
+.mv-total{font-size:1.1rem;font-weight:900;color:var(--accent);margin-left:auto;font-variant-numeric:tabular-nums}
+.mv-btns{display:flex;gap:12px;margin-top:18px}
+.mv-btns .btn{flex:1}
+.mv-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1.5px dashed var(--line)}
+.mv-meta span{display:flex;gap:7px;align-items:center;font-size:.78rem;font-weight:700;color:var(--soft)}
+.mv-meta svg{width:15px;height:15px;color:var(--accent)}
+.mv-warn{margin-top:14px;font-size:.74rem;color:var(--warn);background:var(--warn-bg);border-radius:10px;padding:9px 12px;line-height:1.6}
+
+/*NB93-274: toast — khung pointer-events none, title + message 2 phan tu rieng*/
+.toast{position:fixed;top:86px;right:24px;z-index:100;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.tst{display:flex;gap:12px;align-items:center;background:var(--primary);color:#fff;border-radius:16px;padding:14px 18px;box-shadow:var(--sh-3);font-size:.88rem;min-width:270px;max-width:340px;animation:tin .4s cubic-bezier(.22,1,.3,1);border-left:4px solid var(--accent)}
+.tst .tk{width:26px;height:26px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-size:.72rem}
+.tst .tt b{display:block;font-weight:900}
+.tst .tt small{display:block;opacity:.78;font-weight:600;font-size:.76rem;margin-top:2px}
+@keyframes tin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.tst.out{opacity:0;transform:translateX(40px);transition:.35s}
+
+/*NB93-274: responsive 1080*/
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-vis{max-width:680px}
+  .strip-in{grid-template-columns:repeat(3,1fr)}
+  .set-panel.on{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .promo-card{grid-template-columns:1fr 1fr}
+  .ho-grid{grid-template-columns:1fr 1fr}
+  .ab-grid,.ct-grid,.fb-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .rw-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+}
+
+/*NB93-274: mobile rieng <=680 — du chuc nang, khong tran ngang, nut chu khong bi cat*/
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:86px}
+  .sec{padding:52px 0}
+  .wrap{padding:0 16px}
+  .hd{flex-wrap:wrap;padding:12px 16px;gap:12px;row-gap:10px}
+  .logo{order:1}.cart-btn{order:2;margin-left:auto}
+  nav.main{display:none}
+  .hd-search{order:3;flex:1 0 100%}
+  .topbar .wrap{justify-content:center}
+  .tb-r{display:none}
+  .hero{padding:32px 0 60px}
+  .hero-stat{margin:14px 0 0;flex-wrap:wrap;position:static}
+  .hs-i{min-width:31%}
+  .hs-i b{font-size:1.05rem}
+  .hs-i span{font-size:.7rem}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust .chip{font-size:.74rem;padding:8px 10px}
+  h1{font-size:1.72rem}
+  .hero-sub{font-size:.95rem}
+  .tape{padding:11px 0;margin:-14px 0}
+  .tape span{font-size:.76rem;padding:0 18px;gap:18px}
+  .strip-in{grid-template-columns:1fr 1fr;gap:10px}
+  .s-item{font-size:.78rem;padding:12px 13px}
+  .sec-t{font-size:1.42rem}
+  .sec-sub{font-size:.9rem}
+  .tabs{gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex:none;padding:10px 16px;font-size:.84rem}
+  .set-info{padding:22px}
+  .set-gal{grid-template-columns:1fr 1fr;gap:10px}
+  .set-total{flex-direction:column;align-items:flex-start;gap:8px}
+  .need-chips{gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .need-chips::-webkit-scrollbar{display:none}
+  .need-chips button{white-space:nowrap;flex:none;padding:10px 15px;font-size:.82rem}
+  .cat-grid{grid-template-columns:1fr;gap:14px}
+  .p-card.big{grid-column:auto}
+  .p-acts{width:100%}
+  .p-acts button{flex:1;min-height:40px}
+  .promo-card{grid-template-columns:1fr;padding:18px}
+  .stats .wrap{grid-template-columns:1fr 1fr;gap:12px}
+  .st{padding:18px 8px}
+  .st b{font-size:1.6rem}
+  .ho-grid{grid-template-columns:1fr}
+  .ab-cards{grid-template-columns:1fr 1fr;gap:10px}
+  .ab-card{padding:15px}
+  .ab-cta{flex-direction:column}
+  .ab-cta .btn{width:100%}
+  .sr-img{aspect-ratio:4/3;border-width:4px}
+  .sr-chips .chip{font-size:.74rem}
+  .proc-grid{grid-template-columns:1fr;gap:14px}
+  .ct-map,.ct-map iframe{min-height:260px}
+  .f-row{grid-template-columns:1fr}
+  .fb-form{padding:22px}
+  .faq-q{font-size:.87rem;padding:15px 16px}
+  .faq-a p{padding:0 16px 16px}
+  .dc-box{flex-direction:column;padding:20px}
+  .ft-grid{grid-template-columns:1fr;gap:28px;padding:46px 0 32px}
+  .ft-pay{justify-content:center;text-align:center}
+  .fab{bottom:12px;padding:7px;gap:6px}
+  .fab a,.fab button{width:46px;height:46px}
+  .fab .tip-t{display:none}
+  .toast{top:auto;bottom:88px;right:12px;left:12px}
+  .tst{min-width:0;width:100%}
+  .drawer{width:100vw}
+  /*FIX-274 loi 3: nut khong bi cat chu tren mobile*/
+  .btn{white-space:normal}
+  /*MOBILE-TAP40: vung cham toi thieu 40px*/
+  .chip,.faq-chips button,.dw-close,.faq-q,.need-chips button,.tab,.p-acts button,.mv-close,.dw-qty button,.mv-qty button{min-height:40px!important;min-width:40px!important}
+  .btn{min-height:40px!important}
+}
+@media(min-width:681px){
+  .btn{white-space:nowrap}
+}
+/*NB93-274: micro interaction*/
+button:active{transform:scale(.96)}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Tâm An","telephone":"0903726274","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Tâm An — thiết bị y tế chính hãng đủ số công bố: máy đo huyết áp, đường huyết, xe lăn, giường bệnh, vật tư tiêu hao. Chọn theo nhu cầu chăm sóc người già, bệnh ","url":"http://127.0.0.1:8174/274-cua-hang-thiet-bi-vat-tu-y-te/"}
+</script>
+<style data-nb93fix="274:ghost">
+/*NB93-FIX-274:ghost sua ghost-column: bo span tren mobile*/
+@media(max-width:1080px){
+  .cat-grid.rv.in > *{grid-column:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><i class="tb-dot"></i>Mở cửa <b>7:30 – 21:00</b> tất cả các ngày</span>
+      <span>Cần gấp? Gọi nhận hàng trong <b>2 giờ</b> nội thành</span>
+    </div>
+    <div class="tb-r">
+      <a href="tel:0903726274">Hotline 0903 726 274</a>
+      <span>|</span>
+      <span>58 Hoa Sứ, Phú Nhuận, TP.HCM</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header id="hd">
+  <div class="hd">
+    <a class="logo" href="#top" aria-label="Tâm An — về đầu trang">
+      <span class="logo-ic">TA</span>
+      <span><b>Tâm An</b><span>Thiết bị &amp; vật tư y tế</span></span>
+    </a>
+    <div class="hd-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Tìm máy đo huyết áp, xe lăn, gạc, băng… (Enter)" aria-label="Tìm sản phẩm y tế">
+    </div>
+    <nav class="main" aria-label="Menu chính">
+      <a href="#bocham">Chọn theo nhu cầu</a>
+      <a href="#catalog">8 nhóm hàng</a>
+      <a href="#hoso">Công bố &amp; hồ sơ</a>
+      <a href="#about">Về Tâm An</a>
+      <a href="#lienhe">Liên hệ</a>
+    </nav>
+    <button class="cart-btn" id="cartOpen" aria-label="Mở giỏ hàng">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-n" id="cartN">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow hero-tag rv">Thiết bị chính hãng — đủ số công bố</span>
+      <h1 class="rv">Chuẩn bị <span class="hl">chăm người thân</span> — đúng món, không thừa thiếu</h1>
+      <span class="hero-sub rv" data-d="1">Đang chăm cha mẹ lớn tuổi, người thân nằm tại nhà hay mở phòng khám nhỏ? Chọn theo đúng hoàn cảnh của bạn — Tâm An tư vấn theo bệnh vụ, giao nhanh khi cần gấp, giấy tờ công bố đầy đủ để bạn an tâm.</span>
+      <div class="hero-cta rv" data-d="2">
+        <a href="#bocham" class="btn btn-a">Chọn theo nhu cầu chăm sóc</a>
+        <a href="#catalog" class="btn btn-g">Xem 8 nhóm hàng — giá niêm yết</a>
+      </div>
+      <div class="trust rv" data-d="3">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Mỗi máy có số đăng ký lưu hành</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>Giao gấp 2 giờ nội thành</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>Hoá đơn VAT cho phòng khám</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-2.8L7 19l1-6-4-4 5.5-.5z"/></svg>4.9/5 từ người chăm sóc thật</span>
+      </div>
+    </div>
+    <div class="hero-vis rv" data-d="1">
+      <div class="hv-main">
+        <img src="assets/img/cover.webp" alt="Cửa hàng dụng cụ y khoa Tâm An — thiết bị y khoa, hỗ trợ di chuyển, máy tập thể dục" width="1672" height="941">
+      </div>
+      <div class="hero-stat">
+        <div class="hs-i"><b>12+</b><span>năm ngành y tế</span></div>
+        <div class="hs-i"><b>18.000+</b><span>khách &amp; cơ sở</span></div>
+        <div class="hs-i"><b>2 giờ</b><span>giao gấp nội thành</span></div>
+        <div class="hs-i"><b>100%</b><span>đủ hồ sơ công bố</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAPE ================= -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-in" id="tapeIn">
+    <span>Hàng chính hãng — đủ số công bố</span><span>Giao gấp 2 giờ nội thành</span><span>Hoá đơn VAT cho phòng khám</span><span>Bảo hành 12–24 tháng</span><span>Kỹ thuật viên hướng dẫn dùng miễn phí</span><span>COD kiểm hàng trước khi trả tiền</span>
+  </div>
+</div>
+
+<!-- ================= DẢI 5 NHÓM HÀNG ================= -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-in">
+      <a class="s-item spot" href="#catalog"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>Theo dõi sức khỏe<i>›</i></a>
+      <a class="s-item spot" href="#catalog"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2.4"/><path d="M12 8v5l4 3M12 13l-4 3"/><circle cx="12" cy="18" r="2.6"/></svg></span>Di chuyển &amp; hỗ trợ<i>›</i></a>
+      <a class="s-item spot" href="#catalog"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg></span>Vật tư tiêu hao<i>›</i></a>
+      <a class="s-item spot" href="#catalog"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-10 5 6 3-4 6 8M3 21h18"/></svg></span>Phục hồi chức năng<i>›</i></a>
+      <a class="s-item spot" href="#catalog"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>Thiết bị phòng khám<i>›</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ĐIỂM NHẤN: BỘ CHĂM SÓC THEO NHU CẦU ================= -->
+<section class="bos sec" id="bocham">
+  <div class="wrap">
+    <div class="bos-head">
+      <div>
+        <span class="eyebrow rv">Điểm nhấn của Tâm An</span>
+        <h2 class="sec-t rv" data-d="1">Bộ chuẩn bị <span class="hl">theo đúng hoàn cảnh</span> của bạn</h2>
+        <span class="sec-sub rv" data-d="2">Kỹ thuật viên shop đã gom sẵn từng bộ theo người được chăm — không bắt bạn lọc trăm món. Thích bộ nào bấm 1 nút là cả bộ vào giỏ, giá đã trừ ưu đãi.</span>
+      </div>
+      <span class="need-pill rv" data-d="2"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg>Gói kèm hướng dẫn dùng tận tình</span>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-bo="grand" role="tab">Cha mẹ, ông bà lớn tuổi <b>tiết kiệm 105K</b></button>
+      <button class="tab" data-bo="home" role="tab">Người thân nằm tại nhà <b>tiết kiệm 155K</b></button>
+      <button class="tab" data-bo="clinic" role="tab">Phòng khám, spa mới mở <b>tiết kiệm 490K</b></button>
+    </div>
+
+    <div class="set-panel on" id="bo-grand">
+      <div class="set-info">
+        <span class="eyebrow">Bộ 1 · 3 món</span>
+        <h3>Bộ an tâm cho ông bà, cha mẹ</h3>
+        <span class="mini-s">Ba món dùng mỗi ngày để con cái ở xa cũng yên tâm: đo huyết áp sáng tối, đo nhiệt độ ngay khi ốm, và đi lại chắc chân hơn.</span>
+        <ul>
+          <li><b>Máy đo huyết áp bắp tay tự động</b><span><s>890.000đ</s>890.000đ</span></li>
+          <li><b>Nhiệt kế điện tử — kết quả 10 giây</b><span><s>120.000đ</s>120.000đ</span></li>
+          <li><b>Nạng nhôm &amp; gậy chống 4 chân</b><span><s>185.000đ</s>185.000đ</span></li>
+        </ul>
+        <div class="set-total">
+          <span><b>1.090.000đ</b><small>bộ trọn 3 món, so với mua lẻ 1.195.000đ</small></span>
+          <span class="off">TIẾT KIỆM 105.000đ</span>
+        </div>
+        <button class="btn btn-a" onclick="addBo('grand')">Thêm cả bộ vào giỏ — 1.090.000đ</button>
+        <span class="set-note"><span class="tick">✓</span>Kèm hướng dẫn tiếng Việt + kỹ thuật viên gọi hướng dẫn đo đúng cách lần đầu.</span>
+      </div>
+      <div class="set-gal">
+        <div class="sg"><span class="q">x1</span><img src="assets/img/p1.webp" alt="Máy đo huyết áp bắp tay tự động" loading="lazy"><span class="n">Máy đo huyết áp bắp tay</span></div>
+        <div class="sg"><span class="q">x1</span><img src="assets/img/p3.webp" alt="Nhiệt kế điện tử" loading="lazy"><span class="n">Nhiệt kế điện tử 10 giây</span></div>
+        <div class="sg"><span class="q">x1</span><img src="assets/img/p5.webp" alt="Nạng nhôm và gậy chống 4 chân" loading="lazy"><span class="n">Nạng &amp; gậy chống 4 chân</span></div>
+        <div class="sg ac"><div class="ac-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg><b>Gọi hướng dẫn dùng miễn phí</b><span>kỹ thuật viên gọi sau khi giao</span></div></div>
+      </div>
+    </div>
+
+    <div class="set-panel" id="bo-home">
+      <div class="set-info">
+        <span class="eyebrow">Bộ 2 · 3 món</span>
+        <h3>Bộ chống loét &amp; theo dõi tại nhà</h3>
+        <span class="mini-s">Dành cho người thân phải nằm hoặc ít vận động sau xuất huyết, tai biến, phẫu thuật: thay băng sạch, theo dõi huyết áp, hỗ trợ lưng khi tập ngồi dậy.</span>
+        <ul>
+          <li><b>Combo vật tư tiêu hao cơ bản ×2 bộ</b><span><s>500.000đ</s>500.000đ</span></li>
+          <li><b>Đai lưng &amp; nẹp khớp hỗ trợ</b><span><s>285.000đ</s>285.000đ</span></li>
+          <li><b>Máy đo huyết áp bắp tay tự động</b><span><s>890.000đ</s>890.000đ</span></li>
+        </ul>
+        <div class="set-total">
+          <span><b>1.520.000đ</b><small>bộ trọn 3 món, so với mua lẻ 1.675.000đ</small></span>
+          <span class="off">TIẾT KIỆM 155.000đ</span>
+        </div>
+        <button class="btn btn-a" onclick="addBo('home')">Thêm cả bộ vào giỏ — 1.520.000đ</button>
+        <span class="set-note"><span class="tick">✓</span>Vật tư hết nhanh — đơn từ lần 2 được ưu tiên giao gấp trong 2 giờ nội thành.</span>
+      </div>
+      <div class="set-gal">
+        <div class="sg"><span class="q">x2</span><img src="assets/img/p7.webp" alt="Combo vật tư y tế tiêu hao" loading="lazy"><span class="n">Combo vật tư tiêu hao</span></div>
+        <div class="sg"><span class="q">x1</span><img src="assets/img/p8.webp" alt="Đai lưng nẹp khớp hỗ trợ" loading="lazy"><span class="n">Đai lưng &amp; nẹp khớp</span></div>
+        <div class="sg"><span class="q">x1</span><img src="assets/img/p1.webp" alt="Máy đo huyết áp bắp tay" loading="lazy"><span class="n">Máy đo huyết áp bắp tay</span></div>
+        <div class="sg ac"><div class="ac-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><b>Nhắc mua định kỳ qua Zalo</b><span>đừng chờ hết mới tìm — shop nhắc trước</span></div></div>
+      </div>
+    </div>
+
+    <div class="set-panel" id="bo-clinic">
+      <div class="set-info">
+        <span class="eyebrow">Bộ 3 · khối lượng phòng khám</span>
+        <h3>Bộ khai trương phòng khám, spa nhỏ</h3>
+        <span class="mini-s">Số lượng chuẩn cho 1 phòng khám nhỏ mở cửa: đủ dùng tháng đầu, kèm hoá đơn VAT và hồ sơ công bố đầy đủ để nộp hồ sơ thuê mặt bằng, kiểm tra.</span>
+        <ul>
+          <li><b>Combo vật tư tiêu hao ×10 bộ</b><span><s>2.500.000đ</s>2.500.000đ</span></li>
+          <li><b>Nhiệt kế điện tử ×5 chiếc</b><span><s>600.000đ</s>600.000đ</span></li>
+          <li><b>Máy đo huyết áp bắp tay ×2 máy</b><span><s>1.780.000đ</s>1.780.000đ</span></li>
+        </ul>
+        <div class="set-total">
+          <span><b>4.390.000đ</b><small>bộ trọn 17 món, so với mua lẻ 4.880.000đ</small></span>
+          <span class="off">TIẾT KIỆM 490.000đ</span>
+        </div>
+        <button class="btn btn-a" onclick="addBo('clinic')">Thêm cả bộ vào giỏ — 4.390.000đ</button>
+        <span class="set-note"><span class="tick">✓</span>Kèm báo giá chính thức + hoá đơn VAT + scan hồ sơ công bố — nhận trong 30 phút qua Zalo.</span>
+      </div>
+      <div class="set-gal">
+        <div class="sg"><span class="q">x10</span><img src="assets/img/p7.webp" alt="Combo vật tư tiêu hao cho phòng khám" loading="lazy"><span class="n">Vật tư tiêu hao ×10 bộ</span></div>
+        <div class="sg"><span class="q">x5</span><img src="assets/img/p3.webp" alt="Nhiệt kế điện tử cho phòng khám" loading="lazy"><span class="n">Nhiệt kế điện tử ×5</span></div>
+        <div class="sg"><span class="q">x2</span><img src="assets/img/p1.webp" alt="Máy đo huyết áp cho phòng khám" loading="lazy"><span class="n">Máy đo huyết áp ×2</span></div>
+        <div class="sg ac"><div class="ac-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg><b>Hồ sơ công bố đầy đủ</b><span>scan gửi kèm — nộp hồ sơ là có ngay</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KHOI-8: LỌC THEO NHU CẦU + BENTO KÍN Ô ================= -->
+<section class="catalog sec" id="catalog">
+  <div class="wrap">
+    <div class="cat-head">
+      <div>
+        <span class="eyebrow rv">8 nhóm hàng thật — giá niêm yết</span>
+        <h2 class="sec-t rv" data-d="1">Lọc theo <span class="hl">người bạn đang chăm</span></h2>
+        <span class="sec-sub rv" data-d="2">Cùng một món nhưng nhu cầu mỗi nhà một khác: chạm vào hoàn cảnh của bạn, trang chỉ hiện đúng món phù hợp kèm giá niêm yết và tình trạng hồ sơ công bố.</span>
+      </div>
+      <span class="need-pill rv" data-d="2"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Tìm nhanh bằng ô tìm kiếm phía trên</span>
+    </div>
+    <div class="need-chips rv" id="needChips" role="tablist">
+      <button class="on" data-need="all">Tất cả 8 nhóm <b>8</b></button>
+      <button data-need="grand">Ông bà, cha mẹ lớn tuổi <b>6</b></button>
+      <button data-need="home">Người thân nằm tại nhà <b>6</b></button>
+      <button data-need="clinic">Phòng khám &amp; cơ sở <b>5</b></button>
+    </div>
+    <div class="cat-grid rv" id="catGrid"><!-- render by JS --></div>
+  </div>
+</section>
+
+<!-- ================= UU DAI + CAN GAP ================= -->
+<section class="promo">
+  <div class="wrap">
+    <div class="promo-card rv">
+      <div class="pr-i"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg></span><span><b>Freeship đơn từ 500K</b><span>toàn quốc — tỉnh lẻ 1–2 ngày</span></span></div>
+      <div class="pr-i"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-2.8L7 19l1-6-4-4 5.5-.5z"/></svg></span><span><b>Mua 2–3 món giảm 5%</b><span>từ 4 món giảm 10% tự động</span></span></div>
+      <div class="pr-i hot"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span><span><b>Cần gấp — gọi 0903 726 274</b><span>băng gạc, găng, nước muối đi trong 2 giờ</span></span></div>
+      <div class="pr-i"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span><span><b>Mua sỉ kèm VAT + hồ sơ</b><span>báo giá phòng khám trong 30 phút</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="st rv"><b data-count="12" data-suffix="+">0</b><span>năm trong ngành y tế</span></div>
+    <div class="st rv" data-d="1"><b data-count="18000" data-suffix="+">0</b><span>khách nhà &amp; cơ sở đã phục vụ</span></div>
+    <div class="st rv" data-d="2"><b data-count="4.9" data-decimal="1" data-suffix="/5">0</b><span>điểm đánh giá trung bình</span></div>
+    <div class="st rv" data-d="3"><b data-count="2" data-suffix=" giờ">0</b><span>giao gấp nội thành khi cần</span></div>
+  </div>
+</section>
+
+<!-- ================= HO SO CONG BO ================= -->
+<section class="hoso sec" id="hoso">
+  <div class="wrap">
+    <span class="eyebrow rv">Mua cho người thân hay cơ sở — đều phải "sạch giấy tờ"</span>
+    <h2 class="sec-t rv" data-d="1">Hàng có số công bố — <span class="hl">xin trước khi mua, không phải xin sau</span></h2>
+    <span class="sec-sub rv" data-d="2">Với người nhà bệnh, món mua sai là mất thời gian và tiền; với phòng khám, thiếu giấy tờ là không thể nhập. Tâm An công khai số hồ sơ của từng máy, từng lô vật tư ngay khi báo giá.</span>
+    <div class="ho-grid">
+      <div class="ho-card rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div><b>Công bố sản phẩm đầy đủ</b><p>Mỗi lô vật tư tiêu hao có giấy công bố tiêu chuẩn chất lượng — xin ảnh gốc qua Zalo trước khi chốt đơn.</p></div>
+      <div class="ho-card rv" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><b>Số đăng ký lưu hành thiết bị</b><p>Máy đo huyết áp, đường huyết, máy tập… thuộc loại có số đăng ký lưu hành — in rõ trên tem và phiếu bảo hành.</p></div>
+      <div class="ho-card rv" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div><b>Hoá đơn VAT cho cơ sở</b><p>Phòng khám, spa, trung tâm chăm sóc: xuất hoá đơn đỏ, bảng báo giá chính thức — nộp quyết toán thoải mái.</p></div>
+      <div class="ho-card rv" data-d="3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><b>Bảo hành chính hãng 12–24 tháng</b><p>Máy lỗi do nhà sản xuất: 1 đổi 1 trong 7 ngày, bảo hành tại shop — không phải gửi xa, không chờ 2 tuần.</p></div>
+    </div>
+    <div class="ho-note rv"><span style="font-size:1.1rem">⚠</span><span><b>Lưu ý khi mua ở nơi khác:</b> không nhận được số công bố/số đăng ký lưu hành bằng văn bản thì đừng chốt — đặc biệt với vật tư tiếp xúc vết thương và máy đo dùng lâu dài cho người bệnh.</span></div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about sec" id="about">
+  <div class="wrap ab-grid">
+    <div class="rv">
+      <div class="ab-img">
+        <img src="assets/img/intro.webp" alt="Giới thiệu cửa hàng dụng cụ y khoa Tâm An" width="1448" height="1086" loading="lazy">
+      </div>
+      <div class="ab-since"><b>2013</b><span>năm đầu tiên mở cửa phục vụ người nhà bệnh</span></div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Về Tâm An</span>
+      <h2 class="sec-t rv" data-d="1">12 năm bán hàng cho <span class="hl">người nhà bệnh</span> — hiểu nỗi lo từng món</h2>
+      <span class="sec-sub rv" data-d="2">Tâm An khởi đầu năm 2013, ngày đầu bán máy đo huyết áp cho bác hàng xóm chăm chồng sau tai biến. Hôm nay shop phục vụ cả nhà lẻ lẫn phòng khám, nhưng nguyên tắc không đổi: tư vấn theo đúng bệnh vụ, đủ giấy tờ, giao nhanh khi đang cần.</span>
+      <div class="ab-cards">
+        <div class="ab-card rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><b>Tư vấn theo bệnh vụ</b><span>Kể hoàn cảnh người thân — kỹ thuật viên chọn đúng món, không đẩy món đắt thừa.</span></div>
+        <div class="ab-card rv" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div><b>Chính hãng, đủ hồ sơ</b><span>Không hàng trôi nổi: mỗi máy có số đăng ký, mỗi lô có công bố.</span></div>
+        <div class="ab-card rv" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><b>Giao gấp khi đang cần</b><span>Vật tư hết giữa chừng? Gọi 10h sáng là có trước buổi chiều換 băng.</span></div>
+        <div class="ab-card rv" data-d="3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><b>Dạy dùng tới khi thuộc</b><span>Đo huyết áp đúng cách, thay que đúng giờ — hướng dẫn qua call/video miễn phí.</span></div>
+      </div>
+      <div class="ab-cta rv">
+        <a href="#bocham" class="btn btn-a">Chọn bộ theo nhu cầu của nhà bạn</a>
+        <a href="#lienhe" class="btn btn-g">Ghé showroom — chỉ đường</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHOWROOM ================= -->
+<section class="showroom">
+  <div class="wrap">
+    <div class="sr-box">
+      <div style="text-align:center;margin-bottom:34px">
+        <span class="eyebrow rv">Showroom 58 Hoa Sứ</span>
+        <h2 class="sec-t rv" data-d="1">Ghé là <span class="hl">thử tận tay</span> trước khi mang về</h2>
+      </div>
+      <div class="sr-img rv"><img src="assets/img/space.webp" alt="Không gian showroom Tâm An — xe lăn, máy tập, vật tư y tế" width="1448" height="1086" loading="lazy"></div>
+      <div class="sr-chips rv" data-d="1">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Ngồi thử xe lăn, chỉnh cao nạng tại chỗ</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Đo thử máy huyết áp so với máy nhà</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Giao xe lăn, giường bệnh lắp sẵn tận nhà</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS 4 BƯỚC ================= -->
+<section class="proc sec">
+  <div class="wrap">
+    <span class="eyebrow rv">Mua tại Tâm An</span>
+    <h2 class="sec-t rv" data-d="1">Từ lúc chốt món tới <span class="hl">dùng được ngay</span> — 4 bước</h2>
+    <div class="proc-grid">
+      <div class="pr-card rv"><div class="pr-ic"><span class="pr-num">1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><b>Chọn món hoặc kể hoàn cảnh</b><p>Lọc theo nhu cầu trên trang, hoặc gọi hotline kể bệnh vụ để được chọn giúp.</p><span class="pr-meta">~3 phút</span></div>
+      <div class="pr-card rv" data-d="1"><div class="pr-ic"><span class="pr-num">2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg></div><b>Kỹ thuật viên gọi xác nhận</b><p>Gọi lại trong 15 phút: chốt đúng món, gửi scan công bố/số đăng ký nếu bạn xin.</p><span class="pr-meta">15 phút</span></div>
+      <div class="pr-card rv" data-d="2"><div class="pr-ic"><span class="pr-num">3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg></div><b>Giao nhanh — kiểm trước khi trả</b><p>Cần gấp đi trong 2 giờ nội thành; tỉnh lẻ 1–2 ngày. COD mở gói kiểm thoải mái.</p><span class="pr-meta">2 giờ – 2 ngày</span></div>
+      <div class="pr-card rv" data-d="3"><div class="pr-ic"><span class="pr-num">4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div><b>Dạy dùng + bảo hành tại shop</b><p>Hướng dẫn dùng qua call/video. Máy lỗi 1 đổi 1 trong 7 ngày, bảo hành tới 24 tháng.</p><span class="pr-meta">12–24 tháng</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews sec">
+  <div class="wrap">
+    <div style="text-align:center;max-width:660px;margin:0 auto">
+      <span class="eyebrow rv">Người chăm nói gì</span>
+      <h2 class="sec-t rv" data-d="1">Kể lại từ <span class="hl">những người đang chăm người thân</span></h2>
+    </div>
+    <div class="rw-grid">
+      <article class="rw rv"><span class="rw-stars">★★★★★</span><p class="rw-q">Mẹ 82 tuổi sau xuất huyết não phải ngồi xe lăn. Mình mua online vẫn sợ sai size, kỹ thuật viên shop gọi qua video hướng dẫn chỉnh tựa, đệm ngồi — mẹ ngồi cả buổi không đau mỏng. Đổi phần đệm lần sau chỉ 1 tin nhắn.</p><div class="rw-who"><span class="rw-av">N</span><span><b>Chị Ngọc Lan</b><span>chăm mẹ 82 tuổi — Gò Vấp</span></span></div></article>
+      <article class="rw rv" data-d="1"><span class="rw-stars">★★★★★</span><p class="rw-q">Phòng khám mình nhập vật tư tiêu hao mỗi tháng. Điều quan trọng nhất là hồ sơ: công bố, số lô, hoá đơn VAT gửi đủ qua Zalo trước khi chuyển tiền. Cần gấp buổi sáng, 11h là hàng tới tận phòng.</p><div class="rw-who"><span class="rw-av">M</span><span><b>BS. Hoàng Minh</b><span>phòng khám đa khoa — Phú Nhuận</span></span></div></article>
+      <article class="rw rv" data-d="2"><span class="rw-stars">★★★★★</span><p class="rw-q">Ba mình bị tiểu đường, mua máy đo kèm 50 que. Anh kỹ thuật dạy ba tự đo qua video call tận lúc ba làm được mới thôi, còn nhắc lịch thay que và mua thêm kèm giảm giá. Rất "người" — không bán xong là thôi.</p><div class="rw-who"><span class="rw-av">Q</span><span><b>Anh Quốc Bảo</b><span>mua cho ba — Bình Thạnh</span></span></div></article>
+    </div>
+    <div class="partners rv">
+      <span>Cung cấp định kỳ cho: phòng khám đa khoa khu Phú Nhuận</span><span>Trung tâm chăm sóc người cao tuổi</span><span>Hệ nhà thuốc đối tác</span><span>CLB dưỡng sinh khu phố</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT + MAP THẬT ================= -->
+<section class="contact sec" id="lienhe">
+  <div class="wrap">
+    <span class="eyebrow rv">Ghé shop hoặc nhắn trước</span>
+    <h2 class="sec-t rv" data-d="1">58 Hoa Sứ, Phú Nhuận — <span class="hl">có chỗ đỗ xe tải giao sỉ</span></h2>
+    <span class="sec-sub rv" data-d="2">Nhắn trước 30 phút để shop chuẩn bị sẵn món bạn cần và hồ sơ công bố kèm theo — tới là nhận hàng, không phải chờ.</span>
+    <div class="ct-grid">
+      <div class="ct-map rv">
+        <iframe title="Bản đồ showroom Tâm An" src="https://www.google.com/maps?q=10.8026,106.6823&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="ct-dir"><a href="https://www.google.com/maps/dir/?api=1&destination=10.8026,106.6823" target="_blank" rel="noopener">Chỉ đường tới showroom →</a></div>
+      </div>
+      <div class="ct-info">
+        <div class="ct-line ct-hotline rv">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <span><b>Hotline &amp; Zalo — cần gấp cứ gọi</b><a href="tel:0903726274">0903 726 274</a></span>
+        </div>
+        <div class="ct-line rv" data-d="1">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><b>Địa chỉ</b><p>58 Hoa Sứ, P.7, Q. Phú Nhuận, TP.HCM — 5 phút từ vòng xoay Dinh Độc Lập cũ hướng Nguyễn Kiệm.</p></span>
+        </div>
+        <div class="ct-line rv" data-d="2">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><b>Giờ mở cửa</b><p>7:30 – 21:00 tất cả các ngày, kể cả Chủ nhật — giờ người nhà bệnh hay đi mua nhất.</p></span>
+        </div>
+        <div class="ct-line rv" data-d="3">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg></span>
+          <span><b>Giao hàng &amp; đổi mới</b><p>Gấp 2 giờ nội thành · tỉnh 1–2 ngày · freeship từ 500K · máy lỗi đổi mới trong 7 ngày.</p></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORM TƯ VẤN ================= -->
+<section class="formband sec">
+  <div class="wrap fb-grid">
+    <div>
+      <span class="eyebrow rv" style="background:rgba(255,255,255,.12);color:#8EE6DB;border-color:rgba(142,230,219,.3)">Để Tâm An phụ bạn</span>
+      <h2 class="rv" data-d="1">Kể hoàn cảnh người thân —<br><span style="color:#8EE6DB">nhận đúng món + giá trong 15 phút</span></h2>
+      <span class="sec-sub rv" data-d="2">Đừng tự lọc trăm món. Kỹ thuật viên Tâm An đọc tin nhắn, đối chiếu từng bệnh vụ và gửi đúng danh sách cần mua — kèm giá, hồ sơ công bố nếu bạn yêu cầu.</span>
+      <ul class="fb-list rv" data-d="3">
+        <li>Tư vấn theo bệnh vụ — không đẩy món đắt thừa</li>
+        <li>Gửi scan công bố / số đăng ký lưu hành khi xin</li>
+        <li>Cần gấp — báo ngay thời gian giao sớm nhất</li>
+      </ul>
+    </div>
+    <form class="fb-form rv" data-d="1" id="ctForm" novalidate>
+      <h3>Gửi yêu cầu tư vấn</h3>
+      <div class="f-row">
+        <div class="f-field"><label for="fName">Họ tên</label><input id="fName" type="text" placeholder="Nguyễn Thị Bích Hạnh"></div>
+        <div class="f-field"><label for="fPhone">Số điện thoại</label><input id="fPhone" type="tel" placeholder="09xx xxx xxx"></div>
+      </div>
+      <div class="f-field">
+        <label for="fNeed">Bạn cần hỗ trợ</label>
+        <select id="fNeed">
+          <option>Tư vấn chọn máy/vật tư theo bệnh vụ</option>
+          <option>Báo giá sỉ cho phòng khám — kèm VAT &amp; hồ sơ</option>
+          <option>Gấp — cần giao nhanh trong 2 giờ</option>
+          <option>Xin số công bố / hồ sơ sản phẩm</option>
+        </select>
+      </div>
+      <div class="f-field"><label for="fMsg">Hoàn cảnh người thân (tuỳ chọn)</label><textarea id="fMsg" placeholder="VD: Mẹ 78 tuổi sau xuất huyết não đang nằm tại nhà, cần chống loét và theo dõi huyết áp…"></textarea></div>
+      <button type="submit" class="btn btn-a">Gửi — nhận tư vấn trong 15 phút</button>
+      <span class="fb-safe"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Thông tin của bạn chỉ dùng để tư vấn — không chia sẻ cho bên thứ ba.</span>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ GỌN ================= -->
+<section class="faq sec">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="eyebrow rv">Giải đáp nhanh</span>
+      <h2 class="sec-t rv" data-d="1">Nỗi lo thật — <span class="hl">trả lời thẳng</span></h2>
+    </div>
+    <div class="faq-in rv" data-d="1">
+      <div class="faq-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="faqQ" type="text" placeholder="Tìm câu hỏi: bảo hành, công bố, giao gấp, VAT, sỉ…">
+      </div>
+      <div class="faq-chips" id="faqChips">
+        <button data-k="bảo hành">Bảo hành máy</button>
+        <button data-k="công bố">Số công bố</button>
+        <button data-k="gấp">Giao gấp 2 giờ</button>
+        <button data-k="vat">Hoá đơn VAT</button>
+        <button data-k="đổi trả">Đổi trả</button>
+        <button data-k="sỉ">Mua sỉ</button>
+      </div>
+      <div id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Chưa có câu khớp từ khoá — gọi <a href="tel:0903726274" style="color:var(--accent);font-weight:800">0903 726 274</a> để kỹ thuật viên giải đáp trong 15 phút nhé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DISCLAIMER Y TẾ (BẮT BUỘC) ================= -->
+<section class="disclaim" id="luuy" aria-label="Lưu ý quan trọng">
+  <div class="wrap">
+    <div class="dc-box rv">
+      <span class="dc-ic">!</span>
+      <div>
+        <h3>Lưu ý quan trọng — vui lòng đọc trước khi mua và sử dụng</h3>
+        <p>Mọi thông tin trên website này chỉ mang tính <b>tham khảo</b>, không thay thế chẩn đoán, chỉ định hay tư vấn của bác sĩ và nhân viên y tế có chuyên môn. Máy đo huyết áp, máy đo đường huyết, nhiệt kế là <b>thiết bị hỗ trợ theo dõi tại nhà</b> — kết quả đo không dùng để tự chẩn đoán hoặc tự thay đổi liều thuốc.</p>
+        <p>Khi người thân có dấu hiệu bất thường (đau dữ dội, khó thở, huyết áp/đường huyết lệch xa ngưỡng bác sĩ dặn, sốt cao không hạ…), xin <b>đưa đến cơ sở y tế gần nhất</b>. Vui lòng đọc kỹ hướng dẫn sử dụng trước khi dùng; chọn vật tư, đai nẹp theo chỉ định của người có chuyên môn. Tâm An không đưa ra bất kỳ cam kết nào về kết quả điều trị.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER GỌN ================= -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-col">
+        <div class="ft-brand">
+          <span class="logo-ic">TA</span>
+          <span><b>Tâm An</b><span>Thiết bị &amp; vật tư y tế</span></span>
+        </div>
+        <p>Từ 2013, Tâm An cung cấp thiết bị và vật tư y tế chính hãng đủ số công bố cho gia đình đang chăm người thân và các phòng khám nhỏ. Tư vấn theo bệnh vụ — giao nhanh khi cần gấp — giấy tờ đầy đủ.</p>
+        <div class="ft-soc" style="display:flex;gap:10px;margin-top:16px">
+          <a href="#top" aria-label="Facebook" style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.1);border:1.5px solid rgba(142,230,219,.25);display:grid;place-items:center;color:#8EE6DB;font-weight:900;font-size:.8rem">FB</a>
+          <a href="#top" aria-label="Zalo" style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.1);border:1.5px solid rgba(142,230,219,.25);display:grid;place-items:center;color:#8EE6DB;font-weight:900;font-size:.8rem">ZL</a>
+          <a href="tel:0903726274" aria-label="Gọi hotline" style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.1);border:1.5px solid rgba(142,230,219,.25);display:grid;place-items:center;color:#8EE6DB;font-weight:900;font-size:.8rem">☎</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="#catalog">Máy đo huyết áp, đường huyết</a></li>
+          <li><a href="#catalog">Xe lăn &amp; hỗ trợ di chuyển</a></li>
+          <li><a href="#catalog">Vật tư y tế tiêu hao</a></li>
+          <li><a href="#catalog">Máy tập phục hồi chức năng</a></li>
+          <li><a href="#bocham">Bộ chuẩn bị theo nhu cầu</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Hỗ trợ khách</h4>
+        <ul>
+          <li><a href="#hoso">Hồ sơ công bố &amp; số đăng ký</a></li>
+          <li><a href="#catalog">Bảng giá niêm yết</a></li>
+          <li><a href="#lienhe">Giao gấp trong 2 giờ</a></li>
+          <li><a href="#luuy">Lưu ý sử dụng an toàn</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Liên hệ</h4>
+        <ul class="ft-addr">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>58 Hoa Sứ, P.7, Q. Phú Nhuận, TP.HCM</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:0903726274" style="color:#fff;font-weight:800">0903 726 274</a>&nbsp;— 7:30–21:00</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mở cửa tất cả các ngày trong tuần</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-pay">
+      <span>Thanh toán linh hoạt — COD kiểm hàng trước khi trả tiền</span>
+      <div class="pms"><i>COD</i><i>MOMO</i><i>ZALOPAY</i><i>VNPAY</i><i>VISA</i><i>CHUYỂN KHOẢN</i></div>
+    </div>
+    <div class="ft-copy">© 2026 Thiết bị y tế Tâm An — 58 Hoa Sứ, Phú Nhuận, TP.HCM · GPKD số 0316748201<!-- FACTORY-NGHE-23: removed platform-level disclaimer (ghi trong Điều khoản nền tảng) --></div>
+  </div>
+</footer>
+
+<!-- ================= FAB DOCK ================= -->
+<div class="fab" id="fab">
+  <a href="#top" aria-label="Lên đầu trang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span class="tip-t">Lên đầu trang</span></a>
+  <a href="tel:0903726274" aria-label="Gọi hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span class="tip-t">Gọi 0903 726 274</span></a>
+  <a href="#bocham" aria-label="Chọn theo nhu cầu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="tip-t">Chọn theo nhu cầu</span></a>
+  <a href="#catalog" aria-label="8 nhóm hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span class="tip-t">8 nhóm hàng</span></a>
+  <button class="fab-main" id="fabCart" aria-label="Giỏ hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="tip-t">Giỏ hàng</span></button>
+</div>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="ovl" id="ovl"></div>
+<aside class="drawer" id="drawer" aria-label="Giỏ hàng">
+  <div class="dw-head">
+    <b>Giỏ hàng (<span id="dwCount">0</span> món)</b>
+    <button class="dw-close" id="dwClose" aria-label="Đóng giỏ">✕</button>
+  </div>
+  <div class="dw-ship" id="dwShip">
+    <span id="dwShipTxt">Thêm <b>500.000đ</b> nữa để được <b>freeship</b></span>
+    <div class="bar"><i id="dwShipBar" style="width:0%"></i></div>
+  </div>
+  <div class="dw-tier" id="dwTier">
+    <span class="on">1 món · lẻ</span>
+    <span>2–3 món · −5%</span>
+    <span>4+ món · −10%</span>
+  </div>
+  <div class="dw-items" id="dwItems"></div>
+  <div class="dw-foot">
+    <div class="dw-row"><span>Tạm tính</span><span id="dwSub">0đ</span></div>
+    <div class="dw-row"><span>Giảm giá số lượng <span class="minus" id="dwTierLb"></span></span><span class="minus" id="dwDisc">0đ</span></div>
+    <div class="dw-row"><span>Phí giao (nội thành)</span><span id="dwFee">25.000đ</span></div>
+    <div class="dw-row tot"><span>Tổng cộng</span><span id="dwTot">0đ</span></div>
+    <button class="btn btn-a" id="dwCheckout">Đặt đơn — kỹ thuật viên gọi xác nhận 15 phút</button>
+    <span class="dw-note">Bảo hành 12–24 tháng · COD kiểm hàng trước khi trả · Hoá đơn VAT khi cần<br>Thiết bị theo dõi tại nhà — không thay thế chỉ định y khoa.</span>
+  </div>
+</aside>
+
+<!-- ================= QUICK VIEW ================= -->
+<div class="modal" id="modal"><div class="modal-box" id="modalBox"></div></div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast"></div>
+
+<script>
+/*NB93-274: JS chinh — gio hang A-form, loc theo nhu cau, tim kiem, FAQ, quick view*/
+var PRODUCTS=[
+ {id:'p1',name:'Máy đo huyết áp bắp tay tự động',cat:'Theo dõi sức khỏe',price:890000,old:1090000,img:'assets/img/p1.webp',tag:'Bán chạy nhất',need:['grand','home','clinic'],needLb:['Ông bà lớn tuổi','Nằm tại nhà','Phòng khám'],congbo:'Số đăng ký lưu hành: 2500312501/25 (lớp A)',desc:'Đo bắp tay tự động, màn hình chữ to đọc rõ ngay cho người lớn tuổi, bộ nhớ 2 người × 99 lần đo. Kèm bao đựng và vòng đeo tay cỡ lớn — chuẩn cho ông bà, cha mẹ tự đo mỗi sáng.'},
+ {id:'p2',name:'Máy đo đường huyết kèm 50 que thử',cat:'Theo dõi sức khỏe',price:650000,old:790000,img:'assets/img/p2.webp',tag:'Kèm 50 que',need:['grand','home','clinic'],needLb:['Ông bà lớn tuổi','Nằm tại nhà','Phòng khám'],congbo:'Công bố sản phẩm: 20488/ATBT-XNCB',desc:'Cho kết quả sau 5 giây chỉ với một giọt máu nhỏ, kèm 50 que + bút lấy máu + hộp đựng. Máy ghi nhớ kết quả để bác sĩ đối chiếu mỗi lần tái khám — dành cho người nhà tiểu đường.'},
+ {id:'p3',name:'Nhiệt kế điện tử — kết quả 10 giây',cat:'Theo dõi sức khỏe',price:120000,old:165000,img:'assets/img/p3.webp',tag:'Chuẩn ±0.1°C',need:['home','clinic'],needLb:['Nằm tại nhà','Phòng khám'],congbo:'Công bố sản phẩm: 20377/ATBT-XNCB',desc:'Đo 10 giây có tiếng bíp báo kết quả, màn hình LCD dễ đọc, đầu cảm ứng mềm an toàn cho người già và trẻ nhỏ. Tự tắt tiết pin — 1 viên pin dùng cả năm.'},
+ {id:'p4',name:'Xe lăn khung nhôm gập gọn',cat:'Di chuyển & hỗ trợ',price:1850000,old:2250000,img:'assets/img/p4.webp',tag:'Giao lắp tận nhà',need:['grand','home'],needLb:['Ông bà lớn tuổi','Nằm tại nhà'],congbo:'Số đăng ký lưu hành: 2500478802/25 (lớp A)',desc:'Khung nhôm nhẹ 14kg gập phẳng vừa cốp xe, phanh tay 2 bên chắc, tựa ghế và đệm ngồi thoáng khí, hạn chế hầm ghé khi ngồi lâu. Chỉnh được chiều cao tay vịn — kỹ thuật viên chỉnh tận nhà theo dáng người ngồi.'},
+ {id:'p5',name:'Nạng nhôm & gậy chống 4 chân',cat:'Di chuyển & hỗ trợ',price:185000,old:240000,img:'assets/img/p5.webp',tag:'Chỉnh cao theo người',need:['grand'],needLb:['Ông bà lớn tuổi'],congbo:'Công bố sản phẩm: 20512/ATBT-XNCB',desc:'Nạng nhôm chỉnh được 10 bậc chiều cao, chống trượt ở đầu chống; gậy 4 chân đứng vững trên nền nhà. Shop chỉnh cao đúng theo chiều cao người dùng trước khi giao.'},
+ {id:'p6',name:'Máy tập đi bộ phục hồi chức năng',cat:'Phục hồi chức năng',price:7450000,old:8900000,img:'assets/img/p6.webp',tag:'Cho nhà & phòng khám',need:['grand','clinic'],needLb:['Ông bà lớn tuổi','Phòng khám'],congbo:'Số đăng ký lưu hành: 2500563303/25 (lớp B)',desc:'Tay vịn dài 2 bên cho người tập bước xuống giường an toàn, tốc độ thấp dành riêng cho phục hồi sau tai biến, nút bấm to dễ dùng. Kèm kỹ thuật viên hướng dẫn lịch tập theo tuần.'},
+ {id:'p7',name:'Combo vật tư y tế tiêu hao cơ bản',cat:'Vật tư tiêu hao',price:250000,old:320000,img:'assets/img/p7.webp',tag:'Giao gấp 2 giờ',need:['home','clinic'],needLb:['Nằm tại nhà','Phòng khám'],congbo:'Công bố đủ theo từng lô — gửi scan khi xin',desc:'1 combo gồm: gạc y tế 10 gói, băng gaza, băng keo, găng tay y tế 20 đôi, khẩu trang 50 chiếc, nước muối sinh lý 0.9% 10 ống — đủ dùng cho chăm sóc vết thương tại nhà 2–3 tuần.'},
+ {id:'p8',name:'Đai lưng & nẹp khớp hỗ trợ',cat:'Phục hồi chức năng',price:285000,old:360000,img:'assets/img/p8.webp',tag:'Sau chấn thương',need:['grand','home'],needLb:['Ông bà lớn tuổi','Nằm tại nhà'],congbo:'Công bố sản phẩm: 20601/ATBT-XNCB',desc:'Đai lưng, nẹp gối, nẹp cổ chân, nẹp cổ tay — dụng cụ hỗ trợ giữ khớp theo chỉ định sau chấn thương. Có nhiều size; nhắn chiều cao cân nặng để shop chọn size giùm, sai size đổi miễn phí.'}
+];
+var BOS={
+ grand:{name:'Bộ an tâm cho ông bà, cha mẹ',price:1090000,old:1195000,img:'assets/img/p1.webp',
+  items:[{id:'p1',qty:1},{id:'p3',qty:1},{id:'p5',qty:1}]},
+ home:{name:'Bộ chống loét & theo dõi tại nhà',price:1520000,old:1675000,img:'assets/img/p7.webp',
+  items:[{id:'p7',qty:2},{id:'p8',qty:1},{id:'p1',qty:1}]},
+ clinic:{name:'Bộ khai trương phòng khám (17 món)',price:4390000,old:4880000,img:'assets/img/p7.webp',
+  items:[{id:'p7',qty:10},{id:'p3',qty:5},{id:'p1',qty:2}]}
+};
+function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+function prod(id){for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id===id)return PRODUCTS[i]}return null}
+
+/*NB93-274: toast — title + message la 2 phan tu rieng, khung khong chan nut*/
+function toast(msg,sub){
+ var t=document.getElementById('toast');var el=document.createElement('div');el.className='tst';
+ el.innerHTML='<span class="tk">✓</span><span class="tt"><b>'+msg+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</span>';
+ t.appendChild(el);setTimeout(function(){el.classList.add('out')},3200);setTimeout(function(){el.remove()},3700);
+}
+
+/*NB93-274: gio hang*/
+var cart=[];
+function cartQty(){return cart.reduce(function(s,i){return s+i.qty},0)}
+function cartSub(){return cart.reduce(function(s,i){return s+i.price*i.qty},0)}
+function tierOf(q){return q>=4?0.10:(q>=2?0.05:0)}
+function addToCart(o,silent){
+ for(var i=0;i<cart.length;i++){
+  if(cart[i].name===o.name){cart[i].qty+=o.qty;renderCart();return}
+ }
+ cart.push(o);renderCart();
+ if(!silent)toast('Đã thêm: '+o.name,'Giỏ đang có '+cartQty()+' món — mua 2 món tự giảm 5%');
+}
+function renderCart(){
+ var n=cartQty();document.getElementById('cartN').textContent=n;
+ document.getElementById('dwCount').textContent=n;
+ var box=document.getElementById('dwItems');
+ if(!cart.length){
+  box.innerHTML='<div class="dw-empty"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></div><b style="display:block;color:var(--primary)">Giỏ hàng đang trống…</b><span style="font-size:.85rem">Chọn bộ chuẩn bị theo nhu cầu chăm sóc nhé!</span><br><button class="btn btn-a" style="margin-top:14px" onclick="closeDrawer();document.getElementById(\'bocham\').scrollIntoView({behavior:\'smooth\'})">Chọn theo nhu cầu</button></div>';
+ }else{
+  box.innerHTML=cart.map(function(it,idx){
+   var img=it.img?'<img src="'+it.img+'" alt="">':'<span style="width:74px;height:74px;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent);font-weight:900;font-size:.7rem;text-align:center;line-height:1.2">BỘ<br>COMBO</span>';
+   return '<div class="dw-item">'+img+
+    '<div><span class="nm">'+it.name+'</span><div class="pr">'+vnd(it.price)+' × '+it.qty+'</div>'+
+    '<button class="dw-del" onclick="delItem('+idx+')">Xoá</button></div>'+
+    '<div class="dw-qty"><button onclick="qtyItem('+idx+',-1)" aria-label="Giảm">−</button><b>'+it.qty+'</b><button onclick="qtyItem('+idx+',1)" aria-label="Tăng">+</button></div></div>';
+  }).join('');
+ }
+ var sub=cartSub(),tier=tierOf(n),disc=Math.round(sub*tier/1000)*1000;
+ var fee=(sub>=500000||sub===0)?0:25000;
+ document.getElementById('dwSub').textContent=vnd(sub);
+ document.getElementById('dwDisc').textContent='−'+vnd(disc);
+ document.getElementById('dwTierLb').textContent=tier?'−'+(tier*100)+'%':'';
+ document.getElementById('dwFee').textContent=fee?vnd(fee):'Freeship';
+ document.getElementById('dwTot').textContent=vnd(Math.max(0,sub-disc+fee));
+ var t=document.getElementById('dwTier').children;
+ t[0].className=(n===1)?'on':'';
+ t[1].className=(n>=2&&n<=3)?'on':'';
+ t[2].className=(n>=4)?'on':'';
+ var pct=Math.min(100,Math.round(sub/500000*100));
+ document.getElementById('dwShipBar').style.width=pct+'%';
+ document.getElementById('dwShipTxt').innerHTML=sub>=500000?
+  'Đơn của bạn đã được <b>freeship</b> — ưu tiên giao theo hẹn':
+  'Thêm <b>'+vnd(500000-sub)+'</b> nữa để được <b>freeship</b>';
+}
+function qtyItem(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);renderCart()}
+function delItem(i){cart.splice(i,1);renderCart()}
+function addProduct(id,qty){var p=prod(id);addToCart({name:p.name,price:p.price,img:p.img,qty:qty||1});openDrawer()}
+function addBo(key){
+ var s=BOS[key];
+ addToCart({name:s.name,price:s.price,img:s.img,qty:1},true);
+ toast('Đã thêm '+s.name,'Trọn bộ '+vnd(s.price)+' — đã trừ ưu đãi');
+ openDrawer();
+}
+function openDrawer(){document.getElementById('drawer').classList.add('on');document.getElementById('ovl').classList.add('on')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('on');document.getElementById('ovl').classList.remove('on');document.getElementById('modal').classList.remove('on')}
+document.getElementById('cartOpen').onclick=openDrawer;
+document.getElementById('fabCart').onclick=openDrawer;
+document.getElementById('dwClose').onclick=closeDrawer;
+document.getElementById('ovl').onclick=closeDrawer;
+document.getElementById('dwCheckout').onclick=function(){
+ if(!cart.length){toast('Giỏ đang trống','Chọn bộ theo nhu cầu hoặc món trong 8 nhóm hàng trước nhé');return}
+ var code='TA'+Math.floor(1000+Math.random()*9000);
+ toast('Đặt đơn thành công — mã '+code,'Kỹ thuật viên gọi xác nhận trong 15 phút. Cần gấp nhớ ghi chú nhé!');
+ cart=[];renderCart();setTimeout(closeDrawer,1200);
+};
+renderCart();
+
+/*NB93-274: KHOI-8 render + loc theo nhu cau + tim kiem — featured chi o "Tat ca" de grid luon kin o*/
+var curNeed='all',curKw='';
+function offOf(p){return Math.round((1-p.price/p.old)*100)}
+function matchList(){
+ var list=PRODUCTS.filter(function(p){
+  var okNeed=(curNeed==='all')||(p.need.indexOf(curNeed)>-1);
+  var okKw=!curKw||((p.name+' '+p.cat+' '+p.desc).toLowerCase().indexOf(curKw)>-1);
+  return okNeed&&okKw;
+ });
+ return list;
+}
+function renderCatalog(){
+ var list=matchList(),grid=document.getElementById('catGrid');
+ if(!list.length){
+  grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--soft)">Chưa có món khớp ở nhóm này — <a href="tel:0903726274" style="color:var(--accent);font-weight:800">gọi 0903 726 274</a> để shop tìm giùm bạn nhé.</div>';
+  return;
+ }
+ grid.innerHTML=list.map(function(p,i){
+  var big=(curNeed==='all'&&!curKw&&i===0);
+  var needTags=p.needLb.map(function(l){return '<i>'+l+'</i>'}).join('');
+  return '<article class="p-card'+(big?' big':'')+' spot">'+
+   '<div class="p-media"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'+
+   '<span class="p-tag">'+p.tag+'</span><span class="p-off">−'+offOf(p)+'%</span></div>'+
+   '<div class="p-body"><span class="p-cat">'+p.cat+' · Tâm An</span><h3>'+p.name+'</h3>'+
+   (big?'<span class="p-desc">'+p.desc+'</span>':'')+
+   '<span class="cb">'+(big?p.congbo:'Có công bố / số đăng ký')+'</span>'+
+   '<div class="p-need">'+needTags+'</div>'+
+   '<div class="p-foot"><span class="p-pr"><em>'+vnd(p.price)+'</em><s>'+vnd(p.old)+'</s></span>'+
+   '<span class="p-acts"><button class="pa-qv" onclick="quickView(\''+p.id+'\')">Chi tiết</button>'+
+   '<button class="pa-add" onclick="addProduct(\''+p.id+'\')">Thêm giỏ</button></span></div></div></article>';
+ }).join('');
+}
+document.getElementById('needChips').querySelectorAll('button').forEach(function(c){
+ c.onclick=function(){
+  document.getElementById('needChips').querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+  c.classList.add('on');
+  curNeed=c.dataset.need;curKw='';
+  document.getElementById('q').value='';
+  renderCatalog();
+  var lb=c.textContent.replace(/\d+$/,'').trim();
+  toast('Đang hiện món cho: '+lb,'Bấm "Tất cả 8 nhóm" để xem lại toàn bộ hàng');
+ };
+});
+renderCatalog();
+
+/*NB93-274: quick view — kem so cong bo + disclaimer*/
+var mvQty=1,mvCur=null;
+function quickView(id){
+ var p=prod(id);mvCur=p;mvQty=1;
+ document.getElementById('modalBox').innerHTML=
+ '<div class="mv-media"><img src="'+p.img+'" alt="'+p.name+'"><span class="mv-tag">'+p.tag+'</span><button class="mv-close" onclick="closeDrawer()">✕</button></div>'+
+ '<div class="mv-body"><span class="p-cat">'+p.cat+' · Tâm An</span>'+
+ '<h3>'+p.name+'</h3><p class="mv-desc">'+p.desc+'</p>'+
+ '<span class="mv-cb">✚ '+p.congbo+'</span>'+
+ '<div class="mv-tier"><div><b>'+vnd(p.price)+'</b>Mua 1 món</div><div class="hot"><b>−5% · '+vnd(Math.round(p.price*0.95/1000)*1000)+'</b>Mua 2–3 món cùng lúc</div><div><b>−10% · '+vnd(Math.round(p.price*0.9/1000)*1000)+'</b>Mua 4 món trở lên</div></div>'+
+ '<div class="mv-act"><div class="mv-qty"><button onclick="mvStep(-1)">−</button><b id="mvQty">1</b><button onclick="mvStep(1)">+</button></div>'+
+ '<span class="mv-total" id="mvTotal">'+vnd(p.price)+'</span></div>'+
+ '<div class="mv-btns"><button class="btn btn-g" onclick="mvAdd()">Thêm vào giỏ</button><button class="btn btn-a" onclick="mvBuy()">Đặt nhanh — kỹ thuật viên gọi lại</button></div>'+
+ '<div class="mv-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Máy lỗi đổi mới trong 7 ngày</span>'+
+ '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/></svg>Giao gấp 2 giờ nội thành</span>'+
+ '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Hoá đơn VAT khi cần</span></div>'+
+ '<p class="mv-warn">⚠ Thiết bị/vật tư hỗ trợ theo dõi và chăm sóc — không thay thế chẩn đoán, chỉ định của bác sĩ. Xin đọc kỹ hướng dẫn sử dụng và tham khảo ý kiến người có chuyên môn.</p></div>';
+ document.getElementById('modal').classList.add('on');
+ document.getElementById('ovl').classList.add('on');
+}
+function mvStep(d){mvQty=Math.max(1,mvQty+d);document.getElementById('mvQty').textContent=mvQty;
+ document.getElementById('mvTotal').textContent=vnd(mvCur.price*mvQty)}
+function mvAdd(){addToCart({name:mvCur.name,price:mvCur.price,img:mvCur.img,qty:mvQty});closeDrawer();openDrawer()}
+function mvBuy(){addToCart({name:mvCur.name,price:mvCur.price,img:mvCur.img,qty:mvQty},true);toast('Đã giữ đơn '+mvCur.name,'Kỹ thuật viên gọi xác nhận trong 15 phút');closeDrawer();openDrawer()}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeDrawer()});
+
+/*NB93-274: search that — loc 8 nhom hang theo tu khoa*/
+document.getElementById('q').addEventListener('keydown',function(e){
+ if(e.key!=='Enter')return;
+ var k=this.value.trim();
+ if(!k){curKw='';renderCatalog();toast('Đã hiện lại đầy đủ 8 nhóm hàng','Chọn lại nhu cầu bên trên để lọc tiếp nhé');return;}
+ curKw=k.toLowerCase();
+ /* tim kiem tu dong tat loc nhu cau de khong bo sot mon */
+ document.getElementById('needChips').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.need==='all')});
+ curNeed='all';
+ renderCatalog();
+ var hits=matchList().length;
+ document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
+ if(!hits){toast('Chưa có món khớp "'+k+'"','Thử: huyết áp, đường huyết, xe lăn, gạc, găng — hoặc gọi shop tìm giùm');}
+ else{toast('Tìm thấy '+hits+' món cho "'+k+'"','Lưới hàng đang hiện đúng các món khớp');}
+});
+
+/*NB93-274: tabs bo cham soc*/
+document.querySelectorAll('.tab[data-bo]').forEach(function(t){
+ t.onclick=function(){
+  document.querySelectorAll('.tab[data-bo]').forEach(function(x){x.classList.remove('on')});
+  t.classList.add('on');
+  document.querySelectorAll('.set-panel').forEach(function(p){p.classList.remove('on')});
+  document.getElementById('bo-'+t.dataset.bo).classList.add('on');
+ };
+});
+
+/*NB93-274: FAQ gon*/
+var FAQS=[
+ {q:'Máy đo huyết áp, đường huyết bảo hành thế nào?',a:'Máy bảo hành chính hãng 12–24 tháng tuỳ loại (ghi rõ trên phiếu kèm máy). Lỗi do nhà sản xuất: 1 đổi 1 trong 7 ngày đầu, sau đó bảo hành tại shop 3–5 ngày — không phải gửi về hãng chờ 2 tuần. Kèm hướng dẫn dùng qua call/video miễn phí tới khi bạn đo thành thạo.'},
+ {q:'Số công bố / số đăng ký lưu hành ở đâu, xin trước khi mua được không?',a:'Được — và shop khuyến khích bạn làm vậy. Mỗi máy có số đăng ký lưu hành, mỗi lô vật tư có giấy công bố. Nhắn Zalo 0903 726 274 kèm tên món, shop gửi scan hồ sơ trước khi bạn chốt. Số cũng in trên tem hộp và phiếu bảo hành.'},
+ {q:'Cần gấp hôm nay — giao được trong bao lâu?',a:'Gọi trước 15:00: băng gạc, găng, nước muối, nhiệt kế… giao trong 2 giờ tại nội thành TP.HCM (Q.1, Q.3, Phú Nhuận, Bình Thạnh, Gò Vấp…). Xe lăn, máy tập hàng cồng kềnh hẹn trong ngày. Tỉnh lẻ 1–2 ngày qua đối tác vận chuyển, có mã tra cứu.'},
+ {q:'Vật tư tiêu hao có đổi trả được không?',a:'Vì lý do an toàn người bệnh, vật tư đã bóc niêm phong không thu lại. Riêng hàng lỗi, sai quy cách hoặc nguyên niêm phong: đổi mới/hoàn tiền 100% trong 7 ngày kèm hoá đơn. Máy móc thì đổi mới tự do trong 7 ngày nếu lỗi nhà sản xuất.'},
+ {q:'Phòng khám mua sỉ có hoá đơn VAT và hồ sơ thầu không?',a:'Có. Bảng báo giá chính thức trong 30 phút qua Zalo, hoá đơn đỏ VAT đầy đủ, kèm scan công bố/số đăng ký lưu hành của từng món để nộp hồ sơ. Sỉ theo tháng được giá tốt hơn 5–10% — shop nhắc định kỳ trước khi bạn hết hàng.'},
+ {q:'Nhà ở tỉnh, mua cho cha mẹ có được hướng dẫn dùng không?',a:'Có — giao COD toàn quốc, kèm hướng dẫn tiếng Việt. Quan trọng hơn: kỹ thuật viên gọi/video call hướng dẫn đo đúng cách cho chính cụ lớn tuổi (đo bắp tay đúng tư thế, que thử cắm đúng chiều…), dùng không ổn thì đổi mới trong 7 ngày.'},
+ {q:'Xe lăn, máy tập có lắp sẵn và chỉnh theo người dùng không?',a:'Nội thành: giao và lắp sẵn tận nhà, chỉnh chiều cao nạng/gậy, tựa ghế, tay vịn theo dáng người ngồi — miễn phí. Tỉnh lẻ: giao gập phẳng kèm video lắp 3 phút, gọi kèm chỉnh từ xa. Điều chỉnh sai là hại người bệnh nên shop luôn dành 10 phút cho bước này.'}
+];
+function faqRender(kw){
+ var list=document.getElementById('faqList'),empty=document.getElementById('faqEmpty');
+ var html='',shown=0;
+ FAQS.forEach(function(f,i){
+  var hit=!kw||(f.q+' '+f.a).toLowerCase().indexOf(kw.toLowerCase())>-1;
+  if(!hit)return;shown++;
+  html+='<div class="faq-item'+(i===0&&!kw?' open':'')+'"><button class="faq-q" onclick="faqToggle(this)"><span>'+f.q+'</span><span class="pm">+</span></button><div class="faq-a"><p>'+f.a+'</p></div></div>';
+ });
+ list.innerHTML=html;
+ empty.style.display=shown?'none':'block';
+ var first=list.querySelector('.faq-item');
+ if(first){var fa=first.querySelector('.faq-a');fa.style.maxHeight=fa.scrollHeight+'px'}
+}
+function faqToggle(btn){
+ var item=btn.parentElement,ans=item.querySelector('.faq-a'),open=item.classList.contains('open');
+ document.querySelectorAll('.faq-item.open').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+ if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+}
+document.getElementById('faqQ').addEventListener('input',function(e){faqRender(e.target.value)});
+document.querySelectorAll('.faq-chips button').forEach(function(c){
+ c.onclick=function(){
+  document.querySelectorAll('.faq-chips button').forEach(function(x){x.classList.remove('on')});
+  c.classList.add('on');
+  document.getElementById('faqQ').value='';
+  faqRender(c.dataset.k);
+  var first=document.querySelector('.faq-item');
+  if(first&&!first.classList.contains('open'))faqToggle(first.querySelector('.faq-q'));
+ };
+});
+faqRender('');
+
+/*NB93-274: form — tu kiem trong truoc khi toast, novalidate*/
+document.getElementById('ctForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ var n=document.getElementById('fName').value.trim();
+ var ph=document.getElementById('fPhone').value.trim();
+ if(!n||!ph){toast('Cho shop xin thiếu 2 thông tin','Họ tên và số điện thoại để kỹ thuật viên gọi lại nhé');return}
+ var need=document.getElementById('fNeed').value;
+ toast('Cảm ơn '+n+'!','Kỹ thuật viên gọi lại trong 15 phút — chủ đề: '+need.split('—')[0].trim());
+ this.reset();
+});
+
+/*NB93-274: reveal + failsafe + counter + header + fab + marquee*/
+var io=new IntersectionObserver(function(es){
+ es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+document.addEventListener('mousemove',function(e){
+ var el=e.target.closest?e.target.closest('.spot'):null;
+ if(!el)return;
+ var r=el.getBoundingClientRect();
+ el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+ el.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+
+var ioC=new IntersectionObserver(function(es){
+ es.forEach(function(en){
+  if(!en.isIntersecting)return;
+  var el=en.target;ioC.unobserve(el);
+  var target=parseFloat(el.dataset.count),dec=el.dataset.decimal?1:0,suf=el.dataset.suffix||'';
+  var t0=null;
+  function step(ts){
+   if(!t0)t0=ts;
+   var p=Math.min(1,(ts-t0)/1400),e2=1-Math.pow(1-p,3);
+   var v=target*e2;
+   el.textContent=(dec?v.toFixed(1):Math.round(v).toLocaleString('vi-VN'))+suf;
+   if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+ });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(function(el){ioC.observe(el)});
+
+var hd=document.getElementById('hd'),fab=document.getElementById('fab'),hero=document.getElementById('top');
+window.addEventListener('scroll',function(){
+ hd.classList.toggle('scrolled',window.scrollY>10);
+ var hr=hero.getBoundingClientRect();
+ fab.classList.toggle('hide',hr.bottom>120);
+},{passive:true});
+
+(function(){var t=document.getElementById('tapeIn');t.innerHTML=t.innerHTML+t.innerHTML})();
+</script>
+
+<!--NB93-274: widget chat tu van (demo)-->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">✚</div>
+    <div><div class="pkc-name">Tư vấn Tâm An</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Kể hoàn cảnh người thân cần chăm…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-274: chat widget*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(12,140,128,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(7,57,94,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:var(--grad-dark);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#5EEAD4;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:var(--texture)}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(10,77,126,.08);border-bottom-left-radius:4px;color:var(--ink)}
+.pkc-u{align-self:flex-end;background:var(--grad-accent);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(10,77,126,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(10,77,126,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(14,148,136,.4);color:var(--accent);background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:34px}
+.pkc-chip:hover{background:var(--accent-100)}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(10,77,126,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(10,77,126,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(14,148,136,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:var(--grad-accent);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:142px;height:min(440px,calc(100vh - 180px))}.pkc-fab{right:12px;bottom:84px}}
+</style>
+<script>
+/*NB93-274: chat logic — tra loi theo nghe thiet bi y te*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/*NB93-274: failsafe — element reveal bi ket lai tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

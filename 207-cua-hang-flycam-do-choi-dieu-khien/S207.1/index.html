@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BayXa — Cửa hàng flycam &amp; đồ chơi điều khiển chính hãng | Học bay miễn phí, trả góp 0%</title>
+<meta name="description" content="BayXa bán flycam, xe tàu RC, máy bay mô hình chính hãng — test bay trước khi mua, kèm 2 buổi học bay miễn phí với HLV. Combo pin -15%, thu cũ trừ tiền +5%, trả góp 0% duyệt 15 phút.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-207: palette nghe flycam - do choi dieu khien (navy troi + cam nang luong + xanh troi)*/
+:root{
+  --primary:#0B2545;
+  --primary-2:#14406F;
+  --primary-3:#061426;
+  --sky:#2CC5F4;
+  --sky-100:#E1F5FD;
+  --texture:#EEF4FA;
+  --ink:#182A3D;
+  --soft:#51677D;
+  --accent:#FF9E2C;
+  --accent-2:#B26A00;
+  --accent-100:#FFF1DA;
+  --grad-accent:linear-gradient(135deg,#FFB44E,#FF8A1E);
+  --grad-dark:linear-gradient(140deg,#17497E,#0B2545 52%,#061426);
+  --line:#D8E4F0;
+  --card:#FFFFFF;
+  --ok:#0D9C52;
+  --sh1:0 2px 10px rgba(11,37,69,.08);
+  --sh2:0 12px 34px rgba(11,37,69,.14);
+  --sh3:0 26px 64px rgba(11,37,69,.24);
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--texture);
+  line-height:1.6;
+  font-size:16px;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.container{max-width:1180px;margin:0 auto;padding:0 22px}
+.tt{display:block}.sub{display:block}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+
+/* ============ nut ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 26px;border-radius:14px;font-weight:800;font-size:15px;
+  transition:.25s;position:relative;overflow:hidden;white-space:nowrap;
+}
+.btn-a{background:var(--grad-accent);color:#2B1600;box-shadow:0 10px 26px rgba(255,138,30,.42)}
+.btn-a:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(255,138,30,.55)}
+.btn-a::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:translateX(-120%);transition:.6s;
+}
+.btn-a:hover::after{transform:translateX(120%)}
+.btn-n{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh1)}
+.btn-n:hover{border-color:var(--primary-2);transform:translateY(-3px);box-shadow:var(--sh2)}
+.btn-w{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-w:hover{background:rgba(255,255,255,.22);transform:translateY(-3px)}
+.btn-d{background:var(--grad-dark);color:#fff;box-shadow:var(--sh2)}
+.btn-d:hover{transform:translateY(-3px)}
+
+/* ============ topbar ============ */
+.topbar{
+  background:var(--primary-3);color:#C9DFF5;font-size:13px;
+  padding:8px 0;position:relative;z-index:60;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tb-l{display:flex;align-items:center;gap:8px}
+.tb-l .dot{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(44,197,244,.22);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(44,197,244,.28)}50%{box-shadow:0 0 0 6px rgba(44,197,244,.1)}}
+.tb-l b{color:#fff;font-weight:600}
+.tb-r{display:flex;align-items:center;gap:8px;font-weight:700}
+.tb-r .hot{color:var(--accent);font-size:15px;letter-spacing:.02em}
+
+/* ============ header ============ */
+.header{
+  position:sticky;top:0;z-index:70;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1.5px solid var(--line);
+}
+.header .container{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{
+  width:44px;height:44px;border-radius:13px;background:var(--grad-dark);
+  display:grid;place-items:center;box-shadow:var(--sh2);
+}
+.logo-mark svg{width:24px;height:24px}
+.logo-txt .tt{font-weight:900;font-size:20px;color:var(--primary);letter-spacing:-.02em;line-height:1.1}
+.logo-txt .sub{font-size:10.5px;color:var(--soft);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.search{
+  flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:9px 14px;
+  transition:.2s;
+}
+.search:focus-within{border-color:var(--primary-2);box-shadow:0 0 0 4px rgba(20,64,111,.1)}
+.search svg{flex-shrink:0;color:var(--soft)}
+.search input{flex:1;min-width:0;border:none;outline:none;background:none;font-size:14.5px;color:var(--ink)}
+.search input::placeholder{color:#93A5BB}
+.nav{display:flex;gap:2px;flex-shrink:0}
+.nav a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:14.5px;color:var(--ink);transition:.2s}
+.nav a:hover{background:var(--texture);color:var(--primary)}
+.hd-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cart-btn{
+  position:relative;width:46px;height:46px;border-radius:13px;
+  background:var(--accent-100);display:grid;place-items:center;color:var(--primary);
+  border:1.5px solid #F4DCA8;transition:.2s;
+}
+.cart-btn:hover{transform:translateY(-2px);box-shadow:var(--sh1)}
+.cart-btn .n{
+  position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;
+  border-radius:10px;background:var(--accent-2);color:#2B1600;font-size:11.5px;font-weight:900;
+  display:grid;place-items:center;box-shadow:0 3px 8px rgba(255,138,30,.5);
+}
+
+/* ============ hero ============ */
+.hero{position:relative;padding:56px 0 74px;background:
+  radial-gradient(rgba(20,64,111,.05) 1.2px,transparent 1.3px);
+  background-size:20px 20px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:-160px;right:-180px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(44,197,244,.18),transparent);
+}
+.hero::after{
+  content:"";position:absolute;bottom:-200px;left:-160px;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(20,64,111,.1),transparent);
+}
+.hero .container{display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center;position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;
+  padding:7px 16px;font-size:13px;font-weight:700;color:var(--primary);
+  box-shadow:var(--sh1);margin-bottom:18px;
+}
+.eyebrow .ic{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.hero h1{font-size:clamp(30px,4.4vw,49px);font-weight:900;color:var(--primary);margin-bottom:16px}
+.hl{
+  display:inline-block;background:var(--grad-accent);color:#2B1600;
+  padding:2px 14px;border-radius:10px;transform:rotate(-1.6deg);
+  box-shadow:0 8px 20px rgba(255,138,30,.35);
+}
+.hero .sub{font-size:16.5px;color:var(--soft);max-width:520px;margin-bottom:26px}
+.hero .sub b{color:var(--primary)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:470px}
+.trust .chip{
+  display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;padding:9px 13px;font-size:13.5px;font-weight:700;color:var(--ink);
+  box-shadow:var(--sh1);transition:.2s;
+}
+.trust .chip:hover{transform:translateY(-2px);border-color:#F4DCA8}
+.trust .chip svg{flex-shrink:0;color:var(--ok)}
+.hero-vis{position:relative;min-height:520px}
+.hv-main{
+  width:86%;margin-left:auto;border-radius:var(--r-l);overflow:hidden;
+  border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 7s ease-in-out infinite;
+}
+.hv-main img{width:100%;height:100%;object-fit:cover;aspect-ratio:1448/1086}
+@keyframes float1{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-12px)}}
+@keyframes float2{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-10px)}}
+@keyframes float3{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-4deg) translateY(8px)}}
+.hv-badge{
+  position:absolute;top:-6px;right:2%;z-index:3;
+  background:var(--grad-dark);color:#fff;border-radius:16px;padding:11px 16px;
+  box-shadow:var(--sh2);transform:rotate(2deg);border:1.5px solid rgba(255,255,255,.18);
+}
+.hv-badge .tt{font-weight:900;font-size:14px;color:var(--accent)}
+.hv-badge .sub{font-size:11px;color:#C9DFF5}
+.hv-stats{
+  position:absolute;left:6%;bottom:-6px;z-index:3;
+  display:flex;gap:0;background:rgba(255,255,255,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--sh2);overflow:hidden;
+}
+.hv-stats .st{padding:12px 18px;text-align:center}
+.hv-stats .st+.st{border-left:1.5px solid var(--line)}
+.hv-stats .tt{font-weight:900;font-size:19px;color:var(--primary)}
+.hv-stats .sub{font-size:11px;color:var(--soft);font-weight:600}
+.hv-tag{
+  position:absolute;top:44%;right:-4px;z-index:3;
+  background:var(--grad-accent);color:#2B1600;font-weight:900;font-size:13.5px;
+  padding:9px 14px;border-radius:12px;transform:rotate(2deg);box-shadow:0 10px 24px rgba(255,138,30,.45);
+}
+/*NB93-207: duong bay cham trang tri hero — chi dong phu, khong de anh*/
+.fly-path{position:absolute;left:-30px;bottom:26px;width:270px;opacity:.55;pointer-events:none;z-index:1}
+.fly-path .fp-drone{animation:fpDrone 9s ease-in-out infinite alternate}
+@keyframes fpDrone{from{transform:translate(0,0)}to{transform:translate(200px,-56px)}}
+
+/* ============ tape marquee ============ */
+.tape-wrap{background:var(--texture);padding:8px 0 26px;overflow:hidden}
+.tape{
+  background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);
+  padding:13px 0;overflow:hidden;box-shadow:var(--sh2);
+}
+.tape-in{display:flex;gap:44px;width:max-content;animation:tape 30s linear infinite}
+.tape-in span{
+  display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;color:#2B1600;
+  white-space:nowrap;letter-spacing:.01em;
+}
+.tape-in span::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--primary);flex-shrink:0}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ section chung ============ */
+section{scroll-margin-top:96px}
+.sec{padding:74px 0}
+.sec-tex{background:var(--texture)}
+.sec-head{max-width:680px;margin-bottom:38px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin-bottom:12px;
+}
+.kicker::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--grad-accent)}
+.sec-head h2{font-size:clamp(24px,3.2vw,36px);font-weight:900;color:var(--primary);margin-bottom:10px}
+.sec-head .sub{color:var(--soft);font-size:15.5px}
+
+/* ============ NB93-207: chon flycam theo muc dich (dacThu) ============ */
+.pur-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px;align-items:stretch}
+.pur-list{display:grid;gap:12px;align-content:start}
+.pur-btn{
+  display:flex;align-items:center;gap:14px;text-align:left;background:#fff;
+  border:1.5px solid var(--line);border-radius:16px;padding:15px 18px;
+  box-shadow:var(--sh1);transition:.22s;min-height:40px;
+}
+.pur-btn .pi{width:46px;height:46px;border-radius:13px;background:var(--sky-100);display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.pur-btn b{display:block;font-size:15.5px;font-weight:900;color:var(--primary);line-height:1.25}
+.pur-btn .ps{font-size:12.5px;color:var(--soft)}
+.pur-btn:hover{transform:translateY(-3px);border-color:var(--sky);box-shadow:var(--sh2)}
+.pur-btn.on{background:var(--grad-dark);border-color:transparent;box-shadow:var(--sh2)}
+.pur-btn.on b{color:#fff}
+.pur-btn.on .ps{color:#C9DFF5}
+.pur-btn.on .pi{background:rgba(255,255,255,.14)}
+.pur-detail{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);
+  box-shadow:var(--sh2);overflow:hidden;display:grid;grid-template-columns:.92fr 1.08fr;
+}
+.pur-media{position:relative;background:var(--primary-3);min-height:320px}
+.pur-media img{width:100%;height:100%;object-fit:contain}
+.pur-media .pm-tag{
+  position:absolute;left:14px;top:14px;background:var(--grad-accent);color:#2B1600;
+  font-size:12px;font-weight:900;padding:6px 13px;border-radius:999px;box-shadow:0 6px 16px rgba(255,138,30,.4);
+}
+.pur-body{padding:26px;display:flex;flex-direction:column;gap:12px}
+.pur-body .pk{font-size:12px;font-weight:900;color:var(--accent-2);text-transform:uppercase;letter-spacing:.1em}
+.pur-body h3{font-size:22px;font-weight:900;color:var(--primary)}
+.pur-body ul{list-style:none;display:grid;gap:9px;margin:2px 0 4px}
+.pur-body li{display:flex;gap:9px;font-size:14px;color:var(--soft)}
+.pur-body li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.pur-price{display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:8px}
+.pur-price .now{font-size:27px;font-weight:900;color:var(--accent-2)}
+.pur-price .old{color:#9AACBF;text-decoration:line-through;font-size:14px}
+.pur-acts{display:flex;gap:10px;flex-wrap:wrap}
+.pur-acts .btn{padding:12px 20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pur-anim{animation:fadeUp .4s}
+
+/* ============ dai 5 nhom hang ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.strip a{
+  display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);
+  border-radius:14px;padding:13px 15px;font-weight:700;font-size:14px;color:var(--ink);
+  box-shadow:var(--sh1);transition:.25s;
+}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh2)}
+.strip .si{
+  width:38px;height:38px;border-radius:11px;background:var(--texture);flex-shrink:0;
+  display:grid;place-items:center;color:var(--primary);
+}
+.strip .arr{margin-left:auto;color:var(--accent-2);font-weight:900}
+
+/* ============ NB93-207: khoi-8 bento kin o (feat 2x2 + 7 the + 1 o uu dai) ============ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:16px}
+.p-card{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;
+  box-shadow:var(--sh1);position:relative;transition:.3s;display:flex;flex-direction:column;min-width:0;
+}
+.p-card:hover{transform:translateY(-6px);box-shadow:var(--sh3)}
+.p-card.hide{display:none}
+.p-media{position:relative;overflow:hidden;aspect-ratio:1448/1086;background:var(--texture)}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:.45s}
+.p-card:hover .p-media img{transform:scale(1.05)}
+.p-tag{
+  position:absolute;bottom:12px;left:12px;font-size:11.5px;font-weight:900;padding:5px 11px;border-radius:999px;
+  background:rgba(6,20,38,.85);color:#FFD871;border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 4px 14px rgba(4,14,30,.38);
+}
+.p-cat{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;color:var(--soft);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(4px);padding:5px 10px;border-radius:999px}
+.p-qa{
+  position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;gap:8px;
+  opacity:0;transform:translateX(8px);transition:.3s;
+}
+.p-card:hover .p-qa{opacity:1;transform:none}
+.qa-b{
+  width:40px;height:40px;border-radius:12px;background:var(--grad-dark);color:#fff;
+  display:grid;place-items:center;box-shadow:var(--sh2);transition:.2s;
+}
+.qa-b:hover{background:var(--accent-2);color:#2B1600}
+.p-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.p-name{display:block;font-weight:800;font-size:15.5px;color:var(--ink);min-height:48px}
+.p-price{display:flex;align-items:baseline;gap:9px;margin:8px 0 4px;flex-wrap:wrap}
+.p-price .now{font-size:20px;font-weight:900;color:var(--primary)}
+.p-price .old{font-size:13px;color:#9AACBF;text-decoration:line-through}
+.p-tier{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ok);
+  background:#E8F7EE;border-radius:999px;padding:4px 10px;margin-bottom:12px}
+.p-add{width:100%;margin-top:auto;padding:11px;border-radius:12px;background:var(--texture);color:var(--primary);
+  font-weight:800;font-size:14px;border:1.5px solid var(--line);transition:.2s;min-height:40px}
+.p-add:hover{background:var(--grad-accent);border-color:transparent;color:#2B1600;box-shadow:0 8px 20px rgba(255,138,30,.35)}
+/* the noi bat: to gap doi, vien cam, danh rieng*/
+.b-feat{
+  grid-column:span 2;grid-row:span 2;
+  border:2px solid var(--accent);box-shadow:0 18px 48px rgba(255,138,30,.18);
+}
+.b-feat::after{
+  content:"";position:absolute;top:-1px;left:-1px;width:64px;height:64px;
+  background:var(--grad-accent);clip-path:polygon(0 0,100% 0,0 100%);
+}
+.b-feat .p-body{padding:22px 26px 24px;gap:10px}
+.b-feat .p-name{font-size:22px;min-height:0;line-height:1.3}
+.b-feat .p-price .now{font-size:30px;color:var(--accent-2)}
+.b-feat .p-price .old{font-size:15px}
+.b-feat ul{list-style:none;display:grid;gap:8px;margin:4px 0 12px}
+.b-feat ul li{display:flex;gap:9px;font-size:14px;color:var(--soft)}
+.b-feat ul li svg{flex-shrink:0;color:var(--ok);margin-top:3px}
+.b-feat .p-tag{font-size:13px;padding:7px 14px;bottom:14px;left:14px}
+.b-feat .p-add{font-size:15px;min-height:48px;padding:13px}
+.b-feat .feat-acts{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+/* o uu dai combo pin — kin o thu 12*/
+.b-promo{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;
+  background:linear-gradient(160deg,#FFF6E4,#FFE7C2);border:1.5px dashed var(--accent-2);
+  border-radius:var(--r-l);padding:20px;min-height:0;
+}
+.b-promo .bp-k{font-size:11.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2)}
+.b-promo .big{font-size:22px;font-weight:900;color:var(--primary);line-height:1.25}
+.b-promo p{font-size:13px;color:#7A5B22}
+.b-promo .btn{padding:10px 16px;font-size:13.5px}
+
+/* ============ combo pin + bo doi bai ============ */
+.combo-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.combo-tab{
+  padding:11px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;
+  font-weight:800;font-size:14.5px;color:var(--soft);transition:.25s;
+}
+.combo-tab.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:var(--sh2)}
+.combo-pane{display:none}
+.combo-pane.on{display:block;animation:fadeUp .45s}
+.combo-grid{display:grid;grid-template-columns:400px 1fr;gap:26px;align-items:start}
+.combo-info{
+  background:var(--grad-dark);border-radius:var(--r-l);padding:26px;color:#fff;
+  box-shadow:var(--sh2);position:sticky;top:110px;
+}
+.combo-info h3{font-size:22px;font-weight:900;margin-bottom:6px}
+.combo-info .csub{color:#C9DFF5;font-size:13.5px;margin-bottom:16px}
+.combo-info ul{list-style:none;display:grid;gap:9px;margin-bottom:18px}
+.combo-info li{display:flex;gap:10px;font-size:14px;color:#E4EFFC}
+.combo-info li svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.combo-price{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.combo-price .now{font-size:30px;font-weight:900;color:var(--accent)}
+.combo-price .old{font-size:15px;color:#8FA6CC;text-decoration:line-through}
+.combo-save{display:inline-block;background:rgba(255,158,44,.16);color:var(--accent);
+  font-size:12.5px;font-weight:800;padding:5px 11px;border-radius:999px;margin-bottom:16px}
+.combo-info .btn{width:100%}
+.combo-note{font-size:11.5px;color:#8FA6CC;margin-top:12px;text-align:center}
+.combo-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cg-item{
+  position:relative;border-radius:var(--r-m);overflow:hidden;border:1.5px solid var(--line);
+  box-shadow:var(--sh1);background:#fff;
+}
+.cg-item img{width:100%;aspect-ratio:1448/1086;object-fit:cover;transition:.4s}
+.cg-item:hover img{transform:scale(1.05)}
+.cg-badge{
+  position:absolute;top:10px;left:10px;background:rgba(6,20,38,.85);color:var(--accent);
+  font-size:11.5px;font-weight:900;padding:4px 10px;border-radius:999px;
+}
+.cg-name{display:block;font-size:13.5px;font-weight:700;padding:10px 13px;color:var(--ink)}
+
+/* ============ deal bar ============ */
+.deal-bar{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:var(--grad-dark);border-radius:var(--r-l);padding:18px 24px;color:#fff;
+  margin-bottom:26px;box-shadow:var(--sh2);position:relative;overflow:hidden;
+}
+.deal-bar::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent 0 22px,rgba(255,255,255,.04) 22px 44px)}
+.deal-t{position:relative;display:flex;align-items:center;gap:12px}
+.deal-t .fl{
+  width:46px;height:46px;border-radius:14px;background:var(--grad-accent);display:grid;place-items:center;
+  color:#2B1600;box-shadow:0 8px 20px rgba(255,138,30,.4);
+}
+.deal-t .tt{font-weight:900;font-size:18px}
+.deal-t .sub{font-size:12.5px;color:#C9DFF5}
+.clock{position:relative;margin-left:auto;display:flex;align-items:center;gap:9px}
+.clock .lb{font-size:12.5px;font-weight:700;color:#C9DFF5}
+.clock .tm{display:flex;gap:6px}
+.clock .tm b{
+  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);
+  border-radius:10px;padding:7px 11px;font-size:17px;font-weight:900;color:var(--accent);
+  min-width:46px;text-align:center;font-variant-numeric:tabular-nums;
+}
+.carr-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+
+/* ============ bang khuyen mai ve tay ============ */
+.promo-board{position:relative;background:linear-gradient(#FFFDF4,#FBF3DC);border-radius:8px;padding:30px 34px 26px;transform:rotate(-1.3deg);box-shadow:0 20px 44px -16px rgba(60,40,10,.38);font-family:'Caveat',cursive;overflow:visible}
+.promo-board .b-tape{position:absolute;width:96px;height:28px;background:rgba(245,197,66,.72);top:-13px;left:50%;transform:translateX(-50%) rotate(-3deg);border-radius:2px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.promo-board .b-title{font-size:2.1rem;font-weight:700;color:#2A2622;text-align:center;line-height:1.15;margin-bottom:14px}
+.promo-board .b-title em{font-style:normal;color:#D42B1F}
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.b-line{display:flex;align-items:center;gap:12px;font-size:1.32rem;font-weight:700;color:#2A2622;line-height:1.1}
+.b-line .dot{width:12px;height:12px;border-radius:50%;border:3px solid #D42B1F;flex-shrink:0}
+.b-line .what{flex:1}
+.b-line .how{font-size:1rem;font-weight:600;color:#8A7B62;white-space:nowrap}
+.b-line .val{color:#D42B1F;position:relative;padding:0 8px;white-space:nowrap}
+.b-line .val::after{content:'';position:absolute;inset:-7px -4px;border:3px solid #D42B1F;border-radius:50% 42% 55% 45%/45% 55% 42% 55%;transform:rotate(-3deg)}
+
+/* ============ loi ich ngan ============ */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.benefit{background:#fff;border:1.5px solid rgba(11,37,69,.1);border-radius:16px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:.25s}
+.benefit:hover{transform:translateY(-4px);box-shadow:0 14px 30px -14px rgba(11,37,69,.28);border-color:rgba(255,138,30,.5)}
+.benefit .ic{font-size:1.5rem;line-height:1}
+.benefit b{display:block;font-size:.9rem;color:#0B2545;margin-bottom:3px}
+.benefit p{font-size:.78rem;color:#51677D;line-height:1.5}
+
+/* ============ stats band ============ */
+.stats-band{position:relative;padding:64px 0;color:#fff;overflow:hidden;background:var(--grad-dark)}
+.stats-band::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(255,255,255,.035) 26px 52px)}
+.stats-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center;padding:10px}
+.stat .num{font-size:clamp(30px,4vw,44px);font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .num small{font-size:.55em;font-weight:900}
+.stat .lb{font-size:14px;color:#C9DFF5;font-weight:600;margin-top:4px}
+.stat:nth-child(2){border-left:1.5px solid rgba(255,255,255,.14);border-right:1.5px solid rgba(255,255,255,.14)}
+.stat:nth-child(3){border-right:1.5px solid rgba(255,255,255,.14)}
+
+/* ============ NB93-207: hoc bay mien phi ============ */
+.hb-sec{background:var(--texture)}
+.hb-band{
+  position:relative;background:var(--grad-dark);color:#fff;border-radius:var(--r-xl);
+  overflow:hidden;box-shadow:var(--sh3);
+}
+.hb-band::before{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.3px);background-size:22px 22px}
+.hb-band::after{
+  content:"";position:absolute;right:-90px;top:-90px;width:280px;height:280px;border-radius:50%;
+  border:2px dashed rgba(44,197,244,.35);
+}
+.hb-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;padding:44px;z-index:2}
+.hb-band .kicker{color:var(--sky)}
+.hb-band h2{font-size:clamp(23px,3vw,33px);font-weight:900;color:#fff;margin-bottom:10px}
+.hb-band .hsub{color:#C9DFF5;font-size:15px;margin-bottom:20px}
+.hb-list{list-style:none;display:grid;gap:12px;margin-bottom:24px}
+.hb-list li{display:flex;gap:11px;font-size:14.5px;color:#E4EFFC}
+.hb-list li svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.hb-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hb-card{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);
+  border-radius:var(--r-l);padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  align-self:center;
+}
+.hb-card h3{font-size:19px;font-weight:900;margin-bottom:4px}
+.hb-card .hcs{font-size:13px;color:#C9DFF5;margin-bottom:16px}
+.hb-slot{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1.5px dashed rgba(255,255,255,.16)}
+.hb-slot:last-of-type{border-bottom:none}
+.hb-slot .si{
+  width:42px;height:42px;border-radius:12px;background:rgba(44,197,244,.16);color:var(--sky);
+  display:grid;place-items:center;flex-shrink:0;font-weight:900;font-size:12px;text-align:center;line-height:1.15;
+}
+.hb-slot b{display:block;font-size:14.5px;color:#fff}
+.hb-slot .ss{font-size:12.5px;color:#C9DFF5}
+.hb-note{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,158,44,.16);
+  border:1px solid rgba(255,158,44,.4);color:var(--accent);font-size:12.5px;font-weight:800;
+  border-radius:999px;padding:7px 14px}
+
+/* ============ calculator thu cu + tra gop ============ */
+.calc-sec{background:var(--texture)}
+.calc-tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.calc-tab{
+  display:flex;align-items:center;gap:10px;padding:13px 22px;border-radius:16px;
+  border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:15px;color:var(--soft);transition:.25s;
+}
+.calc-tab svg{color:var(--accent-2)}
+.calc-tab.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:var(--sh2)}
+.calc-tab.on svg{color:var(--accent)}
+.calc-pane{display:none}
+.calc-pane.on{display:block;animation:fadeUp .45s}
+.calc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:stretch}
+.calc-form{
+  background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);
+  background-color:var(--primary);
+}
+.calc-form h3{font-size:21px;font-weight:900;margin-bottom:4px}
+.calc-form .csub{font-size:13.5px;color:#C9DFF5;margin-bottom:20px}
+.f-row{margin-bottom:16px}
+.f-row label{display:block;font-size:13px;font-weight:800;color:#C9DFF5;margin-bottom:7px;letter-spacing:.02em}
+.f-row select,.f-row input{
+  width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(6,20,38,.55);color:#fff;font-weight:700;outline:none;transition:.2s;
+}
+.f-row select:focus,.f-row input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,158,44,.15)}
+.f-row select option{color:var(--ink);background:#fff}
+.cond-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.cond-grid .f-row{margin-bottom:0}
+.f-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc-form .btn{width:100%;margin-top:20px}
+.calc-result{
+  background:#fff;border-radius:var(--r-l);padding:28px;box-shadow:var(--sh2);
+  display:flex;flex-direction:column;border:1.5px solid var(--line);
+}
+.calc-result h4{font-size:17px;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.calc-result h4 .live{width:9px;height:9px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+.cr-rows{display:grid;gap:0;margin-bottom:18px}
+.cr-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1.5px dashed var(--line);font-size:14px}
+.cr-row .k{color:var(--soft);font-weight:600}
+.cr-row .v{font-weight:800;color:var(--ink);text-align:right}
+.cr-row.sum{border-bottom:none;background:var(--texture);margin:8px -10px 0;padding:13px 12px;border-radius:12px}
+.cr-row.sum .k{color:var(--primary);font-weight:900;font-size:15px}
+.cr-row.sum .v{color:var(--accent-2);font-weight:900;font-size:22px}
+.cr-tier{font-size:12.5px;color:var(--soft);background:var(--accent-100);border-radius:10px;padding:9px 12px;margin-bottom:14px}
+.cr-tier b{color:#7A5200}
+.calc-result .btn{width:100%;margin-top:auto}
+.cr-empty{color:var(--soft);font-size:14px;text-align:center;padding:30px 10px;margin:auto}
+
+/* ============ so sanh 3 flycam ============ */
+.cmp-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);overflow:hidden}
+.cmp-top{padding:20px 24px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cmp-top .t{font-weight:900;color:var(--primary);font-size:16px}
+.cmp-chips{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.cmp-chip{
+  padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--texture);
+  font-size:13px;font-weight:800;color:var(--soft);transition:.2s;user-select:none;
+}
+.cmp-chip.on{background:var(--grad-accent);color:#2B1600;border-color:transparent}
+.cmp-scroll{overflow-x:auto}
+.cmp-table{width:100%;border-collapse:collapse;min-width:640px}
+.cmp-table th,.cmp-table td{padding:14px 18px;text-align:left;font-size:14px;vertical-align:top}
+.cmp-table thead th{background:var(--texture);font-weight:900;color:var(--primary);font-size:14.5px;border-bottom:1.5px solid var(--line)}
+.cmp-table tbody tr{border-bottom:1.5px solid #ECF2FA}
+.cmp-table tbody tr:last-child{border-bottom:none}
+.cmp-table td:first-child{font-weight:800;color:var(--soft);white-space:nowrap;background:#FBFCFE}
+.cmp-price{font-weight:900;color:var(--accent-2);font-size:17px}
+.cmp-old{display:block;font-size:12px;color:#9AACBF;text-decoration:line-through;font-weight:600}
+.cmp-cta .btn{padding:9px 14px;font-size:12.5px;width:100%}
+
+/* ============ about ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:48px;align-items:center}
+.about-vis{position:relative}
+.about-vis .big{
+  border-radius:var(--r-l);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh3);transform:rotate(-2deg);
+  animation:float1 8s ease-in-out infinite;
+}
+.about-vis .big img{width:100%;aspect-ratio:1536/1024;object-fit:cover}
+.about-vis .mini{
+  position:absolute;right:-14px;bottom:-20px;width:46%;border-radius:var(--r-m);overflow:hidden;
+  border:5px solid #fff;box-shadow:var(--sh2);transform:rotate(3deg);
+}
+.about-vis .mini img{aspect-ratio:1448/1086;object-fit:cover;width:100%}
+.about-exp{
+  position:absolute;left:-10px;top:-16px;background:var(--grad-accent);border-radius:16px;
+  padding:12px 18px;box-shadow:0 12px 28px rgba(255,138,30,.45);transform:rotate(-3deg);z-index:2;
+}
+.about-exp .tt{font-weight:900;font-size:22px;color:#2B1600}
+.about-exp .sub{font-size:11.5px;font-weight:800;color:#6B4A00}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.stg{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;
+  box-shadow:var(--sh1);transition:.25s;
+}
+.stg:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:#F4DCA8}
+.stg .ic{
+  width:44px;height:44px;border-radius:13px;background:var(--accent-100);display:grid;place-items:center;
+  color:#B26A00;margin-bottom:11px;
+}
+.stg h4{font-size:15.5px;font-weight:900;color:var(--primary);margin-bottom:5px}
+.stg p{font-size:13px;color:var(--soft)}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============ quy trinh ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px 22px;
+  position:relative;box-shadow:var(--sh1);transition:.25s;
+}
+.step:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.step .sn{
+  width:52px;height:52px;border-radius:50%;background:var(--grad-accent);color:#2B1600;
+  font-weight:900;font-size:20px;display:grid;place-items:center;margin-bottom:15px;
+  box-shadow:0 8px 20px rgba(255,138,30,.35);
+}
+.step h4{font-size:16.5px;font-weight:900;color:var(--primary);margin-bottom:7px}
+.step p{font-size:13.5px;color:var(--soft)}
+.step .meta{
+  display:inline-flex;align-items:center;gap:6px;margin-top:13px;font-size:12px;font-weight:800;
+  color:var(--primary);background:var(--texture);border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+}
+.step::after{
+  content:"";position:absolute;top:50px;right:-18px;width:18px;height:3px;background:var(--accent-2);
+}
+.step:last-child::after{display:none}
+
+/* ============ bang thong so chuyen mon ============ */
+.spec-tabs{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.spec-tab{padding:11px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:14.5px;color:var(--soft);transition:.25s}
+.spec-tab.on{background:var(--grad-dark);color:#fff;border-color:transparent;box-shadow:var(--sh2)}
+.spec-pane{display:none}
+.spec-pane.on{display:grid;grid-template-columns:1.35fr .65fr;gap:22px;align-items:start;animation:fadeUp .4s}
+.spec-table-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh1)}
+.spec-table{width:100%;border-collapse:collapse;min-width:520px}
+.spec-table th,.spec-table td{padding:13px 18px;font-size:14px;text-align:left}
+.spec-table thead th{background:var(--grad-dark);color:#fff;font-weight:800}
+.spec-table tbody tr{border-bottom:1.5px solid #ECF2FA}
+.spec-table tbody tr:last-child{border-bottom:none}
+.spec-table td:first-child{font-weight:800;color:var(--soft);background:#FBFCFE;white-space:nowrap}
+.spec-table td{color:var(--ink)}
+.tips{display:grid;gap:14px}
+.tip{
+  background:var(--accent-100);border:1.5px solid #F4DCA8;border-radius:var(--r-m);padding:16px 18px;
+}
+.tip h5{font-size:14px;font-weight:900;color:#7A5200;margin-bottom:4px;display:flex;gap:8px;align-items:center}
+.tip p{font-size:13px;color:#6B5A2A}
+
+/* ============ social proof ============ */
+.proof-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:stretch}
+.proof-main{
+  background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh2);
+  padding:32px;display:flex;flex-direction:column;position:relative;overflow:hidden;min-height:320px;
+}
+.proof-main::before{content:"";position:absolute;top:-60px;left:-60px;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,158,44,.15),transparent)}
+.proof-quote{font-size:18.5px;font-weight:600;color:var(--ink);line-height:1.65;margin:14px 0 20px;flex:1;position:relative}
+.proof-quote::before{content:"";display:block;width:44px;height:6px;border-radius:3px;background:var(--grad-accent);margin-bottom:16px}
+.proof-who{display:flex;align-items:center;gap:13px}
+.proof-who .av{
+  width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:var(--accent);
+  display:grid;place-items:center;font-weight:900;font-size:17px;flex-shrink:0;
+}
+.proof-who .tt{font-weight:900;font-size:15px;color:var(--primary)}
+.proof-who .sub{font-size:12.5px;color:var(--soft)}
+.proof-stars{color:var(--accent-2);font-size:15px;letter-spacing:2px;margin-bottom:2px}
+.proof-side{
+  background:var(--grad-dark);border-radius:var(--r-l);padding:28px;color:#fff;box-shadow:var(--sh2);
+  display:flex;flex-direction:column;gap:16px;
+}
+.proof-metric{
+  display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 16px;
+}
+.proof-metric .mi{
+  width:40px;height:40px;border-radius:11px;background:rgba(13,156,82,.25);display:grid;place-items:center;flex-shrink:0;
+}
+.proof-metric .mi svg{color:#4ADE80}
+.proof-metric .tt{font-weight:900;font-size:15px;color:#fff}
+.proof-metric .sub{font-size:12px;color:#C9DFF5}
+.proof-dots{display:flex;gap:7px;margin-top:14px}
+.proof-dots i{width:22px;height:6px;border-radius:3px;background:rgba(255,255,255,.2);transition:.3s;cursor:pointer}
+.proof-dots i.on{background:var(--grad-accent)}
+.partner-row{margin-top:34px;text-align:center}
+.partner-row .lb{font-size:12.5px;font-weight:800;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.partner-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.partner-chips span{
+  background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;
+  font-weight:800;font-size:13.5px;color:var(--soft);box-shadow:var(--sh1);
+}
+
+/* ============ lien he: map + form ============ */
+.contact-sec{background:var(--grad-dark);color:#fff;overflow:hidden;position:relative}
+.contact-sec::before{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:22px 22px}
+.contact-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+.map-card{border-radius:var(--r-l);overflow:hidden;border:1.5px solid rgba(255,255,255,.2);box-shadow:var(--sh3);background:#fff}
+.map-card iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+.map-dir{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--grad-accent);color:#2B1600;
+  font-weight:900;font-size:14px;padding:13px;width:100%;transition:.2s}
+.map-dir:hover{filter:brightness(1.06)}
+.contact-info{padding:16px 0 18px}
+.contact-info .ct{font-size:15px;font-weight:800;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.contact-item{display:flex;gap:13px;padding:11px 0;border-bottom:1.5px dashed rgba(255,255,255,.16);font-size:14.5px;color:#E4EFFC}
+.contact-item:last-child{border-bottom:none}
+.contact-item svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.contact-item b{color:#fff}
+.gform{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:var(--r-l);padding:28px;box-shadow:var(--sh2);
+}
+.gform h3{font-size:21px;font-weight:900;margin-bottom:6px}
+.gform .csub{font-size:13.5px;color:#C9DFF5;margin-bottom:20px}
+.gform .f-row select,.gform .f-row input{
+  background:rgba(6,20,38,.55);
+}
+.gform textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(6,20,38,.55);color:#fff;font-weight:600;outline:none;resize:vertical;min-height:84px}
+.gform textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,158,44,.15)}
+.gform textarea::placeholder,.gform input::placeholder{color:#7E93B8}
+.gform .btn{width:100%;margin-top:6px}
+.secure{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#8FA6CC;margin-top:13px;text-align:center}
+.secure svg{color:#4ADE80;flex-shrink:0}
+
+/* ============ FAQ ============ */
+.faq-wrap{max-width:860px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.faq-search{
+  flex:1;min-width:230px;display:flex;align-items:center;gap:10px;background:#fff;
+  border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--sh1);
+}
+.faq-search svg{color:var(--soft);flex-shrink:0}
+.faq-search input{flex:1;min-width:0;border:none;outline:none;font-size:14.5px;background:none}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.faq-chip{padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:13px;font-weight:700;color:var(--soft);transition:.2s}
+.faq-chip:hover,.faq-chip.on{background:var(--grad-accent);border-color:transparent;color:#2B1600}
+.faq-list{display:grid;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:var(--accent);box-shadow:var(--sh2)}
+.faq-item.hide{display:none}
+.faq-q{
+  width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:17px 20px;
+  font-weight:800;font-size:15.5px;color:var(--primary);
+}
+.faq-q .qn{
+  width:32px;height:32px;border-radius:10px;background:var(--texture);display:grid;place-items:center;
+  font-size:13px;font-weight:900;color:var(--primary);flex-shrink:0;
+}
+.faq-q .tg{margin-left:auto;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent-100);color:#B26A00;
+  display:grid;place-items:center;font-weight:900;transition:.3s}
+.faq-item.open .tg{transform:rotate(45deg);background:var(--grad-accent);color:#2B1600}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a .in{padding:0 20px 18px 66px;font-size:14.5px;color:var(--soft)}
+.faq-a .in b{color:var(--primary)}
+
+/* ============ footer gon 2 tang ============ */
+footer{background:var(--primary-3);color:#C9DFF5;padding:52px 0 0}
+.ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1.15fr;gap:34px;padding-bottom:36px}
+.ft-brand .logo-txt .tt{color:#fff}
+.ft-brand .logo-txt .sub{color:#8FA6CC}
+.ft-brand p{font-size:13.5px;margin:14px 0 18px;max-width:320px}
+.ft-social{display:flex;gap:10px}
+.ft-social a{
+  width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);
+  display:grid;place-items:center;color:#fff;transition:.2s;
+}
+.ft-social a:hover{background:var(--accent-2);color:#2B1600;transform:translateY(-3px)}
+footer h5{color:#fff;font-size:15px;font-weight:900;margin-bottom:16px}
+.ft-links{list-style:none;display:grid;gap:9px}
+.ft-links a{font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.ft-links a::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.ft-links a:hover{color:var(--accent);transform:translateX(3px)}
+.ft-contact{list-style:none;display:grid;gap:12px;font-size:13.5px}
+.ft-contact li{display:flex;gap:10px}
+.ft-contact svg{flex-shrink:0;color:var(--accent);margin-top:3px}
+.ft-contact b{color:#fff}
+.ft-pay{
+  border-top:1.5px solid rgba(255,255,255,.12);padding:18px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);border-radius:9px;
+  padding:6px 13px;font-size:12px;font-weight:800;color:#E4EFFC;letter-spacing:.03em;
+}
+.ft-copy{font-size:12.5px;color:#7E93B8}
+.ft-bot{border-top:1.5px solid rgba(255,255,255,.12);padding:16px 0;text-align:center;font-size:12.5px;color:#7E93B8}
+.ft-bot b{color:#C9DFF5}
+
+/* ============ FAB dock ============ */
+.dock{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;
+  display:flex;gap:8px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1.5px solid var(--line);border-radius:999px;padding:8px;box-shadow:var(--sh3);
+  transition:.4s;
+}
+.dock.dock-hide{transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none}
+.dock a,.dock button.dk{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;transition:.2s;position:relative;color:var(--primary);
+  background:var(--texture);border:1.5px solid var(--line);
+}
+.dock a:hover,.dock button.dk:hover{transform:translateY(-3px);background:var(--primary);color:#fff}
+.dock .dk-main{background:var(--grad-accent);border-color:transparent;color:#2B1600}
+.dock .dk-main:hover{background:var(--accent-2);color:#2B1600}
+.dock .d-badge{
+  position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;
+  background:var(--accent-2);color:#2B1600;font-size:10.5px;font-weight:900;display:grid;place-items:center;padding:0 4px;
+}
+.dock .dk-lb{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:var(--primary-3);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.dock a:hover .dk-lb,.dock button.dk:hover .dk-lb{opacity:1}
+
+/* ============ drawer gio hang ============ */
+.overlay{position:fixed;inset:0;background:rgba(6,20,38,.55);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:#fff;z-index:95;
+  transform:translateX(105%);transition:.4s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh3);
+}
+.drawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1.5px solid var(--line)}
+.dr-head h3{font-size:18px;font-weight:900;color:var(--primary)}
+.dr-close{margin-left:auto;width:38px;height:38px;border-radius:11px;background:var(--texture);display:grid;place-items:center;font-weight:900;color:var(--soft);transition:.2s}
+.dr-close:hover{background:var(--primary);color:#fff}
+.dr-tier{padding:14px 22px;border-bottom:1.5px solid var(--line);background:var(--texture)}
+.dr-tier .t{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--soft);margin-bottom:7px;gap:10px}
+.dr-tier .t b{color:var(--primary);text-align:right}
+.dr-bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden}
+.dr-bar i{display:block;height:100%;background:var(--grad-accent);border-radius:5px;transition:.4s}
+.dr-items{flex:1;overflow-y:auto;padding:16px 22px;display:grid;gap:12px;align-content:start}
+.dr-item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:10px}
+.dr-item img{width:64px;height:52px;object-fit:cover;border-radius:9px}
+.dr-item .nm{font-size:13px;font-weight:800;color:var(--ink)}
+.dr-item .pr{font-size:13.5px;font-weight:900;color:var(--accent-2)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:5px}
+.qty button{width:28px;height:28px;border-radius:7px;background:var(--texture);border:1px solid var(--line);font-weight:900;color:var(--primary);display:grid;place-items:center}
+.qty b{min-width:22px;text-align:center;font-size:13.5px}
+.dr-rm{color:#C0392B;font-size:11.5px;font-weight:800;margin-top:5px;display:inline-block}
+.dr-empty{text-align:center;color:var(--soft);padding:50px 20px;font-size:14px}
+.dr-foot{border-top:1.5px solid var(--line);padding:18px 22px;background:#fff}
+.dr-line{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:var(--soft)}
+.dr-line.disc{color:var(--ok);font-weight:800}
+.dr-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;margin-top:6px;border-top:1.5px dashed var(--line)}
+.dr-total .lb{font-weight:900;color:var(--primary)}
+.dr-total .v{font-size:24px;font-weight:900;color:var(--accent-2)}
+.dr-foot .btn{width:100%;margin-top:14px}
+.dr-note{font-size:11.5px;color:var(--soft);text-align:center;margin-top:10px}
+
+/* ============ modal quick view ============ */
+.modal{
+  position:fixed;inset:0;z-index:96;display:grid;place-items:center;padding:20px;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-card{
+  width:min(760px,100%);max-height:92vh;overflow-y:auto;background:#fff;border-radius:var(--r-l);
+  box-shadow:var(--sh3);transform:translateY(24px) scale(.98);transition:.35s;
+}
+.modal.on .modal-card{transform:none}
+.mv-media{position:relative;aspect-ratio:16/9;background:var(--primary-3)}
+.mv-media img{width:100%;height:100%;object-fit:contain}
+.mv-close{
+  position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
+  background:rgba(6,20,38,.7);color:#fff;display:grid;place-items:center;font-weight:900;z-index:2;transition:.2s;
+}
+.mv-close:hover{background:var(--accent-2);color:#2B1600}
+.mv-tag{position:absolute;left:14px;top:14px;background:var(--grad-accent);color:#2B1600;font-size:12px;font-weight:900;padding:6px 13px;border-radius:999px}
+.mv-body{padding:24px 26px 26px}
+.mv-cat{font-size:12px;font-weight:900;color:var(--accent-2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.mv-body h3{font-size:23px;font-weight:900;color:var(--primary);margin-bottom:8px}
+.mv-body .desc{font-size:14px;color:var(--soft);margin-bottom:18px}
+.mv-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:start}
+.tier-table{width:100%;border-collapse:collapse;border:1.5px solid var(--line);font-size:13.5px}
+.tier-table th,.tier-table td{padding:9px 13px;text-align:left;border-bottom:1.5px solid #ECF2FA}
+.tier-table thead th{background:var(--texture);font-weight:900;color:var(--primary);font-size:12.5px}
+.tier-table tr:last-child td{border-bottom:none}
+.tier-table td:last-child{font-weight:900;color:var(--primary);text-align:right}
+.mv-right{display:grid;gap:12px}
+.mv-qty{display:flex;align-items:center;gap:12px}
+.mv-qty .qty button{width:32px;height:32px;font-size:15px}
+.mv-qty .qty b{font-size:15px}
+.mv-sum{display:flex;justify-content:space-between;align-items:baseline;background:var(--texture);border-radius:12px;padding:12px 15px}
+.mv-sum .lb{font-size:13px;font-weight:800;color:var(--soft)}
+.mv-sum .v{font-size:21px;font-weight:900;color:var(--accent-2)}
+.mv-acts{display:grid;gap:9px}
+.mv-acts .btn{padding:12px}
+.mv-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line)}
+.mv-meta span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--soft)}
+.mv-meta svg{color:var(--ok);flex-shrink:0}
+
+/* ============ toast (title + message 2 phan tu rieng, pointer-events none) ============ */
+.toast{
+  position:fixed;right:22px;bottom:96px;z-index:120;display:grid;gap:10px;pointer-events:none;
+}
+.toast .t-item{
+  display:flex;align-items:center;gap:11px;background:var(--primary-3);color:#fff;
+  border:1.5px solid rgba(255,255,255,.15);border-radius:14px;padding:13px 18px;
+  box-shadow:var(--sh3);max-width:340px;
+  animation:toastIn .35s cubic-bezier(.22,.8,.3,1);
+}
+.toast .t-item.out{animation:toastOut .3s forwards}
+.toast .t-item .ti{width:30px;height:30px;border-radius:9px;background:var(--grad-accent);color:#2B1600;display:grid;place-items:center;flex-shrink:0}
+.toast .t-item .tx{font-size:13px;font-weight:600;color:#DCE8F7;line-height:1.45}
+.toast .t-item .tx b{display:block;font-size:13.5px;font-weight:900;color:#fff}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px)}}
+
+/* ============ reveal ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ responsive 1080 ============ */
+@media(max-width:1080px){
+  .nav{display:none}
+  .hero .container{grid-template-columns:1fr;gap:40px}
+  .hero-vis{min-height:0;max-width:560px;margin:0 auto;width:100%}
+  .fly-path{display:none}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .combo-grid{grid-template-columns:1fr}
+  .combo-info{position:static}
+  /*NB93-207: bento 2 cot — feat span full, khong o trong*/
+  .bento{grid-template-columns:1fr 1fr}
+  .b-feat{grid-column:1/-1;grid-row:auto}
+  .pur-grid{grid-template-columns:1fr}
+  .pur-list{grid-template-columns:1fr 1fr}
+  .pur-detail{grid-template-columns:1fr}
+  .pur-media{min-height:0}
+  .pur-media img{height:auto;aspect-ratio:1448/1086}
+  .hb-grid{grid-template-columns:1fr;padding:28px}
+  .benefits{grid-template-columns:repeat(2,1fr)}
+  .calc-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:52px}
+  .about-vis{max-width:520px;margin:0 auto;width:100%}
+  .steps{grid-template-columns:1fr 1fr}
+  .step::after{display:none}
+  .spec-pane.on{grid-template-columns:1fr}
+  .proof-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .map-card iframe{min-height:300px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE BRANCH ≤680px ============ */
+@media(max-width:680px){
+  section{scroll-margin-top:120px}
+  .topbar .container{justify-content:center;gap:16px}
+  .tb-r{display:none}
+  .header .container{flex-wrap:wrap;gap:8px;padding-top:5px;padding-bottom:5px}
+  .logo{order:1}
+  .logo-mark{width:38px;height:38px;border-radius:11px}
+  .logo-mark svg{width:20px;height:20px}
+  .logo-txt .tt{font-size:17px}
+  .logo-txt .sub{display:none}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .btn{display:none}
+  .cart-btn{width:40px;height:40px;border-radius:11px}
+  .search{order:3;flex-basis:100%;padding:6px 12px;border-radius:12px}
+  .hero{padding:34px 0 46px}
+  .hero .container{gap:30px}
+  .hero h1{font-size:1.42rem}
+  .hero .sub{font-size:14.5px;margin-bottom:20px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%;white-space:normal}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust .chip{font-size:12px;padding:8px 10px}
+  .hero-vis{min-height:0}
+  .hv-main{width:100%;transform:none;border-width:4px;animation:none;margin-left:0}
+  .hv-main img{aspect-ratio:1448/1086}
+  .hv-badge{top:8px;right:8px;padding:7px 11px;border-radius:12px;transform:none}
+  .hv-badge .tt{font-size:13px}
+  .hv-badge .sub{font-size:12px}
+  .hv-tag{display:none}
+  .hv-stats{position:static;margin-top:14px;justify-content:space-between}
+  .hv-stats .st{flex:1;padding:10px 6px}
+  .hv-stats .tt{font-size:16px}
+  .hv-stats .sub{font-size:10.5px}
+  .tape-wrap{padding:4px 0 18px}
+  .tape{padding:11px 0}
+  .tape-in span{font-size:13px}
+  .sec{padding:50px 0}
+  .sec-head{margin-bottom:26px}
+  .sec-head h2{font-size:1.42rem}
+  /*NB93-207: bento mobile — feat full, 2 cot nho gon, kin o*/
+  .bento{grid-template-columns:1fr 1fr;gap:10px}
+  .b-feat{grid-column:1/-1;grid-row:auto}
+  .b-feat .p-body{padding:16px 16px 18px}
+  .b-feat .p-name{font-size:17px}
+  .b-feat .p-price .now{font-size:23px}
+  .b-feat ul li{font-size:13px}
+  .b-feat .feat-acts{grid-template-columns:1fr}
+  .b-promo{grid-column:1/-1}
+  .p-body{padding:12px 12px 14px}
+  .p-name{font-size:13px;min-height:40px}
+  .p-price .now{font-size:15.5px}
+  .p-price .old{font-size:11.5px}
+  .p-tier{font-size:10.5px;padding:3px 8px;margin-bottom:8px}
+  .p-cat{display:none}
+  .p-add{font-size:12.5px;padding:8px 6px;min-height:40px}
+  .p-tag{font-size:10px;padding:4px 8px;bottom:8px;left:8px}
+  .strip{grid-template-columns:1fr 1fr;gap:10px}
+  .strip a{padding:11px 12px;font-size:12.5px;flex-direction:column;text-align:center;gap:8px}
+  .strip .arr{display:none}
+  .pur-list{grid-template-columns:1fr}
+  .pur-body{padding:20px}
+  .pur-price .now{font-size:23px}
+  .promo-grid{grid-template-columns:1fr}
+  .b-line{font-size:1.12rem}
+  .b-line .val::after{inset:-5px -3px}
+  .promo-board{transform:none;padding:22px 20px}
+  .benefits{grid-template-columns:1fr}
+  .cond-grid{grid-template-columns:1fr}
+  .f-2{grid-template-columns:1fr}
+  .calc-form,.calc-result,.gform{padding:20px}
+  .combo-tabs,.calc-tabs,.spec-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .combo-tab,.calc-tab,.spec-tab{flex-shrink:0;white-space:nowrap}
+  .combo-gallery{grid-template-columns:1fr 1fr;gap:10px}
+  .cg-name{font-size:11.5px;padding:8px 10px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat:nth-child(n){border:none}
+  .stat{padding:14px 6px}
+  .cmp-top{padding:16px}
+  .cmp-chips{margin-left:0;width:100%}
+  .cmp-scroll{border:1.5px solid var(--line);border-radius:12px}
+  .strengths{grid-template-columns:1fr}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .steps{grid-template-columns:1fr}
+  .tips{gap:10px}
+  .proof-main{padding:22px}
+  .proof-quote{font-size:15.5px}
+  .faq-a .in{padding:0 16px 16px 60px}
+  .faq-q{font-size:14px;padding:14px 16px}
+  .contact-sec .f-row{margin-bottom:12px}
+  .gform .btn,.calc-form .btn,.calc-result .btn{width:100%}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding-bottom:26px}
+  .ft-pay{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:7px;gap:6px}
+  .dock a,.dock button.dk{width:44px;height:44px}
+  .dock .dk-lb{display:none}
+  .modal-card{max-height:94vh}
+  .mv-grid{grid-template-columns:1fr}
+  .mv-body{padding:18px}
+  .toast{right:12px;left:12px;bottom:86px}
+  .toast .t-item{max-width:none}
+}
+
+/*NB93-207: desktop — anh chinh hero dam tren moi truong*/
+@media(min-width:681px){
+  .hv-main{position:relative;z-index:9;width:100%}
+  .hv-s1,.hv-s2{display:none}
+}
+
+/*NB93-207: micro-interaction nhan nut*/
+button:active{transform:scale(.96)}
+/*NB93-207: mobile — giu cho cho dock, chat FAB khong de footer*/
+@media(max-width:680px){
+  body{padding-bottom:76px}
+  .pkc-fab{bottom:80px}
+  .pkc-panel{bottom:140px}
+}
+
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+.fchip,.faq-chip,.cmp-chip,.calc-tab,.spec-tab,.pur-btn,.combo-tab,.qty button,.mv-qty button,.faq-chips button,.cbtn,.qa-b,.mv-close,.dr-close,[class*="search" i] button,.fab{min-height:40px!important;min-width:40px!important}
+.tog-row{min-height:44px}
+}
+@media(max-width:640px){
+.btn{min-height:40px!important}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"BayXa","telephone":"0905307207","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"BayXa bán flycam, xe tàu RC, máy bay mô hình chính hãng — test bay trước khi mua, kèm 2 buổi học bay miễn phí với HLV. Combo pin -15%, thu cũ trừ tiền +5%, trả ","url":"http://127.0.0.1:8174/207-cua-hang-flycam-do-choi-dieu-khien/"}
+</script>
+<style data-nb93fix="207:input40">
+/*NB93-FIX-207:input40 input tim kiem du 40px touch target*/
+@media(max-width:768px){
+  #hdSearch,.hdSearch{min-height:40px;height:auto;box-sizing:border-box}
+  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-l"><span class="dot"></span><span><b>Mở cửa 8:30 – 21:30</b> tất cả các ngày · Sân tập bay miễn phí mỗi CN</span></div>
+    <div class="tb-r">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="hot">0905 307 207</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container">
+    <a class="logo" href="#hero">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFB44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.6"/><circle cx="19" cy="5" r="2.6"/><circle cx="5" cy="19" r="2.6"/><circle cx="19" cy="19" r="2.6"/><path d="M7 7l10 10M17 7 7 17"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.5"/></svg>
+      </span>
+      <span class="logo-txt">
+        <span class="tt">BayXa</span>
+        <span class="sub">Flycam &amp; RC · Chính hãng</span>
+      </span>
+    </a>
+    <div class="search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="hdSearch" type="text" placeholder="Tìm flycam, xe địa hình, ca nô, pin, cánh quạt…" aria-label="Tìm sản phẩm">
+    </div>
+    <nav class="nav">
+      <a href="#purpose">Chọn theo mục đích</a>
+      <a href="#products">Sản phẩm</a>
+      <a href="#pin">Combo pin</a>
+      <a href="#hocbay">Học bay</a>
+      <a href="#tradein">Thu cũ &amp; góp</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="cart-btn" id="btnCartTop" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+        <span class="n" id="cartCountTop">0</span>
+      </button>
+      <a class="btn btn-a" href="tel:0905307207">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Gọi 0905 307 207
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-left">
+      <span class="eyebrow"><span class="ic"></span>Cửa hàng flycam &amp; đồ chơi điều khiển tại Đà Nẵng</span>
+      <h1>
+        <span class="tt">Flycam &amp; RC chính hãng —</span>
+        <span class="tt"><span class="hl">bay ngay cuối tuần này</span></span>
+      </h1>
+      <span class="sub">Test bay ngay tại cửa hàng trước khi thanh toán, kèm <b>2 buổi học bay miễn phí</b> cùng HLV. Trả góp 0% từ 5 triệu, thu cũ trừ tiền ngay, sửa chữa 48h có máy mượn.</span>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#purpose">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3"/><circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="2.6"/></svg>
+          Chọn flycam theo mục đích
+        </a>
+        <a class="btn btn-n" href="#products">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.6"/><circle cx="19" cy="5" r="2.6"/><circle cx="5" cy="19" r="2.6"/><circle cx="19" cy="19" r="2.6"/><path d="M7 7l10 10M17 7 7 17"/></svg>
+          Xem 8 mặt hàng trong tuần
+        </a>
+      </div>
+      <div class="trust">
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bảo hành 12 tháng</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Test bay trước khi mua</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Học bay miễn phí 2 buổi</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trả góp 0% duyệt 15 phút</span>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hv-badge">
+        <span class="tt">Học bay 0đ</span>
+        <span class="sub">2 buổi kèm HLV tại sân</span>
+      </div>
+      <div class="hv-main"><img src="assets/img/cover.webp" alt="Cửa hàng flycam và đồ chơi điều khiển BayXa — flycam, xe RC, máy bay mô hình" width="900" height="675"></div>
+      <div class="hv-tag">Thu cũ flycam - RC +5%</div>
+      <div class="hv-stats">
+        <div class="st"><span class="tt">9+</span><span class="sub">năm bán RC</span></div>
+        <div class="st"><span class="tt">18.000+</span><span class="sub">máy đã bay</span></div>
+        <div class="st"><span class="tt">6.500+</span><span class="sub">học viên bay</span></div>
+      </div>
+      <svg class="fly-path" viewBox="0 0 270 110" fill="none" aria-hidden="true">
+        <path d="M6 96C60 92 96 66 128 40c26-21 64-32 130-28" stroke="#2CC5F4" stroke-width="2.4" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <g class="fp-drone"><circle cx="10" cy="98" r="5" stroke="#FF9E2C" stroke-width="2.4"/><path d="M11 101l7 7M25 101l-7 7" stroke="#FF9E2C" stroke-width="2.4" stroke-linecap="round"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAPE MARQUEE ================= -->
+<div class="tape-wrap">
+  <div class="tape"><div class="tape-in" id="tapeIn">
+    <span>100% chính hãng — test bay trước khi thanh toán</span>
+    <span>Học bay miễn phí 2 buổi kèm HLV</span>
+    <span>Trả góp 0% từ 5 triệu — duyệt 15 phút</span>
+    <span>Thu cũ flycam &amp; RC — trợ giá thêm 5%</span>
+    <span>Sửa chữa 48h — có máy mượn trong lúc chờ</span>
+    <span>Giao nội thành trong ngày — COD toàn quốc</span>
+  </div></div>
+</div>
+
+<!-- ================= DAC THU: CHON FLYCAM THEO MUC DICH ================= -->
+<section class="sec" id="purpose">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Điểm riêng của BayXa</span>
+      <h2>Chọn flycam theo mục đích — 30 giây ra đúng máy</h2>
+      <span class="sub">Đừng mua theo giá: chọn theo việc bạn sẽ bay. Bấm 1 mục đích, cửa hàng chỉ ra máy hợp, giá thật và quyền lợi kèm theo.</span>
+    </div>
+    <div class="pur-grid">
+      <div class="pur-list rv" id="purList"></div>
+      <div class="rv" data-d="1"><div class="pur-detail" id="purDetail"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAI 5 NHOM HANG ================= -->
+<section class="sec sec-tex" style="padding:44px 0">
+  <div class="container">
+    <div class="strip rv">
+      <a href="#products" data-jump="1"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="m7.8 7.8 8.4 8.4M16.2 7.8 7.8 16.2"/></svg></span>Flycam mini &amp; 4K<span class="arr">›</span></a>
+      <a href="#products" data-jump="2"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h11l4-4h3"/><circle cx="7" cy="17" r="2.2"/><circle cx="15.5" cy="17" r="2.2"/><path d="M9 17h4.5"/></svg></span>Xe địa hình RC<span class="arr">›</span></a>
+      <a href="#products" data-jump="3"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17c3-6 6-9 9-9s4 2 4 4-2 3-4 3"/><path d="M3 20h18"/></svg></span>Tàu &amp; máy bay RC<span class="arr">›</span></a>
+      <a href="#pin"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="16" height="10" rx="2.5"/><path d="M22 11v4"/><path d="m10 2-2 6h4l-2 6"/></svg></span>Pin - cánh quạt<span class="arr">›</span></a>
+      <a href="#hocbay"><span class="si"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7.5 12 12l8-4.5L12 3z"/><path d="M4 7.5V12c0 4 3.4 7.4 8 8 4.6-.6 8-4 8-8V7.5"/></svg></span>Học bay &amp; sửa chữa<span class="arr">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANG KHUYEN MAI VE TAY ================= -->
+<section class="sec" style="padding:34px 0 10px;background:transparent"><div class="container" style="max-width:1000px"><div class="promo-board"><span class="b-tape"></span><div class="b-title">KHUYẾN MÃI QUẦY HÔM NAY</div><div class="promo-grid"><div class="b-line"><span class="dot"></span><span class="what">Mua flycam</span><span class="val">tặng 2 buổi học bay</span><span class="how">kèm HLV tại sân</span></div><div class="b-line"><span class="dot"></span><span class="what">Combo pin &amp; cánh quạt</span><span class="val">-15%</span><span class="how">khi mua kèm flycam</span></div><div class="b-line"><span class="dot"></span><span class="what">Thu cũ flycam &amp; RC</span><span class="val">+5%</span><span class="how">định giá 15 phút</span></div><div class="b-line"><span class="dot"></span><span class="what">Trả góp 0%</span><span class="val">12 tháng</span><span class="how">đơn từ 5 triệu</span></div></div></div></div></section>
+
+<!-- ================= KHOI-8: FLASH DEAL + BENTO 8 SAN PHAM ================= -->
+<section class="sec sec-tex" id="products">
+  <div class="container">
+    <div class="deal-bar rv">
+      <div class="deal-t">
+        <span class="fl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z"/></svg></span>
+        <div><span class="tt">Giá tốt hôm nay</span><span class="sub">Giá về cuối ngày — số lượng giới hạn mỗi mã</span></div>
+      </div>
+      <div class="clock">
+        <span class="lb">Kết thúc sau</span>
+        <div class="tm"><b id="ckH">00</b><b id="ckM">00</b><b id="ckS">00</b></div>
+      </div>
+    </div>
+    <div class="carr-head rv">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="kicker">8 mặt hàng đang có</span>
+        <h2 style="font-size:clamp(22px,2.6vw,30px)">Trọn bộ trời bay &amp; đường chạy</h2>
+      </div>
+    </div>
+    <div class="bento rv" id="bento"></div>
+  </div>
+</section>
+
+<!-- ================= COMBO PIN & BO DOI BAI ================= -->
+<section class="sec" id="pin">
+  <div class="container">
+    <div class="sec-head rv">
+      <span class="kicker">Combo trọn gói</span>
+      <h2>Pin là hơi thở của flycam — mua bộ rẻ hơn lẻ</h2>
+      <span class="sub">Chọn bộ theo nhu cầu: pin bay dài cho người chụp, hoặc bộ ba đồ chơi cho cả nhà mỗi cuối tuần. Giao kèm máy trong ngày.</span>
+    </div>
+    <div class="combo-tabs rv" role="tablist">
+      <button class="combo-tab on" data-combo="c1" role="tab">Bộ pin du lịch — bay dài</button>
+      <button class="combo-tab" data-combo="c2" role="tab">Bộ ba cuối tuần cho bé</button>
+    </div>
+    <div class="combo-pane on" id="c1">
+      <div class="combo-grid">
+        <div class="combo-info">
+          <h3>Bộ pin du lịch — 3 pin + hub sạc</h3>
+          <span class="csub">Tổng ~90 phút bay cho một buổi chụp bình minh</span>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>3 pin chính hãng + hub sạc 3 pin cùng lúc</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Túi chống shock đựng gọn cùng flycam</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 bộ 4 cánh quạt dự phòng + vít thay</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Giảm thêm 15% khi mua kèm flycam tại quầy</li>
+          </ul>
+          <div class="combo-price"><span class="now">1.290.000đ</span><span class="old">1.590.000đ</span></div>
+          <span class="combo-save">Tiết kiệm 300.000đ (-19%)</span>
+          <button class="btn btn-a combo-add" data-name="Bộ pin du lịch — 3 pin + hub sạc" data-price="1290000" data-img="p7">Thêm cả bộ vào giỏ</button>
+          <span class="combo-note">Pin chuẩn dưới 100Wh — mang lên máy bay được</span>
+        </div>
+        <div class="combo-gallery">
+          <figure class="cg-item"><span class="cg-badge">3 món</span><img src="assets/img/p7.webp" alt="Bộ 3 pin và hub sạc nhanh cho flycam" width="400" height="225" loading="lazy"><figcaption class="cg-name">3 pin + hub sạc nhanh + túi chống shock</figcaption></figure>
+          <figure class="cg-item"><span class="cg-badge">1 món</span><img src="assets/img/p1.webp" alt="Flycam mini dùng kèm bộ pin" width="400" height="225" loading="lazy"><figcaption class="cg-name">Hợp flycam mini &amp; phổ thông 2K-4K</figcaption></figure>
+          <figure class="cg-item"><span class="cg-badge">1 món</span><img src="assets/img/p2.webp" alt="Flycam 4K dùng kèm bộ pin" width="400" height="225" loading="lazy"><figcaption class="cg-name">Dùng được cho flycam 4K Pro</figcaption></figure>
+          <figure class="cg-item" style="display:grid;place-items:center;background:var(--texture)"><div style="text-align:center;padding:16px"><b style="color:var(--primary);font-size:15px;display:block">Cả bộ = 1.290.000đ</b><span class="sub" style="font-size:12.5px;color:var(--soft)">Mua lẻ 1.590.000đ — tiết kiệm 300.000đ</span></div></figure>
+        </div>
+      </div>
+    </div>
+    <div class="combo-pane" id="c2">
+      <div class="combo-grid">
+        <div class="combo-info">
+          <h3>Bộ ba cuối tuần cho bé — xe + tàu + máy bay</h3>
+          <span class="csub">Mỗi bé một món, cả nhà cùng ra sân</span>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Xe địa hình RockCrawler 1:10 leo dốc 45°</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ca nô WaveFlash lướt nước 25 km/h</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Máy bay SkyCadet cắt cành êm, thân EPO bền</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tặng 1 bộ pin AA sạc được + túi đựng cả bộ</li>
+          </ul>
+          <div class="combo-price"><span class="now">3.890.000đ</span><span class="old">4.370.000đ</span></div>
+          <span class="combo-save">Tiết kiệm 480.000đ (-11%)</span>
+          <button class="btn btn-a combo-add" data-name="Bộ ba cuối tuần cho bé — xe + tàu + máy bay" data-price="3890000" data-img="p4">Thêm cả bộ vào giỏ</button>
+          <span class="combo-note">Góp 0% cho đơn từ 5 triệu — cộng thêm phụ kiện khác</span>
+        </div>
+        <div class="combo-gallery">
+          <figure class="cg-item"><span class="cg-badge">1 món</span><img src="assets/img/p4.webp" alt="Xe địa hình RC cho bé" width="400" height="225" loading="lazy"><figcaption class="cg-name">Xe địa hình RockCrawler 1:10</figcaption></figure>
+          <figure class="cg-item"><span class="cg-badge">1 món</span><img src="assets/img/p5.webp" alt="Ca nô RC cho bé" width="400" height="225" loading="lazy"><figcaption class="cg-name">Ca nô WaveFlash 25 km/h</figcaption></figure>
+          <figure class="cg-item"><span class="cg-badge">1 món</span><img src="assets/img/p6.webp" alt="Máy bay RC nhập môn" width="400" height="225" loading="lazy"><figcaption class="cg-name">Máy bay SkyCadet thân EPO</figcaption></figure>
+          <figure class="cg-item"><span class="cg-badge">quà tặng</span><img src="assets/img/p8.webp" alt="Tay điều khiển RC kèm bộ ba" width="400" height="225" loading="lazy"><figcaption class="cg-name">Tay điều khiển dùng chung cả 3 món</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOC BAY MIEN PHI ================= -->
+<section class="sec hb-sec" id="hocbay">
+  <div class="container">
+    <div class="hb-band rv">
+      <div class="hb-grid">
+        <div>
+          <span class="kicker">Đào tạo lái flycam</span>
+          <h2>Mua flycam tại BayXa — học bay miễn phí cùng HLV</h2>
+          <span class="hsub">Bay lần đầu không cần sợ: có người kèm tay trên tay, sân tập an toàn và máy dự phòng của cửa hàng.</span>
+          <ul class="hb-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>2 buổi kèm HLV nhóm nhỏ (tối đa 5 người)</b> — cất cánh, treo, quay về điểm gốc an toàn.</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Sân tập có lưới an toàn</b> cách cửa hàng 5 phút — rơi không vỡ, tập thoải mái.</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Riêng bé có khu tập mini trong nhà</b> — flycam siêu nhỏ, bố mẹ ngồi cạnh hướng dẫn.</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Hội viên được tập mỗi CN miễn phí</b> — mang máy mình theo hoặc mượn máy tập của cửa hàng.</span></li>
+          </ul>
+          <div class="hb-cta">
+            <a class="btn btn-a" href="tel:0905307207">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Gọi giữ chỗ cuối tuần
+            </a>
+            <a class="btn btn-w" href="#contact">Xem đường tới sân tập</a>
+          </div>
+        </div>
+        <div class="hb-card">
+          <h3>Lịch sân tập tuần này</h3>
+          <span class="hcs">Không cần đăng ký trước — đến giờ là bay</span>
+          <div class="hb-slot"><span class="si">CN<br>15:30</span><div><b>Chủ nhật — lớp người mới &amp; gia đình</b><span class="ss">15:30 – 17:30 · sân tập Sơn Trà · còn 3 chỗ HLV</span></div></div>
+          <div class="hb-slot"><span class="si">T4<br>15:30</span><div><b>Thứ tư — luyện quay bám theo</b><span class="ss">15:30 – 17:30 · sân tập Sơn Trà · lướt chậm, bám theo đối tượng</span></div></div>
+          <div class="hb-slot"><span class="si">CN<br>18:00</span><div><b>Chủ nhật tối — FPV &amp; đường đua</b><span class="ss">18:00 – 19:30 · cho hội đã bay giỏi máy cơ bản</span></div></div>
+          <span class="hb-note">Miễn phí trọn đời cho máy mua tại BayXa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOI ICH NGAN ================= -->
+<section class="sec" style="padding:38px 0"><div class="container"><div class="sec-head" style="margin-bottom:22px"><span class="kicker">Công dụng &amp; lợi ích</span><h2 style="font-size:1.6rem">Khách nhận được gì khi chọn BayXa?</h2></div><div class="benefits"><div class="benefit"><span class="ic">🚁</span><span><b>Học bay miễn phí</b><p>2 buổi kèm HLV, tập mãi mỗi CN</p></span></div><div class="benefit"><span class="ic">🛠️</span><span><b>Sửa chữa 48h</b><p>có máy mượn trong lúc chờ</p></span></div><div class="benefit"><span class="ic">💳</span><span><b>Trả góp 0%</b><p>đơn từ 5 triệu, duyệt 15 phút</p></span></div><div class="benefit"><span class="ic">♻️</span><span><b>Thu cũ +5%</b><p>flycam, xe RC định giá 15 phút</p></span></div></div></div></section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat rv"><span class="num"><span data-cnt="9">0</span><small>+</small></span><span class="lb">Năm bán flycam &amp; RC</span></div>
+      <div class="stat rv" data-d="1"><span class="num"><span data-cnt="18" data-suffix=".000">0</span><small>+</small></span><span class="lb">Máy đã giao &amp; cất cánh</span></div>
+      <div class="stat rv" data-d="2"><span class="num"><span data-cnt="6" data-suffix=".500">0</span><small>+</small></span><span class="lb">Học viên đã ra sân</span></div>
+      <div class="stat rv" data-d="3"><span class="num"><span data-cnt="48">0</span><small> giờ</small></span><span class="lb">Sửa xong — có máy mượn</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALCULATOR: THU CU DOI MOI + TRA GOP 0% ================= -->
+<section class="sec calc-sec" id="tradein">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Công cụ riêng của BayXa</span>
+      <h2>Định giá thu cũ &amp; tính tiền góp — ngay trên web</h2>
+      <span class="sub">Chưa cần mang máy tới: chọn máy cũ, khai tình trạng thật, hệ thống tính giá trừ trực tiếp vào máy mới hoặc cộng tiền mặt.</span>
+    </div>
+    <div class="calc-tabs rv" role="tablist">
+      <button class="calc-tab on" data-pane="tpTrade" role="tab">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.3-6.4L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.3 6.4L3 16"/><path d="M3 21v-5h5"/></svg>
+        Thu cũ flycam &amp; RC
+      </button>
+      <button class="calc-tab" data-pane="tpInst" role="tab">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
+        Mô phỏng trả góp 0%
+      </button>
+    </div>
+
+    <!-- pane thu cu -->
+    <div class="calc-pane on" id="tpTrade">
+      <div class="calc-grid">
+        <form class="calc-form rv" id="tradeForm" onsubmit="return false">
+          <h3>Máy cũ của bạn còn giá bao nhiêu?</h3>
+          <span class="csub">Giá tham khảo chênh lệch thực tế ±5% theo đời máy. Khai thật để nhận đúng giá.</span>
+          <div class="f-row">
+            <label for="oldModel">1 · Máy cũ của bạn</label>
+            <select id="oldModel">
+              <option value="4200000">Flycam mini đời cũ (tương đương DJI Mini)</option>
+              <option value="3500000" selected>Flycam camera 4K đời trước</option>
+              <option value="900000">Xe RC địa hình 1:10 cũ</option>
+              <option value="1800000">Máy bay RC động cơ oil cũ</option>
+              <option value="800000">Tay điều khiển RC cũ</option>
+            </select>
+          </div>
+          <label style="display:block;font-size:13px;font-weight:800;color:#C9DFF5;margin-bottom:7px">2 · Tình trạng thật của máy</label>
+          <div class="cond-grid">
+            <div class="f-row">
+              <label for="condBody">Thân máy &amp; cánh quạt</label>
+              <select id="condBody">
+                <option value="1">Nguyên vẹn, không nứt — 100%</option>
+                <option value="0.92">Trầy xước nhẹ — −8%</option>
+                <option value="0.7">Rơi gãy khung / lỗi trục — −30%</option>
+              </select>
+            </div>
+            <div class="f-row">
+              <label for="condBatt">Pin</label>
+              <select id="condBatt">
+                <option value="1">Pin trên 80% sức khỏe — 100%</option>
+                <option value="0.9">Pin 60–80% — −10%</option>
+                <option value="0.78">Pin dưới 60% / chai — −22%</option>
+              </select>
+            </div>
+            <div class="f-row">
+              <label for="condKit">Tay điều khiển &amp; hộp</label>
+              <select id="condKit">
+                <option value="1">Nguyên bộ kèm hộp — 100%</option>
+                <option value="0.94">Thiếu phụ kiện nhỏ — −6%</option>
+                <option value="0.85">Thiếu tay điều khiển / hộp — −15%</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-row" style="margin-top:16px">
+            <label for="newModel">3 · Máy mới muốn đổi sang</label>
+            <select id="newModel">
+              <option value="8990000" data-n="Flycam SkyView 4K Pro">Flycam SkyView 4K Pro — 8.990.000đ</option>
+              <option value="1990000" data-n="Flycam Mini AeroDart">Flycam Mini AeroDart — 1.990.000đ</option>
+              <option value="6490000" data-n="Drone đua FPV VoltBlade">Drone đua FPV VoltBlade 5" — 6.490.000đ</option>
+              <option value="1490000" data-n="Bộ 3 pin + hub sạc">Bộ 3 pin + hub sạc — 1.490.000đ</option>
+            </select>
+          </div>
+          <button class="btn btn-a" type="button" id="tradeGo">Chốt giá thu cũ — giữ giá 48 giờ</button>
+        </form>
+        <div class="calc-result rv" data-d="1">
+          <h4><span class="live"></span>Kết quả định giá</h4>
+          <div class="cr-rows" id="tradeOut">
+            <div class="cr-empty">Chọn máy cũ + tình trạng để xem giá trừ vào máy mới. Đơn giá cập nhật theo thị trường tuần này.</div>
+          </div>
+          <div class="cr-tier">Trợ giá đổi máy <b>+5%</b> trên giá thu — chỉ áp dụng khi mua máy mới tại BayXa.</div>
+          <button class="btn btn-d" id="tradeLock">Khoá giá — mang máy tới cửa hàng trong 48h</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- pane tra gop -->
+    <div class="calc-pane" id="tpInst">
+      <div class="calc-grid">
+        <form class="calc-form rv" onsubmit="return false">
+          <h3>Máy mới trả trước bao nhiêu, góp mấy tháng?</h3>
+          <span class="csub">Lãi suất 0% qua thẻ tín dụng &amp; tài chính đối tác — phí chuyển đổi 0đ.</span>
+          <div class="f-row">
+            <label for="instModel">Chọn máy mới</label>
+            <select id="instModel">
+              <option value="8990000" data-n="Flycam SkyView 4K Pro">Flycam SkyView 4K Pro — 8.990.000đ</option>
+              <option value="6490000" data-n="Drone đua FPV VoltBlade">Drone đua FPV VoltBlade 5" — 6.490.000đ</option>
+              <option value="3890000" data-n="Bộ ba cuối tuần cho bé">Bộ ba cuối tuần cho bé — 3.890.000đ</option>
+            </select>
+          </div>
+          <div class="f-2">
+            <div class="f-row">
+              <label for="instDown">Trả trước</label>
+              <select id="instDown">
+                <option value="0" selected>0% — góp toàn bộ</option>
+                <option value="0.1">10%</option>
+                <option value="0.2">20%</option>
+                <option value="0.3">30%</option>
+              </select>
+            </div>
+            <div class="f-row">
+              <label for="instTerm">Kỳ hạn</label>
+              <select id="instTerm">
+                <option value="6">6 tháng</option>
+                <option value="9" selected>9 tháng</option>
+                <option value="12">12 tháng</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-a" type="button" id="instGo">Tính tiền góp mỗi tháng</button>
+        </form>
+        <div class="calc-result rv" data-d="1">
+          <h4><span class="live"></span>Lịch góp dự kiến</h4>
+          <div class="cr-rows" id="instOut">
+            <div class="cr-empty">Chọn máy + kỳ hạn để xem số tiền trả mỗi tháng. Hồ sơ gồm CCCD + thẻ tín dụng.</div>
+          </div>
+          <div class="cr-tier">Duyệt hồ sơ <b>trong 15 phút</b> tại quầy — không cần chứng minh thu nhập với hạn mức dưới 15 triệu.</div>
+          <button class="btn btn-d" id="instBook">Gọi duyệt góp — xác nhận sau 15 phút</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SO SANH 3 FLYCAM ================= -->
+<section class="sec" id="compare">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Chọn không khổ</span>
+      <h2>So sánh 3 flycam bán chạy tuần này</h2>
+      <span class="sub">Bấm bật/tắt từng dòng thông số để so đúng thứ bạn quan tâm: camera, thời gian bay, tầm điều khiển.</span>
+    </div>
+    <div class="cmp-wrap rv">
+      <div class="cmp-top">
+        <span class="t">Bảng so sánh thông số</span>
+        <div class="cmp-chips" id="cmpChips"></div>
+      </div>
+      <div class="cmp-scroll"><table class="cmp-table" id="cmpTable"></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-vis rv">
+        <div class="about-exp"><span class="tt">9+ năm</span><span class="sub">bán flycam &amp; RC</span></div>
+        <div class="big"><img src="assets/img/space.webp" alt="Không gian trưng bày flycam và đồ chơi điều khiển tại BayXa" width="640" height="427" loading="lazy"></div>
+        <div class="mini"><img src="assets/img/intro.webp" alt="Nhân viên tư vấn flycam cho khách tại cửa hàng BayXa" width="320" height="240" loading="lazy"></div>
+      </div>
+      <div class="rv" data-d="1">
+        <span class="kicker">Về BayXa</span>
+        <h2 style="font-size:clamp(24px,3vw,34px);font-weight:900;color:var(--primary)">Cửa hàng của người mê bay, hội RC &amp; các gia đình</h2>
+        <span class="sub" style="color:var(--soft);font-size:15.5px;margin-top:10px">BayXa mở cửa từ 2017 tại Hải Châu, Đà Nẵng — bán flycam, xe tàu RC và máy bay mô hình chính hãng. Mua máy ở đây là có người dạy bay tới khi tự tin cầm tay điều khiển, có nơi sửa chữa khi rơi rớt, và có sân tập mỗi cuối tuần.</span>
+        <div class="strengths">
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7.5 12 12l8-4.5L12 3z"/><path d="M4 7.5V12c0 4 3.4 7.4 8 8 4.6-.6 8-4 8-8V7.5"/></svg></span>
+            <h4>Test bay trước khi mua</h4>
+            <p>Sàn bay an toàn ngay trong cửa hàng — bay thử thật máy thật, không chỉ bật nguồn cho xem.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a5 5 0 0 0-7.07 7.07l-4.3 4.3a1.5 1.5 0 0 0 2.12 2.12l4.3-4.3a5 5 0 0 0 7.07-7.07l-2.83 2.83-2.12-2.12 2.83-2.83z"/></svg></span>
+            <h4>Sửa chữa 48h — có máy mượn</h4>
+            <p>Kỹ thuật riêng cho flycam &amp; RC. Máy phải nằm chờ linh kiện thì cho mượn máy khác miễn phí.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <h4>Trả góp 0% từ 5 triệu</h4>
+            <p>CCCD + thẻ tín dụng, duyệt trong 15 phút. Tổng trả lại đúng bằng giá máy, không phí ẩn.</p>
+          </div>
+          <div class="stg">
+            <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.3-6.4L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.3 6.4L3 16"/><path d="M3 21v-5h5"/></svg></span>
+            <h4>Thu cũ flycam &amp; RC +5%</h4>
+            <p>Định giá 15 phút, cộng thêm 5% khi đổi sang máy mới. Máy cũ nứt khung vẫn thu.</p>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-a" href="#contact">Ghé cửa hàng — mở cửa đến 21:30</a>
+          <a class="btn btn-n" href="tel:0905307207">Gọi tư vấn 0905 307 207</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUY TRINH 4 BUOC ================= -->
+<section class="sec sec-tex">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Quy trình</span>
+      <h2>Từ chọn máy đến tự tin bay — gọn trong 1 tuần</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="sn">1</span><h4>Chọn máy &amp; test bay tại quầy</h4><p>Tư vấn theo mục đích thật — quay phim, cho bé hay đua FPV. Bay thử máy thật trong sàn an toàn.</p><span class="meta">khoảng 20 phút</span></div>
+      <div class="step rv" data-d="1"><span class="sn">2</span><h4>Thanh toán — góp 0% hoặc thu cũ</h4><p>Trả thẳng, góp 0% duyệt 15 phút, hoặc trừ giá máy cũ ngay tại quầy (+5% trợ giá).</p><span class="meta">5–15 phút</span></div>
+      <div class="step rv" data-d="2"><span class="sn">3</span><h4>Cài đặt &amp; hiệu chỉnh kèm theo máy</h4><p>Kết nối app, cập nhật firmware, hiệu chỉnh la bàn &amp; máy ảnh, gắn bảo vệ cánh quạt — làm sẵn trước khi giao.</p><span class="meta">làm sẵn tại quầy</span></div>
+      <div class="step rv" data-d="3"><span class="sn">4</span><h4>Học bay miễn phí &amp; bảo hành 12 tháng</h4><p>2 buổi kèm HLV tại sân, tập thêm mỗi CN. Rơi rớt đem về — sửa trong 48h, có máy mượn.</p><span class="meta">trọn đời hội viên</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANG THONG SO CHUYEN MON ================= -->
+<section class="sec" id="specs">
+  <div class="container">
+    <div class="sec-head rv">
+      <span class="kicker">Kiến thức chọn máy</span>
+      <h2>3 nhóm thông số cần nhìn trước khi trả tiền</h2>
+      <span class="sub">Kỹ thuật viên BayXa tổng hợp — đọc 2 phút, tránh mua sai máy phải đổi sau này.</span>
+    </div>
+    <div class="spec-tabs rv" role="tablist">
+      <button class="spec-tab on" data-spec="s1" role="tab">Camera &amp; gimbal</button>
+      <button class="spec-tab" data-spec="s2" role="tab">Pin &amp; thời gian bay</button>
+      <button class="spec-tab" data-spec="s3" role="tab">Tần số &amp; tầm điều khiển</button>
+    </div>
+    <div class="spec-pane on" id="s1">
+      <div class="spec-table-wrap">
+        <table class="spec-table">
+          <thead><tr><th>Chỉ số</th><th>Mức phổ biến 2024–2026</th><th>Ghi chú khi mua</th></tr></thead>
+          <tbody>
+            <tr><td>Cảm biến ảnh</td><td>1/2.3" – 1 inch</td><td>Cảm biến 1 inch cho ảnh tối sạch hơn hẳn — đáng thêm tiền nếu chụp hoàng hôn</td></tr>
+            <tr><td>Chống rung</td><td>Gimbal 3 trục / EIS</td><td>Gimbal cơ học giữ khung mượt khi đổi hướng; EIS crop ảnh và nóng máy</td></tr>
+            <tr><td>Quay video</td><td>4K30 – 4K60</td><td>4K30 đủ du lịch; 4K60 cần nếu hay quay chuyển động nhanh, xả chậm</td></tr>
+            <tr><td>Góc nhìn (FOV)</td><td>75° – 84°</td><td>FOV hẹp tự nhiên hơn cho phim; FPV rộng 150° nhìn ghê nhưng méo</td></tr>
+            <tr><td>Chụp RAW</td><td>Có trên dòng 4K trở lên</td><td>Nếu hậu kỳ màu — bắt buộc RAW, JPEG dừng ở mức chia mạng xã hội</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tips">
+        <div class="tip"><h5>Gimbal cơ học &gt; chống rung điện tử</h5><p>Quay khi bay ngược gió nhẹ: máy EIS rung lộ rõ, gimbal 3 trục gần như phẳng — so thử video trước khi mua.</p></div>
+        <div class="tip"><h5>Xem sample quay ngoài trời thật</h5><p>Video trong nhà luôn đẹp; yêu cầu xem footage bay nắng gắt hoặc chiều tối để đánh giá thật.</p></div>
+        <div class="tip"><h5>Đừng đuổi theo số 8K</h5><p>File 8K nặng, điện thoại yếu không xem nổi — 4K60 vẫn là chuẩn của đa số người quay.</p></div>
+      </div>
+    </div>
+    <div class="spec-pane" id="s2">
+      <div class="spec-table-wrap">
+        <table class="spec-table">
+          <thead><tr><th>Chỉ số</th><th>Mức phổ biến 2024–2026</th><th>Ghi chú khi mua</th></tr></thead>
+          <tbody>
+            <tr><td>Thời gian bay</td><td>12 – 34 phút</td><td>Số hiệu thật thường giảm 20–25% khi quay 4K và có gió — tính dự phòng</td></tr>
+            <tr><td>Dung lượng pin</td><td>1.500 – 5.000 mAh</td><td>Xem Wh (watt-giờ) quan trọng hơn mAh khi mang lên máy bay</td></tr>
+            <tr><td>Quy định hàng không</td><td>Pin ≤ 100Wh</td><td>Đa số pin flycam 30–60 Wh — được mang 3–5 pin/túi chống cháy theo quy định</td></tr>
+            <tr><td>Chu kỳ sạc</td><td>200 – 300 chu kỳ</td><td>Sau mốc này pin còn ~80% sức — mua pin lô cũ cần xem ngày sản xuất</td></tr>
+            <tr><td>Hub sạc nhiều pin</td><td>2 – 6 pin/lượt</td><td>Đi biển, đi đảo nên có hub — sạc 3 pin qua đêm, sáng bay cả buổi</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tips">
+        <div class="tip"><h5>Mua ngay bộ 3 pin thay vì 1</h5><p>15 phút một pin là không đủ cho một buổi chụp — combo 3 pin + hub của BayXa rẻ hơn lẻ 19%.</p></div>
+        <div class="tip"><h5>Nghỉ pin sau mỗi lần bay</h5><p>Sạc ngay khi pin còn nóng làm chai nhanh — để nguội 15 phút rồi mới cắm sạc.</p></div>
+        <div class="tip"><h5>Giữ pin 50–60% khi trữ dài ngày</h5><p>Sạc đầy để cả tháng làm pin phồng — pin thông minh tự xả về mức an toàn, pin thường thì bạn tự làm.</p></div>
+      </div>
+    </div>
+    <div class="spec-pane" id="s3">
+      <div class="spec-table-wrap">
+        <table class="spec-table">
+          <thead><tr><th>Chỉ số</th><th>Mức phổ biến 2024–2026</th><th>Ghi chú khi mua</th></tr></thead>
+          <tbody>
+            <tr><td>Băng tần</td><td>2.4GHz / 5.8GHz</td><td>2.4GHz xuyên vật cản tốt; 5.8GHz hình ảnh mượt hơn ở khoảng cách xa</td></tr>
+            <tr><td>Tầm điều khiển</td><td>50m – 10km</td><td>Máy bé giới hạn 30m an toàn cho trẻ; máy 4K tầm vài km nhưng luật chỉ cho bay trong tầm nhìn</td></tr>
+            <tr><td>Truyền hình ảnh</td><td>30 – 60 fps</td><td>FPV cần độ trễ thấp dưới 40ms — cao hơn sẽ khó xử lý khi đua</td></tr>
+            <tr><td>GPS &amp; hồi về</td><td>GPS / GPS+GLONASS</td><td>RTH (tự bay về điểm cất cánh) là tính năng cứu cánh cho người mới</td></tr>
+            <tr><td>Giới hạn vùng bay</td><td>Geo-fence có thể đặt</td><td>Vẽ vùng bay 30m quanh sân nhà — máy bé không bay lạc được</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tips">
+        <div class="tip"><h5>Bay dưới 120m, xa sân bay</h5><p>Quy định hiện hành: không quá 120m, tránh vùng cấm gần sân bay &amp; khu đông dân — nhân viên BayXa dặn kỹ khi giao máy.</p></div>
+        <div class="tip"><h5>Luôn bay trong tầm nhìn</h5><p>Máy có tầm 10km không nghĩa là được bay 10km — mất tầm nhìn là rủi ro rơi và vi phạm.</p></div>
+        <div class="tip"><h5>Thử RTH ngay buổi đầu</h5><p>Tại sân tập, HLV sẽ cho máy tự bay về điểm gốc để bạn tin tính năng này trước khi bay xa.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOCIAL PROOF ================= -->
+<section class="sec">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Khách hàng nói gì</span>
+      <h2>5 nhận xét từ người đã bay &amp; chạy</h2>
+    </div>
+    <div class="proof-grid rv">
+      <div class="proof-main">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-quote" id="proofQuote"></div>
+        <div class="proof-who">
+          <span class="av" id="proofAv">T</span>
+          <div><span class="tt" id="proofName"></span><span class="sub" id="proofMeta"></span></div>
+        </div>
+        <div class="proof-dots" id="proofDots"></div>
+      </div>
+      <div class="proof-side">
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><span class="tt">2 buổi học bay miễn phí mỗi máy</span><span class="sub">HLV kèm nhóm nhỏ tối đa 5 người</span></div>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><span class="tt">Tỷ lệ sửa quá 48h: dưới 4%</span><span class="sub">linh kiện flycam &amp; RC luôn có sẵn ở quầy</span></div>
+        </div>
+        <div class="proof-metric">
+          <span class="mi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.3-6.4L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.3 6.4L3 16"/><path d="M3 21v-5h5"/></svg></span>
+          <div><span class="tt">1.200+ máy thu cũ đổi mới</span><span class="sub">trong 12 tháng vừa qua</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="partner-row rv">
+      <span class="lb">Đối tác trả góp &amp; bảo hành</span>
+      <div class="partner-chips">
+        <span>TPBank</span><span>MCredit</span><span>FE Credit</span><span>ACB</span><span>Ok Credit</span><span>Trung tâm bảo hành uỷ quyền</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIEN HE + MAP + FORM ================= -->
+<section class="sec contact-sec" id="contact">
+  <div class="container">
+    <div class="sec-head center rv" style="color:#fff">
+      <span class="kicker" style="color:var(--accent)">Liên hệ</span>
+      <h2 style="color:#fff">Ghé cửa hàng hoặc gửi yêu cầu — phản hồi trong 30 phút</h2>
+      <span class="sub" style="color:#C9DFF5">Cần tư vấn chọn máy, xin giá thu cũ hay hỏi lịch sân tập — để lại thông tin, nhân viên gọi lại trong 30 phút.</span>
+    </div>
+    <div class="contact-grid">
+      <div class="rv">
+        <div class="map-card">
+          <iframe src="https://www.google.com/maps?q=16.0326,108.2210&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng BayXa" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-dir" href="https://www.google.com/maps/dir/?api=1&destination=16.0326,108.2210" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-8-8 19-2.5-8.5L3 11z"/></svg>
+            Chỉ đường tới cửa hàng
+          </a>
+        </div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><b>46 Đường 2/9, P. Hòa Cường Bắc, Hải Châu, Đà Nẵng</b> — có chỗ đậu xe hơi</span>
+          </div>
+          <div class="contact-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span><b>Mở cửa 8:30 – 21:30</b> tất cả các ngày — sân tập CN &amp; T4 chiều</span>
+          </div>
+          <div class="contact-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Hotline / Zalo: <b>0905 307 207</b> — nhấc máy trong 1 hồi chuông giờ mở cửa</span>
+          </div>
+        </div>
+      </div>
+      <form class="gform rv" data-d="1" id="leadForm" onsubmit="return false" novalidate>
+        <h3>Gửi yêu cầu — gọi lại trong 30 phút</h3>
+        <span class="csub">Điền 4 dòng ngắn, nhận tư vấn chọn máy hoặc báo giá thu cũ. Không spam, không gọi chào hàng.</span>
+        <div class="f-2">
+          <div class="f-row"><input type="text" id="lfName" placeholder="Họ và tên *" required></div>
+          <div class="f-row"><input type="tel" id="lfPhone" placeholder="Số điện thoại *" required></div>
+        </div>
+        <div class="f-2">
+          <div class="f-row">
+            <select id="lfTopic">
+              <option value="">Bạn quan tâm điều gì? *</option>
+              <option>Flycam quay phim du lịch</option>
+              <option>Flycam / đồ chơi cho bé</option>
+              <option>Drone đua FPV &amp; độ máy</option>
+              <option>Thu cũ máy đang có</option>
+              <option>Sửa chữa / cho thuê quay sự kiện</option>
+            </select>
+          </div>
+          <div class="f-row">
+            <select id="lfBudget">
+              <option value="">Ngân sách</option>
+              <option>Dưới 2 triệu</option>
+              <option>2 – 5 triệu</option>
+              <option>5 – 10 triệu</option>
+              <option>Trên 10 triệu</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-row"><textarea id="lfNote" placeholder="Ghi chú thêm: máy đang dùng, mục đích bay, lịch rảnh để nhận cuộc gọi…"></textarea></div>
+        <button class="btn btn-a" type="submit" id="lfSubmit">Nhận tư vấn trong 30 phút</button>
+        <span class="secure">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Thông tin chỉ dùng để tư vấn — không chia sẻ cho bên thứ ba.
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="container">
+    <div class="sec-head center rv">
+      <span class="kicker">Hỏi đáp nhanh</span>
+      <h2>7 câu khách hỏi nhiều nhất</h2>
+    </div>
+    <div class="faq-wrap rv">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm câu hỏi: học bay, pin, thu cũ, bảo hành, giao hàng…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="faq-chip" data-k="học bay">học bay</button>
+          <button class="faq-chip" data-k="pin">pin</button>
+          <button class="faq-chip" data-k="trả góp">trả góp</button>
+          <button class="faq-chip" data-k="thu cũ">thu cũ</button>
+          <button class="faq-chip" data-k="bảo hành">bảo hành</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER GON ================= -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFB44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.6"/><circle cx="19" cy="5" r="2.6"/><circle cx="5" cy="19" r="2.6"/><circle cx="19" cy="19" r="2.6"/><path d="M7 7l10 10M17 7 7 17"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.5"/></svg>
+          </span>
+          <span class="logo-txt"><span class="tt">BayXa</span><span class="sub">Flycam &amp; RC · Chính hãng</span></span>
+        </a>
+        <p>Cửa hàng flycam &amp; đồ chơi điều khiển từ 2017 — mua máy, dạy bay, sửa chữa và cho thuê quay sự kiện tại Đà Nẵng.</p>
+        <div class="ft-social">
+          <a href="#hero" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#hero" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 20l1-4.1A8.2 8.2 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4Z"/></svg></a>
+          <a href="#hero" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4c.6 2.5 2.5 4.4 5 5"/></svg></a>
+          <a href="#hero" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Link nhanh</h5>
+        <ul class="ft-links">
+          <li><a href="#purpose">Chọn flycam theo mục đích</a></li>
+          <li><a href="#products">8 mặt hàng đang có</a></li>
+          <li><a href="#pin">Combo pin &amp; cánh quạt</a></li>
+          <li><a href="#hocbay">Sân tập &amp; học bay miễn phí</a></li>
+          <li><a href="#tradein">Thu cũ &amp; trả góp 0%</a></li>
+          <li><a href="#faq">Hỏi đáp nhanh</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Cửa hàng BayXa</h5>
+        <ul class="ft-contact">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span><b>46 Đường 2/9, P. Hòa Cường Bắc, Hải Châu, Đà Nẵng</b></span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><b>0905 307 207</b> — Zalo &amp; gọi ngay</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>8:30 – 21:30 tất cả các ngày</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-pay">
+      <div class="pay-chips">
+        <span>VISA</span><span>Mastercard</span><span>MoMo</span><span>ZaloPay</span><span>VNPay</span><span>Trả góp 0%</span><span>COD toàn quốc</span>
+      </div>
+      <span class="ft-copy">© 2026 BayXa — GPKD số 0408xxxxxx cấp bởi Sở KHĐT Đà Nẵng</span>
+    </div>
+    <div class="ft-bot">Cam kết của chúng tôi: <b>test bay trước khi mua · học bay miễn phí 2 buổi · sửa chữa 48h có máy mượn</b></div>
+  </div>
+</footer>
+
+<!-- ================= FAB DOCK ================= -->
+<div class="dock" id="dock">
+  <a class="dk-main" href="tel:0905307207" aria-label="Gọi ngay">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="dk-lb">Gọi 0905 307 207</span>
+  </a>
+  <a href="#contact" aria-label="Zalo tư vấn">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 20l1-4.1A8.2 8.2 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4Z"/></svg>
+    <span class="dk-lb">Chat Zalo tư vấn</span>
+  </a>
+  <a href="#hocbay" aria-label="Học bay miễn phí">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7.5 12 12l8-4.5L12 3z"/><path d="M4 7.5V12c0 4 3.4 7.4 8 8 4.6-.6 8-4 8-8V7.5"/></svg>
+    <span class="dk-lb">Học bay miễn phí</span>
+  </a>
+  <button class="dk" id="btnCartDock" aria-label="Giỏ hàng">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+    <span class="d-badge" id="cartCountDock">0</span>
+    <span class="dk-lb">Giỏ hàng của bạn</span>
+  </button>
+  <button class="dk" id="btnTop" aria-label="Lên đầu trang">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    <span class="dk-lb">Lên đầu trang</span>
+  </button>
+</div>
+
+<!-- ================= OVERLAY + CART DRAWER ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg>
+    <h3>Giỏ hàng</h3>
+    <button class="dr-close" id="drClose" aria-label="Đóng">✕</button>
+  </div>
+  <div class="dr-tier">
+    <div class="t"><span id="tierNow">Mức Lẻ — chưa giảm</span><b id="tierNext">Còn 1.500.000đ → Phi công -3%</b></div>
+    <div class="dr-bar"><i id="tierBar" style="width:0%"></i></div>
+  </div>
+  <div class="dr-items" id="drItems"></div>
+  <div class="dr-foot">
+    <div class="dr-line"><span>Tạm tính</span><span id="drSub">0đ</span></div>
+    <div class="dr-line disc"><span>Giảm theo mức đơn</span><span id="drDisc">0đ</span></div>
+    <div class="dr-total"><span class="lb">Tổng thanh toán</span><span class="v" id="drTotal">0đ</span></div>
+    <button class="btn btn-a" id="btnCheckout">Đặt giữ máy — xác nhận sau 15 phút</button>
+    <span class="dr-note">Không cần thanh toán trước · Giữ máy 24h · Test bay tại cửa hàng trước khi nhận</span>
+  </div>
+</aside>
+
+<!-- ================= QUICK VIEW MODAL ================= -->
+<div class="modal" id="qvm" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="mv-media">
+      <span class="mv-tag" id="mvTag"></span>
+      <button class="mv-close" id="mvClose" aria-label="Đóng">✕</button>
+      <img id="mvImg" src="assets/img/p1.webp" alt="Xem nhanh sản phẩm" width="760" height="428">
+    </div>
+    <div class="mv-body">
+      <span class="mv-cat" id="mvCat"></span>
+      <h3 id="mvName"></h3>
+      <p class="desc" id="mvDesc"></p>
+      <div class="mv-grid">
+        <div>
+          <table class="tier-table" id="mvTier"></table>
+        </div>
+        <div class="mv-right">
+          <div class="mv-qty">
+            <span style="font-size:13px;font-weight:800;color:var(--soft)">Số lượng</span>
+            <div class="qty">
+              <button id="mvMinus" aria-label="Giảm">−</button>
+              <b id="mvQtyN">1</b>
+              <button id="mvPlus" aria-label="Tăng">+</button>
+            </div>
+          </div>
+          <div class="mv-sum"><span class="lb">Thành tiền</span><span class="v" id="mvSum">0đ</span></div>
+          <div class="mv-acts">
+            <button class="btn btn-a" id="mvAdd">Thêm vào giỏ</button>
+            <button class="btn btn-d" id="mvBuy">Đặt ngay — giữ máy 24h</button>
+          </div>
+        </div>
+      </div>
+      <div class="mv-meta">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7.5 12 12l8-4.5L12 3z"/><path d="M4 7.5V12c0 4 3.4 7.4 8 8 4.6-.6 8-4 8-8V7.5"/></svg>Kèm 2 buổi học bay miễn phí</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.3-6.4L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.3 6.4L3 16"/><path d="M3 21v-5h5"/></svg>Bảo hành 12 tháng · đổi 7 ngày</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Hóa đơn VAT</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast"></div>
+
+<script>
+/*NB93-207: data + logic gio hang (dang A = ORDER)*/
+var P=[
+ {id:'p1',img:'p1',cat:'Flycam mini',name:'Flycam Mini AeroDart — cho người mới & bé 6+',price:1990000,old:2490000,kind:'drone',tag:'Dễ bay nhất'},
+ {id:'p2',img:'p2',cat:'Flycam quay phim',name:'Flycam SkyView 4K Pro — gimbal 3 trục, bay 28 phút',price:8990000,old:10990000,kind:'drone',tag:'Nổi bật nhất'},
+ {id:'p3',img:'p3',cat:'Drone đua FPV',name:'Drone đua FPV VoltBlade 5" — 120 km/h',price:6490000,old:7290000,kind:'drone',tag:'Hội đua săn lùng'},
+ {id:'p4',img:'p4',cat:'Xe điều khiển',name:'Xe địa hình RC RockCrawler 1:10 — leo dốc 45°',price:1690000,old:1990000,kind:'rc',tag:'Chơi bền'},
+ {id:'p5',img:'p5',cat:'Tàu - ca nô RC',name:'Ca nô đua RC WaveFlash — lướt nước 25 km/h',price:1190000,old:1450000,kind:'rc',tag:'Món quà hè'},
+ {id:'p6',img:'p6',cat:'Máy bay RC',name:'Máy bay RC SkyCadet — cắt cành êm, thân EPO',price:1490000,old:1790000,kind:'rc',tag:'Nhập môn mô hình'},
+ {id:'p7',img:'p7',cat:'Pin & phụ kiện',name:'Bộ 3 pin + hub sạc nhanh cho flycam phổ thông',price:1490000,old:1890000,kind:'acc',tag:'Bay dài thêm',tier:[1390000,1290000,1190000]},
+ {id:'p8',img:'p8',cat:'Tay điều khiển',name:'Tay điều khiển RC 10 kênh — kết nối đa giao thức',price:2190000,old:2490000,kind:'acc',tag:'Chuẩn hội RC',tier:[2090000,1990000,1890000]}
+];
+var CHECK='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+var EYE='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+var PLUS='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>';
+function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+function round1k(n){return Math.round(n/1000)*1000}
+function tierTxtOf(p){
+  if(p.kind==='drone')return 'Kèm 2 buổi học bay miễn phí';
+  if(p.kind==='rc')return 'Đổi mới 7 ngày · bảo hành 12 tháng';
+  return 'Mua kèm máy giảm thêm 10% tại quầy';
+}
+function descOf(p){
+  if(p.kind==='drone')return 'Chính hãng, kèm 2 buổi học bay miễn phí với HLV tại sân. Hiệu chỉnh la bàn, firmware và gắn bảo vệ cánh quạt trước khi giao.';
+  if(p.kind==='rc')return 'Pin kèm trong hộp, bảo hành 12 tháng. Test chạy thật tại cửa hàng trước khi thanh toán, đổi mới trong 7 ngày.';
+  return 'Hàng chính hãng. Mua kèm máy bay/xe RC được giảm thêm 10% tại quầy và lắp thử miễn phí.';
+}
+
+/* ================= TOAST: title + message 2 phan tu rieng ================= */
+function toast(title,msg){
+  var box=document.getElementById('toast');
+  var el=document.createElement('div');el.className='t-item';
+  el.innerHTML='<span class="ti"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx"><b>'+title+'</b>'+msg+'</span>';
+  box.appendChild(el);
+  setTimeout(function(){el.classList.add('out');setTimeout(function(){el.remove()},320)},3400);
+}
+
+/* ================= KHOI-8: BENTO 12 O KIN (feat 2x2 + 7 the + 1 o promo) ================= */
+var bento=document.getElementById('bento');
+function cardHtml(p){
+  return '<div class="p-media">'+
+     '<img src="assets/img/'+p.img+'.webp" alt="'+p.name+'" width="480" height="360" loading="lazy">'+
+     '<span class="p-tag">'+p.tag+'</span>'+
+     '<span class="p-cat">'+p.cat+'</span>'+
+     '<div class="p-qa">'+
+       '<button class="qa-b" data-view="'+p.id+'" aria-label="Xem nhanh">'+EYE+'</button>'+
+       '<button class="qa-b" data-add="'+p.id+'" aria-label="Thêm giỏ">'+PLUS+'</button>'+
+     '</div>'+
+   '</div>'+
+   '<div class="p-body">'+
+     '<span class="p-name">'+p.name+'</span>'+
+     '<div class="p-price"><span class="now">'+vnd(p.price)+'</span>'+(p.old?'<span class="old">'+vnd(p.old)+'</span>':'')+'</div>'+
+     '<span class="p-tier">'+CHECK+tierTxtOf(p)+'</span>'+
+     '<button class="p-add" data-add="'+p.id+'">Thêm vào giỏ — giữ máy 24h</button>'+
+   '</div>';
+}
+var feat=P[1];
+var featEl=document.createElement('article');
+featEl.className='p-card b-feat';featEl.dataset.name=(feat.name+' '+feat.cat).toLowerCase();
+featEl.innerHTML='<div class="p-media">'+
+     '<img src="assets/img/'+feat.img+'.webp" alt="'+feat.name+'" width="960" height="720" loading="lazy">'+
+     '<span class="p-tag">Nổi bật nhất tuần</span>'+
+     '<span class="p-cat">'+feat.cat+'</span>'+
+     '<div class="p-qa"><button class="qa-b" data-view="'+feat.id+'" aria-label="Xem nhanh">'+EYE+'</button></div>'+
+   '</div>'+
+   '<div class="p-body">'+
+     '<span class="p-name">'+feat.name+'</span>'+
+     '<div class="p-price"><span class="now">'+vnd(feat.price)+'</span><span class="old">'+vnd(feat.old)+'</span></div>'+
+     '<ul>'+
+       '<li>'+CHECK+'Camera 4K + gimbal 3 trục — phim mượt như máy quay</li>'+
+       '<li>'+CHECK+'Bay 28 phút, tầm điều khiển 4 km, tự bay về điểm gốc</li>'+
+       '<li>'+CHECK+'Trả góp 0% chỉ '+vnd(round1k(feat.price/12))+'/tháng × 12 tháng</li>'+
+       '<li>'+CHECK+'Kèm 2 buổi học bay miễn phí + bộ pin du lịch giảm 15%</li>'+
+     '</ul>'+
+     '<div class="feat-acts">'+
+       '<button class="p-add" data-add="'+feat.id+'">Thêm vào giỏ — giữ máy 24h</button>'+
+       '<button class="p-add" data-view="'+feat.id+'" style="background:#fff">Xem chi tiết máy</button>'+
+     '</div>'+
+   '</div>';
+bento.appendChild(featEl);
+P.forEach(function(p){
+  if(p.id===feat.id)return;
+  var el=document.createElement('article');
+  el.className='p-card';el.dataset.name=(p.name+' '+p.cat).toLowerCase();
+  el.innerHTML=cardHtml(p);
+  bento.appendChild(el);
+});
+/* o thu 12: uu dai combo pin — kin o bento*/
+var promo=document.createElement('div');
+promo.className='b-promo';
+promo.innerHTML='<span class="bp-k">Ưu đãi kèm máy</span><span class="big">Combo pin &amp; cánh quạt −15%</span><p>Mua bất kỳ flycam nào — cả bộ 3 pin, hub sạc và cánh quạt dự phòng giảm ngay 15% tại quầy.</p><a class="btn btn-n" href="#pin">Xem combo pin</a>';
+bento.appendChild(promo);
+/* loc tu thanh tim kiem */
+var bentoCount=function(){return bento.querySelectorAll('.p-card:not(.hide)').length};
+bento.addEventListener('click',function(e){
+  var b=e.target.closest('[data-add]');
+  if(b){var p=P.find(function(x){return x.id===b.dataset.add});addToCart(p.name,p.price,p.img);return}
+  var v=e.target.closest('[data-view]');
+  if(v){openQv(P.find(function(x){return x.id===v.dataset.view}))}
+});
+document.querySelectorAll('[data-jump]').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.getElementById('products').scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* ================= DAC THU: CHON THEO MUC DICH ================= */
+var GOALS=[
+ {ic:'🎬',t:'Quay phim du lịch & YouTube',sub:'Phim mượt, giữ màu hoàng hôn',pid:'p2',
+  why:['Camera 4K + gimbal 3 trục chống rung thật — không phải chống rung điện tử','Bay 28 phút, tầm 4 km — đủ trọn một cung quay mà không đổi pin','Trả góp 0% chỉ '+vnd(round1k(8990000/12))+'/tháng × 12 tháng']},
+ {ic:'👶',t:'Con nhỏ bay lần đầu (6–14 tuổi)',sub:'An toàn, một chạm cất cánh',pid:'p1',
+  why:['Một chạm cất/hạ cánh + chế độ treo giữ độ cao cho người chưa từng cầm tay','Khung bao cánh quạt — chạm tường, chạm tay không gãy cánh','Giới hạn vùng bay 30m — máy không thể bay lạc khỏi sân nhà']},
+ {ic:'🏁',t:'Đua FPV & độ máy',sub:'Tốc độ, linh kiện sẵn ở quầy',pid:'p3',
+  why:['Tốc độ tới 120 km/h, chế độ Acro thật thụ cho người đã có căn bản','Linh kiện nâng cấp, cánh quạt, motor thay trong ngày — không đợi hàng về','Kèm đội đua nhà BayXa: tập đường đua mỗi tối chủ nhật']},
+ {ic:'🏕️',t:'Cuối tuần cùng bé trong nhà & sân vườn',sub:'Xe, tàu, máy bay — mỗi bé một món',pid:'p4',
+  why:['Khung kim loại cứng cáp, ngã lộn vẫn chạy — đúng chất đồ chơi cho bé trai','Pin rời mua thêm rẻ, chơi cả ngày không phải chờ sạc','Mua 2 món bất kỳ — món thứ 3 giảm 10% tại quầy']},
+ {ic:'✈️',t:'Bước chân vào mô hình máy bay',sub:'Cắt cành êm, tự sửa được',pid:'p6',
+  why:['Thân EPO nhẹ, va chạm nhẹ không vỡ — dán keo là bay lại được','Tự ổn định trong gió nhẹ, phù hợp tập ngoài trời lần đầu','Cánh quạt, servo, pin luôn sẵn ở quầy — hội mô hình hay ghé']}
+];
+var purList=document.getElementById('purList'),purDetail=document.getElementById('purDetail');
+var purIdx=0;
+function purRender(anim){
+  var g=GOALS[purIdx],p=P.find(function(x){return x.id===g.pid});
+  purList.querySelectorAll('.pur-btn').forEach(function(b,i){b.classList.toggle('on',i===purIdx)});
+  purDetail.innerHTML=
+   '<div class="pur-media'+(anim?' pur-anim':'')+'"><img src="assets/img/'+p.img+'.webp" alt="'+p.name+'" width="480" height="360"><span class="pm-tag">Máy hợp nhất</span></div>'+
+   '<div class="pur-body'+(anim?' pur-anim':'')+'">'+
+     '<span class="pk">Mục đích: '+g.t+'</span>'+
+     '<h3>'+p.name+'</h3>'+
+     '<ul>'+g.why.map(function(w){return '<li>'+CHECK+w+'</li>'}).join('')+'</ul>'+
+     '<div class="pur-price"><span class="now">'+vnd(p.price)+'</span>'+(p.old?'<span class="old">'+vnd(p.old)+'</span>':'')+'</div>'+
+     '<div class="pur-acts">'+
+       '<button class="btn btn-a" data-pur-add="'+p.id+'">Thêm vào giỏ</button>'+
+       '<a class="btn btn-n" href="tel:0905307207">Gọi hỏi thêm</a>'+
+     '</div>'+
+   '</div>';
+}
+GOALS.forEach(function(g,i){
+  var b=document.createElement('button');
+  b.className='pur-btn';b.type='button';
+  b.innerHTML='<span class="pi">'+g.ic+'</span><span><b>'+g.t+'</b><span class="ps">'+g.sub+'</span></span>';
+  b.addEventListener('click',function(){purIdx=i;purRender(true)});
+  purList.appendChild(b);
+});
+purDetail.addEventListener('click',function(e){
+  var b=e.target.closest('[data-pur-add]');if(!b)return;
+  var p=P.find(function(x){return x.id===b.dataset.purAdd});
+  addToCart(p.name,p.price,p.img);
+});
+purRender(false);
+
+/* ================= CART ================= */
+var cart={};
+function cartCount(){var n=0;for(var k in cart)n+=cart[k].qty;return n}
+function cartSub(){var s=0;for(var k in cart)s+=cart[k].price*cart[k].qty;return s}
+var TIERS=[[0,0,'Lẻ'],[1500000,.03,'Phi công'],[3000000,.05,'Phi hành đoàn'],[5000000,.07,'Đại sứ bay']];
+function tierOf(sub){var t=TIERS[0];TIERS.forEach(function(x){if(sub>=x[0])t=x});return t}
+function nextTier(sub){for(var i=0;i<TIERS.length;i++){if(TIERS[i][0]>sub)return TIERS[i]}return null}
+function addToCart(name,price,img,qty){
+  qty=qty||1;
+  if(!cart[name])cart[name]={name:name,price:price,img:img||'p1',qty:0};
+  cart[name].qty+=qty;
+  renderCart();bump();
+  toast('Đã thêm vào giỏ','"'+name+'" đang chờ trong giỏ — giữ máy 24h miễn phí.');
+}
+function bump(){
+  var n=cartCount();
+  document.getElementById('cartCountTop').textContent=n;
+  document.getElementById('cartCountDock').textContent=n;
+}
+function renderCart(){
+  var box=document.getElementById('drItems');box.innerHTML='';
+  var keys=Object.keys(cart);
+  if(!keys.length){box.innerHTML='<div class="dr-empty">Giỏ đang trống. Thêm flycam, xe RC hoặc bộ pin — giữ máy 24h miễn phí.</div>'}
+  keys.forEach(function(k){
+    var it=cart[k];
+    var d=document.createElement('div');d.className='dr-item';
+    d.innerHTML='<img src="assets/img/'+it.img+'.webp" alt="" width="64" height="52">'+
+      '<div><span class="nm">'+it.name+'</span><span class="pr">'+vnd(it.price)+'</span>'+
+      '<div class="qty"><button data-dec="'+k+'">−</button><b>'+it.qty+'</b><button data-inc="'+k+'">+</button></div></div>'+
+      '<div style="text-align:right"><button class="dr-rm" data-rm="'+k+'">Xoá</button></div>';
+    box.appendChild(d);
+  });
+  var sub=cartSub(),t=tierOf(sub),disc=Math.round(sub*t[1]),total=sub-disc;
+  document.getElementById('drSub').textContent=vnd(sub);
+  document.getElementById('drDisc').textContent='−'+vnd(disc);
+  document.getElementById('drTotal').textContent=vnd(total);
+  document.getElementById('tierNow').textContent='Mức '+t[2]+(t[1]?(' — giảm '+Math.round(t[1]*100)+'%'):' — chưa giảm');
+  var nx=nextTier(sub);
+  if(nx){
+    document.getElementById('tierNext').textContent='Còn '+vnd(nx[0]-sub)+' → '+nx[2]+' -'+Math.round(nx[1]*100)+'%';
+    document.getElementById('tierBar').style.width=Math.min(100,sub/nx[0]*100)+'%';
+  }else{
+    document.getElementById('tierNext').textContent='Đã đạt mức tối đa Đại sứ bay -7%';
+    document.getElementById('tierBar').style.width='100%';
+  }
+}
+document.getElementById('drItems').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.inc){cart[b.dataset.inc].qty++}
+  else if(b.dataset.dec){var k=b.dataset.dec;cart[k].qty--;if(cart[k].qty<1)delete cart[k]}
+  else if(b.dataset.rm){delete cart[b.dataset.rm]}
+  renderCart();bump();
+});
+/* drawer mo/dong */
+var overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
+function openDrawer(){drawer.classList.add('on');overlay.classList.add('on')}
+function closeAll(){drawer.classList.remove('on');overlay.classList.remove('on');document.getElementById('qvm').classList.remove('on')}
+document.getElementById('btnCartTop').onclick=openDrawer;
+document.getElementById('btnCartDock').onclick=openDrawer;
+document.getElementById('drClose').onclick=closeAll;
+overlay.onclick=closeAll;
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+document.getElementById('btnCheckout').onclick=function(){
+  if(!cartCount()){toast('Giỏ đang trống','Hãy thêm flycam, xe RC hoặc bộ pin trước khi đặt.');return}
+  var code='BX'+Math.floor(1000+Math.random()*9000);
+  var total=document.getElementById('drTotal').textContent;
+  cart={};renderCart();bump();closeAll();
+  toast('Đơn '+code+' đã ghi nhận','Tổng '+total+' — nhân viên gọi xác nhận sau 15 phút, giữ máy 24h.');
+};
+document.querySelectorAll('.combo-add').forEach(function(b){
+  b.onclick=function(){addToCart(b.dataset.name,parseInt(b.dataset.price,10),b.dataset.img)};
+});
+
+/* ================= QUICK VIEW ================= */
+var qvCur=null,qvQty=1;
+function tierRows(p){
+  if(p.kind==='drone'){
+    return '<thead><tr><th>Phương án</th><th>Số tiền</th></tr></thead><tbody>'+
+      '<tr><td>Trả thẳng</td><td>'+vnd(p.price)+'</td></tr>'+
+      '<tr><td>Góp 0% · 6 tháng</td><td>'+vnd(round1k(p.price/6))+'/tháng</td></tr>'+
+      '<tr><td>Góp 0% · 9 tháng</td><td>'+vnd(round1k(p.price/9))+'/tháng</td></tr>'+
+      '<tr><td>Góp 0% · 12 tháng</td><td>'+vnd(round1k(p.price/12))+'/tháng</td></tr></tbody>';
+  }
+  if(p.kind==='rc'){
+    return '<thead><tr><th>Quyền lợi</th><th>Chi tiết</th></tr></thead><tbody>'+
+      '<tr><td>Pin trong hộp</td><td>1 – 2 pin</td></tr>'+
+      '<tr><td>Bảo hành</td><td>12 tháng</td></tr>'+
+      '<tr><td>Đổi mới</td><td>7 ngày lỗi NSX</td></tr>'+
+      '<tr><td>Mua 2 món thứ 3</td><td>−10%</td></tr></tbody>';
+  }
+  return '<thead><tr><th>Số lượng</th><th>Đơn giá</th></tr></thead><tbody>'+
+    '<tr><td>Mua lẻ 1 bộ</td><td>'+vnd(p.price)+'</td></tr>'+
+    '<tr><td>Từ 2 bộ</td><td>'+vnd(p.tier[0])+'/bộ</td></tr>'+
+    '<tr><td>Từ 5 bộ</td><td>'+vnd(p.tier[1])+'/bộ</td></tr>'+
+    '<tr><td>Mua kèm máy</td><td>'+vnd(p.tier[2])+'/bộ</td></tr></tbody>';
+}
+function openQv(p){
+  qvCur=p;qvQty=1;
+  document.getElementById('mvImg').src='assets/img/'+p.img+'.webp';
+  document.getElementById('mvImg').alt=p.name;
+  document.getElementById('mvTag').textContent=p.tag;
+  document.getElementById('mvCat').textContent=p.cat;
+  document.getElementById('mvName').textContent=p.name;
+  document.getElementById('mvDesc').textContent=descOf(p);
+  document.getElementById('mvTier').innerHTML=tierRows(p);
+  document.getElementById('mvQtyN').textContent='1';
+  qvSum();
+  document.getElementById('qvm').classList.add('on');overlay.classList.add('on');
+}
+function qvSum(){document.getElementById('mvSum').textContent=vnd(qvCur.price*qvQty)}
+document.getElementById('mvPlus').onclick=function(){qvQty++;document.getElementById('mvQtyN').textContent=qvQty;qvSum()};
+document.getElementById('mvMinus').onclick=function(){if(qvQty>1){qvQty--;document.getElementById('mvQtyN').textContent=qvQty;qvSum()}};
+document.getElementById('mvAdd').onclick=function(){addToCart(qvCur.name,qvCur.price,qvCur.img,qvQty);closeAll()};
+document.getElementById('mvBuy').onclick=function(){addToCart(qvCur.name,qvCur.price,qvCur.img,qvQty);closeAll();openDrawer()};
+document.getElementById('mvClose').onclick=closeAll;
+document.getElementById('qvm').addEventListener('click',function(e){if(e.target===this)closeAll()});
+
+/* ================= COUNTDOWN ================= */
+function tick(){
+  var now=new Date(),end=new Date();end.setHours(23,59,59,999);
+  var s=Math.max(0,Math.floor((end-now)/1000));
+  var h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+  var f=function(x){return (x<10?'0':'')+x};
+  document.getElementById('ckH').textContent=f(h);
+  document.getElementById('ckM').textContent=f(m);
+  document.getElementById('ckS').textContent=f(sec);
+}
+tick();setInterval(tick,1000);
+</script>
+
+<script>
+/*NB93-207: calc thu cu/tra gop + so sanh + review + faq + reveal + chat*/
+/* ================= CALC: THU CU DOI MOI ================= */
+function tradeValue(){
+  var base=parseInt(document.getElementById('oldModel').value,10);
+  var bd=parseFloat(document.getElementById('condBody').value);
+  var bt=parseFloat(document.getElementById('condBatt').value);
+  var kt=parseFloat(document.getElementById('condKit').value);
+  return {base:base,v:round1k(base*bd*bt*kt),bd:bd,bt:bt,kt:kt};
+}
+function tradeRender(){
+  var t=tradeValue();
+  var sel=document.getElementById('newModel');
+  var opt=sel.options[sel.selectedIndex];
+  var newPrice=parseInt(sel.value,10),newName=opt.dataset.n;
+  var bonus=round1k(t.v*0.05),total=t.v+bonus;
+  var remain=newPrice-total;
+  var pct=function(x){return Math.round(x*100)+'%'};
+  var h='<div class="cr-row"><span class="k">Giá thu gốc — '+document.getElementById('oldModel').options[document.getElementById('oldModel').selectedIndex].text+'</span><span class="v">'+vnd(t.base)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Hệ số thân máy · pin · phụ kiện</span><span class="v">'+pct(t.bd)+' × '+pct(t.bt)+' × '+pct(t.kt)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Giá thu tạm tính</span><span class="v">'+vnd(t.v)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Trợ giá đổi máy +5%</span><span class="v" style="color:var(--ok)">+'+vnd(bonus)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Máy mới: '+newName+'</span><span class="v">'+vnd(newPrice)+'</span></div>'+
+    '<div class="cr-row sum"><span class="k">'+(remain>=0?'Còn thanh toán thêm':'Cửa hàng hoàn thêm tiền mặt')+'</span><span class="v">'+vnd(Math.abs(remain))+'</span></div>';
+  document.getElementById('tradeOut').innerHTML=h;
+}
+['oldModel','condBody','condBatt','condKit','newModel'].forEach(function(id){
+  document.getElementById(id).addEventListener('change',tradeRender);
+});
+document.getElementById('tradeGo').onclick=function(){
+  tradeRender();
+  var t=tradeValue();
+  toast('Giá thu tạm tính '+vnd(t.v+round1k(t.v*0.05)),'Giữ giá 48 giờ — mã GD-'+Math.floor(100+Math.random()*900)+', mang máy tới trong 2 ngày làm việc.');
+};
+document.getElementById('tradeLock').onclick=function(){
+  toast('Đã khoá giá thu cũ','Mang máy tới 46 Đường 2/9 trong 48h — đổi máy mới sau 15 phút.');
+};
+
+/* ================= CALC: TRA GOP 0% ================= */
+function instRender(){
+  var sel=document.getElementById('instModel');
+  var price=parseInt(sel.value,10),name=sel.options[sel.selectedIndex].dataset.n;
+  var down=parseFloat(document.getElementById('instDown').value);
+  var term=parseInt(document.getElementById('instTerm').value,10);
+  var downV=round1k(price*down),loan=price-downV;
+  var per=round1k(loan/term);
+  var h='<div class="cr-row"><span class="k">Giá máy: '+name+'</span><span class="v">'+vnd(price)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Trả trước ('+Math.round(down*100)+'%)</span><span class="v">'+vnd(downV)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Số tiền góp — lãi 0%</span><span class="v">'+vnd(loan)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Kỳ hạn</span><span class="v">'+term+' tháng</span></div>'+
+    '<div class="cr-row sum"><span class="k">Trả mỗi tháng</span><span class="v">'+vnd(per)+'</span></div>'+
+    '<div class="cr-row"><span class="k">Cộng lại bằng đúng giá máy</span><span class="v">'+vnd(downV+per*term)+'</span></div>';
+  document.getElementById('instOut').innerHTML=h;
+}
+['instModel','instDown','instTerm'].forEach(function(id){
+  document.getElementById(id).addEventListener('change',instRender);
+});
+document.getElementById('instGo').onclick=function(){
+  instRender();
+  toast('Mô phỏng đã cập nhật','Hồ sơ góp chỉ cần CCCD + thẻ tín dụng — duyệt trong 15 phút tại quầy.');
+};
+document.getElementById('instBook').onclick=function(){
+  toast('Đã nhận yêu cầu duyệt góp','Gọi lại xác nhận trong 15 phút — nhớ mang CCCD + thẻ tín dụng.');
+};
+
+/* ================= SO SANH 3 FLYCAM ================= */
+var CMP={
+ cols:[
+  {k:'price',l:'Giá bán'},
+  {k:'cam',l:'Camera'},
+  {k:'fly',l:'Thời gian bay'},
+  {k:'range',l:'Tầm điều khiển'},
+  {k:'fit',l:'Phù hợp'}
+ ],
+ drones:[
+  {id:'p1',name:'Flycam Mini AeroDart',price:1990000,old:2490000,
+   cam:'Camera 2K + chống rung điện tử',fly:'~15 phút/pin',range:'Giới hạn 30m — an toàn cho bé',fit:'Người mới & bé 6+'},
+  {id:'p2',name:'Flycam SkyView 4K Pro',price:8990000,old:10990000,
+   cam:'4K60 + gimbal cơ 3 trục',fly:'~28 phút/pin',range:'Tầm 4 km, truyền hình 5.8GHz',fit:'Du lịch, YouTube, bất động sản'},
+  {id:'p3',name:'Drone FPV VoltBlade 5"',price:6490000,old:7290000,
+   cam:'FPV 120fps độ trễ thấp',fly:'~6 phút/lần pin',range:'200–500m tùy kính FPV',fit:'Đua tốc độ & độ máy'}
+ ]
+};
+var cmpOn={price:true,cam:true,fly:true,range:true,fit:true};
+function cmpChipsRender(){
+  var box=document.getElementById('cmpChips');box.innerHTML='';
+  CMP.cols.forEach(function(c){
+    var b=document.createElement('button');
+    b.className='cmp-chip'+(cmpOn[c.k]?' on':'');
+    b.textContent=c.l;
+    b.onclick=function(){cmpOn[c.k]=!cmpOn[c.k];cmpChipsRender();cmpTableRender()};
+    box.appendChild(b);
+  });
+}
+function cmpTableRender(){
+  var t=document.getElementById('cmpTable');
+  var h='<thead><tr><th>Thông số</th>';
+  CMP.drones.forEach(function(p){h+='<th>'+p.name+'</th>'});
+  h+='</tr></thead><tbody>';
+  var row=function(label,fn){
+    h+='<tr><td>'+label+'</td>';
+    CMP.drones.forEach(function(p){h+='<td>'+fn(p)+'</td>'});
+    h+='</tr>';
+  };
+  if(cmpOn.price)row('Giá bán',function(p){return '<span class="cmp-price">'+vnd(p.price)+'</span><span class="cmp-old">'+vnd(p.old)+'</span>'});
+  if(cmpOn.cam)row('Camera',function(p){return p.cam});
+  if(cmpOn.fly)row('Thời gian bay',function(p){return p.fly});
+  if(cmpOn.range)row('Tầm điều khiển',function(p){return p.range});
+  if(cmpOn.fit)row('Phù hợp',function(p){return p.fit});
+  h+='<tr><td>Quyền lợi</td>';
+  CMP.drones.forEach(function(p){
+    h+='<td class="cmp-cta"><button class="btn btn-a" data-cmp-add="'+p.id+'">Thêm giỏ — kèm học bay miễn phí</button></td>';
+  });
+  h+='</tr></tbody>';
+  t.innerHTML=h;
+}
+cmpChipsRender();cmpTableRender();
+document.getElementById('cmpTable').addEventListener('click',function(e){
+  var b=e.target.closest('[data-cmp-add]');
+  if(b){var p=P.find(function(x){return x.id===b.dataset.cmpAdd});addToCart(p.name,p.price,p.img)}
+});
+
+/* ================= SOCIAL PROOF ================= */
+var REVIEWS=[
+ {t:'Máy SkyView 4K quay chuyến Quảng Bình mượt như phim quảng cáo. Hai buổi học bay với thầy Quang xong mình tự tin hẳn — trước đó chưa từng cầm tay điều khiển.',n:'Anh Huy Đạt',m:'Mê du lịch — Ngũ Hành Sơn'},
+ {t:'Mua bộ ba xe, ca nô, máy bay cho hai bé. Chơi suốt cuối tuần ở bãi biển, xe lộn mấy vòng vẫn chạy tốt. Được dạy luôn cách bảo quản pin cho con dùng lâu.',n:'Chị Thu Hà',m:'Phụ huynh 2 bé — Cẩm Lệ'},
+ {t:'Cả hội FPV mình lo lin kiện VoltBlade, hỏng gì thay nấy trong ngày. Tối chủ nhật tập đường đua ở sân của cửa hàng, vui và an toàn hơn tự tập lúc nào không biết.',n:'Bạn Minh Trí',m:'Hội đua FPV Đà Nẵng'},
+ {t:'Thuê flycam quay đám cưới nguyên ngày, máy đầy pin 3 bộ, có người hỗ trợ dựng vật liệu. Giá thuê rõ ràng, đặt cọc nhẹ, trả máy muộn 30 phút cũng không tính thêm.',n:'Anh Quốc Bảo',m:'Studio cưới — Hải Châu'},
+ {t:'Con gái 9 tuổi bay Mini AeroDart trong sân, có geo-fence nên cứ trong 30m thôi. Rơi bẹp dí mấy lần, thay cánh quạt 20 nghìn — đúng món đồ dạy bé kỷ luật mà vui.',n:'Chú Xuân Nam',m:'Khách hàng lâu năm — Thanh Khê'}
+];
+var rvIdx=0,rvTimer=null;
+function rvRender(){
+  var r=REVIEWS[rvIdx];
+  document.getElementById('proofQuote').textContent=r.t;
+  document.getElementById('proofName').textContent=r.n;
+  document.getElementById('proofMeta').textContent=r.m;
+  var cleanName=r.n.replace('Bạn ','').replace('Chị ','').replace('Anh ','').replace('Chú ','');
+  document.getElementById('proofAv').textContent=cleanName.charAt(0).toUpperCase();
+  var d=document.getElementById('proofDots');d.innerHTML='';
+  REVIEWS.forEach(function(_,i){
+    var s=document.createElement('i');if(i===rvIdx)s.className='on';
+    s.onclick=function(){rvIdx=i;rvRender();rvRestart()};
+    d.appendChild(s);
+  });
+}
+function rvRestart(){clearInterval(rvTimer);rvTimer=setInterval(function(){rvIdx=(rvIdx+1)%REVIEWS.length;rvRender()},6000)}
+rvRender();rvRestart();
+
+/* ================= FAQ ================= */
+var FAQ=[
+ {q:'Mình chưa từng bay flycam — mua loại nào cho dễ?',a:'Chọn <b>flycam mini có một chạm cất cánh, treo giữ độ cao và geo-fence 30m</b> như Mini AeroDart. Quan trọng hơn: máy mua tại BayXa kèm <b>2 buổi học bay miễn phí với HLV</b> tại sân có lưới an toàn — bay lần đầu có người kèm nên không sợ rơi.'},
+ {q:'Học bay miễn phí hoạt động thế nào, có mất phí gì không?',a:'Hoàn toàn <b>0đ</b>. Mua bất kỳ flycam nào được tặng 2 buổi kèm HLV nhóm nhỏ (tối đa 5 người), CN &amp; T4 15:30–17:30 tại sân tập cách cửa hàng 5 phút. Sau đó hội viên được <b>tập miễn phí mỗi CN</b> — mang máy mình hoặc mượn máy tập của cửa hàng.'},
+ {q:'Pin flycam dùng được bao lâu, có nên mua thêm không?',a:'Một pin bay <b>12–28 phút tùy máy</b> — một buổi chụp thật sự cần tối thiểu 3 pin. Combo <b>3 pin + hub sạc + túi chống shock</b> tại BayXa rẻ hơn mua lẻ 19%, và <b>giảm thêm 15%</b> khi mua kèm flycam.'},
+ {q:'Có trả góp 0% không, cần gì để duyệt?',a:'Có, cho đơn từ <b>5 triệu</b> (flycam 4K, drone FPV, bộ ba cho bé). Chỉ cần <b>CCCD + thẻ tín dụng</b>, duyệt trong <b>15 phút</b> tại quầy, kỳ hạn 6/9/12 tháng — tổng trả lại đúng bằng giá máy.'},
+ {q:'Máy bay, xe RC cũ cửa hàng có thu lại không?',a:'Có — flycam, xe RC, máy bay oil, tay điều khiển đều thu. Dùng khối <b>"Thu cũ flycam &amp; RC"</b> trên web để lấy giá tham khảo, tại quầy kiểm tra 15 phút, cộng thêm <b>+5% trợ giá</b> khi đổi máy mới. Máy nứt khung vẫn thu.'},
+ {q:'Máy rơi, hỏng thì sửa ở đâu, bao lâu?',a:'BayXa có <b>kỹ thuật riêng cho flycam &amp; RC</b>: nhận máy, báo lỗi và giá trong ngày, sửa xong trong <b>48h</b> với linh kiện có sẵn. Máy phải chờ linh kiện — <b>cho mượn máy khác miễn phí</b> để bạn không bỏ phí cuối tuần.'},
+ {q:'Có giao hàng không, được kiểm tra trước khi nhận chứ?',a:'Nội thành Đà Nẵng giao <b>trong ngày</b>; tỉnh khác 1–3 ngày qua đối tác, hỗ trợ <b>COD kiểm tra hàng</b> trước khi thanh toán. Đơn từ 3 triệu miễn phí giao nội thành. Máy được test bay + hiệu chỉnh trước khi đóng gói.'}
+];
+var faqList=document.getElementById('faqList');
+FAQ.forEach(function(f,i){
+  var d=document.createElement('div');d.className='faq-item';
+  d.innerHTML='<button class="faq-q"><span class="qn">'+(i+1)+'</span>'+f.q+'<span class="tg">+</span></button>'+
+    '<div class="faq-a"><div class="in">'+f.a+'</div></div>';
+  faqList.appendChild(d);
+});
+faqList.addEventListener('click',function(e){
+  var b=e.target.closest('.faq-q');if(!b)return;
+  var item=b.parentElement,a=item.querySelector('.faq-a'),open=item.classList.contains('open');
+  faqList.querySelectorAll('.faq-item.open').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+});
+var faqSearch=document.getElementById('faqSearch');
+function faqFilter(kw){
+  kw=(kw||'').toLowerCase();
+  faqList.querySelectorAll('.faq-item').forEach(function(it,i){
+    var hit=!kw||FAQ[i].q.toLowerCase().indexOf(kw)>-1||FAQ[i].a.toLowerCase().indexOf(kw)>-1;
+    it.classList.toggle('hide',!hit);
+  });
+}
+faqSearch.addEventListener('input',function(){faqFilter(this.value)});
+document.getElementById('faqChips').addEventListener('click',function(e){
+  var c=e.target.closest('.faq-chip');if(!c)return;
+  document.querySelectorAll('.faq-chip').forEach(function(x){x.classList.remove('on')});
+  c.classList.add('on');faqSearch.value=c.dataset.k;faqFilter(c.dataset.k);
+});
+
+/* ================= HEADER SEARCH loc bento ================= */
+document.getElementById('hdSearch').addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;
+  var kw=this.value.trim().toLowerCase();
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+  var hits=0;
+  bento.querySelectorAll('.p-card').forEach(function(c){
+    var show=!kw||c.dataset.name.indexOf(kw)>-1;
+    c.classList.toggle('hide',!show);if(show)hits++;
+  });
+  toast(kw?('Tìm thấy '+hits+' mặt hàng'):'Đã hiển thị lại 8 mặt hàng',kw?('Kết quả cho "'+kw+'" trong khối 8 mặt hàng.'):'Xoá từ khoá để tìm lại từ đầu.');
+});
+
+/* ================= FORM TU VAN ================= */
+document.getElementById('leadForm').addEventListener('submit',function(e){e.preventDefault()});
+document.getElementById('lfSubmit').addEventListener('click',function(){
+  var n=document.getElementById('lfName').value.trim(),p=document.getElementById('lfPhone').value.trim();
+  var t=document.getElementById('lfTopic').value;
+  if(!n||!p||!t){toast('Thiếu thông tin','Điền đủ họ tên, SĐT và nội dung quan tâm để tư vấn chính xác.');return}
+  if(!/^[0-9\s+.-]{9,15}$/.test(p)){toast('SĐT chưa hợp lệ','Kiểm tra lại số điện thoại giúp bạn nhé.');return}
+  document.getElementById('leadForm').reset();
+  toast('Đã gửi yêu cầu','Cảm ơn '+n+' — nhân viên gọi lại trong 30 phút giờ mở cửa.');
+});
+
+/* ================= REVEAL + COUNTER + TABS + DOCK ================= */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+  });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(!en.isIntersecting)return;
+    var el=en.target,end=parseFloat(el.dataset.cnt),suf=el.dataset.suffix||'',t0=null;
+    function step(ts){
+      if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);k=1-Math.pow(1-k,3);
+      el.textContent=Math.round(end*k).toLocaleString('vi-VN')+suf;
+      if(k<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
+document.querySelectorAll('.combo-tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.combo-tab').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.querySelectorAll('.combo-pane').forEach(function(x){x.classList.remove('on')});
+    document.getElementById(b.dataset.combo).classList.add('on');
+  });
+});
+document.querySelectorAll('.calc-tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.calc-tab').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.querySelectorAll('.calc-pane').forEach(function(x){x.classList.remove('on')});
+    document.getElementById(b.dataset.pane).classList.add('on');
+  });
+});
+document.querySelectorAll('.spec-tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.spec-tab').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.querySelectorAll('.spec-pane').forEach(function(x){x.classList.remove('on')});
+    document.getElementById(b.dataset.spec).classList.add('on');
+  });
+});
+document.querySelectorAll('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.querySelector(b.dataset.goto);
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+/* dock an khi dang xem hero */
+var dock=document.getElementById('dock');
+var heroEl=document.getElementById('hero');
+var dio=new IntersectionObserver(function(es){dock.classList.toggle('dock-hide',es[0].isIntersecting)},{threshold:.15});
+dio.observe(heroEl);
+document.getElementById('btnTop').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+/* nhan ban track de loop muot */
+(function(){var t=document.getElementById('tapeIn');t.innerHTML+=t.innerHTML})();
+renderCart();bump();
+</script>
+
+<!-- NB93-207: widget chat truc tiep — NGHE-14-BOTFIX: da bo bot mau, chat that do C3 bridge dieu hanh -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn BayXa</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-207: widget chat truc tiep*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(31,122,80,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1F7A50,#145238);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F5F7FA}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(11,37,69,.08);border-bottom-left-radius:4px;color:#182A3D}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(11,37,69,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(11,37,69,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(31,122,80,.4);color:#1F7A50;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.pkc-chip:hover{background:#E8F5EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(11,37,69,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(11,37,69,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2F9E6E;box-shadow:0 0 0 3px rgba(47,158,110,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style>
+<script>
+/*NB93-207: logic chat demo theo nghe*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/*NB93-207: failsafe — element reveal bi ket lai tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<script>/*NB93-207: dock tu an khi cuon xuong — khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script><!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

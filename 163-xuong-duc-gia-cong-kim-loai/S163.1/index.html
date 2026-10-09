@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hợp Kim Việt — Xưởng đúc & gia công kim loại | Đúc gang, nhôm, đồng theo mẫu hoặc bản vẽ</title>
+<meta name="description" content="Hợp Kim Việt — xưởng đúc 28 năm tại Bình Dương. Đúc gang, nhôm, đồng theo mẫu có sẵn hoặc bản vẽ, giá theo kg công khai, lò cảm ứng 1.450°C, MOQ từ 50 kg. Báo giá trong 4 giờ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-163 — TOKENS: palette suy từ ảnh lò đúc (gang tối + cam kim loại nóng chảy + nền cát khuôn) */
+:root{
+  --primary:#332413;
+  --primary-deep:#1D1206;
+  --primary-soft:#4E3820;
+  --ink:#241A0F;
+  --soft:#6E5E4B;
+  --texture:#F5F0E6;
+  --texture-2:#FBF8F2;
+  --accent:#F27D0C;
+  --accent-deep:#A95004;
+  --accent-100:#FDE9D2;
+  --grad-accent:linear-gradient(135deg,#FFA83E,#ED6D06);
+  --grad-dark:linear-gradient(140deg,#3D2A16,#251607 52%,#150C03);
+  --line:#E5DAC8;
+  --ok:#2E9E63;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:32px;
+  --sh-1:0 2px 10px rgba(29,18,6,.08);
+  --sh-2:0 10px 30px rgba(29,18,6,.13);
+  --sh-3:0 24px 60px rgba(29,18,6,.22);
+  --sh-acc:0 10px 26px rgba(242,125,12,.38);
+  --c-gang:#5B6167;
+  --c-nhom:#93A0AC;
+  --c-dong:#B98436;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.62;font-size:16px}
+/*NB93-163: height:auto toàn cục — chống height attr ghi đè aspect-ratio làm méo ảnh*/
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+section{position:relative}
+.wrap{width:min(1180px,92%);margin:0 auto;position:relative;z-index:2}
+.block-title{display:block;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.22;letter-spacing:-.4px}
+.block-title .hl{background:linear-gradient(120deg,var(--accent-100),#FFE9C8);padding:.04em .18em;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.block-title .un{position:relative;white-space:nowrap}
+.block-title .un::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.34em;background:var(--accent-100);z-index:-1;border-radius:4px}
+.block-sub{display:block;color:var(--soft);font-size:15.5px;max-width:660px;margin-top:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:8px 16px;border-radius:99px;box-shadow:var(--sh-1)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+/* nút */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15.5px;padding:15px 28px;border-radius:14px;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-acc{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.btn-acc::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-acc:hover::after{left:125%}
+.btn-acc:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(242,125,12,.46)}
+.btn-navy{background:var(--primary);color:#fff;box-shadow:var(--sh-2)}
+.btn-navy:hover{background:var(--primary-soft);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--primary);border:1.8px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-lg{padding:18px 34px;font-size:16.5px;border-radius:16px}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+/* hoạ tiết nghề: lưới khuôn cát + vạch nhiệt */
+.bp{background-image:linear-gradient(rgba(255,236,210,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,236,210,.055) 1px,transparent 1px);background-size:36px 36px}
+.bp-light{background-image:linear-gradient(rgba(51,36,19,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(51,36,19,.05) 1px,transparent 1px);background-size:36px 36px}
+.hatch{background-image:repeating-linear-gradient(135deg,transparent 0 16px,rgba(242,125,12,.10) 16px 18px)}
+.seam{height:4px;width:100%;background:linear-gradient(90deg,transparent,#FF9E3D 18%,#F27D0C 50%,#FF9E3D 82%,transparent);opacity:.85}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#D8C9B4;font-size:13px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}
+.topbar .tb-l,.topbar .tb-r{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.topbar span{display:inline-flex;align-items:center;gap:7px}
+.topbar svg{flex:none;opacity:.85}
+.topbar .hot{color:#FFC88A;font-weight:800;font-size:14.5px;letter-spacing:.4px}
+.topbar .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+
+/* ============ HEADER ============ */
+header.hdr{position:sticky;top:0;z-index:120;background:rgba(251,248,242,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:.3s}
+.hdr .wrap{display:flex;align-items:center;gap:22px;padding:13px 0}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo .mark{width:46px;height:46px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.logo .mark svg{position:relative;z-index:1}
+.logo .mark::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(242,125,12,.5),transparent 55%)}
+.logo b{display:block;font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--primary);line-height:1.1}
+.logo small{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase}
+.hsearch{flex:1;min-width:0;max-width:360px;position:relative}
+.hsearch input{width:100%;padding:11px 16px 11px 42px;border:1.6px solid var(--line);border-radius:99px;background:#fff;outline:none;transition:.25s}
+.hsearch input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(242,125,12,.14);background:var(--texture-2)}
+.hsearch svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.5}
+nav.mainnav{display:flex;gap:4px;margin-left:auto}
+nav.mainnav a{font-size:14.5px;font-weight:700;color:var(--ink);padding:9px 13px;border-radius:10px;transition:.2s}
+nav.mainnav a:hover{background:var(--texture);color:var(--primary)}
+.hdr .cta{flex:none}
+.hdr .cta .btn{padding:12px 22px;font-size:14.5px;border-radius:12px}
+.hdr.scrolled{box-shadow:var(--sh-2)}
+
+/* ============ HERO ============ */
+.hero{background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 72px}
+.hero::after{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(242,125,12,.28),transparent 62%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero .eyebrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#FFD9AE}
+.hero h1{display:block;font-size:clamp(2.05rem,4.6vw,3.25rem);font-weight:900;line-height:1.14;letter-spacing:-1px;margin:20px 0 0}
+.hero h1 .hl{background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal}
+.hero .sub{display:block;margin-top:18px;font-size:16.5px;color:#C9B69C;max-width:540px}
+.hero .sub b{color:#FFC88A}
+.hero .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero .call{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:13px 22px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;backdrop-filter:blur(8px)}
+.hero .call .ic{width:44px;height:44px;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;flex:none;box-shadow:var(--sh-acc);animation:ring 2.6s infinite}
+@keyframes ring{0%,72%,100%{box-shadow:0 0 0 0 rgba(242,125,12,.45)}80%{box-shadow:0 0 0 14px rgba(242,125,12,0)}}
+.hero .call b{display:block;font-size:21px;font-weight:900;letter-spacing:.6px;color:#FFC88A;line-height:1.15}
+.hero .call small{display:block;font-size:12px;color:#B9A488}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#F0E4D2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:99px}
+.chip svg{flex:none}
+/*NB93-163 — hero media: giữ nguyên nhận diện poster bìa (không đè chữ trên ảnh), stats đặt TĨNH dưới ảnh*/
+.hero-media{position:relative}
+.hm-main{border-radius:var(--r-xl);overflow:hidden;border:6px solid rgba(255,255,255,.94);box-shadow:var(--sh-3);transform:rotate(-1.4deg)}
+.hm-main img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center}
+.hm-stats{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(18,10,3,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:var(--sh-3);overflow:hidden;transform:rotate(-1.4deg)}
+.hm-stats div{padding:14px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:none}
+.hm-stats b{display:block;font-size:19px;font-weight:900;color:#FFC88A;line-height:1.15}
+.hm-stats b small{font-size:.6em;font-weight:800}
+.hm-stats small{display:block;font-size:11.5px;color:#C9B69C;font-weight:600;margin-top:3px}
+
+/* ============ TAPE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg);width:104%;margin:-34px 0 0 -2%;box-shadow:var(--sh-2);position:relative;z-index:6;overflow:hidden}
+.tape .in{display:flex;gap:0;white-space:nowrap;padding:13px 0;animation:tape 26s linear infinite}
+.tape span{display:inline-flex;align-items:center;gap:16px;color:#fff;font-weight:900;font-size:15px;letter-spacing:1.4px;text-transform:uppercase;padding:0 18px}
+.tape svg{flex:none;opacity:.9}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION HEAD chung ============ */
+.sec{padding:92px 0}
+.sec-head{margin-bottom:44px}
+.sec-head.center{text-align:center}
+.sec-head.center .block-sub{margin-left:auto;margin-right:auto}
+
+/* ============ 2 THẺ NĂNG LỰC CHỦ LỰC ============ */
+#nang-luc{background:var(--texture-2)}
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cap-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:.3s;position:relative;min-width:0}
+.cap-card:hover{transform:translateY(-7px);box-shadow:var(--sh-3);border-color:rgba(242,125,12,.4)}
+.cap-card.dark{background:var(--grad-dark);color:#fff;border-color:rgba(255,255,255,.14)}
+.cap-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.cap-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.cap-card:hover .cap-img img{transform:scale(1.05)}
+.cap-badge{position:absolute;top:14px;right:14px;background:var(--grad-accent);color:#fff;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;box-shadow:var(--sh-acc);letter-spacing:.6px;text-transform:uppercase}
+.cap-tol{position:absolute;bottom:12px;right:12px;background:rgba(29,18,6,.8);backdrop-filter:blur(6px);color:#FFC88A;font-size:13px;font-weight:800;padding:7px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.2)}
+.cap-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1;min-width:0}
+.cap-body h3{display:block;font-size:20px;font-weight:900;letter-spacing:-.3px;margin-bottom:9px}
+.cap-body p{display:block;font-size:14.5px;color:var(--soft);margin-bottom:16px}
+.cap-card.dark .cap-body p{color:#C9B69C}
+.cap-list{list-style:none;margin-bottom:18px;display:grid;gap:9px}
+.cap-list li{display:flex;gap:9px;font-size:14px;font-weight:600;align-items:flex-start}
+.cap-list svg{flex:none;margin-top:3px}
+/* mini bảng lò trong thẻ */
+.mtab{width:100%;border-collapse:collapse;font-size:12.8px;margin-bottom:20px;border-radius:12px;overflow:hidden;border:1.5px solid var(--line)}
+.cap-card.dark .mtab{border-color:rgba(255,255,255,.18)}
+.mtab th,.mtab td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--line)}
+.cap-card.dark .mtab th,.cap-card.dark .mtab td{border-bottom:1px solid rgba(255,255,255,.13)}
+.mtab tr:last-child th,.mtab tr:last-child td{border-bottom:none}
+.mtab th{background:var(--texture);color:var(--primary);font-weight:800;width:38%}
+.cap-card.dark .mtab th{background:rgba(255,255,255,.08);color:#FFD9AE}
+.mtab td{font-weight:600;color:var(--ink)}
+.cap-card.dark .mtab td{color:#F0E4D2}
+.cap-card .btn{width:100%;margin-top:auto}
+
+/* ============ DẢI 5 HẠNG MỤC GỌN ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+.strip a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;transition:.25s;min-width:0}
+.strip a:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(242,125,12,.45)}
+.strip .si{width:40px;height:40px;flex:none;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep)}
+.strip b{display:block;font-size:13.5px;font-weight:800;line-height:1.3}
+.strip small{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.strip .ar{margin-left:auto;color:var(--accent);flex:none;transition:.25s}
+.strip a:hover .ar{transform:translateX(4px)}
+
+/* ============ STATS BAND NĂNG LỰC LÒ ĐÚC ============ */
+.stats-band{background:var(--grad-dark);color:#fff;padding:88px 0;overflow:clip;position:relative}
+.stats-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 18px,rgba(242,125,12,.07) 18px 20px)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;z-index:2}
+.stat{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r-l);padding:30px 26px;text-align:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.3s;min-width:0}
+.stat:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(242,125,12,.5)}
+.stat .num{font-size:clamp(2rem,4vw,2.7rem);font-weight:900;color:#FFC88A;line-height:1.1;letter-spacing:-1px}
+.stat .num small{font-size:.55em;font-weight:800;margin-left:2px}
+.stat b{display:block;font-size:15px;font-weight:800;margin-top:9px}
+.stat small{display:block;font-size:12.5px;color:#C9B69C;margin-top:5px}
+/*NB93-163 — dải không gian xưởng (ảnh sạch, không chữ) + 4 thẻ kiểm tra*/
+.mid-row{display:grid;grid-template-columns:1.02fr .98fr;gap:26px;margin-top:30px;position:relative;z-index:2;align-items:stretch}
+.space-img{position:relative;border-radius:var(--r-l);overflow:hidden;border:1.5px solid rgba(255,255,255,.16);box-shadow:var(--sh-3);min-height:340px}
+.space-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.space-img .stg{position:absolute;left:16px;bottom:16px;right:16px;display:flex;align-items:center;gap:9px;background:rgba(18,10,3,.72);backdrop-filter:blur(8px);color:#F0E4D2;font-size:12.5px;font-weight:800;padding:10px 15px;border-radius:12px;border:1px solid rgba(255,255,255,.18);width:fit-content;max-width:calc(100% - 32px)}
+.space-img .stg i{width:8px;height:8px;border-radius:50%;background:#3DDC97;flex:none}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qc{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.22);border-radius:16px;padding:18px;min-width:0}
+.qc .qi{width:42px;height:42px;flex:none;border-radius:12px;background:rgba(242,125,12,.18);border:1px solid rgba(242,125,12,.4);display:grid;place-items:center;color:#FFC88A}
+.qc b{display:block;font-size:14.5px;font-weight:800}
+.qc small{display:block;font-size:12.5px;color:#C9B69C;margin-top:3px}
+.partner-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center;position:relative;z-index:2}
+.partner-row .lbl{width:100%;text-align:center;font-size:12px;font-weight:800;letter-spacing:2px;color:#B9A488;text-transform:uppercase;margin-bottom:6px}
+.pt{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:99px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);font-size:13.5px;font-weight:700;color:#F0E4D2;transition:.25s}
+.pt:hover{background:rgba(242,125,12,.16);border-color:var(--accent);color:#FFD9AE}
+
+/* ============ KHỐI-8: MASTER-DETAIL NĂNG LỰC ĐÚC (NB93-163) ============ */
+#hang-muc{background:var(--texture)}
+.md-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.md-thumb{position:relative;background:#fff;border:1.8px solid var(--line);border-radius:16px;overflow:hidden;padding:0;transition:.25s;display:flex;flex-direction:column;min-width:0;text-align:left}
+.md-thumb .ti{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--texture)}
+.md-thumb .ti img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.md-thumb:hover .ti img{transform:scale(1.06)}
+.md-thumb .tnum{position:absolute;top:8px;left:8px;background:rgba(29,18,6,.82);backdrop-filter:blur(6px);color:#FFC88A;font-size:11px;font-weight:900;padding:4px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.2)}
+.md-thumb .hot{position:absolute;top:8px;right:8px;background:var(--grad-accent);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:.4px;padding:5px 10px;border-radius:99px;box-shadow:var(--sh-acc);text-transform:uppercase}
+.md-thumb .tb{padding:11px 13px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.md-thumb .tb b{font-size:13.8px;font-weight:900;line-height:1.32;color:var(--ink)}
+.md-thumb .tb small{font-size:12.3px;color:var(--accent-deep);font-weight:800}
+.md-thumb:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(242,125,12,.5)}
+.md-thumb.on{border-color:var(--accent);box-shadow:0 0 0 3px rgba(242,125,12,.18),var(--sh-2)}
+.md-thumb.dim{opacity:.24;filter:grayscale(1)}
+.md-detail{margin-top:22px;display:grid;grid-template-columns:1fr 1.18fr;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-2)}
+.md-img{position:relative;min-height:360px;background:var(--texture)}
+.md-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;animation:fadein .4s}
+.md-img .mnum{position:absolute;top:16px;left:16px;background:rgba(29,18,6,.82);backdrop-filter:blur(6px);color:#FFC88A;font-size:12.5px;font-weight:900;padding:7px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);z-index:2}
+.md-img .mkg{position:absolute;bottom:16px;left:16px;background:var(--grad-accent);color:#fff;font-size:13px;font-weight:900;padding:9px 16px;border-radius:12px;box-shadow:var(--sh-acc);z-index:2}
+.md-body{padding:30px 32px 30px;display:flex;flex-direction:column;min-width:0}
+.md-body h3{display:block;font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:900;letter-spacing:-.4px}
+.md-body>p{display:block;font-size:14.5px;color:var(--soft);margin-top:9px}
+.md-body .mtab{margin-top:16px;margin-bottom:16px}
+.md-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.md-chips span{font-size:12px;font-weight:700;color:var(--soft);background:var(--texture);border:1px solid var(--line);border-radius:9px;padding:6px 12px}
+.md-foot{margin-top:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.md-foot .btn{flex:1;min-width:210px}
+@keyframes fadein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============ QUY TRÌNH 6 BƯỚC ============ */
+#quy-trinh{background:var(--grad-dark);color:#fff;overflow:clip}
+#quy-trinh .block-sub{color:#C9B69C}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:8px}
+.step{position:relative;background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r-l);padding:26px 18px 24px;text-align:center;transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);border-color:rgba(242,125,12,.55);background:rgba(255,255,255,.09)}
+.step .n{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--grad-accent);color:#fff;font-size:14px;font-weight:900;display:grid;place-items:center;box-shadow:var(--sh-acc)}
+.step .ic{width:56px;height:56px;margin:6px auto 14px;border-radius:18px;background:rgba(242,125,12,.15);border:1px solid rgba(242,125,12,.4);display:grid;place-items:center;color:#FFC88A}
+.step b{display:block;font-size:14.5px;font-weight:800;line-height:1.35}
+.step p{display:block;font-size:12.5px;color:#C9B69C;margin-top:7px}
+.step .meta{display:inline-flex;margin-top:12px;font-size:12px;font-weight:800;color:#FFC88A;background:rgba(242,125,12,.13);border:1px solid rgba(242,125,12,.35);padding:4px 11px;border-radius:99px;letter-spacing:.4px}
+.flow-note{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-size:14px;color:#D8C9B4;position:relative;z-index:2}
+.flow-note b{color:#FFC88A}
+
+/* ============ GIÁ THEO KG — DAC THU (NB93-163) ============ */
+#gia-kg{background:var(--texture-2)}
+.kg{display:grid;grid-template-columns:1.04fr .96fr;gap:26px;align-items:stretch}
+.kg-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);padding:30px;min-width:0;display:flex;flex-direction:column}
+.kg-card h3{display:block;font-size:19px;font-weight:900;margin-bottom:4px}
+.kg-card>p{display:block;font-size:13.5px;color:var(--soft);margin-bottom:20px}
+.kgtbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.kgtbl th,.kgtbl td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line)}
+.kgtbl tr:last-child td{border-bottom:none}
+.kgtbl th{background:var(--texture);color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.kgtbl td{font-weight:700}
+.kgtbl td em{font-style:normal;color:var(--accent-deep);font-weight:900}
+.kgtbl .mat{display:inline-flex;align-items:center;gap:9px;font-weight:800}
+.kgtbl .mat i{width:12px;height:12px;border-radius:4px;flex:none}
+.kgtbl .best td{background:linear-gradient(90deg,var(--accent-100),transparent)}
+.kg-note{margin-top:16px;display:flex;gap:10px;align-items:flex-start;background:var(--texture);border:1.5px dashed var(--line);border-radius:12px;padding:13px 15px;font-size:12.8px;color:var(--soft)}
+.kg-note svg{flex:none;margin-top:2px;color:var(--accent-deep)}
+.kg-out{background:var(--grad-dark);border-radius:16px;padding:20px 22px;color:#fff;margin-bottom:16px;position:relative;overflow:hidden}
+.kg-out::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;pointer-events:none}
+.kg-out small{display:block;font-size:11.5px;color:#C9B69C;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.kg-out b{display:block;font-size:clamp(1.35rem,2.4vw,1.8rem);font-weight:900;color:#FFC88A;margin-top:5px;letter-spacing:-.5px;position:relative;z-index:1}
+.kg-out .tt{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.25);position:relative;z-index:1;font-size:14px;flex-wrap:wrap}
+.kg-out .tt b{font-size:16px;color:#fff;margin:0}
+.kg-rows{display:grid;gap:10px;margin-bottom:16px}
+.kg-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;padding:11px 15px;background:var(--texture-2);border:1.5px solid var(--line);border-radius:12px}
+.kg-row span{color:var(--soft);font-weight:600;display:flex;align-items:center;gap:8px}
+.kg-row b{font-weight:900;color:var(--primary);text-align:right}
+.kg-card .btn{width:100%}
+.kg-card .note{display:block;font-size:12px;color:var(--soft);text-align:center;margin-top:12px}
+
+/* ============ PORTFOLIO + BEFORE/AFTER ============ */
+#portfolio{background:var(--texture)}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pf{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);transition:.3s;min-width:0}
+.pf:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.pf .img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.pf .img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.pf:hover .img img{transform:scale(1.05)}
+.pf .res{position:absolute;left:12px;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:8px;background:rgba(29,18,6,.82);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:800;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.18);width:fit-content;max-width:calc(100% - 24px)}
+.pf .res i{width:8px;height:8px;border-radius:50%;background:#3DDC97;flex:none}
+.pf .bd{padding:19px 20px 21px}
+.pf .bd small{display:block;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent-deep)}
+.pf .bd b{display:block;font-size:16.5px;font-weight:900;margin-top:5px;line-height:1.35}
+.pf .bd p{display:block;font-size:13.5px;color:var(--soft);margin-top:7px}
+.ba-wrap{margin-top:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.ba{position:relative;border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-3);aspect-ratio:16/13;user-select:none}
+.ba .layer{position:absolute;inset:0}
+.ba .before{clip-path:inset(0 calc(100% - var(--cut,50%)) 0 0)}
+.ba .ba-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15),0 0 20px rgba(0,0,0,.35);z-index:3;pointer-events:none}
+.ba .handle i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--primary);box-shadow:var(--sh-2);font-style:normal}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;-webkit-appearance:none;margin:0}
+.ba .tag{position:absolute;top:14px;z-index:2;background:rgba(29,18,6,.8);backdrop-filter:blur(6px);color:#fff;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.22)}
+.ba .tag.l{left:14px}
+.ba .tag.r{right:14px;background:rgba(242,125,12,.92)}
+.ba-copy h3{display:block;font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:900;letter-spacing:-.4px;margin-top:14px}
+.ba-copy p{display:block;color:var(--soft);font-size:15px;margin-top:12px}
+.ba-points{list-style:none;margin-top:20px;display:grid;gap:12px}
+.ba-points li{display:flex;gap:11px;font-size:14.5px;font-weight:600;align-items:flex-start}
+.ba-points svg{flex:none;margin-top:3px}
+.bfix-cad{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:12px}
+.bfx-b{background:linear-gradient(160deg,#2C3E5C,#111D33);color:#9FC4EE}
+.bfx-a{background:linear-gradient(160deg,#4A2E12,#1D1206);color:#FFC88A}
+.bfix-cad svg{width:46%;max-width:320px;height:auto;opacity:.95}
+.bfix-cad b{font-size:1rem;letter-spacing:.5px}
+
+/* ============ ABOUT ============ */
+#about{background:var(--texture-2)}
+.about-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:54px;align-items:center}
+.about-img{position:relative}
+.about-img .ph{border-radius:var(--r-l);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.4deg)}
+.about-img .ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.about-img .cap{margin-top:18px;background:var(--grad-dark);color:#fff;font-size:13.5px;font-weight:800;padding:13px 18px;border-radius:14px;box-shadow:var(--sh-2);transform:rotate(-.6deg);display:inline-block}
+.about-img .cap b{color:#FFC88A}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.st{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:20px;transition:.25s;min-width:0}
+.st:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(242,125,12,.4)}
+.st .si{width:44px;height:44px;border-radius:13px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep);margin-bottom:13px}
+.st b{display:block;font-size:15px;font-weight:900}
+.st p{display:block;font-size:13px;color:var(--soft);margin-top:5px}
+.about-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+/* ============ SPECS TABS ============ */
+#specs{background:var(--texture)}
+.tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.tab{padding:13px 24px;border-radius:99px;background:#fff;border:1.6px solid var(--line);font-weight:800;font-size:14.5px;color:var(--soft);transition:.25s;display:inline-flex;align-items:center;gap:9px;min-height:40px}
+.tab:hover{border-color:var(--accent);color:var(--accent-deep)}
+.tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:var(--sh-acc)}
+.tabpanel{display:none}
+.tabpanel.on{display:block;animation:fadein .45s}
+.spec-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.tblwrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);overflow:hidden}
+.tblwrap .scroll{overflow-x:auto}
+.spec-tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.spec-tbl th,.spec-tbl td{padding:13px 17px;text-align:left;border-bottom:1px solid var(--line)}
+.spec-tbl tr:last-child td{border-bottom:none}
+.spec-tbl thead th{background:var(--primary);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.8px}
+.spec-tbl tbody tr:hover td{background:var(--texture-2)}
+.spec-tbl td b{font-weight:800}
+.spec-tbl .tol{color:var(--accent-deep);font-weight:900}
+.tblwrap .tfoot{padding:14px 17px;font-size:12.5px;color:var(--soft);background:var(--texture-2);border-top:1.5px solid var(--line)}
+.tips{display:grid;gap:16px}
+.tip{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r-m);padding:19px 20px;box-shadow:var(--sh-1)}
+.tip b{display:block;font-size:14.5px;font-weight:900}
+.tip p{display:block;font-size:13px;color:var(--soft);margin-top:5px}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Hợp Kim Việt","telephone":"0906335178","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Hợp Kim Việt — xưởng đúc 28 năm tại Bình Dương. Đúc gang, nhôm, đồng theo mẫu có sẵn hoặc bản vẽ, giá theo kg công khai, lò cảm ứng 1.450°C, MOQ từ 50 kg. Báo g","url":"http://127.0.0.1:8174/163-xuong-duc-gia-cong-kim-loai/"}
+</script>
+</head>
+<body>
+<style>
+/*NB93-163 — CSS phần 2: reviews, form báo giá, liên hệ, FAQ, footer, dock, toast, responsive*/
+/* ============ REVIEWS ============ */
+#reviews{background:var(--texture-2)}
+.rev-shell{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:stretch}
+.rev-view{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);padding:36px;min-height:280px;min-width:0}
+.rev-item{display:none;animation:fadein .5s}
+.rev-item.on{display:block}
+.rev-item .stars{display:flex;gap:3px;color:#F5A623;margin-bottom:14px}
+.rev-item p{display:block;font-size:15.5px;font-weight:500;color:var(--ink);line-height:1.7}
+.rev-item .who{display:flex;align-items:center;gap:13px;margin-top:22px}
+.rev-item .av{width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:#FFC88A;font-weight:900;font-size:17px;display:grid;place-items:center;flex:none}
+.rev-item .who b{display:block;font-size:15px;font-weight:800}
+.rev-item .who small{display:block;font-size:12.5px;color:var(--soft)}
+.rev-metric{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.rm{background:var(--texture-2);border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;text-align:center}
+.rm b{display:block;font-size:22px;font-weight:900;color:var(--ok)}
+.rm small{display:block;font-size:12.5px;color:var(--soft);font-weight:600;margin-top:3px}
+.rev-dots{display:flex;gap:8px;margin-top:24px}
+.rev-dots i{width:10px;height:10px;border-radius:50%;background:var(--line);transition:.3s;font-style:normal;cursor:pointer}
+.rev-dots i.on{background:var(--accent);width:28px;border-radius:99px}
+.logo-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center}
+.lg{font-size:13px;font-weight:800;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:11px 19px;border-radius:12px;display:inline-flex;gap:8px;align-items:center;transition:.25s;box-shadow:var(--sh-1)}
+.lg:hover{transform:translateY(-3px);border-color:var(--accent)}
+
+/* ============ FORM BÁO GIÁ (dark warm) ============ */
+#baogia{background:var(--grad-dark);color:#fff;overflow:clip}
+#baogia .bp{position:absolute;inset:0;pointer-events:none}
+.bg-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;position:relative;z-index:2}
+.bg-copy .block-title{color:#fff}
+.bg-copy .block-sub{color:#C9B69C}
+.bg-list{list-style:none;margin-top:24px;display:grid;gap:13px}
+.bg-list li{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+.bg-list svg{flex:none;margin-top:3px}
+.cert-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.cb{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;color:#F0E4D2;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);padding:9px 15px;border-radius:12px}
+.cb svg{color:#FFC88A;flex:none}
+.gform{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r-xl);padding:32px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sh-3);min-width:0}
+.gform h3{display:block;font-size:20px;font-weight:900;color:#fff}
+.gform>p{display:block;font-size:13.5px;color:#C9B69C;margin:7px 0 20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:.6px}
+.field select,.field input,.field textarea{padding:13px 15px;border:1.6px solid var(--line);border-radius:12px;background:#fff;outline:none;transition:.2s;width:100%}
+.field select:focus,.field input:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(242,125,12,.13)}
+.field input[type=range]{padding:0;border:none;background:transparent;accent-color:var(--accent);box-shadow:none!important;height:38px}
+.field input[type=range]:focus{box-shadow:none!important}
+.sizerow{display:flex;align-items:center;gap:12px;background:#fff;border:1.6px solid var(--line);border-radius:12px;padding:6px 15px}
+.sizerow input{flex:1;min-width:0;border:none}
+.sizerow input:focus{box-shadow:none;border-color:transparent}
+.sizerow b{font-size:14px;font-weight:900;color:var(--accent-deep);min-width:86px;text-align:right}
+.gform .fgrid .field label{color:#FFD9AE}
+.gform .field select,.gform .field input,.gform .field textarea{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);color:#fff}
+.gform .field select option{color:var(--ink)}
+.gform .field select:focus,.gform .field input:focus,.gform .field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.13)}
+.gform textarea{resize:vertical;min-height:76px}
+.gform .btn{width:100%;margin-top:4px}
+.gform .secure{display:block;text-align:center;font-size:12px;color:#B9A488;margin-top:13px}
+
+/* ============ LIÊN HỆ: card địa chỉ + form lần 2 (KHÔNG iframe map — NB93-163) ============ */
+#contact{background:var(--texture)}
+.ct-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:stretch}
+.ct-cards{display:grid;gap:14px;align-content:start}
+.ct-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:22px 24px;box-shadow:var(--sh-1)}
+.ct-card .ch{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.ct-card .ch .ic{width:40px;height:40px;flex:none;border-radius:12px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center}
+.ct-card .ch b{font-size:15px;font-weight:900}
+.ct-card p,.ct-card small{display:block;font-size:13.5px;color:var(--soft)}
+.ct-card .big{font-size:21px;font-weight:900;color:var(--accent-deep);letter-spacing:.4px}
+.ct-card .dir{display:inline-flex;align-items:center;gap:9px;margin-top:13px;padding:11px 18px;border-radius:12px;background:var(--grad-accent);color:#fff;font-size:13.5px;font-weight:800;box-shadow:var(--sh-acc);transition:.25s}
+.ct-card .dir:hover{transform:translateY(-2px)}
+.ct-hours{display:grid;gap:8px;margin-top:4px}
+.ct-hours div{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.ct-hours div:last-child{border-bottom:none;padding-bottom:0}
+.ct-hours b{font-weight:800;color:var(--primary)}
+.ct-hours span{color:var(--soft);text-align:right}
+.ct-form{background:var(--grad-dark);color:#fff}
+.ct-form .secure a{color:#FFC88A;font-weight:900}
+
+/* ============ FAQ ============ */
+#faq{background:var(--texture-2)}
+.faq-tools{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;align-items:center;justify-content:center}
+.faq-search{position:relative;flex:1;min-width:240px;max-width:420px}
+.faq-search input{width:100%;padding:13px 16px 13px 44px;border:1.6px solid var(--line);border-radius:99px;background:#fff;outline:none}
+.faq-search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(242,125,12,.13)}
+.faq-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);opacity:.5}
+.faq-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px;justify-content:center}
+.fchip{font-size:12.5px;font-weight:800;padding:8px 16px;border-radius:99px;background:#fff;border:1.6px solid var(--line);color:var(--soft);transition:.2s}
+.fchip:hover,.fchip.on{background:var(--grad-accent);color:#fff;border-color:transparent}
+.faq-list{display:grid;gap:12px;max-width:880px;margin:0 auto}
+.fitem{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s}
+.fitem.open{border-color:rgba(242,125,12,.5);box-shadow:var(--sh-2)}
+.fitem.hide{display:none}
+.fq{width:100%;display:flex;align-items:center;gap:14px;padding:19px 22px;font-size:15.5px;font-weight:800;color:var(--ink);text-align:left}
+.fq .pm{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;background:var(--texture);display:grid;place-items:center;color:var(--primary);transition:.3s}
+.fitem.open .fq .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.fa p{padding:0 22px 20px;font-size:14.5px;color:var(--soft)}
+.faq-empty{display:none;text-align:center;color:var(--soft);padding:26px;font-size:14.5px}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-deep);color:#C9B69C;padding:60px 0 0;overflow:clip;position:relative}
+footer .bp{position:absolute;inset:0;pointer-events:none;opacity:.6}
+.fgrid4{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.15fr;gap:38px;position:relative;z-index:2}
+.fcol h4{display:block;color:#fff;font-size:15px;font-weight:900;margin-bottom:18px;letter-spacing:.4px}
+.fcol .flogo{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.fcol .flogo b{color:#fff;font-size:19px;font-weight:900}
+.fcol p{font-size:13.5px}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#F0E4D2;transition:.25s}
+.socials a:hover{background:var(--grad-accent);border-color:transparent;color:#fff;transform:translateY(-3px)}
+.flinks{list-style:none;display:grid;gap:10px}
+.flinks a{font-size:13.5px;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.flinks a:hover{color:#FFC88A}
+.flinks svg{opacity:.5;flex:none}
+.faddr{display:grid;gap:13px;font-size:13.5px}
+.faddr div{display:flex;gap:11px;align-items:flex-start}
+.faddr svg{flex:none;margin-top:2px;color:#FFC88A}
+.faddr a.hot{color:#FFC88A;font-weight:900;font-size:17px}
+.paybar{margin-top:48px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;position:relative;z-index:2}
+.paybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.paybar small{font-size:12px;color:#B9A488}
+.pay-items{display:flex;gap:9px;flex-wrap:wrap}
+.pay-items span{font-size:12px;font-weight:800;color:#D8C9B4;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 11px;background:rgba(255,255,255,.05)}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:150;display:flex;gap:9px;background:rgba(29,18,6,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.16);padding:9px 12px;border-radius:22px;box-shadow:var(--sh-3);transition:.4s}
+.dock.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(80px)}
+.dock a,.dock button{display:flex;flex-direction:column;align-items:center;gap:4px;color:#D8C9B4;font-size:10px;font-weight:700;padding:7px 11px;border-radius:14px;transition:.22s;min-width:62px;min-height:40px}
+.dock a:hover,.dock button:hover{background:rgba(242,125,12,.2);color:#FFD9AE}
+.dock .main{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.dock svg{flex:none}
+
+/* ============ TOAST (title + message 2 phần tử riêng — NB93-163) ============ */
+.toast{position:fixed;right:22px;bottom:96px;z-index:400;background:var(--primary-deep);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:var(--sh-3);display:flex;gap:12px;align-items:flex-start;font-size:14px;transform:translateX(130%);transition:.45s cubic-bezier(.2,.9,.3,1.2);max-width:360px;border:1.5px solid rgba(255,255,255,.16);pointer-events:none}
+.toast.show{transform:none;pointer-events:auto}
+.toast .ti{width:36px;height:36px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center}
+.toast .tx{min-width:0}
+.toast .tt{display:block;font-weight:900;font-size:14px}
+.toast .tm{display:block;font-weight:500;font-size:12.5px;color:#D8C9B4;margin-top:2px}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media(max-width:1080px){
+  nav.mainnav{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:52px}
+  .hero-media{max-width:640px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .mid-row{grid-template-columns:1fr}
+  .space-img{min-height:0;aspect-ratio:16/9}
+  .md-thumbs{grid-template-columns:repeat(4,1fr)}
+  .md-detail{grid-template-columns:1fr}
+  .md-img{min-height:0;aspect-ratio:4/3}
+  .pf-grid{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:repeat(3,1fr);row-gap:34px}
+  .kg,.bg-grid,.ba-wrap,.about-grid,.spec-grid,.rev-shell,.ct-grid{grid-template-columns:1fr}
+  .fgrid4{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680 — thiết kế riêng, đủ chức năng ============ */
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:96px}
+  .sec{padding:50px 0}
+  .topbar .tb-r{display:none}
+  .topbar .wrap{justify-content:center}
+  header.hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .hsearch{order:3;flex-basis:100%;max-width:none}
+  .hdr .cta .btn{padding:10px 14px;font-size:13px;min-height:40px}
+  .hero{padding:40px 0 64px}
+  .hero h1{font-size:1.62rem}
+  .hero .sub{font-size:14.5px}
+  .hero .cta-row{flex-direction:column;align-items:stretch}
+  .hero .cta-row .btn{width:100%;white-space:normal}
+  .hero .call{width:100%;justify-content:center}
+  .chips{gap:8px}
+  .hm-main{transform:none;border-width:4px}
+  .hm-main img{aspect-ratio:4/3}
+  .hm-stats{grid-template-columns:1fr 1fr;transform:none;margin-top:14px}
+  .hm-stats div{border-right:none;border-bottom:1px solid rgba(255,255,255,.12);padding:12px 8px}
+  .hm-stats div:nth-child(3),.hm-stats div:nth-child(4){border-bottom:none}
+  .hm-stats div:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}
+  .tape .in{animation-duration:18s;padding:11px 0}
+  .tape span{font-size:12.5px;letter-spacing:1px}
+  .block-title{font-size:1.42rem}
+  .sec-head{margin-bottom:30px}
+  .cap-grid{grid-template-columns:1fr;gap:18px}
+  .strip{grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .stats-row{grid-template-columns:1fr 1fr;gap:12px}
+  .stat{padding:20px 14px}
+  .qc-grid{grid-template-columns:1fr;gap:12px}
+  .partner-row{margin-top:28px;gap:8px}
+  /*NB93-163 — khối-8 mobile: 8 ô kín 2 cột, detail xếp dọc ảnh 4:3 nguyên vẹn*/
+  .md-thumbs{grid-template-columns:1fr 1fr;gap:10px}
+  .md-thumb .tb{padding:9px 10px 11px}
+  .md-thumb .tb b{font-size:13px}
+  .md-detail{margin-top:16px;border-radius:20px}
+  .md-body{padding:20px 18px 22px}
+  .md-foot .btn{width:100%}
+  .flow{grid-template-columns:1fr 1fr;gap:24px 12px;row-gap:32px}
+  .step{padding:22px 12px 18px}
+  .kg-card{padding:22px 18px;border-radius:20px}
+  .gform{padding:22px 18px;border-radius:20px}
+  .fgrid{grid-template-columns:1fr}
+  .strengths{grid-template-columns:1fr 1fr;gap:10px}
+  .st{padding:14px}
+  .st b{font-size:13.5px}
+  .about-img .ph{transform:none;border-width:4px}
+  .about-grid{gap:28px}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .tabs{gap:8px}
+  .tab{padding:10px 16px;font-size:13px}
+  .rev-view{padding:24px 20px;min-height:0}
+  .rev-metric{grid-template-columns:1fr 1fr;gap:10px}
+  .ct-grid{gap:16px}
+  .gform .btn{font-size:14.5px}
+  .fq{padding:15px 16px;font-size:14.5px}
+  .fa p{padding:0 16px 16px;font-size:13.5px}
+  footer{padding-top:46px}
+  .fgrid4{grid-template-columns:1fr;gap:28px}
+  .paybar .wrap{justify-content:center;text-align:center}
+  .dock{bottom:12px;gap:2px;padding:7px 8px;border-radius:18px}
+  .dock a,.dock button{min-width:0;padding:7px 9px;font-size:0;gap:0}
+  .toast{right:12px;left:12px;bottom:86px;max-width:none}
+  .ba-wrap{margin-top:36px;gap:24px}
+}
+
+/*MOBILE-TAP40: vùng chạm tối thiểu*/
+@media(max-width:640px){
+  .chip,.fchip,.tab,.dock a,.dock button,.strip a{min-height:40px}
+  .md-thumb{min-height:44px}
+  .ct-card .dir{min-height:40px}
+  .btn{min-height:40px!important;white-space:normal}
+}
+button:active{transform:scale(.96)}
+</style>
+
+<!-- ═══════════ TOPBAR ═══════════ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>T2–T7: 7:30–17:30 · CN: nhận lô khẩn</span>
+      <span class="dot"></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>KCN Phú Thành, Thủ Dầu Một, Bình Dương</span>
+    </div>
+    <div class="tb-r">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>baogia@hopkimviet.vn</span>
+      <span class="hot"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Hotline: 0906 335 178</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Hợp Kim Việt">
+      <span class="mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="M12 2c1.8 2.6 3.4 4.5 3.4 7a3.4 3.4 0 1 1-6.8 0c0-1 .3-1.9.8-2.8.3 1 .9 1.8 1.9 2.3C10.6 6.3 11 4.2 12 2Z"/><path d="M5 16.5h14l-1.6 4.2a1.5 1.5 0 0 1-1.4 1H8a1.5 1.5 0 0 1-1.4-1L5 16.5Z"/><path d="M7.5 13.5h9"/></svg></span>
+      <span><b>HỢP KIM VIỆT</b><small>Foundry &amp; Machining</small></span>
+    </a>
+    <div class="hsearch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E5E4B" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+      <input id="hsearchInput" type="text" placeholder="Tìm hạng mục: đúc gang, đúc nhôm, xử lý nhiệt…" aria-label="Tìm hạng mục đúc">
+    </div>
+    <nav class="mainnav" aria-label="Menu chính">
+      <a href="#nang-luc">Năng lực</a>
+      <a href="#hang-muc">8 hạng mục</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#gia-kg">Giá theo kg</a>
+      <a href="#portfolio">Dự án</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="cta"><a href="#baogia" class="btn btn-acc"><span class="btxt">Nhận báo giá 4h</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero bp" id="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i>Xưởng đúc &amp; gia công kim loại · từ 1998</span>
+      <h1>Đúc gang – nhôm – đồng <em class="hl">theo mẫu có sẵn hoặc bản vẽ</em></h1>
+      <span class="sub">Mang mẫu hữu hình, ảnh chi tiết cũ hoặc bản vẽ — xưởng làm khuôn, rót lò và bàn giao theo <b>giá/kg công khai</b>. Lô đầu từ <b>10–20 ngày</b>, MOQ chỉ <b>50 kg</b>.</span>
+      <div class="cta-row">
+        <a href="#baogia" class="btn btn-acc btn-lg">Nhận báo giá theo kg<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:0906335178" class="btn btn-ghost btn-lg" style="background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)">Gọi ngay xưởng</a>
+      </div>
+      <a class="call" href="tel:0906335178">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span>
+        <span><b>0906 335 178</b><small>Kỹ thuật lò trực — 7:30 đến 20:00</small></span>
+      </a>
+      <div class="chips">
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Giá theo kg công khai</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Lò cảm ứng 1.450°C</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Nhận mẫu hữu hình</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo giá trong 4 giờ</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-main"><img src="assets/img/cover.webp" alt="Xưởng đúc và gia công kim loại Hợp Kim Việt — thợ rót gang từ gói nung, chi tiết gia công CNC phía trước"></div>
+      <div class="hm-stats">
+        <div><b>1.450<small>°C</small></b><small>nhiệt độ rót gang</small></div>
+        <div><b>500 <small>kg</small></b><small>mẻ lò lớn nhất</small></div>
+        <div><b>5.000 <small>kg</small></b><small>chi tiết tối đa</small></div>
+        <div><b>28 <small>năm</small></b><small>đúc hợp kim</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TAPE ═══════════ -->
+<div class="tape" aria-hidden="true">
+  <div class="in">
+    <span>Giá theo kg công khai<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>MOQ từ 50 kg<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Lò cảm ứng 1.450°C<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Đúc theo mẫu hoặc bản vẽ<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Khuôn cát &amp; khuôn kim loại<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Phổ kế kiểm từng mẻ<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Giao toàn quốc<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+    <span>Giá theo kg công khai<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>MOQ từ 50 kg<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Lò cảm ứng 1.450°C<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Đúc theo mẫu hoặc bản vẽ<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Khuôn cát &amp; khuôn kim loại<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Phổ kế kiểm từng mẻ<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Giao toàn quốc<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+  </div>
+</div>
+<!-- ═══════════ 2 THẺ NĂNG LỰC CHỦ LỰC ═══════════ -->
+<section class="sec" id="nang-luc">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Năng lực chủ lực</span>
+      <span class="block-title" style="margin-top:16px">2 tổ hợp lò <span class="un">làm ra tiền</span> của xưởng</span>
+      <span class="block-sub">Mỗi tổ hợp gắn với lò thật, mẻ rót thật và phổ kế kiểm thành phần hợp kim trước khi rót — không nói chung chung.</span>
+    </div>
+    <div class="cap-grid">
+      <!-- 1 -->
+      <article class="cap-card rv" data-d="0">
+        <div class="cap-img"><img src="assets/img/p1.webp" alt="Đúc gang — thợ rót gang nóng chảy từ gói nung vào khuôn cát" loading="lazy"><span class="cap-badge">Nhiều nhất</span><span class="cap-tol">Lò 1.450°C</span></div>
+        <div class="cap-body">
+          <h3>Đúc gang xám &amp; gang cầu</h3>
+          <p>Ròng rọc, răng cày, đế máy, nắp hố ga… gang xám HT150–HT300 và gang cầu FCD400–FCD600.</p>
+          <table class="mtab">
+            <tr><th>Lò chính</th><td>Cảm ứng trung tần 500 kg · 1.450°C</td></tr>
+            <tr><th>Khối lượng chi tiết</th><td>0,5 – 5.000 kg / chiếc</td></tr>
+            <tr><th>Dung sai đúc</th><td>CT10 khuôn cát · CT7 khuôn kim loại</td></tr>
+          </table>
+          <ul class="cap-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Phổ kế kiểm thành phần trước mỗi mẻ rót</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Ủ khử ứng lực trong lò 6m³ tại xưởng</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>MOQ 100 kg — chốt giá theo kg</li>
+          </ul>
+          <a href="#baogia" class="btn btn-navy">Nhận báo giá hạng mục này</a>
+        </div>
+      </article>
+      <!-- 2 — biến thể nền tối nổi bật -->
+      <article class="cap-card dark rv" data-d="1">
+        <div class="cap-img"><img src="assets/img/p3.webp" alt="Đúc đồng — rót đồng nóng chảy, sản phẩm đồng trang trí" loading="lazy"><span class="cap-badge">Chuyên sâu</span><span class="cap-tol">Lò 1.150°C</span></div>
+        <div class="cap-body">
+          <h3>Đúc nhôm &amp; đồng mỹ nghệ</h3>
+          <p>Vỏ hộp máy, cánh quạt, tay đồ gá bằng nhôm A356/ADC12; tượng, trống, bàn thờ bằng đồng thau – đồng đỏ.</p>
+          <table class="mtab">
+            <tr><th>Lò chính</th><td>Lò nhôm 300 kg · 750°C + lò đồng 200 kg · 1.150°C</td></tr>
+            <tr><th>Khối lượng chi tiết</th><td>0,1 – 2.000 kg / chiếc</td></tr>
+            <tr><th>Dung sai đúc</th><td>CT6–CT8 khuôn kim loại · CT9 khuôn cát</td></tr>
+          </table>
+          <ul class="cap-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Hoá già T6 cho nhôm ngay trong lò xưởng</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Đúc rỗng tượng lớn — tiết kiệm 30–40% kg</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>MOQ 50 kg — đánh bóng, phủ bóng sẵn</li>
+          </ul>
+          <a href="#baogia" class="btn btn-acc">Nhận báo giá hạng mục này</a>
+        </div>
+      </article>
+    </div>
+    <!-- dải 5 hạng mục gọn -->
+    <div class="strip rv" data-d="1">
+      <a href="#hang-muc" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><span><b>Đúc theo mẫu có sẵn</b><small>không cần bản vẽ</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#hang-muc" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 8 4.5v9L12 20l-8-4.5v-9Z"/><path d="M12 11 4 6.5M12 11l8-4.5M12 11v9"/></svg></span><span><b>Gia công phôi</b><small>cắt · cưa · sửa phôi</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#hang-muc" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M5.6 5.6l2.8 2.8M2 12h4M18 12h4M15.6 8.4l2.8-2.8"/><circle cx="12" cy="15" r="5"/><path d="M12 15v3"/></svg></span><span><b>Xử lý nhiệt</b><small>ủ · tôi ram · hoá già</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#hang-muc" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M8.5 11l2 2 3.5-4"/></svg></span><span><b>Kiểm tra chất lượng</b><small>phổ kế · độ cứng · UT</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#hang-muc" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.2-1.6l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2.8-1.6L13 2h-4l-.6 2.8a7 7 0 0 0-2.8 1.6l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 3 12"/></svg></span><span><b>Gia công sau đúc</b><small>tiện phay · khoan ren</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS BAND NĂNG LỰC LÒ ĐÚC ═══════════ -->
+<section class="stats-band" id="stats">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Năng lực lò đúc</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">Con số <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">kiểm đếm được</em>, không khẩu hiệu</span>
+    </div>
+    <div class="stats-row">
+      <div class="stat rv" data-d="0"><span class="num"><span class="cnt" data-count="1450">0</span><small>°C</small></span><b>Nhiệt độ rót gang cầu</b><small>lò cảm ứng trung tần, dò nhiệt kế quang</small></div>
+      <div class="stat rv" data-d="1"><span class="num"><span class="cnt" data-count="500">0</span><small>kg</small></span><b>Mẻ rót lớn nhất</b><small>2 lò gang + lò nhôm + lò đồng</small></div>
+      <div class="stat rv" data-d="2"><span class="num"><span class="cnt" data-count="6000">0</span><small>m²</small></span><b>Nhà xưởng &amp; kho khuôn</b><small>khu làm khuôn, kho khuôn riêng 400 m²</small></div>
+      <div class="stat rv" data-d="3"><span class="num"><span class="cnt" data-count="28">0</span><small>năm</small></span><b>Chỉ làm một nghề: đúc</b><small>từ 1998, 2 đời thợ lò</small></div>
+    </div>
+    <div class="mid-row">
+      <div class="space-img rv" data-d="0">
+        <img src="assets/img/space.webp" alt="Sàn xưởng đúc Hợp Kim Việt — gói nung rót gang, dãy khuôn cát và tổ máy gia công" loading="lazy">
+        <span class="stg"><i></i>Xưởng 6.000 m² — đón khách xem rót lò trực tiếp</span>
+      </div>
+      <div class="qc-grid">
+        <div class="qc rv" data-d="0"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8ZM8 7h8l1 5H7ZM7 12h10l1 5H6ZM6 17h12v4H6z"/></svg></span><span><b>Phổ kế xạ nổi</b><small>phân tích hợp kim từng mẻ trước khi rót — 3 phút/mẻ</small></span></div>
+        <div class="qc rv" data-d="1"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></span><span><b>Độ cứng Brinell</b><small>kiểm HB từng lô gang, báo cáo kèm hàng</small></span></div>
+        <div class="qc rv" data-d="2"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></span><span><b>Dò khuyết tật UT–MT</b><small>siêu âm, thẩm thử chất huỳnh quang chi tiết chịu lực</small></span></div>
+        <div class="qc rv" data-d="3"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M9 13l2 2 4-4"/></svg></span><span><b>Biên bản QC kèm lô</b><small>hợp kim – độ cứng – kích thước đo thực tế</small></span></div>
+      </div>
+    </div>
+    <div class="partner-row rv">
+      <span class="lbl">Ngành khách đang đúc thường xuyên</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.2-1.6l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2.8-1.6L13 2h-4l-.6 2.8a7 7 0 0 0-2.8 1.6l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 3 12"/></svg>Cơ khí chế tạo</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M12 8a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4Z"/></svg>Máy &amp; phụ tùng nông nghiệp</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="m12 3 2.5 5.5L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.8Z"/></svg>Trang trí &amp; tượng mỹ thuật</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>Hạ tầng – nắp hố ga</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Bơm – van – hộp số</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h2M19 11a2 2 0 0 1 2 2v4h-2M7 17a2 2 0 1 0 4 0M13 17a2 2 0 1 0 4 0"/></svg>Ô tô – xe máy</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KHỐI-8: MASTER-DETAIL 8 HẠNG MỤC (NB93-163) ═══════════ -->
+<section class="sec" id="hang-muc">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Catalogue năng lực đúc</span>
+      <span class="block-title" style="margin-top:16px">8 hạng mục — <span class="hl">giá theo kg, MOQ rõ ràng</span></span>
+      <span class="block-sub">Bấm vào từng hạng mục để xem lò áp dụng, khối lượng và giá tham khảo. Báo giá chính thức trong 4 giờ sau khi xem mẫu hoặc bản vẽ.</span>
+    </div>
+    <div class="md-thumbs rv" id="mdThumbs"></div>
+    <div class="md-detail rv" id="mdDetail">
+      <div class="md-img"><span class="mnum" id="mdNum">01</span><img id="mdImg" src="assets/img/p1.webp" alt="Hạng mục đúc đang chọn"><span class="mkg" id="mdKg">—</span></div>
+      <div class="md-body">
+        <h3 id="mdName">—</h3>
+        <p id="mdDesc">—</p>
+        <table class="mtab" id="mdTab"></table>
+        <div class="md-chips" id="mdChips"></div>
+        <div class="md-foot">
+          <button class="btn btn-acc btn-lg" id="mdGo" type="button">Nhận báo giá hạng mục này<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="btn btn-ghost" href="tel:0906335178">Gọi 0906 335 178</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUY TRÌNH 6 BƯỚC TỪ MẪU/BẢN VẼ ═══════════ -->
+<section class="sec bp" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Quy trình nhận đúc</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">6 bước — từ <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">mẫu hoặc bản vẽ</em> tới lô hàng xuất xưởng</span>
+      <span class="block-sub">Mỗi bước có người phụ trách và mốc thời gian cam kết trong phiếu báo giá.</span>
+    </div>
+    <div class="flow">
+      <div class="step rv" data-d="0"><span class="n">1</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><b>Gửi mẫu hoặc bản vẽ</b><p>Mẫu thật, ảnh chi tiết cũ hoặc bản vẽ PDF/DXF qua Zalo, email</p><span class="meta">5 phút</span></div>
+      <div class="step rv" data-d="1"><span class="n">2</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><b>Báo giá theo kg</b><p>Chọn hợp kim, phương án khuôn — báo đơn giá/kg và tiền khuôn</p><span class="meta">4 giờ</span></div>
+      <div class="step rv" data-d="2"><span class="n">3</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 3 1.5 4L14 8.5 10.5 10 9 14 7.5 10 4 8.5 7.5 7Z"/><path d="M17 11l1 2.6 2.6 1-2.6 1L17 18l-1-2.4-2.6-1 2.6-1Z"/></svg></span><b>Làm khuôn &amp; duyệt mẫu đầu</b><p>Khuôn cát hoặc khuôn kim loại; gửi mẫu đầu chụp ảnh duyệt</p><span class="meta">5–10 ngày</span></div>
+      <div class="step rv" data-d="3"><span class="n">4</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c1.8 2.6 3.4 4.5 3.4 7a3.4 3.4 0 1 1-6.8 0c0-1 .3-1.9.8-2.8.3 1 .9 1.8 1.9 2.3C10.6 6.3 11 4.2 12 2Z"/><path d="M5 16.5h14l-1.6 4.2a1.5 1.5 0 0 1-1.4 1H8a1.5 1.5 0 0 1-1.4-1L5 16.5Z"/></svg></span><b>Rót lò &amp; làm nguội</b><p>Phổ kế kiểm mẻ, rót theo nhiệt độ chuẩn hợp kim</p><span class="meta">theo lô</span></div>
+      <div class="step rv" data-d="4"><span class="n">5</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="4" height="4" rx="1"/><rect x="10" y="7" width="4" height="4" rx="1"/><rect x="17" y="7" width="4" height="4" rx="1"/><rect x="3" y="14" width="4" height="4" rx="1"/><rect x="10" y="14" width="4" height="4" rx="1"/><rect x="17" y="14" width="4" height="4" rx="1"/></svg></span><b>Xử lý nhiệt + gia công</b><p>Phun cát, ủ/tôi, tiện phay chuẩn bề mặt, khoan ren</p><span class="meta">2–5 ngày</span></div>
+      <div class="step rv" data-d="5"><span class="n">6</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h18v-4a2 2 0 0 0-2-2M7 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0M13 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/></svg></span><b>QC &amp; giao hàng</b><p>Biên bản QC kèm lô, giao xe tải toàn quốc</p><span class="meta">1–3 ngày</span></div>
+    </div>
+    <div class="flow-note rv"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFC88A" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5ZM2 8v8l10 5 10-5V8M12 13v8"/></svg>Cam kết bằng hợp đồng: <b>chi tiết lỗi đúc — đúc lại miễn phí</b> · khuôn của khách lưu kho miễn phí 12 tháng · bảo mật mẫu theo NDA</div>
+  </div>
+</section>
+
+<!-- ═══════════ GIÁ THEO KG — ĐẶC THÙ NGHỀ (NB93-163) ═══════════ -->
+<section class="sec" id="gia-kg">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Bảng giá &amp; máy tính</span>
+      <span class="block-title" style="margin-top:16px">Giá đúc theo kg — <span class="hl">xem trước trước khi gọi</span></span>
+      <span class="block-sub">Đơn giá tham khảo theo hợp kim và bậc khối lượng lô. Kéo thanh khối lượng để ước tính ngay tiền lô và thời gian lô đầu.</span>
+    </div>
+    <div class="kg">
+      <div class="kg-card rv">
+        <h3>Bảng giá tham khảo theo kg</h3>
+        <p>Đã gồm vật liệu, đúc, phun cát, cắt viết ngậm. Chưa VAT và tiền khuôn.</p>
+        <div class="scroll" style="overflow-x:auto">
+          <table class="kgtbl">
+            <thead><tr><th>Hợp kim</th><th>50–200 kg</th><th>200–1.000 kg</th><th>&gt; 1.000 kg</th></tr></thead>
+            <tbody>
+              <tr><td><span class="mat"><i style="background:var(--c-gang)"></i>Gang xám HT200</span></td><td><em>30.000</em>/kg</td><td>27.000/kg</td><td>25.000/kg</td></tr>
+              <tr class="best"><td><span class="mat"><i style="background:var(--c-gang)"></i>Gang cầu FCD500</span></td><td><em>42.000</em>/kg</td><td>38.000/kg</td><td>35.000/kg</td></tr>
+              <tr><td><span class="mat"><i style="background:var(--c-nhom)"></i>Nhôm A356 / ADC12</span></td><td><em>72.000</em>/kg</td><td>68.000/kg</td><td>63.000/kg</td></tr>
+              <tr><td><span class="mat"><i style="background:var(--c-dong)"></i>Đồng thau C36000</span></td><td><em>158.000</em>/kg</td><td>148.000/kg</td><td>139.000/kg</td></tr>
+              <tr><td><span class="mat"><i style="background:var(--c-dong)"></i>Đồng đỏ CuSn10</span></td><td><em>215.000</em>/kg</td><td>199.000/kg</td><td>185.000/kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="kg-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11v5"/></svg><span>Giá biến động theo giá vật liệu trong tháng — báo giá chính thức khóa giá 10 ngày. Chi tiết phức tạp, thành mỏng &lt;4mm hoặc yêu cầu UT thêm 8–15%.</span></div>
+      </div>
+      <div class="kg-card rv" data-d="1">
+        <h3>Máy tính ước tính theo khối lượng</h3>
+        <p>Chọn hợp kim, kéo khối lượng — 15 giây, không cần tài khoản.</p>
+        <div class="field" style="margin-bottom:16px">
+          <label for="kgMat">Hợp kim đúc</label>
+          <select id="kgMat">
+            <option value="0">Gang xám HT200</option>
+            <option value="1">Gang cầu FCD500</option>
+            <option value="2">Nhôm A356 / ADC12</option>
+            <option value="3">Đồng thau C36000</option>
+            <option value="4">Đồng đỏ CuSn10</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="kgW">Khối lượng lô dự kiến</label>
+          <div class="sizerow">
+            <input type="range" id="kgW" min="20" max="5000" value="500" step="10">
+            <b id="kgWLbl">500 kg</b>
+          </div>
+        </div>
+        <div class="kg-out" style="margin-top:16px">
+          <small>Đơn giá ước tính / kg (chưa VAT)</small>
+          <b id="rKg">—</b>
+          <div class="tt"><span>Thành tiền lô ước tính</span><b id="rLot">—</b></div>
+        </div>
+        <div class="kg-rows">
+          <div class="kg-row"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E5E4B" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Thời gian lô đầu dự kiến</span><b id="rLead">—</b></div>
+          <div class="kg-row"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E5E4B" stroke-width="2"><path d="M20 7 9 18l-5-5"/></svg>Bậc giá áp dụng</span><b id="rTier">—</b></div>
+        </div>
+        <button class="btn btn-acc btn-lg" id="kgSend" type="button">Gửi thông số sang form báo giá<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+        <small class="note">Giá tham khảo ±10%. Báo giá chính thức miễn phí sau khi xem mẫu hoặc bản vẽ.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PORTFOLIO + BEFORE/AFTER ═══════════ -->
+<section class="sec" id="portfolio">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Dự án đã bàn giao</span>
+      <span class="block-title" style="margin-top:16px">3 nhóm hàng đúc chủ lực — <span class="hl">kết quả đo bằng số</span></span>
+      <span class="block-sub">Khách B2B được ẩn tên theo thoả thuận bảo mật; chỉ số lấy từ biên bản QC lô gần nhất.</span>
+    </div>
+    <div class="pf-grid">
+      <article class="pf rv" data-d="0">
+        <div class="img"><img src="assets/img/p1.webp" alt="Đúc gang — răng cày, lưỡi tơi cho máy nông nghiệp" loading="lazy"><span class="res"><i></i>3.000 chiếc/lô · lỗi 0,4%</span></div>
+        <div class="bd"><small>Máy nông nghiệp</small><b>Răng cày, lưỡi tơi gang cầu FCD500</b><p>Đúc khuôn cát + tôi rắn mặt, độ cứng 480 HB — giá/kg giảm 22% so với mua lẻ.</p></div>
+      </article>
+      <article class="pf rv" data-d="1">
+        <div class="img"><img src="assets/img/p3.webp" alt="Đúc đồng — tượng và đồ trang trí mỹ nghệ" loading="lazy"><span class="res"><i></i>Đúc rỗng 42 kg · cao 1,8 m</span></div>
+        <div class="bd"><small>Trang trí mỹ thuật</small><b>Tượng đồng trang trí từ mẫu sáp</b><p>Đồng đỏ CuSn10, đúc rỗng tiết kiệm 35% khối lượng, đánh bóng thủ công 2 lớp phủ.</p></div>
+      </article>
+      <article class="pf rv" data-d="2">
+        <div class="img"><img src="assets/img/p8.webp" alt="Gia công cơ khí sau đúc — vỏ máy nhôm đúc hoàn thiện" loading="lazy"><span class="res"><i></i>450 bộ/lô · kín khí 3 bar</span></div>
+        <div class="bd"><small>Cơ khí chế tạo</small><b>Vỏ hộp giảm tốc nhôm ADC12</b><p>Đúc + xử lý nhiệt + tiện phay mặt đế phẳng 0,05mm, thử kín khí từng bộ trước giao.</p></div>
+      </article>
+    </div>
+    <div class="ba-wrap">
+      <div class="ba rv" id="baSlider">
+        <div class="layer before"><div class="bfix-cad bfx-b"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="30" y="25" width="140" height="70" rx="4"/><circle cx="70" cy="60" r="16"/><circle cx="130" cy="60" r="16"/><path d="M70 44h60M70 76h60" stroke-dasharray="4 3"/><path d="M30 12v96M170 12v96" stroke-dasharray="2 4" opacity=".55"/></svg><b>Bản vẽ hoặc mẫu của khách</b></div><span class="ba-grid"></span></div>
+        <div class="layer after"><div class="bfix-cad bfx-a"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><rect x="45" y="30" width="110" height="60" rx="6" fill="currentColor" opacity=".18"/><circle cx="80" cy="60" r="15" fill="currentColor" opacity=".35"/><circle cx="120" cy="60" r="15" fill="currentColor" opacity=".35"/><path d="M45 60h-22M155 60h22" stroke-linecap="round"/></svg><b>Chi tiết đúc hoàn thiện · kèm biên bản QC</b></div></div>
+        <span class="tag l">Mẫu / bản vẽ</span><span class="tag r">Chi tiết đúc</span>
+        <span class="handle"><i>⇔</i></span>
+        <input type="range" min="2" max="98" value="50" id="baRange" aria-label="Kéo so sánh mẫu hoặc bản vẽ và chi tiết đúc">
+      </div>
+      <div class="ba-copy rv" data-d="1">
+        <span class="eyebrow"><i></i>Từ mẫu cũ tới lô hàng mới</span>
+        <h3>Chỉ có <span style="color:var(--accent-deep)">mẫu hữu hình</span>? Vẫn đúc được</h3>
+        <p>Kéo thanh trượt để xem hành trình một chi tiết: từ mẫu cũ hoặc bản vẽ tới lô đúc được phổ kế, xử lý nhiệt và bàn giao kèm biên bản QC.</p>
+        <ul class="ba-points">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Nhận mẫu có sẵn — đo vẽ, quét 3D và sửa mẫu tại xưởng miễn phí</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Mẫu đầu (khuôn mới) gửi ảnh + số đo để duyệt trước khi rót lô</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2E9E63" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Lỗi đúc do xưởng — đúc lại 100% miễn phí, vận chuyển 2 chiều xưởng chịu</li>
+        </ul>
+        <div style="margin-top:26px"><a href="#gia-kg" class="btn btn-navy">Ước tính giá theo kg của bạn</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img rv">
+        <div class="ph"><img src="assets/img/intro.webp" alt="Giới thiệu xưởng đúc và gia công kim loại Hợp Kim Việt" loading="lazy"></div>
+        <div class="cap">Xưởng từ <b>1998</b> — <b>28 năm</b> chỉ làm một nghề: đúc hợp kim</div>
+      </div>
+      <div class="rv" data-d="1">
+        <span class="eyebrow"><i></i>Về Hợp Kim Việt</span>
+        <span class="block-title" style="margin-top:16px">Xưởng gia đình 2 đời thợ lò, <span class="hl">tự chủ từ khuôn tới lò</span></span>
+        <span class="block-sub">Hợp Kim Việt khởi đầu từ 1 lò than đứng năm 1998. Hôm nay là 4 lò cảm ứng và lò xử lý nhiệt 6m³, nhưng giữ nguyên nguyên tắc: kỹ thuật lò trực tiếp nói chuyện với khách, không qua môi giới.</span>
+        <div class="strengths">
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.8 2.6 3.4 4.5 3.4 7a3.4 3.4 0 1 1-6.8 0c0-1 .3-1.9.8-2.8.3 1 .9 1.8 1.9 2.3C10.6 6.3 11 4.2 12 2Z"/><path d="M5 16.5h14l-1.6 4.2a1.5 1.5 0 0 1-1.4 1H8a1.5 1.5 0 0 1-1.4-1L5 16.5Z"/></svg></span><b>Lò tự chủ 100%</b><p>4 lò thuộc tài sản xưởng — chủ động lịch rót, không phụ thuê lò ngoài.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 3 1.5 4L14 8.5 10.5 10 9 14 7.5 10 4 8.5 7.5 7Z"/><path d="M17 11l1 2.6 2.6 1-2.6 1L17 18l-1-2.4-2.6-1 2.6-1Z"/></svg></span><b>Khuôn làm nội bộ</b><p>Xưởng khuôn riêng — giá khuôn tốt hơn 20–30%, sửa khuôn trong 1 ngày.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8ZM8 7h8l1 5H7ZM7 12h10l1 5H6ZM6 17h12v4H6z"/></svg></span><b>Phổ kế từng mẻ</b><p>Phân tích thành phần hợp kim trước rót — không đoán, không dò mò.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9Z"/></svg></span><b>Đúng hẹn 98,2%</b><p>Theo dõi tiến độ từng lô, báo sớm 48h nếu có rủi ro trễ.</p></div>
+        </div>
+        <div class="about-cta">
+          <a href="#baogia" class="btn btn-acc">Gửi mẫu nhận báo giá</a>
+          <a href="#quy-trinh" class="btn btn-ghost">Xem quy trình 6 bước</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BẢNG THÔNG SỐ CHUYÊN MÔN (3 TAB) ═══════════ -->
+<section class="sec" id="specs">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Thông số chuyên môn</span>
+      <span class="block-title" style="margin-top:16px">Hồ sơ <span class="hl">hợp kim — lò — kiểm tra</span></span>
+      <span class="block-sub">Số liệu cập nhật 01/2026, sao y hồ sơ thiết bị phục vụ audit khách hàng.</span>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-tab="0" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M2 9h20M12 3 8 9l4 12 4-12-4-6"/></svg>Hợp kim đúc</button>
+      <button class="tab" data-tab="1" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M5.6 5.6l2.8 2.8M2 12h4M18 12h4M15.6 8.4l2.8-2.8"/><circle cx="12" cy="15" r="5"/></svg>Lò &amp; thiết bị</button>
+      <button class="tab" data-tab="2" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M8.5 11l2 2 3.5-4"/></svg>Kiểm tra &amp; dung sai</button>
+    </div>
+    <div class="spec-grid">
+      <div class="tblwrap rv">
+        <div class="scroll">
+          <table class="spec-tbl tabpanel on" data-panel="0">
+            <thead><tr><th>Nhóm hợp kim</th><th>Chủng loại thường đúc</th><th>Khối lượng</th><th>Ghi chú</th></tr></thead>
+            <tbody>
+              <tr><td><b>Gang xám</b></td><td>HT150 – HT300 (GC)</td><td>0,5 – 5.000 kg</td><td>ròng rọc, đế máy, nắp hố ga</td></tr>
+              <tr><td><b>Gang cầu</b></td><td>FCD400 – FCD600 (GGG)</td><td>0,5 – 3.000 kg</td><td>răng cày, trục khuỷu, van</td></tr>
+              <tr><td><b>Nhôm đúc</b></td><td>A356.2, ADC12, AlSi9Cu3</td><td>0,1 – 300 kg</td><td>hoá già T6 tại xưởng</td></tr>
+              <tr><td><b>Đồng thau</b></td><td>C36000, CuZn40</td><td>0,2 – 1.000 kg</td><td>van, chi tiết trang trí, tay nắm</td></tr>
+              <tr><td><b>Đồng đỏ / thiếc</b></td><td>CuSn10, CuSn12</td><td>0,2 – 2.000 kg</td><td>tượng, trống, bush chịu mài mòn</td></tr>
+              <tr><td><b>Thép đúc</b></td><td>SC45, SCW480</td><td>5 – 2.000 kg</td><td>đặt hàng theo lô, dung sai CT11</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="1">
+            <thead><tr><th>Lò / thiết bị</th><th>Thông số chính</th><th>Công suất</th><th>Nhiệt độ</th></tr></thead>
+            <tbody>
+              <tr><td><b>Lò cảm ứng trung tần</b> — gang</td><td>nồi lót chum đá, dò nhiệt kế quang</td><td class="tol">500 kg/mẻ</td><td class="tol">1.450 °C</td></tr>
+              <tr><td><b>Lò cảm ứng trung tần</b> — gang</td><td>chạy lô nhỏ, lô gấp</td><td class="tol">250 kg/mẻ</td><td class="tol">1.450 °C</td></tr>
+              <tr><td><b>Lò nhôm đứng</b></td><td>nhiệt kế>Type K, gạn xỉ</td><td class="tol">300 kg/mẻ</td><td class="tol">750 °C</td></tr>
+              <tr><td><b>Lò đồng</b></td><td>chum graphit, hút khói</td><td class="tol">200 kg/mẻ</td><td class="tol">1.150 °C</td></tr>
+              <tr><td><b>Lò xử lý nhiệt 6 m³</b></td><td>ủ, tôi, ram, hoá già — đồng đều ±5°C</td><td class="tol">3.000 kg/lô</td><td class="tol">1.100 °C</td></tr>
+              <tr><td><b>Phòng phun cát 2 buồng</b></td><td>cát thạch anh + bi sắt, làm sạch bề mặt đúc</td><td class="tol">chi tiết tới 4 m</td><td class="tol">—</td></tr>
+              <tr><td><b>Phổ kế xạ nổi</b></td><td>đọc 20 nguyên tố, in phiếu mẻ</td><td class="tol">3 phút/mẻ</td><td class="tol">—</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="2">
+            <thead><tr><th>Hạng mục kiểm tra</th><th>Thiết bị</th><th>Độ phân giải</th><th>Áp dụng</th></tr></thead>
+            <tbody>
+              <tr><td><b>Thành phần hợp kim</b></td><td>Phổ kế xạ nổi</td><td class="tol">0,01%</td><td>100% mẻ rót, in phiếu kèm lô</td></tr>
+              <tr><td><b>Độ cứng</b></td><td>Brinell HB-3000 / Rockwell</td><td class="tol">±2 HB</td><td>gang, thép đúc chịu mài mòn</td></tr>
+              <tr><td><b>Khuyết tật bên trong</b></td><td>Siêu âm UT + thẩm thử MT</td><td class="tol">lỗ rỗng ≥1mm</td><td>chi tiết chịu lực, van, trục khuỷu</td></tr>
+              <tr><td><b>Kích thước sau đúc</b></td><td>Thước kẹp điện tử + CMM</td><td class="tol">0,01 mm</td><td>mặt phẳng, tâm lỗ gia công</td></tr>
+              <tr><td><b>Dung sai đúc áp dụng</b></td><td>ISO 8062 — khuôn cát CT10–CT12, khuôn kim loại CT6–CT8</td><td class="tol">theo khuôn</td><td>khai rõ trong phiếu báo giá</td></tr>
+              <tr><td><b>Thử kín khí / áp lực</b></td><td>Bàn thử thủy lực 10 bar</td><td class="tol">—</td><td>vỏ bơm, van, hộp số</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tfoot" id="specFoot">6 nhóm hợp kim chủ lực, vật liệu nhập nhà máy thép lớn — hoá đơn nguồn gốc đầy đủ.</div>
+      </div>
+      <div class="tips">
+        <div class="tip rv" data-d="0"><b>Tip 1 — Chỉ cần mẫu cũ, chưa cần vẽ lại</b><p>Gửi mẫu hữu hình hoặc ảnh chi tiết cũ kèm kích thước chính: xưởng đo vẽ, quét 3D và hoàn thiện bản vẽ 2D miễn phí trước khi báo giá.</p></div>
+        <div class="tip rv" data-d="1"><b>Tip 2 — Chọn khuôn theo số lượng lô</b><p>Lô dưới 300 chiếc nên dùng khuôn cát (giá khuôn thấp); lô trên 1.000 chiếc dùng khuôn kim loại — đắt hơn ban đầu nhưng giá/kg giảm 15–25%.</p></div>
+        <div class="tip rv" data-d="2"><b>Tip 3 — Lô trên 1.000 kg giá giảm rõ</b><p>Một lô 2.000 kg rẻ hơn 4 lô × 500 kg khoảng 12–17% nhờ rót chung mẻ và giảm chi phí setup khuôn. Cân nhắc đặt 1 lần, giao theo đợt.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════ REVIEWS ═══════════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Khách hàng nói gì</span>
+      <span class="block-title" style="margin-top:16px">Khách gửi lại mẫu đặt thêm lô — <span class="hl">đó mới là lời khen thật</span></span>
+    </div>
+    <div class="rev-shell">
+      <div class="rev-view rv">
+        <div class="rev-item on">
+          <div class="stars">★★★★★</div>
+          <p>"Gửi mẫu răng cày cũ không có bản vẽ, xưởng đo vẽ và làm khuôn cát trong 8 ngày. Lô 3.000 chiếc giá/kg chốt từ đầu không phát sinh, độ cứng 480 HB kèm phiếu phổ kế từng mẻ — nông cơ mình nhận hàng lắp thẳng."</p>
+          <div class="who"><span class="av">TT</span><span><b>Anh Tuấn</b><small>Giám đốc xưởng cơ khí — máy nông nghiệp</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Đúc tượng đồng cao 1,8m từ mẫu sáp, đúc rỗng chỉ 42kg so với dự kiến 65kg. Đường vải áo, nét mặt giữ được chi tiết, đánh bóng thủ công rất kỹ. Giá khoán theo kg minh bạch, không mặc cả kiểu chợ."</p>
+          <div class="who"><span class="av">HV</span><span><b>Chị Hạnh</b><small>Chủ cơ sở trang trí mỹ thuật</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Vỏ bơm gang chịu áp lực, lô nào cũng dò siêu âm và thử thủy lực 10 bar trước giao. Có mẻ phát hiện rỗ khí 2 chi tiết, họ tự báo và đúc lại miễn phí trước khi mình kịp hỏi."</p>
+          <div class="who"><span class="av">QD</span><span><b>Anh Quốc</b><small>Quản lý sản xuất — công ty bơm công nghiệp</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"R&D cần mẫu vỏ hộp số nhôm ADC12 nhanh: 6 mẫu đầu trong 10 ngày, có biên bản phổ kế và đo CMM mặt đế. Lọt khuôn kim loại sau đó, giá/kg giảm 18% so với mẫu đầu."</p>
+          <div class="who"><span class="av">NK</span><span><b>Anh Khôi</b><small>Kỹ sư R&D — hộp số &amp; truyền động</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Nắp hố ga gang cho dự án hạ tầng: 1.200 bộ trong 3 tuần, chịu tải D400 có chứng thử. Giao 3 đợt đúng lịch thi công, xe tải tới tận công trường tỉnh lẻ."</p>
+          <div class="who"><span class="av">BL</span><span><b>Anh Bảo</b><small>Trưởng ban vật tư — nhà thầu hạ tầng</small></span></div>
+        </div>
+        <div class="rev-dots" id="revDots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="rv" data-d="1">
+        <div class="rev-metric" style="margin-top:0">
+          <div class="rm"><b>98,2%</b><small>lô giao đúng hẹn 12 tháng</small></div>
+          <div class="rm"><b>0,6%</b><small>tỷ lệ chi tiết phải đúc lại</small></div>
+          <div class="rm"><b>4h</b><small>thời gian trả báo giá trung bình</small></div>
+          <div class="rm"><b>76%</b><small>khách quay lại đặt lô tiếp theo</small></div>
+        </div>
+        <div style="margin-top:22px"><a href="#baogia" class="btn btn-navy" style="width:100%">Trở thành khách B2B của Hợp Kim Việt</a></div>
+      </div>
+    </div>
+    <div class="logo-row rv">
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3"/></svg>Nông Cơ An Giang</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><path d="m12 3 2.5 5.5L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.8Z"/></svg>Mỹ Thuật Truyền Sáng</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.2-1.6l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2.8-1.6L13 2h-4l-.6 2.8a7 7 0 0 0-2.8 1.6l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 3 12"/></svg>Cơ Khí Kim Sáng</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Bơm Thịnh Phát</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>Hạ Tầng Bảo Long</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F27D0C" stroke-width="2"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h2M19 11a2 2 0 0 1 2 2v4h-2"/></svg>Phụ Tùng An Phú</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FORM BÁO GIÁ (LẦN 1) ═══════════ -->
+<section class="sec" id="baogia">
+  <span class="bp" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="bg-grid">
+      <div class="bg-copy rv">
+        <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9AE"><i></i>Nhận báo giá chính thức</span>
+        <span class="block-title" style="margin-top:16px">Gửi mẫu hoặc bản vẽ — <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFB25E);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">4 giờ sau</em> có báo giá theo kg</span>
+        <span class="block-sub">Kèm tư vấn miễn phí: chọn hợp kim thay thế rẻ hơn, phương án khuôn phù hợp số lượng để hạ giá/kg.</span>
+        <ul class="bg-list">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Kỹ thuật lò trả lời (không phải sales) — đúng thông số hợp kim</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo giá tách bạch: đơn giá/kg + tiền khuôn + xử lý nhiệt + vận chuyển</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Khóa giá 10 ngày — thoải mái so sánh, không ép chốt</li>
+        </ul>
+        <div class="cert-badges">
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="m8.5 13.5-2 7 5.5-3 5.5 3-2-7"/></svg>ISO 9001:2015</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>28+ năm thành lập</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>420+ khách B2B</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 14h4"/></svg>90+ tấn đúc/tháng</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>NDA bảo mật mẫu</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2M3 14h18M3 14v6h18v-6M7 10V8"/></svg>Phổ kế kiểm định định kỳ</span>
+        </div>
+      </div>
+      <form class="gform rv" data-d="1" id="quoteForm1" novalidate>
+        <h3>Form yêu cầu báo giá</h3>
+        <p>Điền nhanh 30 giây — mọi trường đều cần thiết để báo đúng giá/kg.</p>
+        <div class="fgrid">
+          <div class="field"><label for="q1Name">Họ tên *</label><input id="q1Name" type="text" placeholder="Nguyễn Văn A" required></div>
+          <div class="field"><label for="q1Phone">Số điện thoại / Zalo *</label><input id="q1Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+          <div class="field"><label for="q1Cat">Hạng mục *</label>
+            <select id="q1Cat">
+              <option>Đúc gang</option><option>Đúc nhôm</option><option>Đúc đồng</option><option>Gia công phôi kim loại</option><option>Đúc chi tiết theo mẫu</option><option>Xử lý nhiệt sau đúc</option><option>Kiểm tra chất lượng đúc</option><option>Gia công cơ khí sau đúc</option>
+            </select>
+          </div>
+          <div class="field"><label for="q1Qty">Khối lượng dự kiến</label>
+            <select id="q1Qty"><option>Dưới 100 kg</option><option>100 – 500 kg</option><option>500 – 2.000 kg</option><option>Trên 2.000 kg / theo lô</option></select>
+          </div>
+          <div class="field"><label for="q1Area">Khu vực nhận hàng</label>
+            <select id="q1Area"><option>Bình Dương – TP.HCM</option><option>Miền Đông &amp; Đông Nam Bộ</option><option>Miền Tây</option><option>Miền Trung</option><option>Miền Bắc</option></select>
+          </div>
+          <div class="field"><label for="q1File">Ảnh mẫu / link bản vẽ</label><input id="q1File" type="text" placeholder="dán link hoặc ghi 'gửi Zalo sau'"></div>
+          <div class="field full"><label for="q1Note">Ghi chú hợp kim / yêu cầu</label><textarea id="q1Note" placeholder="Vd: đúc gang cầu FCD500, răng cày 6,2kg/chiếc, độ cứng 450HB, xử lý nhiệt ủ…"></textarea></div>
+        </div>
+        <button class="btn btn-acc btn-lg" type="submit">Gửi yêu cầu — nhận báo giá trong 4 giờ<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+        <small class="secure"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Ảnh mẫu &amp; bản vẽ của bạn được bảo mật — chỉ kỹ thuật viên phụ trách xem.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LIÊN HỆ: ĐỊA CHỈ + FORM LẦN 2 (không iframe map) ═══════════ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Liên hệ xưởng</span>
+      <span class="block-title" style="margin-top:16px">Mang mẫu tới xưởng — <span class="hl">xem rót lò trực tiếp</span> trước khi đặt</span>
+      <span class="block-sub">Có mẫu cứng? Kỹ thuật lò đo vẽ và báo giá ngay trong buổi gặp, không chờ email.</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-cards rv">
+        <div class="ct-card">
+          <div class="ch"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><b>Xưởng Hợp Kim Việt</b></div>
+          <p>Lô A6-2, Đường CN3, KCN Phú Thành, P. Phú Hòa, TP. Thủ Dầu Một, Bình Dương</p>
+          <a class="dir" href="https://maps.google.com/?q=KCN+Phu+Thanh+Thu+Dau+Mot+Binh+Duong" target="_blank" rel="noopener">Mở chỉ đường<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="ct-card">
+          <div class="ch"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><b>Giờ nhận khách</b></div>
+          <div class="ct-hours">
+            <div><b>T2 – T6</b><span>7:30 – 17:30</span></div>
+            <div><b>Thứ 7</b><span>7:30 – 12:00</span></div>
+            <div><b>Chủ nhật</b><span>nhận lô khẩn (hẹn trước)</span></div>
+            <div><b>Xem rót lò</b><span>8:00 – 10:00 mỗi ngày</span></div>
+          </div>
+        </div>
+        <div class="ct-card">
+          <div class="ch"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span><b>Hotline xưởng</b></div>
+          <a class="big" href="tel:0906335178">0906 335 178</a>
+          <small>Kỹ thuật lò trực 7:30 – 20:00 cả T7 · email: baogia@hopkimviet.vn</small>
+        </div>
+      </div>
+      <div class="rv" data-d="1">
+        <form class="gform ct-form" id="quoteForm2" novalidate>
+          <h3>Gửi mẫu — nhận báo giá trong 4 giờ</h3>
+          <p>Kỹ thuật lò trực điện thoại và Zalo từ 7:30 đến 20:00 mỗi ngày.</p>
+          <div class="fgrid">
+            <div class="field"><label for="q2Name">Họ tên *</label><input id="q2Name" type="text" placeholder="Nguyễn Văn B" required></div>
+            <div class="field"><label for="q2Phone">Số điện thoại / Zalo *</label><input id="q2Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+            <div class="field full"><label for="q2Cat">Hạng mục cần đúc</label>
+              <select id="q2Cat">
+                <option>Đúc gang</option><option>Đúc nhôm</option><option>Đúc đồng</option><option>Gia công phôi kim loại</option><option>Đúc chi tiết theo mẫu</option><option>Xử lý nhiệt sau đúc</option><option>Kiểm tra chất lượng đúc</option><option>Gia công cơ khí sau đúc</option>
+              </select>
+            </div>
+            <div class="field full"><label for="q2Note">Mô tả chi tiết / dán link bản vẽ</label><textarea id="q2Note" placeholder="Vd: đúc ròng rọc gang xám 12kg/chiết, 200 chiếc, phun cát sạch…"></textarea></div>
+          </div>
+          <button class="btn btn-acc btn-lg" type="submit">Nhận báo giá — cam kết 4 giờ<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+          <small class="secure">Hoặc gọi trực tiếp: <a href="tel:0906335178">0906 335 178</a> — có người nghe máy, không tổng đài tự động.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Hỏi &amp; đáp</span>
+      <span class="block-title" style="margin-top:16px">Mẫu, khuôn, giá/kg — <span class="hl">hỏi trước, yên tâm sau</span></span>
+    </div>
+    <div class="faq-tools rv">
+      <div class="faq-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E5E4B" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+        <input id="faqSearch" type="text" placeholder="Tìm câu hỏi: mẫu, khuôn, giá kg, giao hàng…" aria-label="Tìm câu hỏi">
+      </div>
+    </div>
+    <div class="faq-chips rv" id="faqChips">
+      <button class="fchip on" data-k="">Tất cả</button>
+      <button class="fchip" data-k="mẫu">Mẫu &amp; bản vẽ</button>
+      <button class="fchip" data-k="giá">Giá &amp; MOQ</button>
+      <button class="fchip" data-k="khuôn">Khuôn</button>
+      <button class="fchip" data-k="thời gian">Thời gian</button>
+      <button class="fchip" data-k="chất lượng">Chất lượng</button>
+      <button class="fchip" data-k="giao hàng">Giao hàng</button>
+    </div>
+    <div class="faq-list rv" id="faqList"></div>
+    <p class="faq-empty" id="faqEmpty">Không tìm thấy câu hỏi phù hợp — gọi <a href="tel:0906335178" style="color:var(--accent-deep);font-weight:800">0906 335 178</a> để được trả lời ngay.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <span class="bp" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="fgrid4">
+      <div class="fcol">
+        <div class="flogo"><span style="width:42px;height:42px;border-radius:12px;background:var(--grad-accent);display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2c1.8 2.6 3.4 4.5 3.4 7a3.4 3.4 0 1 1-6.8 0c0-1 .3-1.9.8-2.8.3 1 .9 1.8 1.9 2.3C10.6 6.3 11 4.2 12 2Z"/><path d="M5 16.5h14l-1.6 4.2a1.5 1.5 0 0 1-1.4 1H8a1.5 1.5 0 0 1-1.4-1L5 16.5Z"/></svg></span><b>HỢP KIM VIỆT</b></div>
+        <p>Xưởng đúc &amp; gia công kim loại 28 năm tại Bình Dương. Đúc gang, nhôm, đồng theo mẫu có sẵn hoặc bản vẽ — giá theo kg, MOQ từ 50 kg, cho 420+ khách B2B.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 8.9 8.9 0 0 1-3.2-.6L4 20l1-4a8 8 0 0 1-1-3.9A8.4 8.4 0 0 1 12.5 4 8.4 8.4 0 0 1 21 11.5Z"/></svg></a>
+          <a href="#top" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#top" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>8 hạng mục đúc</h4>
+        <ul class="flinks">
+          <li><a href="#hang-muc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Đúc gang</a></li>
+          <li><a href="#hang-muc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Đúc nhôm</a></li>
+          <li><a href="#hang-muc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Đúc đồng</a></li>
+          <li><a href="#hang-muc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Đúc chi tiết theo mẫu</a></li>
+          <li><a href="#hang-muc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Xử lý nhiệt sau đúc</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Hỗ trợ khách hàng</h4>
+        <ul class="flinks">
+          <li><a href="#quy-trinh"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Quy trình 6 bước</a></li>
+          <li><a href="#gia-kg"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Bảng giá theo kg</a></li>
+          <li><a href="#baogia"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Yêu cầu báo giá</a></li>
+          <li><a href="#specs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Hồ sơ lò &amp; hợp kim</a></li>
+          <li><a href="#faq"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Xưởng Hợp Kim Việt</h4>
+        <div class="faddr">
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Lô A6-2, Đường CN3, KCN Phú Thành, TP. Thủ Dầu Một, Bình Dương</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg><a class="hot" href="tel:0906335178">0906 335 178</a></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg><span>baogia@hopkimviet.vn</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>T2–T7: 7:30–17:30 · CN: lô khẩn</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="paybar">
+    <div class="wrap">
+      <small>© 2026 Hợp Kim Việt Co., Ltd — GPKD 3702xxxxxx · MST 3702xxxxxx · Chứng nhận ISO 9001:2015</small>
+      <div class="pay-items">
+        <span>Chuyển khoản ngân hàng</span><span>COD theo hợp đồng</span><span>Công nợ B2B 30 ngày</span><span>Hóa đơn VAT 8–10%</span><span>ISO 9001:2015</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ FAB DOCK ═══════════ -->
+<div class="dock" id="dock">
+  <a class="main" href="#baogia"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg>Báo giá</a>
+  <a href="tel:0906335178"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Gọi</a>
+  <a href="#gia-kg"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>Giá kg</a>
+  <button id="dockMau" type="button"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg>Mẫu</button>
+  <a href="#faq"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>FAQ</a>
+  <button id="dockTop" type="button"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Lên</button>
+</div>
+
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast"><span class="ti"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg></span><span class="tx"><b class="tt" id="toastT">—</b><small class="tm" id="toastM">—</small></span></div>
+
+<script>
+/*NB93-163 — JS chính*/
+/* ==================== DATA KHỐI-8 ==================== */
+const CATS8=[
+ {n:"01",img:"assets/img/p1.webp",name:"Đúc gang",kg:"từ 28.000đ/kg",desc:"Gang xám HT150–HT300 và gang cầu FCD400–FCD600: ròng rọc, răng cày, đế máy, nắp hố ga, bơm, van.",cat:"Đúc gang",tab:[["Hợp kim áp dụng","Gang xám HT150–HT300 · gang cầu FCD400–600"],["Khối lượng chi tiết","0,5 – 5.000 kg / chiếc"],["Dung sai đúc","CT10 khuôn cát · CT7 khuôn kim loại"]],moq:"MOQ 100 kg",lead:"Lô đầu 12–18 ngày",data:"Gang xám HT200 30k/kg — gang cầu FCD500 42k/kg, giảm theo bậc khối lượng."},
+ {n:"02",img:"assets/img/p2.webp",name:"Đúc nhôm",kg:"từ 65.000đ/kg",desc:"Vỏ máy, cánh quạt, tay đồ gá, chi tiết ô tô xe máy bằng nhôm A356.2, ADC12, AlSi9Cu3 — hoá già T6 tại xưởng.",cat:"Đúc nhôm",tab:[["Hợp kim áp dụng","A356.2 · ADC12 · AlSi9Cu3"],["Khối lượng chi tiết","0,1 – 300 kg / chiếc"],["Dung sai đúc","CT6–CT8 khuôn kim loại · CT9 khuôn cát"]],moq:"MOQ 50 kg",lead:"Lô đầu 10–14 ngày",data:"Đúc nhôm 65–72k/kg, kèm chứng phổ kế mẻ rót."},
+ {n:"03",img:"assets/img/p3.webp",name:"Đúc đồng",kg:"từ 145.000đ/kg",desc:"Tượng, trống, đồ thờ, bush chịu mài mòn bằng đồng thau C36000, đồng đỏ CuSn10 — đúc rỗng tiết kiệm khối lượng.",cat:"Đúc đồng",tab:[["Hợp kim áp dụng","Đồng thau C36000 · đồng đỏ CuSn10–12"],["Khối lượng chi tiết","0,2 – 2.000 kg / chiếc"],["Kỹ thuật","đúc rỗng tượng lớn · đánh bóng 2 lớp phủ"]],moq:"MOQ 30 kg",lead:"Lô đầu 14–20 ngày",data:"Đồng thau 158k/kg — đồng đỏ 215k/kg, giá biến động theo giá vật liệu."},
+ {n:"04",img:"assets/img/p4.webp",name:"Gia công phôi kim loại",kg:"từ 30.000đ/kg",desc:"Chuẩn bị phôi cho tiện phay: đúc sơ bộ, cắt CNC, cưa thanh, sửa phôi — giao đúng kích thước để xưởng bạn chạy máy ngay.",cat:"Gia công phôi kim loại",tab:[["Loại phôi","phôi đúc sơ bộ · phôi cắt từ tấm/thanh"],["Độ chính xác","dư gia công 2–5mm/mặt theo yêu cầu"],["Kèm theo","phiếu vật liệu + bản vẽ phôi"]],moq:"MOQ theo lô 50 kg",lead:"2–5 ngày tùy phôi",data:"Phôi đúc sơ bộ tính theo kg, phôi cắt tính theo tấm."},
+ {n:"05",img:"assets/img/p5.webp",name:"Đúc chi tiết theo mẫu",kg:"từ 30.000đ/kg",hot:true,desc:"Hạng mục dấu ấn: chỉ cần mẫu hữu hình hoặc bản vẽ — xưởng đo vẽ, quét 3D, sửa mẫu, làm khuôn và rót lô đầu. Không cần thiết kế lại.",cat:"Đúc chi tiết theo mẫu",tab:[["Đầu vào","mẫu thật · ảnh chi tiết cũ · bản vẽ PDF/DXF"],["Hỗ trợ miễn phí","đo vẽ, quét 3D, hoàn thiện bản vẽ 2D"],["Duyệt mẫu","gửi ảnh + số đo mẫu đầu trước khi rót lô"]],moq:"MOQ từ 50 kg",lead:"Lô đầu 10–20 ngày",data:"Giá theo hợp kim chọn — gang 30k, nhôm 65k, đồng 145k/kg trở lên."},
+ {n:"06",img:"assets/img/p6.webp",name:"Xử lý nhiệt sau đúc",kg:"từ 12.000đ/kg",desc:"Ủ khử ứng lực gang, tôi – ram thép đúc, hoá già T6 nhôm trong lò 6m³ đồng đều ±5°C — tăng độ bền, ổn định kích thước.",cat:"Xử lý nhiệt sau đúc",tab:[["Lò xử lý nhiệt","6 m³ · 1.100 °C · tải 3.000 kg/lô"],["Chế độ","ủ · thường hóa · tôi – ram · hoá già T6"],["Kèm theo","biểu đồ nhiệt độ lô cho từng mẻ"]],moq:"MOQ 1 lô",lead:"2–4 ngày/lô",data:"Ủ gang 12k/kg — tôi ram 18k/kg — T6 nhôm 22k/kg."},
+ {n:"07",img:"assets/img/p7.webp",name:"Kiểm tra chất lượng đúc",kg:"từ 8.000đ/kg",desc:"Phổ kế thành phần mẻ rót, độ cứng Brinell, dò khuyết tật UT–MT, đo kích thước — xuất biên bản QC kèm từng lô.",cat:"Kiểm tra chất lượng đúc",tab:[["Thành phần hợp kim","phổ kế xạ nổi — 100% mẻ rót"],["Khuyết tật","siêu âm UT · thẩm thử MT chi tiết chịu lực"],["Hồ sơ","biên bản QC: hợp kim – độ cứng – kích thước"]],moq:"Kèm theo lô",lead:"Trong 1–2 ngày",data:"Trọn gói QC 8–15k/kg tùy số hạng mục kiểm."},
+ {n:"08",img:"assets/img/p8.webp",name:"Gia công cơ khí sau đúc",kg:"báo theo giờ máy",desc:"Tiện phay chuẩn bề mặt, khoan ren, mài mặt đế, thử kín khí — chi tiết đúc giao đến là lắp được vào cụm của bạn.",cat:"Gia công cơ khí sau đúc",tab:[["Công đoạn","phun cát → cắt viết ngậm → tiện phay → khoan ren"],["Chính xác gia công","±0,02 mm tại mặt cổng lắp"],["Thử nghiệm","kín khí / thủy lực tới 10 bar"]],moq:"MOQ theo lô đúc",lead:"+2–5 ngày sau đúc",data:"Báo theo giờ máy hoặc khoán theo bộ — gửi bản vẽ để chốt."}
+];
+const FAQ=[
+ {q:"Chỉ có mẫu hữu hình, không có bản vẽ — nhận đúc được không?",a:"Được — đây là hạng mục chủ lực của xưởng. Bạn gửi mẫu thật hoặc ảnh chi tiết cũ kèm vài kích thước chính; xưởng đo vẽ, quét 3D, hoàn thiện bản vẽ 2D miễn phí và gửi duyệt trước khi làm khuôn.",k:"mẫu bản vẽ"},
+ {q:"Giá theo kg đã gồm những gì? Khuôn có tính riêng không?",a:"Đơn giá/kg gồm vật liệu, đúc, phun cát và cắt viết ngậm. Khuôn tính riêng một lần theo phương án: khuôn cát giá thấp, khuôn kim loại đắt hơn nhưng giá/kg lô sau giảm 15–25%. Khuôn của khách xưởng lưu kho miễn phí 12 tháng.",k:"giá khuôn"},
+ {q:"MOQ tối thiểu bao nhiêu để nhận đúc?",a:"Nhôm và đồng nhận từ 50 kg, gang từ 100 kg (đủ 1 mẻ rót kinh tế). Lô nhỏ hơn vẫn nhận được khi ghép chung mẻ với khách khác — gọi hotline để xếp lịch.",k:"giá moq"},
+ {q:"Lô đầu tiên mất bao lâu từ khi chốt đơn?",a:"Nhôm 10–14 ngày, gang 12–18 ngày, đồng 14–20 ngày (đã gồm làm khuôn, duyệt mẫu đầu, đúc, phun cát). Có gia công cơ khí sau đúc cộng thêm 2–5 ngày.",k:"thời gian"},
+ {q:"Chi tiết đúc bị rỗ khí, khuyết tật thì xử lý thế nào?",a:"Lỗi đúc do xưởng: đúc lại 100% miễn phí, chi phí vận chuyển 2 chiều xưởng chịu. Biên bản QC kèm lô (phổ kế, độ cứng, kích thước) là căn cứ đối chiếu. Chi tiết chịu lực được dò UT–MT trước khi giao.",k:"chất lượng"},
+ {q:"Nên chọn khuôn cát hay khuôn kim loại?",a:"Lô dưới 300 chiếc nên dùng khuôn cát (tiền khuôn thấp, linh hoạt sửa mẫu). Lô trên 1.000 chiếc dùng khuôn kim loại: đầu tư ban đầu cao hơn nhưng đơn giá/kg giảm 15–25% và bề mặt đẹp hơn (CT6–CT8).",k:"khuôn"},
+ {q:"Xử lý nhiệt và gia công sau đúc có gói trọn không?",a:"Có — báo giá 1 đầu mục trọn gói: đúc + xử lý nhiệt (ủ, tôi ram, T6) + tiện phay hoàn thiện + thử áp lực. Bạn nhận chi tiết lắp được ngay, không phải chuyển 3 nhà cung cấp.",k:"thời gian dịch vụ"},
+ {q:"Hóa đơn VAT, hợp đồng và giao hàng toàn quốc thế nào?",a:"Hợp đồng gia công kèm phụ lục bản vẽ, hóa đơn VAT 8–10%; khách B2B áp dụng công nợ 30 ngày sau 3 đơn đầu. Giao xe tải tại Bình Dương, TP.HCM trong 24h sau hoàn thiện; tỉnh khác 1–3 ngày, bọc rơm + gỗ cho chi tiết gia công tinh.",k:"giao hàng hợp đồng"}
+];
+
+/* ==================== HELPERS ==================== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const vnd=n=>n.toLocaleString("vi-VN")+"đ";
+let toastT;
+function toast(title,msg){const t=$("#toast");$("#toastT").textContent=title;$("#toastM").textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3600)}
+
+/* ==================== REVEAL ON SCROLL ==================== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;setTimeout(()=>el.classList.add("on"),(+el.dataset.d||0)*120);io.unobserve(el)}}),{threshold:.12});
+function observeRv(){$$(".rv").forEach(el=>io.observe(el))}
+
+/* ==================== COUNTERS ==================== */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;cio.unobserve(el);
+  const end=+el.dataset.count,t0=performance.now(),dur=1500;
+  (function step(t){const p=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-p,3),v=Math.round(end*ease);
+    el.textContent=v.toLocaleString("vi-VN");
+    if(p<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.5});
+$$(".cnt").forEach(el=>cio.observe(el));
+
+/* ==================== HEADER SCROLL ==================== */
+addEventListener("scroll",()=>$("#hdr").classList.toggle("scrolled",scrollY>10),{passive:true});
+
+/* ==================== DOCK hide khi xem hero ==================== */
+const heroIO=new IntersectionObserver(es=>es.forEach(e=>$("#dock").classList.toggle("hidden",e.isIntersecting)),{threshold:.18});
+heroIO.observe($("#hero"));
+
+/* ==================== KHỐI-8 MASTER-DETAIL ==================== */
+let mdIdx=0;
+function renderThumbs(){
+  $("#mdThumbs").innerHTML=CATS8.map((c,i)=>`<button class="md-thumb${i===mdIdx?" on":""}" type="button" data-md="${i}" data-name="${(c.name+" "+c.desc).toLowerCase().replace(/"/g,"")}"><span class="ti"><img src="${c.img}" alt="${c.name}" loading="lazy"><span class="tnum">${c.n}</span>${c.hot?'<span class="hot">Nổi bật</span>':""}</span><span class="tb"><b>${c.name}</b><small>${c.kg}</small></span></button>`).join("");
+  $$("[data-md]").forEach(b=>b.onclick=()=>openMd(+b.dataset.md));
+}
+function openMd(i){
+  mdIdx=i;const c=CATS8[i];
+  $$("[data-md]").forEach(b=>b.classList.toggle("on",+b.dataset.md===i));
+  $("#mdImg").src=c.img;$("#mdImg").alt=c.name;
+  $("#mdNum").textContent="Hạng mục "+c.n;
+  $("#mdKg").textContent=c.kg;
+  $("#mdName").textContent=c.name;
+  $("#mdDesc").textContent=c.desc;
+  $("#mdTab").innerHTML=c.tab.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("");
+  $("#mdChips").innerHTML=`<span>${c.moq}</span><span>${c.lead}</span><span>Giá khóa 10 ngày</span>`;
+}
+$("#mdGo").onclick=()=>{
+  const c=CATS8[mdIdx];const sel=$("#q1Cat");
+  [...sel.options].forEach(o=>{if(o.text===c.cat)sel.value=o.text});
+  $("#q1Note").value=c.data;
+  $("#baogia").scrollIntoView({behavior:"smooth"});
+  toast(`Đã chọn "${c.name}"`,"Điền tên + SĐT để nhận báo giá theo kg trong 4 giờ")};
+renderThumbs();openMd(0);
+
+/* ==================== SEARCH header lọc khối-8 ==================== */
+$("#hsearchInput").addEventListener("keydown",e=>{
+  if(e.key!=="Enter")return;const q=e.target.value.trim().toLowerCase();if(!q)return;
+  let n=0;$$(".md-thumb").forEach(t=>{const hit=t.dataset.name.includes(q);t.classList.toggle("dim",!hit);if(hit)n++});
+  $("#hang-muc").scrollIntoView({behavior:"smooth"});
+  toast(n?`Tìm thấy ${n} hạng mục khớp "${e.target.value}"`:`Không có hạng mục khớp — thử "gang", "nhôm", "đồng", "khuôn"`);
+});
+
+/* ==================== BEFORE / AFTER ==================== */
+const baRange=$("#baRange"),ba=$("#baSlider");
+function setBA(){ba.style.setProperty("--cut",baRange.value+"%")}
+baRange.addEventListener("input",setBA);setBA();
+
+/* ==================== MÁY TÍNH GIÁ THEO KG ==================== */
+const KGMAT=[
+ {name:"Gang xám HT200",tiers:[30000,27000,25000],cat:"Đúc gang",lead:"12–18 ngày (gồm làm khuôn + duyệt mẫu đầu)"},
+ {name:"Gang cầu FCD500",tiers:[42000,38000,35000],cat:"Đúc gang",lead:"12–18 ngày (gồm làm khuôn + duyệt mẫu đầu)"},
+ {name:"Nhôm A356 / ADC12",tiers:[72000,68000,63000],cat:"Đúc nhôm",lead:"10–14 ngày (gồm làm khuôn + duyệt mẫu đầu)"},
+ {name:"Đồng thau C36000",tiers:[158000,148000,139000],cat:"Đúc đồng",lead:"14–20 ngày (gồm làm khuôn + duyệt mẫu đầu)"},
+ {name:"Đồng đỏ CuSn10",tiers:[215000,199000,185000],cat:"Đúc đồng",lead:"14–20 ngày (gồm làm khuôn + duyệt mẫu đầu)"}
+];
+function kgCalc(){
+  const mi=+$("#kgMat").value,w=+$("#kgW").value,m=KGMAT[mi];
+  $("#kgWLbl").textContent=w.toLocaleString("vi-VN")+" kg";
+  const ti=w<=200?0:w<=1000?1:2;
+  const unit=m.tiers[ti],lo=Math.round(unit*.93/1000)*1000,hi=Math.round(unit*1.08/1000)*1000;
+  $("#rKg").textContent=vnd(lo)+" – "+vnd(hi)+" /kg";
+  $("#rLot").textContent="≈ "+vnd(Math.round((lo+hi)/2*w/1000)*1000)+" / "+w.toLocaleString("vi-VN")+" kg";
+  $("#rLead").textContent=m.lead;
+  $("#rTier").textContent=w<=200?"50 – 200 kg":w<=1000?"200 – 1.000 kg":"Trên 1.000 kg";
+}
+["kgMat"].forEach(id=>$("#"+id).addEventListener("change",kgCalc));
+$("#kgW").addEventListener("input",kgCalc);kgCalc();
+$("#kgSend").onclick=()=>{
+  const m=KGMAT[+$("#kgMat").value],w=+$("#kgW").value;
+  const sel=$("#q1Cat");[...sel.options].forEach(o=>{if(o.text===m.cat)sel.value=o.text});
+  $("#q1Qty").value=w<100?"Dưới 100 kg":w<=500?"100 – 500 kg":w<=2000?"500 – 2.000 kg":"Trên 2.000 kg / theo lô";
+  $("#q1Note").value=`Ước tính nhanh: ${m.name} · lô ${w.toLocaleString("vi-VN")} kg · đơn giá tham khảo ${$("#rKg").textContent}. `;
+  $("#baogia").scrollIntoView({behavior:"smooth"});
+  toast("Đã chuyển thông số sang form","Điền tên + SĐT, dán link bản vẽ/ảnh mẫu nếu có")};
+
+/* ==================== TABS ==================== */
+$$(".tab").forEach(t=>t.onclick=()=>{
+  $$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  $$(".tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.panel===t.dataset.tab));
+  $("#specFoot").textContent=["6 nhóm hợp kim chủ lực, vật liệu nhập nhà máy thép lớn — hoá đơn nguồn gốc đầy đủ.",
+   "4 lò cảm ứng + lò xử lý nhiệt bảo trì định kỳ 90 ngày — số liệu sao y sổ tài khoản xưởng.",
+   "Kiểm tra 3 lớp: thợ lò tự kiểm → QC đo lại → phổ kế/UT xác nhận & xuất biên bản."][+t.dataset.tab]});
+
+/* ==================== REVIEWS ROTATE ==================== */
+let rIdx=0;const rItems=$$(".rev-item"),rDots=$$("#revDots i");
+function showRev(i){rIdx=i%rItems.length;rItems.forEach((x,j)=>x.classList.toggle("on",j===rIdx));rDots.forEach((x,j)=>x.classList.toggle("on",j===rIdx))}
+rDots.forEach((d,i)=>d.onclick=()=>{showRev(i);clearInterval(rTimer);rTimer=setInterval(()=>showRev(rIdx+1),6000)});
+let rTimer=setInterval(()=>showRev(rIdx+1),6000);
+
+/* ==================== FAQ render + search ==================== */
+const faqList=$("#faqList");
+faqList.innerHTML=FAQ.map(f=>`<div class="fitem" data-k="${f.k}"><button class="fq" type="button">${f.q}<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="fa"><p>${f.a}</p></div></div>`).join("");
+$$(".fq").forEach(b=>b.onclick=()=>{const it=b.parentElement,open=it.classList.contains("open");
+  $$(".fitem").forEach(x=>{x.classList.remove("open");x.querySelector(".fa").style.maxHeight=null});
+  if(!open){it.classList.add("open");const fa=it.querySelector(".fa");fa.style.maxHeight=fa.scrollHeight+"px"}});
+function faqFilter(k){
+  let n=0;$$(".fitem").forEach(it=>{const hit=k===""||it.dataset.k.includes(k);it.classList.toggle("hide",!hit);if(hit)n++});
+  $("#faqEmpty").style.display=n?"none":"block"}
+$$("#faqChips .fchip").forEach(c=>c.onclick=()=>{
+  $$("#faqChips .fchip").forEach(x=>x.classList.remove("on"));c.classList.add("on");
+  $("#faqSearch").value="";faqFilter(c.dataset.k)});
+$("#faqSearch").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();$$("#faqChips .fchip").forEach(x=>x.classList.remove("on"));
+  $$("#faqChips .fchip")[0].classList.add("on");
+  let n=0;$$(".fitem").forEach(it=>{const hit=!q||it.textContent.toLowerCase().includes(q);it.classList.toggle("hide",!hit);if(hit)n++});
+  $("#faqEmpty").style.display=n?"none":"block"});
+
+/* ==================== FORMS (C2: form báo giá + toast) ==================== */
+function bindForm(id){$("#"+id).addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#"+id+" [id$=Name]"),phone=$("#"+id+" [id$=Phone]");
+  if(!name.value.trim()||!phone.value.trim()){toast("Thiếu thông tin","Điền họ tên và số điện thoại để kỹ thuật lò gọi lại nhé!");name.focus();return}
+  if(!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,""))){toast("Số điện thoại chưa đúng","Ví dụ: 0906 335 178 — kiểm tra lại giúp xưởng nhé");phone.focus();return}
+  const code="DG-"+new Date().getFullYear()+"-"+String(Math.floor(1000+Math.random()*9000));
+  toast(`Đã gửi! Mã yêu cầu ${code}`,"Kỹ thuật lò gọi lại và gửi báo giá theo kg trong 4 giờ làm việc");
+  e.target.reset();})}
+bindForm("quoteForm1");bindForm("quoteForm2");
+$("#dockMau").onclick=()=>{$("#q1File").focus();$("#baogia").scrollIntoView({behavior:"smooth"});toast("Gửi mẫu hoặc bản vẽ","Dán link Drive/Zalo vào form — hoặc gọi 0906 335 178 mang mẫu tới xưởng")};
+$("#dockTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+
+/* strip links -> khối-8 */
+$$("[data-strip]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();$("#hang-muc").scrollIntoView({behavior:"smooth"})}));
+
+observeRv();
+</script>
+<script>
+/*NB93-163 — FAILSAFE: element reveal bi ket lai tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<!--NB93-163 — FAB chat truc tiep (demo bot, C2: khong booking)-->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand"></span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-163 — widget chat*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#E07A12,#A95004);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(169,80,4,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(29,18,6,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#A95004,#5E2C02);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.7rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F7F3EB}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.85rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(29,18,6,.08);border-bottom-left-radius:4px;color:#241A0F}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#E07A12,#A95004);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(29,18,6,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9A8C7A;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(29,18,6,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(169,80,4,.4);color:#A95004;background:#fff;font-weight:700;font-size:.75rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:32px}
+.pkc-chip:hover{background:#FDE9D2}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(29,18,6,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(29,18,6,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#E07A12;box-shadow:0 0 0 3px rgba(224,122,18,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#E07A12,#A95004);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:80px;width:52px;height:52px}.pkc-on{font-size:12px}.pkc-chip{font-size:12px;min-height:36px}}
+</style>
+<script>
+/*NB93-163 — chat bot (C2: gia cong thep mau/ban ve — khong booking, khong gio hang)*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+
+<script>/*NB93-163 — dock tu an khi cuon xuong, khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script></body>
+</html>

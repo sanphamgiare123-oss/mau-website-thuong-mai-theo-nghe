@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xưởng Đồng Phục Thống Nhất — Đặt đồng phục theo nhóm, giá giảm theo bậc | Hotline 0034567899</title>
+<meta name="description" content="Xưởng Đồng Phục Thống Nhất — thang 8 bậc đồng phục theo cấp đơn hàng: từ 10 áo thun nhóm lớp đến đơn xưởng 10.000 chiếc (trường học, công ty, nhà hàng, CLB thể thao, y tế). Nhập số lượng + size, giá giảm theo bậc ngay trên trang. Thêu - in logo chuyên nghiệp, mẫu thử 48 giờ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*NB110-048 — Xưởng Đồng Phục Thống Nhất | pattern khối-8 #16 BẬC THANG CẤP ĐỘ — BIẾN THỂ "BẢNG CẤP ĐƠN"
+  (khác 018: 018 thả thẻ lệch trong lưới 4×2 kèm thước đo trái; khác 390: 390 cột mốc đứng bên trái thang.
+  048: 8 bậc ĐỨNG TRÊN BỆ CỘT cao dần như biểu đồ cột — bệ càng cao bậc càng lớn, huy hiệu cấp chevron,
+  thước MOQ 10→10.000 chiếc trong mỗi thẻ. Palette lấy từ poster bìa: than đen ấm + vàng-cam đồng)*/
+:root{
+  --coal:#26201A; --coal-2:#332A21; --coal-3:#1B1611;
+  --amber:#DD9812; --amber-2:#F2B33D; --amber-deep:#B47607;
+  --gold:#F1CB7F; --gold-2:#E8B24C;
+  --paper:#F7F1E6; --cream:#F0E5CF; --card:#FFFDF6;
+  --ink:#2A2318; --mut:#7C6D55; --line:#E5D9C2;
+  --ok:#2F8F5B; --bad:#B93A2B;
+  --sh:0 10px 26px rgba(43,33,18,.12);
+  --sh-2:0 18px 44px rgba(43,33,18,.20);
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:15.5px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+h1,h2,h3,.serif{font-family:'Oswald','Be Vietnam Pro',sans-serif;line-height:1.16;letter-spacing:.3px;text-transform:uppercase}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+.sec{padding:64px 0}
+.sec-head{max-width:720px;margin-bottom:34px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:800;letter-spacing:2.6px;text-transform:uppercase;color:var(--amber-deep)}
+.eyebrow::before{content:"";width:26px;height:10px;
+  background:repeating-linear-gradient(135deg,var(--amber) 0 5px,transparent 5px 10px)}
+.sec-head h2{font-size:clamp(27px,4vw,40px);margin:10px 0 10px;color:var(--coal)}
+.sec-head h2 em{font-style:normal;color:var(--amber-deep)}
+.sec-head p{color:var(--mut)}
+/* nút */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14.5px;border-radius:var(--r);padding:13px 22px;min-height:48px;transition:.22s;border:2px solid transparent}
+.btn-a{background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;box-shadow:0 8px 20px rgba(221,152,18,.35)}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(221,152,18,.45)}
+.btn-g{border-color:var(--amber-deep);color:var(--amber-deep);background:transparent}
+.btn-g:hover{background:rgba(221,152,18,.12)}
+.btn-dark{background:var(--coal);color:var(--gold)}
+.btn-dark:hover{background:var(--coal-2);transform:translateY(-2px)}
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(38,32,26,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(241,203,127,.22)}
+.hd{display:flex;align-items:center;gap:16px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;flex:none}
+.logo .mark{width:42px;height:42px;border-radius:9px;background:linear-gradient(160deg,var(--amber-2),var(--amber));display:grid;place-items:center;color:#241703;flex:none}
+.logo b{font-family:'Oswald',sans-serif;font-size:17px;letter-spacing:1.2px;color:var(--gold);text-transform:uppercase;line-height:1.1;display:block}
+.logo small{display:block;font-size:10px;color:#B9A685;letter-spacing:2px;text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;border-radius:8px;font-size:13px;font-weight:600;color:#E4D6BC}
+nav.main a:hover{background:rgba(241,203,127,.14);color:var(--gold)}
+.hd-call{flex:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(241,203,127,.5);border-radius:99px;padding:9px 16px;font-weight:800;font-size:13.5px;color:var(--gold);min-height:42px;white-space:nowrap}
+.hd-call:hover{background:rgba(241,203,127,.12)}
+.menu-tg{display:none;margin-left:auto;width:44px;height:44px;border-radius:9px;border:1.5px solid rgba(241,203,127,.4);color:var(--gold);font-size:19px}
+/* ===== HERO (bố cục: biển hiệu đứng + thang bậc mini — khác hero treo dây 047/049) ===== */
+.hero{background:
+  radial-gradient(1000px 420px at 82% -10%,rgba(241,203,127,.14),transparent 60%),
+  repeating-linear-gradient(115deg,rgba(241,203,127,.035) 0 3px,transparent 3px 26px),
+  linear-gradient(175deg,var(--coal) 62%,var(--coal-3));
+  color:#EFE3C8;border-bottom:3px solid var(--amber);overflow:hidden}
+.hero-g{display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center;padding:56px 22px 46px}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-size:clamp(33px,4.6vw,52px);color:#FBF3DF;margin:14px 0 14px}
+.hero h1 em{font-style:normal;color:var(--amber-2);
+  background:linear-gradient(180deg,transparent 76%,rgba(221,152,18,.38) 76%)}
+.hero .lead{font-size:16px;color:#CDBD9C;max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 20px}
+/* thiết bị lặp: thang bậc mini 8 vạch */
+.mini-thang{display:flex;align-items:flex-end;gap:6px;max-width:520px;margin-top:6px}
+.mini-thang .mt-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;text-align:center}
+.mini-thang .mt-bar{border-radius:4px 4px 0 0;background:repeating-linear-gradient(135deg,var(--amber) 0 5px,var(--amber-deep) 5px 10px);height:calc(10px + var(--i)*5.5px);opacity:.92}
+.mini-thang .mt-lb{font-size:9.5px;font-weight:700;color:#B9A685;letter-spacing:.4px}
+.mini-thang .mt-lb b{display:block;color:var(--gold);font-size:11px}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px dashed rgba(241,203,127,.3)}
+.hero-stats b{font-family:'Oswald',sans-serif;font-size:21px;color:var(--gold);display:block}
+.hero-stats span{font-size:12px;color:#B9A685}
+/* biển hiệu đứng */
+.bien{position:relative}
+.bien-frame{position:relative;border:3px solid #4A3E2C;border-radius:14px;overflow:visible;box-shadow:0 26px 60px rgba(0,0,0,.5);transform:rotate(1.2deg);background:var(--coal-3)}
+.bien-frame img{border-radius:11px;width:100%}
+.bien .goc{position:absolute;width:26px;height:26px;border:3.5px solid var(--amber);z-index:2}
+.bien .goc.tl{top:-9px;left:-9px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+.bien .goc.tr{top:-9px;right:-9px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.bien .goc.bl{bottom:-9px;left:-9px;border-right:0;border-top:0;border-radius:0 0 0 8px}
+.bien .goc.br{bottom:-9px;right:-9px;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.bien-pill{position:absolute;left:-14px;bottom:-18px;z-index:3;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;border-radius:99px;padding:11px 20px;font-weight:800;font-size:14px;box-shadow:0 12px 28px rgba(221,152,18,.45);transform:rotate(-1.4deg)}
+.bien-pill svg{width:17px;height:17px;flex:none}
+.bien-pill span{display:flex;flex-direction:column;line-height:1.18;text-align:left}
+.bien-pill small{font-size:9.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;opacity:.75}
+.bien-chev{position:absolute;right:-20px;top:-34px;z-index:0;color:rgba(241,203,127,.20)}
+/* ===== KHỐI-8: BẢNG CẤP ĐƠN (pattern #16 biến thể) ===== */
+.thang-sec{position:relative;background:
+  linear-gradient(180deg,var(--paper),#F2E9D5 78%,var(--cream));overflow:hidden}
+.thang-sec::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(43,33,18,.03) 0 1.5px,transparent 1.5px 90px)}
+.thang-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.mo-cot{font-size:12.5px;font-weight:700;color:var(--amber-deep);background:var(--card);border:1.5px dashed var(--amber);border-radius:99px;padding:9px 16px;display:inline-flex;align-items:center;gap:8px}
+.ladder{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px 18px;align-items:end;margin-top:40px;z-index:1}
+.stcol{display:flex;flex-direction:column}
+.stcol.feat{position:relative;z-index:3}
+/* huy hiệu cấp chevron */
+.cap-tab{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.cap-tab .chev{display:inline-flex;flex:none}
+.cap-tab .chev svg{width:22px;height:15px;display:block}
+.cap-name{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber-deep);background:var(--card);border:1.5px solid var(--line);border-radius:4px;padding:4px 9px;box-shadow:2px 2px 0 rgba(43,33,18,.08)}
+/* thẻ bậc */
+.stair{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:transform .22s,box-shadow .22s;box-shadow:var(--sh)}
+.stair:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.stair .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:1.5px solid var(--line)}
+.stair .bd{padding:11px 12px 9px;display:flex;flex-direction:column;gap:4px;flex:1}
+.stair h3{font-size:15px;color:var(--coal);letter-spacing:.4px}
+.stair .bd>p{font-size:12px;color:var(--mut);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stair .ft{display:flex;align-items:flex-end;gap:8px;margin-top:4px}
+.pri{font-weight:800;color:var(--amber-deep);font-size:15.5px;line-height:1.15;font-family:'Oswald',sans-serif;letter-spacing:.4px}
+.pri small{display:block;font-family:'Be Vietnam Pro';font-size:10.5px;color:var(--mut);font-weight:600}
+.add{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px;background:var(--coal);color:var(--gold);border-radius:8px;padding:9px 13px;font-weight:800;font-size:12px;min-height:40px;border:1.5px solid var(--coal);transition:.2s}
+.add:hover{background:var(--amber);border-color:var(--amber);color:#241703}
+.add svg{width:13px;height:13px}
+/* thước MOQ trong thẻ — thanh tiến độ số lượng */
+.moq{display:flex;align-items:center;gap:8px;padding:7px 12px 9px;border-top:1px dashed var(--line)}
+.moq .scale{flex:1;position:relative;height:16px}
+.moq .track{position:absolute;left:0;right:0;top:7px;height:3px;border-radius:99px;background:var(--cream)}
+.moq .fill{position:absolute;left:0;top:7px;height:3px;border-radius:99px;background:linear-gradient(90deg,var(--gold-2),var(--amber))}
+.moq .kim{position:absolute;top:0;width:11px;height:11px;border-radius:50%;background:var(--amber);border:2.5px solid var(--card);box-shadow:0 2px 6px rgba(43,33,18,.35);transform:translateX(-50%)}
+.moq-lb{flex:none;font-size:9.5px;font-weight:700;color:var(--mut);line-height:1.25;text-align:right;max-width:96px}
+.moq-lb b{display:block;color:var(--coal);font-size:11px}
+/* bệ cột cao dần — hình ảnh biểu đồ cột của thang */
+.be-cot{flex:none;border-radius:0 0 7px 7px;height:calc(12px + var(--lv)*6.5px);
+  background:
+    linear-gradient(180deg,rgba(38,32,26,.22),transparent 42%),
+    repeating-linear-gradient(135deg,rgba(221,152,18,.5) 0 6px,rgba(232,178,76,.28) 6px 12px);
+  border:1.5px solid var(--line);border-top:0}
+.be-cot::after{content:attr(data-lv);display:block;text-align:center;font-family:'Oswald';font-weight:700;font-size:11px;color:#7A5A16;padding-top:4px}
+/* thẻ nổi bật: TO hơn hẳn — viền cam + băng hiệu + CTA riêng */
+.stair.feat-c{border:2.5px solid var(--amber);box-shadow:0 20px 44px rgba(221,152,18,.28);transform:scale(1.055)}
+.stcol.feat:hover .stair{transform:scale(1.055) translateY(-6px)}
+.stair.feat-c h3{font-size:17.5px}
+.stair.feat-c .pri{font-size:18.5px}
+.stair.feat-c .bd>p{-webkit-line-clamp:3}
+.ribbon{position:absolute;top:-12px;left:12px;z-index:4;background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;border-radius:6px;padding:5px 12px;box-shadow:0 6px 14px rgba(221,152,18,.4);transform:rotate(-1.5deg)}
+.cta-feat{background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;border-color:var(--amber)}
+/* ===== DAC THU — BẢNG TÍNH GIÁ ĐƠN NHÓM (nền tối đổi nhịp) ===== */
+.tinh-sec{background:
+  radial-gradient(760px 300px at 12% 0%,rgba(241,203,127,.09),transparent 55%),
+  repeating-linear-gradient(115deg,rgba(241,203,127,.03) 0 3px,transparent 3px 26px),
+  linear-gradient(180deg,var(--coal-3),var(--coal));
+  color:#EFE3C8}
+.tinh-sec .sec-head h2{color:#FBF3DF}
+.tinh-sec .sec-head p{color:#C4B392}
+.tinh-sec .eyebrow{color:var(--gold)}
+.tinh-g{display:grid;grid-template-columns:1.04fr .96fr;gap:26px;align-items:start}
+.tinh-g > *{min-width:0}
+.tk-form{background:rgba(255,253,246,.05);border:1.5px solid rgba(241,203,127,.3);border-radius:16px;padding:24px}
+.tk-lb{display:block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:20px 0 10px}
+.tk-lb:first-child{margin-top:0}
+.tk-lb em{font-style:normal;color:#B9A685;font-weight:600;letter-spacing:.4px;text-transform:none}
+.mau-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mau-chips button{border:1.5px solid rgba(241,203,127,.35);border-radius:9px;padding:10px 8px;min-height:56px;font-weight:700;font-size:11.5px;color:#E9DCC0;line-height:1.3;transition:.2s;background:rgba(255,253,246,.03)}
+.mau-chips button small{display:block;font-size:9.5px;color:#B9A685;font-weight:600;margin-top:2px}
+.mau-chips button.on{background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;border-color:transparent;box-shadow:0 8px 18px rgba(221,152,18,.35)}
+.mau-chips button.on small{color:#5C3D06}
+.size-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.sz{background:rgba(255,253,246,.05);border:1.5px solid rgba(241,203,127,.3);border-radius:10px;padding:8px 6px 9px;text-align:center;min-width:0}
+.sz b{display:block;font-size:10.5px;letter-spacing:1.5px;color:#C8B58E;font-weight:800;margin-bottom:5px}
+.sz .stp{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.sz .stp button{width:27px;height:30px;border-radius:7px;background:rgba(241,203,127,.14);color:var(--gold);font-size:15px;font-weight:800;display:grid;place-items:center;transition:.15s;flex:none}
+.sz .stp button:hover{background:rgba(241,203,127,.28)}
+.sz .stp output{font-weight:800;font-size:15px;color:#FFF;font-variant-numeric:tabular-nums;min-width:24px;text-align:center}
+.quick{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.quick button{border:1.5px dashed rgba(241,203,127,.4);color:var(--gold);border-radius:99px;padding:7px 14px;font-size:12px;font-weight:700;transition:.2s}
+.quick button:hover{background:rgba(241,203,127,.14)}
+.tk-out{background:var(--card);color:var(--ink);border-radius:16px;padding:24px;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.tk-out::before{content:"";position:absolute;top:0;left:0;right:0;height:7px;
+  background:repeating-linear-gradient(135deg,var(--amber) 0 9px,var(--coal) 9px 13px)}
+.tk-head{display:flex;gap:13px;align-items:center;margin-top:6px}
+.tk-thumb{width:72px;height:54px;flex:none;object-fit:cover;border-radius:8px;border:1.5px solid var(--line)}
+.tk-head h3{font-size:16.5px;color:var(--coal)}
+.tk-head .sub{font-size:12px;color:var(--mut)}
+.cap-badge{display:inline-flex;align-items:center;gap:9px;margin:15px 0 4px;background:var(--coal);color:var(--gold);border-radius:9px;padding:9px 14px}
+.cap-badge b{font-family:'Oswald';font-size:15px;letter-spacing:1.2px;text-transform:uppercase}
+.cap-badge .giam{background:var(--amber);color:#241703;border-radius:5px;font-size:11.5px;font-weight:800;padding:3px 8px}
+.tk-rows{margin:13px 0 4px;display:flex;flex-direction:column;gap:7px}
+.tk-row{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--mut);border-bottom:1px dashed var(--line);padding-bottom:7px}
+.tk-row b{color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.tk-total{display:flex;justify-content:space-between;align-items:flex-end;margin:12px 0 4px}
+.tk-total span{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
+.tk-total b{font-family:'Oswald';font-size:31px;color:var(--amber-deep);line-height:1}
+.tk-save{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--ok);background:#EAF4ED;border-radius:99px;padding:6px 13px;margin:2px 0 12px}
+/* thanh tiến độ lên bậc */
+.len-bac{background:var(--cream);border-radius:11px;padding:13px 15px;margin-bottom:15px}
+.len-bac .lb-t{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:700;color:var(--coal);margin-bottom:8px}
+.len-bac .lb-t em{font-style:normal;color:var(--amber-deep)}
+.len-bar{position:relative;height:12px;border-radius:99px;background:#E0D2B4;overflow:hidden}
+.len-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:repeating-linear-gradient(45deg,var(--amber) 0 8px,var(--amber-2) 8px 16px);transition:width .45s ease}
+.tk-add{width:100%;justify-content:center;font-size:15px}
+.tk-note{font-size:11.5px;color:var(--mut);margin-top:10px;text-align:center}
+/* ===== COMBO — GÓI TRỌN GÓI ===== */
+.combo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.combo{background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .22s,box-shadow .22s;position:relative}
+.combo:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.combo .cb-ph{position:relative;background:var(--coal)}
+.combo .cb-ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.combo .cb-ph .cb-save{position:absolute;top:10px;left:10px;background:var(--ok);color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:5px 11px;letter-spacing:.4px;box-shadow:0 5px 12px rgba(47,143,91,.4)}
+.combo .cb-bd{padding:16px 17px 15px;display:flex;flex-direction:column;gap:8px;flex:1}
+.combo h3{font-size:16.5px;color:var(--coal)}
+.combo ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin:2px 0 4px}
+.combo li{font-size:12.5px;color:var(--mut);display:flex;gap:8px;align-items:flex-start}
+.combo li svg{width:14px;height:14px;flex:none;margin-top:2px;color:var(--ok)}
+.cb-price{margin-top:auto;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.cb-price b{font-family:'Oswald';font-size:21px;color:var(--amber-deep)}
+.cb-price s{font-size:12.5px;color:var(--mut)}
+.cb-price small{font-size:11px;color:var(--mut);width:100%}
+.cb-add{margin-top:10px;width:100%;justify-content:center}
+/* ===== QUY TRÌNH 4 BƯỚC ===== */
+.proc-sec{background:linear-gradient(180deg,var(--cream),var(--paper))}
+.proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.proc{background:var(--card);border:1.5px solid var(--line);border-radius:13px;padding:19px 18px;position:relative;box-shadow:var(--sh)}
+.proc .num{display:inline-flex;align-items:center;background:var(--coal);color:var(--gold);font-family:'Oswald';font-weight:700;font-size:13px;letter-spacing:1px;border-radius:6px;padding:6px 11px;margin-bottom:11px;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+.proc h3{font-size:14.5px;color:var(--coal);margin-bottom:5px}
+.proc p{font-size:12.5px;color:var(--mut)}
+.proc .moc{position:absolute;top:19px;right:14px;font-size:10px;font-weight:800;color:var(--amber-deep);background:rgba(221,152,18,.14);border-radius:99px;padding:4px 9px;letter-spacing:.6px}
+/* ===== GIỚI THIỆU + KHÔNG GIAN — M2 SPLIT-SCREEN NGHỀ ===== */
+/* P3: 2 poster nguyên khung theo tỉ lệ gốc (img width:100% height:auto — 0 crop, không mất chữ) */
+.split{display:grid;grid-template-columns:1fr 1fr;position:relative}
+.split-half{position:relative;overflow:hidden;display:flex;flex-direction:column}
+.split-half img{width:100%;height:auto;transition:transform 5s ease;transform-origin:15% 85%}
+.split-half:hover img{transform:scale(1.03)}
+.split-half.out{background:var(--coal-3)}
+.split-half .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,22,17,.04) 45%,rgba(27,22,17,.84))}
+.split-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px 24px 20px;color:#fff;max-width:560px}
+.split-cap .tag{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;background:rgba(241,203,127,.2);border:1px solid rgba(241,203,127,.45);color:var(--gold);border-radius:99px;padding:6px 13px;margin-bottom:10px}
+.split-cap b{font-family:'Oswald';font-size:19px;letter-spacing:.6px;text-transform:uppercase;display:block}
+.split-cap span{font-size:12.5px;color:#E2D5B8}
+.split-mid{position:absolute;left:50%;top:0;bottom:0;width:0;z-index:3}
+.split-mid::before{content:"";position:absolute;top:0;bottom:0;left:-2px;width:4px;background:repeating-linear-gradient(180deg,var(--amber) 0 14px,transparent 14px 24px)}
+.split-mid .dot{position:absolute;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:var(--coal);border:2.5px solid var(--amber);color:var(--gold);display:grid;place-items:center;font-size:16px;font-weight:800}
+.split-mid .dot.d1{top:calc(50% - 52px)}
+.split-mid .dot.d2{top:calc(50% + 12px)}
+.about-txt{padding:46px 0 8px;display:grid;grid-template-columns:1.06fr .94fr;gap:34px;align-items:start}
+.about-txt .story p{color:#574A34;font-size:14.5px;margin-bottom:12px}
+.about-txt .story .sign{font-weight:800;color:var(--amber-deep)}
+.stat-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 6px}
+.stat{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px 15px;box-shadow:var(--sh);position:relative}
+.stat::before{content:"";position:absolute;top:0;left:14px;right:14px;height:4px;border-radius:0 0 4px 4px;background:repeating-linear-gradient(135deg,var(--amber) 0 6px,var(--gold-2) 6px 12px)}
+.stat b{font-family:'Oswald';font-size:25px;color:var(--coal);display:block;line-height:1.1}
+.stat span{font-size:12px;color:var(--mut)}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+/* ===== REVIEW — BIÊN NHẬN NGHIỆM THU ===== */
+.rev-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:20px 19px;position:relative;box-shadow:var(--sh);transform:rotate(var(--tilt,0deg))}
+.rev:nth-child(1){--tilt:-.6deg}.rev:nth-child(2){--tilt:.5deg}.rev:nth-child(3){--tilt:-.4deg}
+.rev .moc-kim{position:absolute;top:-9px;left:22px;width:44px;height:15px;background:repeating-linear-gradient(90deg,#8A7B60 0 3px,#6E6249 3px 6px);border-radius:3px;opacity:.7}
+.rev .st{color:var(--amber);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13.5px;color:#4C4130;margin:9px 0 13px}
+.rev b{display:block;font-size:13.5px;color:var(--coal)}
+.rev span.role{font-size:11.5px;color:var(--mut)}
+.dau-thu{position:absolute;right:13px;top:14px;border:2.5px solid rgba(47,143,91,.7);color:rgba(47,143,91,.85);font-family:'Oswald';font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;border-radius:6px;padding:5px 9px;transform:rotate(8deg);opacity:.9}
+/* ===== LIÊN HỆ (nền tối) ===== */
+.lienhe-sec{background:linear-gradient(180deg,var(--coal),var(--coal-3));color:#EFE3C8}
+.lienhe-sec .sec-head h2{color:#FBF3DF}
+.lienhe-sec .sec-head p{color:#C4B392}
+.lh-g{display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:stretch}
+.lh-card{background:rgba(255,253,246,.05);border:1.5px solid rgba(241,203,127,.3);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.hotline{font-family:'Oswald';font-size:clamp(30px,4vw,42px);color:var(--amber-2);letter-spacing:1px;line-height:1.05}
+.hotline a{display:inline-flex;align-items:center;gap:12px}
+.hotline svg{width:30px;height:30px;flex:none;color:var(--gold)}
+.lh-row{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:#D9CBA9}
+.lh-row svg{width:17px;height:17px;flex:none;margin-top:2px;color:var(--gold)}
+.lh-row b{color:#FFF}
+.lh-note{font-size:11.5px;color:#9C8D6F;border-top:1px dashed rgba(241,203,127,.25);padding-top:12px}
+.map-card{border:1.5px solid rgba(241,203,127,.3);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:rgba(255,253,246,.05)}
+.map-card iframe{width:100%;flex:1;min-height:300px;border:0}
+.map-cap{padding:13px 17px;font-size:12.5px;color:#D9CBA9;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.map-cap b{color:var(--gold)}
+/* ===== FAQ ===== */
+.faq-g{max-width:820px;display:flex;flex-direction:column;gap:11px}
+.qa{background:var(--card);border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left;font-weight:700;font-size:14.5px;color:var(--coal);padding:16px 19px}
+.qa button i{font-style:normal;flex:none;width:28px;height:28px;border-radius:8px;background:rgba(221,152,18,.15);color:var(--amber-deep);display:grid;place-items:center;font-size:17px;font-weight:800;transition:.25s}
+.qa.open button i{transform:rotate(45deg);background:var(--amber);color:#241703}
+.qa .a{display:none;padding:0 19px 16px;font-size:13.5px;color:var(--mut)}
+.qa.open .a{display:block}
+/* ===== FOOTER ===== */
+footer{background:var(--coal-3);color:#B9A685;padding:34px 0 88px;border-top:3px solid var(--amber)}
+.ft-g{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.ft-g b{color:var(--gold);font-family:'Oswald';letter-spacing:1px;text-transform:uppercase;font-size:14.5px;display:block;margin-bottom:7px}
+.ft-g a{display:block;font-size:13px;padding:2.5px 0}
+.ft-g a:hover{color:var(--gold)}
+.ft-g p{font-size:13px;max-width:330px}
+.ft-copy{margin-top:22px;padding-top:14px;border-top:1px dashed rgba(241,203,127,.2);font-size:11.5px;color:#8A7B60;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+/* ===== FAB GIỎ + DRAWER + TOAST (hợp đồng A) ===== */
+.cart-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:58px;height:58px;border-radius:99px;background:linear-gradient(160deg,var(--amber-2),var(--amber));color:#241703;display:grid;place-items:center;box-shadow:0 12px 30px rgba(221,152,18,.5);transition:transform .22s,box-shadow .22s}
+.cart-fab:hover{transform:translateY(-3px)}
+.cart-fab svg{width:27px;height:27px}
+.cart-fab b{position:absolute;top:-3px;right:-3px;min-width:23px;height:23px;border-radius:99px;background:var(--bad);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;padding:0 5px;border:2.5px solid var(--paper)}
+.dr-mask{position:fixed;inset:0;background:rgba(20,15,9,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+#cartDrawer{position:fixed;top:0;right:0;width:410px;max-width:96vw;height:100dvh;background:var(--card);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-16px 0 44px rgba(0,0,0,.25)}
+#cartDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:17px 19px;border-bottom:2px solid var(--coal);background:var(--coal);color:var(--gold)}
+.dr-head h3{font-size:16px;letter-spacing:1px}
+.dr-x{width:34px;height:34px;border-radius:8px;background:rgba(241,203,127,.15);color:var(--gold);font-size:15px;display:grid;place-items:center}
+.dr-body{flex:1;overflow-y:auto;padding:15px 19px;display:flex;flex-direction:column;gap:11px}
+.dr-empty{text-align:center;color:var(--mut);padding:38px 10px;font-size:13.5px}
+.dr-empty .big{font-size:34px;display:block;margin-bottom:8px}
+.ci{display:flex;gap:11px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:9px;background:var(--paper)}
+.ci img{width:57px;height:43px;object-fit:cover;border-radius:7px;flex:none}
+.ci .nm{font-size:12.5px;font-weight:700;color:var(--coal);line-height:1.3}
+.ci .pr{font-size:12px;color:var(--amber-deep);font-weight:800}
+.ci .qty{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:2px;background:var(--card);border:1.5px solid var(--line);border-radius:99px;padding:3px}
+.ci .qty button{width:27px;height:27px;border-radius:50%;font-size:14px;font-weight:800;color:var(--amber-deep);display:grid;place-items:center}
+.ci .qty button:hover{background:rgba(221,152,18,.15)}
+.ci .qty span{min-width:24px;text-align:center;font-weight:800;font-size:13px}
+.dr-foot{border-top:1.5px solid var(--line);padding:14px 19px 17px;background:var(--paper)}
+.dr-tot{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);padding:2.5px 0}
+.dr-tot.big b{font-family:'Oswald';font-size:22px;color:var(--amber-deep)}
+.dr-tot.big span{font-weight:800;color:var(--coal);text-transform:uppercase;font-size:12px;letter-spacing:1.4px;align-self:center}
+.dr-cta{width:100%;margin-top:9px}
+.dr-form{display:none;margin-top:12px;border-top:1.5px dashed var(--line);padding-top:13px}
+.dr-form.on{display:block}
+.dr-form label{display:block;font-size:12px;font-weight:800;color:var(--coal);margin:10px 0 5px;letter-spacing:.4px}
+.dr-form input,.dr-form textarea{width:100%;border:1.5px solid var(--line);border-radius:9px;padding:11px 13px;font-size:14px;background:#fff}
+.dr-form input:focus,.dr-form textarea:focus{outline:none;border-color:var(--amber)}
+.dr-form .err{border-color:var(--bad)!important;background:#FDF2F0}
+.dr-back{font-size:12.5px;font-weight:700;color:var(--amber-deep);padding:2px 0}
+.dr-opt{font-size:11.5px;color:var(--mut);margin:9px 0 0}
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:var(--coal);color:#F3E7CB;border-radius:12px;padding:13px 17px;box-shadow:0 14px 34px rgba(0,0,0,.35);animation:tin .3s;border-left:4px solid var(--amber)}
+@keyframes tin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.toast b{display:block;font-size:13.5px;color:var(--gold);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#E0D2B4}
+/* ===== RESPONSIVE (P11 — 390 / 768 / 1024 / 1440) ===== */
+@media (max-width:1180px){
+  .mau-chips{grid-template-columns:repeat(2,1fr)}
+  .mau-chips button{min-height:48px}
+  /* dàn mỏng phần chữ để ảnh SP giữ tỷ lệ tốt ở laptop nhỏ */
+  .be-cot{height:calc(8px + var(--lv)*3px)}
+  .stair .bd>p{font-size:11.5px}
+  .stair h3{font-size:14px}
+  .cap-tab{margin-bottom:5px}
+  .moq{padding:6px 12px 8px}
+  .moq-lb{font-size:9px;max-width:88px}
+}
+@media (max-width:1023px){
+  nav.main{display:none}
+  .menu-tg{display:grid;place-items:center}
+  nav.main.open{display:flex;position:absolute;top:66px;left:0;right:0;background:var(--coal);flex-direction:column;padding:12px 18px 16px;border-bottom:2px solid var(--amber)}
+  .hero-g{grid-template-columns:1fr;gap:36px;padding:44px 22px 40px}
+  .bien{max-width:560px;margin:0 auto}
+  /* thang: 2 cột, thẻ nổi bật TO full-width + đầu (viền cam) */
+  .ladder{grid-template-columns:1fr 1fr;gap:14px 14px;margin-top:36px}
+  .be-cot{height:calc(8px + var(--lv)*3px)}
+  .be-cot::after{font-size:9px}
+  .stcol.feat{grid-column:1 / -1;order:-2}
+  .stair.feat-c{transform:none}
+  .stcol.feat:hover .stair{transform:translateY(-4px)}
+  .stair.feat-c .ph img{aspect-ratio:16/9}
+  .tinh-g{grid-template-columns:1fr}
+  .combo-g{grid-template-columns:1fr 1fr}
+  .combo:last-child{grid-column:1 / -1}
+  .proc-g{grid-template-columns:1fr 1fr}
+  .about-txt{grid-template-columns:1fr;gap:18px;padding-top:34px}
+  .stat-g{grid-template-columns:1fr 1fr}
+  .rev-g{grid-template-columns:1fr}
+  .lh-g{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .sec{padding:50px 0}
+  .hd-call span{display:none}
+  .hero h1{font-size:clamp(30px,8.4vw,38px)}
+  .hero-cta .btn{flex:1 1 100%}
+  .mini-thang{max-width:100%}
+  .mini-thang .mt-lb{font-size:8.5px}
+  /* thang: 1 cột dọc — featured TO (viền cam) + đầu, thẻ thường ảnh trên */
+  .ladder{grid-template-columns:1fr;gap:13px}
+  .be-cot{display:none}
+  .stcol.feat{order:-1}
+  .stair.feat-c{border-width:3px}
+  .stair.feat-c h3{font-size:17px}
+  .combo-g{grid-template-columns:1fr}
+  .proc-g{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .split-half img{width:100%}
+  .split-cap{padding:13px 16px 15px}
+  .split-mid{display:none}
+  .stat-g{grid-template-columns:1fr 1fr}
+  /* 5 ô đếm size → 3 cột (2 hàng) cho vừa mobile */
+  .size-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .sz .stp button{width:32px;height:32px}
+  .sz .stp output{min-width:30px;font-size:14.5px}
+  .mau-chips button{font-size:12px}
+  .tk-form,.tk-out{padding:18px 15px}
+  .cart-fab{width:54px;height:54px;right:14px;bottom:14px}
+  #cartDrawer{width:100vw;max-width:100vw}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Về đầu trang">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+      </span>
+      <span><b>Thống Nhất</b><small>Xưởng may đồng phục</small></span>
+    </a>
+    <nav class="main" id="mainNav" aria-label="Điều hướng chính">
+      <a href="#thang">Thang 8 bậc</a>
+      <a href="#tinh-gia">Tính giá nhóm</a>
+      <a href="#goi-combo">Gói trọn gói</a>
+      <a href="#xuong">Xưởng</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <a class="hd-call" href="tel:0034567899" aria-label="Gọi hotline 0034567899">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span>0034 567 899</span>
+    </a>
+    <button class="menu-tg" id="menuTg" aria-label="Mở menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ===== HERO — biển hiệu poster nguyên khung + thang bậc mini ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="eyebrow rv">Xưởng may đồng phục · từ 2017</span>
+      <h1 class="rv">Đồng bộ theo nhóm —<br><em>giá rẽ theo bậc</em></h1>
+      <p class="lead rv">Từ 10 áo thun của một nhóm bạn đến 10.000 bộ của cả chuỗi — Thống Nhất xếp đơn của bạn lên đúng bậc: càng đông, giá chiếc càng rẽ. Nhập số lượng + size là biết ngay đơn giá, không cần chờ báo giá.</p>
+      <div class="hero-cta rv">
+        <a class="btn btn-a" href="#tinh-gia">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h3M13 10h3M8 14h3M13 14h3M8 18h8"/></svg>
+          Tính giá đơn nhóm
+        </a>
+        <a class="btn btn-g" href="#thang">Xem thang 8 bậc</a>
+      </div>
+      <!-- thiết bị hình ảnh của nghề: thang bậc mini 8 vạch -->
+      <div class="mini-thang rv" role="img" aria-label="Thang 8 bậc đơn hàng tăng dần từ 10 đến 10.000 chiếc">
+        <div class="mt-col" style="--i:1"><div class="mt-bar"></div><span class="mt-lb"><b>10</b>nhóm bạn</span></div>
+        <div class="mt-col" style="--i:2"><div class="mt-bar"></div><span class="mt-lb"><b>30</b>sự kiện</span></div>
+        <div class="mt-col" style="--i:3"><div class="mt-bar"></div><span class="mt-lb"><b>50</b>CLB · quán</span></div>
+        <div class="mt-col" style="--i:4"><div class="mt-bar"></div><span class="mt-lb"><b>100</b>cả khối</span></div>
+        <div class="mt-col" style="--i:5"><div class="mt-bar"></div><span class="mt-lb"><b>300</b>công ty</span></div>
+        <div class="mt-col" style="--i:6"><div class="mt-bar"></div><span class="mt-lb"><b>500</b>chuỗi F&amp;B</span></div>
+        <div class="mt-col" style="--i:7"><div class="mt-bar"></div><span class="mt-lb"><b>1K</b>tập đoàn</span></div>
+        <div class="mt-col" style="--i:8"><div class="mt-bar"></div><span class="mt-lb"><b>10K</b>cấp xưởng</span></div>
+      </div>
+      <div class="hero-stats rv">
+        <div><b>120+</b><span>trường &amp; doanh nghiệp</span></div>
+        <div><b>48 giờ</b><span>có mẫu thử tận tay</span></div>
+        <div><b>200.000+</b><span>chiếc/năm công suất xưởng</span></div>
+      </div>
+    </div>
+    <div class="bien rv">
+      <svg class="bien-chev" viewBox="0 0 120 150" width="120" height="150" fill="none" aria-hidden="true">
+        <path d="M10 30 60 6l50 24M10 70 60 46l50 24M10 110 60 86l50 24" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+      <figure class="bien-frame">
+        <span class="goc tl" aria-hidden="true"></span><span class="goc tr" aria-hidden="true"></span>
+        <span class="goc bl" aria-hidden="true"></span><span class="goc br" aria-hidden="true"></span>
+        <img src="assets/img/cover.webp" alt="Shop Đồng Phục Thống Nhất — thiết kế theo yêu cầu, may số lượng lớn, in thêu chuyên nghiệp. Tư vấn và báo giá 0034567899" width="1448" height="1086" fetchpriority="high">
+      </figure>
+      <a class="bien-pill" href="tel:0034567899">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+        <span><small>Tư vấn &amp; báo giá</small>0034 567 899</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8 — THANG 8 BẬC ĐỒNG PHỤC (pattern #16 biến thể: bệ cột cao dần + huy hiệu cấp + thước MOQ) ===== -->
+<section class="sec thang-sec" id="thang">
+  <div class="wrap">
+    <div class="thang-top">
+      <div class="sec-head rv" style="margin-bottom:0">
+        <span class="eyebrow">Bảng cấp đơn của xưởng</span>
+        <h2>Thang 8 bậc — <em>đơn của bạn đứng bậc nào?</em></h2>
+        <p>8 dòng đồng phục xếp theo cấp đơn hàng thường gặp: nhóm lớp 10 chiếc ở bậc đáy, đơn xưởng 10.000 chiếc ở đỉnh. Mỗi bậc một mức giá niêm yết — leo lên bậc trên, giá chiếc rẽ xuống.</p>
+      </div>
+      <span class="mo-cot rv">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        Càng nhiều chiếc — càng rẻ
+      </span>
+    </div>
+    <div class="ladder" id="ladderGrid"><!-- render bằng JS --></div>
+  </div>
+</section>
+
+<!-- ===== DAC THU — BẢNG TÍNH GIÁ ĐƠN NHÓM ===== -->
+<section class="sec tinh-sec" id="tinh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Bảng tính giá theo bậc</span>
+      <h2>Nhập số lượng + size — <em>xem giá rẽ theo bậc ngay tại chỗ</em></h2>
+      <p>Trưởng nhóm đếm giúp xưởng: mỗi size bao nhiêu chiếc. Tổng chiếc quyết định cấp giá của cả đơn — ai trong nhóm cũng trả đúng đơn giá bậc đó, size nào cũng vậy.</p>
+    </div>
+    <div class="tinh-g">
+      <div class="tk-form rv">
+        <span class="tk-lb">1 · Chọn mẫu đồng phục</span>
+        <div class="mau-chips" id="mauChips"><!-- render bằng JS --></div>
+        <span class="tk-lb">2 · Đếm từng size <em>— tổng chiếc quyết định cấp giá</em></span>
+        <div class="size-row" id="sizeRow">
+          <div class="sz"><b>S</b><div class="stp"><button data-sz="s" data-d="-1" aria-label="Bớt size S">−</button><output id="szS">0</output><button data-sz="s" data-d="1" aria-label="Thêm size S">+</button></div></div>
+          <div class="sz"><b>M</b><div class="stp"><button data-sz="m" data-d="-1" aria-label="Bớt size M">−</button><output id="szM">0</output><button data-sz="m" data-d="1" aria-label="Thêm size M">+</button></div></div>
+          <div class="sz"><b>L</b><div class="stp"><button data-sz="l" data-d="-1" aria-label="Bớt size L">−</button><output id="szL">0</output><button data-sz="l" data-d="1" aria-label="Thêm size L">+</button></div></div>
+          <div class="sz"><b>XL</b><div class="stp"><button data-sz="xl" data-d="-1" aria-label="Bớt size XL">−</button><output id="szXL">0</output><button data-sz="xl" data-d="1" aria-label="Thêm size XL">+</button></div></div>
+          <div class="sz"><b>2XL</b><div class="stp"><button data-sz="xx" data-d="-1" aria-label="Bớt size 2XL">−</button><output id="szXX">0</output><button data-sz="xx" data-d="1" aria-label="Thêm size 2XL">+</button></div></div>
+        </div>
+        <div class="quick" id="quickRow" aria-label="Chia size nhanh theo tổng số">
+          <button data-q="12">Nhóm 12</button>
+          <button data-q="30">Lớp 30</button>
+          <button data-q="50">CLB 50</button>
+          <button data-q="100">Khối 100</button>
+          <button data-q="300">Công ty 300</button>
+          <button data-q="1000">Xưởng 1.000</button>
+        </div>
+      </div>
+      <div class="tk-out rv">
+        <div class="tk-head">
+          <img class="tk-thumb" id="tkThumb" src="assets/img/p6.webp" alt="Mẫu đồng phục đang tính giá" width="1280" height="960">
+          <div>
+            <h3 id="tkName">Đồng phục công ty</h3>
+            <span class="sub" id="tkSub">đơn nhóm · giá niêm yết theo bậc</span>
+          </div>
+        </div>
+        <div class="cap-badge" id="capBadge">
+          <span class="chev" id="capChev" aria-hidden="true"></span>
+          <b id="capName">Cấp 1 · Mua lẻ</b>
+          <span class="giam" id="capGiam">0%</span>
+        </div>
+        <div class="len-bac">
+          <div class="lb-t"><span id="lenLb">Nhập số lượng để leo bậc giá</span><em id="lenKc"></em></div>
+          <div class="len-bar"><i id="lenFill" style="width:0%"></i></div>
+        </div>
+        <div class="tk-rows">
+          <div class="tk-row"><span>Tổng số chiếc</span><b id="rTong">0 chiếc</b></div>
+          <div class="tk-row"><span>Đơn giá áp dụng</span><b id="rDg">—</b></div>
+          <div class="tk-row"><span>Giá mua lẻ (dưới 10 chiếc)</span><b id="rLe">—</b></div>
+        </div>
+        <div class="tk-total"><span>Thành tiền đơn nhóm</span><b id="rTong-t">0đ</b></div>
+        <span class="tk-save" id="rSave" hidden>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span id="rSaveT">—</span>
+        </span>
+        <button class="btn btn-a tk-add" id="tkAdd">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+          Thêm đơn nhóm vào giỏ
+        </button>
+        <p class="tk-note">Giá đã gồm vải + cắt may + in/thêu logo 1 vị trí (từ Cấp 3). Báo giá chốt bằng hợp đồng trước khi cắt vải.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMBO — GÓI TRỌN GÓI GIẢM RÕ ===== -->
+<section class="sec" id="goi-combo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Gói trọn gói theo mùa</span>
+      <h2>Đặt cả gói — <em>rẻ hơn tự ghép từng món</em></h2>
+      <p>Ba gói khách đặt nhiều nhất trong mùa này: giá gói đã trừ sẵn, không cộng trỏ thêm khi chốt hợp đồng.</p>
+    </div>
+    <div class="combo-g">
+      <article class="combo rv">
+        <div class="cb-ph">
+          <img src="assets/img/p5.webp" alt="Gói khai trương quán — đồng phục nhà hàng trọn gói" width="1280" height="960" loading="lazy">
+          <span class="cb-save">Tiết kiệm 1.490.000đ</span>
+        </div>
+        <div class="cb-bd">
+          <h3>Gói khai trương quán</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>50 bộ đồng phục bếp + phục vụ (Cấp 3)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>50 tạp dề in logo cửa hàng</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Giao 2 đợt theo lịch mở cửa</li>
+          </ul>
+          <div class="cb-price"><b>8.990.000đ</b><s>10.480.000đ</s><small>≈ 179.800đ/bộ · đặt trước 10 ngày</small></div>
+          <button class="btn btn-dark cb-add" data-combo="0">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+            Thêm gói vào giỏ
+          </button>
+        </div>
+      </article>
+      <article class="combo rv">
+        <div class="cb-ph">
+          <img src="assets/img/p4.webp" alt="Gói năm học mới — đồng phục học sinh trọn gói" width="1280" height="960" loading="lazy">
+          <span class="cb-save">Tiết kiệm 2.700.000đ</span>
+        </div>
+        <div class="cb-bd">
+          <h3>Gói năm học mới</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100 bộ học sinh cấp 2 (Cấp 4)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Nhãn size in tên từng bạn</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 đợt điều chỉnh size miễn phí</li>
+          </ul>
+          <div class="cb-price"><b>16.500.000đ</b><s>19.200.000đ</s><small>≈ 165.000đ/bộ · chốt trước 20/8</small></div>
+          <button class="btn btn-dark cb-add" data-combo="1">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+            Thêm gói vào giỏ
+          </button>
+        </div>
+      </article>
+      <article class="combo rv">
+        <div class="cb-ph">
+          <img src="assets/img/p6.webp" alt="Gói onboarding công ty — sơ mi đồng phục + thêu logo" width="1280" height="960" loading="lazy">
+          <span class="cb-save">Tiết kiệm 1.090.000đ</span>
+        </div>
+        <div class="cb-bd">
+          <h3>Gói onboarding công ty</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>30 sơ mi công ty nam + nữ (Cấp 3)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Thêu logo ngực trái + tên nhân viên</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bảng size cá nhân từng người</li>
+          </ul>
+          <div class="cb-price"><b>6.590.000đ</b><s>7.680.000đ</s><small>≈ 219.700đ/bộ · bổ sung nhân mới giá cũ</small></div>
+          <button class="btn btn-dark cb-add" data-combo="2">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+            Thêm gói vào giỏ
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH 4 BƯỚC ===== -->
+<section class="sec proc-sec" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Từ ý tưởng đến lúc mặc</span>
+      <h2>4 chặng — <em>đồng phục về tới tay đúng hẹn</em></h2>
+      <p>Mỗi chặng có mốc thời gian ghi trong hợp đồng; chậm đúng một ngày, xưởng giảm 10% giá trị chặng đó.</p>
+    </div>
+    <div class="proc-g">
+      <div class="proc rv">
+        <span class="moc">trong ngày</span>
+        <span class="num">CHẶNG 01</span>
+        <h3>Gửi số lượng + ý tưởng</h3>
+        <p>Nhắn hotline hoặc để bảng tính gửi sẵn: tổng chiếc, phân size, nghề nghiệp, màu thương hiệu. Xưởng lọc catalogue 200+ mẫu đúng bậc đơn của bạn.</p>
+      </div>
+      <div class="proc rv">
+        <span class="moc">48 giờ</span>
+        <span class="num">CHẶNG 02</span>
+        <h3>Chốt mẫu &amp; phân size</h3>
+        <p>Mẫu thử tận tay đúng vải, đúng màu. Đo thử theo bảng size cá nhân — size lệch bao nhiêu xưởng nhận hết, không phụ thu size lớn.</p>
+      </div>
+      <div class="proc rv">
+        <span class="moc">5–14 ngày</span>
+        <span class="num">CHẶNG 03</span>
+        <h3>May + thêu in logo</h3>
+        <p>3 dây chuyền chạy song song: cắt — may — thêu/in. Logo thêu nổi 1 vị trí đã gồm giá từ Cấp 3, thêm vị trí tính riêng, báo trước khi làm.</p>
+      </div>
+      <div class="proc rv">
+        <span class="moc">đúng hẹn</span>
+        <span class="num">CHẶNG 04</span>
+        <h3>Nghiệm thu &amp; giao</h3>
+        <p>QC từng chiếc theo lô, đóng gói kèm nhãn size tên từng người (nếu có). Nghiệm thu cùng bạn rồi mới giao — thiếu/sai bổ sung trong 72 giờ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIỚI THIỆU + KHÔNG GIAN — M2 SPLIT-SCREEN (ngoài | trong) ===== -->
+<section id="xuong">
+  <div class="split" aria-label="Không gian xưởng Thống Nhất">
+    <div class="split-half out">
+      <img src="assets/img/intro.webp" alt="Góc tư vấn chọn mẫu — cô tư vấn trải mẫu vải và bảng màu cùng khách" width="1448" height="1086" loading="lazy">
+      <span class="shade" aria-hidden="true"></span>
+      <div class="split-cap">
+        <span class="tag">Góc tư vấn — chọn mẫu &amp; chất liệu</span>
+        <b>Trải mẫu vải ngay trên bàn</b>
+        <span>Polo 220g, sơ mi Oxford, kaki mới mềm — sờ được, đo được trước khi chốt.</span>
+      </div>
+    </div>
+    <div class="split-half">
+      <img src="assets/img/space.webp" alt="Sảnh trưng bày showroom đồng phục — mô hình mặc sẵn 8 dòng đồng phục" width="1280" height="960" loading="lazy">
+      <span class="shade" aria-hidden="true"></span>
+      <div class="split-cap">
+        <span class="tag">Bên trong — sảnh trưng bày</span>
+        <b>8 dòng đồng phục mặc thử tại chỗ</b>
+        <span>Từ bộ mầm non đến vest công ty — mặc lên là biết bậc đơn của mình cần gì.</span>
+      </div>
+    </div>
+    <div class="split-mid" aria-hidden="true">
+      <span class="dot d1">→</span>
+      <span class="dot d2">★</span>
+    </div>
+  </div>
+  <div class="wrap about-txt">
+    <div class="story rv">
+      <span class="eyebrow">Về xưởng Thống Nhất</span>
+      <h2 style="font-size:clamp(24px,3.4vw,33px);margin:10px 0 12px;color:var(--coal)">Tám năm chỉ làm một việc: <em style="font-style:normal;color:var(--amber-deep)">để cả nhóm mặc cùng một màu</em></h2>
+      <p>Xưởng mở năm 2017 từ một chuyến đặt gấp 40 áo của lớp cử nhân gần xưởng. Hôm nay là ba dây chuyền với 35 người thợ, phục vụ từ nhóm 10 chiếc đến đơn xưởng 10.000 chiếc cho trường học, nhà hàng, công ty và cả các team y tế, văn phòng.</p>
+      <p>Cái xưởng giữ nguyên từ ngày đầu: báo giá niêm yết theo bậc trước khi cắt vải — đơn của bạn lên cấp nào thì trả giá cấp đó, ai hỏi riêng cũng ra đúng con số trên bảng.</p>
+      <p class="sign">— Chú Sáu Tùng, giữ bàn cắt số 01 —</p>
+      <div class="about-cta">
+        <a class="btn btn-a" href="#tinh-gia">Tính giá đơn nhóm của bạn</a>
+        <a class="btn btn-g" href="tel:0034567899">Gọi xưởng: 0034 567 899</a>
+      </div>
+    </div>
+    <div class="stat-g">
+      <div class="stat rv"><b>8 năm</b><span>chỉ làm đồng phục nhóm</span></div>
+      <div class="stat rv"><b>120+</b><span>trường &amp; doanh nghiệp đang đổi mùa theo lịch</span></div>
+      <div class="stat rv"><b>200.000+</b><span>chiếc/năm — 3 dây chuyền</span></div>
+      <div class="stat rv"><b>48 giờ</b><span>có mẫu thử — cam kết bằng hợp đồng</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW — BIÊN NHẬN NGHIỆM THU ===== -->
+<section class="sec" id="cam-nhan" style="padding-top:26px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Khách nghiệm thu rồi mới nhận</span>
+      <h2>Ba biên bản <em>được giữ lại trên bàn cắt</em></h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv">
+        <span class="moc-kim" aria-hidden="true"></span>
+        <span class="dau-thu">Đã nghiệm thu</span>
+        <div class="st" aria-label="5 trên 5 sao">★★★★★</div>
+        <p>"380 bộ cho cả 3 khối, mỗi bộ có nhãn size tên từng em. Phụ huynh cầm lên là biết mặc của ai — nghiệm thu xong không phải đổi một cái nào."</p>
+        <b>Cô Trần Thị Hồng</b>
+        <span class="role">tổ phụ trách công vụ · THCS Làng Mai</span>
+      </div>
+      <div class="rev rv">
+        <span class="moc-kim" aria-hidden="true"></span>
+        <span class="dau-thu">Đã nghiệm thu</span>
+        <div class="st" aria-label="5 trên 5 sao">★★★★★</div>
+        <p>"Mở chi nhánh thứ 4 vẫn phải đúng màu áo 3 cửa hàng cũ — xưởng giữ đúng mã màu và bàn giao 120 bộ đúng ngày khai trương, tạp dề in logo rõ từng nét."</p>
+        <b>Anh Phạm Đức Thắng</b>
+        <span class="role">quản lý vận hành · chuỗi Cơm Niê</span>
+      </div>
+      <div class="rev rv">
+        <span class="moc-kim" aria-hidden="true"></span>
+        <span class="dau-thu">Đã nghiệm thu</span>
+        <div class="st" aria-label="4 trên 5 sao">★★★★☆</div>
+        <p>"Onboarding 30 người mới mỗi quý, xưởng giữ giá gói cũ cho đợt bổ sung — bộ nào chưa vừa đo lại miễn phí trong tuần đầu. Phòng mình khỏi lo đồng bộ."</p>
+        <b>Chị Lê Mai Anh</b>
+        <span class="role">HR manager · công ty Kiến Kiều</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ + MAP ===== -->
+<section class="sec lienhe-sec" id="lien-he">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Ghé xưởng hoặc nhắn một dòng</span>
+      <h2>Báo giá nhóm — <em>không cần chờ, bảng tính ở trên là gần đúng nhất</em></h2>
+      <p>Có sẵn catalogue 200+ mẫu để gửi ngay qua Zalo. Muốn sờ vải thì ghé xưởng — pha chè luôn có.</p>
+    </div>
+    <div class="lh-g">
+      <div class="lh-card rv">
+        <div class="hotline">
+          <a href="tel:0034567899">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+            0034 567 899
+          </a>
+        </div>
+        <div class="lh-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><b>88 Đại lộ Chân Trời, P. Khỏi Hạnh</b> — showroom + xưởng cùng mặt bằng, gửi xe miễn phí</span>
+        </div>
+        <div class="lh-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span><b>8:00 – 19:00</b> thứ Hai đến thứ Bảy · Chủ nhật nhận hẹn nhóm đông</span>
+        </div>
+        <div class="lh-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.8-.9L3 20l1-5.5a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 11.5 2a8.4 8.4 0 0 1 9.5 9.5z"/></svg>
+          <span><b>Zalo 0034567899</b> — gửi catalogue + báo giá bậc trong 15 phút giờ hành chính</span>
+        </div>
+        <p class="lh-note">Hotline cũng là số in trên bảng hiệu xưởng — gọi là phòng kinh doanh nhận ngay, không qua tổng đài.</p>
+      </div>
+      <div class="map-card rv">
+        <!-- NB110-MAP: 10.8418,106.7696 -->
+        <iframe loading="lazy" src="https://www.google.com/maps?q=10.8418,106.7696&z=15&output=embed&hl=vi" title="Bản đồ Xưởng Đồng Phục Thống Nhất — 88 Đại lộ Chân Trời, P. Khỏi Hạnh"></iframe>
+        <div class="map-cap">
+          <span><b>Showroom + xưởng</b> — 88 Đại lộ Chân Trời, P. Khỏi Hạnh</span>
+          <a class="btn btn-g" style="min-height:40px;padding:9px 16px;font-size:13px" href="https://www.google.com/maps?q=10.8418,106.7696" target="_blank" rel="noopener">Chỉ đường</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Trước khi đặt nhóm</span>
+      <h2>Điều nhóm trưởng <em>hỏi nhiều nhất</em></h2>
+    </div>
+    <div class="faq-g">
+      <div class="qa rv"><button>Đơn nhỏ nhất bao nhiêu chiếc để được giá bậc?<i>+</i></button><div class="a">10 chiếc là lên Cấp 2 (giảm 8% so với lẻ). Dưới 10 chiếc xưởng vẫn nhận theo giá lẻ niêm yết trên từng thẻ — nhóm 3-5 người đi trại, đi sự kiện vẫn làm, miễn còn kịp lịch.</div></div>
+      <div class="qa rv"><button>Nhóm mình size lệch loạn — giá tính thế nào?<i>+</i></button><div class="a">Cứ đếm đủ từng size (S, M, L, XL, 2XL) rồi nhập vào bảng tính giá ở trên. Tổng chiếc quyết định cấp giá của cả đơn — size nào cũng cùng đơn giá, size 2XL không cộng tiền. Có size đặc biệt ngoài 2XL thì nhắn Zalo, xưởng cắt riêng không phụ thu.</div></div>
+      <div class="qa rv"><button>In / thêu logo tính phí ra sao?<i>+</i></button><div class="a">Một vị trí logo (ngực trái hoặc ngực phải) đã gồm sẵn trong giá từ Cấp 3 trở lên. Thêm vị trí sau lưng, tay áo: 15.000–25.000đ/vị trí tùy kích thước, xưởng báo trước khi làm. Thêu nổi giữ màu qua giặt tốt hơn in chuyển nhiệt — đơn từ Cấp 4 xưởng khuyên thêu miễn phí thiết kế lại file.</div></div>
+      <div class="qa rv"><button>Bao lâu thì cả nhóm nhận được đồng phục?<i>+</i></button><div class="a">Mẫu thử 48 giờ. Sản xuất: 50 chiếc 5–7 ngày, 100–300 chiếc 7–12 ngày, đơn xưởng 500+ theo lịch cam kết trong hợp đồng (thường 14–18 ngày). Chậm đúng một ngày so với hẹn, xưởng giảm 10% giá trị đơn — điều khoản ghi thẳng vào hợp đồng.</div></div>
+      <div class="qa rv"><button>Mặc theo mẫu có sẵn hay phải thiết kế riêng?<i>+</i></button><div class="a">Cả hai đều được. Kho 200+ mẫu có sẵn chỉnh màu, đổi vải, gắn logo không mất phí thiết kế. Riêng thiết kế từ đầu (dành cho bậc 6–8: công ty, chuỗi, đơn xưởng) phí 500.000đ — hoàn lại 100% khi đặt sản xuất.</div></div>
+      <div class="qa rv"><button>May xong có bạn không vừa thì xử lý thế nào?<i>+</i></button><div class="a">Trong 7 ngày sau giao: điều chỉnh (bổ gấu, vào nếp, thay khóa) miễn phí cho tối đa 10% số lượng đơn; gói năm học mới điều chỉnh cả lớp một đợt không giới hạn. Sai kem vải hoặc lỗi đường may — làm lại chiếc mới, xưởng chịu toàn bộ chi phí.</div></div>
+      <div class="qa rv"><button>Đơn ở tỉnh, giao xa có nhận không?<i>+</i></button><div class="a">Nhận, giao toàn quốc qua chành và đơn vị chuyển phát nhanh. Từ Cấp 4 (100 chiếc) freeship nội thành + hỗ trợ 50% phí vận chuyển tỉnh; mẫu thử gửi chành trước để cả nhóm mặc thử size rồi mới chốt sản xuất.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="ft-g">
+      <div>
+        <b>Xưởng Đồng Phục Thống Nhất</b>
+        <p>Đặt đồng phục theo nhóm — nhập số lượng + size, giá giảm theo bậc. Niêm yết công khai, hợp đồng rõ ràng, mẫu thử 48 giờ.</p>
+      </div>
+      <div>
+        <b>Đặt nhanh</b>
+        <a href="#thang">Thang 8 bậc đồng phục</a>
+        <a href="#tinh-gia">Tính giá đơn nhóm</a>
+        <a href="#goi-combo">Gói trọn gói theo mùa</a>
+        <a href="#faq">Hỏi đáp nhóm trưởng</a>
+      </div>
+      <div>
+        <b>Liên hệ</b>
+        <a href="tel:0034567899">Hotline: 0034 567 899</a>
+        <a href="https://www.google.com/maps?q=10.8418,106.7696" target="_blank" rel="noopener">88 Đại lộ Chân Trời, P. Khỏi Hạnh</a>
+        <span style="display:block;font-size:13px">8:00 – 19:00 · Thứ Hai – Thứ Bảy</span>
+      </div>
+    </div>
+    <div class="ft-copy">
+      <span>© 2026 Xưởng Đồng Phục Thống Nhất — thiết kế theo yêu cầu · may số lượng lớn · in thêu chuyên nghiệp</span>
+      <span>Giá niêm yết theo bậc — thay số liệu là dùng kinh doanh thật được</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FAB GIỎ (icon giỏ SVG nét) ===== -->
+<button class="cart-fab" id="cartOpen" aria-label="Mở giỏ hàng">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/>
+    <path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/>
+  </svg>
+  <b id="cartN" hidden>0</b>
+</button>
+
+<!-- ===== DRAWER GIỎ + FORM ĐẶT HÀNG ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="cartDrawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <h3>Giỏ đơn nhóm</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng giỏ hàng">✕</button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="dr-tot"><span>Số dòng đơn</span><span id="drDisc">0 dòng</span></div>
+    <div class="dr-tot big"><span>Tạm tính</span><b id="drTotal">0đ</b></div>
+    <button class="btn btn-a dr-cta" id="checkoutBtn">Tiến hành đặt hàng</button>
+    <div class="dr-form" id="drForm">
+      <button class="dr-back" id="drBack">← Quay lại xem giỏ</button>
+      <label for="fName">Họ tên người đặt *</label>
+      <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Bích">
+      <label for="fPhone">Số điện thoại *</label>
+      <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
+      <label for="fAddr">Địa chỉ nhận đồng phục *</label>
+      <input id="fAddr" data-nghe-order="address" type="text" placeholder="Số nhà, đường, phường/xã — giao nhóm cần địa chỉ cụ thể">
+      <label for="fNote">Ghi chú (phân size, logo, ngày cần…)</label>
+      <textarea id="fNote" data-nghe-order="note" rows="2" placeholder="VD: cần trước 20/8, thêu logo ngực trái"></textarea>
+      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>Gửi đơn cho xưởng</button>
+      <p class="dr-opt">Địa chỉ bắt buộc — đơn nhóm giao từng đợt, thiếu địa chỉ xưởng không lên được lịch chạy.</p>
+    </div>
+  </div>
+</aside>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-048*/
+'use strict';
+/* ===== DỮ LIỆU 8 BẬC (pattern #16 biến thể — bậc = cấp đơn hàng/mẫu đồng phục)
+   LƯU Ý ánh xạ ảnh: file trong kho KHÁCH số thứ tự với file txt — đã soi mắt từng ảnh:
+   p1=sự kiện, p2=áo thun nhóm, p3=đặt may SL lớn, p4=học sinh, p5=nhà hàng, p6=công ty, p7=logo, p8=gym */
+var P = [
+  {id:'ao-thun-nhom',  lv:1, cap:'Nhóm & lớp',      moq:'10–49 chiếc',   price:95000,  img:'assets/img/p2.webp', w:1280, h:960, n:'Áo thun nhóm - lớp',        d:'Raglan, trơn hoặc in hình - in tên từng bạn, giá nhóm từ 10 chiếc.'},
+  {id:'dong-phuc-su-kien', lv:2, cap:'Ban tổ chức',  moq:'30–99 chiếc',   price:115000, img:'assets/img/p1.webp', w:1280, h:960, n:'Đồng phục sự kiện',         d:'Polo sự kiện, áo khoác gió ban tổ chức - chốt màu thương hiệu, giao đúng ngày tổng duyệt.'},
+  {id:'dong-phuc-gym', lv:3, cap:'CLB & đội nhóm',   moq:'30–150 chiếc',  price:145000, img:'assets/img/p8.webp', w:1280, h:960, n:'Đồng phục gym - thể thao',  d:'Set tập co giãn 4 chiều, thấm mồ hôi - dựng form theo dáng vận động viên.'},
+  {id:'dong-phuc-nha-hang', lv:4, cap:'Quán & chuỗi F&B', moq:'50–300 chiếc', price:165000, img:'assets/img/p5.webp', w:1280, h:960, n:'Đồng phục nhà hàng - quán ăn', d:'Áo bếp + phục vụ, tạp dề in logo - chịu giặt công nghiệp, giữ form sau 200 lượt giặt.'},
+  {id:'dong-phuc-hoc-sinh', lv:5, cap:'Cả khối, cả trường', moq:'100–500 chiếc', price:185000, img:'assets/img/p4.webp', w:1280, h:960, n:'Đồng phục học sinh',   d:'Áo sơ mi + váy/quần âu, nhãn size tên từng em - đo tận lớp, đổi size cả đợt.'},
+  {id:'dong-phuc-cong-ty', lv:6, cap:'Cả công ty',    moq:'100–1.000 chiếc', price:235000, img:'assets/img/p6.webp', w:1280, h:960, n:'Đồng phục công ty',   d:'Sơ mi Oxford nam + nữ, thêu logo ngực - giữ mã màu thương hiệu giữa các đợt.', feat:'CHỦ LỰC B2B'},
+  {id:'theu-in-logo',  lv:7, cap:'Nâng cấp mọi đơn', moq:'gắn thêm mọi cấp', price:25000, img:'assets/img/p7.webp', w:1280, h:960, n:'Thêu - in logo',        d:'Thêu nổi, in chuyển nhiệt, in DTG - duyệt bản in ảnh thật trước khi chạy loạt.'},
+  {id:'dat-may-so-luong-lon', lv:8, cap:'Cấp xưởng', moq:'500–10.000 chiếc', price:320000, img:'assets/img/p3.webp', w:1024, h:768, n:'Đặt may số lượng lớn', d:'Thiết kế riêng theo yêu cầu - 3 dây chuyền, lịch sản xuất cam kết bằng hợp đồng.', feat:'ĐƠN XƯỞNG'}
+];
+var COMBOS = [
+  {n:'Gói khai trương quán (50 bộ + tạp dề in logo)', price:8990000},
+  {n:'Gói năm học mới (100 bộ + nhãn size tên)', price:16500000},
+  {n:'Gói onboarding công ty (30 sơ mi + thêu logo)', price:6590000}
+];
+/* 6 cấp giá theo tổng chiếc — dùng chung cho bảng tính */
+var TIERS = [
+  {min:1,    off:0,    name:'Cấp 1 · Mua lẻ'},
+  {min:10,   off:.08,  name:'Cấp 2 · Nhóm nhỏ'},
+  {min:50,   off:.14,  name:'Cấp 3 · Nhóm lớn'},
+  {min:100,  off:.20,  name:'Cấp 4 · Tổ chức'},
+  {min:300,  off:.26,  name:'Cấp 5 · Doanh nghiệp'},
+  {min:1000, off:.32,  name:'Cấp 6 · Cấp xưởng'}
+];
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+var byId = function(id){ for (var i=0;i<P.length;i++){ if(P[i].id===id) return P[i]; } return null; };
+function tierOf(q){ var t = TIERS[0]; for (var i=0;i<TIERS.length;i++){ if (q >= TIERS[i].min) t = TIERS[i]; } return t; }
+function nextTier(q){ for (var i=0;i<TIERS.length;i++){ if (TIERS[i].min > q) return TIERS[i]; } return null; }
+function unitPrice(base, q){
+  var t = tierOf(q);
+  return Math.max(1000, Math.round(base * (1 - t.off) / 1000) * 1000);
+}
+/* huy hiệu chevron (thiết bị lặp của nghề) — n vạch cấp */
+function chevSVG(n, color){
+  var p = '';
+  for (var i=0;i<n;i++){
+    var y = 12 - i*3.2;
+    p += '<path d="M2 '+(y+3.4)+' L8.5 '+(y)+' L15 '+(y+3.4)+'" stroke="'+(color||'currentColor')+'" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  }
+  return '<svg viewBox="0 0 17 15" width="17" height="15" aria-hidden="true">'+p+'</svg>';
+}
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== RENDER THANG 8 BẬC — bệ cột cao dần + huy hiệu cấp + thước MOQ ===== */
+var MOQ_POS = [8, 20, 23, 36, 42, 55, 50, 88]; /* vị trí kim trên thước 10→10K */
+function renderLadder(){
+  var g = document.getElementById('ladderGrid');
+  var html = '';
+  for (var i=0;i<P.length;i++){
+    var p = P[i];
+    var gia = unitPrice(p.price, 10);
+    var feat = p.feat ? ' feat' : '';
+    html += '<div class="stcol'+feat+'" style="--lv:'+p.lv+'">'
+      + '<div class="cap-tab">'
+      + '<span class="chev" style="color:var(--amber-deep)">'+chevSVG(p.lv)+'</span>'
+      + '<span class="cap-name">Bậc '+p.lv+' · '+p.cap+'</span>'
+      + '</div>'
+      + '<article class="stair'+(p.feat ? ' feat-c' : '')+'">'
+      + (p.feat ? '<span class="ribbon">'+p.feat+'</span>' : '')
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.n+' — Xưởng Đồng Phục Thống Nhất" width="'+p.w+'" height="'+p.h+'" loading="lazy"></div>'
+      + '<div class="bd"><h3>'+p.n+'</h3><p>'+p.d+'</p>'
+      + '<div class="ft"><div class="pri">'+fmt(gia)+'<small>giá từ / chiếc · lẻ '+fmt(p.price)+'</small></div>'
+      + '<button class="add'+(p.feat ? ' cta-feat' : '')+'" data-add="'+p.id+'" aria-label="Thêm '+p.n+' vào giỏ">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/></svg>'
+      + (p.feat ? 'Thêm vào giỏ' : 'Giỏ') + '</button></div></div>'
+      + '<div class="moq"><span class="scale"><span class="track"></span>'
+      + '<span class="fill" style="width:'+MOQ_POS[i]+'%"></span>'
+      + '<span class="kim" style="left:'+MOQ_POS[i]+'%"></span></span>'
+      + '<span class="moq-lb"><b>'+p.moq+'</b>đơn thường gặp</span></div>'
+      + '</article>'
+      + '<div class="be-cot" data-lv="BẬC '+p.lv+'" aria-hidden="true"></div>'
+      + '</div>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-add]');
+    if (!btn) return;
+    addToCart(btn.getAttribute('data-add'), 1);
+  });
+}
+
+/* ===== GIỎ HÀNG (hợp đồng A) ===== */
+var CART = [];
+function addToCart(id, qty){
+  var p = byId(id); if (!p) return;
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; renderCart(); return; } }
+  CART.push({id:id, qty:qty});
+  renderCart();
+  toast('Đã thêm vào giỏ', p.n + ' — giá từ ' + fmt(unitPrice(p.price, 10)) + '/chiếc, gọi hoặc gửi đơn để chốt bậc');
+}
+function addCombo(i){
+  var c = COMBOS[i];
+  var key = 'combo-'+i;
+  for (var k=0;k<CART.length;k++){ if (CART[k].id===key){ CART[k].qty++; renderCart(); toast('Đã thêm vào giỏ', c.n); return; } }
+  CART.push({id:key, qty:1, name:c.n, price:c.price, img:P[[3,4,5][i]].img});
+  renderCart();
+  toast('Đã thêm vào giỏ', c.n + ' — ' + fmt(c.price));
+}
+function addGroupOrder(pid, total, price, sizeText){
+  var p = byId(pid); if (!p) return;
+  var key = 'nhom-'+pid;
+  for (var k=0;k<CART.length;k++){ if (CART[k].id===key){ CART[k].qty++; CART[k].price=price; renderCart(); toast('Đã cập nhật đơn nhóm trong giỏ', p.n + ' — ' + total + ' chiếc'); return; } }
+  CART.push({id:key, qty:1, name:'Đơn nhóm: '+p.n+' — '+total+' chiếc ('+sizeText+')', price:price, img:p.img});
+  renderCart();
+  toast('Đã thêm đơn nhóm vào giỏ', total + ' chiếc × ' + fmt(Math.round(price/total)) + ' — mở giỏ để gửi xưởng');
+}
+function cartCount(){ var s=0; for(var i=0;i<CART.length;i++) s+=CART[i].qty; return s; }
+function cartTotal(){
+  var s=0;
+  for (var i=0;i<CART.length;i++){
+    var it = CART[i], price = it.price;
+    if (price === undefined){ var p = byId(it.id); price = p ? unitPrice(p.price, 10) : 0; }
+    s += price * it.qty;
+  }
+  return s;
+}
+function renderCart(){
+  var n = document.getElementById('cartN');
+  var cnt = cartCount();
+  n.textContent = cnt; n.hidden = cnt===0;
+  var body = document.getElementById('drBody');
+  if (CART.length===0){
+    body.innerHTML = '<div class="dr-empty"><span class="big">🧥</span>Giỏ đơn nhóm đang trống.<br>Thang 8 bậc trên kia — chạm bậc nào hợp nhóm bạn là thêm được.</div>';
+  } else {
+    var html = '';
+    for (var i=0;i<CART.length;i++){
+      var it = CART[i];
+      var p = byId(it.id);
+      var name = it.name || (p ? p.n : it.id);
+      var price = it.price !== undefined ? it.price : (p ? unitPrice(p.price, 10) : 0);
+      var img = it.img || (p ? p.img : 'assets/img/p6.webp');
+      html += '<div class="ci"><img src="'+img+'" alt="">'
+        + '<div><div class="nm">'+name+'</div><div class="pr">'+fmt(price)+'</div></div>'
+        + '<div class="qty"><button data-dec="'+it.id+'" aria-label="Giảm">−</button><span>'+it.qty+'</span><button data-inc="'+it.id+'" aria-label="Tăng">+</button></div></div>';
+    }
+    body.innerHTML = html;
+  }
+  document.getElementById('drDisc').textContent = CART.length + ' dòng';
+  document.getElementById('drTotal').textContent = fmt(cartTotal());
+  document.getElementById('checkoutBtn').disabled = CART.length===0;
+}
+document.getElementById('drBody').addEventListener('click', function(e){
+  var inc = e.target.getAttribute('data-inc'), dec = e.target.getAttribute('data-dec');
+  if (inc){ for (var i=0;i<CART.length;i++){ if (CART[i].id===inc) CART[i].qty++; } renderCart(); }
+  if (dec){
+    for (var j=0;j<CART.length;j++){
+      if (CART[j].id===dec){ CART[j].qty--; if (CART[j].qty<=0) CART.splice(j,1); break; }
+    }
+    renderCart();
+  }
+});
+function openDrawer(){
+  showCartView();
+  document.getElementById('cartDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  document.getElementById('cartDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function showCartView(){
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+}
+document.getElementById('cartOpen').addEventListener('click', openDrawer);
+document.getElementById('drClose').addEventListener('click', closeDrawer);
+document.getElementById('drMask').addEventListener('click', closeDrawer);
+document.getElementById('checkoutBtn').addEventListener('click', function(){
+  if (CART.length===0) return;
+  document.getElementById('drForm').classList.add('on');
+  document.getElementById('checkoutBtn').style.display='none';
+});
+document.getElementById('drBack').addEventListener('click', showCartView);
+document.getElementById('drSubmit').addEventListener('click', function(){
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var addr = document.getElementById('fAddr');
+  var ok = true;
+  [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho xưởng xin họ tên, số điện thoại và địa chỉ nhận — đơn nhóm cần lịch giao cụ thể.'); return; }
+  var total = fmt(cartTotal());
+  CART = []; renderCart(); closeDrawer(); showCartView();
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+  toast('Đã nhận đơn — cảm ơn '+name.value.trim()+'!', 'Xưởng gọi chốt bậc giá + phân size trong ít phút. Tạm tính: '+total+' · Hotline 0034567899');
+});
+document.querySelectorAll('.cb-add').forEach(function(b){
+  b.addEventListener('click', function(){ addCombo(parseInt(b.getAttribute('data-combo'),10)); });
+});
+
+/* ===== BẢNG TÍNH GIÁ ĐƠN NHÓM (dacThu) ===== */
+var tkPid = 'dong-phuc-cong-ty';
+var SZ = {s:0, m:0, l:0, xl:0, xx:0};
+function tkTotal(){ return SZ.s+SZ.m+SZ.l+SZ.xl+SZ.xx; }
+function renderTk(){
+  var p = byId(tkPid);
+  var total = tkTotal();
+  document.getElementById('szS').textContent = SZ.s;
+  document.getElementById('szM').textContent = SZ.m;
+  document.getElementById('szL').textContent = SZ.l;
+  document.getElementById('szXL').textContent = SZ.xl;
+  document.getElementById('szXX').textContent = SZ.xx;
+  /* chips */
+  var chips = document.querySelectorAll('#mauChips button');
+  for (var i=0;i<chips.length;i++){ chips[i].classList.toggle('on', chips[i].getAttribute('data-pid')===tkPid); }
+  document.getElementById('tkThumb').src = p.img;
+  document.getElementById('tkName').textContent = p.n;
+  var t = tierOf(Math.max(total,1));
+  var isZero = total===0;
+  document.getElementById('capChev').innerHTML = chevSVG(t.min>=1000?6:t.min>=300?5:t.min>=100?4:t.min>=50?3:t.min>=10?2:1, '#DD9812');
+  document.getElementById('capName').textContent = isZero ? 'Chưa nhập số lượng' : t.name;
+  document.getElementById('capGiam').textContent = isZero ? '—' : '−'+Math.round(t.off*100)+'%';
+  document.getElementById('rTong').textContent = total.toLocaleString('vi-VN') + ' chiếc';
+  var dg = total>0 ? unitPrice(p.price, total) : null;
+  document.getElementById('rDg').textContent = dg ? fmt(dg) + ' / chiếc' : '—';
+  document.getElementById('rLe').textContent = fmt(p.price) + ' / chiếc';
+  document.getElementById('rTong-t').textContent = dg ? fmt(dg*total) : '0đ';
+  var saveEl = document.getElementById('rSave');
+  if (dg && t.off>0){
+    saveEl.hidden = false;
+    document.getElementById('rSaveT').textContent = 'Tiết kiệm ' + fmt(p.price*total - dg*total) + ' so với mua lẻ';
+  } else { saveEl.hidden = true; }
+  /* thanh lên bậc */
+  var nt = nextTier(total);
+  var fill = document.getElementById('lenFill');
+  var lb = document.getElementById('lenLb'), kc = document.getElementById('lenKc');
+  if (total===0){
+    lb.textContent = 'Nhập số lượng để leo bậc giá';
+    kc.textContent = '';
+    fill.style.width = '0%';
+  } else if (nt){
+    var prevMin = t.min;
+    var pct = Math.min(96, Math.round((total - prevMin) / (nt.min - prevMin) * 100));
+    fill.style.width = Math.max(4, pct) + '%';
+    lb.innerHTML = 'Còn <em>'+(nt.min-total).toLocaleString('vi-VN')+' chiếc</em> nữa lên '+nt.name.split('·')[0].trim()+' — mỗi chiếc bớt thêm '+fmt(Math.round(p.price*(nt.off-t.off)/100)*100);
+    kc.textContent = nt.min.toLocaleString('vi-VN')+' chiếc';
+  } else {
+    fill.style.width = '100%';
+    lb.innerHTML = 'Đã ở <em>Cấp 6 · Cấp xưởng</em> — giá tốt nhất của xưởng';
+    kc.textContent = '10.000+';
+  }
+}
+(function buildChips(){
+  var box = document.getElementById('mauChips');
+  var html = '';
+  for (var i=0;i<P.length;i++){
+    html += '<button data-pid="'+P[i].id+'">'+P[i].n+'<small>từ '+fmt(unitPrice(P[i].price,10))+'</small></button>';
+  }
+  box.innerHTML = html;
+  box.addEventListener('click', function(e){
+    var b = e.target.closest('[data-pid]'); if (!b) return;
+    tkPid = b.getAttribute('data-pid');
+    renderTk();
+  });
+})();
+document.getElementById('sizeRow').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-sz]'); if (!b) return;
+  var k = b.getAttribute('data-sz'), d = parseInt(b.getAttribute('data-d'),10);
+  SZ[k] = Math.max(0, SZ[k] + d);
+  renderTk();
+});
+document.getElementById('quickRow').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-q]'); if (!b) return;
+  var n = parseInt(b.getAttribute('data-q'),10);
+  /* chia theo phân bố thực tế nhóm VN: M/L nhiều, S/XL vừa, 2XL ít */
+  var w = {m:.30, l:.30, xl:.20, s:.15, xx:.05}, sum = 0, keys = ['m','l','xl','s','xx'];
+  for (var i=0;i<keys.length;i++){ SZ[keys[i]] = Math.floor(n*w[keys[i]]); sum += SZ[keys[i]]; }
+  SZ.l += n - sum;
+  renderTk();
+});
+document.getElementById('tkAdd').addEventListener('click', function(){
+  var total = tkTotal();
+  if (total < 1){
+    toast('Chưa có số lượng', 'Đếm giúp xưởng từng size (S → 2XL) hoặc bấm chia nhanh theo tổng số.');
+    return;
+  }
+  var p = byId(tkPid);
+  var dg = unitPrice(p.price, total);
+  var sizeText = 'S'+SZ.s+' · M'+SZ.m+' · L'+SZ.l+' · XL'+SZ.xl+' · 2XL'+SZ.xx;
+  addGroupOrder(tkPid, total, dg*total, sizeText);
+});
+
+/* ===== MENU MOBILE ===== */
+document.getElementById('menuTg').addEventListener('click', function(){
+  var nav = document.getElementById('mainNav');
+  var open = nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+document.getElementById('mainNav').addEventListener('click', function(e){
+  if (e.target.tagName==='A') this.classList.remove('open');
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var qa = b.parentNode;
+    var was = qa.classList.contains('open');
+    document.querySelectorAll('.qa.open').forEach(function(x){ x.classList.remove('open'); });
+    if (!was) qa.classList.add('open');
+  });
+});
+
+/* ===== REVEAL ===== */
+var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+  es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('on'); io.unobserve(en.target); } });
+},{threshold:.12}) : null;
+document.querySelectorAll('.rv').forEach(function(el, i){
+  el.style.transitionDelay = (i % 4) * 60 + 'ms';
+  if (io) io.observe(el); else el.classList.add('on');
+});
+
+/* ===== KHỞI ĐỘNG ===== */
+renderLadder();
+renderCart();
+renderTk();
+</script>
+</body>
+</html>

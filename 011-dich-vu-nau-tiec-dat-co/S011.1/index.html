@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bếp Cỗ Mâm Đỏ — Dịch vụ nấu tiệc &amp; đặt cỗ theo mâm tại nhà</title>
+<meta name="description" content="Bếp Cỗ Mâm Đỏ — đặt cỗ theo mâm 3 · 5 · 7 · 10, trọn gói nguyên liệu, đội bếp nấu tại nhà. Cỗ giỗ 10 món, cỗ cưới 12 món, tiệc liên hoan — lên mâm đúng giờ cúng, dọn dẹp trọn gói.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (NB93-011) ============ */
+:root{
+  --primary:#571322;          /* đỏ đô mâm cỗ */
+  --primary-2:#7A1E2E;
+  --primary-3:#3A0A14;
+  --texture:#FBF4E4;          /* kem khăn bàn */
+  --texture-2:#F3E7CC;
+  --accent:#C02128;           /* đỏ son tráng mâm */
+  --accent-100:#F9E3DE;
+  --grad-accent:linear-gradient(135deg,#D8482C,#B01E2A);
+  --gold:#C9971C;             /* vàng kim khay đồng */
+  --gold-100:#F7EDD2;
+  --herb:#2E7D3A;             /* xanh rau sống */
+  --herb-100:#E5F1E4;
+  --ink:#2A2226;
+  --soft:#6B5B60;
+  --line:#EBDCC4;
+  --card:#FFFFFF;
+  --grad-dark:linear-gradient(140deg,#7A1E2E,#571322 52%,#3A0A14);
+  --sh-1:0 4px 14px rgba(87,19,34,.08);
+  --sh-2:0 14px 34px rgba(87,19,34,.14);
+  --sh-3:0 26px 60px rgba(87,19,34,.22);
+  --r:16px;
+  /* NB93-011: hoạ tiết mâm tròn — hàng khay tròn luồn nhau */
+  --mam:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='56' viewBox='0 0 112 56'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07'%3E%3Ccircle cx='14' cy='14' r='10'/%3E%3Ccircle cx='42' cy='14' r='10'/%3E%3Ccircle cx='70' cy='14' r='10'/%3E%3Ccircle cx='98' cy='14' r='10'/%3E%3Ccircle cx='0' cy='42' r='10'/%3E%3Ccircle cx='28' cy='42' r='10'/%3E%3Ccircle cx='56' cy='42' r='10'/%3E%3Ccircle cx='84' cy='42' r='10'/%3E%3Ccircle cx='112' cy='42' r='10'/%3E%3C/g%3E%3C/svg%3E");
+  --mam-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='56' viewBox='0 0 112 56'%3E%3Cg fill='none' stroke='%23571322' stroke-opacity='.055'%3E%3Ccircle cx='14' cy='14' r='10'/%3E%3Ccircle cx='42' cy='14' r='10'/%3E%3Ccircle cx='70' cy='14' r='10'/%3E%3Ccircle cx='98' cy='14' r='10'/%3E%3Ccircle cx='0' cy='42' r='10'/%3E%3Ccircle cx='28' cy='42' r='10'/%3E%3Ccircle cx='56' cy='42' r='10'/%3E%3Ccircle cx='84' cy='42' r='10'/%3E%3Ccircle cx='112' cy='42' r='10'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',sans-serif;color:var(--ink);background:var(--texture);line-height:1.6;font-size:16px}
+img{max-width:100%;display:block;height:auto}/*NB93-FIX: hero-main: aspect-ratio 1448/1086 bi attr height vo hieu hoa*/
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px;min-width:0}
+.block-title{display:block;font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800;line-height:1.25;letter-spacing:-.02em}
+.block-title .hl{background:linear-gradient(transparent 58%,var(--accent-100) 58%);color:var(--accent);padding:0 6px;border-radius:4px}
+.block-sub{display:block;color:var(--soft);max-width:640px;margin-top:10px;font-size:15.5px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:100px}
+.center{text-align:center}.center .block-sub{margin-left:auto;margin-right:auto}
+section{position:relative}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.22,.8,.35,1),transform .7s cubic-bezier(.22,.8,.35,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-3);color:#EBD6C4;font-size:13px;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:9px;padding-bottom:9px}
+.tb-status{display:flex;align-items:center;gap:8px;min-width:0}
+.dot-live{width:9px;height:9px;border-radius:50%;background:#57D06B;box-shadow:0 0 0 4px rgba(87,208,107,.18);flex:none}
+.dot-live.closed{background:#F2A81D;box-shadow:0 0 0 4px rgba(242,168,29,.18)}
+.tb-right{display:flex;align-items:center;gap:18px;flex:none}
+.tb-right a{display:flex;align-items:center;gap:7px;font-weight:700;color:#fff}
+.tb-right a:hover{color:#F5C36B}
+.tb-note{color:#D8B79B}
+
+/* ============ HEADER ============ */
+header{position:sticky;top:0;z-index:50;background:rgba(251,244,228,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd{display:flex;align-items:center;gap:20px;padding:12px 22px;max-width:1180px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-badge{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);background-image:var(--grad-dark),var(--mam);display:grid;place-items:center;box-shadow:0 8px 18px rgba(87,19,34,.35);flex:none;border:2px solid var(--gold)}
+.logo-txt{line-height:1.1}
+.logo-name{display:block;font-weight:900;font-size:1.32rem;letter-spacing:-.02em;color:var(--primary)}
+.logo-name b{color:var(--accent)}
+.logo-tag{display:block;font-size:10.5px;color:var(--soft);letter-spacing:.04em;font-weight:600}
+.search{flex:1;min-width:0;position:relative;max-width:380px}
+.search input{width:100%;padding:11px 44px 11px 18px;border-radius:100px;border:1.5px solid var(--line);background:#fff;font-size:14px;color:var(--ink);outline:none;transition:.25s}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(192,33,40,.1)}
+.search button{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:var(--grad-accent);color:#fff;display:grid;place-items:center}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{padding:9px 13px;border-radius:10px;font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;transition:.2s}
+nav.main a:hover{background:var(--accent-100);color:var(--accent)}
+.hd-cta{display:flex;align-items:center;gap:10px;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;border-radius:14px;padding:13px 24px;font-size:15px;transition:.25s;position:relative;overflow:hidden}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 12px 26px rgba(176,30,42,.32)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(176,30,42,.42)}
+.btn-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);transform:translateX(-120%)}
+.btn-accent:hover::after{transform:translateX(120%);transition:transform .7s}
+.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--primary)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2)}
+.btn-gold{background:linear-gradient(135deg,#D9AC2E,#B98713);color:#fff;box-shadow:0 12px 26px rgba(201,151,28,.35)}
+.btn-gold:hover{transform:translateY(-2px)}
+
+/* ============ HERO ============ */
+.hero{background:var(--texture) var(--mam-dark);overflow:clip}
+.hero .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center;padding-top:64px;padding-bottom:80px}
+.hero-l{position:relative;z-index:3;min-width:0}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.25rem);font-weight:900;line-height:1.14;letter-spacing:-.03em;margin:18px 0 16px;color:var(--primary)}
+.hero h1 .mk{position:relative;display:inline-block;color:#fff;background:var(--grad-accent);padding:1px 14px 4px;border-radius:10px;transform:rotate(-1.6deg);box-shadow:0 12px 26px rgba(176,30,42,.3);font-family:'Playfair Display',serif;font-style:italic;font-weight:800;letter-spacing:0}
+.hero-sub{display:block;color:var(--soft);font-size:16.5px;max-width:490px}
+.hero-cta{display:flex;gap:13px;margin:26px 0;flex-wrap:wrap}
+.trust-chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:500px}
+.tchip{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:10px 14px;font-size:13.5px;font-weight:600;box-shadow:var(--sh-1)}
+.tchip svg{flex:none;color:var(--accent)}
+.tchip b{display:block;font-size:13.5px}
+.tchip span{display:block;font-size:11.5px;color:var(--soft);font-weight:500}
+.hero-r{position:relative;min-width:0}
+.hero-main{position:relative;width:100%;border-radius:26px;border:7px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.5deg);overflow:hidden;transition:transform .5s;background:#fff}
+.hero-main:hover{transform:rotate(-.5deg)}
+.hero-main img{width:100%;aspect-ratio:1448/1086;object-fit:cover}
+.price-tag{position:absolute;top:18px;right:18px;background:var(--primary);color:#fff;font-weight:800;padding:9px 16px;border-radius:12px;font-size:14px;box-shadow:var(--sh-2);border:1.5px solid rgba(201,151,28,.55)}
+.price-tag small{display:block;font-size:10.5px;font-weight:600;color:#EFC98F}
+.hero-eco{position:absolute;left:-8px;bottom:74px;z-index:4;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:var(--sh-2);display:flex;gap:10px;align-items:center;transform:rotate(-2deg);border:1.5px solid var(--line)}
+.hero-eco .ic{width:38px;height:38px;border-radius:11px;background:var(--gold-100);color:#8A6A0E;display:grid;place-items:center;flex:none}
+.hero-eco b{display:block;font-size:13px}
+.hero-eco span{display:block;font-size:11px;color:var(--soft)}
+.hero-stats{margin-top:20px;background:rgba(58,10,20,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px 20px;display:flex;gap:26px;color:#fff;justify-content:center}
+.hstat b{display:block;font-size:1.3rem;font-weight:900;color:#F5C36B}
+.hstat span{display:block;font-size:11px;color:#E3C4A9}
+
+/* ============ TAPE ============ */
+.tape{background:var(--primary);transform:rotate(-1deg);margin:-30px -20px 0;position:relative;z-index:5;box-shadow:var(--sh-2);overflow:hidden;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.tape-in{display:flex;gap:0;white-space:nowrap;animation:tapeMove 26s linear infinite;padding:13px 0}
+.tape-in span{color:#F5E7D2;font-weight:800;font-size:14.5px;letter-spacing:.06em;padding:0 26px;display:inline-flex;align-items:center;gap:10px}
+.tape-in span i{color:var(--gold);font-style:normal}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+
+/* ============ 2 DỊCH VỤ NỔI BẬT ============ */
+.services{padding:92px 0 40px}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+.svc{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--sh-2);border:1.5px solid var(--line);display:flex;flex-direction:column;transition:.3s}
+.svc:hover{transform:translateY(-7px);box-shadow:var(--sh-3)}
+.svc-img{position:relative;aspect-ratio:16/9;overflow:hidden}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.svc:hover .svc-img img{transform:scale(1.06)}
+.svc-badge{position:absolute;bottom:14px;left:14px;top:auto;background:var(--gold);color:#3A2A05;font-weight:800;font-size:12px;padding:6px 13px;border-radius:100px;letter-spacing:.03em}
+.svc-price{position:absolute;bottom:14px;right:14px;background:rgba(58,10,20,.85);color:#fff;font-weight:800;padding:8px 15px;border-radius:11px;font-size:14.5px;backdrop-filter:blur(6px);max-width:46%;text-align:right}
+.svc-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.svc-body h3{font-size:1.22rem;font-weight:800;color:var(--primary)}
+.svc-body p{color:var(--soft);font-size:14px;margin:7px 0 14px}
+.svc-body ul{list-style:none;margin-bottom:18px;flex:1}
+.svc-body li{display:flex;gap:9px;align-items:flex-start;font-size:13.8px;padding:5px 0;color:var(--ink)}
+.svc-body li svg{flex:none;color:var(--herb);margin-top:3px}
+.svc .btn{width:100%}
+.svc.dark{background:var(--grad-dark);border-color:transparent;color:#fff;background-image:var(--grad-dark),var(--mam)}
+.svc.dark h3{color:#fff}
+.svc.dark p{color:#E3C4A9}
+.svc.dark li{color:#F1E2D2}
+
+/* ============ DẢI 5 DỊP ============ */
+.groups{padding:34px 0 20px}
+.grp-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.grp{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:15px;padding:12px 15px;transition:.25s;min-width:0}
+.grp:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh-2)}
+.grp img{width:44px;height:44px;border-radius:11px;object-fit:cover;flex:none;object-position:top}
+.grp .gt{min-width:0}
+.grp b{display:block;font-size:14px;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grp span{display:block;font-size:11.5px;color:var(--soft)}
+.grp .arr{margin-left:auto;color:var(--accent);font-weight:900;flex:none}
+
+/* ============ ĐẶC THÙ — ĐẶT CỖ THEO MÂM (NB93-011) ============ */
+.datco{padding:90px 0;background:#fff;background-image:var(--mam-dark);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
+.dc-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:0;margin-top:44px;border-radius:26px;overflow:hidden;box-shadow:var(--sh-3)}
+.dc-form{background:var(--grad-dark);background-image:var(--grad-dark),var(--mam);color:#fff;padding:34px 32px}
+.dc-form h3{font-size:1.3rem;font-weight:800;margin-bottom:4px}
+.dc-form .fs{display:block;font-size:13px;color:#E3C4A9;margin-bottom:22px}
+.f-row{margin-bottom:18px}
+.f-row>label{display:block;font-size:12.5px;font-weight:700;color:#F0D5B8;margin-bottom:8px;letter-spacing:.03em}
+.f-num{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.f-num input[type=number]{width:86px;padding:10px 12px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-weight:800;font-size:16px;outline:none}
+.f-num input[type=number]:focus{border-color:var(--gold)}
+.f-num .hint{font-size:12px;color:#D8B79B}
+.mam-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.mam-pick{border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 8px;text-align:center;transition:.2s;background:rgba(255,255,255,.05);min-height:40px}
+.mam-pick b{display:block;font-size:1.35rem;font-weight:900;color:#F5C36B;line-height:1.15}
+.mam-pick b i{font-style:normal;font-size:.8rem;font-weight:700;color:#E3C4A9}
+.mam-pick span{display:block;font-size:11px;color:#D8B79B;font-weight:600}
+.mam-pick .mdots{display:flex;gap:3px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.mam-pick .mdots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)}
+.mam-pick .mdots i:nth-child(2n){background:rgba(245,195,107,.55)}
+.mam-pick.sel{border-color:var(--gold);background:rgba(201,151,28,.16);box-shadow:0 0 0 3px rgba(201,151,28,.12)}
+.f-row input[type=range]{width:100%;accent-color:var(--gold);height:4px}
+.set-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.set-cards.two{grid-template-columns:1fr 1fr}
+.set-card{border:1.5px solid rgba(255,255,255,.18);border-radius:13px;padding:12px;cursor:pointer;transition:.2s;background:rgba(255,255,255,.05)}
+.set-card input{display:none}
+.set-card b{display:block;font-size:13.5px}
+.set-card span{display:block;font-size:11.5px;color:#D8B79B}
+.set-card .sp{display:block;color:var(--gold);font-weight:900;font-size:14px;margin-top:4px}
+.set-card.sel{border-color:var(--gold);background:rgba(201,151,28,.14)}
+.dc-res{background:#fff;padding:34px 32px;position:relative}
+.dc-res h3{font-size:1.3rem;font-weight:800;color:var(--primary)}
+.dc-res .fs{display:block;font-size:13px;color:var(--soft);margin-bottom:18px}
+.mam-viz{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--texture);border:1.5px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:14px}
+.mam-dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#FFFEFA,#F0E3C4);border:2px solid var(--gold);box-shadow:inset 0 0 0 3px rgba(201,151,28,.25),var(--sh-1);flex:none}
+.mam-more{min-width:34px;height:30px;border-radius:100px;background:var(--primary);color:#F5C36B;font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 8px}
+.mam-cap{width:100%;font-size:12.5px;color:var(--soft);font-weight:600;margin-top:2px}
+.mam-cap b{color:var(--primary)}
+.dc-menu{list-style:none;margin-bottom:16px}
+.dc-menu li{display:flex;gap:9px;font-size:13.6px;padding:4px 0;align-items:flex-start}
+.dc-menu li svg{color:var(--herb);flex:none;margin-top:3px}
+.dc-menu .more{color:var(--accent);font-weight:700;font-size:12.5px;margin-top:4px;display:inline-block}
+.dc-menu .occ-t{background:var(--accent-100);color:var(--accent);font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:100px;white-space:nowrap}
+.tier-tb{width:100%;border-collapse:collapse;font-size:13.2px;margin-bottom:14px}
+.tier-tb th,.tier-tb td{padding:8px 10px;border-bottom:1.5px dashed var(--line);text-align:left}
+.tier-tb th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft)}
+.tier-tb tr.hit{background:var(--gold-100)}
+.tier-tb tr.hit td{font-weight:800;color:#8A6A0E}
+.dc-total{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;background:var(--texture);border:1.5px solid var(--line);border-radius:16px;padding:16px 20px;margin-bottom:14px}
+.dc-total .tt span{display:block;font-size:12px;color:var(--soft);font-weight:700}
+.dc-total .tt b{display:block;font-size:1.85rem;font-weight:900;color:var(--accent);letter-spacing:-.02em;line-height:1.15}
+.dc-total .save{font-size:12.5px;color:var(--herb);font-weight:800;background:var(--herb-100);padding:7px 12px;border-radius:10px}
+.dc-res .btn{width:100%}
+.dc-note{font-size:12px;color:var(--soft);text-align:center;margin-top:11px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+
+/* ============ KHỐI-8 — 8 GÓI DỊCH VỤ ============ */
+.deals{padding:84px 0;background:var(--texture);background-image:var(--mam-dark)}
+.car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+.car-nav{display:flex;align-items:center;gap:14px}
+.car-btn{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--primary);transition:.2s}
+.car-btn:hover{background:var(--grad-accent);color:#fff;border-color:transparent}
+.car-count{font-size:13px;font-weight:700;color:var(--soft);min-width:74px;text-align:center;font-variant-numeric:tabular-nums}
+.car-vp{overflow:hidden;border-radius:22px}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:4px 0 10px}
+.car-track::-webkit-scrollbar{display:none}
+.car-track .pkg{flex:0 0 calc((100% - 22px)/2);margin-right:22px;background:#fff;border:1.5px solid var(--line);border-radius:20px;overflow:hidden;position:relative;transition:.3s;min-width:0;display:flex;flex-direction:column;scroll-snap-align:start}
+.car-track .pkg:hover{transform:translateY(-6px);box-shadow:var(--sh-2);border-color:#E8B49A}
+.car-track .pkg:last-child{margin-right:0}
+.pkg-img{position:relative;aspect-ratio:4/3.4;overflow:hidden}
+.pkg-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s}
+.pkg:hover .pkg-img img{transform:scale(1.06)}
+.pkg .ptag{position:absolute;bottom:14px;left:14px;top:auto;background:linear-gradient(135deg,#D9AC2E,#B98713);color:#fff;font-size:12px;font-weight:900;padding:6px 14px;border-radius:100px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.pkg .ptag.gr{background:var(--herb)}
+.pkg-body{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+.pkg-body h4{font-size:1.28rem;font-weight:800;color:var(--primary);letter-spacing:-.01em}
+.pkg-body .pd{display:block;font-size:13.2px;color:var(--soft);margin:6px 0 12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pkg-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.pkg-meta span{display:inline-flex;gap:7px;align-items:center;font-size:12px;color:var(--soft);font-weight:600;background:var(--texture);border:1px solid var(--line);border-radius:100px;padding:5px 12px}
+.pkg-meta svg{color:var(--accent)}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
+.pprice b{font-size:1.5rem;font-weight:900;color:var(--accent);letter-spacing:-.01em}
+.pprice span{display:block;font-size:11.5px;color:var(--soft);font-weight:600}
+.pkg-body .btn{padding:11px 18px;font-size:13.5px;border-radius:12px;box-shadow:0 8px 20px -8px rgba(176,30,42,.5)}
+.ptier{margin-top:12px;background:var(--gold-100);border-radius:10px;padding:7px 11px;font-size:11.8px;color:#7A5E08;font-weight:700}
+.car-progress{height:5px;background:#EBDFC8;border-radius:10px;margin-top:26px;overflow:hidden}
+.car-progress i{display:block;height:100%;width:37%;background:var(--grad-accent);border-radius:10px;transition:width .4s}
+
+/* ============ CAM KẾT ============ */
+.benefits-sec{padding:38px 0 20px}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+.benefit{background:#fff;border:1.5px solid rgba(87,19,34,.1);border-radius:16px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:.25s}
+.benefit:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(201,151,28,.5)}
+.benefit .ic{font-size:1.5rem;line-height:1}
+.benefit b{display:block;font-size:.9rem;color:var(--primary);margin-bottom:3px}
+.benefit p{font-size:.78rem;color:var(--soft);line-height:1.5}
+
+/* ============ THỰC ĐƠN — BẢNG MÂM ============ */
+.menu-sec{padding:80px 0}
+.menu-stage{display:grid;grid-template-columns:1fr 300px;gap:34px;align-items:start;margin-top:44px}
+.board{background:#FFFDF6;border:2px solid #571322;border-radius:8px;box-shadow:var(--sh-3);position:relative;padding:0 0 18px}
+.board::before,.board::after{content:"";position:absolute;left:14px;right:14px;height:0;border-top:2px dashed rgba(87,19,34,.25)}
+.board::before{top:10px}.board::after{bottom:10px}
+.board-head{background:var(--primary);background-image:var(--grad-dark),var(--mam);color:#fff;border-radius:6px 6px 0 0;padding:18px 26px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.board-head h3{font-weight:900;letter-spacing:.14em;font-size:1.06rem}
+.board-head .upd{font-size:11.5px;color:#EFC98F;font-weight:600}
+.stamp{position:absolute;top:-16px;right:22px;width:86px;height:86px;border-radius:50%;border:3px dashed var(--accent);color:var(--accent);display:grid;place-items:center;text-align:center;font-weight:900;font-size:12px;letter-spacing:.08em;transform:rotate(8deg);background:rgba(255,253,246,.9);line-height:1.2;z-index:2;box-shadow:var(--sh-2)}
+.board-tabs{display:flex;gap:8px;padding:16px 26px 0;flex-wrap:wrap}
+.btab{padding:9px 18px;border-radius:100px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:13.5px;color:var(--soft);transition:.2s;min-height:40px}
+.btab .t{display:block;font-size:10.5px;font-weight:600;letter-spacing:.02em}
+.btab.act{background:var(--primary);border-color:var(--primary);color:#fff}
+.btab.act .t{color:#EFC98F}
+.board-list{padding:14px 26px 6px}
+.mrow{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1.5px dashed rgba(87,19,34,.16)}
+.mrow:last-child{border-bottom:none}
+.mrow .mi{min-width:0;flex:1}
+.mrow .mn{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mrow .mn b{display:block;font-size:15.5px;color:#571322;font-weight:800}
+.mrow .mn .hot{background:var(--gold);color:#3A2A05;font-size:10px;font-weight:900;letter-spacing:.06em;padding:3px 9px;border-radius:6px;text-transform:uppercase}
+.mrow .mn .occ-t{background:var(--accent-100);color:var(--accent);font-size:10px;font-weight:800;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.mrow .md{display:block;font-size:12.5px;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mrow .dots{flex:1;min-width:24px;border-bottom:2px dotted rgba(87,19,34,.3);align-self:flex-end;margin-bottom:6px}
+.mrow .mp{text-align:right;flex:none;color:var(--accent)}
+.board-note{padding:10px 26px 0;font-size:12.5px;color:var(--soft);display:flex;gap:8px;align-items:flex-start}
+.board-foot{margin:12px 26px 0;background:var(--gold-100);border-radius:10px;padding:10px 14px;font-size:12.8px;font-weight:700;color:#7A5E08}
+.board-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px}
+.board-photo{border:6px solid #fff;border-radius:14px;box-shadow:var(--sh-2);transform:rotate(2deg);overflow:hidden;position:relative}
+.board-photo img{aspect-ratio:4/3.1;object-fit:cover;width:100%}
+.board-photo figcaption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(58,10,20,.85));color:#fff;font-size:12px;font-weight:600;padding:26px 14px 12px}
+.side-callout{background:var(--primary);background-image:var(--grad-dark),var(--mam);color:#fff;border-radius:18px;padding:20px;box-shadow:var(--sh-2)}
+.side-callout b{display:block;font-size:15px;margin-bottom:6px}
+.side-callout p{font-size:13px;color:#E3C4A9;margin-bottom:14px}
+
+/* ============ QUY TRÌNH ============ */
+.process{padding:60px 0 90px}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.proc{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:24px 20px;text-align:center;position:relative;transition:.25s;min-width:0}
+.proc:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.proc .num{width:54px;height:54px;border-radius:50%;background:var(--grad-accent);color:#fff;font-weight:900;font-size:1.2rem;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 10px 22px rgba(176,30,42,.3)}
+.proc .pic{color:var(--primary-2);margin:0 auto 8px}
+.proc b{display:block;font-size:15.5px;color:var(--primary)}
+.proc p{font-size:12.8px;color:var(--soft);margin-top:6px}
+.proc .meta{display:inline-block;margin-top:12px;background:var(--accent-100);color:var(--accent);font-size:11.5px;font-weight:800;padding:5px 12px;border-radius:100px}
+
+/* ============ STATS ============ */
+.stats{background:var(--grad-dark);background-image:var(--grad-dark),var(--mam);transform:skewY(-1.6deg);margin:50px 0}
+.stats-in{transform:skewY(1.6deg);padding:64px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center}
+.stat b{display:block;font-size:clamp(2rem,4vw,2.9rem);font-weight:900;color:#F5C36B;font-variant-numeric:tabular-nums}
+.stat span{display:block;color:#E3C4A9;font-size:13.5px;font-weight:600;margin-top:4px}
+
+/* ============ ABOUT ============ */
+.about{padding:96px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.about-img{position:relative}
+.about-img .big{border:8px solid #fff;border-radius:24px;box-shadow:var(--sh-3);transform:rotate(-1.5deg);overflow:hidden}
+.about-img .big img{aspect-ratio:4/3.2;object-fit:cover;object-position:center top;width:100%}
+.about-img .since{position:absolute;right:-14px;bottom:-18px;background:var(--grad-accent);color:#fff;font-weight:900;border-radius:16px;padding:14px 20px;box-shadow:var(--sh-2);transform:rotate(2deg)}
+.about-img .since b{display:block;font-size:1.35rem;line-height:1.1}
+.about-img .since span{font-size:11px;font-weight:600}
+.about h2{margin:16px 0 14px}
+.about-p{color:var(--soft);font-size:15px;margin-bottom:22px}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px}
+.str{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;transition:.25s}
+.str:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:#E8B49A}
+.str .ic{width:40px;height:40px;border-radius:12px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;margin-bottom:10px}
+.str b{display:block;font-size:14.5px;color:var(--primary)}
+.str span{display:block;font-size:12.5px;color:var(--soft)}
+.about-cta{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ REVIEWS ============ */
+.reviews{padding:90px 0;background:#fff;background-image:var(--mam-dark);border-top:1.5px solid var(--line)}
+.rev-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:26px;margin-top:44px;align-items:stretch}
+.rev-view{background:#FDFBF4;border:1.5px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.rev-stars{color:var(--gold);letter-spacing:3px;font-size:17px;margin-bottom:14px}
+.rev-text{display:block;font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.65;min-height:112px}
+.rev-who{display:flex;align-items:center;gap:14px;margin-top:22px}
+.rev-av{width:50px;height:50px;border-radius:50%;background:var(--grad-accent);color:#fff;font-weight:900;font-size:18px;display:grid;place-items:center;flex:none}
+.rev-who b{display:block;font-size:15px}
+.rev-who span{display:block;font-size:12.5px;color:var(--soft)}
+.rev-dots{display:flex;gap:7px;margin-top:22px}
+.rev-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.25s;min-width:9px;min-height:9px}
+.rev-dots i.on{background:var(--accent);width:26px;border-radius:10px}
+.rev-metric{background:var(--grad-dark);background-image:var(--grad-dark),var(--mam);border-radius:22px;padding:32px 28px;color:#fff;display:flex;flex-direction:column;justify-content:center}
+.rev-metric .big{display:block;font-size:clamp(2.6rem,5vw,3.6rem);font-weight:900;color:#F5C36B;line-height:1}
+.rev-metric .cap{display:block;color:#E3C4A9;font-size:14px;margin:8px 0 18px;font-weight:600}
+.rev-metric ul{list-style:none}
+.rev-metric li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:#F1E2D2;padding:6px 0}
+.rev-metric li svg{color:#7BD98F;flex:none;margin-top:3px}
+.partners{margin-top:26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.partners span.pl{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--soft);text-transform:uppercase}
+.pchip{background:var(--texture);border:1.5px solid var(--line);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:800;color:var(--primary)}
+
+/* ============ LIÊN HỆ + FORM ============ */
+.contact{padding:90px 0;background:var(--primary);background-image:var(--grad-dark),var(--mam);color:#fff}
+.contact .block-title{color:#fff}
+.contact .block-sub{color:#E3C4A9}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:16px}
+.ct-item{display:flex;gap:15px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:17px;backdrop-filter:blur(8px)}
+.ct-item .ic{width:42px;height:42px;border-radius:12px;background:rgba(201,151,28,.22);color:#F5C36B;display:grid;place-items:center;flex:none}
+.ct-item b{display:block;font-size:14.5px}
+.ct-item span{display:block;font-size:13px;color:#D8B79B}
+.map-box{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:var(--sh-2);margin-top:2px}
+.map-box iframe{width:100%;height:250px;border:0;display:block;filter:sepia(.25) saturate(.9)}
+.ct-form{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(14px);border-radius:24px;padding:32px 30px}
+.ct-form h3{font-size:1.3rem;font-weight:800}
+.ct-form .fs{display:block;font-size:13px;color:#E3C4A9;margin:6px 0 20px}
+.ct-form label{display:block;font-size:12.5px;font-weight:700;color:#F0D5B8;margin:14px 0 7px;letter-spacing:.03em}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:12px 15px;border-radius:12px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;outline:none;transition:.2s;color-scheme:dark}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.12)}
+.ct-form select option{color:var(--ink);color-scheme:light}
+.ct-form textarea{min-height:88px;resize:vertical}
+.ct-form .btn{width:100%;margin-top:20px}
+.ct-sec{display:flex;align-items:center;justify-content:center;gap:7px;font-size:11.5px;color:#D8B79B;margin-top:13px;text-align:center}
+
+/* ============ FAQ ============ */
+.faq{padding:90px 0}
+.faq-search{max-width:560px;margin:32px auto 0;position:relative}
+.faq-search input{width:100%;padding:15px 20px 15px 50px;border-radius:100px;border:1.5px solid var(--line);background:#fff;font-size:15px;outline:none;box-shadow:var(--sh-1);transition:.2s}
+.faq-search input:focus{border-color:var(--accent)}
+.faq-search svg{position:absolute;left:19px;top:50%;transform:translateY(-50%);color:var(--soft)}
+.faq-chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.fchip{border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:8px 17px;font-size:13px;font-weight:700;color:var(--soft);transition:.2s}
+.fchip:hover,.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.faq-list{max-width:780px;margin:34px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.faq-item.open{border-color:var(--accent);box-shadow:var(--sh-2)}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:18px 20px;font-weight:700;font-size:15px;color:var(--primary)}
+.faq-q .pm{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;font-weight:900;transition:.3s}
+.faq-item.open .pm{transform:rotate(45deg);background:var(--accent);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px;font-size:14px;color:var(--soft)}
+.faq-empty{display:none;text-align:center;color:var(--soft);padding:30px}
+
+/* ============ FOOTER ============ */
+footer{background:var(--primary-3);background-image:var(--grad-dark),var(--mam);color:#D8B79B;padding:70px 0 0}
+.ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:34px;padding-bottom:44px}
+.ft-grid h4{color:#fff;font-size:14.5px;font-weight:800;margin-bottom:16px;letter-spacing:.04em}
+.ft-grid ul{list-style:none}
+.ft-grid li{margin-bottom:9px}
+.ft-grid a{font-size:13.5px;transition:.2s}
+.ft-grid a:hover{color:#F5C36B}
+.ft-about p{font-size:13.5px;margin:14px 0 18px;line-height:1.7}
+.socials{display:flex;gap:9px}
+.socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#F0D5B8;transition:.2s}
+.socials a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
+.ft-contact li{display:flex;gap:10px;font-size:13.5px;align-items:flex-start}
+.ft-contact svg{flex:none;color:#F5C36B;margin-top:3px}
+.ft-bar{border-top:1px solid rgba(255,255,255,.12);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.ft-bar .cp{font-size:12.5px}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:5px 12px;font-size:11.5px;font-weight:800;color:#F0D5B8}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(90px);z-index:70;background:rgba(58,10,20,.9);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:8px;display:flex;gap:4px;box-shadow:var(--sh-3);transition:transform .45s cubic-bezier(.22,.8,.35,1)}
+.dock.show{transform:translateX(-50%) translateY(0)}
+.dock button,.dock a{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#F0D5B8;transition:.2s;position:relative}
+.dock button:hover,.dock a:hover{background:var(--accent);color:#fff}
+.dock .dd-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.dock button:hover .dd-tip,.dock a:hover .dd-tip{opacity:1}
+
+/* ============ DRAWER ĐẶT CỖ (booking) ============ */
+.overlay{position:fixed;inset:0;background:rgba(42,10,18,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--texture);z-index:90;transform:translateX(105%);transition:transform .4s cubic-bezier(.22,.8,.35,1);display:flex;flex-direction:column;box-shadow:var(--sh-3)}
+.drawer.on{transform:none}
+.dr-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1.5px solid var(--line);background:#fff}
+.dr-head h3{font-size:1.1rem;font-weight:800;color:var(--primary)}
+.dr-head .dh-sub{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.dr-close{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--primary)}
+.dr-close:hover{border-color:var(--accent);color:var(--accent)}
+.bk-sum{padding:14px 22px;background:var(--grad-dark);background-image:var(--grad-dark),var(--mam);color:#fff}
+.bk-sum .bs-l{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#EFC98F}
+.bk-sum .bs-t{display:block;font-size:14.5px;font-weight:800;margin-top:4px}
+.bk-sum .bs-e{display:block;font-size:12.5px;color:#F5C36B;font-weight:700;margin-top:3px}
+.bk-scroll{flex:1;overflow-y:auto;padding:18px 22px}
+.bk-form label{display:block;font-size:12.5px;font-weight:700;color:var(--primary);margin:13px 0 7px;letter-spacing:.03em}
+.bk-form input,.bk-form select,.bk-form textarea{width:100%;padding:12px 15px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);outline:none;transition:.2s}
+.bk-form input:focus,.bk-form select:focus,.bk-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(192,33,40,.08)}
+.bk-form textarea{min-height:76px;resize:vertical}
+.bk-form .f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bk-commit{list-style:none;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;margin-top:18px}
+.bk-commit li{display:flex;gap:9px;font-size:13px;padding:4px 0;color:var(--ink)}
+.bk-commit li svg{color:var(--herb);flex:none;margin-top:3px}
+.dr-foot{padding:16px 22px;border-top:1.5px solid var(--line);background:#fff}
+.dr-foot .btn{width:100%}
+.dr-sec{display:flex;align-items:center;justify-content:center;gap:7px;font-size:11.5px;color:var(--soft);margin-top:11px}
+
+/* ============ TOAST ============ */
+.toast-zone{position:fixed;right:20px;bottom:24px;z-index:220;display:flex;flex-direction:column;gap:10px}
+.toast{display:flex;align-items:flex-start;gap:11px;background:var(--primary-3);color:#fff;border-radius:14px;padding:13px 18px;font-size:13.5px;box-shadow:var(--sh-3);animation:toastIn .4s cubic-bezier(.22,.8,.35,1);max-width:340px;border-left:4px solid var(--gold)}
+.toast .tic{width:26px;height:26px;border-radius:50%;background:var(--herb);display:grid;place-items:center;flex:none;margin-top:1px}
+.toast .tt b{display:block;font-size:13.5px;font-weight:800}
+.toast .tt span{display:block;font-size:12.5px;color:#E3C4A9;margin-top:2px}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.toast.out{opacity:0;transform:translateX(40px);transition:.35s}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:56px;padding-top:44px}
+  nav.main{display:none}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .grp-strip{grid-template-columns:repeat(3,1fr)}
+  .menu-stage{grid-template-columns:1fr}
+  .board-side{position:static;flex-direction:row;align-items:stretch}
+  .board-photo{flex:1;transform:rotate(0)}
+  .side-callout{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .dc-grid{grid-template-columns:1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .car-track .pkg{flex:0 0 calc((100% - 22px)/2)}
+}
+
+/* ============ MOBILE ≤680 ============ */
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:92px}
+  section{padding-left:0;padding-right:0}
+  .hd{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .topbar .tb-status,.topbar .tb-note{display:none}
+  .topbar .wrap{justify-content:center}
+  .topbar .tb-right a{min-height:40px;font-size:12.5px}
+  .logo{order:1;min-height:46px}
+  .hd-cta{order:2;margin-left:auto}
+  .hd-cta .btn{display:none}
+  .search{order:3;flex:1 0 100%;max-width:none}
+  .search input{min-height:46px}
+  .search button{width:40px;height:40px}
+  nav.main{display:none}
+  .logo-tag{font-size:12px}
+  .hero .wrap{padding-top:30px;padding-bottom:52px;gap:32px}
+  .hero-main{transform:none;border-width:5px}
+  .hero-main:hover{transform:none}
+  .hero-main img{aspect-ratio:4/3}
+  .price-tag{top:10px;right:10px;padding:6px 10px;font-size:12.5px;border-radius:10px}
+  .price-tag small{font-size:12px}
+  .hero-eco{display:flex;left:8px;bottom:10px;padding:7px 10px;gap:8px;border-radius:12px}
+  .hero-eco .ic{width:30px;height:30px}
+  .hero-eco b{font-size:12.5px}
+  .hero-eco span{font-size:12px}
+  .hero-stats{gap:16px;padding:13px 16px;margin-top:14px}
+  .hstat b{font-size:1.05rem}
+  .hstat span{font-size:12px}
+  .hero h1{font-size:1.7rem;margin-top:14px}
+  .hero h1 .mk{padding:1px 10px 3px}
+  .hero-sub{font-size:14.5px}
+  .hero-cta{flex-direction:column;margin:20px 0}
+  .hero-cta .btn{width:100%}
+  .trust-chips{grid-template-columns:1fr 1fr;gap:8px}
+  .tchip{padding:9px 11px;font-size:12px;min-height:44px}
+  .tchip b{font-size:12px}
+  .tchip span{font-size:12px}
+  .services,.datco,.deals,.about,.reviews,.faq,.menu-sec,.contact,.process{padding:50px 0}
+  .block-title{font-size:1.42rem}
+  .block-sub{font-size:13.5px}
+  .tape{margin:-16px -20px 0}
+  .tape-in span{font-size:12px;padding:0 16px}
+  .svc-grid{grid-template-columns:1fr;gap:18px}
+  .grp-strip{grid-template-columns:1fr 1fr;gap:10px}
+  .grp-strip .grp:last-child{grid-column:1/-1}
+  .dc-form,.dc-res{padding:24px 20px}
+  .mam-picks{grid-template-columns:repeat(2,1fr)}
+  .set-cards{grid-template-columns:1fr}
+  .set-cards.two{grid-template-columns:1fr}
+  .dc-total{flex-direction:column;align-items:flex-start;gap:8px}
+  .car-track .pkg{flex:0 0 88%;margin-right:14px}
+  .pkg-img{aspect-ratio:4/3}
+  .board-tabs{padding:14px 16px 0}
+  .btab{padding:8px 13px;font-size:12.5px}
+  .board-list{padding:10px 16px 4px}
+  .board-head{padding:15px 16px}
+  .board-head h3{font-size:.92rem;letter-spacing:.08em}
+  .stamp{width:70px;height:70px;font-size:10px;top:-12px;right:12px}
+  .mrow .md{display:none}
+  .mrow .mn b{font-size:14px}
+  .board-foot{margin:12px 16px 0}
+  .board-side{flex-direction:column}
+  .proc-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .proc{padding:16px 12px}
+  .strengths{grid-template-columns:1fr 1fr;gap:10px}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .rev-view{padding:20px}
+  .rev-text{font-size:14.5px;min-height:130px}
+  .benefits{grid-template-columns:1fr}
+  .ct-form{padding:24px 18px}
+  .ct-form .btn{width:100%}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding-bottom:30px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:6px;gap:2px}
+  .dock button,.dock a{width:42px;height:42px}
+  .dd-tip{display:none}
+  .toast-zone{left:16px;right:16px;bottom:140px}
+  .toast{max-width:none}
+  .drawer{width:100%}
+  .bk-form .f2{grid-template-columns:1fr}
+}
+/* NB93-011: micro-interaction nhấn */
+button:active{transform:scale(.96)}
+/* MOBILE-TAP40 (NB93-011): vùng chạm >=40px */
+@media(max-width:640px){
+  .fchip,.btab,.mam-pick,.set-card,.car-btn,.qa,.dr-close,.dock button,.dock a,.qty button,.rev-dots i,.pchip,.pay-chips span,[class*="search" i] button,.q-back,.stepper button{min-height:40px!important;min-width:40px!important}
+  .btn{min-height:40px!important}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bếp Cỗ Mâm Đỏ","telephone":"0908245888","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Bếp Cỗ Mâm Đỏ — đặt cỗ theo mâm 3 · 5 · 7 · 10, trọn gói nguyên liệu, đội bếp nấu tại nhà. Cỗ giỗ 10 món, cỗ cưới 12 món, tiệc liên hoan — lên mâm đúng giờ cúng","url":"http://127.0.0.1:8174/011-dich-vu-nau-tiec-dat-co/"}
+</script>
+</head>
+<body id="top">
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-status">
+      <span class="dot-live" id="openDot"></span>
+      <span id="openText">Bếp nhận cỗ 6:00 – 21:00 · bếp chính Âu Cơ, Tây Hồ</span>
+    </div>
+    <div class="tb-right">
+      <span class="tb-note">Nếm thử thực đơn miễn phí cho cỗ từ 5 mâm</span>
+      <a href="tel:0908245888">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0908 245 888
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="hd">
+    <a class="logo" href="#top">
+      <span class="logo-badge">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5C36B" stroke-width="1.8" stroke-linecap="round"><path d="M4 15a8 8 0 0 1 16 0" fill="#F5C36B" stroke="none"/><path d="M4 15a8 8 0 0 1 16 0" stroke="#fff"/><circle cx="12" cy="5.6" r="1.4" fill="#fff" stroke="none"/><path d="M2.5 18.5h19" stroke="#fff"/><path d="M5 21h14" stroke="#fff" opacity=".65"/></svg>
+      </span>
+      <span class="logo-txt">
+        <span class="logo-name">Mâm <b>Đỏ</b></span>
+        <span class="logo-tag">Bếp cỗ • Nấu tiệc tại nhà</span>
+      </span>
+    </a>
+    <div class="search">
+      <input id="searchInput" type="text" placeholder="Tìm món cỗ: nem rán, gà tiềm ốc…" aria-label="Tìm món cỗ">
+      <button id="searchBtn" aria-label="Tìm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </div>
+    <nav class="main">
+      <a href="#dat-co">Đặt cỗ theo mâm</a>
+      <a href="#goi-cot">8 gói dịch vụ</a>
+      <a href="#thuc-don">Thực đơn</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#ve-bep">Về bếp</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="btn btn-accent" id="hdBook">Đặt cỗ ngay</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-l">
+      <span class="eyebrow">Bếp cỗ gia đình Hà Nội — giỗ · cưới · liên hoan</span>
+      <h1>Cỗ nhà mình có <span class="mk">đội bếp riêng</span> — lên mâm đúng giờ cúng</h1>
+      <span class="hero-sub">Đặt cỗ theo mâm 3 · 5 · 7 · 10. Nguyên liệu trọn gói đi chợ mỗi sáng, đội bếp nấu ngay tại sân nhà, bày mâm trước giờ thắp hương — bạn chỉ lo đón khách.</span>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#dat-co">Đặt cỗ theo mâm — ra giá ngay
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#thuc-don">Xem thực đơn cỗ</a>
+      </div>
+      <div class="trust-chips">
+        <div class="tchip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+          <span><b>Trọn gói nguyên liệu</b><span>Kê rõ từng ký, có hoá đơn</span></span>
+        </div>
+        <div class="tchip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+          <span><b>Nấu tại nhà</b><span>Tự mang nồi chảo, bếp dã chiến</span></span>
+        </div>
+        <div class="tchip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span><b>Đúng giờ cúng</b><span>Lịch nấu lùi từ giờ giỗ</span></span>
+        </div>
+        <div class="tchip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="m9 13 2 2 4-4"/></svg>
+          <span><b>Dọn dẹp trọn gói</b><span>Rửa chén, ra về bếp sạch</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-r">
+      <figure class="hero-main">
+        <img src="assets/img/cover.webp" alt="Đội bếp Mâm Đỏ bày mâm cỗ dưới trại trắng — dịch vụ nấu tiệc và đặt cỗ" width="860" height="645">
+        <span class="price-tag"><small>MÂM CỖ 10 NGƯỜI</small>từ 1,25 triệu/mâm</span>
+      </figure>
+      <div class="hero-eco">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15a8 8 0 0 1 16 0z"/><path d="M2.5 18.5h19"/></svg>
+        </span>
+        <span><b>Cỗ nấu tại chỗ</b><span>Mâm lên là bốc khói</span></span>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>12 năm</b><span>giữ lửa bếp cỗ</span></div>
+        <div class="hstat"><b>38.000 mâm</b><span>đã nấu tới nay</span></div>
+        <div class="hstat"><b>96%</b><span>lên mâm đúng giờ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-in" id="tapeIn"></div>
+</div>
+
+<!-- ============ 2 DỊCH VỤ NỔI BẬT ============ -->
+<section class="services" id="dich-vu">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Chọn cách bạn muốn tổ chức</span>
+      <h2 class="block-title" style="margin-top:14px">Hai cách để có <span class="hl">mâm cỗ nóng</span> ngay tại nhà</h2>
+      <span class="block-sub">Cùng một đội bếp 12 năm — thuê nấu tại nhà, hoặc khoán trắng trọn gói từ chợ tới bữa dọn dẹp.</span>
+    </div>
+    <div class="svc-grid">
+      <article class="svc rv" data-d="0">
+        <div class="svc-img">
+          <img src="assets/img/p4.webp" alt="Tiệc tại nhà — đội bếp Mâm Đỏ phục vụ mâm cỗ cho gia đình" loading="lazy">
+          <span class="svc-badge">Chọn nhiều nhất</span>
+          <span class="svc-price">từ 1,25tr/mâm</span>
+        </div>
+        <div class="svc-body">
+          <h3>Đội bếp nấu tại nhà bạn</h3>
+          <p>Nguyên liệu + đội bếp tới sớm 3 tiếng, nấu tại sân, garage hoặc bếp nhà. Món nào ra món đó trước cửa mâm.</p>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Khảo sát bếp &amp; chốt thực đơn trước 48 giờ</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Mang theo nồi chảo lớn, bếp gas dã chiến</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Bày mâm + pha trà trước giờ khách tới</li>
+          </ul>
+          <button class="btn btn-accent" data-book data-pkg="Đội bếp nấu tại nhà">Thuê đội bếp về nhà</button>
+        </div>
+      </article>
+      <article class="svc dark rv" data-d="1">
+        <div class="svc-img">
+          <img src="assets/img/p8.webp" alt="Gói tiệc trọn gói A–Z — trại, hoa bàn, phục vụ và dọn dẹp" loading="lazy">
+          <span class="svc-badge">Khoán trắng</span>
+          <span class="svc-price">từ 2,4tr/mâm</span>
+        </div>
+        <div class="svc-body">
+          <h3>Cỗ trọn gói A–Z</h3>
+          <p>Nguyên liệu — chế biến — phục vụ — dọn dẹp gói một giá. Gia đình chỉ chuẩn bị bàn và lòng hiếu khách.</p>
+          <ul>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Nguyên liệu mua sáng, cân trước mặt</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Phục vụ bưng mâm nếu cần (+150K/đội)</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Dọn dẹp, rửa chén sau tiệc</li>
+          </ul>
+          <button class="btn btn-gold" data-book data-pkg="Cỗ trọn gói A–Z">Nhận báo giá trong 15 phút</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DẢI 5 DỊP ============ -->
+<section class="groups">
+  <div class="wrap">
+    <div class="grp-strip">
+      <a class="grp rv" href="#dat-co" data-d="0"><img src="assets/img/p2.webp" alt="" loading="lazy"><span class="gt"><b>Cỗ đám giỗ</b><span>10 món — từ 1,45tr/mâm</span></span><span class="arr">›</span></a>
+      <a class="grp rv" href="#goi-cot" data-d="1"><img src="assets/img/p1.webp" alt="" loading="lazy"><span class="gt"><b>Cỗ cưới</b><span>12 món — từ 1,95tr/mâm</span></span><span class="arr">›</span></a>
+      <a class="grp rv" href="#goi-cot" data-d="2"><img src="assets/img/p3.webp" alt="" loading="lazy"><span class="gt"><b>Sinh nhật</b><span>9 món — từ 85K/khách</span></span><span class="arr">›</span></a>
+      <a class="grp rv" href="#goi-cot" data-d="3"><img src="assets/img/p4.webp" alt="" loading="lazy"><span class="gt"><b>Tiệc tại nhà</b><span>10 – 30 người</span></span><span class="arr">›</span></a>
+      <a class="grp rv" href="#goi-cot" data-d="4"><img src="assets/img/p8.webp" alt="" loading="lazy"><span class="gt"><b>Trọn gói A–Z</b><span>Kèm trại &amp; phục vụ</span></span><span class="arr">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ĐẶC THÙ — ĐẶT CỖ THEO MÂM ============ -->
+<section class="datco" id="dat-co">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Khối đặt cỗ — chọn là ra giá</span>
+      <h2 class="block-title" style="margin-top:14px">Đặt cỗ theo <span class="hl">số mâm</span> — 3 · 5 · 7 · 10</h2>
+      <span class="block-sub">Mâm chuẩn 10 người. Chọn dịp, chọn mâm, bếp chốt thực đơn và giữ lịch ngay — giá đã gồm nguyên liệu, công nấu và bày mâm.</span>
+    </div>
+    <div class="dc-grid rv">
+      <div class="dc-form">
+        <h3>Mâm cỗ của bạn</h3>
+        <span class="fs">Kéo chọn số mâm là thấy tổng tiền — bếp gọi xác nhận trong 15 phút.</span>
+        <div class="f-row">
+          <label>1 · Chọn dịp tổ chức</label>
+          <div class="set-cards" id="occCards">
+            <label class="set-card sel">
+              <input type="radio" name="occ" value="gio" checked>
+              <b>Cỗ Giỗ</b><span>10 món + xôi chè</span><span class="sp">1,45tr/mâm</span>
+            </label>
+            <label class="set-card">
+              <input type="radio" name="occ" value="cuoi">
+              <b>Cỗ Cưới</b><span>12 món, phục vụ bàn</span><span class="sp">1,95tr/mâm</span>
+            </label>
+            <label class="set-card">
+              <input type="radio" name="occ" value="vui">
+              <b>Liên hoan</b><span>9 món dễ ăn, quầy nhỏ</span><span class="sp">1,25tr/mâm</span>
+            </label>
+          </div>
+        </div>
+        <div class="f-row">
+          <label>2 · Chọn số mâm (mỗi mâm 10 người)</label>
+          <div class="mam-picks" id="mamPicks">
+            <button type="button" class="mam-pick" data-t="3"><b>3<i> mâm</i></b><span>30 khách</span><span class="mdots"><i></i><i></i><i></i></span></button>
+            <button type="button" class="mam-pick sel" data-t="5"><b>5<i> mâm</i></b><span>50 khách</span><span class="mdots"><i></i><i></i><i></i><i></i><i></i></span></button>
+            <button type="button" class="mam-pick" data-t="7"><b>7<i> mâm</i></b><span>70 khách</span><span class="mdots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
+            <button type="button" class="mam-pick" data-t="10"><b>10<i> mâm</i></b><span>100 khách</span><span class="mdots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
+          </div>
+          <div class="f-num">
+            <input type="number" id="dcTrays" min="2" max="30" value="5">
+            <input type="range" id="dcRange" min="2" max="30" value="5" style="flex:1">
+            <span class="hint">2 – 30 mâm</span>
+          </div>
+        </div>
+        <div class="f-row" style="margin-bottom:0">
+          <label>3 · Nguyên liệu</label>
+          <div class="set-cards two" id="modeCards">
+            <label class="set-card sel">
+              <input type="radio" name="mode" value="full" checked>
+              <b>Trọn gói nguyên liệu</b><span>Bếp đi chợ, cân trước mặt, hoá đơn đủ</span>
+            </label>
+            <label class="set-card">
+              <input type="radio" name="mode" value="half">
+              <b>Tự lo nguyên liệu</b><span>Chỉ thuê đội bếp + gia vị — giảm ~55%</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="dc-res">
+        <h3>Xem trước mâm cỗ</h3>
+        <span class="fs">Số mâm vẽ ra thành khay — tổng tiền cập nhật tức thì.</span>
+        <div class="mam-viz">
+          <span id="mamDots" style="display:contents"></span>
+          <span class="mam-cap" id="mamCap"><b>5 mâm × 10 người = 50 khách</b> — đội bếp 4 người</span>
+        </div>
+        <ul class="dc-menu" id="dcMenu"></ul>
+        <table class="tier-tb">
+          <thead><tr><th>Số mâm</th><th>Ưu đãi</th><th>Giá/mâm</th></tr></thead>
+          <tbody>
+            <tr data-tier="0"><td>2 – 4 mâm</td><td>—</td><td id="tp0">1.450.000₫</td></tr>
+            <tr data-tier="1"><td>5 – 6 mâm</td><td>giảm 3%</td><td id="tp1">1.406.000₫</td></tr>
+            <tr data-tier="2"><td>7 – 9 mâm</td><td>giảm 5%</td><td id="tp2">1.378.000₫</td></tr>
+            <tr data-tier="3"><td>Từ 10 mâm</td><td>giảm 8%</td><td id="tp3">1.334.000₫</td></tr>
+          </tbody>
+        </table>
+        <div class="dc-total">
+          <div class="tt"><span id="dcSummary">Cỗ Giỗ 10 món × 5 mâm · trọn gói nguyên liệu</span><b id="dcTotal">7.040.000₫</b></div>
+          <span class="save" id="dcSave">Giảm 3% — tiết kiệm 110.000₫</span>
+        </div>
+        <button class="btn btn-accent" id="dcBook">Giữ 5 mâm này — bếp gọi lại 15 phút</button>
+        <span class="dc-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+          Chưa gồm bàn ghế (thuê riêng 350K/bàn) · đổi món cùng khung giá miễn phí trước 48 giờ
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHỐI-8: 8 GÓI DỊCH VỤ ============ -->
+<section class="deals" id="goi-cot">
+  <div class="wrap">
+    <div class="car-head rv">
+      <div>
+        <span class="eyebrow">8 gói dịch vụ</span>
+        <h2 class="block-title" style="margin-top:12px">Một đội bếp, <span class="hl">8 gói</span> cho mọi dịp nhà bạn</h2>
+        <span class="block-sub">Giá niêm yết từng gói, không chênh giờ cao điểm. Đặt gói nào, bếp gọi xác nhận đúng gói đó.</span>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" id="carPrev" aria-label="Trước">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="car-count" id="carCount">1–2 / 8</span>
+        <button class="car-btn" id="carNext" aria-label="Sau">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="car-vp rv">
+      <div class="car-track" id="carTrack"></div>
+    </div>
+    <div class="car-progress rv"><i id="carBar"></i></div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="benefits-sec">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Cam kết Mâm Đỏ</span>
+      <h2 class="block-title" style="font-size:1.6rem;margin-top:12px">Bốn điều ghi trong hợp đồng, không phải lời hứa miệng</h2>
+    </div>
+    <div class="benefits rv" data-d="1">
+      <div class="benefit"><span class="ic">🧾</span><span><b>Nguyên liệu kê ký</b><p>Cân trước mặt, hoá đơn chợ/siêu thị đầy đủ theo từng mâm.</p></span></div>
+      <div class="benefit"><span class="ic">⏰</span><span><b>Lịch lùi từ giờ cúng</b><p>Ngược từ giờ giỗ ra giờ sơ chế — trễ vì lỗi bếp giảm 20% công.</p></span></div>
+      <div class="benefit"><span class="ic">🍳</span><span><b>Bếp dã chiến theo đội</b><p>Nhà thiếu bếp gas lớn, đội mang bếp + nồi chảo tới đủ dùng.</p></span></div>
+      <div class="benefit"><span class="ic">🧽</span><span><b>Dọn sạch ra về</b><p>Rửa chén, gom rác, trả bếp nguyên trạng như chưa nấu.</p></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THỰC ĐƠN — BẢNG MÂM ============ -->
+<section class="menu-sec" id="thuc-don">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Thực đơn theo dịp</span>
+      <h2 class="block-title" style="margin-top:14px">Thực đơn <span class="hl">niêm yết</span> — món nào rõ món nấy</h2>
+      <span class="block-sub">Ba thực đơn mẫu dùng nhiều nhất. Đổi món trong cùng khung giá miễn phí trước 48 giờ — ghi chú khi đặt cỗ.</span>
+    </div>
+    <div class="menu-stage rv">
+      <div class="board">
+        <div class="stamp">CHỐT<br>MÓN<br>TRƯỚC 48H</div>
+        <div class="board-head">
+          <h3>⸻ THỰC ĐƠN BẾP MÂM ĐỎ ⸻</h3>
+          <span class="upd" id="boardDate">Cập nhật hôm nay</span>
+        </div>
+        <div class="board-tabs" id="boardTabs"></div>
+        <div class="board-list" id="boardList"></div>
+        <div class="board-foot" id="boardFoot"></div>
+        <div class="board-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;color:var(--accent)"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>Nồi niêu, khay đĩa bày theo chuẩn cỗ Bắc — muốn món khác, gọi 0908 245 888 đổi trong cùng khung giá.</span>
+        </div>
+      </div>
+      <aside class="board-side">
+        <figure class="board-photo rv" data-d="1">
+          <img src="assets/img/space.webp" alt="Sảnh tiệc bày bàn tròn khăn trắng với nồi hâm nóng chafing" loading="lazy">
+          <figcaption>Bàn bày sẵn khăn trắng, nồi hâm nóng — đội Mâm Đỏ setup trước 4 tiếng.</figcaption>
+        </figure>
+        <div class="side-callout rv" data-d="2">
+          <b>Chưa biết chọn thực đơn nào?</b>
+          <p>Cỗ từ 5 mâm được mời nếm thử miễn phí tại bếp Âu Cơ — ăn xong hãy chốt món.</p>
+          <button class="btn btn-gold" data-book data-pkg="Nếm thử thực đơn" style="width:100%">Giữ suất nếm thử</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="process" id="quy-trinh" style="padding-top:0">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Từ chợ tới mâm</span>
+      <h2 class="block-title" style="margin-top:14px">Một ngày có cỗ — <span class="hl">đo từng tiếng</span></h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc rv"><span class="num">1</span>
+        <svg class="pic" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <b>Chốt mâm &amp; thực đơn</b><p>Gọi hoặc để form — bếp tư vấn thực đơn theo dịp, chốt trong 15 phút.</p><span class="meta">trước 3 – 7 ngày</span>
+      </div>
+      <div class="proc rv" data-d="1"><span class="num">2</span>
+        <svg class="pic" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <b>Đi chợ 5:00 sáng</b><p>Ngày tổ chức, bếp đi chợ theo danh sách ký cân — nhắn ảnh nguyên liệu cho bạn.</p><span class="meta">5:00 sáng</span>
+      </div>
+      <div class="proc rv" data-d="2"><span class="num">3</span>
+        <svg class="pic" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15a8 8 0 0 1 16 0z"/><path d="M2.5 18.5h19"/></svg>
+        <b>Nấu tại nhà từ 9:00</b><p>Đội bếp + nồi chảo tới, nấu tại sân — bạn muốn xem từng nồi cũng được.</p><span class="meta">sớm 3 tiếng</span>
+      </div>
+      <div class="proc rv" data-d="3"><span class="num">4</span>
+        <svg class="pic" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 13 4 4L19 7"/></svg>
+        <b>Bày mâm &amp; dọn dẹp</b><p>Lên mâm trước giờ cúng, phục vụ nếu cần — dọn sạch, ra về đúng hẹn.</p><span class="meta">đúng giờ hẹn</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<div class="stats">
+  <div class="stats-in">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat rv"><b><span class="cnt" data-to="12">0</span> năm</b><span>giữ lửa bếp cỗ gia đình</span></div>
+        <div class="stat rv" data-d="1"><b><span class="cnt" data-to="38000">0</span> mâm</b><span>đã nấu từ giỗ nhỏ tới cỗ cả họ</span></div>
+        <div class="stat rv" data-d="2"><b><span class="cnt" data-to="96">0</span>%</b><span>lên mâm đúng giờ cúng</span></div>
+        <div class="stat rv" data-d="3"><b><span class="cnt" data-to="25">0</span> đội</b><span>bếp trực khắp Hà Nội</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="ve-bep">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img rv">
+        <figure class="big"><img src="assets/img/intro.webp" alt="Phục vụ viên Mâm Đỏ bưng mâm cỗ phục vụ bàn tiệc gia đình" loading="lazy"></figure>
+        <div class="since"><b>2012</b><span>năm mâm cỗ đầu tiên</span></div>
+      </div>
+      <div class="rv" data-d="1">
+        <span class="eyebrow">Về Bếp Cỗ Mâm Đỏ</span>
+        <h2 class="block-title">Từ bếp giỗ xóm tới <span class="hl">25 đội bếp</span> khắp Hà Nội</h2>
+        <p class="about-p">Mâm Đỏ bắt đầu từ ba chị em nấu cỗ giỗ cho cả xóm Từ Sơn — mâm nào cũng đỏ khăn, vàng khay, đủ đầy. Giờ là 25 đội bếp, nhưng cách làm không đổi: đi chợ 5 giờ sáng, nấu tại nhà khách, và lịch nấu luôn lùi ngược từ giờ cúng. Giỗ là ngày không được dời — nên đúng giờ với Mâm Đỏ là điều kiện, không phải lời hứa.</p>
+        <div class="strengths">
+          <div class="str">
+            <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <b>Đi chợ 5:00 sáng</b><span>Nguyên liệu tươi trong ngày, kê ký từng mặt hàng</span>
+          </div>
+          <div class="str">
+            <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5"/></svg></span>
+            <b>Nấu 100% tại nhà khách</b><span>Không sơ chế xa, không chở món nấu đi xa</span>
+          </div>
+          <div class="str">
+            <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg></span>
+            <b>Lịch lùi từ giờ giỗ</b><span>Bếp trưởng tính ngược giờ sơ chế từng món</span>
+          </div>
+          <div class="str">
+            <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <b>25 đội bếp trực</b><span>Cỗ khẩn vẫn có đội nhận — gọi là có người nghe</span>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-accent" href="#dat-co">Đặt cỗ cho dịp của nhà mình</a>
+          <a class="btn btn-ghost" href="tel:0908245888">Gọi 0908 245 888</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" id="review">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Khách nói gì sau bữa cỗ</span>
+      <h2 class="block-title" style="margin-top:14px">Người <span class="hl">đo giờ giỗ</span> kỹ nhất là các cụ</h2>
+    </div>
+    <div class="rev-grid rv">
+      <div class="rev-view">
+        <div class="rev-stars">★★★★★</div>
+        <blockquote class="rev-text" id="revText"></blockquote>
+        <div class="rev-who">
+          <span class="rev-av" id="revAv"></span>
+          <span><b id="revName"></b><span id="revArea"></span></span>
+        </div>
+        <div class="rev-dots" id="revDots"></div>
+      </div>
+      <div class="rev-metric">
+        <span class="big">96%</span>
+        <span class="cap">lên mâm đúng giờ cúng — chốt từ 620 cỗ Mâm Đỏ nấu trong năm qua</span>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Trễ vì lỗi đội bếp: giảm 20% công nấu</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Đổi món cùng khung giá: miễn phí trước 48 giờ</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>4,8/5 điểm từ 1.100+ gia đình đã đặt cỗ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="partners rv">
+      <span class="pl">Phục vụ cỗ tại</span>
+      <span class="pchip">Tây Hồ</span><span class="pchip">Cầu Giấy</span><span class="pchip">Long Biên</span><span class="pchip">Gia Lâm</span><span class="pchip">Thanh Trì</span><span class="pchip">Hà Đông</span><span class="pchip">Hoài Đức</span><span class="pchip">Đan Phượng</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIÊN HỆ + FORM ============ -->
+<section class="contact" id="lien-he">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow" style="background:rgba(201,151,28,.18);color:#F5C36B">Ghé bếp hoặc nhắn một dòng</span>
+      <h2 class="block-title" style="margin-top:14px">Chuyện cỗ <span style="background:linear-gradient(transparent 58%,rgba(201,151,28,.4) 58%);padding:0 6px">trả lời trong 15 phút</span></h2>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="ct-item">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <span><b>Bếp chính — Âu Cơ</b><span>128 Âu Cơ, P. Phú Thượng, Q. Tây Hồ, Hà Nội • 6:00 – 21:00</span></span>
+        </div>
+        <div class="ct-item">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <span><b>Trạm bếp 2 — Cầu Giấy</b><span>56 Nguyễn Khang, P. Hoà, Q. Cầu Giấy, Hà Nội • 6:00 – 21:00</span></span>
+        </div>
+        <div class="ct-item">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><b>Hotline đặt cỗ &amp; nấu tiệc</b><a href="tel:0908245888" style="color:#F5C36B;font-weight:800;font-size:17px">0908 245 888</a></span>
+        </div>
+        <div class="map-box">
+          <iframe src="https://maps.google.com/maps?q=Au%20Co%20Tay%20Ho%20Ha%20Noi&z=15&output=embed" loading="lazy" title="Bản đồ bếp Mâm Đỏ" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm" novalidate>
+        <h3>Để lại lời nhắn cho bếp</h3>
+        <span class="fs">Đặt cỗ, hỏi thực đơn, xin nếm thử — bếp phụ trách gọi lại xác nhận trong 15 phút.</span>
+        <label for="ctName">Tên của bạn</label>
+        <input id="ctName" type="text" placeholder="VD: Lan Anh">
+        <label for="ctPhone">Số điện thoại</label>
+        <input id="ctPhone" type="tel" placeholder="VD: 0912 345 678">
+        <label for="ctType">Bạn cần gì?</label>
+        <select id="ctType">
+          <option>Đặt cỗ giỗ</option>
+          <option>Đặt cỗ cưới</option>
+          <option>Sinh nhật – liên hoan</option>
+          <option>Thuê bàn ghế, dụng cụ kèm</option>
+          <option>Góp ý / hỏi thực đơn</option>
+        </select>
+        <label for="ctMsg">Nội dung</label>
+        <textarea id="ctMsg" placeholder="VD: Giỗ cụ 10 mâm, trưa chủ nhật 11:00 tại Gia Lâm, muốn nếm thử thực đơn thứ 7 này…"></textarea>
+        <button class="btn btn-gold" type="submit">Gửi bếp — gọi lại trong 15 phút</button>
+        <span class="ct-sec">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Số điện thoại chỉ dùng để xác nhận cỗ — không gọi quảng cáo, không bán dữ liệu.
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Hỏi nhanh — đáp gọn</span>
+      <h2 class="block-title" style="margin-top:14px">Đặt cỗ <span class="hl">trước bao lâu</span> thì kịp?</h2>
+      <span class="block-sub">Tất cả những câu nhà nào tổ chức cỗ cũng hỏi — gõ từ khoá để lọc, hoặc nhấn chip.</span>
+    </div>
+    <div class="faq-search rv">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="faqInput" type="text" placeholder="Tìm câu hỏi: nguyên liệu, nấu tại nhà, đặt cọc…">
+    </div>
+    <div class="faq-chips rv" id="faqChips"></div>
+    <div class="faq-list rv" id="faqList"></div>
+    <p class="faq-empty" id="faqEmpty">Chưa có câu nào khớp — gọi 0908 245 888 để hỏi thẳng bếp nhé.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-about">
+        <a class="logo" href="#top" style="color:#fff">
+          <span class="logo-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5C36B" stroke-width="1.8" stroke-linecap="round"><path d="M4 15a8 8 0 0 1 16 0" fill="#F5C36B" stroke="none"/><path d="M4 15a8 8 0 0 1 16 0" stroke="#fff"/><circle cx="12" cy="5.6" r="1.4" fill="#fff" stroke="none"/><path d="M2.5 18.5h19" stroke="#fff"/><path d="M5 21h14" stroke="#fff" opacity=".65"/></svg>
+          </span>
+          <span class="logo-txt">
+            <span class="logo-name" style="color:#fff">Mâm <b>Đỏ</b></span>
+            <span class="logo-tag" style="color:#D8B79B">Bếp cỗ • Nấu tiệc tại nhà</span>
+          </span>
+        </a>
+        <p>Bếp Cỗ Mâm Đỏ từ 2012 — đặt cỗ theo mâm 3 · 5 · 7 · 10, trọn gói nguyên liệu, đội bếp nấu tại nhà. Lịch nấu lùi từ giờ cúng, dọn dẹp trọn gói trong nội thành Hà Nội.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9z"/></svg></a>
+          <a href="#" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0 0 20c1.4 0 2.7-.3 3.9-.8L20 22l-.9-3.6A10 10 0 0 0 12 2zm-2.2 6.1h1.4v5.6h2.5v1.3H9.8zm4.9 0h1.4v6.9h-1.4z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.8c-1.5 0-2.8-.4-3.9-1.2v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .7 0 1 .1v2.9a2.7 2.7 0 1 0 1.9 2.6V3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.3-.4-4.8c-.2-.8-.9-1.5-1.7-1.7C18.4 5 12 5 12 5s-6.4 0-7.9.5c-.8.2-1.5.9-1.7 1.7C2 8.7 2 12 2 12s0 3.3.4 4.8c.2.8.9 1.5 1.7 1.7 1.5.5 7.9.5 7.9.5s6.4 0 7.9-.5c-.8-.2 1.5-.9 1.7-1.7.4-1.5.4-4.8.4-4.8zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Dịch vụ cỗ</h4>
+        <ul>
+          <li><a href="#dat-co">Đặt cỗ theo mâm 3 – 10</a></li>
+          <li><a href="#goi-cot">Cỗ đám giỗ 10 món</a></li>
+          <li><a href="#goi-cot">Cỗ cưới 12 món</a></li>
+          <li><a href="#goi-cot">Tiệc sinh nhật – liên hoan</a></li>
+          <li><a href="#goi-cot">Bàn ghế &amp; dụng cụ kèm</a></li>
+          <li><a href="#thuc-don">Thực đơn theo dịp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ trợ khách</h4>
+        <ul>
+          <li><a href="#faq">Đặt cỗ trước bao lâu</a></li>
+          <li><a href="#faq">Nguyên liệu &amp; hoá đơn</a></li>
+          <li><a href="#faq">Nấu tại nhà cần chuẩn bị gì</a></li>
+          <li><a href="#faq">Đặt cọc &amp; dời hủy lịch</a></li>
+          <li><a href="#faq">Khu vực &amp; phí đi xa</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bếp Mâm Đỏ</h4>
+        <ul class="ft-contact">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg>128 Âu Cơ, P. Phú Thượng, Q. Tây Hồ — 6:00 – 21:00</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg>56 Nguyễn Khang, P. Hoà, Q. Cầu Giấy — 6:00 – 21:00</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:0908245888">0908 245 888 — gọi là bếp nghe ngay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span class="cp">© 2026 Bếp Cỗ Mâm Đỏ — GPKD số 01J-8.411.602. Chứng nhận an toàn thực phẩm số GH-0561730.</span>
+      <div class="pay-chips"><span>Cọc 30%</span><span>Tiền mặt</span><span>Chuyển khoản</span><span>MoMo</span><span>VNPay</span><span>HĐ chợ đầy đủ</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock" id="dock">
+  <a href="#top" aria-label="Lên đầu trang"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span class="dd-tip">Lên đầu</span></a>
+  <a href="#dat-co" aria-label="Đặt cỗ theo mâm"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15a8 8 0 0 1 16 0z"/><path d="M2.5 18.5h19"/></svg><span class="dd-tip">Đặt cỗ theo mâm</span></a>
+  <button id="dockBook" aria-label="Mở form đặt cỗ"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span class="dd-tip">Form đặt cỗ</span></button>
+  <a href="tel:0908245888" aria-label="Gọi bếp"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="dd-tip">Gọi 0908 245 888</span></a>
+  <a href="https://maps.google.com/maps?q=Au+Co+Tay+Ho+Ha+Noi" target="_blank" rel="noopener" aria-label="Chỉ đường"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span class="dd-tip">Chỉ đường tới bếp</span></a>
+</div>
+
+<!-- ============ OVERLAY + DRAWER ĐẶT CỖ ============ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="bkDrawer" aria-label="Đặt cỗ">
+  <div class="dr-head">
+    <span>
+      <h3>Đặt cỗ — giữ mâm</h3>
+      <span class="dh-sub">Bếp gọi xác nhận trong 15 phút</span>
+    </span>
+    <button class="dr-close" id="bkClose" aria-label="Đóng">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="bk-sum">
+    <span class="bs-l">Mâm bạn đang giữ</span>
+    <span class="bs-t" id="bkSumText">Chưa chọn gói — điền form, bếp tư vấn theo dịp của bạn.</span>
+    <span class="bs-e" id="bkEst" hidden></span>
+  </div>
+  <div class="bk-scroll">
+    <form class="bk-form" id="bkForm" novalidate>
+      <div class="f2">
+        <span>
+          <label for="bkName">Tên của bạn *</label>
+          <input id="bkName" type="text" placeholder="VD: Lan Anh">
+        </span>
+        <span>
+          <label for="bkPhone">Số điện thoại *</label>
+          <input id="bkPhone" type="tel" placeholder="0912 345 678">
+        </span>
+      </div>
+      <label for="bkOcc">Dịp tổ chức</label>
+      <select id="bkOcc">
+        <option value="gio">Cỗ đám giỗ</option>
+        <option value="cuoi">Cỗ cưới</option>
+        <option value="vui">Sinh nhật – liên hoan</option>
+        <option value="khac">Khác / cần tư vấn</option>
+      </select>
+      <div class="f2">
+        <span>
+          <label for="bkDate">Ngày tổ chức</label>
+          <input id="bkDate" type="date">
+        </span>
+        <span>
+          <label for="bkTrays">Số mâm</label>
+          <input id="bkTrays" type="number" min="1" max="60" placeholder="VD: 7">
+        </span>
+      </div>
+      <label for="bkMode">Nguyên liệu</label>
+      <select id="bkMode">
+        <option value="full">Trọn gói nguyên liệu (bếp đi chợ)</option>
+        <option value="half">Tự lo nguyên liệu — thuê đội bếp</option>
+        <option value="un">Chưa rõ — bếp tư vấn</option>
+      </select>
+      <label for="bkAddr">Địa chỉ nấu cỗ</label>
+      <input id="bkAddr" type="text" placeholder="VD: ngõ 86 Xuân Đỉnh, Tây Hồ — sân nhà 3 tầng">
+      <label for="bkNote">Ghi chú thực đơn</label>
+      <textarea id="bkNote" placeholder="VD: đổi canh măng thành canh mọc, thêm 2 phần ăn nhạt cho cụ…"></textarea>
+      <ul class="bk-commit">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Dời lịch miễn phí trước 72 giờ — giỗ khó nói trước cũng đỡ lo</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Nguyên liệu cân trước mặt, không đúng ký hoàn từng phần</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>Trễ vì lỗi đội bếp — giảm 20% công nấu</li>
+      </ul>
+    </form>
+  </div>
+  <div class="dr-foot">
+    <button class="btn btn-accent" id="bkSubmit">Gửi yêu cầu giữ mâm — bếp gọi lại 15 phút</button>
+    <span class="dr-sec">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      Cọc chỉ đặt sau khi bạn chốt thực đơn — không cọc trước qua điện thoại.
+    </span>
+  </div>
+</aside>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/* ================= NB93-011 DATA ================= */
+const OCC = {
+  gio:{label:'Cỗ Giỗ', dishes:'10 món', full:1450, half:650, hint:'10 món + xôi chè'},
+  cuoi:{label:'Cỗ Cưới', dishes:'12 món', full:1950, half:900, hint:'12 món, phục vụ đứng bàn'},
+  vui:{label:'Liên hoan', dishes:'9 món', full:1250, half:550, hint:'9 món dễ ăn, quầy nhỏ'}
+};
+const MENUS = {
+  gio:{t:'Cỗ Giỗ truyền thống', items:[
+    ['Nem rán Hà Nội','Bọc tay từng chiếc tại chỗ, chiên giòn 2 lượt trước khi lên mâm'],
+    ['Gà ta luộc khế','Gà 1,4kg luộc lá khế, chặt xe quạt, chấm tương gừng'],
+    ['Giò lụa & chả quế','Gói lá chuối tươi, hấp tàu, cắt khoanh dày'],
+    ['Canh măng nấu mọc','Măng khô Hòa Bình ngâm mềm, mọc tay vắt dai'],
+    ['Miến xào lòng gà','Miến đậu xanh, lòng gà làm sạch kỹ, xào to lửa'],
+    ['Tôm rim nước dừa','Tôm đất rim kẹo nước dừa, đậm vị để qua mâm vẫn ngon'],
+    ['Bò xào lá lốt','Bò vai thái miếng cuốn lá lốt, áp chảo sau cùng'],
+    ['Cá trắm kho riềng','Cá trắm đồng kho niêu đất với riềng sẻ'],
+    ['Cải ngọt xào nấm','Cải ngọt mùa, nấm hương tươi, xào to lửa giữ giòn'],
+    ['Xôi xéo & chè sen','Xôi đỗ mùa múc nóng, chè sen long nhãn làm ngọt hậu']
+  ]},
+  cuoi:{t:'Cỗ Cưới 12 món', items:[
+    ['Gỏi tôm bắp chuối','Tôm sú luộc, bắp chuối bào mỏng, nước mắm me chua ngọt'],
+    ['Súp cua thịt gà','Gạch cua gạt tay, thịt gà xé, múc nóng từng bát nhỏ'],
+    ['Gà tiềm ốc hạt sen','Mỗi khách một bát nhỏ, tiềm mềm 3 tiếng'],
+    ['Tôm sú hấp nước dừa','Tôm size 15 con/kg, hấp nước dừa xiêm'],
+    ['Cá điêu hồng hấp xì dầu','Hấp gia vị, rắc hành cần, chan dầu nóng từng con'],
+    ['Bò nướng muối ớt','Bò thăn ướp muối ớt xanh, nướng than tại chỗ'],
+    ['Vịt quay chao','Quay da giòn, chấm chao tỏi ớt'],
+    ['Chả giò hải sản','Tôm mực cua cuộn bánh đa nem, chiên vàng đều'],
+    ['Rau củ xào tỏi','Rau theo mùa, xào to lửa, giữ màu xanh'],
+    ['Cơm tám hương','Cơm mới thơm, xới bát nhỏ từng phần'],
+    ['Xôi gấc','Màu đỏ may mắn, múc khuôn tròn bày giữa mâm'],
+    ['Trái cây theo mùa','Dưa hấu, nhãn, xoài cắt khay hoa']
+  ]},
+  vui:{t:'Cỗ Liên hoan 9 món', items:[
+    ['Gỏi cuốn tôm thịt','Cuốn mỏng tại chỗ, chấm tương đậu phộng'],
+    ['Nem rán','Vàng giòn, ăn kèm rau sống và nước chấm tỏi'],
+    ['Gà rán mật ong','Ướp mật ong gừng, rán giòn da mềm thịt'],
+    ['Sườn nướng mật ong','Sườn nạm ướp 12 tiếng, nướng than'],
+    ['Bò nướng tỏi ớt','Bò thăn hạt tiêu, nướng vỉ trước mặt khách'],
+    ['Mì xào hải sản','Mì trứng, tôm mực, xào to lửa'],
+    ['Canh chua tôm','Me chua, giá đỗ, thơm, rau ngổ'],
+    ['Cơm tám hương','Cơm mới, xới nóng từng phần'],
+    ['Trái cây & trà chanh','Khay trái cây mùa + bình trà chanh đá miễn phí']
+  ]}
+};
+const PKG = [
+  {img:'assets/img/p1.webp', n:'Cỗ cưới trọn gói', tag:'Đẹp nhất cỗ Việt', price:1950, unit:'/mâm', occ:'cuoi', meta:'12 món · 10 khách/mâm',
+   d:'Mâm cỗ 12 món bày bàn tròn khăn trắng, gà tiềm ốc từng phần, đội phục vụ đứng bàn rót trà.', tier:'Kèm phục vụ đứng bàn từ 10 mâm'},
+  {img:'assets/img/p2.webp', n:'Cỗ đám giỗ', tag:'Đặt nhiều nhất', price:1450, unit:'/mâm', occ:'gio', meta:'10 món · lên mâm trước giờ cúng',
+   d:'Cỗ Bắc chuẩn 10 món, xôi múc nóng, nem chiên giòn — lên mâm trước giờ thắp hương, dọn ngay sau lễ.', tier:'Đặt từ 3 mâm — bếp giữ lịch ngay'},
+  {img:'assets/img/p3.webp', n:'Tiệc sinh nhật', tag:'Náo nhiệt', price:85, unit:'/khách', occ:'vui', meta:'Buffet quầy · 30 – 100 khách',
+   d:'Quầy món nhỏ dễ ăn cho trẻ và bạn trẻ, kệ bánh, nước trái cây — nấu tại sân nhà, món nào cũng nóng.', tier:'Tròn 85K/khách — chưa gồm bàn ghế'},
+  {img:'assets/img/p4.webp', n:'Tiệc tại nhà gia đình', tag:'Cuối tuần', price:1350, unit:'/mâm', occ:'gio', meta:'10 – 30 người · theo mâm',
+   d:'Bữa tiệc ấm ngay trong nhà: nấu tại chỗ, bày theo mâm, phục vụ rót trà như đi quán.', tier:'Thêm phục vụ bưng mâm +150K/đội'},
+  {img:'assets/img/p5.webp', n:'Set khai vị – món chính', tag:'Cho tiệc đứng', price:85, unit:'/khách', occ:'vui', meta:'Canapé · kệ đứng 30 – 100 khách',
+   d:'Canapé, cup tôm bơ, bò nướng và món chính cắt lát — đội bưng khay xoay vòng, khách đứng đâu cũng có món.', tier:'Giao khay + kệ đứng, setup trong 90 phút'},
+  {img:'assets/img/p6.webp', n:'Bàn ghế & dụng cụ kèm', tag:'Trọn bộ', price:350, unit:'/bàn 10 khách', occ:'khac', meta:'Bàn tròn · khăn · chén thủy tinh',
+   d:'Bàn tròn 10 khách, khăn trắng ủi, chén đũa thủy tinh, bật nồi chafing — giao lắp trước 4 tiếng, thu về sau tiệc.', tier:'Đủ 10 khách/bàn — gồm thu dọn cuối tiệc'},
+  {img:'assets/img/p7.webp', n:'Đầu bếp phục vụ tại chỗ', tag:'Quầy nướng sống', price:1800, unit:'/buổi', occ:'vui', meta:'Bếp trưởng · 3 – 5 giờ',
+   d:'Bếp trưởng nấu trực tiếp trước khách: quầy nướng nóng, tráng miệng tại chảo — dùng thử miễn phí trước khi chốt.', tier:'Gồm 1 phụ bếp + toàn bộ dụng cụ quầy'},
+  {img:'assets/img/p8.webp', n:'Gói tiệc trọn gói A–Z', tag:'Cần gì có nấy', price:2400, unit:'/mâm', occ:'khac', meta:'Trại · hoa · âm thanh · phục vụ',
+   d:'Trại trắng, hoa bàn, âm thanh, đội phục vụ, dọn dẹp — một hợp đồng, một đầu mối, gia đình chỉ đón khách.', tier:'Khảo sát địa điểm miễn phí trong nội thành'}
+];
+const REVIEWS = [
+  {t:'"Giỗ cụ 10 mâm, cả họ 90 người. Đội bếp 5 rưỡi sáng có mặt, 10 rưỡi lên mâm đủ 10 món — giờ thắp hương mâm nghi ngút. Cô cậu ai cũng hỏi xin số bếp."', n:'Anh Tuấn', a:'Giỗ cụ cả họ 90 người — Gia Lâm'},
+  {t:'"Cưới tại sân nhà 15 mâm trọn gói. Bàn ghế, khăn, hoa, phục vụ một đầu mối lo hết. Sáng hôm sau họ hàng vẫn nhắn xin số để giỗ tháng."', n:'Chị Hạnh', a:'Đám cưới tại vườn 15 mâm — Hoài Đức'},
+  {t:'"Sinh nhật mẹ 70 tuổi 5 mâm, đổi 2 món mềm cho răng yếu, bếp nấu riêng phần nhạt cho bác tiểu đường. Chu đáo hơn cả nhà mình tưởng."', n:'Anh Quang', a:'Tiệc thọ 70 tuổi — Đống Đa'},
+  {t:'"Liên hoan công ty 12 mâm ngay tại văn phòng, quầy nướng sống đông khách đứng xem. 22 giờ dọn xong sạch bong — sáng mai ai cũng không biết tối qua có tiệc."', n:'Chị Mai Phương', a:'Liên hoan công ty 12 mâm — Cầu Giấy'}
+];
+const FAQ = [
+  {q:'Đặt cỗ trước bao lâu thì kịp?', a:'Cỗ dưới 5 mâm: đặt trước 2 – 3 ngày. Cỗ cưới, giỗ lớn từ 7 mâm: đặt trước 5 – 7 ngày để bếp chốt thực đơn và giữ đội. Trường hợp khẩn gọi 0908 245 888 — Mâm Đỏ có 25 đội bếp trực, thường vẫn có đội nhận trong ngày.', k:['đặt trước','đặt cỗ','lịch']},
+  {q:'Trọn gói nguyên liệu gồm những gì, có hoá đơn không?', a:'Gồm toàn bộ thực phẩm, rau, gia vị theo thực đơn — đi chợ 5:00 sáng ngày nấu, cân trước mặt bạn, kê rõ từng mặt hàng kèm hoá đơn chợ/siêu thị. Nguyên liệu không đúng cam kết: hoàn từng phần, không cần cãi vã.', k:['nguyên liệu','hoá đơn','trọn gói']},
+  {q:'Nấu tại nhà thì nhà mình cần chuẩn bị gì?', a:'Chỉ cần 2 – 3 bếp gas lớn (hoặc 1 bếp + điện), nước sạch và chỗ nấp mưa. Thiếu bếp gas lớn đội mang bếp dã chiến + nồi chảo tới miễn phí. Nhà không có bàn lớn thì thuê thêm gói bàn ghế 350K/bàn 10 khách.', k:['nấu tại nhà','chuẩn bị','bếp']},
+  {q:'Phí đi xa tính thế nào?', a:'Trong bán kính 25km từ bếp Âu Cơ (phủ nội thành + Gia Lâm, Thanh Trì, Hoài Đức): miễn phí. Từ 25 – 40km phụ thu 200K/đội. Trên 40km báo theo km và phụ thu lưu ca — báo giá chốt trước khi đặt cọc.', k:['đi xa','phí','khu vực']},
+  {q:'Có nấu chay hoặc đổi món theo vùng miền không?', a:'Có. Nồi chay nấu riêng, món mặn không lẫn — ghi chú trước khi chốt thực đơn. Đổi món trong cùng khung giá miễn phí trước 48 giờ (đổi canh măng sang canh mọc, cá kho sang tôm kho… đều được).', k:['chay','đổi món','thực đơn']},
+  {q:'Đặt cọc bao nhiêu, dời hoặc hủy thì sao?', a:'Cọc 30% sau khi chốt thực đơn để giữ đội và nguyên liệu. Dời lịch miễn phí trước 72 giờ. Hủy trước 48 giờ: hoàn cọc trừ chi phí nguyên liệu đã mua (báo chứng từ đầy đủ) — không giữ lại phần nào không dùng.', k:['cọc','hủy','dời']},
+  {q:'Ai dọn dẹp sau tiệc?', a:'Đội bếp gom rác, rửa dụng cụ của bếp, lau khu vực nấu — ra về bếp sạch như chưa nấu. Nếu thuê thêm phục vụ bưng mâm (+150K/đội) thì gồm cả thu gom chén đĩa tại bàn và rửa trọn bộ.', k:['dọn dẹp','rửa chén','sau tiệc']},
+  {q:'Đúng giờ giỗ đảm bảo bằng gì?', a:'Bếp trưởng lập lịch lùi ngược từ giờ cúng: từng món có giờ sơ chế, giờ lên bếp, giờ bày mâm. Trễ vì lỗi đội bếp: giảm 20% công nấu ngay trong hoá đơn — điều khoản ghi thẳng vào hợp đồng, không phải cam kết miệng.', k:['đúng giờ','giờ cúng','trễ']}
+];
+
+const vnd = n => (n * 1000).toLocaleString('vi-VN') + '₫';
+const iconCheck = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg>';
+const iconSm = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+
+/* ================= NB93-011 TOAST (title + message 2 phần tử) ================= */
+function toast(title, msg){
+  const z = document.getElementById('toastZone');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<span class="tic">' + iconCheck + '</span><span class="tt"><b>' + title + '</b><span>' + msg + '</span></span>';
+  z.appendChild(t);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 380); }, 3600);
+}
+
+/* ================= REVEAL + FAILSAFE ================= */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+setTimeout(function(){
+  try{
+    document.querySelectorAll('.rv,[data-rv]').forEach(function(el){
+      if (parseFloat(getComputedStyle(el).opacity) < 0.15){ el.style.opacity = '1'; el.style.transform = 'none'; el.classList.add('on'); }
+    });
+  }catch(e){}
+}, 1600);
+
+/* ================= COUNTERS ================= */
+const cio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    const to = +e.target.dataset.to, t0 = performance.now();
+    const step = now => {
+      const k = Math.min((now - t0) / 1400, 1);
+      e.target.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))).toLocaleString('vi-VN');
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}, {threshold:.4});
+document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
+
+/* ================= TOPBAR STATUS ================= */
+(function(){
+  const h = new Date().getHours();
+  const open = h >= 6 && h < 21;
+  const dot = document.getElementById('openDot'), txt = document.getElementById('openText');
+  if (!open) { dot.classList.add('closed'); txt.textContent = 'Ngoài giờ — để form đặt cỗ, sáng 6:00 bếp xử lý ngay'; }
+})();
+
+/* ================= TAPE ================= */
+(function(){
+  const items = ['TRỌN GÓI NGUYÊN LIỆU — KÊ RÕ TỪNG KÝ','NẤU TẠI NHÀ — BẾP ĐẾN SỚM 3 TIẾNG','ĐẶT CỖ THEO MÂM 3 · 5 · 7 · 10','ĐÚNG GIỜ CÚNG — TRỄ GIẢM 20% CÔNG','DỌN DẸP TRỌN GÓI — RA VỀ BẾP SẠCH','GỌI 0908 245 888 — CÓ ĐỘI DỰ PHÒNG'];
+  const half = items.map(s => '<span><i>✦</i>' + s + '</span>').join('');
+  document.getElementById('tapeIn').innerHTML = half + half;
+})();
+
+/* ================= ĐẶC THÙ — ĐẶT CỖ THEO MÂM ================= */
+const DC = {occ:'gio', trays:5, mode:'full'};
+function occOf(){ return OCC[DC.occ]; }
+function discOf(t){ return t >= 10 ? .08 : t >= 7 ? .05 : t >= 5 ? .03 : 0; }
+function teamOf(t){ return t <= 4 ? 3 : t <= 7 ? 4 : t <= 12 ? 6 : 8; }
+function baseOf(){ return DC.mode === 'full' ? occOf().full : occOf().half; }
+function mamDotsHtml(t){
+  const show = Math.min(t, 12);
+  let h = '';
+  for (let i = 0; i < show; i++) h += '<span class="mam-dot"></span>';
+  if (t > 12) h += '<span class="mam-more">+' + (t - 12) + '</span>';
+  return h;
+}
+function dcCalc(){
+  const trays = DC.trays;
+  const disc = discOf(trays);
+  const base = baseOf();
+  const per = Math.round(base * (1 - disc) / 10) * 10;
+  const total = per * trays;
+  /* viz */
+  document.getElementById('mamDots').innerHTML = mamDotsHtml(trays);
+  document.getElementById('mamCap').innerHTML = '<b>' + trays + ' mâm × 10 người = ' + (trays * 10) + ' khách</b> — đội bếp ' + teamOf(trays) + ' người';
+  /* menu preview */
+  const names = MENUS[DC.occ].items;
+  const show = names.slice(0, 6).map(x => '<li>' + iconCheck + '<span><b>' + x[0] + '</b> — ' + x[1] + '</span></li>').join('');
+  document.getElementById('dcMenu').innerHTML = show +
+    '<li><span class="occ-t">' + occOf().label + ' ' + occOf().dishes + '</span><a class="more" href="#thuc-don">Xem đủ thực đơn ↓</a></li>';
+  /* tier table */
+  document.querySelectorAll('.tier-tb tr[data-tier]').forEach(tr => tr.classList.remove('hit'));
+  const tierIdx = trays >= 10 ? 3 : trays >= 7 ? 2 : trays >= 5 ? 1 : 0;
+  document.querySelector('.tier-tb tr[data-tier="' + tierIdx + '"]').classList.add('hit');
+  [0, 1, 2, 3].forEach(i => {
+    const d = [0, .03, .05, .08][i];
+    document.getElementById('tp' + i).textContent = vnd(Math.round(base * (1 - d) / 10) * 10);
+  });
+  /* total */
+  const modeTxt = DC.mode === 'full' ? 'trọn gói nguyên liệu' : 'tự lo nguyên liệu';
+  document.getElementById('dcSummary').textContent = occOf().label + ' ' + occOf().dishes + ' × ' + trays + ' mâm · ' + modeTxt;
+  document.getElementById('dcTotal').textContent = vnd(total);
+  document.getElementById('dcSave').textContent = disc
+    ? 'Giảm ' + Math.round(disc * 100) + '% — tiết kiệm ' + vnd(base * trays * disc)
+    : 'Đơn dưới 5 mâm — thêm mâm để giảm 3%';
+  document.getElementById('dcBook').textContent = 'Giữ ' + trays + ' mâm này — bếp gọi lại 15 phút';
+}
+(function(){
+  const traysIn = document.getElementById('dcTrays');
+  const rangeIn = document.getElementById('dcRange');
+  function setTrays(t, src){
+    DC.trays = Math.max(2, Math.min(30, t || 2));
+    traysIn.value = DC.trays; rangeIn.value = DC.trays;
+    document.querySelectorAll('.mam-pick').forEach(b => b.classList.toggle('sel', +b.dataset.t === DC.trays));
+    dcCalc();
+  }
+  document.getElementById('mamPicks').addEventListener('click', e => {
+    const b = e.target.closest('.mam-pick'); if (!b) return;
+    setTrays(+b.dataset.t);
+  });
+  [traysIn, rangeIn].forEach(el => el.addEventListener('input', () => setTrays(+el.value)));
+  document.getElementById('occCards').addEventListener('change', e => {
+    if (e.target.name !== 'occ') return;
+    DC.occ = e.target.value;
+    document.querySelectorAll('#occCards .set-card').forEach(c => c.classList.toggle('sel', c.querySelector('input').checked));
+    dcCalc();
+  });
+  document.getElementById('modeCards').addEventListener('change', e => {
+    if (e.target.name !== 'mode') return;
+    DC.mode = e.target.value;
+    document.querySelectorAll('#modeCards .set-card').forEach(c => c.classList.toggle('sel', c.querySelector('input').checked));
+    dcCalc();
+  });
+  dcCalc();
+  document.getElementById('dcBook').addEventListener('click', () => {
+    openBooking({
+      pkg: occOf().label + ' ' + occOf().dishes + ' theo mâm',
+      occ: DC.occ,
+      trays: DC.trays,
+      mode: DC.mode,
+      est: 'Dự kiến ' + vnd(Math.round(baseOf() * (1 - discOf(DC.trays)) / 10) * 10 * DC.trays) + ' — chốt sau khi bếp xác nhận'
+    });
+  });
+})();
+
+/* ================= KHỐI-8: 8 GÓI DỊCH VỤ ================= */
+(function(){
+  const track = document.getElementById('carTrack');
+  track.innerHTML = PKG.map(p =>
+    '<article class="pkg">' +
+    '<div class="pkg-img"><img src="' + p.img + '" alt="' + p.n + '" loading="lazy"><span class="ptag">' + p.tag + '</span></div>' +
+    '<div class="pkg-body"><h4>' + p.n + '</h4><span class="pd">' + p.d + '</span>' +
+    '<div class="pkg-meta"><span>' + iconSm + p.meta + '</span></div>' +
+    '<div class="prow"><div class="pprice"><b>' + vnd(p.price) + '</b><span>' + p.unit + '</span></div>' +
+    '<button class="btn btn-accent" data-book data-pkg="' + p.n + '">Đặt gói này</button></div>' +
+    '<div class="ptier">' + p.tier + '</div>' +
+    '</div></article>'
+  ).join('');
+  let idx = 0;
+  const perView = () => window.innerWidth <= 680 ? 1 : 2;
+  const maxIdx = () => PKG.length - perView();
+  const step = () => { const c = track.querySelector('.pkg'); return c ? c.getBoundingClientRect().width + 22 : 1; };
+  function render(){
+    document.getElementById('carCount').textContent = (idx + 1) + '–' + Math.min(idx + perView(), PKG.length) + ' / 8';
+    document.getElementById('carBar').style.width = ((idx + perView()) / PKG.length * 100) + '%';
+  }
+  function update(){
+    track.scrollTo({left: idx * step(), behavior:'smooth'});
+    render();
+  }
+  document.getElementById('carPrev').addEventListener('click', () => { idx = idx <= 0 ? maxIdx() : idx - 1; update(); });
+  document.getElementById('carNext').addEventListener('click', () => { idx = idx >= maxIdx() ? 0 : idx + 1; update(); });
+  track.addEventListener('scroll', () => {
+    const i = Math.max(0, Math.min(maxIdx(), Math.round(track.scrollLeft / step())));
+    if (i !== idx) { idx = i; render(); }
+  });
+  window.addEventListener('resize', () => { idx = Math.min(idx, maxIdx()); update(); });
+  render();
+})();
+
+/* ================= NÚT BOOKING TRÊN TOÀN TRANG ================= */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-book]');
+  if (b) openBooking({pkg: b.dataset.pkg || 'Đặt cỗ', occ: (PKG.find(x => x.n === b.dataset.pkg) || {}).occ});
+});
+
+/* ================= THỰC ĐƠN — BOARD ================= */
+let boardTab = 'gio', boardFilter = '';
+(function(){
+  const tabsEl = document.getElementById('boardTabs');
+  const listEl = document.getElementById('boardList');
+  const footEl = document.getElementById('boardFoot');
+  const keys = Object.keys(MENUS);
+  const d = new Date();
+  document.getElementById('boardDate').textContent = 'Cập nhật — ' + d.toLocaleDateString('vi-VN', {weekday:'long', day:'numeric', month:'numeric'});
+  function renderTabs(){
+    tabsEl.innerHTML = keys.map(k =>
+      '<button class="btab' + (k === boardTab && !boardFilter ? ' act' : '') + '" data-k="' + k + '">' + MENUS[k].t + '<span class="t">' + MENUS[k].items.length + ' món</span></button>'
+    ).join('');
+  }
+  function renderList(){
+    if (boardFilter){
+      const q = boardFilter;
+      const hits = [];
+      keys.forEach(k => MENUS[k].items.forEach(it => {
+        if (it[0].toLowerCase().includes(q) || it[1].toLowerCase().includes(q)) hits.push([k, it]);
+      }));
+      listEl.innerHTML = hits.map(h =>
+        '<div class="mrow"><div class="mi"><span class="mn"><b>' + h[1][0] + '</b><span class="occ-t">' + OCC[h[0]].label + '</span></span>' +
+        '<span class="md">' + h[1][1] + '</span></div><span class="dots"></span><span class="mp">' + iconCheck + '</span></div>'
+      ).join('');
+      footEl.textContent = hits.length
+        ? 'Đang lọc "' + boardFilter + '" — ' + hits.length + ' món khớp trong 3 thực đơn. Bấm tab để về bảng thực đơn đầy đủ.'
+        : 'Không có món nào khớp "' + boardFilter + '" — gọi 0908 245 888, bếp nấu theo yêu cầu nếu kịp nguyên liệu.';
+      return;
+    }
+    const items = MENUS[boardTab].items;
+    listEl.innerHTML = items.map((it, i) =>
+      '<div class="mrow"><div class="mi"><span class="mn"><b>' + (i + 1) + '. ' + it[0] + '</b>' + (i === 0 ? '<span class="hot">Món đầu mâm</span>' : '') + '</span>' +
+      '<span class="md">' + it[1] + '</span></div><span class="dots"></span><span class="mp">' + iconCheck + '</span></div>'
+    ).join('');
+    const o = OCC[boardTab];
+    footEl.textContent = o.label + ' ' + o.dishes + ' — ' + vnd(o.full) + '/mâm (10 người) trọn gói nguyên liệu · đặt từ 2 mâm, ưu đãi từ 5 mâm.';
+  }
+  tabsEl.addEventListener('click', e => {
+    const b = e.target.closest('.btab'); if (!b) return;
+    boardTab = b.dataset.k; boardFilter = '';
+    document.getElementById('searchInput').value = '';
+    renderTabs(); renderList();
+  });
+  window.__renderBoard = function(q){
+    boardFilter = (q || '').trim().toLowerCase();
+    renderTabs(); renderList();
+  };
+  renderTabs(); renderList();
+})();
+
+/* ================= HEADER SEARCH (lọc thật + toast) ================= */
+function doSearch(){
+  const q = document.getElementById('searchInput').value.trim();
+  if (!q) return;
+  window.__renderBoard(q);
+  const n = document.querySelectorAll('#boardList .mrow').length;
+  document.getElementById('thuc-don').scrollIntoView({behavior:'smooth'});
+  if (n) toast('Tìm thấy ' + n + ' món khớp', '"' + q + '" — xem trong bảng thực đơn bên dưới');
+  else toast('Không có món nào khớp', '"' + q + '" — thử "nem", "gà", "canh" hoặc gọi bếp');
+}
+document.getElementById('searchBtn').addEventListener('click', doSearch);
+document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+/* ================= REVIEWS ================= */
+(function(){
+  let i = 0, timer;
+  const dots = document.getElementById('revDots');
+  dots.innerHTML = REVIEWS.map((_, j) => '<i data-j="' + j + '"' + (j === 0 ? ' class="on"' : '') + '></i>').join('');
+  function show(j){
+    i = j;
+    const r = REVIEWS[j];
+    document.getElementById('revText').textContent = r.t;
+    document.getElementById('revName').textContent = r.n;
+    document.getElementById('revArea').textContent = r.a;
+    document.getElementById('revAv').textContent = r.n.trim().charAt(0).toUpperCase();
+    dots.querySelectorAll('i').forEach((d, k) => d.classList.toggle('on', k === j));
+  }
+  function auto(){ timer = setInterval(() => show((i + 1) % REVIEWS.length), 6000); }
+  dots.addEventListener('click', e => {
+    const d = e.target.closest('i'); if (!d) return;
+    clearInterval(timer); show(+d.dataset.j); auto();
+  });
+  show(0); auto();
+})();
+
+/* ================= DRAWER ĐẶT CỖ (booking) ================= */
+const overlay = document.getElementById('overlay');
+const bkDrawer = document.getElementById('bkDrawer');
+const MODE_LB = {full:'trọn gói nguyên liệu', half:'tự lo nguyên liệu', un:'chưa rõ'};
+let BKSEL = {pkg:null, occ:'', trays:null, mode:'', est:''};
+function openBooking(sel){
+  if (sel && (sel.pkg || sel.occ || sel.trays)) Object.assign(BKSEL, sel);
+  const sum = document.getElementById('bkSumText');
+  const est = document.getElementById('bkEst');
+  if (BKSEL.pkg){
+    let line = 'Gói: ' + BKSEL.pkg;
+    if (BKSEL.trays) line = BKSEL.pkg + ' · ' + BKSEL.trays + ' mâm' + (BKSEL.mode ? ' · ' + (MODE_LB[BKSEL.mode] || '') : '');
+    sum.textContent = line;
+    if (BKSEL.occ) document.getElementById('bkOcc').value = BKSEL.occ;
+    if (BKSEL.trays) document.getElementById('bkTrays').value = BKSEL.trays;
+    if (BKSEL.mode) document.getElementById('bkMode').value = BKSEL.mode;
+    est.hidden = !BKSEL.est;
+    est.textContent = BKSEL.est || 'Bếp báo giá chính xác khi gọi lại.';
+  } else {
+    sum.textContent = 'Chưa chọn gói — điền form, bếp tư vấn theo dịp của bạn.';
+    est.hidden = true;
+  }
+  bkDrawer.classList.add('on'); overlay.classList.add('on');
+}
+function closeBooking(){ bkDrawer.classList.remove('on'); overlay.classList.remove('on'); }
+document.getElementById('bkClose').addEventListener('click', closeBooking);
+overlay.addEventListener('click', closeBooking);
+document.getElementById('hdBook').addEventListener('click', () => openBooking());
+document.getElementById('dockBook').addEventListener('click', () => openBooking());
+document.getElementById('bkForm').addEventListener('submit', e => e.preventDefault());
+document.getElementById('bkSubmit').addEventListener('click', () => {
+  const name = document.getElementById('bkName').value.trim();
+  const phone = document.getElementById('bkPhone').value.trim();
+  const trays = +document.getElementById('bkTrays').value || 0;
+  if (!name || phone.replace(/\D/g, '').length < 9){
+    toast('Thiếu thông tin', 'Cho mình xin tên + số điện thoại để bếp gọi lại nhé');
+    return;
+  }
+  if (trays < 1){
+    toast('Chưa có số mâm', 'Ghi giúp bếp số mâm (hoặc số khách) để chuẩn nguyên liệu đúng');
+    return;
+  }
+  const code = 'MD-' + Math.floor(1000 + Math.random() * 9000);
+  BKSEL = {pkg:null, occ:'', trays:null, mode:'', est:''};
+  document.getElementById('bkForm').reset();
+  closeBooking();
+  toast('Đã nhận yêu cầu cỗ ' + code, 'Bếp Mâm Đỏ gọi xác nhận trong 15 phút — nghe máy số lạ nhé');
+});
+
+/* ================= FORM LIÊN HỆ ================= */
+document.getElementById('ctForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('ctName').value.trim();
+  const phone = document.getElementById('ctPhone').value.trim();
+  if (!name || phone.replace(/\D/g, '').length < 9){
+    toast('Thiếu thông tin', 'Cho mình xin tên + số điện thoại để bếp gọi lại nhé');
+    return;
+  }
+  toast('Bếp đã nhận lời nhắn', 'Gọi lại xác nhận trong 15 phút — chuyện cỗ cứ từ từ nói');
+  e.target.reset();
+});
+
+/* ================= FAQ ================= */
+(function(){
+  const list = document.getElementById('faqList');
+  const chipsEl = document.getElementById('faqChips');
+  const keys = [...new Set(FAQ.flatMap(f => f.k))];
+  chipsEl.innerHTML = keys.map(k => '<button class="fchip" data-k="' + k + '">' + k + '</button>').join('');
+  function render(filter){
+    const f = (filter || '').toLowerCase();
+    const items = FAQ.filter(x => !f || x.q.toLowerCase().includes(f) || x.a.toLowerCase().includes(f) || x.k.some(k => k.includes(f)));
+    document.getElementById('faqEmpty').style.display = items.length ? 'none' : 'block';
+    list.innerHTML = items.map(x =>
+      '<div class="faq-item"><button class="faq-q">' + x.q + '<span class="pm">+</span></button>' +
+      '<div class="faq-a"><p>' + x.a + '</p></div></div>'
+    ).join('');
+  }
+  list.addEventListener('click', e => {
+    const q = e.target.closest('.faq-q'); if (!q) return;
+    const item = q.parentElement;
+    const a = item.querySelector('.faq-a');
+    const open = item.classList.contains('open');
+    list.querySelectorAll('.faq-item.open').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null; });
+    if (!open) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+  });
+  chipsEl.addEventListener('click', e => {
+    const c = e.target.closest('.fchip'); if (!c) return;
+    chipsEl.querySelectorAll('.fchip').forEach(x => x.classList.remove('on'));
+    c.classList.add('on');
+    document.getElementById('faqInput').value = c.dataset.k;
+    render(c.dataset.k);
+  });
+  document.getElementById('faqInput').addEventListener('input', e => {
+    chipsEl.querySelectorAll('.fchip').forEach(x => x.classList.remove('on'));
+    render(e.target.value);
+  });
+  render('');
+})();
+
+/* ================= DOCK ================= */
+const dock = document.getElementById('dock');
+new IntersectionObserver(es => {
+  dock.classList.toggle('show', !es[0].isIntersecting);
+}, {threshold:.05}).observe(document.getElementById('top'));
+
+/* ================= DOCK HIDE KHI CUỘN XUỐNG (NB93-011) ================= */
+(function(){
+  var last = window.scrollY;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    dock.style.bottom = (y > last && y > 240) ? '-150px' : '';
+    last = y;
+  }, {passive:true});
+})();
+
+/* ================= NB93-011: mặc định ngày tổ chức = 3 ngày nữa ================= */
+(function(){
+  const d = new Date(Date.now() + 3 * 86400000);
+  const el = document.getElementById('bkDate');
+  el.min = new Date().toISOString().slice(0, 10);
+  el.value = d.toISOString().slice(0, 10);
+})();
+</script>
+
+<!-- NB93-011: widget chat tư vấn (demo bot) — cơ chế từ exemplar, nội dung nghề cỗ -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn Bếp Mâm Đỏ</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/* NB93-011: chat widget */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#B01E2A,#7A1E2E);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(122,30,46,.6);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#F5C36B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(245,195,107,.25)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(58,10,20,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#7A1E2E,#3A0A14);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#FAF5EA}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(87,19,34,.08);border-bottom-left-radius:4px;color:#2A2226}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#B01E2A,#7A1E2E);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(87,19,34,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#B9A6AB;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(87,19,34,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(176,30,42,.4);color:#B01E2A;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:32px}
+.pkc-chip:hover{background:#F9E3DE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(87,19,34,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(87,19,34,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#B01E2A;box-shadow:0 0 0 3px rgba(176,30,42,.12)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#B01E2A,#7A1E2E);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{bottom:78px;right:12px;width:52px;height:52px}}
+</style>
+<script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+</body>
+</html>

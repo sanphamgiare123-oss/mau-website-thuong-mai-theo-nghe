@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ký Tín — Dịch vụ Chữ ký số &amp; Hóa đơn điện tử cho doanh nghiệp tại TP.HCM</title>
+<meta name="description" content="Ký Tín — cung cấp chứng thư số doanh nghiệp (USB token) và phần mềm hóa đơn điện tử: gói theo năm 1/2/3 năm, cấp trong 1–2 giờ làm việc, kỹ thuật viên cài đặt tận nơi, nhắc gia hạn trước 30 ngày. Chuyên doanh nghiệp mới thành lập và kế toán. Nhận báo giá trong 30 phút — gọi 0901 475 268.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-324: TOKENS — xanh navy công nghệ & teal chữ ký số — nghề chứng thư số, hóa đơn điện tử*/
+:root{
+  --primary:#11507E;
+  --primary-2:#1B6AA8;
+  --primary-deep:#0A2E4D;
+  --ink:#22313F;
+  --soft:#5A6C7C;
+  --texture:#F4F9FA;
+  --texture-2:#E6F1F3;
+  --card:#FFFFFF;
+  --line:#DFEAEE;
+  --line-2:#C4D8DE;
+  --accent:#0E9488;
+  --accent-2:#22B0A2;
+  --accent-deep:#0A6C63;
+  --accent-100:#DCF4F0;
+  --ok:#1E8E5A;
+  --danger:#C0392B;
+  --grad-accent:linear-gradient(135deg,#22B0A2,#0E9488);
+  --grad-dark:linear-gradient(140deg,#1B6AA8,#11507E 52%,#0A2E4D);
+  --sh1:0 2px 10px rgba(10,46,77,.07);
+  --sh2:0 12px 32px rgba(10,46,77,.13);
+  --sh3:0 26px 64px rgba(10,46,77,.24);
+  --r1:10px; --r2:16px; --r3:24px; --r4:32px;
+  --hazard:repeating-linear-gradient(45deg,rgba(14,148,136,.09) 0 16px,transparent 16px 32px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.6;font-size:15.5px;
+}
+/*NB93-324: img toàn cục height:auto — chống height attr ghi đè aspect-ratio*/
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.block{display:block}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.i.f{fill:currentColor;stroke:none}
+::selection{background:var(--accent-100);color:var(--accent-deep)}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+.sec-title{text-align:center;font-size:2.1rem;font-weight:900;color:var(--primary)}
+.sec-sub{display:block;text-align:center;color:var(--soft);font-size:.98rem;margin-top:8px;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid rgba(14,148,136,.28)}
+.hl{background:var(--grad-accent);color:#fff;padding:2px 12px 4px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/*NB93-324: NÚT*/
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:14px 24px;font-size:.98rem;transition:.25s;position:relative;overflow:hidden;min-height:50px}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 10px 26px rgba(14,148,136,.32)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(14,148,136,.4)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line-2);box-shadow:var(--sh1)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-2px)}
+.btn-call{background:var(--grad-dark);color:#fff;box-shadow:0 10px 26px rgba(10,46,77,.28)}
+.btn-call:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(10,46,77,.36)}
+.btn-call::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-call:hover::after{left:130%}
+.btn-xl{font-size:1.14rem;padding:20px 30px;border-radius:18px;min-height:70px}
+.btn .num{font-size:1.28em;font-weight:900;letter-spacing:.02em}
+
+/*NB93-324: TOPBAR*/
+.topbar{background:var(--primary-deep);color:#C9DEEA;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px;flex-wrap:wrap}
+.topbar .tb-l{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-width:0}
+.topbar .tb-l span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar .i{width:15px;height:15px;color:var(--accent-2)}
+.topbar .hot{color:#C8F2EA;font-weight:800;display:inline-flex;gap:6px;align-items:center}
+.topbar .hot b{font-size:1.02em;color:#fff;letter-spacing:.03em;white-space:nowrap}
+
+/*NB93-324: HEADER*/
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2);box-shadow:0 8px 20px rgba(10,46,77,.3)}
+.logo .mark .i{width:24px;height:24px}
+.logo .lg-t{display:block;font-weight:900;font-size:1.22rem;line-height:1.1;color:var(--primary)}
+.logo .lg-s{display:block;font-size:.68rem;font-weight:700;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:330px;min-width:0}
+.search input{width:100%;padding:11px 14px 11px 40px;border-radius:12px;border:1.5px solid var(--line);background:var(--texture);transition:.2s}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-100)}
+.search .i{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.search .drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:14px;border:1.5px solid var(--line);box-shadow:var(--sh2);overflow:hidden;display:none;z-index:70}
+.search .drop.open{display:block}
+.search .drop button{display:flex;width:100%;gap:10px;align-items:center;padding:11px 14px;font-size:.88rem;font-weight:600;text-align:left;border-bottom:1px solid #EFF5F7}
+.search .drop button:last-child{border-bottom:0}
+.search .drop button:hover{background:var(--accent-100)}
+.search .drop .i{position:static;transform:none;width:16px;height:16px;color:var(--accent)}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{font-weight:700;font-size:.9rem;color:var(--ink);padding:9px 13px;border-radius:10px;transition:.2s}
+nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
+.hd-cta{display:flex;gap:10px;align-items:center}
+.hd-cta .btn{padding:11px 18px;min-height:46px;font-size:.88rem}
+.icon-btn{width:46px;height:46px;border-radius:13px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;color:var(--primary);position:relative;transition:.2s}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+/*NB93-324: HERO — poster giữ khung 16/9 đúng hướng ảnh nguồn*/
+.hero{position:relative;background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='%232F7FB8' stroke-width='1.2'%3E%3Cpath d='M8 104c18-26 34-26 52-4s32 18 50-6 24-22 40-10'/%3E%3Cpath d='M118 22l14-8 8 14-18 10z'/%3E%3Cpath d='M104 52c8-2 14-8 16-16' stroke='%2322B0A2'/%3E%3Ccircle cx='128' cy='44' r='3' stroke='%2322B0A2'/%3E%3C/g%3E%3C/svg%3E");opacity:.26}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:44px;align-items:center}
+.hero .eyebrow{background:rgba(34,176,162,.14);border-color:rgba(34,176,162,.45);color:#9FE8DE}
+.hero h1{font-size:clamp(2.15rem,4.4vw,3.5rem);font-weight:900;margin:18px 0 14px;color:#fff}
+.hero .lead{color:#D8E6F0;font-size:1.03rem;max-width:520px;font-weight:500}
+.hero .lead b{color:#fff}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);padding:8px 13px;border-radius:999px;color:#E8F1F7}
+.trust .i{width:15px;height:15px;color:var(--accent-2)}
+.hero-media{position:relative;min-width:0;min-height:520px}
+.hm-main{width:100%;border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh3);overflow:hidden;position:relative;z-index:2;animation:fl1 7s ease-in-out infinite}
+.hm-main img{aspect-ratio:16/9;object-fit:cover;width:100%;object-position:center}
+.hm-main .pr-tag{position:absolute;left:16px;bottom:16px;background:rgba(10,46,77,.82);backdrop-filter:blur(6px);color:#fff;font-weight:800;font-size:.85rem;padding:9px 15px;border-radius:12px;display:flex;gap:8px;align-items:center;max-width:calc(100% - 32px)}
+.hm-main .pr-tag .i{width:16px;height:16px;color:var(--accent-2)}
+.hm-badge{position:absolute;right:-8px;top:-12px;z-index:4;background:var(--grad-accent);color:#fff;border-radius:18px;padding:14px 18px;text-align:center;box-shadow:0 14px 30px rgba(14,148,136,.4);animation:fl2 7.5s ease-in-out infinite}
+.hm-badge .bt{display:block;font-size:1.5rem;font-weight:900;line-height:1}
+.hm-badge .bs{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.hm-stats{position:absolute;left:-6px;bottom:-12px;z-index:5;display:flex;gap:0;background:rgba(10,46,77,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden}
+.hm-stats div{padding:13px 18px;text-align:center;border-right:1.5px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:0}
+.hm-stats b{display:block;font-size:1.18rem;font-weight:900;color:#9FE8DE}
+.hm-stats span{display:block;font-size:.7rem;font-weight:600;color:#D8E6F0;max-width:130px}
+.hm-note{position:absolute;left:-6px;bottom:-46px;font-size:.68rem;font-weight:600;color:#8FB4CE;letter-spacing:.01em}
+@keyframes fl1{0%,100%{transform:rotate(-1.6deg) translateY(0)}50%{transform:rotate(-1.2deg) translateY(-8px)}}
+@keyframes fl2{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(2.4deg) translateY(-9px)}}
+
+/*NB93-324: TAPE MARQUEE*/
+.tape{background:var(--primary-deep);margin:-40px 0 0;position:relative;z-index:10;overflow:hidden;border-top:1.5px solid rgba(34,176,162,.4);border-bottom:1.5px solid rgba(34,176,162,.4)}
+.tape-track{display:flex;gap:0;width:max-content;animation:tape 32s linear infinite;padding:12px 0}
+.tape-track span{display:inline-flex;align-items:center;gap:10px;color:#D8E6F0;font-weight:700;font-size:.88rem;white-space:nowrap;padding:0 22px;border-right:1.5px dashed rgba(34,176,162,.45)}
+.tape-track .i{width:16px;height:16px;color:var(--accent-2)}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/*NB93-324: SECTION KHUNG*/
+section{position:relative}
+.sec{padding:88px 0}
+.sec.alt{background:linear-gradient(180deg,#fff,var(--texture))}
+.sec .head{max-width:680px;margin:0 auto 46px}
+
+/*NB93-324: 3 THẺ GÓI NỔI BẬT — thẻ to nhất có bảng gói theo năm*/
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.fcard{background:#fff;border-radius:var(--r3);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh1);display:flex;flex-direction:column;position:relative;transition:.3s;min-width:0}
+.fcard:hover{transform:translateY(-7px);box-shadow:var(--sh2);border-color:var(--line-2)}
+.fcard .fimg{position:relative;aspect-ratio:4/3;overflow:hidden;min-height:0}
+.fcard .fimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.fcard:hover .fimg img{transform:scale(1.05)}
+.fcard .badge{position:absolute;top:14px;left:14px;background:var(--grad-dark);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center}
+.fcard .badge .i{width:13px;height:13px;color:var(--accent-2)}
+.fcard .price-ov{position:absolute;bottom:14px;right:14px;background:rgba(10,46,77,.82);backdrop-filter:blur(6px);color:#fff;font-weight:900;font-size:.9rem;padding:8px 14px;border-radius:12px}
+.fcard .price-ov small{font-weight:600;color:#9FE8DE}
+.fcard .fbody{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.fcard h3{font-size:1.18rem;font-weight:900;color:var(--primary)}
+.fcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcard li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--soft);font-weight:500}
+.fcard li .i{width:17px;height:17px;color:var(--ok);margin-top:2px}
+.fcard .btn{width:100%;margin-top:auto}
+.fcard .fine{font-size:.74rem;color:var(--soft);font-weight:600;display:flex;gap:7px;align-items:flex-start}
+.fcard .fine .i{width:14px;height:14px;color:var(--accent);margin-top:2px;flex:0 0 auto}
+.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(14,148,136,.12),transparent 65%);opacity:0;transition:opacity .3s}
+.spot:hover::after{opacity:1}
+/*NB93-324: fbig — thẻ trọn bộ DN mới thành lập, chiếm trọn 1 hàng, bảng gói 1/2/3 năm*/
+.fcard.fbig{grid-column:1/-1;display:block}
+.fcard.fbig .fimg{aspect-ratio:3/2}
+.fcard.fbig .fimg img{object-position:center 25%}
+.fcard.fbig h3{font-size:1.62rem}
+.fcard.fbig .fbody{padding:26px 28px;display:block}
+.fcard.fbig ul{display:grid;grid-template-columns:repeat(2,1fr);column-gap:26px;margin:4px 0 14px}
+.fcard.fbig .price-ov{font-size:1.02rem;padding:10px 16px}
+.fcard.fbig .fbot{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+.fcard.fbig .fbot .fbot-r{display:flex;flex-direction:column;gap:12px}
+.fcard .ribbon{position:absolute;top:24px;right:-52px;z-index:5;transform:rotate(45deg);background:var(--grad-dark);color:#fff;font-weight:900;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 58px;box-shadow:0 10px 24px rgba(10,46,77,.4);border-top:1.5px solid rgba(34,176,162,.55);border-bottom:1.5px solid rgba(34,176,162,.55)}
+/*NB93-324: bảng gói theo năm — dấu ấn nghề*/
+.mtier{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.mtier .t-h{background:var(--primary);color:#fff;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:9px 14px;display:flex;gap:8px;align-items:center}
+.mtier .t-h .i{width:15px;height:15px;color:var(--accent-2)}
+.mtier .t-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;font-size:.82rem;font-weight:600;color:var(--soft);border-bottom:1.5px solid #EFF5F7}
+.mtier .t-row:last-child{border-bottom:0}
+.mtier .t-row b{color:var(--accent-deep);font-weight:900;white-space:nowrap}
+.mtier .t-row em{display:block;font-style:normal;font-size:.72rem;font-weight:700;color:var(--ok)}
+.mtier .t-row.hot{background:var(--accent-100);color:var(--accent-deep)}
+.mtier .t-row.hot b{color:var(--accent-deep)}
+
+/*NB93-324: DẢI 5 LIÊN KẾT NHANH*/
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.strip a{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 14px;display:flex;align-items:center;gap:12px;transition:.25s;box-shadow:var(--sh1);min-width:0;cursor:pointer}
+.strip a:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--sh2)}
+.strip .ic{width:42px;height:42px;border-radius:12px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto}
+.strip .ic .i{width:21px;height:21px}
+.strip b{display:block;font-size:.86rem;font-weight:800;color:var(--primary);line-height:1.3}
+.strip small{display:block;font-size:.72rem;color:var(--soft);font-weight:600}
+.strip .arr{margin-left:auto;color:var(--line-2);transition:.2s}
+.strip a:hover .arr{color:var(--accent);transform:translateX(3px)}
+
+/*NB93-324: KHỐI-8 — bento kín ô 4 cột: 1 thẻ nổi bật 2x2 + 7 dịch vụ + 1 thẻ CTA = 12 ô*/
+.k8{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;grid-auto-flow:dense}
+.k8 .kb{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh1);display:flex;flex-direction:column;transition:.3s;min-width:0;position:relative}
+.k8 .kb:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(14,148,136,.45)}
+.k8 .kb.flash{outline:3px solid var(--accent);outline-offset:2px;box-shadow:var(--sh3)}
+.k8 .kb-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.k8 .kb-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.k8 .kb:hover .kb-img img{transform:scale(1.05)}
+.k8 .kb-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.k8 .kb-body h3{font-size:.98rem;font-weight:900;color:var(--primary);line-height:1.32}
+.k8 .kb-sub{font-size:.8rem;color:var(--soft);font-weight:500;flex:1}
+.k8 .kb-meta{display:flex;flex-direction:column;gap:5px}
+.k8 .kb-meta span{display:inline-flex;gap:7px;align-items:center;font-size:.76rem;font-weight:700;color:var(--ink)}
+.k8 .kb-meta span b{color:var(--accent-deep);font-weight:900}
+.k8 .kb-meta .i{width:14px;height:14px;color:var(--accent)}
+.k8 .kb .btn{width:100%;min-height:44px;padding:10px 14px;font-size:.85rem}
+/* thẻ nổi bật 2x2 — TO hơn hẳn */
+.k8 .kb-feat{grid-column:span 2;grid-row:span 2;border:1.5px solid rgba(14,148,136,.5)}
+.k8 .kb-feat .kb-img{aspect-ratio:3/2}
+.k8 .kb-feat .kb-img img{object-position:center 25%}
+.k8 .kb-feat .kb-body{padding:22px 24px;gap:12px}
+.k8 .kb-feat h3{font-size:1.42rem}
+.k8 .kb-feat .kb-sub{font-size:.88rem;flex:0 0 auto}
+.k8 .kb-feat .mtier{margin-top:2px}
+.k8 .kb-feat .kb-meta{flex-direction:row;gap:20px;flex-wrap:wrap}
+.k8 .kb-feat .kb-acts{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.k8 .kb-feat .kb-acts .btn{width:auto;flex:1;min-width:200px;min-height:50px;font-size:.95rem}
+.k8 .kb-feat .kb-acts .note{font-size:.75rem;color:var(--soft);font-weight:600;display:inline-flex;gap:6px;align-items:flex-start;flex:1 1 200px;min-width:0}
+.k8 .kb-feat .kb-acts .note .i{width:14px;height:14px;color:var(--accent);margin-top:2px}
+.k8 .ribbon{position:absolute;top:20px;right:-50px;z-index:5;transform:rotate(45deg);background:var(--grad-accent);color:#fff;font-weight:900;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 56px;box-shadow:0 10px 24px rgba(14,148,136,.4)}
+.k8 .kb-feat .badge{position:absolute;top:14px;left:14px;background:var(--grad-dark);color:#fff;font-weight:800;font-size:.74rem;padding:6px 12px;border-radius:999px;letter-spacing:.03em;display:inline-flex;gap:6px;align-items:center;z-index:3}
+.k8 .kb-feat .badge .i{width:13px;height:13px;color:var(--accent-2)}
+/* thẻ CTA lấp ô cuối — cùng cỡ thẻ thường */
+.k8 .kb-cta{background:var(--grad-dark);border:0;color:#fff;justify-content:center;gap:10px;padding:20px 18px;text-align:center}
+.k8 .kb-cta .ci{width:48px;height:48px;border-radius:14px;background:rgba(34,176,162,.22);border:1.5px solid rgba(34,176,162,.5);display:grid;place-items:center;margin:0 auto}
+.k8 .kb-cta .ci .i{width:24px;height:24px;color:var(--accent-2)}
+.k8 .kb-cta h3{font-size:1rem;font-weight:900;color:#fff}
+.k8 .kb-cta p{font-size:.78rem;color:#C9DEEA;font-weight:500;flex:1}
+.k8 .kb-cta .btn{min-height:44px;font-size:.85rem}
+.k8-note{margin:20px auto 0;max-width:1120px;font-size:.8rem;color:var(--soft);font-weight:500;display:flex;gap:8px;align-items:flex-start}
+.k8-note .i{width:15px;height:15px;color:var(--accent);margin-top:2px}
+.k8-headbox{background:var(--grad-dark);color:#fff;border-radius:18px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin:0 0 26px;box-shadow:0 16px 40px rgba(10,46,77,.28)}
+.k8-headbox .cb{flex:1 1 300px;min-width:0}
+.k8-headbox .lb{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#B9CFE2}
+.k8-headbox .num{font-size:clamp(24px,4.2vw,34px);font-weight:900;letter-spacing:-.5px;line-height:1.1;margin-top:2px;color:#fff;white-space:nowrap}
+.k8-headbox .st{font-size:.84rem;margin-top:5px;color:#D8E6F0;line-height:1.5}
+.k8-headbox .acts{display:flex;gap:10px;flex-wrap:wrap}
+
+/*NB93-324: KHỐI ĐẶC THÙ — checklist giấy tờ đăng ký + thời hạn xử lý + disclaimer pháp lý*/
+#hoso{background:linear-gradient(180deg,var(--texture),#fff)}
+.hs-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
+.hs-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:24px;min-width:0}
+.hs-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.hs-tab{padding:10px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--texture);font-size:.82rem;font-weight:800;color:var(--soft);transition:.2s;min-height:42px}
+.hs-tab:hover{border-color:var(--accent)}
+.hs-tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(14,148,136,.3)}
+.hs-prog{display:flex;align-items:center;gap:12px;background:var(--accent-100);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+.hs-prog .i{width:18px;height:18px;color:var(--accent-deep)}
+.hs-prog b{font-size:.86rem;font-weight:900;color:var(--accent-deep)}
+.hs-prog .bar{flex:1;height:8px;border-radius:99px;background:rgba(14,148,136,.18);overflow:hidden;min-width:60px}
+.hs-prog .bar i{display:block;height:100%;width:0;background:var(--grad-accent);border-radius:99px;transition:width .35s}
+ul.ck{list-style:none;display:flex;flex-direction:column;gap:8px}
+ul.ck li{margin:0}
+ul.ck button{width:100%;display:flex;gap:11px;align-items:flex-start;text-align:left;padding:11px 13px;border:1.5px solid var(--line);border-radius:13px;background:var(--texture);font-size:.86rem;font-weight:600;color:var(--ink);transition:.2s;min-height:44px}
+ul.ck button .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line-2);background:#fff;display:grid;place-items:center;flex:0 0 auto;margin-top:1px;transition:.2s}
+ul.ck button .box .i{width:13px;height:13px;color:#fff;opacity:0;transition:.2s}
+ul.ck button.ok{border-color:rgba(14,148,136,.5);background:var(--accent-100)}
+ul.ck button.ok .box{background:var(--grad-accent);border-color:transparent}
+ul.ck button.ok .box .i{opacity:1}
+ul.ck button span em{display:block;font-style:normal;font-size:.74rem;font-weight:500;color:var(--soft)}
+.hs-acts{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.hs-acts .btn{min-height:46px;padding:11px 20px;font-size:.88rem}
+.hs-acts .note{font-size:.75rem;color:var(--soft);font-weight:600;display:inline-flex;gap:6px;align-items:flex-start;max-width:320px}
+.hs-acts .note .i{width:14px;height:14px;color:var(--accent);margin-top:2px}
+.hs-side{display:flex;flex-direction:column;gap:20px;min-width:0}
+.tl-title{font-size:.8rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.tl-title .i{width:16px;height:16px;color:var(--accent)}
+.tl{list-style:none;display:flex;flex-direction:column}
+.tl li{display:flex;gap:14px;position:relative;padding:0 0 18px 0}
+.tl li:last-child{padding-bottom:0}
+.tl .dot{width:34px;height:34px;border-radius:50%;background:var(--grad-dark);color:var(--accent-2);display:grid;place-items:center;font-size:.78rem;font-weight:900;flex:0 0 auto;z-index:1}
+.tl li::before{content:'';position:absolute;left:16px;top:34px;bottom:0;width:2px;background:var(--line-2)}
+.tl li:last-child::before{display:none}
+.tl b{display:block;font-size:.86rem;font-weight:800;color:var(--ink);line-height:1.35}
+.tl .chip{display:inline-flex;align-items:center;gap:6px;margin-top:5px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:4px 11px;border-radius:999px}
+.tl .chip .i{width:12px;height:12px}
+.law{background:var(--grad-dark);color:#fff;border-radius:var(--r2);padding:20px;display:flex;flex-direction:column;gap:10px}
+.law h4{font-size:.92rem;font-weight:900;display:flex;gap:8px;align-items:center}
+.law h4 .i{width:17px;height:17px;color:var(--accent-2)}
+.law p{font-size:.76rem;color:#C9DEEA;font-weight:500;line-height:1.55}
+.law p b{color:#fff}
+
+/*NB93-324: CAM KẾT*/
+#commit{background:#fff}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.com-card{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:hidden;min-width:0}
+.com-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(14,148,136,.4);background:#fff}
+.com-card .cc-ic{width:54px;height:54px;border-radius:16px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:16px;transition:.3s}
+.com-card:hover .cc-ic{background:var(--grad-accent);color:#fff}
+.com-card .cc-ic .i{width:25px;height:25px}
+.com-card h3{font-size:1.02rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+.com-card p{font-size:.84rem;color:var(--soft);font-weight:500}
+.com-card .cc-num{position:absolute;right:14px;top:10px;font-size:2.6rem;font-weight:900;color:var(--texture-2);line-height:1;z-index:0}
+.hot-strip{margin-top:34px;background:var(--grad-dark);border-radius:var(--r4);padding:34px 40px;display:flex;align-items:center;gap:26px;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+.hot-strip::before{content:'';position:absolute;inset:0;background:var(--hazard);opacity:.55}
+.hot-strip>*{position:relative}
+.hot-strip .hs-t h3{color:#fff;font-size:1.5rem;font-weight:900}
+.hot-strip .hs-t p{color:#D8E6F0;font-size:.9rem;font-weight:500}
+.hot-strip .hs-acts{display:flex;gap:14px;flex-wrap:wrap}
+
+/*NB93-324: QUY TRÌNH*/
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:stp}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:28px 22px;position:relative;box-shadow:var(--sh1);transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .s-ic{width:56px;height:56px;border-radius:50%;background:var(--grad-dark);color:var(--accent-2);display:grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(10,46,77,.28)}
+.step .s-ic .i{width:25px;height:25px}
+.step .s-ic::after{counter-increment:stp;content:counter(stp);position:absolute;top:-6px;right:-6px;width:24px;height:24px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:900;border-radius:50%;display:grid;place-items:center;border:2.5px solid #fff}
+.step h3{font-size:1rem;font-weight:900;color:var(--primary);margin:16px 0 8px}
+.step p{font-size:.82rem;color:var(--soft);font-weight:500}
+.step .meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.step .meta .i{width:13px;height:13px}
+
+/*NB93-324: ABOUT*/
+#about{background:linear-gradient(180deg,#fff,var(--texture))}
+#about .ab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:center}
+.ab-img{position:relative;min-width:0}
+.ab-img img{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh2);transform:rotate(-1.6deg);aspect-ratio:16/9;object-fit:cover;width:100%;animation:fl1 8s ease-in-out infinite}
+.ab-img .ab-tag{position:absolute;bottom:-18px;right:8%;background:var(--grad-dark);color:#fff;border-radius:16px;padding:14px 20px;box-shadow:0 14px 30px rgba(10,46,77,.32);border:1.5px solid rgba(34,176,162,.45)}
+.ab-img .ab-tag b{display:block;font-size:1.3rem;font-weight:900;line-height:1;color:#9FE8DE}
+.ab-img .ab-tag span{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:3px;color:#D8E6F0}
+.ab-txt h2{font-size:2rem;font-weight:900;color:var(--primary);margin:16px 0 12px}
+.ab-txt>p{color:var(--soft);font-weight:500;font-size:.95rem}
+.ab-pts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.ab-pt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh1);transition:.25s;min-width:0}
+.ab-pt:hover{border-color:rgba(14,148,136,.4);transform:translateY(-3px)}
+.ab-pt .i{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.ab-pt b{display:block;font-size:.88rem;color:var(--primary);font-weight:800}
+.ab-pt span{display:block;font-size:.75rem;color:var(--soft);font-weight:500}
+.ab-cta{display:flex;gap:13px;margin-top:24px;flex-wrap:wrap}
+
+/*NB93-324: ĐÁNH GIÁ*/
+#proof{background:var(--texture)}
+.rvw-shell{display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:stretch}
+.rvw-view{overflow:hidden;border-radius:var(--r3);min-width:0}
+.rvw-track{display:flex;transition:transform .55s cubic-bezier(.25,.8,.3,1)}
+.rvw-slide{flex:0 0 100%;padding:2px;min-width:0}
+.rvw-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:30px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rvw-card .stars{display:flex;gap:3px;color:#0E9488}
+.rvw-card .stars .i{width:16px;height:16px}
+.rvw-card p{font-size:.95rem;color:var(--ink);font-weight:500;flex:1}
+.rvw-card .who{display:flex;gap:12px;align-items:center}
+.rvw-card .avt{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:#9FE8DE;display:grid;place-items:center;font-weight:900;font-size:.95rem;flex:0 0 auto}
+.rvw-card .who b{display:block;font-size:.9rem;color:var(--primary)}
+.rvw-card .who span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+.rvw-side{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.rvw-side .metric b{display:block;font-size:2.6rem;font-weight:900;color:#9FE8DE;line-height:1}
+.rvw-side .metric span{display:block;font-size:.82rem;color:#D8E6F0;font-weight:600;margin-top:6px}
+.rvw-side .mrow{display:flex;justify-content:space-between;font-size:.8rem;color:#E8F1F7;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.14);padding-bottom:9px;gap:12px}
+.rvw-side .mrow b{color:var(--accent-2);text-align:right;white-space:nowrap}
+.rvw-side h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#B9CFE2;font-weight:800}
+.pchips{display:flex;gap:8px;flex-wrap:wrap}
+.pchips span{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;color:#E8F1F7}
+.rvw-dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.rvw-dots button{width:9px;height:9px;border-radius:99px;background:var(--line-2);transition:.25s;padding:0}
+.rvw-dots button.on{width:26px;background:var(--accent)}
+
+/*NB93-324: FORM NHẬN BÁO GIÁ + MAP*/
+#lienhe{background:var(--grad-dark);color:#fff;overflow:clip}
+#lienhe::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='%232F7FB8' stroke-width='1.2'%3E%3Cpath d='M8 104c18-26 34-26 52-4s32 18 50-6 24-22 40-10'/%3E%3Cpath d='M118 22l14-8 8 14-18 10z'/%3E%3C/g%3E%3C/svg%3E");opacity:.2}
+#lienhe .wrap{position:relative}
+#lienhe .sec-title{color:#fff}
+#lienhe .sec-sub{color:#C9DEEA}
+.ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:18px;min-width:0}
+.ct-info .ci-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r2);padding:20px;display:flex;gap:15px;align-items:flex-start;min-width:0}
+.ct-info .ci-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;flex:0 0 auto}
+.ct-info .ci-ic .i{width:21px;height:21px}
+.ct-info b{display:block;font-size:.94rem;font-weight:800}
+.ct-info span{display:block;font-size:.82rem;color:#D8E6F0;font-weight:500;margin-top:3px}
+.ct-call{display:flex;gap:10px;flex-wrap:wrap}
+.ct-call .btn{flex:1;min-width:150px}
+.ct-space{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.16)}
+.ct-space img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.map-embed{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.16);min-height:230px}
+.map-embed iframe{width:100%;height:100%;min-height:230px;border:0;display:block}
+.map-act{display:flex;justify-content:flex-end;margin-top:-46px;position:relative;z-index:2;padding:0 10px}
+.map-act a{background:var(--grad-accent);color:#fff;font-weight:800;font-size:.78rem;padding:9px 15px;border-radius:11px;display:inline-flex;gap:7px;align-items:center;box-shadow:0 8px 20px rgba(10,46,77,.4)}
+.map-act a .i{width:15px;height:15px}
+.ct-form{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r3);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;color-scheme:dark}
+.ct-form h3{font-size:1.3rem;font-weight:900;color:#fff}
+.ct-form .fsub{font-size:.84rem;color:#D8E6F0;font-weight:500;margin-top:-6px}
+.ct-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-form .full{grid-column:1/-1}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;min-width:0}
+.ct-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B9CFE2' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.ct-form select option{color:var(--ink);background:#fff}
+.ct-form textarea{min-height:70px;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:#8296AE}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-color:var(--accent-2);background:rgba(255,255,255,.1)}
+.ct-form .btn{width:100%;margin-top:4px}
+.ct-form .secure{font-size:.74rem;color:#B9CFE2;display:flex;gap:7px;align-items:center;justify-content:center;font-weight:600}
+.ct-form .secure .i{width:14px;height:14px;color:#5BC48E}
+
+/*NB93-324: FAQ*/
+.faq-shell{max-width:820px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center}
+.faq-search{position:relative;flex:1;max-width:420px;min-width:230px}
+.faq-search input{width:100%;padding:13px 15px 13px 42px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;box-shadow:var(--sh1)}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.faq-search .i{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fchip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:.78rem;font-weight:800;color:var(--soft);transition:.2s}
+.fchip:hover{border-color:var(--accent)}
+.fchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:rgba(14,148,136,.45)}
+.faq-q{width:100%;display:flex;align-items:center;gap:13px;padding:17px 20px;font-weight:800;font-size:.94rem;color:var(--primary);text-align:left;min-width:0}
+.faq-q .fq-ic{width:34px;height:34px;border-radius:10px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto;transition:.25s}
+.faq-q .fq-ic .i{width:16px;height:16px}
+.faq-item.open .fq-ic{background:var(--grad-accent);color:#fff}
+.faq-q .chev{margin-left:auto;transition:.3s;color:var(--soft)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px 67px;font-size:.87rem;color:var(--soft);font-weight:500}
+.faq-empty{text-align:center;color:var(--soft);font-weight:600;padding:26px;display:none}
+
+/*NB93-324: FOOTER 1 tầng gọn*/
+footer{background:var(--primary-deep);color:#B9CFE2;font-size:.86rem}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:34px;padding:56px 0 36px}
+.ft-grid h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:16px}
+.ft-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-grid ul a{transition:.2s;font-weight:500}
+.ft-grid ul a:hover{color:var(--accent-2)}
+.ft-brand .lg-t{color:#fff}
+.ft-brand .lg-s{color:#8FB4CE}
+.ft-brand p{margin-top:14px;font-weight:500}
+.socials{display:flex;gap:10px;margin-top:16px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);display:grid;place-items:center;color:#E8F1F7;transition:.2s}
+.socials a:hover{background:var(--grad-accent);border-color:transparent;color:#fff;transform:translateY(-3px)}
+.socials .i{width:18px;height:18px}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:var(--grad-dark);border:1.5px solid rgba(34,176,162,.5);padding:11px 18px;border-radius:13px;color:#fff;font-weight:900;font-size:1.05rem;box-shadow:0 10px 24px rgba(10,46,77,.35)}
+.ft-hot .i{width:18px;height:18px;color:var(--accent-2)}
+.ft-bar{border-top:1.5px solid rgba(255,255,255,.09);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.76rem;font-weight:600}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips span{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:8px;font-weight:700;color:#E8F1F7}
+
+/*NB93-324: FAB DOCK*/
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:9px;background:rgba(10,46,77,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.14);padding:9px;border-radius:22px;box-shadow:var(--sh3);transition:.4s}
+.dock.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(90px)}
+.dock button,.dock a{display:flex;align-items:center;gap:8px;border-radius:15px;padding:11px 15px;color:#E8F1F7;font-weight:800;font-size:.8rem;transition:.2s;white-space:nowrap}
+.dock .i{width:19px;height:19px}
+.dock .d-hot{background:var(--grad-dark);color:#fff;border:1.5px solid rgba(34,176,162,.55)}
+.dock .d-main{background:var(--grad-accent);color:#fff}
+.dock button:hover,.dock a:hover{transform:translateY(-3px)}
+
+/*NB93-324: TOAST — title + message 2 phần tử riêng, khung pointer-events:none không đè nút*/
+#toasts{position:fixed;right:18px;bottom:96px;z-index:120;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;padding:13px 17px;border-radius:14px;box-shadow:var(--sh3);font-size:.86rem;font-weight:700;display:flex;gap:10px;align-items:flex-start;max-width:340px;pointer-events:none;animation:toastIn .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast .i{width:18px;height:18px;color:#5BC48E;flex:0 0 auto;margin-top:2px}
+.toast .tt b{display:block;font-size:.88rem;font-weight:900;line-height:1.35}
+.toast .tt span{display:block;font-size:.76rem;font-weight:500;color:#C9DEEA;line-height:1.4;margin-top:2px}
+@keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+
+/*NB93-324: header cap 1081-1290px — an search tranh chen ep*/
+@media(min-width:1081px) and (max-width:1290px){.search{display:none}}
+
+/*NB93-324: RESPONSIVE 1080px — khối-8 về 2 cột vẫn kín ô (feat full 1 hàng + 8 ô = 4 hàng đôi)*/
+@media(max-width:1080px){
+  nav.main{display:none}
+  .hero .wrap{grid-template-columns:1fr 1fr}
+  .hm-stats{position:static;margin-top:18px;justify-content:flex-start}
+  .hm-note{position:static;display:block;margin-top:6px}
+  .hero-media{min-height:auto;display:flex;flex-direction:column}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .k8{grid-template-columns:repeat(2,1fr);gap:16px}
+  .k8 .kb-feat{grid-column:1/-1;grid-row:span 1}
+  .com-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  #about .ab-grid{grid-template-columns:1fr}
+  .rvw-shell{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .hs-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/*NB93-324: MOBILE ≤680px — thiết kế riêng, đủ chức năng, khối-8 kín ô 2 cột*/
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .sec-title{font-size:1.42rem}
+  .sec .head{margin-bottom:30px}
+  .hd .wrap{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .search{order:3;max-width:none;flex:1 0 100%}
+  .hd-cta .btn{display:none}
+  .logo .lg-s{display:none}
+  .hero{padding:44px 0 78px}
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .hero h1{font-size:1.72rem}
+  .hero .lead{font-size:.92rem}
+  .hm-badge{display:block;right:10px;top:10px;padding:7px 12px;border-radius:12px}
+  .hm-badge .bt{font-size:1.1rem}
+  .hm-badge .bs{font-size:.64rem}
+  .hm-main{width:100%;margin:0;transform:none;border-radius:var(--r2);border-width:4px}
+  .hm-main .pr-tag{left:10px;bottom:10px;max-width:calc(100% - 20px);font-size:12.5px;padding:7px 11px;border-radius:10px;line-height:1.3}
+  .hm-stats{position:static;width:100%;justify-content:space-between;margin-top:12px;order:5}
+  .hm-stats div{flex:1;padding:10px 6px}
+  .hm-stats b{font-size:.98rem}
+  .hm-stats span{font-size:.7rem;max-width:none}
+  .hm-note{position:static;margin-top:6px;font-size:.66rem}
+  .hero-media{min-height:auto}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%;white-space:normal}
+  .hero-cta .btn-xl{font-size:.9rem;padding:16px 14px;min-height:56px}
+  .hero-cta .btn-xl .num{font-size:1.05em;letter-spacing:.01em}
+  .trust{gap:7px}
+  .trust span{font-size:.72rem;padding:7px 10px}
+  .tape-track span{font-size:.8rem;padding:0 14px}
+  .feat-grid{grid-template-columns:1fr;gap:18px}
+  .fcard.fbig .fbot{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr;gap:10px}
+  .strip .arr{display:none}
+  /* khối-8: feat full-width + 7 dịch vụ + CTA = 8 ô → 4 hàng đôi kín */
+  .k8{grid-template-columns:1fr 1fr;gap:12px}
+  /*NB93-324: ẩn badge đè chữ poster trên mobile — ribbon đã đánh dấu thẻ nổi bật*/
+  .k8 .kb-feat .badge,.fcard.fbig .badge{display:none}
+  .k8 .kb-feat{grid-column:1/-1}
+  .k8 .kb-feat .kb-body{padding:16px 16px 18px}
+  .k8 .kb-feat h3{font-size:1.16rem}
+  .k8 .kb-feat .kb-acts{flex-direction:column;align-items:stretch}
+  .k8 .kb-feat .kb-acts .btn{width:100%;min-width:0}
+  .k8 .kb-body{padding:13px 14px 15px}
+  .k8 .kb-body h3{font-size:.88rem}
+  .k8 .kb-sub{font-size:.76rem}
+  .k8 .kb-meta span{font-size:.72rem}
+  .k8 .kb-cta{grid-column:auto}
+  .k8-headbox{padding:20px 16px}
+  .k8-headbox .acts{width:100%}
+  .k8-headbox .acts .btn{flex:1;min-width:140px}
+  .hs-card{padding:18px 16px}
+  .hs-tab{font-size:.78rem;padding:9px 13px}
+  .hs-acts .btn{width:100%}
+  .com-grid{grid-template-columns:1fr}
+  .hot-strip{padding:26px 20px;text-align:left}
+  .hot-strip .hs-acts{width:100%;flex-direction:column}
+  .hot-strip .hs-acts .btn{width:100%}
+  .steps{grid-template-columns:1fr}
+  .ab-pts{grid-template-columns:1fr}
+  .ab-txt h2{font-size:1.42rem}
+  .ab-cta .btn{width:100%}
+  .ct-form .frow{grid-template-columns:1fr}
+  .ct-form{padding:22px 16px}
+  .ct-form .btn{width:100%;white-space:normal}
+  .ct-call .btn{width:100%}
+  .faq-a p{padding-left:20px}
+  .ft-grid{grid-template-columns:1fr;gap:28px;padding:44px 0 30px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:8px;gap:6px;border-radius:20px}
+  .dock button,.dock a{padding:12px;font-size:0;gap:0}
+  .dock .i{width:21px;height:21px}
+  #toasts{right:12px;left:12px;bottom:150px}
+  .toast{max-width:none}
+}
+
+/*NB93-324: micro-interaction nhấn*/
+button:active{transform:scale(.96)}
+
+/*NB93-324: MOBILEFIX — chữ >=12px, nút >=40px, chat/dock không đè nhau (390px)*/
+@media(max-width:680px){
+  .trust span{font-size:12px}
+  .hm-stats span{font-size:12px}
+  .hm-note{font-size:12px}
+  .hm-main .pr-tag{font-size:12.5px}
+  .fcard .badge{font-size:12px}
+  .fcard .fine{font-size:12px}
+  .strip small{font-size:12px}
+  .k8 .kb-sub{font-size:12px}
+  .k8 .kb-meta span{font-size:12px}
+  .k8 .kb-feat .kb-acts .note{font-size:12px}
+  .mtier .t-row{font-size:12.5px}
+  .mtier .t-row em{font-size:12px}
+  .step .meta{font-size:12px}
+  .ab-tag span{font-size:12px}
+  .rvw-card .who span{font-size:12px}
+  .pchips span{font-size:12px}
+  .ct-form .secure{font-size:12px}
+  .law p{font-size:12px}
+  .hs-acts .note{font-size:12px}
+  .btn{min-height:44px}
+  .ct-form input,.ct-form select,.ct-form textarea{min-height:44px}
+  .k8 .kb .btn{min-height:44px}
+  body{padding-bottom:76px}
+  .pkc-fab{bottom:88px !important}
+  .pkc-panel{bottom:148px !important}
+}
+/*NB93-324: MOBILE-TAP40 — điều khiển cảm ứng >=40px*/
+@media(max-width:640px){
+.fchip,.hs-tab,.faq-chip,.chip,.pill,.faq-chips button,.pkc-chip,[class*="search" i] button,.fab,.dr-x,.qv-x,.cd-close,.drawer-x,.dw-close,.m-close,.dr-close,.dw-x,.qv-close{min-height:40px!important;min-width:40px!important}
+}
+/*NB93-324: MOBILE-TAP40B — .btn + nút tồn dư*/
+@media(max-width:640px){
+.btn{min-height:40px!important}
+.rvw-dots button{min-width:40px;min-height:40px;background-clip:content-box}
+}
+</style>
+<style data-nb93fix="324:fab">
+/*NB93-FIX-324:fab CTA day phai tranh fab chat*/
+@media(max-width:768px){
+  .btn-xl{padding-right:64px}
+}
+</style>
+<style data-nb93fix="324:t2">
+/*NB93-FIX-324:t2 khoi-8 anh qua nho o mob (feat 23%, thuong 27-28% < 28%): nong wrapper anh
+len aspect-ratio 1/1 (width 100% co san, img height:100% co san) de % cao anh/the >= 30%*/
+@media(max-width:680px){
+  .k8 .kb .kb-img{aspect-ratio:1/1!important}
+  .k8 .kb.kb-feat .kb-img{aspect-ratio:1/1!important}
+  .k8 .kb.kb-feat .kb-img img{object-position:center 30%!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+  <symbol id="i-invoice" viewBox="0 0 24 24"><path d="M5 3h14v18l-2.5-1.5L14 21l-2-1.5L10 21l-2.5-1.5L5 21V3z"/><path d="M9 8h6M9 12h6M9 16h4"/><path d="M16 5.5l1.2 1.2L19.5 4.5" stroke-width="1.6"/></symbol>
+  <symbol id="i-token" viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="8" rx="3"/><path d="M18 10.5h2.5M18 13.5h1.5M6.5 11v2M9.5 12h.01"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 4v6h-6M3 20v-6h6"/><path d="M21 10a9 9 0 0 0-15-5.5L3 7M3 14a9 9 0 0 0 15 5.5L21 17"/></symbol>
+  <symbol id="i-app" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2M9.5 6l1.5 1.5L14 4.5"/></symbol>
+  <symbol id="i-tax" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4"/><path d="M10 12l4 4M14 12l-4 4"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M3 17c3-1 4-7 6-7s1 5 3 5 2-4 4-4 1.5 3 5 2"/><path d="M4 21h16"/></symbol>
+  <symbol id="i-social" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.2 3.5-4.8 6.5-4.8s5.5 1.6 6.5 4.8"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20c-.7-2.3-2.2-3.8-4.2-4.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20 3 12.5z"/><circle cx="7.5" cy="7.5" r="1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8 7.5 21l4.5-2.6L16.5 21l-1.3-7.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6h-6v6H4v-9z"/></symbol>
+  <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M8 21h8"/><path d="M12 5 5 7l-3 6c0 1.7 1.6 3 3 3s3-1.3 3-3l-3-6M12 5l7 2 3 6c0 1.7-1.6 3-3 3s-3-1.3-3-3l3-6"/></symbol>
+</svg>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg class="i"><use href="#i-clock"/></svg>Kỹ thuật viên trực 7 ngày/tuần</span>
+      <span><svg class="i"><use href="#i-pin"/></svg>TP.HCM — hỗ trợ cài đặt tận nơi &amp; remote</span>
+    </div>
+    <div class="tb-l">
+      <span class="hot"><svg class="i"><use href="#i-phone"/></svg>Hotline nhận báo giá: <b>0901 475 268</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="Ký Tín — Chữ ký số & Hóa đơn điện tử">
+      <span class="mark"><svg class="i"><use href="#i-pen"/></svg></span>
+      <span><span class="lg-t">Ký Tín</span><span class="lg-s">Chữ ký số &amp; HĐĐT</span></span>
+    </a>
+    <div class="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm dịch vụ: token, hóa đơn điện tử, gia hạn…" autocomplete="off">
+      <div class="drop" id="searchDrop"></div>
+    </div>
+    <nav class="main">
+      <a href="#dichvu">Gói nổi bật</a>
+      <a href="#dichvu8">8 dịch vụ</a>
+      <a href="#hoso">Hồ sơ &amp; thời hạn</a>
+      <a href="#quytrinh">Quy trình</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="btn btn-accent" href="#lienhe"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</a>
+      <a class="btn btn-call" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>0901 475 268</a>
+      <a class="icon-btn" href="tel:0901475268" aria-label="Gọi 0901 475 268" title="Gọi 0901 475 268"><svg class="i"><use href="#i-phone"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="eyebrow"><svg class="i"><use href="#i-pen"/></svg>Chứng thư số — Hóa đơn điện tử — Kê khai thuế</span>
+      <h1>Cấp chứng thư số nhanh, <span class="hl">xuất hóa đơn ngay trong ngày</span></h1>
+      <p class="lead">Ký Tín cung cấp <b>chứng thư số cho doanh nghiệp và phần mềm hóa đơn điện tử</b> theo gói năm: kỹ thuật viên cài đặt tận nơi, <b>nhắc gia hạn trước 30 ngày</b> — chuyên đồng hành cùng doanh nghiệp mới thành lập và bộ phận kế toán.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-xl" href="#lienhe"><svg class="i" style="width:24px;height:24px"><use href="#i-send"/></svg>Nhận báo giá trong 30 phút</a>
+        <a class="btn btn-ghost btn-xl" href="tel:0901475268"><svg class="i" style="width:22px;height:22px"><use href="#i-phone"/></svg>Gọi tư vấn chọn gói&nbsp;<span class="num">0901 475 268</span></a>
+      </div>
+      <div class="trust">
+        <span><svg class="i"><use href="#i-shield"/></svg>Tổ chức cấp phát hợp pháp</span>
+        <span><svg class="i"><use href="#i-invoice"/></svg>HĐĐT theo NĐ 123/2020</span>
+        <span><svg class="i"><use href="#i-gauge"/></svg>Cấp trong 1–2 giờ làm việc</span>
+        <span><svg class="i"><use href="#i-refresh"/></svg>Nhắc gia hạn trước 30 ngày</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-badge"><span class="bt">1–2h</span><span class="bs">cấp &amp; cài đặt</span></div>
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="Ký Tín — dịch vụ chữ ký số và hóa đơn điện tử cho doanh nghiệp">
+        <span class="pr-tag"><svg class="i"><use href="#i-tag"/></svg>Gói năm 1/2/3 năm — từ 1.190.000đ (tham chiếu)</span>
+      </div>
+      <div class="hm-stats">
+        <div><b>12.000+</b><span>chứng thư đã kích hoạt</span></div>
+        <div><b>30 phút</b><span>phản hồi báo giá</span></div>
+        <div><b>0đ</b><span>phí cài đặt tận nơi TP.HCM</span></div>
+      </div>
+      <span class="hm-note">* Số liệu vận hành dịch vụ giai đoạn 2016 – 2026.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAPE MARQUEE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span><svg class="i"><use href="#i-scale"/></svg>Chữ ký số theo Luật Giao dịch điện tử</span>
+    <span><svg class="i"><use href="#i-invoice"/></svg>HĐĐT theo NĐ 123/2020 &amp; TT 78/2021</span>
+    <span><svg class="i"><use href="#i-refresh"/></svg>Nhắc gia hạn trước 30 ngày</span>
+    <span><svg class="i"><use href="#i-gauge"/></svg>Cài đặt tận nơi trong 60 phút</span>
+    <span><svg class="i"><use href="#i-tag"/></svg>Phí gói năm niêm yết công khai</span>
+    <span><svg class="i"><use href="#i-tax"/></svg>Tặng cài kê khai thuế điện tử</span>
+    <span><svg class="i"><use href="#i-user"/></svg>Đầu mối kỹ thuật duy nhất cho kế toán</span>
+  </div>
+</div>
+
+<!-- ============ 3 GÓI ĐƯỢC CHỌN NHIỀU NHẤT ============ -->
+<section class="sec alt" id="dichvu">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">3 nhu cầu doanh nghiệp chọn nhiều nhất</h2>
+      <span class="sec-sub">Gói năm 1/2/3 năm niêm yết công khai — chốt chính xác khi báo giá, không phát sinh ngoài hợp đồng</span>
+    </div>
+    <div class="feat-grid">
+      <article class="fcard fbig spot rv" data-d="0">
+        <div class="fimg">
+          <img src="assets/img/p2.webp" alt="Trọn bộ chữ ký số và hóa đơn điện tử cho doanh nghiệp mới thành lập" loading="lazy">
+          <span class="ribbon">DN mới thành lập</span>
+          <span class="badge"><svg class="i"><use href="#i-token"/></svg>Token + phần mềm HĐĐT • cài đặt tận nơi</span>
+          <span class="price-ov"><small>từ</small> 1.790.000đ/năm — tham chiếu</span>
+        </div>
+        <div class="fbody">
+          <h3>TRỌN BỘ SỐ HÓA CHO DOANH NGHIỆP MỚI THÀNH LẬP</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Chứng thư số doanh nghiệp — ký thuế, hải quan, BHXH</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Phần mềm hóa đơn điện tử — xuất hóa đơn ngay trong ngày</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Cài đặt tận nơi + hướng dẫn xuất hóa đơn đầu tiên</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Nhắc gia hạn trước 30 ngày theo gói đã chọn</li>
+          </ul>
+          <div class="fbot">
+            <div class="mtier">
+              <div class="t-h"><svg class="i"><use href="#i-list"/></svg>Bảng gói theo năm — tham chiếu</div>
+              <div class="t-row"><span>Gói trọn bộ 1 năm</span><b>1.790.000đ</b></div>
+              <div class="t-row"><span>Gói trọn bộ 2 năm<em>tiết kiệm 190.000đ so mua lẻ</em></span><b>3.290.000đ</b></div>
+              <div class="t-row"><span>Gói trọn bộ 3 năm<em>tiết kiệm 290.000đ so mua lẻ</em></span><b>4.490.000đ</b></div>
+              <div class="t-row hot"><span>Đã có token, chỉ cần phần mềm HĐĐT</span><b>từ 690.000đ/năm</b></div>
+            </div>
+            <div class="fbot-r">
+              <p class="fine"><svg class="i"><use href="#i-tag"/></svg>Phí tham chiếu công khai theo gói năm — chốt chính xác khi kỹ thuật viên xác nhận loại hình doanh nghiệp và nhu cầu sử dụng, không phát sinh ngoài hợp đồng.</p>
+              <button class="btn btn-accent prefill" data-name="Trọn bộ DN mới thành lập (token + HĐĐT)"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá gói này</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fcard spot rv" data-d="1">
+        <div class="fimg">
+          <img src="assets/img/p4.webp" alt="Phần mềm hóa đơn điện tử gói theo năm" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-app"/></svg>Phần mềm HĐĐT • gói năm</span>
+          <span class="price-ov"><small>từ</small> 690.000đ/năm — tham chiếu</span>
+        </div>
+        <div class="fbody">
+          <h3>Phần mềm hóa đơn điện tử — gói 1/2/3 năm</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Xuất, gửi và tra cứu hóa đơn mã QR</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Đúng NĐ 123/2020 &amp; TT 78/2021 — truyền dữ liệu cơ quan thuế</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Xuất hóa đơn trên máy tính và điện thoại</li>
+          </ul>
+          <button class="btn btn-accent prefill" data-name="Phần mềm hóa đơn điện tử (gói năm)"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá dịch vụ này</button>
+        </div>
+      </article>
+      <article class="fcard spot rv" data-d="2">
+        <div class="fimg">
+          <img src="assets/img/p3.webp" alt="Gia hạn chữ ký số — nhắc trước 30 ngày" loading="lazy">
+          <span class="badge"><svg class="i"><use href="#i-refresh"/></svg>Gia hạn • nhắc trước 30 ngày</span>
+          <span class="price-ov"><small>từ</small> 850.000đ/năm — tham chiếu</span>
+        </div>
+        <div class="fbody">
+          <h3>Gia hạn chữ ký số — không gián đoạn ký số</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Nhắc lịch qua SMS/Zalo trước 30 ngày</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Gia hạn trong ngày — token giữ nguyên, không mua mới</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Quản lý giúp danh sách token của văn phòng kế toán</li>
+          </ul>
+          <button class="btn btn-accent prefill" data-name="Gia hạn chữ ký số"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá gia hạn</button>
+        </div>
+      </article>
+    </div>
+    <div class="strip rv" data-d="1">
+      <a href="#dichvu8" data-svc="k8-2"><span class="ic"><svg class="i"><use href="#i-invoice"/></svg></span><span><b>Hóa đơn điện tử</b><small>từ 500.000đ • phát hành 1–2 ngày</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu8" data-svc="k8-5"><span class="ic"><svg class="i"><use href="#i-tax"/></svg></span><span><b>Kê khai thuế điện tử</b><small>0đ — tặng kèm khi đăng ký token</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu8" data-svc="k8-6"><span class="ic"><svg class="i"><use href="#i-sign"/></svg></span><span><b>Hợp đồng điện tử</b><small>từ 1.490.000đ/năm</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#dichvu8" data-svc="k8-7"><span class="ic"><svg class="i"><use href="#i-social"/></svg></span><span><b>BHXH điện tử</b><small>từ 500.000đ • thiết lập lần đầu</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+      <a href="#hoso"><span class="ic"><svg class="i"><use href="#i-doc"/></svg></span><span><b>Hồ sơ cần chuẩn bị</b><small>checklist theo loại hình</small></span><svg class="i arr"><use href="#i-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHỐI-8 — BENTO KÍN Ô: 1 THẺ NỔI BẬT 2x2 + 7 DỊCH VỤ + 1 THẺ CTA ============ -->
+<section class="sec" id="dichvu8">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">8 dịch vụ — chọn gói theo năm phù hợp doanh nghiệp</h2>
+      <span class="sec-sub">Thẻ lớn nhất là dịch vụ được chọn nhiều nhất — bấm "Nhận báo giá" ở bất kỳ thẻ nào để được gọi lại trong 30 phút</span>
+    </div>
+    <div class="k8-headbox rv" data-d="0">
+      <div class="cb">
+        <div class="lb">Tư vấn chọn gói · 7 ngày/tuần</div>
+        <div class="num">0901 475 268</div>
+        <div class="st">Kỹ thuật viên tiếp nhận trong 30 phút · tư vấn gói 1/2/3 năm theo loại hình doanh nghiệp · báo giá công khai trước khi ký</div>
+      </div>
+      <div class="acts">
+        <a class="btn btn-accent" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi tư vấn ngay</a>
+        <a class="btn btn-ghost" href="https://zalo.me/0901475268" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Nhắn Zalo</a>
+      </div>
+    </div>
+    <div class="k8">
+      <article class="kb kb-feat spot rv" id="k8-1" data-d="0">
+        <div class="kb-img">
+          <img src="assets/img/p1.webp" alt="Chữ ký số doanh nghiệp — USB token" loading="lazy">
+          <span class="ribbon">Chọn nhiều nhất</span>
+          <span class="badge"><svg class="i"><use href="#i-shield"/></svg>Chứng thư số công cộng — ký thuế, hải quan, BHXH</span>
+        </div>
+        <div class="kb-body">
+          <h3>CHỮ KÝ SỐ DOANH NGHIỆP — USB TOKEN</h3>
+          <p class="kb-sub">Chứng thư số công cộng cấp cho tổ chức: nộp tờ khai thuế điện tử, khai hải quan, BHXH điện tử, ký hợp đồng điện tử. Cấp trong 1–2 giờ làm việc sau khi ký hợp đồng, kỹ thuật viên cài đặt và kích hoạt tận nơi.</p>
+          <div class="mtier">
+            <div class="t-h"><svg class="i"><use href="#i-tag"/></svg>Gói theo năm — phí tham chiếu</div>
+            <div class="t-row"><span>Gói 1 năm</span><b>1.190.000đ</b></div>
+            <div class="t-row"><span>Gói 2 năm<em>tiết kiệm 190.000đ so mua lẻ</em></span><b>2.190.000đ</b></div>
+            <div class="t-row"><span>Gói 3 năm<em>tiết kiệm 580.000đ so mua lẻ</em></span><b>2.990.000đ</b></div>
+            <div class="t-row hot"><span>Cài đặt tận nơi + kê khai thuế điện tử</span><b>0đ — tặng kèm</b></div>
+          </div>
+          <div class="kb-acts">
+            <button type="button" class="btn btn-accent prefill" data-name="Chữ ký số doanh nghiệp (gói 1/2/3 năm)"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá gói này</button>
+            <a class="btn btn-ghost" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi 0901 475 268</a>
+            <span class="note"><svg class="i"><use href="#i-tag"/></svg>Phí tham chiếu theo tổ chức cấp phát — chốt chính xác khi báo giá.</span>
+          </div>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-2" data-d="1">
+        <div class="kb-img"><img src="assets/img/p2.webp" alt="Hóa đơn điện tử — đăng ký và phát hành" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Hóa đơn điện tử — đăng ký &amp; phát hành</h3>
+          <p class="kb-sub">Đăng ký sử dụng HĐĐT với cơ quan thuế, khởi tạo mẫu số, phát hành lô đầu tiên đúng NĐ 123/2020.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>từ 500.000đ</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Phát hành: <b>1–2 ngày</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Hóa đơn điện tử — đăng ký &amp; phát hành"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-3" data-d="1">
+        <div class="kb-img"><img src="assets/img/p3.webp" alt="Gia hạn chữ ký số — nhắc trước 30 ngày" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Gia hạn chữ ký số</h3>
+          <p class="kb-sub">Nhắc trước 30 ngày qua SMS/Zalo — gia hạn trong ngày, token giữ nguyên, không mua mới.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>từ 850.000đ/năm</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Xử lý: <b>trong ngày</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Gia hạn chữ ký số"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-4" data-d="1">
+        <div class="kb-img"><img src="assets/img/p4.webp" alt="Phần mềm hóa đơn điện tử gói năm" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Phần mềm hóa đơn điện tử</h3>
+          <p class="kb-sub">Xuất, gửi và lưu trữ hóa đơn theo gói năm — dùng trên máy tính và điện thoại, tra cứu mã QR.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>từ 690.000đ/năm</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Khởi tạo: <b>trong ngày</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Phần mềm hóa đơn điện tử (gói năm)"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-5" data-d="1">
+        <div class="kb-img"><img src="assets/img/p5.webp" alt="Kê khai và nộp thuế điện tử" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Kê khai &amp; nộp thuế điện tử</h3>
+          <p class="kb-sub">Cài đặt eTax/ETF, nộp thuế điện tử, hướng dẫn tờ khai đầu tiên — tặng kèm khi đăng ký token.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>0đ — tặng kèm</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Cài đặt: <b>30–45 phút</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Kê khai &amp; nộp thuế điện tử"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-6" data-d="1">
+        <div class="kb-img"><img src="assets/img/p6.webp" alt="Hợp đồng điện tử — ký từ xa" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Hợp đồng điện tử</h3>
+          <p class="kb-sub">Ký hợp đồng từ xa bằng chứng thư số + OTP — quản lý luồng ký, lưu trữ tra cứu theo năm.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>từ 1.490.000đ/năm</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Kích hoạt: <b>1 ngày</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Hợp đồng điện tử"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-7" data-d="1">
+        <div class="kb-img"><img src="assets/img/p7.webp" alt="BHXH điện tử cho doanh nghiệp" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>BHXH điện tử</h3>
+          <p class="kb-sub">Đăng ký tài khoản doanh nghiệp, khai báo tăng – giảm lao động và duyệt ủy nhiệm chi online.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>từ 500.000đ/lần</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Thiết lập: <b>1–2 ngày</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="BHXH điện tử"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <article class="kb spot rv" id="k8-8" data-d="1">
+        <div class="kb-img"><img src="assets/img/p8.webp" alt="Tư vấn pháp lý số và hồ sơ điện tử" loading="lazy"></div>
+        <div class="kb-body">
+          <h3>Tư vấn pháp lý số</h3>
+          <p class="kb-sub">Giải đáp giá trị pháp lý của chữ ký số, hồ sơ điện tử và quy định mới cho bộ phận kế toán.</p>
+          <div class="kb-meta">
+            <span><svg class="i"><use href="#i-tag"/></svg>Phí: <b>liên hệ — theo buổi</b></span>
+            <span><svg class="i"><use href="#i-clock"/></svg>Phản hồi: <b>30 phút</b></span>
+          </div>
+          <button type="button" class="btn btn-ghost prefill" data-name="Tư vấn pháp lý số / khác"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</button>
+        </div>
+      </article>
+      <aside class="kb kb-cta rv" data-d="2">
+        <span class="ci"><svg class="i"><use href="#i-chat"/></svg></span>
+        <h3>Chưa chắc gói nào phù hợp?</h3>
+        <p>Gọi cho kỹ thuật viên — mô tả loại hình doanh nghiệp, sẽ tư vấn gói 1/2/3 năm tối ưu nhất.</p>
+        <a class="btn btn-accent" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi 0901 475 268</a>
+      </aside>
+    </div>
+    <p class="k8-note rv" data-d="2"><svg class="i"><use href="#i-tag"/></svg>Mọi mức phí trên trang là mức tham chiếu theo gói năm — báo giá chính xác sau khi kỹ thuật viên xác nhận loại hình doanh nghiệp và tổ chức cấp phát hiện hành.</p>
+  </div>
+</section>
+
+<!-- ============ KHỐI ĐẶC THÙ — CHECKLIST GIẤY TỜ ĐĂNG KÝ + THỜI HẠN XỬ LÝ ============ -->
+<section class="sec" id="hoso">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Chuẩn hồ sơ trước — nhận chứng thư trong ngày</h2>
+      <span class="sec-sub">Chạm vào từng mục để đánh dấu đã chuẩn bị — đủ hồ sơ là kỹ thuật viên xử lý được ngay</span>
+    </div>
+    <div class="hs-grid">
+      <div class="hs-card rv" data-d="0">
+        <div class="hs-tabs" id="hsTabs">
+          <button class="hs-tab on" data-tab="0">DN mới thành lập</button>
+          <button class="hs-tab" data-tab="1">Hộ kinh doanh</button>
+          <button class="hs-tab" data-tab="2">Gia hạn — đã có token</button>
+        </div>
+        <div class="hs-prog">
+          <svg class="i"><use href="#i-doc"/></svg>
+          <b id="hsCount">Đã chuẩn bị 0/5 giấy tờ</b>
+          <span class="bar"><i id="hsBar"></i></span>
+        </div>
+        <ul class="ck" id="hsList"></ul>
+        <div class="hs-acts">
+          <button type="button" class="btn btn-accent" id="hsSubmit"><svg class="i"><use href="#i-send"/></svg>Gửi báo giá theo hồ sơ này</button>
+          <span class="note"><svg class="i"><use href="#i-tag"/></svg>Chưa đủ cũng gửi được — kỹ thuật viên hướng dẫn bổ sung trong 30 phút.</span>
+        </div>
+      </div>
+      <div class="hs-side">
+        <div class="hs-card rv" data-d="1">
+          <div class="tl-title"><svg class="i"><use href="#i-clock"/></svg>Thời hạn xử lý tham chiếu</div>
+          <ul class="tl">
+            <li><span class="dot">1</span><span><b>Nhận yêu cầu &amp; gửi báo giá</b><span class="chip"><svg class="i"><use href="#i-clock"/></svg>trong 30 phút</span></span></li>
+            <li><span class="dot">2</span><span><b>Kiểm tra &amp; xác minh hồ sơ với tổ chức cấp phát</b><span class="chip"><svg class="i"><use href="#i-clock"/></svg>30–60 phút</span></span></li>
+            <li><span class="dot">3</span><span><b>Ký hợp đồng &amp; cấp chứng thư số</b><span class="chip"><svg class="i"><use href="#i-clock"/></svg>1–2 giờ làm việc</span></span></li>
+            <li><span class="dot">4</span><span><b>Cài đặt, kích hoạt &amp; hướng dẫn sử dụng</b><span class="chip"><svg class="i"><use href="#i-clock"/></svg>30–45 phút</span></span></li>
+          </ul>
+        </div>
+        <div class="law rv" data-d="2">
+          <h4><svg class="i"><use href="#i-scale"/></svg>Căn cứ pháp lý &amp; lưu ý</h4>
+          <p>Dịch vụ thực hiện theo <b>Luật Giao dịch điện tử</b> và <b>Nghị định 130/2018/NĐ-CP</b> về chữ ký số; <b>Nghị định 123/2020/NĐ-CP</b> và <b>Thông tư 78/2021/TT-BTC</b> về hóa đơn điện tử.</p>
+          <p>Mức phí, thời hạn và yêu cầu hồ sơ là thông tin tham chiếu — áp dụng theo quy định của tổ chức cấp phát chứng thư số và cơ quan quản lý hiện hành. Chúng tôi không đại diện cho cơ quan thuế và <b>không cam kết kết quả</b> xử lý hồ sơ.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec alt" id="quytrinh">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Từ cuộc gọi đầu tiên đến ký số vận hành</h2>
+      <span class="sec-sub">Mỗi bước có mốc thời gian rõ — doanh nghiệp luôn biết hồ sơ đang ở khâu nào</span>
+    </div>
+    <div class="steps">
+      <article class="step rv" data-d="0">
+        <div class="s-ic"><svg class="i"><use href="#i-phone"/></svg></div>
+        <h3>Nhận yêu cầu &amp; tư vấn gói</h3>
+        <p>Gọi, Zalo hoặc gửi form báo giá — tư vấn gói 1/2/3 năm theo loại hình doanh nghiệp và nhu cầu ký số.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Phản hồi 30 phút</span>
+      </article>
+      <article class="step rv" data-d="1">
+        <div class="s-ic"><svg class="i"><use href="#i-doc"/></svg></div>
+        <h3>Chuẩn bị &amp; xác minh hồ sơ</h3>
+        <p>Chụp giấy tờ gửi trước qua Zalo/email — kiểm tra và xác minh với tổ chức cấp phát trước khi điền thông tin.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>30–60 phút</span>
+      </article>
+      <article class="step rv" data-d="2">
+        <div class="s-ic"><svg class="i"><use href="#i-sign"/></svg></div>
+        <h3>Ký hợp đồng &amp; cấp chứng thư</h3>
+        <p>Ký hợp đồng điện tử, thanh toán theo gói năm — chứng thư số được cấp và kích hoạt ngay khi xong xác minh.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>1–2 giờ làm việc</span>
+      </article>
+      <article class="step rv" data-d="3">
+        <div class="s-ic"><svg class="i"><use href="#i-gauge"/></svg></div>
+        <h3>Cài đặt &amp; bàn giao — bật nhắc gia hạn</h3>
+        <p>Kỹ thuật viên cài token, phần mềm hóa đơn, hướng dẫn xuất hóa đơn đầu tiên và bật nhắc gia hạn tự động.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Trong ngày</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="commit">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">4 cam kết ghi trong hợp đồng dịch vụ</h2>
+      <span class="sec-sub">Không phải lời hứa suông — mỗi cam kết đều có điều khoản rõ trong hợp đồng</span>
+    </div>
+    <div class="com-grid">
+      <article class="com-card spot rv" data-d="0">
+        <span class="cc-num">01</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-shield"/></svg></div>
+        <h3>Chứng thư từ tổ chức cấp phát hợp pháp</h3>
+        <p>Chứng thư số công cộng do tổ chức cung cấp dịch vụ chứng thực chữ ký số được cấp phép phát hành — giá trị pháp lý đầy đủ theo Luật Giao dịch điện tử.</p>
+      </article>
+      <article class="com-card spot rv" data-d="1">
+        <span class="cc-num">02</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-gauge"/></svg></div>
+        <h3>Cài đặt tận nơi hoặc remote trong 60 phút</h3>
+        <p>Miễn phí cài đặt tận nơi trong TP.HCM — ngoài phạm vi hỗ trợ remote hướng dẫn từng bước, phục vụ cả thứ 7 và chủ nhật.</p>
+      </article>
+      <article class="com-card spot rv" data-d="2">
+        <span class="cc-num">03</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-refresh"/></svg></div>
+        <h3>Nhắc gia hạn trước 30 ngày</h3>
+        <p>Theo dõi ngày hết hạn của từng chứng thư — nhắc qua SMS/Zalo trước ít nhất 30 ngày để kế toán kịp trình duyệt chi phí, không đứt ký số giữa kỳ.</p>
+      </article>
+      <article class="com-card spot rv" data-d="3">
+        <span class="cc-num">04</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-lock"/></svg></div>
+        <h3>Giấy tờ doanh nghiệp được bảo mật</h3>
+        <p>Điều khoản bảo mật ghi trong hợp đồng — giấy tờ và thông tin doanh nghiệp chỉ phục vụ đăng ký chứng thư, không sử dụng cho mục đích khác.</p>
+      </article>
+    </div>
+    <div class="hot-strip rv" data-d="1">
+      <div class="hs-t">
+        <h3>Doanh nghiệp mới thành lập cần ký số từ tuần này?</h3>
+        <p>Gửi số điện thoại — kỹ thuật viên gọi lại trong 30 phút với báo giá gói 1/2/3 năm và checklist hồ sơ cho trường hợp của bạn.</p>
+      </div>
+      <div class="hs-acts">
+        <a class="btn btn-ghost btn-xl" href="tel:0901475268"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg><span class="num">0901 475 268</span>&nbsp;— gọi ngay</a>
+        <a class="btn btn-accent btn-xl" href="#lienhe"><svg class="i" style="width:22px;height:24px"><use href="#i-send"/></svg>Nhận báo giá miễn phí</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div class="ab-img rv">
+        <img src="assets/img/intro.webp" alt="Giới thiệu dịch vụ chữ ký số và hóa đơn điện tử Ký Tín" loading="lazy">
+        <div class="ab-tag"><b>12.000+</b><span>chứng thư đã kích hoạt</span></div>
+      </div>
+      <div class="ab-txt rv" data-d="1">
+        <span class="eyebrow"><svg class="i"><use href="#i-pen"/></svg>Về Ký Tín</span>
+        <h2>Văn phòng dịch vụ số — đồng hành cùng doanh nghiệp từ giấy phép đầu tiên</h2>
+        <p>Ký Tín cung cấp chứng thư số công cộng cho tổ chức và phần mềm hóa đơn điện tử từ năm 2016. Khách hàng của chúng tôi là doanh nghiệp mới thành lập, văn phòng kế toán dịch vụ và hộ kinh doanh — những đơn vị cần ký số từ tuần đầu tiên hoạt động. Mỗi khách hàng có một kỹ thuật viên làm đầu mối: cài đặt tận nơi, giải đáp khi ký không được và nhắc gia hạn trước 30 ngày theo danh sách riêng.</p>
+        <div class="ab-pts">
+          <div class="ab-pt"><svg class="i"><use href="#i-user"/></svg><span><b>Kỹ thuật viên đầu mối duy nhất</b><span>Gọi một số — xử lý mọi vấn đề ký số</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-gauge"/></svg><span><b>Cài đặt tận nơi &amp; remote</b><span>Miễn phí trong TP.HCM — cả T7, CN</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-refresh"/></svg><span><b>Nhắc gia hạn tự động</b><span>Danh sách token theo dõi riêng từng khách</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-tag"/></svg><span><b>Phí gói năm niêm yết công khai</b><span>Chốt trong hợp đồng — không phát sinh ngoài ý biết</span></span></div>
+        </div>
+        <div class="ab-cta">
+          <a class="btn btn-call" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi tư vấn: 0901 475 268</a>
+          <a class="btn btn-ghost" href="#lienhe"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá miễn phí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ĐÁNH GIÁ DOANH NGHIỆP ============ -->
+<section class="sec" id="proof">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Khách hàng kể lại sau khi ký số với Ký Tín</h2>
+      <span class="sec-sub">Ghi nhận theo hợp đồng — từ doanh nghiệp mới thành lập đến văn phòng kế toán dịch vụ</span>
+    </div>
+    <div class="rvw-shell rv" data-d="1">
+      <div>
+        <div class="rvw-view">
+          <div class="rvw-track" id="rvwTrack"></div>
+        </div>
+        <div class="rvw-dots" id="rvwDots"></div>
+      </div>
+      <aside class="rvw-side">
+        <div class="metric"><b>12.000+</b><span>chứng thư &amp; hộp phần mềm đang vận hành — doanh nghiệp, hộ kinh doanh, văn phòng kế toán</span></div>
+        <div class="mrow"><span>Phản hồi báo giá</span><b>30 phút</b></div>
+        <div class="mrow"><span>Nhắc gia hạn trước</span><b>30 ngày</b></div>
+        <div class="mrow"><span>Khách gia hạn lại liên tục</span><b>92%</b></div>
+        <div>
+          <h4 style="margin-bottom:10px">Chuẩn &amp; công cụ làm việc</h4>
+          <div class="pchips"><span>NĐ 123/2020</span><span>TT 78/2021</span><span>VNPT-CA</span><span>Viettel-CA</span><span>FPT-CA</span><span>eTax</span><span>BHXH điện tử</span><span>Hợp đồng điện tử</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM NHẬN BÁO GIÁ + MAP ============ -->
+<section class="sec" id="lienhe">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Nhận báo giá miễn phí — kỹ thuật viên gọi lại trong 30 phút</h2>
+      <span class="sec-sub">Điền 3 dòng: họ tên, số điện thoại và nhu cầu — tư vấn gói 1/2/3 năm không mất phí, không ràng buộc</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-pin"/></svg></span>
+          <span><b>Văn phòng Ký Tín</b><span>Tầng 4, 128 Nguyễn Trãi, P.3, Q.5, TP.HCM — đem giấy tờ trực tiếp để xử lý trong ngày</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+          <span><b>Hotline: 0901 475 268</b><span>Gọi trực tiếp khi cần cấp gấp — thứ 2 đến chủ nhật</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-clock"/></svg></span>
+          <span><b>Giờ làm việc</b><span>Tư vấn 8:00–19:00 thứ 2 – thứ 7 · kỹ thuật viên trực remote 7 ngày/tuần</span></span>
+        </div>
+        <div class="ct-space">
+          <img src="assets/img/space.webp" alt="Văn phòng Ký Tín — khu tiếp nhận hồ sơ khách hàng" loading="lazy">
+        </div>
+        <div class="ct-call">
+          <a class="btn btn-accent" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi: 0901 475 268</a>
+          <a class="btn btn-ghost" href="https://zalo.me/0901475268" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Nhắn Zalo tư vấn</a>
+        </div>
+        <div>
+          <div class="map-embed">
+            <iframe title="Bản đồ văn phòng Ký Tín" src="https://www.google.com/maps?q=10.7742,106.6580&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="map-act"><a href="https://www.google.com/maps/dir/?api=1&destination=10.7742,106.6580" target="_blank" rel="noopener"><svg class="i"><use href="#i-pin"/></svg>Chỉ đường</a></div>
+        </div>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm" novalidate>
+        <h3>Form nhận báo giá miễn phí</h3>
+        <p class="fsub">Kỹ thuật viên trực 7 ngày/tuần — gọi lại trong 30 phút kể từ khi gửi</p>
+        <div class="frow">
+          <input type="text" id="ctName" placeholder="Họ tên *" required>
+          <input type="tel" id="ctPhone" placeholder="Số điện thoại *" required>
+        </div>
+        <div class="frow">
+          <select id="ctNeed" class="full">
+            <option value="">Chọn nhu cầu của bạn…</option>
+            <option>Trọn bộ DN mới thành lập (token + HĐĐT)</option>
+            <option>Chữ ký số doanh nghiệp (gói 1/2/3 năm)</option>
+            <option>Phần mềm hóa đơn điện tử (gói năm)</option>
+            <option>Gia hạn chữ ký số</option>
+            <option>Hóa đơn điện tử — đăng ký &amp; phát hành</option>
+            <option>Kê khai &amp; nộp thuế điện tử</option>
+            <option>Hợp đồng điện tử</option>
+            <option>BHXH điện tử</option>
+            <option>Tư vấn pháp lý số / khác</option>
+          </select>
+        </div>
+        <div class="frow">
+          <textarea class="full" id="ctMsg" placeholder="Mô tả thêm (không bắt buộc): tên doanh nghiệp/hộ, đã có token chưa, gói 1/2/3 năm đang xem, số lượng hóa đơn mỗi tháng…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent"><svg class="i"><use href="#i-send"/></svg>Gửi yêu cầu — kỹ thuật viên gọi lại trong 30 phút</button>
+        <p class="secure"><svg class="i"><use href="#i-lock"/></svg>Thông tin chỉ dùng để báo giá dịch vụ chữ ký số &amp; hóa đơn điện tử — không chia sẻ cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Hỏi nhanh — đáp gọn trước khi đăng ký</h2>
+      <span class="sec-sub">Tìm bằng từ khóa hoặc chạm chip chủ đề bạn quan tâm</span>
+    </div>
+    <div class="faq-shell rv" data-d="1">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg class="i"><use href="#i-search"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: mới thành lập, gói năm, gia hạn, hóa đơn…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="fchip" data-k="mới thành lập">Mới thành lập</button>
+          <button class="fchip" data-k="gói năm">Gói 1/2/3 năm</button>
+          <button class="fchip" data-k="gia hạn">Gia hạn</button>
+          <button class="fchip" data-k="hóa đơn">Hóa đơn điện tử</button>
+          <button class="fchip" data-k="cài đặt">Cài đặt</button>
+          <button class="fchip" data-k="hộ kinh doanh">Hộ kinh doanh</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0901 475 268 để được trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="mark"><svg class="i"><use href="#i-pen"/></svg></span>
+          <span><span class="lg-t">Ký Tín</span><span class="lg-s">Chữ ký số &amp; HĐĐT</span></span>
+        </a>
+        <p>Chứng thư số doanh nghiệp, phần mềm hóa đơn điện tử, kê khai thuế — BHXH điện tử, hợp đồng điện tử theo gói năm tại TP.HCM. Nhắc gia hạn trước 30 ngày — phí niêm yết công khai.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg class="i"><use href="#i-chat"/></svg></a>
+          <a href="https://zalo.me/0901475268" target="_blank" rel="noopener" aria-label="Zalo"><svg class="i"><use href="#i-list"/></svg></a>
+          <a href="tel:0901475268" aria-label="Gọi điện"><svg class="i"><use href="#i-phone"/></svg></a>
+        </div>
+        <a class="ft-hot" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>0901 475 268</a>
+      </div>
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#dichvu8">Chữ ký số doanh nghiệp</a></li>
+          <li><a href="#dichvu8">Phần mềm hóa đơn điện tử</a></li>
+          <li><a href="#dichvu8">Gia hạn chữ ký số</a></li>
+          <li><a href="#dichvu8">Hợp đồng điện tử</a></li>
+          <li><a href="#dichvu8">BHXH &amp; kê khai thuế điện tử</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ trợ doanh nghiệp</h4>
+        <ul>
+          <li><a href="#hoso">Checklist hồ sơ đăng ký</a></li>
+          <li><a href="#dichvu8">Bảng gói theo năm</a></li>
+          <li><a href="#quytrinh">Quy trình cấp chứng thư</a></li>
+          <li><a href="#commit">4 cam kết hợp đồng</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>Văn phòng: Tầng 4, 128 Nguyễn Trãi, P.3, Q.5, TP.HCM</li>
+          <li>Hotline: <b style="color:#fff">0901 475 268</b></li>
+          <li>Zalo tư vấn: 0901 475 268</li>
+          <li>Email: baogia@kytin.vn</li>
+          <li>Tư vấn 8:00–19:00 thứ 2 – thứ 7 · kỹ thuật trực remote cả chủ nhật</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span>© 2026 Ký Tín — Chữ ký số &amp; Hóa đơn điện tử. Phí tham chiếu công khai — áp dụng theo quy định hiện hành.</span>
+      <div class="pay-chips"><span>Chuyển khoản</span><span>VietQR</span><span>Thanh toán theo gói năm</span><span>Hóa đơn VAT</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock hide" id="dock">
+  <a class="d-main" href="#lienhe"><svg class="i"><use href="#i-send"/></svg>Nhận báo giá</a>
+  <a class="d-hot" href="tel:0901475268"><svg class="i"><use href="#i-phone"/></svg>Gọi ngay</a>
+  <a href="https://zalo.me/0901475268" target="_blank" rel="noopener" title="Zalo"><svg class="i"><use href="#i-chat"/></svg>Zalo</a>
+  <a href="#dichvu8" title="Gói theo năm"><svg class="i"><use href="#i-tag"/></svg>Gói năm</a>
+  <a href="#lienhe" title="Bản đồ"><svg class="i"><use href="#i-pin"/></svg>Bản đồ</a>
+  <button id="dockTop" title="Lên đầu trang"><svg class="i"><use href="#i-up"/></svg>Lên đầu</button>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/*NB93-324: dữ liệu 8 dịch vụ cho search typeahead + flash thẻ khối-8*/
+var HOTLINE = '0901 475 268';
+var SVC = [
+  {n:'Chữ ký số doanh nghiệp — USB token', t:'k8-1', d:'Chứng thư số công cộng cho tổ chức, gói 1/2/3 năm, cấp 1-2 giờ'},
+  {n:'Hóa đơn điện tử — đăng ký & phát hành', t:'k8-2', d:'Đăng ký với cơ quan thuế, phát hành lô đầu tiên theo NĐ 123'},
+  {n:'Gia hạn chữ ký số', t:'k8-3', d:'Nhắc trước 30 ngày, gia hạn trong ngày, token giữ nguyên'},
+  {n:'Phần mềm hóa đơn điện tử', t:'k8-4', d:'Gói năm, xuất hóa đơn máy tính và điện thoại, tra cứu QR'},
+  {n:'Kê khai & nộp thuế điện tử', t:'k8-5', d:'Cài eTax, nộp thuế điện tử, tặng kèm khi đăng ký token'},
+  {n:'Hợp đồng điện tử', t:'k8-6', d:'Ký từ xa chứng thư số + OTP, quản lý luồng ký theo năm'},
+  {n:'BHXH điện tử', t:'k8-7', d:'Tài khoản doanh nghiệp, tăng giảm lao động online, ủy nhiệm chi'},
+  {n:'Tư vấn pháp lý số', t:'k8-8', d:'Giá trị pháp lý chữ ký số, hồ sơ điện tử, quy định mới cho kế toán'}
+];
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/*NB93-324: toast title + message là 2 phần tử riêng, khung pointer-events:none*/
+function toast(title, msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<svg class="i"><use href="#i-check"/></svg><span class="tt"><b>' + esc(title) + '</b><span>' + esc(msg) + '</span></span>';
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; t.style.transition = '.4s'; }, 3400);
+  setTimeout(function(){ t.remove(); }, 3900);
+}
+
+/* ================= REVEAL + SPOTLIGHT + DOCK ================= */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+document.querySelectorAll('.spot').forEach(function(c){
+  c.addEventListener('pointermove', function(ev){
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  });
+});
+/*NB93-324: dock ẩn khi cuộn xuống, hiện khi cuộn lên*/
+var heroEl = $('hero'), heroVis = true, lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+function syncDock(){
+  var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var down = y > lastY + 2, up = y < lastY - 2;
+  $('dock').classList.toggle('hide', heroVis || (y > 100 && down && !up));
+}
+new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; syncDock(); },{threshold:.15}).observe(heroEl);
+window.addEventListener('scroll', function(){ syncDock(); lastY = window.pageYOffset || document.documentElement.scrollTop || 0; }, {passive:true});
+$('dockTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/*NB93-324: tape nhân đôi nội dung chạy liền mạch*/
+$('tapeTrack').innerHTML += $('tapeTrack').innerHTML;
+
+/*NB93-324: flash thẻ khối-8 khi chọn từ search/dải liên kết*/
+function flashCard(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  setTimeout(function(){
+    el.classList.add('flash');
+    setTimeout(function(){ el.classList.remove('flash'); }, 2400);
+  }, 350);
+  toast('Đã tới dịch vụ bạn chọn', 'Bấm "Nhận báo giá" để điền sẵn nhu cầu vào form');
+}
+
+/*NB93-324: prefill — mọi nút nhận báo giá điền sẵn nhu cầu vào form cuối trang*/
+document.addEventListener('click', function(e){
+  var b = e.target.closest('.prefill');
+  if(!b) return;
+  var name = b.getAttribute('data-name');
+  var sel = $('ctNeed');
+  [].forEach.call(sel.options, function(o){ if(o.text === name) sel.value = o.text; });
+  document.getElementById('lienhe').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){ $('ctName').focus(); }, 500);
+  toast('Đã chọn nhu cầu "' + name.replace(/&amp;/g,'&') + '"', 'Điền họ tên và SĐT — kỹ thuật viên gọi lại trong 30 phút');
+});
+
+/*NB93-324: search typeahead chạy thật → flash đúng thẻ*/
+$('searchInput').addEventListener('input', function(){
+  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
+  if(!q){ drop.classList.remove('open'); return; }
+  var m = [];
+  SVC.forEach(function(s, i){ if((s.n + ' ' + s.d).toLowerCase().indexOf(q) !== -1) m.push(i); });
+  if(!m.length){ drop.classList.remove('open'); return; }
+  drop.innerHTML = m.map(function(i){ return '<button data-t="' + SVC[i].t + '"><svg class="i"><use href="#i-doc"/></svg>' + esc(SVC[i].n) + '</button>'; }).join('');
+  drop.classList.add('open');
+  drop.querySelectorAll('[data-t]').forEach(function(b){
+    b.addEventListener('click', function(){
+      drop.classList.remove('open');
+      $('searchInput').value = '';
+      flashCard(b.getAttribute('data-t'));
+    });
+  });
+});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search')) $('searchDrop').classList.remove('open');
+});
+/* dải liên kết nhanh → flash đúng thẻ khối-8*/
+document.querySelectorAll('.strip a[data-svc]').forEach(function(a){
+  a.addEventListener('click', function(ev){
+    ev.preventDefault();
+    flashCard(a.getAttribute('data-svc'));
+  });
+});
+
+/* ================= KHỐI ĐẶC THÙ — CHECKLIST GIẤY TỜ ĐĂNG KÝ ================= */
+var HS = [
+  {label:'DN mới thành lập', prefill:'Trọn bộ DN mới thành lập (token + HĐĐT)', items:[
+    ['Giấy chứng nhận đăng ký doanh nghiệp', 'bản gốc để đối chiếu khi xác minh'],
+    ['CCCD người đại diện theo pháp luật', 'chụp 2 mặt, còn hiệu lực'],
+    ['Giấy ủy quyền', 'nếu người đăng ký không phải người đại diện'],
+    ['Email + số điện thoại nhận thông tin chứng thư', 'dùng để nhận mã kích hoạt và thông báo'],
+    ['Tên viết tắt & địa chỉ trụ sở', 'in trên chứng thư số — chuẩn xác từng dấu']
+  ]},
+  {label:'Hộ kinh doanh', prefill:'Chữ ký số doanh nghiệp (gói 1/2/3 năm)', items:[
+    ['Giấy đăng ký hộ kinh doanh', 'có mã số thuế do cơ quan thuế cấp'],
+    ['CCCD chủ hộ kinh doanh', 'chụp 2 mặt, còn hiệu lực'],
+    ['Email + số điện thoại nhận thông tin chứng thư', 'dùng để nhận mã kích hoạt và thông báo'],
+    ['Tên hộ & địa chỉ điểm kinh doanh', 'in trên chứng thư số']
+  ]},
+  {label:'Gia hạn — đã có token', prefill:'Gia hạn chữ ký số', items:[
+    ['USB token còn hoạt động', 'đem theo văn phòng hoặc xác nhận online'],
+    ['CCCD người đại diện đã đăng ký', 'xác minh lại thông tin theo quy định'],
+    ['Mã số thuế / giấy CN ĐKDN hiện hành', 'đối chiếu thông tin tổ chức'],
+    ['Gói gia hạn muốn đăng ký', 'chọn 1/2/3 năm — nhắc trước 30 ngày được ưu đãi']
+  ]}
+];
+var hsTab = 0;
+function hsRender(){
+  var g = HS[hsTab], h = '';
+  g.items.forEach(function(it, i){
+    h += '<li><button type="button" class="hs-ck" data-i="' + i + '"><span class="box"><svg class="i"><use href="#i-check"/></svg></span><span>' + esc(it[0]) + '<em>' + esc(it[1]) + '</em></span></button></li>';
+  });
+  $('hsList').innerHTML = h;
+  $('hsCount').textContent = 'Đã chuẩn bị 0/' + g.items.length + ' giấy tờ';
+  $('hsBar').style.width = '0';
+  $('hsList').querySelectorAll('.hs-ck').forEach(function(b){
+    b.addEventListener('click', function(){
+      b.classList.toggle('ok');
+      hsProgress();
+    });
+  });
+}
+function hsProgress(){
+  var g = HS[hsTab];
+  var done = $('hsList').querySelectorAll('.hs-ck.ok').length;
+  $('hsCount').textContent = done === g.items.length
+    ? 'Đủ hồ sơ — sẵn sàng xử lý trong ngày'
+    : 'Đã chuẩn bị ' + done + '/' + g.items.length + ' giấy tờ';
+  $('hsBar').style.width = Math.round(done / g.items.length * 100) + '%';
+  if(done === g.items.length) toast('Đủ hồ sơ rồi!', 'Gửi báo giá để kỹ thuật viên xử lý trong ngày');
+}
+$('hsTabs').querySelectorAll('.hs-tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    $('hsTabs').querySelectorAll('.hs-tab').forEach(function(x){ x.classList.remove('on'); });
+    t.classList.add('on');
+    hsTab = +t.getAttribute('data-tab');
+    hsRender();
+  });
+});
+$('hsSubmit').addEventListener('click', function(){
+  var g = HS[hsTab];
+  var sel = $('ctNeed');
+  [].forEach.call(sel.options, function(o){ if(o.text === g.prefill) sel.value = o.text; });
+  document.getElementById('lienhe').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){ $('ctName').focus(); }, 500);
+  toast('Đã kèm nhu cầu "' + g.label + '"', 'Điền họ tên và SĐT — gọi lại trong 30 phút');
+});
+hsRender();
+
+/* ================= FORM NHẬN BÁO GIÁ ================= */
+$('ctForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('ctName').value.trim(), phone = $('ctPhone').value.trim(), need = $('ctNeed').value;
+  if(!name || !phone || !need){ toast('Thiếu thông tin', 'Điền đủ họ tên, SĐT và chọn nhu cầu nhé!'); return; }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ', 'Kiểm tra lại giúp bạn nhé!'); return; }
+  this.reset();
+  toast('Đã gửi yêu cầu báo giá', 'Kỹ thuật viên gọi lại trong 30 phút — cảm ơn ' + name + '!');
+});
+
+/* ================= ĐÁNH GIÁ DOANH NGHIỆP ================= */
+var RVW = [
+  {t:'Công ty mới thành lập tháng trước — từ chốt gói đến xuất được hóa đơn đầu tiên chỉ trong một buổi sáng. Kỹ thuật viên cài token và phần mềm hóa đơn tận văn phòng, hướng dẫn kê khai eTax rất kỹ.', n:'Anh Nguyễn Minh Tuấn — TNHH TM Thiên An', w:'Q.7 — doanh nghiệp mới thành lập', i:'MT'},
+  {t:'Văn phòng tôi quản lý hơn 40 khách doanh nghiệp, mỗi năm gia hạn hàng chục token. Ký Tín nhắc trước 30 ngày theo đúng danh sách của tôi — chưa bao giờ đứt chữ ký giữa kỳ kê khai.', n:'Chị Trần Thị Mai Loan — VP kế toán Loan Hà', w:'Bình Thạnh — dịch vụ kế toán', i:'ML'},
+  {t:'Hộ kinh doanh vẫn dùng tốt: làm chứng thư xong cài luôn hóa đơn điện tử theo NĐ 123. Giờ xuất hóa đơn cho khách chỉ mất một phút trên điện thoại.', n:'Anh Lê Văn Dũng — Điện máy Dũng Phát', w:'Q.12 — hộ kinh doanh', i:'VD'},
+  {t:'Đổi máy tính mới không ký được, gọi hotline là remote trong 15 phút xong. Tôi lấy gói 3 năm — chênh không nhiều mà ba năm không phải lo lại hồ sơ gia hạn.', n:'Chị Phạm Thu Hương — TNHH SX Hương Việt', w:'Củ Chi — gói trọn bộ 3 năm', i:'TH'}
+];
+var rvIdx = 0, rvTimer = null;
+function rvRender(){
+  var h = '';
+  RVW.forEach(function(r){
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<svg class="i f"><use href="#i-star"/></svg>';
+    h += '<div class="rvw-slide"><div class="rvw-card"><div class="stars">' + stars + '</div>' +
+      '<p>"' + esc(r.t) + '"</p>' +
+      '<div class="who"><span class="avt">' + r.i + '</span><span><b>' + esc(r.n) + '</b><span>' + esc(r.w) + '</span></span></div>' +
+      '</div></div>';
+  });
+  $('rvwTrack').innerHTML = h;
+  var d = '';
+  RVW.forEach(function(_, i){ d += '<button data-d="' + i + '" aria-label="Đánh giá ' + (i+1) + '"></button>'; });
+  $('rvwDots').innerHTML = d;
+  $('rvwDots').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ rvGo(+b.getAttribute('data-d')); rvAuto(); });
+  });
+  rvGo(0);
+}
+function rvGo(i){
+  rvIdx = (i + RVW.length) % RVW.length;
+  $('rvwTrack').style.transform = 'translateX(' + (-rvIdx * 100) + '%)';
+  $('rvwDots').querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===rvIdx); });
+}
+function rvAuto(){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){ rvGo(rvIdx + 1); }, 6500);
+}
+var rvShell = document.querySelector('.rvw-shell');
+rvShell.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+rvShell.addEventListener('mouseleave', rvAuto);
+rvRender(); rvAuto();
+
+/* ================= FAQ ================= */
+var FAQ = [
+  {q:'Doanh nghiệp mới thành lập cần làm gì để có chữ ký số?', k:'mới thành lập cần gì hồ sơ giấy tờ trình tự',
+   a:'Trình tự gồm 4 bước: gửi báo giá và chốt gói 1/2/3 năm — chuẩn bị giấy chứng nhận đăng ký doanh nghiệp cùng CCCD người đại diện — xác minh hồ sơ với tổ chức cấp phát và ký hợp đồng — nhận chứng thư, cài đặt và hướng dẫn sử dụng. Cả quá trình tham chiếu 1–2 giờ làm việc sau khi hồ sơ đủ và hợp đồng có hiệu lực; doanh nghiệp chưa phát sinh thuế vẫn đăng ký được.'},
+  {q:'Vì sao doanh nghiệp bắt buộc phải có chữ ký số?', k:'bắt buộc nộp thuế điện tử kê khai lý do',
+   a:'Từ khi hóa đơn điện tử bắt buộc theo NĐ 123/2020, mọi tờ khai thuế, đăng ký BHXH điện tử, khai hải quan đều phải nộp qua mạng kèm chữ ký số mới có giá trị pháp lý. Không có chứng thư số, doanh nghiệp không thể kê khai, nộp thuế điện tử hay phát hành hóa đơn điện tử — đây là hạ tầng bắt buộc từ tuần đầu hoạt động.'},
+  {q:'Gói 1 năm, 2 năm, 3 năm khác nhau thế nào?', k:'gói năm 1 2 3 giá tiết kiệm khác nhau',
+   a:'Quyền lợi như nhau — khác ở thời hạn và đơn giá: gói càng dài, chi phí trung bình mỗi năm càng thấp (ví dụ token doanh nghiệp: 1.190.000đ/năm mua lẻ, còn 2.990.000đ cho 3 năm — tương đương dưới 1 triệu mỗi năm). Cách chọn đơn giản: DN mới thành lập lấy 1–2 năm để thử vận hành; văn phòng kế toán, công ty ổn định lấy 3 năm để không phải làm lại hồ sơ hằng năm.'},
+  {q:'Mua riêng phần mềm hóa đơn điện tử có được không?', k:'riêng phần mềm hóa đơn không mua token',
+   a:'Được. Phần mềm hóa đơn điện tử mua riêng theo gói năm từ 690.000đ. Lưu ý: hóa đơn phải được ký bằng chứng thư số hợp lệ — nếu doanh nghiệp đã có token (của Ký Tín hoặc tổ chức khác) thì dùng luôn; nếu chưa có, nên lấy trọn bộ để được cài đặt đồng bộ và nhắc gia hạn một đầu mối.'},
+  {q:'Chữ ký số hết hạn thì sao — có mất dữ liệu không?', k:'hết hạn gia hạn mất dữ liệu token',
+   a:'Không mất dữ liệu: hồ sơ, hóa đơn đã xuất vẫn nằm trên phần mềm và cơ quan lưu trữ. Khi hết hạn, token vẫn dùng được để gia hạn — không phải mua mới. Ký Tín nhắc trước 30 ngày qua SMS/Zalo; quá trình gia hạn hoàn tất trong ngày, sau đó ký số hoạt động lại bình thường. Hết hạn mà chưa gia hạn thì tạm không ký được tờ khai mới.'},
+  {q:'Ngoài thuế, chữ ký số ký được những gì?', k:'hải quan bhxh hợp đồng điện tử phạm vi ký',
+   a:'Chứng thư số doanh nghiệp dùng cho: nộp và kê khai thuế điện tử (eTax), hải quan điện tử VNACCS, BHXH điện tử, đăng ký kinh doanh trực tuyến, hợp đồng điện tử với đối tác và tin dụng ngân hàng. Một chứng thư dùng chung cho các hệ thống — không phải mua riêng cho từng nền tảng.'},
+  {q:'Văn phòng kế toán quản lý nhiều token cho khách thì làm thế nào?', k:'văn phòng kế toán nhiều token quản lý danh sách',
+   a:'Ký Tín quản lý giúp danh sách theo từng khách: ngày hết hạn, tổ chức cấp phát, gói còn lại — nhắc trước 30 ngày theo đợt kê khai của từng đơn vị. Gia hạn nhiều token cùng lúc được xử lý theo đợt với phí theo bảng gói năm, có báo cáo danh sách gửi định kỳ cho văn phòng đối chiếu.'},
+  {q:'Có hỗ trợ cài đặt tận chỗ không — có mất phí gì thêm?', k:'cài đặt tận nơi phí hỗ trợ remote',
+   a:'Miễn phí cài đặt tận nơi trong TP.HCM cho mọi gói đăng ký mới: kỹ thuật viên cài token, phần mềm hóa đơn, hướng dẫn xuất hóa đơn đầu tiên ngay tại chỗ. Ngoài phạm vi địa lý hoặc cần xử lý nhanh, hỗ trợ remote qua UltraView/AnyDesk — cũng không mất phí. Phục vụ cả thứ 7, chủ nhật khi doanh nghiệp cần chạy tờ khai gấp.'}
+];
+function faqRender(list){
+  var h = '';
+  list.forEach(function(f){
+    h += '<div class="faq-item"><button class="faq-q"><span class="fq-ic"><svg class="i"><use href="#i-chat"/></svg></span>' +
+      '<span>' + esc(f.q) + '</span><svg class="i chev"><use href="#i-chevd"/></svg></button>' +
+      '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  });
+  $('faqList').innerHTML = h;
+  $('faqEmpty').style.display = list.length ? 'none' : 'block';
+  $('faqList').querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.parentElement, body = item.querySelector('.faq-a'), open = item.classList.contains('open');
+      $('faqList').querySelectorAll('.faq-item.open').forEach(function(x){
+        x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+}
+function faqFilter(q){
+  if(!q){ faqRender(FAQ); return; }
+  q = q.toLowerCase();
+  var m = FAQ.filter(function(f){ return (f.q + ' ' + f.a + ' ' + f.k).toLowerCase().indexOf(q) !== -1; });
+  faqRender(m);
+}
+$('faqSearch').addEventListener('input', function(){
+  $('faqChips').querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+  faqFilter(this.value.trim());
+});
+$('faqChips').querySelectorAll('.fchip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var on = c.classList.contains('on');
+    $('faqChips').querySelectorAll('.fchip').forEach(function(x){ x.classList.remove('on'); });
+    $('faqSearch').value = '';
+    if(on){ faqRender(FAQ); } else { c.classList.add('on'); faqFilter(c.getAttribute('data-k')); }
+  });
+});
+faqRender(FAQ);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Ký Tín — Chữ ký số & Hóa đơn điện tử",
+  "slogan":"Cấp chứng thư số nhanh — xuất hóa đơn ngay trong ngày",
+  "telephone":"0901475268",
+  "address":{"@type":"PostalAddress","streetAddress":"Tầng 4, 128 Nguyễn Trãi, P.3, Q.5","addressLocality":"TP.HCM","addressCountry":"VN"},
+  "openingHours":"Mo-Sa 08:00-19:00",
+  "priceRange":"690.000đ - 4.490.000đ theo gói năm (tham chiếu)"
+}
+</script>
+<!-- CHAT: widget chat tư vấn chữ ký số trực tiếp (demo bot) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn chữ ký số trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn Ký Tín — Chữ ký số &amp; HĐĐT</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-324: CHAT widget truc tiep*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:var(--grad-dark);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(10,46,77,.55);border:1.5px solid rgba(34,176,162,.5);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(14,148,136,.18)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(10,46,77,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:var(--grad-dark);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F4F9FA}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(10,46,77,.08);border-bottom-left-radius:4px;color:#22313F}
+.pkc-u{align-self:flex-end;background:var(--grad-dark);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(10,46,77,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(10,46,77,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(10,108,99,.4);color:var(--accent-deep);background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:34px}
+.pkc-chip:hover{background:var(--accent-100)}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(10,46,77,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(10,46,77,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none;min-width:0}
+.pkc-inrow input:focus{border-color:var(--primary-2);box-shadow:0 0 0 3px rgba(27,106,168,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:var(--grad-dark);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.15)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style><script>
+/*NB93-324: chat bot nghề chữ ký số - hóa đơn điện tử*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/*NB93-324: FAILSAFE — element reveal bị kẹt lại tự hiện sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script></body>
+</html>

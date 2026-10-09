@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tươi Phát — Xưởng sơ chế, đóng gói & gia công thực phẩm theo yêu cầu | Báo giá theo kg</title>
+<meta name="description" content="Tươi Phát — xưởng sơ chế, đóng gói hút chân không, cấp đông và gia công thực phẩm theo đơn hàng tại KCN Vĩnh Lộc. Nhận lô từ 20kg, báo giá theo kg trong 4 giờ, quy trình ATTP, mã lô QR truy xuất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-039 ============ TOKENS — bảng màu suy từ ảnh xưởng sơ chế (xanh lá ATTP + hổ phách nhãn hàng) ============ */
+:root{
+  --primary:#175E38;          /* xanh lá sâu — header, section tối, footer */
+  --primary-deep:#0C3A21;
+  --primary-soft:#1F7A47;
+  --ink:#17281D;
+  --soft:#57705F;
+  --texture:#EDF5EE;          /* nền sáng cùng họ xanh */
+  --texture-2:#F7FBF7;
+  --accent:#F59B1D;           /* hổ phách — màu nhãn/thố kiểm định */
+  --accent-deep:#A96A08;
+  --accent-100:#FDEBD2;
+  --grad-accent:linear-gradient(135deg,#FFB558,#EF8A0C);
+  --grad-dark:linear-gradient(140deg,#1F7A47,#175E38 52%,#0C3A21);
+  --line:#D6E5DA;
+  --ok:#1F9D6B;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:32px;
+  --sh-1:0 2px 10px rgba(12,58,33,.08);
+  --sh-2:0 10px 30px rgba(12,58,33,.13);
+  --sh-3:0 24px 60px rgba(12,58,33,.22);
+  --sh-acc:0 10px 26px rgba(245,155,29,.38);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.62;font-size:16px}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+section{position:relative}
+section[id]{scroll-margin-top:86px}
+.wrap{width:min(1180px,92%);margin:0 auto;position:relative;z-index:2}
+.block-title{display:block;font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:900;line-height:1.22;letter-spacing:-.4px}
+.block-title .hl{background:linear-gradient(120deg,var(--accent-100),#FFF0DA);padding:.04em .18em;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.block-title .un{position:relative;white-space:nowrap}
+.block-title .un::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.34em;background:var(--accent-100);z-index:-1;border-radius:4px}
+.block-sub{display:block;color:var(--soft);font-size:15.5px;max-width:660px;margin-top:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:8px 16px;border-radius:99px;box-shadow:var(--sh-1)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+/* nút */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15.5px;padding:15px 28px;border-radius:14px;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-acc{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.btn-acc::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-acc:hover::after{left:125%}
+.btn-acc:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(245,155,29,.46)}
+.btn-navy{background:var(--primary);color:#fff;box-shadow:var(--sh-2)}
+.btn-navy:hover{background:var(--primary-soft);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--primary);border:1.8px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-lg{padding:18px 34px;font-size:16.5px;border-radius:16px}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+/* hoạ tiết nghề: lưới thớt/thép inox + đường nét đứt như đường cắt quy cách */
+.prep-grid{background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px}
+.prep-grid-light{background-image:linear-gradient(rgba(23,94,56,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(23,94,56,.05) 1px,transparent 1px);background-size:36px 36px}
+.cutline{border-top:2px dashed rgba(23,94,56,.28)}
+
+/*NB93-039 ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#CBE3D3;font-size:13px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0}
+.topbar .tb-l,.topbar .tb-r{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.topbar span{display:inline-flex;align-items:center;gap:7px}
+.topbar svg{flex:none;opacity:.85}
+.topbar .hot{color:#FFD9A0;font-weight:800;font-size:14.5px;letter-spacing:.4px}
+.topbar .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+
+/*NB93-039 ============ HEADER ============ */
+header.hdr{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:.3s}
+.hdr .wrap{display:flex;align-items:center;gap:22px;padding:13px 0}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo .mark{width:46px;height:46px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.logo .mark svg{position:relative;z-index:1}
+.logo .mark::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(245,155,29,.4),transparent 55%)}
+.logo b{display:block;font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--primary);line-height:1.1}
+.logo small{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase}
+.hsearch{flex:1;min-width:0;max-width:360px;position:relative}
+.hsearch input{width:100%;padding:11px 16px 11px 42px;border:1.6px solid var(--line);border-radius:99px;background:var(--texture-2);outline:none;transition:.25s}
+.hsearch input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(245,155,29,.14);background:#fff}
+.hsearch svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.5}
+nav.mainnav{display:flex;gap:4px;margin-left:auto}
+nav.mainnav a{font-size:14.5px;font-weight:700;color:var(--ink);padding:9px 13px;border-radius:10px;transition:.2s}
+nav.mainnav a:hover{background:var(--texture);color:var(--primary)}
+.hdr .cta{flex:none}
+.hdr .cta .btn{padding:12px 22px;font-size:14.5px;border-radius:12px}
+.hdr.scrolled{box-shadow:var(--sh-2)}
+
+/*NB93-039 ============ HERO ============ */
+.hero{background:var(--grad-dark);color:#fff;overflow:clip;padding:64px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero .eyebrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#FFD9A0}
+.hero h1{display:block;font-size:clamp(2.1rem,4.6vw,3.35rem);font-weight:900;line-height:1.14;letter-spacing:-1px;margin:20px 0 0}
+.hero h1 .hl{background:linear-gradient(120deg,var(--accent),#FFC470);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal}
+.hero .sub{display:block;margin-top:18px;font-size:16.5px;color:#BFDCC9;max-width:540px}
+.hero .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero .call{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:13px 22px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;backdrop-filter:blur(8px)}
+.hero .call .ic{width:44px;height:44px;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;flex:none;box-shadow:var(--sh-acc);animation:ring 2.6s infinite}
+@keyframes ring{0%,72%,100%{box-shadow:0 0 0 0 rgba(245,155,29,.45)}80%{box-shadow:0 0 0 14px rgba(245,155,29,0)}}
+.hero .call b{display:block;font-size:21px;font-weight:900;letter-spacing:.6px;color:#FFD9A0;line-height:1.15}
+.hero .call small{display:block;font-size:12px;color:#9FC4AC}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#DCEFE2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:99px}
+.chip svg{flex:none}
+/* ảnh hero — khung ngang 16/10 giữ poster từ đỉnh, cắt bỏ dải liên hệ in sẵn ở đáy ảnh nguồn */
+.hero-media{position:relative}
+.hm-main{position:relative;border-radius:var(--r-xl);overflow:hidden;border:6px solid rgba(255,255,255,.92);box-shadow:var(--sh-3);transform:rotate(-1.6deg);animation:float1 8s ease-in-out infinite;aspect-ratio:16/10;background:#fff}
+.hm-main img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hm-badge{position:absolute;right:18px;top:16px;z-index:5;background:#fff;color:var(--primary);font-weight:800;font-size:13px;padding:10px 16px;border-radius:12px;box-shadow:var(--sh-2);display:flex;align-items:center;gap:9px}
+.hm-badge i{width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+.hm-stats{position:absolute;left:16px;right:16px;bottom:16px;z-index:4;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:rgba(12,58,33,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.18);border-radius:16px;box-shadow:var(--sh-3);overflow:hidden}
+.hm-stats div{padding:13px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.hm-stats div:last-child{border-right:none}
+.hm-stats b{display:block;font-size:19px;font-weight:900;color:#FFD9A0}
+.hm-stats small{display:block;font-size:11px;color:#B7D6C2;font-weight:600}
+@keyframes float1{0%,100%{transform:rotate(-1.6deg) translateY(0)}50%{transform:rotate(-1.6deg) translateY(-10px)}}
+
+/*NB93-039 ============ TAPE MARQUEE ============ */
+.tape{background:var(--grad-accent);transform:rotate(-1deg);width:104%;margin:-38px 0 0 -2%;box-shadow:var(--sh-2);position:relative;z-index:6;overflow:hidden}
+.tape .in{display:flex;gap:0;white-space:nowrap;padding:13px 0;animation:tape 26s linear infinite}
+.tape span{display:inline-flex;align-items:center;gap:16px;color:#fff;font-weight:900;font-size:15px;letter-spacing:1.4px;text-transform:uppercase;padding:0 18px}
+.tape svg{flex:none;opacity:.9}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/*NB93-039 ============ SECTION HEAD chung ============ */
+.sec{padding:96px 0}
+.sec-head{margin-bottom:46px}
+.sec-head.center{text-align:center}
+.sec-head.center .block-sub{margin-left:auto;margin-right:auto}
+
+/*NB93-039 ============ 2 THẺ CHUYỀN CHỦ LỰC ============ */
+#nang-luc{background:var(--texture-2)}
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cap-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:.3s;position:relative;min-width:0}
+.cap-card:hover{transform:translateY(-7px);box-shadow:var(--sh-3);border-color:rgba(245,155,29,.4)}
+.cap-card.dark{background:var(--grad-dark);color:#fff;border-color:rgba(255,255,255,.14)}
+.cap-img{position:relative;aspect-ratio:16/9;overflow:hidden}
+.cap-img img{width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.cap-badge{position:absolute;top:14px;left:14px;background:var(--grad-accent);color:#fff;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;box-shadow:var(--sh-acc);letter-spacing:.6px;text-transform:uppercase}
+.cap-tol{position:absolute;bottom:12px;right:12px;background:rgba(12,58,33,.78);backdrop-filter:blur(6px);color:#FFD9A0;font-size:13px;font-weight:800;padding:7px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.2)}
+.cap-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1;min-width:0}
+.cap-body h3{display:block;font-size:20px;font-weight:900;letter-spacing:-.3px;margin-bottom:9px}
+.cap-body>p{display:block;font-size:14.5px;color:var(--soft);margin-bottom:16px}
+.cap-card.dark .cap-body>p{color:#BFDCC9}
+.cap-list{list-style:none;margin-bottom:18px;display:grid;gap:9px}
+.cap-list li{display:flex;gap:9px;font-size:14px;font-weight:600;align-items:flex-start}
+.cap-list svg{flex:none;margin-top:3px}
+.mtab{width:100%;border-collapse:collapse;font-size:12.8px;margin-bottom:20px;border-radius:12px;overflow:hidden;border:1.5px solid var(--line)}
+.cap-card.dark .mtab{border-color:rgba(255,255,255,.18)}
+.mtab th,.mtab td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--line)}
+.cap-card.dark .mtab th,.cap-card.dark .mtab td{border-bottom:1px solid rgba(255,255,255,.13)}
+.mtab tr:last-child th,.mtab tr:last-child td{border-bottom:none}
+.mtab th{background:var(--texture);color:var(--primary);font-weight:800;width:38%}
+.cap-card.dark .mtab th{background:rgba(255,255,255,.08);color:#FFD9A0}
+.mtab td{font-weight:600;color:var(--ink)}
+.cap-card.dark .mtab td{color:#DCEFE2}
+.cap-card .btn{width:100%;margin-top:auto}
+
+/*NB93-039 ============ DẢI 5 DỊCH VỤ GỌN ============ */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+.strip a{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;transition:.25s;min-width:0}
+.strip a:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(245,155,29,.45)}
+.strip .si{width:40px;height:40px;flex:none;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep)}
+.strip b{display:block;font-size:13.5px;font-weight:800;line-height:1.3}
+.strip small{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.strip .ar{margin-left:auto;color:var(--accent);flex:none;transition:.25s}
+.strip a:hover .ar{transform:translateX(4px)}
+
+/*NB93-039 ============ STATS BAND NĂNG LỰC XƯỞNG ============ */
+.stats-band{background:var(--grad-dark);color:#fff;padding:88px 0;overflow:clip;position:relative}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;z-index:2}
+.stat{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r-l);padding:30px 26px;text-align:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.3s;min-width:0}
+.stat:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(245,155,29,.5)}
+.stat .num{font-size:clamp(2rem,4vw,2.7rem);font-weight:900;color:#FFD9A0;line-height:1.1;letter-spacing:-1px}
+.stat .num small{font-size:.55em;font-weight:800;margin-left:2px}
+.stat b{display:block;font-size:15px;font-weight:800;margin-top:9px}
+.stat small{display:block;font-size:12.5px;color:#9FC4AC;margin-top:5px}
+.qc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;position:relative;z-index:2}
+.qc{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.22);border-radius:16px;padding:18px;min-width:0}
+.qc .qi{width:42px;height:42px;flex:none;border-radius:12px;background:rgba(245,155,29,.18);border:1px solid rgba(245,155,29,.4);display:grid;place-items:center;color:#FFD9A0}
+.qc b{display:block;font-size:14.5px;font-weight:800}
+.qc small{display:block;font-size:12.5px;color:#B7D6C2;margin-top:3px}
+.partner-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center;position:relative;z-index:2}
+.partner-row .lbl{width:100%;text-align:center;font-size:12px;font-weight:800;letter-spacing:2px;color:#8FBF9F;text-transform:uppercase;margin-bottom:6px}
+.pt{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:99px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);font-size:13.5px;font-weight:700;color:#DCEFE2;transition:.25s}
+.pt:hover{background:rgba(245,155,29,.16);border-color:var(--accent);color:#FFD9A0}
+
+/*NB93-039 ============ KHỐI-8 BENTO KÍN Ô (1 thẻ nổi bật 2x2 + 7 thẻ đều + 1 ô phiếu CTA) ============ */
+#dich-vu{background:var(--texture)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:18px}
+.bcard{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:.3s;position:relative;min-width:0}
+.bcard::before{content:"";position:absolute;inset:0;border-radius:var(--r-l);background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(245,155,29,.13),transparent 62%);opacity:0;transition:.35s;pointer-events:none;z-index:1}
+.bcard:hover::before{opacity:1}
+.bcard:hover{transform:translateY(-6px);box-shadow:var(--sh-3);border-color:rgba(245,155,29,.4)}
+.bcard.dim{opacity:.28;filter:grayscale(1)}
+.bimg{position:relative;aspect-ratio:4/3;overflow:hidden}
+.bimg img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.bnum{position:absolute;bottom:12px;left:12px;background:rgba(12,58,33,.82);backdrop-filter:blur(6px);color:#FFD9A0;font-size:12px;font-weight:900;padding:6px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.2);z-index:2}
+.bpq{position:absolute;top:12px;right:12px;background:#fff;color:var(--primary);font-size:12px;font-weight:800;padding:7px 13px;border-radius:9px;box-shadow:var(--sh-2);opacity:0;transform:translateY(6px);transition:.28s;z-index:2}
+.bcard:hover .bpq{opacity:1;transform:none}
+.bbody{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;min-width:0;position:relative;z-index:2}
+.bbody h3{display:block;font-size:17px;font-weight:900;letter-spacing:-.2px}
+.bbody>p{display:block;font-size:13px;color:var(--soft);margin:7px 0 12px}
+.bspecs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.bspec{font-size:12px;font-weight:800;color:var(--primary);background:var(--texture);border:1px solid var(--line);padding:5px 10px;border-radius:8px}
+.bspec em{font-style:normal;color:var(--accent-deep)}
+.bfoot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bfoot .price b{display:block;font-size:14.5px;font-weight:900;color:var(--primary)}
+.bfoot .price small{display:block;font-size:12px;color:var(--soft)}
+.bfoot .go{font-size:13px;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:6px;padding:10px 15px;border-radius:10px;background:var(--grad-accent);box-shadow:var(--sh-acc);transition:.25s;flex:none}
+.bfoot .go:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(245,155,29,.46);filter:brightness(1.05)}
+/* thẻ nổi bật 2x2 */
+.bcard.feat{grid-column:span 2;grid-row:span 2;border:2px solid rgba(245,155,29,.55)}
+.bcard.feat .bimg{flex:1 1 auto;aspect-ratio:auto;min-height:230px}
+.bcard.feat .bimg img{object-position:left center}
+.bfeat-badge{position:absolute;bottom:12px;left:12px;background:var(--grad-accent);color:#fff;font-size:12px;font-weight:900;padding:8px 15px;border-radius:99px;box-shadow:var(--sh-acc);letter-spacing:.6px;text-transform:uppercase;z-index:2}
+.bcard.feat .bbody{padding:24px 24px 26px}
+.bcard.feat .bbody h3{font-size:23px}
+.bcard.feat .bbody>p{font-size:14.5px}
+.bcard.feat .bfoot .price b{font-size:17px}
+.blist{list-style:none;display:grid;gap:8px;margin-bottom:14px}
+.blist li{display:flex;gap:9px;font-size:13px;font-weight:600;align-items:flex-start}
+.blist svg{flex:none;margin-top:3px}
+/* ô phiếu báo giá (đóng ô cuối) */
+.bcard.ticket{border:2px dashed rgba(23,94,56,.4);background:var(--texture-2);align-items:center;justify-content:center;text-align:center;padding:24px 20px;gap:12px}
+.bcard.ticket svg{color:var(--accent-deep)}
+.bcard.ticket b{display:block;font-size:16.5px;font-weight:900;color:var(--primary);line-height:1.35}
+.bcard.ticket small{display:block;font-size:12.5px;color:var(--soft)}
+.bcard.ticket .btn{width:100%}
+
+/*NB93-039 ============ ESTIMATOR GIÁ THEO NGUYÊN LIỆU (dấu ấn nghề) ============ */
+#bang-gia{background:var(--texture-2)}
+.calc{display:grid;grid-template-columns:1.06fr .94fr;gap:26px;align-items:stretch}
+.calc-form{background:rgba(23,94,56,.045);border:1.5px solid var(--line);border-radius:var(--r-xl);padding:32px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);min-width:0}
+.calc-form h3{display:block;font-size:19px;font-weight:900;margin-bottom:4px}
+.calc-form>p{display:block;font-size:13.5px;color:var(--soft);margin-bottom:22px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:.6px}
+.field select,.field input{padding:13px 15px;border:1.6px solid var(--line);border-radius:12px;background:#fff;outline:none;transition:.2s;width:100%}
+.field select:focus,.field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(245,155,29,.13)}
+.field input[type=range]{padding:0;border:none;background:transparent;accent-color:var(--accent);box-shadow:none!important;height:38px}
+.sizerow{display:flex;align-items:center;gap:12px;background:#fff;border:1.6px solid var(--line);border-radius:12px;padding:6px 15px}
+.sizerow input{flex:1;min-width:0;border:none}
+.sizerow b{font-size:14px;font-weight:900;color:var(--accent-deep);min-width:82px;text-align:right}
+.calc-out{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-2);padding:32px;display:flex;flex-direction:column;min-width:0}
+.calc-out .oh{display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.calc-out .oh .oi{width:44px;height:44px;border-radius:13px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep);flex:none}
+.calc-out h3{display:block;font-size:18px;font-weight:900}
+.calc-out small{display:block;font-size:12.5px;color:var(--soft)}
+.big-price{background:var(--grad-dark);border-radius:18px;padding:22px 24px;color:#fff;margin-bottom:18px;position:relative;overflow:hidden}
+.big-price::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px}
+.big-price small{display:block;font-size:12px;color:#B7D6C2;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.big-price b{display:block;font-size:clamp(1.5rem,2.6vw,1.95rem);font-weight:900;color:#FFD9A0;margin-top:5px;letter-spacing:-.5px;position:relative;z-index:1}
+.big-price .tt{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.25);position:relative;z-index:1;font-size:14px}
+.big-price .tt b{font-size:17px;color:#fff;margin:0}
+.out-rows{display:grid;gap:10px;margin-bottom:18px}
+.out-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:11px 15px;background:var(--texture-2);border:1.5px solid var(--line);border-radius:12px}
+.out-row span{color:var(--soft);font-weight:600;display:flex;align-items:center;gap:8px}
+.out-row b{font-weight:900;color:var(--primary);text-align:right}
+.tier-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.tier-tbl th,.tier-tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.tier-tbl tr:last-child td{border-bottom:none}
+.tier-tbl th{background:var(--texture);color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tier-tbl td b{color:var(--accent-deep)}
+.calc-out .btn{width:100%}
+.calc-out .note{display:block;font-size:12px;color:var(--soft);text-align:center;margin-top:12px}
+
+/*NB93-039 ============ QUY TRÌNH ATTP 6 BƯỚC ============ */
+#quy-trinh{background:var(--grad-dark);color:#fff;overflow:clip}
+#quy-trinh .block-sub{color:#BFDCC9}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:8px}
+.step{position:relative;background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.13);border-radius:var(--r-l);padding:26px 18px 24px;text-align:center;transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);border-color:rgba(245,155,29,.55);background:rgba(255,255,255,.09)}
+.step .n{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--grad-accent);color:#fff;font-size:14px;font-weight:900;display:grid;place-items:center;box-shadow:var(--sh-acc)}
+.step .ic{width:56px;height:56px;margin:6px auto 14px;border-radius:18px;background:rgba(245,155,29,.15);border:1px solid rgba(245,155,29,.4);display:grid;place-items:center;color:#FFD9A0}
+.step b{display:block;font-size:14.5px;font-weight:800;line-height:1.35}
+.step p{display:block;font-size:12.5px;color:#B7D6C2;margin-top:7px}
+.step .meta{display:inline-flex;margin-top:12px;font-size:12px;font-weight:800;color:#FFD9A0;background:rgba(245,155,29,.13);border:1px solid rgba(245,155,29,.35);padding:4px 11px;border-radius:99px;letter-spacing:.4px}
+.flow-note{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-size:14px;color:#CBE3D3;position:relative;z-index:2}
+.flow-note b{color:#FFD9A0}
+
+/*NB93-039 ============ VỀ XƯỞNG + CAM KẾT ATTP ============ */
+#about{background:var(--texture-2)}
+.about-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:54px;align-items:center}
+.about-img{position:relative}
+.about-img .ph{border-radius:var(--r-l);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.6deg);animation:float1 8s ease-in-out infinite;aspect-ratio:4/3;background:#fff}
+.about-img .ph img{width:100%;height:100%;object-fit:cover}
+.about-img .ph2{position:absolute;left:-20px;bottom:-34px;width:42%;border-radius:16px;overflow:hidden;border:5px solid #fff;box-shadow:var(--sh-3);transform:rotate(2.4deg);z-index:3;aspect-ratio:4/3;background:#fff}
+.about-img .ph2 img{width:100%;height:100%;object-fit:cover}
+.about-img .cap{position:absolute;right:-8px;top:20px;background:var(--grad-dark);color:#fff;font-size:13px;font-weight:800;padding:12px 18px;border-radius:14px;box-shadow:var(--sh-3);transform:rotate(1.6deg);z-index:4;max-width:230px}
+.about-img .cap b{color:#FFD9A0}
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.st{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:20px;transition:.25s;min-width:0}
+.st:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(245,155,29,.4)}
+.st .si{width:44px;height:44px;border-radius:13px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent-deep);margin-bottom:13px}
+.st b{display:block;font-size:15px;font-weight:900}
+.st p{display:block;font-size:13px;color:var(--soft);margin-top:5px}
+.cert-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.cb{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:9px 15px;border-radius:12px}
+.cb svg{color:var(--accent-deep);flex:none}
+.about-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+/*NB93-039 ============ THÔNG SỐ 3 TAB ============ */
+#thiet-bi{background:var(--texture)}
+.tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.tab{padding:13px 24px;border-radius:99px;background:#fff;border:1.6px solid var(--line);font-weight:800;font-size:14.5px;color:var(--soft);transition:.25s;display:inline-flex;align-items:center;gap:9px}
+.tab:hover{border-color:var(--accent);color:var(--accent-deep)}
+.tab.on{background:var(--grad-accent);color:#fff;border-color:transparent;box-shadow:var(--sh-acc)}
+.tabpanel{display:none}
+.tabpanel.on{display:block;animation:fadein .45s}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.spec-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.tblwrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);overflow:hidden}
+.tblwrap .scroll{overflow-x:auto}
+.spec-tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.spec-tbl th,.spec-tbl td{padding:13px 17px;text-align:left;border-bottom:1px solid var(--line)}
+.spec-tbl tr:last-child td{border-bottom:none}
+.spec-tbl thead th{background:var(--primary);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.8px;position:sticky;top:0}
+.spec-tbl tbody tr:hover td{background:var(--texture-2)}
+.spec-tbl td b{font-weight:800}
+.spec-tbl .tol{color:var(--accent-deep);font-weight:900}
+.tblwrap .tfoot{padding:14px 17px;font-size:12.5px;color:var(--soft);background:var(--texture-2);border-top:1.5px solid var(--line)}
+.tips{display:grid;gap:16px}
+.tip{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r-m);padding:19px 20px;box-shadow:var(--sh-1)}
+.tip b{display:block;font-size:14.5px;font-weight:900}
+.tip p{display:block;font-size:13px;color:var(--soft);margin-top:5px}
+
+/*NB93-039 ============ REVIEWS ============ */
+#reviews{background:var(--texture-2)}
+.rev-shell{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:stretch}
+.rev-view{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-1);padding:36px;min-height:280px;min-width:0}
+.rev-item{display:none;animation:fadein .5s}
+.rev-item.on{display:block}
+.rev-item .stars{display:flex;gap:3px;color:#F5A623;margin-bottom:14px}
+.rev-item p{display:block;font-size:15.5px;font-weight:500;color:var(--ink);line-height:1.7}
+.rev-item .who{display:flex;align-items:center;gap:13px;margin-top:22px}
+.rev-item .av{width:48px;height:48px;border-radius:50%;background:var(--grad-dark);color:#FFD9A0;font-weight:900;font-size:17px;display:grid;place-items:center;flex:none}
+.rev-item .who b{display:block;font-size:15px;font-weight:800}
+.rev-item .who small{display:block;font-size:12.5px;color:var(--soft)}
+.rev-metric{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.rm{background:var(--texture-2);border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;text-align:center}
+.rm b{display:block;font-size:22px;font-weight:900;color:var(--ok)}
+.rm small{display:block;font-size:12px;color:var(--soft);font-weight:600;margin-top:3px}
+.rev-dots{display:flex;gap:8px;margin-top:24px}
+.rev-dots i{width:10px;height:10px;border-radius:50%;background:var(--line);transition:.3s;font-style:normal;cursor:pointer}
+.rev-dots i.on{background:var(--accent);width:28px;border-radius:99px}
+.logo-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;justify-content:center}
+.lg{font-size:13px;font-weight:800;color:var(--primary);background:#fff;border:1.5px solid var(--line);padding:11px 19px;border-radius:12px;display:inline-flex;gap:8px;align-items:center;transition:.25s;box-shadow:var(--sh-1)}
+.lg:hover{transform:translateY(-3px);border-color:var(--accent)}
+
+/*NB93-039 ============ FORM BÁO GIÁ (xanh kính mờ) ============ */
+#baogia{background:var(--grad-dark);color:#fff;overflow:clip}
+#baogia .prep-grid{position:absolute;inset:0;pointer-events:none}
+.bg-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;position:relative;z-index:2}
+.bg-copy .block-title{color:#fff}
+.bg-copy .block-sub{color:#BFDCC9}
+.bg-list{list-style:none;margin-top:24px;display:grid;gap:13px}
+.bg-list li{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+.bg-list svg{flex:none;margin-top:3px}
+#baogia .cert-badges{margin-top:28px}
+#baogia .cb{color:#DCEFE2;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+#baogia .cb svg{color:#FFD9A0}
+.gform{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r-xl);padding:32px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sh-3);min-width:0}
+.gform h3{display:block;font-size:20px;font-weight:900;color:#fff}
+.gform>p{display:block;font-size:13.5px;color:#B7D6C2;margin:7px 0 20px}
+.gform .fgrid .field label{color:#FFD9A0}
+.gform .field select,.gform .field input,.gform .field textarea{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);color:#fff}
+.gform .field select option{color:var(--ink)}
+.gform .field select:focus,.gform .field input:focus,.gform .field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.13)}
+.gform textarea{resize:vertical;min-height:76px}
+.gform .btn{width:100%;margin-top:4px}
+.gform .secure{display:block;text-align:center;font-size:12px;color:#8FBF9F;margin-top:13px}
+
+/*NB93-039 ============ CONTACT: BẢN ĐỒ VẼ SVG (không iframe) + FORM 2 ============ */
+#contact{background:var(--texture)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.mapbox{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-2);border:1.5px solid var(--line);position:relative;min-width:0;background:#EAF4EC}
+.mapbox svg.mapart{display:block;width:100%;height:100%;min-height:420px}
+.mapbox .mtag{position:absolute;left:16px;top:16px;z-index:2;background:#fff;border-radius:12px;box-shadow:var(--sh-2);padding:12px 17px;font-size:13px;font-weight:800;color:var(--primary);display:flex;gap:9px;align-items:center;max-width:calc(100% - 32px)}
+.mapbox .mdir{position:absolute;right:16px;bottom:16px;z-index:2}
+.mapbox .mdir .btn{padding:12px 20px;font-size:14px}
+.cinfo{display:grid;gap:12px;margin-top:18px}
+.ci{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 17px}
+.ci .ic{width:40px;height:40px;flex:none;border-radius:11px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center}
+.ci b{display:block;font-size:14px;font-weight:800}
+.ci small{display:block;font-size:13px;color:var(--soft)}
+
+/*NB93-039 ============ FAQ ============ */
+#faq{background:var(--texture-2)}
+.faq-tools{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.faq-search{position:relative;flex:1;min-width:240px;max-width:420px}
+.faq-search input{width:100%;padding:13px 16px 13px 44px;border:1.6px solid var(--line);border-radius:99px;background:#fff;outline:none}
+.faq-search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(245,155,29,.13)}
+.faq-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);opacity:.5}
+.faq-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.fchip{font-size:12.5px;font-weight:800;padding:8px 16px;border-radius:99px;background:#fff;border:1.6px solid var(--line);color:var(--soft);transition:.2s}
+.fchip:hover,.fchip.on{background:var(--grad-accent);color:#fff;border-color:transparent}
+.faq-list{display:grid;gap:12px;max-width:880px;margin:0 auto}
+.fitem{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:.25s}
+.fitem.open{border-color:rgba(245,155,29,.5);box-shadow:var(--sh-2)}
+.fitem.hide{display:none}
+.fq{width:100%;display:flex;align-items:center;gap:14px;padding:19px 22px;font-size:15.5px;font-weight:800;color:var(--ink);text-align:left}
+.fq .pm{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;background:var(--texture);display:grid;place-items:center;color:var(--primary);transition:.3s}
+.fitem.open .fq .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.fa p{padding:0 22px 20px;font-size:14.5px;color:var(--soft)}
+.faq-empty{display:none;text-align:center;color:var(--soft);padding:26px;font-size:14.5px}
+
+/*NB93-039 ============ FOOTER GỌN 1 TẦNG + PAYBAR ============ */
+footer{background:var(--primary-deep);color:#B7D6C2;padding:64px 0 0;overflow:clip;position:relative}
+footer .prep-grid{position:absolute;inset:0;pointer-events:none;opacity:.6}
+.fgrid4{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.15fr;gap:38px;position:relative;z-index:2}
+.fcol h4{display:block;color:#fff;font-size:15px;font-weight:900;margin-bottom:18px;letter-spacing:.4px}
+.fcol .flogo{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.fcol .flogo b{color:#fff;font-size:19px;font-weight:900}
+.fcol p{font-size:13.5px}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#DCEFE2;transition:.25s}
+.socials a:hover{background:var(--grad-accent);border-color:transparent;color:#fff;transform:translateY(-3px)}
+.flinks{list-style:none;display:grid;gap:10px}
+.flinks a{font-size:13.5px;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.flinks a:hover{color:#FFD9A0}
+.flinks svg{opacity:.5;flex:none}
+.faddr{display:grid;gap:13px;font-size:13.5px}
+.faddr div{display:flex;gap:11px;align-items:flex-start}
+.faddr svg{flex:none;margin-top:2px;color:#FFD9A0}
+.faddr a.hot{color:#FFD9A0;font-weight:900;font-size:17px}
+.paybar{margin-top:48px;border-top:1px solid rgba(255,255,255,.12);padding:20px 0;position:relative;z-index:2}
+.paybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.paybar small{font-size:12px;color:#8FBF9F}
+.pay-items{display:flex;gap:9px;flex-wrap:wrap}
+.pay-items span{font-size:12px;font-weight:800;color:#CBE3D3;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 11px;background:rgba(255,255,255,.05)}
+
+/*NB93-039 ============ FAB DOCK ============ */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:150;display:flex;gap:9px;background:rgba(12,58,33,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.16);padding:9px 12px;border-radius:22px;box-shadow:var(--sh-3);transition:.4s}
+.dock.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(80px)}
+.dock a,.dock button{display:flex;flex-direction:column;align-items:center;gap:4px;color:#CBE3D3;font-size:10px;font-weight:700;padding:7px 11px;border-radius:14px;transition:.22s;min-width:62px}
+.dock a:hover,.dock button:hover{background:rgba(245,155,29,.2);color:#FFD9A0}
+.dock .main{background:var(--grad-accent);color:#fff;box-shadow:var(--sh-acc)}
+.dock svg{flex:none}
+
+/*NB93-039 ============ MODAL XEM NHANH ============ */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .mask{position:absolute;inset:0;background:rgba(12,58,33,.66);backdrop-filter:blur(6px)}
+.modal .box{position:relative;width:min(760px,96%);max-height:92vh;overflow:auto;background:#fff;border-radius:var(--r-xl);box-shadow:var(--sh-3);animation:pop .35s}
+@keyframes pop{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+.modal .mimg{aspect-ratio:16/9;overflow:hidden;position:relative}
+.modal .mimg img{width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.modal .mimg .mnum{position:absolute;top:14px;left:14px;background:rgba(12,58,33,.82);color:#FFD9A0;font-weight:900;font-size:12.5px;padding:7px 13px;border-radius:9px;border:1px solid rgba(255,255,255,.2)}
+.modal .mclose{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--primary);display:grid;place-items:center;box-shadow:var(--sh-2);z-index:2}
+.modal .mbody{padding:26px 30px 30px}
+.modal .mbody h3{display:block;font-size:22px;font-weight:900;letter-spacing:-.3px}
+.modal .mbody>p{display:block;color:var(--soft);font-size:14.5px;margin-top:8px}
+.modal .mtab{margin:18px 0}
+.modal .mrow{display:flex;gap:14px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.modal .mrow label{font-size:13px;font-weight:800;color:var(--primary)}
+.modal .mrow input{width:90px;padding:10px 13px;border:1.6px solid var(--line);border-radius:11px;text-align:center;font-weight:800}
+.modal .mrow .sum{font-size:14px;font-weight:800;color:var(--soft)}
+.modal .mrow .sum b{color:var(--accent-deep);font-size:16px}
+.modal .mmeta{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.modal .mmeta span{font-size:12px;font-weight:700;color:var(--soft);background:var(--texture);border:1px solid var(--line);border-radius:9px;padding:6px 11px}
+
+/*NB93-039 ============ TOAST — title + message 2 phần tử riêng, pointer-events none ============ */
+.toast{position:fixed;right:22px;bottom:96px;z-index:400;background:var(--primary-deep);color:#fff;padding:15px 20px;border-radius:14px;box-shadow:var(--sh-3);display:flex;gap:12px;align-items:center;font-size:14px;transform:translateX(130%);transition:.45s cubic-bezier(.2,.9,.3,1.2);max-width:360px;border:1.5px solid rgba(255,255,255,.16);pointer-events:none}
+.toast.show{transform:none;pointer-events:none}
+.toast .ti{width:36px;height:36px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center}
+.toast .tx{min-width:0}
+.toast .tx b{display:block;font-size:14px;font-weight:900;color:#FFD9A0}
+.toast .tx span{display:block;font-size:12.5px;color:#CBE3D3;margin-top:2px}
+
+/*NB93-039 ============ RESPONSIVE 1080 ============ */
+@media(max-width:1080px){
+  nav.mainnav{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:56px}
+  .hero-media{max-width:640px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .stats-row,.qc-row{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:repeat(3,1fr);row-gap:34px}
+  .calc,.bg-grid,.about-grid,.spec-grid,.rev-shell,.contact-grid{grid-template-columns:1fr}
+  .fgrid4{grid-template-columns:1fr 1fr}
+  .about-img{max-width:560px}
+}
+
+/*NB93-039 ============ MOBILE BRANCH ≤680px — thiết kế riêng, đủ chức năng ============ */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .topbar .tb-r{display:none}
+  .topbar .wrap{justify-content:center}
+  header.hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .hsearch{order:3;flex-basis:100%;max-width:none}
+  .hdr .cta .btn{padding:10px 14px;font-size:13px}
+  .hdr .cta .btn .btxt{display:none}
+  .hero{padding:40px 0 70px}
+  .hero h1{font-size:1.62rem}
+  .hero .sub{font-size:14.5px}
+  .hero .cta-row{flex-direction:column;align-items:stretch}
+  .hero .cta-row .btn{width:100%}
+  .hero .call{width:100%;justify-content:center}
+  .chips{gap:8px}
+  .hero-media{max-width:none}
+  .hm-main{transform:none!important;animation:none}
+  .hm-badge{display:none}
+  .hm-stats{grid-template-columns:1fr 1fr;left:10px;right:10px;bottom:10px}
+  .hm-stats div{border-right:none;border-bottom:1px solid rgba(255,255,255,.12);padding:10px 8px}
+  .hm-stats div:nth-child(3),.hm-stats div:nth-child(4){border-bottom:none}
+  .hm-stats div:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}
+  .tape .in{animation-duration:18s;padding:11px 0}
+  .tape span{font-size:12.5px;letter-spacing:1px}
+  .block-title{font-size:1.42rem}
+  .sec-head{margin-bottom:30px}
+  .cap-grid{grid-template-columns:1fr;gap:18px}
+  .strip{grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .stats-row{grid-template-columns:1fr 1fr;gap:12px}
+  .stat{padding:20px 14px}
+  .qc-row{grid-template-columns:1fr;gap:12px;margin-top:26px}
+  .partner-row{margin-top:28px;gap:8px}
+  .bento{grid-template-columns:1fr;gap:14px}
+  .bcard.feat{grid-column:auto;grid-row:auto}
+  .bcard.feat .bimg{aspect-ratio:4/3;flex:none;min-height:0}
+  .calc-form,.calc-out,.gform{padding:22px 18px;border-radius:20px}
+  .fgrid{grid-template-columns:1fr}
+  .calc{gap:16px}
+  .strengths{grid-template-columns:1fr 1fr;gap:10px}
+  .st{padding:14px}
+  .st b{font-size:13.5px}
+  .about-grid{gap:40px}
+  .about-img .ph2{left:-6px;bottom:-24px}
+  .about-img .cap{right:6px;top:10px;font-size:12px;padding:10px 13px;max-width:190px}
+  .about-cta{flex-direction:column}
+  .about-cta .btn{width:100%}
+  .tabs{gap:8px}
+  .tab{padding:10px 16px;font-size:13px}
+  .tblwrap .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .spec-grid{gap:16px}
+  .rev-view{padding:24px 20px;min-height:0}
+  .rev-metric{grid-template-columns:1fr 1fr;gap:10px}
+  .contact-grid{gap:16px}
+  .mapbox svg.mapart{min-height:240px}
+  .flow{grid-template-columns:1fr 1fr;gap:24px 12px;row-gap:32px}
+  .step{padding:22px 12px 18px}
+  .gform .btn,.calc-out .btn,.fitem .fq{font-size:14.5px}
+  .fq{padding:15px 16px;font-size:14.5px}
+  .fa p{padding:0 16px 16px;font-size:13.5px}
+  footer{padding-top:50px}
+  .fgrid4{grid-template-columns:1fr;gap:30px}
+  .paybar .wrap{justify-content:center;text-align:center}
+  .dock{bottom:12px;gap:2px;padding:7px 8px;border-radius:18px}
+  .dock a,.dock button{min-width:0;padding:7px 9px;font-size:0;gap:0}
+  .modal .mbody{padding:20px 18px 24px}
+  .toast{right:12px;left:12px;bottom:86px;max-width:none}
+  /* FIX-CTA-WRAP: nút bọc chữ 2 dòng thay vì bị cắt */
+  .btn{white-space:normal;text-align:center}
+  body{padding-bottom:96px}
+}
+
+/*NB93-039 MOBILE-TAP40: vùng chạm cảm ứng >=40px */
+@media(max-width:640px){
+  .hdr .cta .btn,.chip,.tab,.fchip,.dock a,.dock button,.btn,.strip a,.bpq,.pqv{min-height:40px!important}
+  .dock a,.dock button{min-width:40px!important}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+/*NB93-IMGFIX: anh SP to ro, khong crop sau, khong chim*/
+.p-media img,.sg img,.k8-grid img,.car-track img,.caro-track img,.bento img,.cat-grid img,.md-grid img,.pgrid img,.svc-grid img,.svx-grid img,.feat-sub img,.fleet-grid img,.p8-grid img,.sp-grid img,.k-grid img,.k8-grid .kcard img,.grid img{object-fit:cover;object-position:center top}
+.p-media,.sg,.k8-grid>*,.car-track>*,.caro-track>*,.bento>*,.cat-grid>*,.md-grid>*,.pgrid>*,.svc-grid>*,.svx-grid>*,.feat-sub>*,.fleet-grid>*,.p8-grid>*,.sp-grid>*,.k-grid>*{min-height:0}
+[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.sg:has(img),.kcard:has(img){min-height:280px}
+@media(max-width:680px){[class*="grid"]>[class*="card"]:has(img),[class*="track"]>[class*="card"]:has(img),.p-card:has(img),.kcard:has(img){min-height:220px}}
+/* dam bao img khong bi height attr ep */
+img{height:auto!important;max-height:560px;object-fit:cover}
+/*NB93-IMGFIX: k8 bento anh 4/3 (r=1.33) — ô feat dọc 2 hàng (0.84) → contain + nền; còn lại fill day khung*/
+.bento .bimg img{height:100%!important;max-height:none;object-fit:cover;object-position:center top}
+.bcard.feat .bimg{display:flex;align-items:center;justify-content:center;background:var(--texture)}
+.bcard.feat .bimg img{width:100%;height:auto!important;max-height:100%;object-fit:contain;object-position:center}
+/* Khối nổi bật luôn to gấp đôi */
+[class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Tươi Phát","telephone":"0906341258","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Tươi Phát — xưởng sơ chế, đóng gói hút chân không, cấp đông và gia công thực phẩm theo đơn hàng tại KCN Vĩnh Lộc. Nhận lô từ 20kg, báo giá theo kg trong 4 giờ, ","url":"http://127.0.0.1:8174/039-dich-vu-so-che-dong-goi-gia-cong-thuc-pham/"}
+</script>
+</head>
+<body id="top">
+
+<!-- ═══════════ TOPBAR ═══════════ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>T2–T7: 6:30–17:30 · CN nhận đơn gấp</span>
+      <span class="dot"></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>KCN Vĩnh Lộc, Bình Chánh, TP.HCM</span>
+    </div>
+    <div class="tb-r">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>baogia@tuoiphat.vn</span>
+      <span class="hot"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Hotline: 0906 341 258</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Tươi Phát">
+      <span class="mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z" opacity=".9"/><path d="M12 21V8M12 12l3-3M12 15l-3-3"/></svg></span>
+      <span><b>TƯƠI PHÁT</b><small>Fresh Food Processing</small></span>
+    </a>
+    <div class="hsearch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#57705F" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+      <input id="hsearchInput" type="text" placeholder="Tìm dịch vụ: sơ chế, hút chân không, cấp đông…" aria-label="Tìm dịch vụ">
+    </div>
+    <nav class="mainnav" aria-label="Menu chính">
+      <a href="#nang-luc">Chuyền sơ chế</a>
+      <a href="#dich-vu">8 dịch vụ</a>
+      <a href="#bang-gia">Bảng giá</a>
+      <a href="#quy-trinh">Quy trình ATTP</a>
+      <a href="#thiet-bi">Thiết bị</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="cta"><a href="#baogia" class="btn btn-acc"><span class="btxt">Nhận báo giá theo kg</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero prep-grid" id="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i>Xưởng sơ chế & gia công thực phẩm · KCN Vĩnh Lộc</span>
+      <h1>Bạn đưa nguyên liệu — nhận lại <em class="hl">sản phẩm dán nhãn, sẵn bán</em></h1>
+      <span class="sub">Sơ chế – chia phần – đóng gói – cấp đông theo yêu cầu cho quán ăn, thương hiệu thực phẩm và hộ kinh doanh. Nhận lô từ <b style="color:#FFD9A0">20kg</b>, báo giá theo kg trong <b style="color:#FFD9A0">4 giờ</b>, quy trình ATTP với mã lô truy xuất từng bao bì.</span>
+      <div class="cta-row">
+        <a href="#baogia" class="btn btn-acc btn-lg">Nhận báo giá theo kg<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:0906341258" class="btn btn-ghost btn-lg" style="background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)">Gọi xưởng 0906 341 258</a>
+      </div>
+      <a class="call" href="tel:0906341258">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span>
+        <span><b>0906 341 258</b><small>Chủ xưởng trực — 6:30 đến 20:00</small></span>
+      </a>
+      <div class="chips">
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Nhận lô từ 20kg</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Giá theo kg minh bạch</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Kho mát 0–4°C · kho đông -18°C</span>
+        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Duyệt mẫu trước khi chạy lô</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="Xưởng sơ chế, đóng gói và gia công thực phẩm Tươi Phát — chuyền sơ chế rau củ, thịt cá đạt chuẩn ATTP" width="1448" height="1086">
+        <span class="hm-badge"><i></i>Nhận lô từ 20kg</span>
+        <div class="hm-stats">
+          <div><b><span class="cnt" data-count="3000">0</span></b><small>kg sơ chế / ngày</small></div>
+          <div><b><span class="cnt" data-count="850">0</span><small style="font-size:.55em">m²</small></b><small>xưởng 2 khu thô–sạch</small></div>
+          <div><b><span class="cnt" data-count="40">0</span>+</b><small>nhân sự sơ chế</small></div>
+          <div><b><span class="cnt" data-count="98">0</span>%</b><small>lô giao đúng hẹn</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TAPE ═══════════ -->
+<div class="tape" aria-hidden="true">
+  <div class="in">
+    <span>Sơ chế theo yêu cầu<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Đóng gói hút chân không<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Cấp đông -35°C<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>In nhãn + hạn sử dụng<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Nhận lô từ 20kg<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Giao xe lạnh kèm logger nhiệt<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Phiếu kiểm nghiệm kèm lô<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+    <span>Sơ chế theo yêu cầu<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Đóng gói hút chân không<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Cấp đông -35°C<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>In nhãn + hạn sử dụng<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Nhận lô từ 20kg<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Giao xe lạnh kèm logger nhiệt<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg>Phiếu kiểm nghiệm kèm lô<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2" stroke="#fff" stroke-width="2"/></svg></span>
+  </div>
+</div>
+
+<!-- ═══════════ 2 CHUYỀN CHỦ LỰC ═══════════ -->
+<section class="sec" id="nang-luc">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Năng lực chủ lực</span>
+      <span class="block-title" style="margin-top:16px">2 chuyền sơ chế <span class="un">chạy mỗi ngày</span> của xưởng</span>
+      <span class="block-sub">Mỗi chuyền gắn với thiết bị thật và công suất đo được — khách ghé xưởng đều xem chạy thử trực tiếp được.</span>
+    </div>
+    <div class="cap-grid">
+      <!-- 1 -->
+      <article class="cap-card rv" data-d="0">
+        <div class="cap-img"><img src="assets/img/p1.webp" alt="Chuyền sơ chế rau củ — rửa 2 cấp, gọt tỉa, cắt kiểu" loading="lazy" width="1448" height="1086"><span class="cap-badge">Chuyền rau – củ – trái cây</span><span class="cap-tol">500 kg/giờ</span></div>
+        <div class="cap-body">
+          <h3>Sơ chế rau củ & trái cây</h3>
+          <p>Rửa 2 cấp, gọt tỉa và cắt theo kiểu món — phục vụ bếp quán, cửa hàng salad và các thương hiệu chế biến sẵn.</p>
+          <table class="mtab">
+            <tr><th>Chuyền rửa 2 cấp</th><td>sục bọt + thác nước · 500 kg/giờ</td></tr>
+            <tr><th>Cắt kiểu</th><td>múi cau · sợi · hạt lựu · khúc · lát</td></tr>
+            <tr><th>Làm khô</th><td>quay ly tâm — ráo mặt, không dập nát</td></tr>
+          </table>
+          <ul class="cap-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Nhận theo danh mục món của quán — cắt đúng mẫu từng món</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Chia bao 200g – 5kg theo quy cách bếp</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Lịch sơ chế cố định theo tuần — quán không phải lo nhân sự</li>
+          </ul>
+          <a href="#baogia" class="btn btn-navy" data-svc="Sơ chế rau củ – trái cây">Nhận báo giá hạng mục này</a>
+        </div>
+      </article>
+      <!-- 2 — nền tối nổi bật -->
+      <article class="cap-card dark rv" data-d="1">
+        <div class="cap-img"><img src="assets/img/p2.webp" alt="Chuyền sơ chế thịt cá — lọc xương, phi lê, chia phần" loading="lazy" width="1448" height="1086"><span class="cap-badge">Chuyền thịt – cá</span><span class="cap-tol">±5 g / chia phần</span></div>
+        <div class="cap-body">
+          <h3>Sơ chế thịt – cá & chia phần</h3>
+          <p>Lọc xương, phi lê, băm xay và chia phần cân tự động cho bếp quán và thương hiệu thực phẩm.</p>
+          <table class="mtab">
+            <tr><th>Chuyền lọc</th><td>300 kg/giờ — 2 khu thô / sạch riêng</td></tr>
+            <tr><th>Chia phần</th><td>cân tự động ±5g · bao 100g – 2kg</td></tr>
+            <tr><th>Bảo quản</th><td>chilled 0–4°C trong toàn chuyền</td></tr>
+          </table>
+          <ul class="cap-list">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Phi lê cá theo tỷ lệ thu hồi thống nhất từng lô</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Thịt xay 3 cỡ dao: 3mm / 5mm / 8mm</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Biên bản nhận – trả phụ phẩm (xương, mỡ, da) rõ ràng</li>
+          </ul>
+          <a href="#baogia" class="btn btn-acc" data-svc="Sơ chế thịt – cá">Nhận báo giá hạng mục này</a>
+        </div>
+      </article>
+    </div>
+    <!-- dải 5 dịch vụ gọn -->
+    <div class="strip rv" data-d="1">
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11"/></svg></span><span><b>Đóng gói hút chân không</b><small>từ 1.200đ/gói</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 12 3 7m9 5 9-5M12 12l-9 5m12-9 4-2M12 17l-6 3m12-8 4 2M12 7 6 4m12 8 4 2M12 17l6 3"/></svg></span><span><b>Cấp đông -35°C</b><small>theo lô 800kg</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h6M8 17h4"/></svg></span><span><b>Dán nhãn – in HSD</b><small>từ 350đ/sản phẩm</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h2M19 11a2 2 0 0 1 2 2v4h-2M7 17a2 2 0 1 0 4 0M13 17a2 2 0 1 0 4 0"/></svg></span><span><b>Vận chuyển lạnh</b><small>2 xe 1,5 tấn</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#dich-vu" data-strip><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Kiểm định ATTP</b><small>phiếu kèm lô</small></span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS BAND NĂNG LỰC XƯỞNG ═══════════ -->
+<section class="stats-band prep-grid" id="stats">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9A0"><i></i>Năng lực xưởng</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">Con số <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFC470);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">đo được trên cân</em>, không khẩu hiệu</span>
+    </div>
+    <div class="stats-row">
+      <div class="stat rv" data-d="0"><span class="num"><span class="cnt" data-count="3000">0</span></span><b>kg công suất sơ chế / ngày</b><small>2 chuyền rau + thịt cá chạy song song</small></div>
+      <div class="stat rv" data-d="1"><span class="num"><span class="cnt" data-count="850">0</span><small>m²</small></span><b>Diện tích nhà xưởng</b><small>2 khu thô – sạch + kho mát, kho đông riêng</small></div>
+      <div class="stat rv" data-d="2"><span class="num"><span class="cnt" data-count="40">0</span>+</span><b>Nhân sự sơ chế lành nghề</b><small>100% có thẻ tập huấn ATTP</small></div>
+      <div class="stat rv" data-d="3"><span class="num"><span class="cnt" data-count="98">0</span><small>%</small></span><b>Lô giao đúng hẹn 12 tháng</b><small>báo trước 24h nếu có rủi ro trễ</small></div>
+    </div>
+    <div class="qc-row">
+      <div class="qc rv" data-d="0"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11"/></svg></span><span><b>Máy hút chân không 2 buồng</b><small>DZ-700 × 2 máy — túi tới 40×50cm</small></span></div>
+      <div class="qc rv" data-d="1"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 12 3 7m9 5 9-5M12 12l-9 5m12-9 4-2M12 17l-6 3m12-8 4 2M12 7 6 4"/></svg></span><span><b>Hầm cấp đông -35°C</b><small>800 kg/lô — tâm sản phẩm ≤ -18°C</small></span></div>
+      <div class="qc rv" data-d="2"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M6 9V5h12v4M4 9l1 11h14l1-11"/></svg></span><span><b>Kho mát + kho đông riêng</b><small>0–4°C · -18°C — chờ giao không đứt lạnh</small></span></div>
+      <div class="qc rv" data-d="3"><span class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h6M8 17h4"/></svg></span><span><b>Máy in date + dán nhãn</b><small>60 gói/phút — QR mã lô từng bao</small></span></div>
+    </div>
+    <div class="partner-row rv">
+      <span class="lbl">Khách đang gửi lô thường xuyên</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z"/></svg>Chuỗi salad & healthy food</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>Nhà hàng – quán ăn</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Thương hiệu thực phẩm OEM</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Bếp ăn công nghiệp</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Hộ kinh doanh thực phẩm</span>
+      <span class="pt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="m9 3 1.5 4L14 8.5 10.5 10 9 14 7.5 10 4 8.5 7.5 7Z"/></svg>Gia vị – sốt – tráng miệng</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KHỐI-8: BENTO KÍN Ô — 1 THẺ NỔI BẬT 2x2 + 7 THẺ ĐỀU + 1 Ô PHIẾU CTA ═══════════ -->
+<section class="sec prep-grid-light" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Catalogue dịch vụ</span>
+      <span class="block-title" style="margin-top:16px">8 dịch vụ — <span class="hl">giá theo kg, theo lô</span></span>
+      <span class="block-sub">Xưởng chỉ nhận sơ chế – đóng gói – gia công theo đơn, không bán lẻ nguyên liệu. Bấm "Xem nhanh" để xem tiêu chuẩn từng dịch vụ.</span>
+    </div>
+    <div class="bento" id="bento">
+      <!-- thẻ nổi bật 2x2 -->
+      <article class="bcard feat rv" data-name="gia cong theo don hang cong thu private label oem">
+        <div class="bimg"><img src="assets/img/p6.webp" alt="Gia công thực phẩm theo đơn hàng — cân định lượng và đóng khay theo phiếu" loading="lazy" width="1448" height="1086"><span class="bnum">06</span><span class="bfeat-badge">Nổi bật — dịch vụ chủ lực</span></div>
+        <div class="bbody">
+          <h3>Gia công theo đơn hàng</h3>
+          <p>Nhận công thức và nguyên liệu của bạn — thử lô 3–5kg duyệt mẫu, sau đó sản xuất theo đơn từ 100kg. Đủ khâu: sơ chế → trộn sốt → định lượng → đóng gói → dán nhãn hoàn chỉnh, xuất xưởng là có thể bán.</p>
+          <ul class="blist">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Private label — thương hiệu riêng của bạn trên từng bao bì</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Hỗ trợ trọn gói hồ sơ công bố sản phẩm</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F9D6B" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Bảng giá tách bạch: công + vật tư + tiêu hao</li>
+          </ul>
+          <div class="bfoot"><span class="price"><b>Báo giá theo đơn hàng</b><small>duyệt mẫu trong 48 giờ</small></span><a class="go" href="#baogia" data-svc="Gia công theo đơn hàng">Gửi công thức<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+      <!-- 7 thẻ đều -->
+      <article class="bcard rv" data-d="0" data-name="so che rau cu trai cay cat kieu mua qua">
+        <div class="bimg"><img src="assets/img/p1.webp" alt="Sơ chế rau củ — rửa, gọt, cắt kiểu món" loading="lazy" width="1448" height="1086"><span class="bnum">01</span><button class="bpq" data-qv="0" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Sơ chế rau củ – trái cây</h3>
+          <p>Rửa 2 cấp, gọt tỉa, cắt theo kiểu món; giao kèm lịch sơ chế theo tuần cho quán.</p>
+          <div class="bspecs"><span class="bspec">500kg/giờ</span><span class="bspec">cắt theo mẫu</span><span class="bspec"><em>từ 4.500đ/kg</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 4.500đ/kg</b><small>lô tối thiểu 20kg</small></span><a class="go" href="#baogia" data-svc="Sơ chế rau củ – trái cây">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="0" data-name="so che thit ca loc xuong phile bam chia phan">
+        <div class="bimg"><img src="assets/img/p2.webp" alt="Sơ chế thịt cá — lọc xương, phi lê, chia phần" loading="lazy" width="1448" height="1086"><span class="bnum">02</span><button class="bpq" data-qv="1" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Sơ chế thịt – cá</h3>
+          <p>Lọc xương, phi lê, băm xay, chia phần cân tự động ±5g theo quy cách bếp.</p>
+          <div class="bspecs"><span class="bspec">chuyền 2 khu</span><span class="bspec">±5g</span><span class="bspec"><em>từ 6.000đ/kg</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 6.000đ/kg</b><small>lô tối thiểu 20kg</small></span><a class="go" href="#baogia" data-svc="Sơ chế thịt – cá">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="1" data-name="dong goi hut chan khong kep kin bao quan">
+        <div class="bimg"><img src="assets/img/p3.webp" alt="Đóng gói hút chân không giữ tươi thực phẩm" loading="lazy" width="1448" height="1086"><span class="bnum">03</span><button class="bpq" data-qv="2" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Đóng gói hút chân không</h3>
+          <p>Ép kín kiểm 100% bằng ngâm nước; túi PA/PE thực phẩm, giữ tươi gấp 3–5 lần.</p>
+          <div class="bspecs"><span class="bspec">máy 2 buồng</span><span class="bspec">túi PA/PE</span><span class="bspec"><em>từ 1.200đ/gói</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 1.200đ/gói</b><small>gói 100g – 5kg</small></span><a class="go" href="#baogia" data-svc="Đóng gói hút chân không">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="1" data-name="cap dong theo lo iqf ham 35 do kho lanh">
+        <div class="bimg"><img src="assets/img/p4.webp" alt="Cấp đông theo lô trong hầm -35°C" loading="lazy" width="1448" height="1086"><span class="bnum">04</span><button class="bpq" data-qv="3" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Cấp đông theo lô</h3>
+          <p>Hầm -35°C đưa tâm sản phẩm xuống ≤ -18°C trong 4–6 giờ, giữ cấu trúc tế bào.</p>
+          <div class="bspecs"><span class="bspec">800kg/lô</span><span class="bspec">-35°C</span><span class="bspec"><em>từ 2.000đ/kg</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 2.000đ/kg</b><small>tính theo kg vào hầm</small></span><a class="go" href="#baogia" data-svc="Cấp đông theo lô">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="2" data-name="dan nhan in han su dung date qr ma lo label">
+        <div class="bimg"><img src="assets/img/p5.webp" alt="Dán nhãn và in hạn sử dụng trên bao bì" loading="lazy" width="1448" height="1086"><span class="bnum">05</span><button class="bpq" data-qv="4" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Dán nhãn – in hạn sử dụng</h3>
+          <p>In date rõ nét, nhãn thương hiệu riêng của khách, gắn QR mã lô truy xuất.</p>
+          <div class="bspecs"><span class="bspec">in phun nhiệt</span><span class="bspec">QR mã lô</span><span class="bspec"><em>từ 350đ/sp</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 350đ/sp</b><small>khách cung cấp file nhãn</small></span><a class="go" href="#baogia" data-svc="Dán nhãn – in hạn sử dụng">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="2" data-name="van chuyen lanh xe dong lanh logger nhiet do">
+        <div class="bimg"><img src="assets/img/p7.webp" alt="Vận chuyển lạnh bằng xe đông lạnh giữ nhiệt độ chuẩn" loading="lazy" width="1448" height="1086"><span class="bnum">07</span><button class="bpq" data-qv="6" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Vận chuyển lạnh</h3>
+          <p>Xe lạnh 0–4°C / -18°C giao nội thành trong ngày, tỉnh gửi tuyến lạnh 1–3 ngày.</p>
+          <div class="bspecs"><span class="bspec">2 xe 1,5 tấn</span><span class="bspec">logger nhiệt</span><span class="bspec"><em>từ 350k/chuyến</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 350.000đ</b><small>mỗi chuyến nội thành</small></span><a class="go" href="#baogia" data-svc="Vận chuyển lạnh">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <article class="bcard rv" data-d="3" data-name="kiem dinh an toan thuc pham vi sinh hoa ly lab">
+        <div class="bimg"><img src="assets/img/p8.webp" alt="Kiểm định an toàn thực phẩm — lấy mẫu kiểm nghiệm vi sinh, hóa lý" loading="lazy" width="1448" height="1086"><span class="bnum">08</span><button class="bpq" data-qv="7" type="button">Xem nhanh</button></div>
+        <div class="bbody">
+          <h3>Kiểm định an toàn thực phẩm</h3>
+          <p>Lấy mẫu gửi lab đối tác — vi sinh, hóa lý; phiếu kết quả kèm từng lô hàng.</p>
+          <div class="bspecs"><span class="bspec">vi sinh + hóa lý</span><span class="bspec">lab đạt công nhận</span><span class="bspec"><em>theo gói</em></span></div>
+          <div class="bfoot"><span class="price"><b>từ 950.000đ/lô</b><small>kết quả 3–5 ngày</small></span><a class="go" href="#baogia" data-svc="Kiểm định an toàn thực phẩm">Nhận báo giá</a></div>
+        </div>
+      </article>
+      <!-- ô phiếu CTA — đóng kín lưới -->
+      <div class="bcard ticket rv" data-d="3">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 3 1.5 4L14 8.5 10.5 10 9 14 7.5 10 4 8.5 7.5 7Z"/><path d="M17 11l1 2.6 2.6 1-2.6 1L17 18l-1-2.4-2.6-1 2.6-1Z"/></svg>
+        <b>Cần combo nhiều công đoạn hoặc dịch vụ khác?</b>
+        <small>Mô tả yêu cầu — chủ xưởng tư vấn quy cách và gọi lại trong 4 giờ làm việc.</small>
+        <a href="#baogia" class="btn btn-navy">Nhận tư vấn – báo giá</a>
+        <small>Hoặc gọi <a href="tel:0906341258" style="color:var(--accent-deep);font-weight:900">0906 341 258</a></small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DẤU ẤN NGHỀ: ESTIMATOR GIÁ SƠ CHẾ THEO NGUYÊN LIỆU ═══════════ -->
+<section class="sec" id="bang-gia">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Bảng giá sơ chế theo nguyên liệu</span>
+      <span class="block-title" style="margin-top:16px">Tự tính <span class="hl">giá theo kg</span> trước khi gửi yêu cầu</span>
+      <span class="block-sub">Chọn nguyên liệu, công đoạn, quy cách đóng gói và khối lượng lô — máy tính trả khoảng giá/kg kèm thời gian xử lý. Giá tham khảo ±10%, chốt sau khi xem mẫu nguyên liệu thật.</span>
+    </div>
+    <div class="calc">
+      <div class="calc-form rv">
+        <h3>Lô hàng của bạn</h3>
+        <p>Điền 15 giây — không cần tài khoản.</p>
+        <div class="fgrid">
+          <div class="field">
+            <label for="eNg">Nguyên liệu</label>
+            <select id="eNg">
+              <option value="rauCua">Rau củ & củ quả</option>
+              <option value="salad">Rau ăn lá & salad</option>
+              <option value="heo">Thịt heo / gia cầm</option>
+              <option value="bo">Thịt bò</option>
+              <option value="caNgot">Cá nước ngọt</option>
+              <option value="caBien">Cá biển / tôm – mực</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="eCong">Công đoạn</label>
+            <select id="eCong">
+              <option value="coban">Rửa + cắt cơ bản</option>
+              <option value="gotia">Gọt tỉa + cắt kiểu món</option>
+              <option value="loc">Lọc xương – phi lê – băm + chia phần</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="ePack">Quy cách đóng gói</label>
+            <select id="ePack">
+              <option value="tui">Túi PE / túi zip đơn giản (+600đ/kg)</option>
+              <option value="chankhong">Hút chân không + nhãn (+1.500đ/kg)</option>
+              <option value="khay">Khay + màng co + nhãn (+2.200đ/kg)</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="eKg">Khối lượng lô</label>
+            <div class="sizerow">
+              <input type="range" id="eKg" min="20" max="2000" value="200" step="10">
+              <b id="eKgLbl">200 kg</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="calc-out rv" data-d="1">
+        <div class="oh">
+          <span class="oi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M7 21h10M5 7h14l-2 6a5 5 0 0 1-10 0L5 7Z"/><path d="M8 3h8"/></svg></span>
+          <div><h3>Kết quả ước tính</h3><small>Cập nhật trực tiếp khi bạn thay đổi thông số</small></div>
+        </div>
+        <div class="big-price">
+          <small>Giá ước tính / kg (chưa VAT)</small>
+          <b id="rKg">—</b>
+          <div class="tt"><span>Tổng lô ước tính</span><b id="rTotal">—</b></div>
+        </div>
+        <div class="out-rows">
+          <div class="out-row"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#57705F" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Thời gian xử lý dự kiến</span><b id="rLead">—</b></div>
+          <div class="out-row"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#57705F" stroke-width="2"><path d="M20 7 9 18l-5-5"/></svg>Chuỗi khâu áp dụng</span><b id="rFlow">—</b></div>
+        </div>
+        <table class="tier-tbl">
+          <thead><tr><th>Khối lượng lô</th><th>Đơn giá / kg</th><th>Thành tiền</th></tr></thead>
+          <tbody>
+            <tr><td>100 kg</td><td><b id="t100">—</b></td><td id="t100s">—</td></tr>
+            <tr><td>500 kg</td><td><b id="t500">—</b></td><td id="t500s">—</td></tr>
+            <tr><td>1.000 kg</td><td><b id="t1000">—</b></td><td id="t1000s">—</td></tr>
+          </tbody>
+        </table>
+        <button class="btn btn-acc btn-lg" id="calcSend" type="button">Gửi yêu cầu — nhận báo giá lô trong 4 giờ<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <small class="note">Giá công sơ chế chưa gồm nguyên liệu — nguyên liệu khách tự cung cấp hoặc xưởng đặt mua theo listing riêng.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUY TRÌNH ATTP 6 BƯỚC ═══════════ -->
+<section class="sec prep-grid" id="quy-trinh">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9A0"><i></i>Quy trình ATTP nhận lô</span>
+      <span class="block-title" style="color:#fff;margin-top:16px">6 bước — từ <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFC470);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">nguyên liệu sống</em> tới lô hàng dán nhãn</span>
+      <span class="block-sub">Mỗi bước có người chịu trách nhiệm và biên bản — bạn biết lô hàng của mình đang ở khâu nào.</span>
+    </div>
+    <div class="flow">
+      <div class="step rv" data-d="0"><span class="n">1</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M7 21h10M5 7h14l-2 6a5 5 0 0 1-10 0L5 7Z"/><path d="M8 3h8"/></svg></span><b>Tiếp nhận & kiểm nguyên</b><p>Cân trọng lượng thực tế, kiểm cảm quan + chứng từ nguồn gốc</p><span class="meta">trong ngày</span></div>
+      <div class="step rv" data-d="1"><span class="n">2</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><b>Chốt quy cách & báo giá</b><p>Duyệt mẫu sơ chế đầu lô, chốt quy cách cắt – chia bao</p><span class="meta">4 giờ</span></div>
+      <div class="step rv" data-d="2"><span class="n">3</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><b>Sơ chế trên chuyền</b><p>Phân khu thô – sạch, nhân viên đầy đủ PPE, chilled 0–4°C</p><span class="meta">theo lô</span></div>
+      <div class="step rv" data-d="3"><span class="n">4</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11"/></svg></span><b>Đóng gói & in HSD</b><p>Hút chân không / khay co + nhãn QR mã lô từng bao</p><span class="meta">cùng ngày</span></div>
+      <div class="step rv" data-d="4"><span class="n">5</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M12 12 3 7m9 5 9-5M12 12l-9 5m12-9 4-2M12 17l-6 3m12-8 4 2M12 7 6 4"/></svg></span><b>Cấp đông & lưu kho lạnh</b><p>Hầm -35°C, kho mát 0–4°C / kho đông -18°C chờ giao</p><span class="meta">theo quy cách</span></div>
+      <div class="step rv" data-d="5"><span class="n">6</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h18v-4a2 2 0 0 0-2-2M7 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0M13 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/></svg></span><b>Giao lạnh & phiếu kết quả</b><p>Xe lạnh kèm logger, phiếu cân + biên bản giao nhận lô</p><span class="meta">24h nội thành</span></div>
+    </div>
+    <div class="flow-note rv"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFD9A0" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Cam kết bằng hợp đồng: <b>sai quy cách — làm lại miễn phí</b> · nguyên liệu khách cấp có biên bản bàn giao · dữ liệu lô lưu tối thiểu 12 tháng</div>
+  </div>
+</section>
+
+<!-- ═══════════ VỀ XƯỞNG + CAM KẾT ATTP ═══════════ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img rv">
+        <div class="ph"><img src="assets/img/space.webp" alt="Không gian xưởng sơ chế Tươi Phát — khu chế biến và kho hàng" loading="lazy" width="1448" height="1086"></div>
+        <div class="ph2"><img src="assets/img/intro.webp" alt="Chuyền sơ chế sạch và đóng gói linh hoạt tại Tươi Phát" loading="lazy" width="1448" height="1086"></div>
+        <div class="cap">Xưởng từ <b>2020</b> — 6 năm chỉ làm một nghề: <b>sơ chế sạch</b></div>
+      </div>
+      <div class="rv" data-d="1">
+        <span class="eyebrow"><i></i>Về xưởng Tươi Phát</span>
+        <span class="block-title" style="margin-top:16px">Xưởng không to, <span class="hl">đủ chuẩn — đủ tốc độ</span></span>
+        <span class="block-sub">Tươi Phát khởi đầu từ lô sơ chế rau cho 3 quán quen năm 2020. Nay là xưởng 850m² hai khu thô–sạch với kho mát, kho đông riêng — nhưng giữ nguyên nguyên tắc: chủ xưởng trực tiếp nhận yêu cầu, không qua trung gian.</span>
+        <div class="strengths">
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="18" rx="2"/><rect x="13" y="3" width="8" height="18" rx="2" stroke-dasharray="3 2"/></svg></span><b>2 khu thô – sạch tách biệt</b><p>Luồng nguyên liệu và thành phẩm không giao nhau.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M7 21h10M5 7h14l-2 6a5 5 0 0 1-10 0L5 7Z"/></svg></span><b>Cân điểm chuẩn ±5g</b><p>Cân tự động kiểm điểm đầu – giữa – cuối mỗi lô.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h4M7 13h6M13 9l2 2 4-4"/></svg></span><b>Mã lô QR từng bao bì</b><p>Quét là thấy nguyên liệu, ngày sơ chế và chuyền phụ trách.</p></div>
+          <div class="st"><span class="si"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span><b>Duyệt mẫu trước khi chạy lô</b><p>Mẫu 3–5kg chụp ảnh + gửi thử, chốt rồi mới sản xuất.</p></div>
+        </div>
+        <div class="cert-badges">
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Giấy CN cơ sở đủ điều kiện ATTP</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>Áp dụng nguyên tắc HACCP</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg>Nhân sự khám sức khỏe định kỳ</span>
+        </div>
+        <div class="about-cta">
+          <a href="#baogia" class="btn btn-acc">Nhận báo giá theo kg</a>
+          <a href="#quy-trinh" class="btn btn-ghost">Xem quy trình 6 bước</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HỒ SƠ THIẾT BỊ (3 TAB) ═══════════ -->
+<section class="sec prep-grid-light" id="thiet-bi">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Hồ sơ chuyên môn</span>
+      <span class="block-title" style="margin-top:16px">Hồ sơ <span class="hl">chuyền — nguyên liệu — kiểm nghiệm</span></span>
+      <span class="block-sub">Số liệu cập nhật 01/2026, sao y hồ sơ thiết bị phục vụ audit của khách hàng và cơ quan quản lý.</span>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-tab="0" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7 7 5 5M19 19l-2-2M17 7l2-2M5 19l2-2"/></svg>Chuyền & thiết bị</button>
+      <button class="tab" data-tab="1" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z"/><path d="M12 8v5M9.5 10.5h5"/></svg>Nguyên liệu nhận</button>
+      <button class="tab" data-tab="2" role="tab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8l1-4ZM8 7l-2 14h12L16 7M10 12h4M10 16h4"/></svg>Tiêu chuẩn & kiểm nghiệm</button>
+    </div>
+    <div class="spec-grid">
+      <div class="tblwrap rv">
+        <div class="scroll">
+          <table class="spec-tbl tabpanel on" data-panel="0">
+            <thead><tr><th>Thiết bị / chuyền</th><th>Công suất</th><th>Chi tiết</th><th>Áp dụng</th></tr></thead>
+            <tbody>
+              <tr><td><b>Chuyền rửa rau sục bọt 2 cấp</b></td><td>500 kg/giờ</td><td>sục khí + thác nước, lưới lọc kép</td><td class="tol">rau lá · củ quả</td></tr>
+              <tr><td><b>Quay ly tâm làm khô</b></td><td>200 kg/mẻ</td><td>rổ inox 304, 3 phút/mẻ</td><td class="tol">salad · rau cắt sẵn</td></tr>
+              <tr><td><b>Chuyền thịt – cá 2 khu</b></td><td>300 kg/giờ</td><td>bàn 304, khu thô – sạch riêng</td><td class="tol">lọc · phi lê · xay</td></tr>
+              <tr><td><b>Máy hút chân không DZ-700</b></td><td>2 buồng × 2 máy</td><td>túi tới 40×50cm</td><td class="tol">gói 100g – 5kg</td></tr>
+              <tr><td><b>Hầm cấp đông</b></td><td>-35°C · 800 kg/lô</td><td>khay xe 18 tầng</td><td class="tol">mọi quy cách gói</td></tr>
+              <tr><td><b>Kho mát & kho đông</b></td><td>0–4°C · -18°C</td><td>60 m³ mát + 120 vị pallet đông</td><td class="tol">chờ giao · lưu lô</td></tr>
+              <tr><td><b>Máy in date + dán nhãn</b></td><td>60 gói/phút</td><td>in phun nhiệt, nhãn decal</td><td class="tol">nhãn thương hiệu riêng</td></tr>
+              <tr><td><b>Xe lạnh giao hàng</b></td><td>2 × 1,5 tấn</td><td>logger nhiệt độ trên xe</td><td class="tol">nội thành & liên tỉnh</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="1">
+            <thead><tr><th>Nhóm nguyên liệu</th><th>Nguồn</th><th>Cách nhận</th><th>Ghi chú</th></tr></thead>
+            <tbody>
+              <tr><td><b>Rau củ – trái cây</b></td><td>Đà Lạt, Lâm Đồng, miền Tây</td><td>listing khách hoặc xưởng đặt giúp</td><td>kiểm cảm quan + chứng từ</td></tr>
+              <tr><td><b>Thịt heo – gia cầm</b></td><td>lò mổ liên kết có kiểm dịch</td><td>nhập chilled 0–4°C</td><td>giấy kiểm dịch theo lô</td></tr>
+              <tr><td><b>Thịt bò</b></td><td>nhà cung cấp có hồ sơ truy xuất</td><td>phân loại bắp, nạc, gầu</td><td class="tol">mát hoặc cấp đông</td></tr>
+              <tr><td><b>Cá nước ngọt – biển</b></td><td>vựa cá liên kết</td><td>lọc theo tỷ lệ thu hồi thống nhất</td><td>sống, xử lý trong 12 giờ</td></tr>
+              <tr><td><b>Gia vị – sốt</b></td><td>nhãn hiệu đã công bố</td><td>gia công trộn – ướp theo công thức</td><td>biên bản định mức tiêu hao</td></tr>
+              <tr><td><b>Nguyên liệu khách cấp</b></td><td>theo biên bản bàn giao</td><td>kiểm chứng chỉ + cảm quan</td><td class="tol">cân điểm đầu lô hai bên</td></tr>
+            </tbody>
+          </table>
+          <table class="spec-tbl tabpanel" data-panel="2">
+            <thead><tr><th>Hạng mục</th><th>Tiêu chuẩn</th><th>Tần suất</th><th>Bằng chứng</th></tr></thead>
+            <tbody>
+              <tr><td><b>Giấy CN ATTP cơ sở</b></td><td>đủ điều kiện sản xuất kinh doanh</td><td>còn hiệu lực</td><td class="tol">sao y tại xưởng</td></tr>
+              <tr><td><b>Vệ sinh chuyền</b></td><td>nguyên tắc HACCP — cleaning 2 ca</td><td>mỗi ca sản xuất</td><td>nhật ký vệ sinh</td></tr>
+              <tr><td><b>Nhân sự</b></td><td>khám sức khỏe + tập huấn ATTP</td><td class="tol">6 tháng / lần</td><td>thẻ ATTP 100%</td></tr>
+              <tr><td><b>Kiểm nghiệm lô</b></td><td>lab đối tác được công nhận</td><td>vi sinh + hóa lý</td><td class="tol">phiếu kèm lô 3–5 ngày</td></tr>
+              <tr><td><b>Truy xuất nguồn gốc</b></td><td>QR mã lô từng bao</td><td>nguyên liệu – ngày – chuyền</td><td>dữ liệu lưu 12 tháng</td></tr>
+              <tr><td><b>Nhiệt độ chuỗi lạnh</b></td><td>logger trên kho + xe</td><td>liên tục</td><td class="tol">xuất file theo yêu cầu</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tfoot" id="specFoot">8 cụm thiết bị chính được lập hồ sơ, bảo trì định kỳ 500 giờ máy — số liệu sao y sổ tài khoản xưởng.</div>
+      </div>
+      <div class="tips">
+        <div class="tip rv" data-d="0"><b>Tip 1 — Gửi danh mục món trước</b><p>Listing món của quán giúp chốt quy cách cắt chuẩn ngay lần đầu — tránh cả lô cắt sai kiểu phải làm lại.</p></div>
+        <div class="tip rv" data-d="1"><b>Tip 2 — Lô 300kg+ đơn giá đẹp hơn</b><p>Gộp nhu cầu 1 tuần thành 1 lô vẫn được giao theo đợt — công chuẩn bị lô giảm, đơn giá/kg giảm 10–15%.</p></div>
+        <div class="tip rv" data-d="2"><b>Tip 3 — Thử lô nhỏ trước khi tăng</b><p>Duyệt mẫu 3–5kg rồi mới chạy loạt: chỉnh khẩu vị, độ mịn, quy cách bao trước khi đặt số lượng lớn.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ REVIEWS ═══════════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Khách gửi lô nói gì</span>
+      <span class="block-title" style="margin-top:16px">Đặt lô tiếp theo — <span class="hl">lời khen thật nhất</span></span>
+    </div>
+    <div class="rev-shell">
+      <div class="rev-view rv">
+        <div class="rev-item on">
+          <div class="stars">★★★★★</div>
+          <p>"5 quán salad mỗi tuần 260kg rau cắt sẵn, lịch cố định thứ 2 – thứ 5. Cắt múi cau đúng mẫu, ráo khô không dặt nước — trộn sốt xong bán trong ngày vẫn giòn. Sáng nào thiếu cũng báo trước."</p>
+          <div class="who"><span class="av">TH</span><span><b>Chị Thanh Hà</b><small>Chủ chuỗi FreshBox Salad — 5 cơ sở TP.HCM</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Nhà mình chỉ có công thức chả giò rau củ. Xưởng thử lô 5kg chỉnh độ mịn 2 lần, sau đó chạy 300kg/tháng kèm dán nhãn thương hiệu mình. Hồ sơ công bố sản phẩm họ làm giúp từ A–Z."</p>
+          <div class="who"><span class="av">BX</span><span><b>Anh Bảo</b><small>Founder — thương hiệu Chả Giò Bông Xanh</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Hộ kinh doanh chả cá, mỗi tuần gửi 150kg cá để lọc phi lê. Tỷ lệ thu hồi thống nhất, cân ký từng gói 500g đúng ±5g — khách mua về không bao giờ phàn nàn thiếu ký."</p>
+          <div class="who"><span class="av">CT</span><span><b>Cô Tư</b><small>Hộ kinh doanh chả cá — Chợ Bình Điền</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Bếp 2 cơ sở mỗi tuần 400kg nguyên liệu sơ chế sẵn: tiết kiệm được 2 nhân sự sơ chế, không lo quản lý khu rửa. Cầm phiếu cân và mã lô đối chiếu với kế hoạch món, chênh lệch gần như 0."</p>
+          <div class="who"><span class="av">QM</span><span><b>Anh Quang</b><small>Bếp trưởng — hệ thống Bếp Nóc Quán</small></span></div>
+        </div>
+        <div class="rev-item">
+          <div class="stars">★★★★★</div>
+          <p>"Đơn cấp đông 800kg Salad trộn cho workshop: hầm -35°C xong vẫn giòn, không mềm nhũn như lần trước làm ở chỗ khác. Xe giao kèm logger nhiệt, mở file xem chuỗi lạnh liền mạch."</p>
+          <div class="who"><span class="av">MN</span><span><b>Chị Mỹ Nương</b><small>Giám đốc vận hành — GreenMeal Canteen</small></span></div>
+        </div>
+        <div class="rev-dots" id="revDots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="rv" data-d="1">
+        <div class="rev-metric" style="margin-top:0">
+          <div class="rm"><b>98%</b><small>lô giao đúng hẹn 12 tháng</small></div>
+          <div class="rm"><b>0</b><small>sự cố ATTP trong 24 tháng</small></div>
+          <div class="rm"><b>4h</b><small>phản hồi báo giá trung bình</small></div>
+          <div class="rm"><b>78%</b><small>khách đặt lô tiếp theo</small></div>
+        </div>
+        <div style="margin-top:22px"><a href="#baogia" class="btn btn-navy" style="width:100%">Gửi lô đầu tiên với Tươi Phát</a></div>
+      </div>
+    </div>
+    <div class="logo-row rv">
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z"/></svg>FreshBox Salad</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Bông Xanh Foods</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>Bếp Nóc Quán</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>GreenMeal Canteen</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Chả Cá Cô Tư</span>
+      <span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><path d="m9 3 1.5 4L14 8.5 10.5 10 9 14 7.5 10 4 8.5 7.5 7Z"/></svg>Sạch Miền Tây</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FORM BÁO GIÁ CHÍNH ═══════════ -->
+<section class="sec" id="baogia">
+  <span class="prep-grid" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="bg-grid">
+      <div class="bg-copy rv">
+        <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#FFD9A0"><i></i>Nhận báo giá lô</span>
+        <span class="block-title" style="margin-top:16px">Điền form — <em class="hl" style="background:linear-gradient(120deg,var(--accent),#FFC470);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal">4 giờ sau</em> có bảng giá theo kg</span>
+        <span class="block-sub">Kèm tư vấn quy cách: cách chia bao, loại túi và nhãn giúp tiết kiệm 10–20% chi phí đóng gói cho từng lô.</span>
+        <ul class="bg-list">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Chủ xưởng (không qua sales) gọi lại xác nhận quy cách</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Báo giá tách bạch: công sơ chế + vật tư + tiêu hao</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7FE0AE" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg>Làm mẫu 3–5kg duyệt trước khi chạy lô chính thức</li>
+        </ul>
+        <div class="cert-badges">
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Giấy CN ATTP</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M7 21h10M5 7h14l-2 6a5 5 0 0 1-10 0L5 7Z"/></svg>Nhận lô từ 20kg</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Duyệt mẫu 48 giờ</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h4M7 13h6"/></svg>Mã lô QR truy xuất</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11a2 2 0 0 0-2 2v4h18v-4a2 2 0 0 0-2-2"/></svg>2 xe lạnh giao hàng</span>
+          <span class="cb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 4H8l1-4ZM8 7l-2 14h12L16 7"/></svg>Phiếu kiểm nghiệm kèm lô</span>
+        </div>
+      </div>
+      <form class="gform rv" data-d="1" id="quoteForm1" novalidate>
+        <h3>Form yêu cầu báo giá</h3>
+        <p>Điền nhanh 30 giây — mọi trường đều cần để báo đúng giá lô.</p>
+        <div class="fgrid">
+          <div class="field"><label for="q1Name">Họ tên *</label><input id="q1Name" type="text" placeholder="Nguyễn Văn A" required></div>
+          <div class="field"><label for="q1Phone">Số điện thoại / Zalo *</label><input id="q1Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+          <div class="field"><label for="q1Type">Bạn là</label>
+            <select id="q1Type"><option>Quán ăn / nhà hàng</option><option>Thương hiệu thực phẩm</option><option>Hộ kinh doanh</option><option>Bếp ăn công nghiệp</option><option>Khác</option></select>
+          </div>
+          <div class="field"><label for="q1Cat">Dịch vụ cần *</label>
+            <select id="q1Cat">
+              <option>Sơ chế rau củ – trái cây</option><option>Sơ chế thịt – cá</option><option>Đóng gói hút chân không</option><option>Cấp đông theo lô</option><option>Dán nhãn – in hạn sử dụng</option><option>Gia công theo đơn hàng</option><option>Vận chuyển lạnh</option><option>Kiểm định an toàn thực phẩm</option>
+            </select>
+          </div>
+          <div class="field"><label for="q1Qty">Khối lượng ước tính</label>
+            <select id="q1Qty"><option>20 – 100 kg</option><option>100 – 500 kg</option><option>500 – 2.000 kg</option><option>2.000 kg+ / lô lớn</option></select>
+          </div>
+          <div class="field"><label for="q1Area">Khu vực nhận hàng</label>
+            <select id="q1Area"><option>TP.HCM — xe lạnh riêng</option><option>Miền Tây</option><option>Miền Đông & Đông Nam Bộ</option><option>Miền Trung</option><option>Miền Bắc</option></select>
+          </div>
+          <div class="field full"><label for="q1Note">Mô tả nguyên liệu / công thức / quy cách</label><textarea id="q1Note" placeholder="Vd: 300kg khoai tây + cà rốt cắt hạt lựu, bao 1kg hút chân không, giao thứ 3 – thứ 6 hằng tuần…"></textarea></div>
+        </div>
+        <button class="btn btn-acc btn-lg" type="submit">Gửi yêu cầu — nhận báo giá trong 4 giờ<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+        <small class="secure"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Công thức và quy cách của bạn được bảo mật — chỉ chủ xưởng phụ trách xem.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT: MAP VẼ SVG + FORM 2 ═══════════ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Liên hệ xưởng</span>
+      <span class="block-title" style="margin-top:16px">Ghé xưởng <span class="hl">xem chuyền chạy</span> — đón khách cả T7</span>
+      <span class="block-sub">Có mẫu nguyên liệu? Mang tới xưởng — cân thử, xem chuyền và chốt quy cách tại chỗ trong 30 phút.</span>
+    </div>
+    <div class="contact-grid">
+      <div class="mapbox rv">
+        <span class="mtag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59B1D" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>Lô D6-1, Đường số 7, KCN Vĩnh Lộc, Bình Chánh, TP.HCM</span>
+        <!--NB93-MAP: 10.6580,106.5921-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.6580,106.5921&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+        <span class="mdir"><a class="btn btn-navy" href="https://www.google.com/maps/search/?api=1&query=KCN+Vinh+Loc+Binh+Chanh+Ho+Chi+Minh" target="_blank" rel="noopener">Chỉ đường<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></span>
+      </div>
+      <div class="rv" data-d="1">
+        <form class="gform" id="quoteForm2" novalidate style="background:var(--grad-dark)">
+          <h3>Gửi yêu cầu nhanh — gọi lại trong 4 giờ</h3>
+          <p>Chủ xưởng trực điện thoại và Zalo từ 6:30 đến 20:00 mỗi ngày.</p>
+          <div class="fgrid">
+            <div class="field"><label for="q2Name">Họ tên *</label><input id="q2Name" type="text" placeholder="Nguyễn Văn B" required></div>
+            <div class="field"><label for="q2Phone">Số điện thoại / Zalo *</label><input id="q2Phone" type="tel" placeholder="09xx xxx xxx" required></div>
+            <div class="field full"><label for="q2Note">Nguyên liệu + khối lượng cần sơ chế</label><textarea id="q2Note" placeholder="Vd: 200kg cá basa phi lê, chia gói 500g hút chân không, giao nội thành…"></textarea></div>
+          </div>
+          <button class="btn btn-acc btn-lg" type="submit">Nhận báo giá — cam kết 4 giờ<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg></button>
+          <small class="secure">Hoặc gọi trực tiếp: <a href="tel:0906341258" style="color:#FFD9A0;font-weight:900">0906 341 258</a> — có người nghe máy, không tổng đài tự động.</small>
+        </form>
+        <div class="cinfo">
+          <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg></span><span><b>Hotline xưởng</b><small><a href="tel:0906341258" style="color:var(--accent-deep);font-weight:800">0906 341 258</a> — 6:30–20:00, CN nhận đơn gấp</small></span></div>
+          <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg></span><span><b>Email bảng giá</b><small>baogia@tuoiphat.vn — đính kèm listing nguyên liệu</small></span></div>
+          <div class="ci"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Giờ nhận khách & nguyên liệu</b><small>T2–T7: 6:30–17:30 · CN: nhận đơn gấp theo lịch</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow"><i></i>Hỏi & đáp</span>
+      <span class="block-title" style="margin-top:16px">Nguyên liệu, giá lô, nhãn mác — <span class="hl">hỏi trước, yên tâm sau</span></span>
+    </div>
+    <div class="faq-tools rv">
+      <div class="faq-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#57705F" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+        <input id="faqSearch" type="text" placeholder="Tìm câu hỏi: khối lượng, giá/kg, nhãn, giao hàng…" aria-label="Tìm câu hỏi">
+      </div>
+    </div>
+    <div class="faq-chips rv" id="faqChips">
+      <button class="fchip on" data-k="" type="button">Tất cả</button>
+      <button class="fchip" data-k="nguyên liệu" type="button">Nguyên liệu</button>
+      <button class="fchip" data-k="giá & lô" type="button">Giá & lô</button>
+      <button class="fchip" data-k="đóng gói – nhãn" type="button">Đóng gói – nhãn</button>
+      <button class="fchip" data-k="giao hàng" type="button">Giao hàng</button>
+      <button class="fchip" data-k="hồ sơ – pháp lý" type="button">Hồ sơ – pháp lý</button>
+    </div>
+    <div class="faq-list rv" id="faqList"></div>
+    <p class="faq-empty" id="faqEmpty">Không tìm thấy câu hỏi phù hợp — gọi <a href="tel:0906341258" style="color:var(--accent-deep);font-weight:800">0906 341 258</a> để được trả lời ngay.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <span class="prep-grid" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="fgrid4">
+      <div class="fcol">
+        <div class="flogo"><span class="mark" style="width:42px;height:42px;border-radius:12px;background:var(--grad-accent);display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z" opacity=".9"/><path d="M12 21V8M12 12l3-3M12 15l-3-3"/></svg></span><b>TƯƠI PHÁT</b></div>
+        <p>Xưởng sơ chế, đóng gói và gia công thực phẩm theo yêu cầu tại KCN Vĩnh Lộc. Nhận nguyên liệu của quán, thương hiệu thực phẩm và hộ kinh doanh — trả lại thành phẩm dán nhãn, sẵn bán, có mã lô truy xuất.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Zalo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 8.9 8.9 0 0 1-3.2-.6L4 20l1-4a8 8 0 0 1-1-3.9A8.4 8.4 0 0 1 12.5 4 8.4 8.4 0 0 1 21 11.5Z"/></svg></a>
+          <a href="#top" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#top" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
+          <a href="#top" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4c.6 2.5 2.4 4.4 5 5"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>8 dịch vụ của xưởng</h4>
+        <ul class="flinks">
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Sơ chế rau củ – trái cây</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Sơ chế thịt – cá</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Đóng gói hút chân không</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Cấp đông theo lô</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Dán nhãn – in hạn sử dụng</a></li>
+          <li><a href="#dich-vu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Gia công theo đơn hàng</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Hỗ trợ khách gửi lô</h4>
+        <ul class="flinks">
+          <li><a href="#bang-gia"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Tính giá sơ chế theo kg</a></li>
+          <li><a href="#quy-trinh"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Quy trình ATTP 6 bước</a></li>
+          <li><a href="#thiet-bi"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Hồ sơ chuyền & thiết bị</a></li>
+          <li><a href="#baogia"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Yêu cầu báo giá</a></li>
+          <li><a href="#faq"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Chính sách làm lại lô</a></li>
+          <li><a href="#faq"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Xưởng Tươi Phát</h4>
+        <div class="faddr">
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Lô D6-1, Đường số 7, KCN Vĩnh Lộc, Bình Chánh, TP.HCM</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg><a class="hot" href="tel:0906341258">0906 341 258</a></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg><span>baogia@tuoiphat.vn</span></div>
+          <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>T2–T7: 6:30–17:30 · CN: nhận đơn gấp</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="paybar">
+    <div class="wrap">
+      <small>© 2026 Tươi Phát Co., Ltd — GPKD 0316xxxxxx · MST 0316xxxxxx · Giấy CN cơ sở đủ điều kiện ATTP số 30/2020/ATTP-TP</small>
+      <div class="pay-items">
+        <span>Chuyển khoản ngân hàng</span><span>COD theo hợp đồng</span><span>Công nợ 30 ngày — khách lô cố định</span><span>Hóa đơn VAT</span><span>Giấy CN ATTP</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ FAB DOCK ═══════════ -->
+<div class="dock" id="dock">
+  <a class="main" href="#baogia"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-11 11M22 2l-7 20-4-9-9-4Z"/></svg>Báo giá</a>
+  <a href="tel:0906341258"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>Gọi</a>
+  <a href="#bang-gia"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M7 21h10M5 7h14l-2 6a5 5 0 0 1-10 0L5 7Z"/></svg>Tính giá</a>
+  <a href="#dich-vu"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 9v11"/></svg>Dịch vụ</a>
+  <a href="#faq"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>FAQ</a>
+  <button id="dockTop" type="button"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Lên</button>
+</div>
+
+<!-- ═══════════ XEM NHANH DỊCH VỤ ═══════════ -->
+<div class="modal" id="qvModal" role="dialog" aria-modal="true" aria-label="Xem nhanh dịch vụ">
+  <div class="mask" data-close></div>
+  <div class="box">
+    <div class="mimg"><img id="qvImg" src="assets/img/p1.webp" alt="" width="1448" height="1086"><span class="mnum" id="qvNum">01</span><button class="mclose" data-close aria-label="Đóng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="mbody">
+      <h3 id="qvName">—</h3>
+      <p id="qvDesc">—</p>
+      <table class="mtab" id="qvTab"></table>
+      <div class="bspecs" id="qvChips"></div>
+      <div class="mrow">
+        <label for="qvQty">Khối lượng lô tham khảo (kg)</label>
+        <input id="qvQty" type="number" min="20" step="10" value="200">
+        <span class="sum">Tham khảo: <b id="qvSum">—</b></span>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+        <button class="btn btn-acc" id="qvGo" style="flex:1;min-width:200px">Nhận báo giá dịch vụ này — 4h</button>
+        <a class="btn btn-ghost" href="tel:0906341258">Gọi 0906 341 258</a>
+      </div>
+      <div class="mmeta"><span>Giá theo kg / theo lô</span><span>Duyệt mẫu trước khi chạy lô</span><span>Mã lô QR truy xuất</span><span>Sai quy cách — làm lại miễn phí</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast"><span class="ti"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m4 12 6 6L20 6"/></svg></span><span class="tx"><b id="toastTitle">—</b><span id="toastMsg">—</span></span></div>
+
+<script>
+/*NB93-039 ==================== DATA ==================== */
+const SVCS=[
+ {n:"01",img:"assets/img/p1.webp",name:"Sơ chế rau củ – trái cây",desc:"Rửa 2 cấp, gọt tỉa, cắt kiểu múi cau / sợi / hạt lựu / khúc; làm khô ly tâm ráo mặt.",mach:[["Chuyền rửa 2 cấp","sục bọt + thác nước · 500 kg/giờ"],["Cắt kiểu","theo mẫu món — chốt quy cách trước lô"],["Làm khô","quay ly tâm 200 kg/mẻ"]],price:"từ 4.500đ/kg",base:4500,lead:"nhận sáng — giao hôm sau"},
+ {n:"02",img:"assets/img/p2.webp",name:"Sơ chế thịt – cá",desc:"Lọc xương, phi lê, băm xay 3 cỡ dao, chia phần cân tự động ±5g theo quy cách bếp.",mach:[["Chuyền lọc","300 kg/giờ — khu thô / sạch riêng"],["Chia phần","cân tự động ±5g · bao 100g – 2kg"],["Phụ phẩm","xương · mỡ · da trả theo biên bản"]],price:"từ 6.000đ/kg",base:6000,lead:"nhận sáng — giao hôm sau"},
+ {n:"03",img:"assets/img/p3.webp",name:"Đóng gói hút chân không",desc:"Ép kín kiểm 100% bằng ngâm nước; túi PA/PE thực phẩm 70–120 micron, giữ tươi gấp 3–5 lần.",mach:[["Máy 2 buồng","DZ-700 × 2 máy"],["Khổ túi","tới 40×50cm · gói 100g – 5kg"],["Kiểm độ kín","ngâm nước mẫu mỗi giờ"]],price:"từ 1.200đ/gói",base:0,lead:"cùng ngày với sơ chế"},
+ {n:"04",img:"assets/img/p4.webp",name:"Cấp đông theo lô",desc:"Hầm -35°C đưa tâm sản phẩm xuống ≤ -18°C trong 4–6 giờ, giữ cấu trúc tế bào không chai đá.",mach:[["Hầm cấp đông","-35°C · 800 kg/lô"],["Chuẩn đầu ra","tâm sản phẩm ≤ -18°C"],["Kho đông","-18°C · 120 vị pallet chờ giao"]],price:"từ 2.000đ/kg",base:2000,lead:"4–6 giờ trong hầm + lưu kho"},
+ {n:"05",img:"assets/img/p5.webp",name:"Dán nhãn – in hạn sử dụng",desc:"In date rõ nét, dán nhãn thương hiệu riêng của khách, gắn QR mã lô truy xuất từng bao.",mach:[["Máy in date","phun nhiệt — 60 gói/phút"],["Nhãn","decal giấy / decal trong, màng co"],["Truy xuất","QR mã lô — nguyên liệu, ngày, chuyền"]],price:"từ 350đ/sp",base:0,lead:"cùng ngày với đóng gói"},
+ {n:"06",img:"assets/img/p6.webp",name:"Gia công theo đơn hàng",desc:"Nhận công thức + nguyên liệu của khách: sơ chế → trộn sốt → định lượng → đóng gói → dán nhãn hoàn chỉnh. Thử lô 3–5kg duyệt mẫu trước khi chạy đơn.",mach:[["Đầu vào","công thức + nguyên liệu khách cấp hoặc đặt giúp"],["Thử lô","3–5 kg — duyệt mẫu trong 48 giờ"],["Quy mô","từ 100 kg hoặc 500 sản phẩm / đơn"]],price:"báo theo đơn hàng",base:0,lead:"3–7 ngày sau khi duyệt mẫu"},
+ {n:"07",img:"assets/img/p7.webp",name:"Vận chuyển lạnh",desc:"Xe lạnh 0–4°C / -18°C giao nội thành trong ngày; tỉnh gửi tuyến lạnh 1–3 ngày kèm logger nhiệt.",mach:[["Đội xe","2 × 1,5 tấn — mát & đông riêng"],["Theo dõi","logger nhiệt độ, xuất file theo yêu cầu"],["Phạm vi","TP.HCM + tuyến liên tỉnh"]],price:"từ 350.000đ/chuyến",base:0,lead:"nội thành trong 24 giờ"},
+ {n:"08",img:"assets/img/p8.webp",name:"Kiểm định an toàn thực phẩm",desc:"Lấy mẫu gửi lab đối tác được công nhận — chỉ tiêu vi sinh, hóa lý; phiếu kết quả kèm từng lô.",mach:[["Chỉ tiêu","vi sinh · hóa lý · kim loại nặng"],["Lab","trung tâm kiểm nghiệm được công nhận"],["Kết quả","phiếu kèm lô trong 3–5 ngày"]],price:"từ 950.000đ/lô",base:0,lead:"3–5 ngày có kết quả"}
+];
+const FAQ=[
+ {q:"Khối lượng tối thiểu là bao nhiêu? Lô nhỏ có nhận không?",a:"Đơn sơ chế nhận từ 20kg/lô; gia công theo đơn hàng từ 100kg hoặc 500 sản phẩm. Lô càng lớn đơn giá/kg càng giảm — tham khảo bảng bậc giá trong mục 'Tính giá sơ chế theo kg'.",k:"giá & lô"},
+ {q:"Nguyên liệu do ai cung cấp?",a:"Hai hình thức: (1) khách tự đưa nguyên liệu — xưởng ký biên bản bàn giao và cân điểm đầu lô hai bên; (2) xưởng đặt mua theo listing của khách, báo giá nguyên liệu riêng, kèm chứng từ nguồn gốc từng lô.",k:"nguyên liệu"},
+ {q:"Tôi là hộ kinh doanh, có nhận gia công không? Cần giấy tờ gì?",a:"Có — xưởng nhận cả hộ kinh doanh. Nhãn mác làm theo quy định hiện hành, hỗ trợ trọn gói hồ sơ công bố sản phẩm. Chỉ cần bạn cung cấp giấy tờ tùy thân và tên hộ kinh doanh để ký hợp đồng.",k:"hồ sơ – pháp lý"},
+ {q:"Giá theo kg gồm những gì?",a:"Giá công sơ chế + vật tư đóng gói theo quy cách bạn chọn (túi zip / hút chân không / khay màng co) + dán nhãn. Nguyên liệu tính riêng nếu xưởng đặt giúp — bảng báo giá tách bạch từng khoản để dễ đối chiếu.",k:"giá & lô"},
+ {q:"Có làm mẫu thử trước khi chạy lô chính không?",a:"Có — làm mẫu 3–5kg với phí tượng trưng, trừ vào đơn khi chốt lô. Mẫu giúp chốt độ mịn, kiểu cắt, khẩu vị và quy cách bao trước khi đặt số lượng lớn.",k:"giá & lô"},
+ {q:"Nhãn và hạn sử dụng in thế nào? Tôi chưa có file nhãn.",a:"Nhận 2 trường hợp: khách cung cấp file nhãn in sẵn (khuyên dùng, tiết kiệm nhất) hoặc xưởng thiết kế nhãn cơ bản (phí 200.000đ/lần, in date + QR mã lô miễn phí theo lô).",k:"đóng gói – nhãn"},
+ {q:"Đơn sơ chế bao lâu thì nhận được hàng?",a:"Đơn nhận nguyên liệu buổi sáng thường giao buổi chiều hôm sau. Lô gia công theo đơn: 3–7 ngày sau khi duyệt mẫu. Khối lượng lớn 1 tấn+ hoặc cần cấp đông đầy đủ: thêm 1–2 ngày, báo trước theo hợp đồng.",k:"giao hàng"},
+ {q:"Giao hàng xa thế nào? Có đảm bảo chuỗi lạnh?",a:"TP.HCM giao xe lạnh riêng trong 24h. Các tỉnh: xe lạnh chung tuyến 1–3 ngày, kèm logger nhiệt độ — xuất file chuỗi lạnh theo yêu cầu. Hàng cấp đông đi xa giữ chuẩn ≤ -18°C tới khi bàn giao.",k:"giao hàng"}
+];
+
+/* ==================== HELPERS ==================== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const vnd=n=>n.toLocaleString("vi-VN")+"đ";
+let toastT;
+function toast(title,msg){const t=$("#toast");$("#toastTitle").textContent=title;$("#toastMsg").textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3600)}
+
+/* ==================== REVEAL ON SCROLL ==================== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;setTimeout(()=>el.classList.add("on"),(+el.dataset.d||0)*120);io.unobserve(el)}}),{threshold:.12});
+function observeRv(){$$(".rv").forEach(el=>io.observe(el))}
+
+/* ==================== COUNTERS ==================== */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;cio.unobserve(el);
+  const end=+el.dataset.count,t0=performance.now(),dur=1500;
+  (function step(t){const p=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-p,3),v=Math.round(end*ease);
+    el.textContent=v.toLocaleString("vi-VN");
+    if(p<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.5});
+$$(".cnt").forEach(el=>cio.observe(el));
+
+/* ==================== HEADER SCROLL ==================== */
+addEventListener("scroll",()=>$("#hdr").classList.toggle("scrolled",scrollY>10),{passive:true});
+
+/* ==================== DOCK hide khi xem hero ==================== */
+const heroIO=new IntersectionObserver(es=>es.forEach(e=>$("#dock").classList.toggle("hidden",e.isIntersecting)),{threshold:.18});
+heroIO.observe($("#hero"));
+
+/* ==================== SPOTLIGHT card theo con trỏ ==================== */
+$$(".bcard").forEach(c=>c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")}));
+
+/* ==================== SEARCH header lọc khối-8 ==================== */
+$("#hsearchInput").addEventListener("keydown",e=>{
+  if(e.key!=="Enter")return;const q=e.target.value.trim().toLowerCase();if(!q)return;
+  let n=0;$$(".bcard").forEach(c=>{const hit=(c.dataset.name||"")&&(c.dataset.name+" "+c.textContent.toLowerCase()).includes(q);c.classList.toggle("dim",!hit);if(hit)n++});
+  $("#dich-vu").scrollIntoView({behavior:"smooth"});
+  toast(n?`Tìm thấy ${n} dịch vụ khớp "${e.target.value}"`:`Không có dịch vụ khớp — thử "sơ chế", "đông lạnh", "nhãn"`);
+  setTimeout(()=>$$(".bcard").forEach(c=>c.classList.remove("dim")),6000);
+});
+
+/* ==================== XEM NHANH (MODAL) ==================== */
+const modal=$("#qvModal");
+let qvIdx=0;
+function openQV(i){qvIdx=i;const c=SVCS[i];
+  $("#qvImg").src=c.img;$("#qvImg").alt=c.name;$("#qvNum").textContent=c.n;
+  $("#qvName").textContent=c.name;$("#qvDesc").textContent=c.desc;
+  $("#qvTab").innerHTML=c.mach.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("");
+  $("#qvChips").innerHTML=`<span class="bspec">Giao: ${c.lead}</span><span class="bspec"><em>${c.price}</em></span>`;
+  $("#qvQty").value=200;sumQV();modal.classList.add("open");document.body.style.overflow="hidden"}
+function sumQV(){const c=SVCS[qvIdx],q=Math.max(20,+$("#qvQty").value||20);
+  $("#qvSum").textContent=c.base?(vnd(c.base*0.88*q)+" – "+vnd(c.base*q)):"Theo báo giá"}
+$("#qvQty").addEventListener("input",sumQV);
+$$("[data-qv]").forEach(b=>b.onclick=e=>{e.preventDefault();openQV(+b.dataset.qv)});
+$$("[data-close]").forEach(b=>b.onclick=()=>{modal.classList.remove("open");document.body.style.overflow=""});
+$("#qvGo").onclick=()=>{modal.classList.remove("open");document.body.style.overflow="";
+  const sel=$("#q1Cat");[...sel.options].forEach(o=>{if(o.text===SVCS[qvIdx].name)sel.value=o.text});
+  $("#baogia").scrollIntoView({behavior:"smooth"});toast(`Đã chọn "${SVCS[qvIdx].name}"`,"Điền form để nhận bảng giá theo kg trong 4 giờ")};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open")){modal.classList.remove("open");document.body.style.overflow=""}});
+
+/* ==================== CTA thẻ → prefill form + toast ==================== */
+$$("[data-svc]").forEach(a=>a.addEventListener("click",()=>{
+  const name=a.dataset.svc,sel=$("#q1Cat");
+  [...sel.options].forEach(o=>{if(o.text===name)sel.value=o.text});
+  toast(`Đã chọn "${name}"`,"Hoàn tất form — chủ xưởng gọi lại trong 4 giờ làm việc");
+}));
+
+/* ==================== ESTIMATOR GIÁ SƠ CHẾ THEO NGUYÊN LIỆU ==================== */
+const RATES={rauCua:4500,salad:5500,heo:8000,bo:12000,caNgot:11000,caBien:14000};
+const CONGS={coban:1,gotia:1.35,loc:1.9};
+const PACKS={tui:600,chankhong:1500,khay:2200};
+const LOTF=k=>k>=500?0.72:k>=100?0.85:1;
+const NGN={rauCua:"rau củ",salad:"rau ăn lá",heo:"thịt heo/gia cầm",bo:"thịt bò",caNgot:"cá nước ngọt",caBien:"cá biển/tôm mực"};
+const CGN={coban:"rửa + cắt cơ bản",gotia:"gọt tỉa + cắt kiểu",loc:"lọc xương – phi lê – chia phần"};
+const PKN={tui:"túi zip",chankhong:"hút chân không + nhãn",khay:"khay màng co + nhãn"};
+function est(){
+  const kg=+$("#eKg").value;$("#eKgLbl").textContent=kg.toLocaleString("vi-VN")+" kg";
+  const ng=$("#eNg").value,cg=$("#eCong").value,pk=$("#ePack").value;
+  const unit=Math.round((RATES[ng]*CONGS[cg]*LOTF(kg)+PACKS[pk])/100)*100;
+  const lo=Math.round(unit*0.9/100)*100,hi=Math.round(unit*1.1/100)*100;
+  $("#rKg").textContent=vnd(lo)+" – "+vnd(hi);
+  $("#rTotal").textContent="≈ "+vnd(Math.round((lo+hi)/2)*kg)+` / ${kg.toLocaleString("vi-VN")} kg`;
+  $("#rLead").textContent=kg<=100?"trong 24 giờ":kg<=500?"1–2 ngày":"2–4 ngày";
+  $("#rFlow").textContent=cg==="loc"?"Lọc – chia phần → gói → in nhãn":"Rửa → cắt → gói → in nhãn";
+  [[ "t100",100],["t500",500],["t1000",1000]].forEach(([id,n])=>{
+    const u=Math.round((RATES[ng]*CONGS[cg]*LOTF(n)+PACKS[pk])/100)*100;
+    $(`#${id}`).textContent=vnd(u); $(`#${id}s`).textContent=vnd(u*n);
+  });
+}
+["eNg","eCong","ePack"].forEach(id=>$("#"+id).addEventListener("change",est));
+$("#eKg").addEventListener("input",est);est();
+$("#calcSend").onclick=()=>{
+  const ng=$("#eNg").value,cg=$("#eCong").value,pk=$("#ePack").value,kg=+$("#eKg").value;
+  const cat=cg==="loc"?"Sơ chế thịt – cá":(ng==="rauCua"||ng==="salad")?"Sơ chế rau củ – trái cây":"Sơ chế thịt – cá";
+  const sel=$("#q1Cat");[...sel.options].forEach(o=>{if(o.text===cat)sel.value=o.text});
+  $("#q1Qty").value=kg<=100?"20 – 100 kg":kg<=500?"100 – 500 kg":kg<=2000?"500 – 2.000 kg":"2.000 kg+ / lô lớn";
+  $("#q1Note").value=`Ước tính nhanh: ${NGN[ng]} · ${CGN[cg]} · đóng ${PKN[pk]} · lô ${kg.toLocaleString("vi-VN")}kg. `;
+  $("#baogia").scrollIntoView({behavior:"smooth"});
+  toast("Đã chuyển thông số sang form","Gửi yêu cầu để chốt bảng giá theo mẫu nguyên liệu thật")};
+
+/* ==================== TABS ==================== */
+$$(".tab").forEach(t=>t.onclick=()=>{
+  $$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  $$(".tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.panel===t.dataset.tab));
+  $("#specFoot").textContent=["8 cụm thiết bị chính được lập hồ sơ, bảo trì định kỳ 500 giờ máy — số liệu sao y sổ tài khoản xưởng.",
+   "Nguyên liệu tồn theo lô có chứng từ; nguyên liệu đặc chủng đặt trước 2–4 ngày làm việc.",
+   "Quy trình 3 lớp: nhân viên tự kiểm → tổ trưởng chuyền → phiếu kiểm nghiệm lab kèm lô."][+t.dataset.tab]});
+
+/* ==================== REVIEWS ROTATE ==================== */
+let rIdx=0;const rItems=$$(".rev-item"),rDots=$$("#revDots i");
+function showRev(i){rIdx=i%rItems.length;rItems.forEach((x,j)=>x.classList.toggle("on",j===rIdx));rDots.forEach((x,j)=>x.classList.toggle("on",j===rIdx))}
+let rTimer=setInterval(()=>showRev(rIdx+1),6000);
+rDots.forEach((d,i)=>d.onclick=()=>{showRev(i);clearInterval(rTimer);rTimer=setInterval(()=>showRev(rIdx+1),6000)});
+
+/* ==================== FAQ render + search ==================== */
+const faqList=$("#faqList");
+faqList.innerHTML=FAQ.map(f=>`<div class="fitem" data-k="${f.k}"><button class="fq" type="button">${f.q}<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="fa"><p>${f.a}</p></div></div>`).join("");
+$$(".fq").forEach(b=>b.onclick=()=>{const it=b.parentElement,open=it.classList.contains("open");
+  $$(".fitem").forEach(x=>{x.classList.remove("open");x.querySelector(".fa").style.maxHeight=null});
+  if(!open){it.classList.add("open");const fa=it.querySelector(".fa");fa.style.maxHeight=fa.scrollHeight+"px"}});
+function faqFilter(k){
+  let n=0;$$(".fitem").forEach(it=>{const hit=k===""||it.dataset.k===k;it.classList.toggle("hide",!hit);if(hit)n++});
+  $("#faqEmpty").style.display=n?"none":"block"}
+$$("#faqChips .fchip").forEach(c=>c.onclick=()=>{
+  $$("#faqChips .fchip").forEach(x=>x.classList.remove("on"));c.classList.add("on");
+  $("#faqSearch").value="";faqFilter(c.dataset.k)});
+$("#faqSearch").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();$$("#faqChips .fchip").forEach(x=>x.classList.remove("on"));
+  $$("#faqChips .fchip")[0].classList.add("on");
+  let n=0;$$(".fitem").forEach(it=>{const hit=!q||it.textContent.toLowerCase().includes(q);it.classList.toggle("hide",!hit);if(hit)n++});
+  $("#faqEmpty").style.display=n?"none":"block"});
+
+/* ==================== FORMS — novalidate + kiểm tra thủ công + toast ==================== */
+function bindForm(id){$("#"+id).addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#"+id+" [id$=Name]"),phone=$("#"+id+" [id$=Phone]");
+  if(!name.value.trim()||!phone.value.trim()){toast("Thiếu thông tin","Điền họ tên và số điện thoại để chủ xưởng gọi lại nhé!");name.focus();return}
+  if(!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,""))){toast("Số điện thoại chưa đúng","Ví dụ đúng: 0906 341 258");phone.focus();return}
+  const code="LO-"+new Date().getFullYear()+"-"+String(Math.floor(1000+Math.random()*9000));
+  toast("Đã gửi yêu cầu thành công",`Mã yêu cầu ${code} — chủ xưởng gọi lại trong 4 giờ làm việc.`);
+  e.target.reset();})}
+bindForm("quoteForm1");bindForm("quoteForm2");
+
+/* ==================== KHÁC ==================== */
+$("#dockTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+$$("[data-strip]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();$("#dich-vu").scrollIntoView({behavior:"smooth"})}));
+observeRv();
+
+/*NB93-039 DOCKHIDE: dock tu an khi cuon xuong — khong che CTA cua the */
+(function(){var d=document.getElementById('dock');if(!d)return;var last=window.scrollY;
+  window.addEventListener('scroll',function(){var y=window.scrollY;
+    if(y>last&&y>240){d.style.bottom='-140px'}else{d.style.bottom=''}
+    last=y;},{passive:true});})();
+</script>
+<script>
+/*NB93-039 FAILSAFE: element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<!--NB93-039 WIDGET CHAT TRUC TIEP (demo bot nganh gia cong thuc pham) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c5-3 8-7 8-11a8 8 0 0 0-16 0c0 4 3 8 8 11Z"/></svg></div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand"></span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-039 CHAT: widget chat truc tiep */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(31,122,80,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1F7A50,#145238);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.7rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F5FAF6}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-bottom-left-radius:4px;color:#17281D}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(14,42,71,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(31,122,80,.4);color:#1F7A50;background:#fff;font-weight:700;font-size:.75rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+.pkc-chip:hover{background:#E8F5EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(14,42,71,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(14,42,71,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2F9E6E;box-shadow:0 0 0 3px rgba(47,158,110,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}.pkc-fab{bottom:80px}.pkc-on{font-size:12px}.pkc-chip{font-size:12px}}
+</style><script>
+/*NB93-039 CHAT-LOGIC: tro ly demo nganh so che - gia cong thuc pham */
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

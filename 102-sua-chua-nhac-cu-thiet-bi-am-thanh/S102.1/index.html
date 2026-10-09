@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xưởng Hơi Âm — Sửa nhạc cụ & thiết bị âm thanh | Thử âm trước khi trả, bảo hành 3 tháng</title>
+<meta name="description" content="Sửa guitar, piano – organ, trống, loa – amply, micro tại TP.HCM. Thợ theo từng dòng nhạc cụ 10+ năm, thử âm 6 bước trước khi trả, chỉnh đàn tại chỗ, việc nhỏ lấy trong ngày, bảo hành 3 tháng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-102: palette theo poster bìa tím - vàng (sân khấu âm thanh)*/
+:root{
+  --primary:#4A2A8A; --primary-2:#6C3FC5; --primary-deep:#2A1150; --ink-head:#1E0B3C;
+  --texture:#F2EEFA; --texture-2:#F9F7FD;
+  --accent:#A16207; --accent-2:#FFB547; --accent-100:#FFF3D8;
+  --grad-accent:linear-gradient(135deg,#FFC24B,#F59E0B 55%,#D97706);
+  --grad-dark:linear-gradient(140deg,#6C3FC5,#4A2A8A 48%,#2A1150);
+  --red:#C9322E; --grad-red:linear-gradient(135deg,#FF6B5E,#E53935 60%,#C62828);
+  --ink:#241735; --soft:#5C5470; --line:#DCCFF0; --white:#fff;
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+  --sh-1:0 2px 10px rgba(42,17,80,.08);
+  --sh-2:0 14px 34px rgba(42,17,80,.14);
+  --sh-3:0 24px 60px rgba(42,17,80,.24);
+  --font:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--white);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+/*NB93-102: height:auto toan cuc — thuoc tinh anh khong ghi de aspect-ratio*/
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font);cursor:pointer;border:0;background:none}
+input,select,textarea{font-family:var(--font);font-size:15px;color:var(--ink);outline:none}
+section[id]{scroll-margin-top:86px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);background:rgba(108,63,197,.1);border:1.5px solid rgba(108,63,197,.22);padding:7px 16px;border-radius:999px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h2.sec{display:block;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:1.22;color:var(--ink-head);letter-spacing:-.01em}
+.sub{display:block;margin-top:10px;color:var(--soft);font-size:16.5px;max-width:640px}
+.sec-head{margin-bottom:34px}
+.sec-head.center{text-align:center}
+.sec-head.center .sub{margin-left:auto;margin-right:auto}
+.hl{padding:1px 10px 3px;border-radius:8px;background:var(--grad-accent);color:#fff;display:inline-block;transform:rotate(-1.4deg)}
+.hl-purple{background:var(--grad-dark)}
+.ic{width:20px;height:20px;flex:none;fill:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:14px;padding:15px 28px;font-size:15.5px;transition:transform .22s,box-shadow .22s,filter .22s;position:relative;overflow:hidden;min-width:0}
+.btn:hover{transform:translateY(-2px)}
+.btn-accent{background:var(--grad-accent);color:#3A2503;box-shadow:0 10px 26px rgba(245,158,11,.36)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-purple{background:var(--grad-dark);color:#fff;box-shadow:0 10px 26px rgba(74,42,138,.35)}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+.btn-red{background:var(--grad-red);color:#fff;box-shadow:0 12px 30px rgba(229,57,53,.38)}
+.btn-red::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-red:hover::after{left:130%}
+.btn.big{padding:18px 32px;font-size:17px}
+.btn .pulse{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--ink-head);color:#CDBFEC;font-size:13.5px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:42px}
+.topbar .tb-l,.topbar .tb-r{display:flex;align-items:center;gap:18px;min-width:0;flex-wrap:wrap}
+.topbar .tb-item{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.topbar .ic{width:15px;height:15px;color:var(--accent-2)}
+.topbar a{font-weight:800;color:#fff}
+.topbar a:hover{color:var(--accent-2)}
+.topbar .live{display:inline-flex;align-items:center;gap:7px;font-weight:700}
+.topbar .live i{width:8px;height:8px;border-radius:50%;background:#31D06B;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.35}}
+
+/* ============ HEADER ============ */
+.site-head{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid rgba(220,207,240,.9)}
+.site-head .wrap{display:flex;align-items:center;gap:18px;min-height:74px}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo .mark{width:46px;height:46px;border-radius:13px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2);box-shadow:0 8px 18px rgba(74,42,138,.3)}
+.logo .mark .ic{width:26px;height:26px}
+.logo .lg-t{display:block;line-height:1.1}
+.logo .lg-t small{display:block;font-size:10px;font-weight:800;letter-spacing:.22em;color:var(--accent)}
+.logo .lg-t strong{display:block;font-size:19px;font-weight:900;color:var(--ink-head);letter-spacing:-.01em}
+.h-search{flex:1 1 320px;position:relative;min-width:0}
+.h-search .box{display:flex;align-items:center;gap:9px;background:var(--texture-2);border:1.5px solid var(--line);border-radius:999px;padding:10px 18px}
+.h-search input{flex:1;border:0;background:none;min-width:0}
+.h-search .ic{color:var(--soft);width:17px;height:17px}
+.main-nav{display:flex;gap:4px;flex:none}
+.main-nav a{font-size:14.5px;font-weight:700;color:var(--ink);padding:9px 13px;border-radius:10px}
+.main-nav a:hover{background:var(--texture);color:var(--primary)}
+.head-cta{flex:none;display:flex;align-items:center;gap:10px}
+.icon-btn{position:relative;width:46px;height:46px;border-radius:13px;background:var(--texture);border:1.5px solid var(--line);display:grid;place-items:center;color:var(--primary);transition:.2s}
+.icon-btn:hover{background:var(--texture-2);transform:translateY(-2px)}
+.icon-btn .ic{width:22px;height:22px}
+.icon-btn .badge{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--grad-red);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
+.h-call{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:13px;background:rgba(229,57,53,.08);border:1.5px solid rgba(229,57,53,.25)}
+.h-call .ic{width:18px;height:18px;color:var(--red)}
+.h-call .ht{display:block;line-height:1.15}
+.h-call .ht small{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.h-call .ht b{display:block;font-size:15.5px;color:var(--ink-head)}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--texture);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 88% 12%,rgba(108,63,197,.14),transparent 42%),
+  radial-gradient(circle at 8% 88%,rgba(245,158,11,.09),transparent 34%),
+  repeating-linear-gradient(64deg,rgba(74,42,138,.045) 0 2px,transparent 2px 26px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.04fr 1fr;gap:44px;padding-top:64px;padding-bottom:84px;align-items:center}
+.hero-l{min-width:0}
+.hero h1{font-size:clamp(2.05rem,4.2vw,3.3rem);font-weight:900;line-height:1.14;letter-spacing:-.02em;color:var(--ink-head);margin:20px 0 0}
+.hero h1 .hl{transform:rotate(-1.6deg)}
+.hero .h-sub{display:block;margin-top:18px;font-size:17px;color:var(--soft);max-width:560px}
+.hero .h-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.trust-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:30px;max-width:560px}
+.t-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:11px 14px;box-shadow:var(--sh-1);font-size:13.5px;font-weight:700;color:var(--ink);min-width:0}
+.t-chip .ic{width:19px;height:19px;color:var(--primary);flex:none}
+.t-chip b{display:block;font-size:13.5px;color:var(--ink-head)}
+.t-chip span{display:block;font-size:11.5px;color:var(--soft);font-weight:500}
+.hero-r{position:relative;min-width:0}
+.hero-stage{position:relative;height:520px}
+.stage-circle{position:absolute;right:-8%;top:2%;width:88%;aspect-ratio:1;border-radius:50%;background:var(--grad-dark);box-shadow:var(--sh-3)}
+.stage-ring{position:absolute;right:-12%;top:-6%;width:98%;aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(108,63,197,.35)}
+/*NB93-102: khung anh chinh 3/2 — dung ti le poster goc, khong crop mat chu poster*/
+.img-main{position:absolute;left:0;top:50%;transform:translateY(-50%) rotate(-2deg);width:100%;border-radius:var(--r-l);border:6px solid #fff;box-shadow:var(--sh-3);overflow:hidden;animation:floatA 7s ease-in-out infinite;z-index:9}
+.img-main img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.float-badge{position:absolute;right:-2%;bottom:22%;background:#fff;border-radius:16px;padding:12px 18px;box-shadow:var(--sh-2);display:flex;align-items:center;gap:11px;animation:floatB 7.5s .8s ease-in-out infinite;z-index:12;max-width:64%}
+.float-badge .fb-i{width:42px;height:42px;border-radius:12px;background:var(--grad-accent);display:grid;place-items:center;color:#3A2503;flex:none}
+.float-badge .fb-i .ic{width:22px;height:22px}
+.float-badge .fb-t{display:block}
+.float-badge .fb-t b{display:block;font-size:15px;color:var(--ink-head)}
+.float-badge .fb-t span{display:block;font-size:11.5px;color:var(--soft)}
+.hero-stats{position:absolute;left:26px;bottom:-30px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.9);border-radius:var(--r-m);box-shadow:var(--sh-2);display:flex;gap:0;overflow:hidden;z-index:12}
+.hero-stats .hs{padding:14px 22px;text-align:center;min-width:0}
+.hero-stats .hs + .hs{border-left:1.5px solid var(--line)}
+.hero-stats b{display:block;font-size:20px;font-weight:900;color:var(--primary)}
+.hero-stats span{display:block;font-size:11px;color:var(--soft);font-weight:600}
+@keyframes floatA{0%,100%{transform:translateY(-50%) rotate(-2deg)}50%{transform:translateY(calc(-50% - 12px)) rotate(-2deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+
+/* ============ TAPE ============ */
+.tape{transform:rotate(-1deg);margin:-26px -20px 0;position:relative;z-index:5}
+.tape-in{background:var(--grad-dark);color:#fff;overflow:hidden;padding:13px 0;border-top:2px solid rgba(255,255,255,.18);border-bottom:2px solid rgba(255,255,255,.18);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 14px,transparent 14px 28px)}
+.tape-run{display:flex;gap:0;width:max-content;animation:run 30s linear infinite}
+.tape-run span{display:inline-flex;align-items:center;gap:14px;padding:0 22px;font-weight:800;font-size:14.5px;letter-spacing:.02em;white-space:nowrap}
+.tape-run .sf{color:var(--accent-2);font-size:16px}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* ============ FEATURED 2 ============ */
+.sec{padding:88px 0}
+.sec.texture{background:var(--texture)}
+.sec.dark{background:var(--grad-dark);color:#fff}
+.sec.dark .sec-head h2.sec{color:#fff}
+.sec.dark .sub{color:#CDBFEC}
+.feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.f-card{background:#fff;border-radius:var(--r-l);overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;position:relative;min-width:0}
+.f-card:hover{transform:translateY(-7px);box-shadow:var(--sh-3)}
+.f-card .f-img{position:relative;aspect-ratio:3/2;overflow:hidden}
+.f-card .f-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.f-card:hover .f-img img{transform:scale(1.06)}
+.f-badge{position:absolute;top:14px;left:14px;background:var(--grad-accent);color:#3A2503;font-size:11.5px;font-weight:800;padding:6px 13px;border-radius:999px;letter-spacing:.04em;box-shadow:0 6px 16px rgba(245,158,11,.4)}
+.f-badge.red{background:var(--grad-red);color:#fff;box-shadow:0 6px 16px rgba(229,57,53,.4)}
+.f-price-ov{position:absolute;bottom:12px;right:12px;background:rgba(30,11,60,.85);backdrop-filter:blur(6px);color:#fff;border-radius:11px;padding:7px 14px;font-size:12px;font-weight:600}
+.f-price-ov b{color:var(--accent-2);font-size:15px}
+.f-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.f-body h3{font-size:20px;font-weight:900;color:var(--ink-head)}
+.f-body .f-meta{display:flex;gap:8px;flex-wrap:wrap}
+.m-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--primary);background:rgba(108,63,197,.09);padding:5px 11px;border-radius:999px}
+.m-chip .ic{width:13px;height:13px}
+.f-body ul{list-style:none;display:grid;gap:8px;margin:2px 0 6px}
+.f-body li{display:flex;gap:9px;font-size:14px;color:var(--soft);align-items:flex-start}
+.f-body li .ic{width:17px;height:17px;color:#1FA860;flex:none;margin-top:2px}
+.f-card .btn{width:100%;margin-top:auto}
+.f-card.dark{background:var(--grad-dark);border-color:transparent}
+.f-card.dark h3{color:#fff}
+.f-card.dark li{color:#CDBFEC}
+.f-card.dark li .ic{color:#6FE3A5}
+.f-card.dark .f-price-ov{background:rgba(255,255,255,.16)}
+
+/* ============ STRIP 5 ============ */
+.strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:22px}
+.s-item{display:flex;align-items:center;gap:13px;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:15px 16px;box-shadow:var(--sh-1);transition:transform .22s,box-shadow .22s;cursor:pointer;min-width:0}
+.s-item:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(108,63,197,.4)}
+.s-item .s-ic{width:44px;height:44px;flex:none;border-radius:12px;background:var(--texture);display:grid;place-items:center;color:var(--primary)}
+.s-item .s-ic .ic{width:23px;height:23px}
+.s-item .s-t{min-width:0;flex:1}
+.s-item .s-t b{display:block;font-size:14px;color:var(--ink-head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-item .s-t span{display:block;font-size:12px;color:var(--accent);font-weight:700}
+.s-item .arr{color:var(--soft);flex:none;transition:transform .2s}
+.s-item:hover .arr{transform:translateX(4px);color:var(--primary)}
+
+/* ============ BOOKING CALENDAR ============ */
+.book-sec{background:var(--grad-dark);position:relative;overflow:hidden}
+.book-sec::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 10% 20%,rgba(255,255,255,.09),transparent 34%),
+  repeating-linear-gradient(64deg,rgba(255,255,255,.04) 0 2px,transparent 2px 30px)}
+.book-grid{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start}
+.bk-card{background:#fff;border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-3);min-width:0}
+.bk-step{margin-bottom:20px}
+.bk-step:last-child{margin-bottom:0}
+.bk-label{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;color:var(--ink-head);margin-bottom:11px}
+.bk-label .n{width:24px;height:24px;flex:none;border-radius:8px;background:var(--grad-dark);color:#fff;font-size:12.5px;font-weight:800;display:grid;place-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:9px;min-width:0}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:var(--texture-2);font-size:13.5px;font-weight:700;color:var(--ink);transition:.18s;min-width:0}
+.chip:hover{border-color:var(--primary-2);color:var(--primary)}
+.chip.on{background:var(--grad-dark);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(74,42,138,.3)}
+.chip .ic{width:15px;height:15px}
+.chip.gap.on{background:var(--grad-red);box-shadow:0 6px 16px rgba(229,57,53,.32)}
+.chip small{font-weight:700;opacity:.75}
+.bk-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.bk-day{border:1.5px solid var(--line);border-radius:13px;background:var(--texture-2);padding:10px 4px;text-align:center;cursor:pointer;transition:.18s;min-width:0}
+.bk-day small{display:block;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--soft);text-transform:uppercase}
+.bk-day b{display:block;font-size:16.5px;font-weight:900;color:var(--ink-head)}
+.bk-day span{display:block;font-size:10px;color:var(--soft)}
+.bk-day.on{background:var(--grad-dark);border-color:transparent;box-shadow:0 8px 18px rgba(74,42,138,.3)}
+.bk-day.on small,.bk-day.on b,.bk-day.on span{color:#fff}
+.bk-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.bk-slot{border:1.5px solid var(--line);border-radius:12px;background:var(--texture-2);padding:11px 8px;text-align:center;cursor:pointer;transition:.18s;min-width:0}
+.bk-slot b{display:block;font-size:13.5px;font-weight:800;color:var(--ink-head)}
+.bk-slot span{display:block;font-size:10.5px;color:var(--soft);font-weight:600}
+.bk-slot.on{background:var(--grad-dark);border-color:transparent;color:#fff}
+.bk-slot.on b{color:#fff}
+.bk-slot.on span{color:#CDBFEC}
+.bk-slot.gap{border:1.5px dashed rgba(229,57,53,.5);background:rgba(229,57,53,.05)}
+.bk-slot.gap b{color:var(--red)}
+.bk-slot.gap.on{background:var(--grad-red)}
+.bk-slot.gap.on b{color:#fff}
+.bk-slot.gap.on span{color:#FFD9D5}
+.bk-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bk-fields .full{grid-column:1/-1}
+.fld{display:grid;gap:6px;min-width:0}
+.fld label{font-size:12.5px;font-weight:800;color:var(--soft);letter-spacing:.02em}
+.fld input,.fld select,.fld textarea{border:1.5px solid var(--line);border-radius:12px;padding:12px 15px;background:var(--texture-2);width:100%;transition:border .2s;min-width:0}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--primary-2);background:#fff}
+.bk-side{position:sticky;top:96px;display:grid;gap:16px}
+.bk-sum{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.22);border-radius:var(--r-l);padding:24px;color:#fff}
+.bk-sum h3{font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
+.bk-sum h3 .ic{width:21px;height:21px;color:var(--accent-2)}
+.sum-rows{margin:16px 0 0;display:grid;gap:11px}
+.sum-row{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;border-bottom:1px dashed rgba(255,255,255,.2);padding-bottom:10px;min-width:0}
+.sum-row .k{color:#CDBFEC;flex:none}
+.sum-row .v{font-weight:800;text-align:right;min-width:0}
+.sum-row.total{border-bottom:0;padding-top:4px}
+.sum-row.total .v{font-size:19px;color:var(--accent-2)}
+.sum-note{font-size:11.5px;color:#CDBFEC;margin-top:10px;display:flex;gap:7px;align-items:flex-start}
+.sum-note .ic{width:14px;height:14px;flex:none;margin-top:2px}
+.bk-sum .btn{width:100%;margin-top:16px}
+.bk-call{display:flex;align-items:center;gap:14px;background:#fff;border-radius:var(--r-l);padding:18px 20px;box-shadow:var(--sh-3);min-width:0}
+.bk-call .bc-ic{width:50px;height:50px;flex:none;border-radius:14px;background:var(--grad-red);display:grid;place-items:center;color:#fff;animation:ring 2.4s infinite}
+@keyframes ring{0%,100%{transform:rotate(0)}8%{transform:rotate(-14deg)}16%{transform:rotate(12deg)}24%{transform:rotate(-8deg)}32%{transform:rotate(0)}}
+.bk-call .ic{width:24px;height:24px}
+.bk-call .bc-t{min-width:0;flex:1}
+.bk-call .bc-t small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.bk-call .bc-t b{display:block;font-size:19px;color:var(--ink-head)}
+.bk-call .bc-t span{display:block;font-size:11.5px;color:var(--soft)}
+.bk-done{text-align:center;padding:8px 0}
+.bk-done .done-ic{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:rgba(31,168,96,.12);display:grid;place-items:center;color:#1FA860}
+.bk-done .done-ic .ic{width:32px;height:32px}
+.bk-done .code{display:inline-block;font-size:26px;font-weight:900;letter-spacing:.08em;background:var(--texture);border:1.5px dashed var(--primary-2);color:var(--primary);border-radius:14px;padding:12px 26px;margin:10px 0 14px}
+.bk-done .done-list{text-align:left;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 18px;margin:0 0 16px;display:grid;gap:8px;font-size:13px}
+.bk-done .done-list div{display:flex;justify-content:space-between;gap:12px}
+.bk-done .done-list b{text-align:right}
+
+/* ============ PRICE TABLE ============ */
+.ptabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.ptab{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:800;color:var(--soft);transition:.2s;min-width:0}
+.ptab .ic{width:17px;height:17px}
+.ptab.on{background:var(--grad-dark);border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(74,42,138,.3)}
+.ptable-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);overflow:hidden}
+.pt-scroll{overflow-x:auto}
+.ptable{width:100%;border-collapse:collapse;min-width:640px}
+.ptable th{background:var(--texture);text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);padding:14px 20px;font-weight:800}
+.ptable td{padding:15px 20px;border-top:1.5px solid var(--line);font-size:14.5px;vertical-align:middle}
+.ptable td b{color:var(--ink-head)}
+.ptable .p-price{font-weight:900;color:var(--accent);white-space:nowrap;font-size:15.5px}
+.ptable .p-time{color:var(--soft);font-size:13px;white-space:nowrap}
+.ptable tr:hover td{background:var(--texture-2)}
+.p-note{display:flex;gap:10px;align-items:flex-start;background:var(--accent-100);border:1.5px solid rgba(245,158,11,.3);border-radius:14px;padding:14px 18px;margin-top:16px;font-size:13.5px;color:#8A4B00;font-weight:600}
+.p-note .ic{width:18px;height:18px;flex:none;color:var(--accent);margin-top:2px}
+.tip-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+.tip-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:20px;box-shadow:var(--sh-1);display:flex;gap:14px;min-width:0}
+.tip-card .tc-ic{width:44px;height:44px;flex:none;border-radius:12px;background:rgba(31,168,96,.1);color:#1FA860;display:grid;place-items:center}
+.tip-card .tc-ic .ic{width:22px;height:22px}
+.tip-card b{display:block;font-size:14.5px;color:var(--ink-head)}
+.tip-card span{display:block;font-size:12.5px;color:var(--soft);margin-top:3px}
+
+/* ============ CALCULATOR ============ */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.calc-form{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.22);border-radius:var(--r-l);padding:28px;color:#fff}
+.calc-form .fld label{color:#CDBFEC}
+.calc-form .fld input,.calc-form .fld select{background:rgba(255,255,255,.94)}
+.qty{display:flex;align-items:center;gap:0;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;width:max-content;background:#fff}
+.qty button{width:44px;height:46px;font-size:20px;font-weight:800;color:var(--primary);background:var(--texture)}
+.qty b{width:56px;text-align:center;font-size:17px;color:var(--ink-head)}
+.calc-out{background:#fff;border-radius:var(--r-l);padding:28px;box-shadow:var(--sh-3);display:flex;flex-direction:column;min-width:0}
+.calc-out .co-tag{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.calc-out .co-price{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:900;color:var(--primary);letter-spacing:-.01em;margin:6px 0 2px}
+.calc-out .co-sub{font-size:13px;color:var(--soft)}
+.co-rows{margin:18px 0;display:grid;gap:10px}
+.co-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;background:var(--texture-2);border:1.5px solid var(--line);border-radius:11px;padding:11px 15px}
+.co-row b{color:var(--ink-head)}
+.co-row .fr{color:var(--accent);font-weight:800;white-space:nowrap}
+.calc-out .btn{width:100%}
+.calc-out .co-note{margin-top:12px;font-size:11.5px;color:var(--soft);text-align:center}
+
+/*NB93-102: ============ KHU DAC THU — BAN THU AM ============ */
+.ta-stage{position:relative;background:var(--grad-dark);border-radius:var(--r-xl);padding:34px;overflow:hidden;box-shadow:var(--sh-3)}
+.ta-stage::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 85% 10%,rgba(255,181,71,.14),transparent 40%),
+  repeating-linear-gradient(64deg,rgba(255,255,255,.04) 0 2px,transparent 2px 30px);pointer-events:none}
+.ta-grid{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:26px;align-items:stretch}
+.ta-tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.ta-tab{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#EDE6FB;font-size:13.5px;font-weight:800;transition:.18s;min-width:0}
+.ta-tab .ic{width:16px;height:16px;color:var(--accent-2)}
+.ta-tab:hover{border-color:var(--accent-2)}
+.ta-tab.on{background:var(--grad-accent);border-color:transparent;color:#3A2503;box-shadow:0 6px 16px rgba(245,158,11,.35)}
+.ta-tab.on .ic{color:#3A2503}
+.ta-panel{background:rgba(255,255,255,.07);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-l);padding:24px;color:#fff}
+.ta-panel h3{font-size:17.5px;font-weight:900;display:flex;align-items:center;gap:10px}
+.ta-panel h3 .ic{width:20px;height:20px;color:var(--accent-2)}
+.ta-steps{list-style:none;counter-reset:ta;display:grid;gap:10px;margin:16px 0 0}
+.ta-steps li{counter-increment:ta;display:flex;gap:12px;font-size:14px;color:#EDE6FB;align-items:flex-start}
+.ta-steps li::before{content:counter(ta);width:26px;height:26px;flex:none;border-radius:9px;background:rgba(255,181,71,.16);border:1.5px solid rgba(255,181,71,.5);color:var(--accent-2);font-weight:900;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.ta-tho{display:flex;align-items:center;gap:12px;margin-top:18px;background:rgba(255,255,255,.08);border:1.5px dashed rgba(255,181,71,.45);border-radius:14px;padding:12px 15px}
+.ta-tho .tt-ic{width:42px;height:42px;flex:none;border-radius:12px;background:var(--grad-accent);color:#3A2503;display:grid;place-items:center}
+.ta-tho .tt-ic .ic{width:22px;height:22px}
+.ta-tho b{display:block;font-size:14.5px;color:#fff}
+.ta-tho span{display:block;font-size:12px;color:#CDBFEC}
+.ta-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ta-tools i{font-style:normal;font-size:12px;font-weight:800;color:var(--accent-2);background:rgba(255,181,71,.12);border:1.5px solid rgba(255,181,71,.35);border-radius:999px;padding:6px 13px}
+.ta-commit{background:#fff;border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-3);display:flex;flex-direction:column;min-width:0}
+.ta-commit h3{font-size:17.5px;font-weight:900;color:var(--ink-head);display:flex;align-items:center;gap:10px}
+.ta-commit h3 .ic{width:21px;height:21px;color:var(--accent)}
+.ta-commit ul{list-style:none;display:grid;gap:12px;margin:16px 0}
+.ta-commit li{display:flex;gap:10px;font-size:13.5px;color:var(--ink);align-items:flex-start}
+.ta-commit li .ic{width:19px;height:19px;color:#1FA860;flex:none;margin-top:2px}
+.ta-note{font-size:12.5px;color:var(--soft);background:var(--texture);border:1.5px solid rgba(108,63,197,.2);border-radius:12px;padding:11px 14px;margin-top:auto}
+/*NB93-102: thanh equalizer trang tri — nhan manh "am thanh"*/
+.eq{display:flex;align-items:flex-end;gap:5px;height:52px;margin-top:16px}
+.eq i{width:7px;border-radius:4px;background:var(--grad-accent);opacity:.9;height:30%;animation:eqjump 1.15s ease-in-out infinite alternate}
+@keyframes eqjump{from{height:14%}to{height:100%}}
+@media (prefers-reduced-motion: reduce){.eq i{animation:none;height:45%}}
+.eq.gold i{background:linear-gradient(180deg,#FFD58A,#B45309)}
+.ta-commit .eq{height:44px;margin-top:auto}
+
+/*NB93-102: ============ KHOI-8 BENTO (kín ô, grid-template-areas) ============ */
+.bento{display:grid;gap:18px;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"a a b b" "a a c d" "e f g h";grid-auto-flow:dense}
+.bx{grid-area:auto;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;min-width:0;position:relative;transition:transform .25s,box-shadow .25s}
+.bx:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.bx-img{position:relative;aspect-ratio:3/2;overflow:hidden;flex:none}
+.bx-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.bx:hover .bx-img img{transform:scale(1.05)}
+.bx-tag{position:absolute;top:12px;left:12px;background:var(--grad-accent);color:#3A2503;font-size:11px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:999px;box-shadow:0 6px 14px rgba(245,158,11,.4);z-index:3}
+.bx-tag.red{background:var(--grad-red);color:#fff;box-shadow:0 6px 14px rgba(229,57,53,.4)}
+.bx-tag.purple{background:var(--grad-dark);color:#fff;box-shadow:0 6px 14px rgba(74,42,138,.4)}
+.bx-dur{position:absolute;bottom:10px;right:10px;background:rgba(30,11,60,.82);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:5px 12px;display:inline-flex;align-items:center;gap:6px;z-index:3}
+.bx-dur .ic{width:12px;height:12px}
+.bx-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.bx-body h3{font-size:16px;font-weight:900;color:var(--ink-head);line-height:1.3}
+.bx-body p{font-size:12.5px;color:var(--soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bx-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px}
+.bx-price small{display:block;font-size:10.5px;color:var(--soft);font-weight:700}
+.bx-price b{font-size:15.5px;color:var(--accent)}
+.bx-acts{display:flex;gap:8px}
+.bx-act{width:38px;height:38px;border-radius:11px;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--primary);transition:.2s}
+.bx-act:hover{background:var(--texture)}
+.bx-act .ic{width:18px;height:18px}
+.bx-book{font-size:12.5px;font-weight:800;color:#3A2503;background:var(--grad-accent);border-radius:11px;padding:10px 15px;box-shadow:0 6px 14px rgba(245,158,11,.3)}
+/* the lon A — 2x2, TO gap 4 o */
+.bx-a{grid-area:a}
+.bx-a .bx-body{padding:24px 26px 26px}
+.bx-a h3{font-size:clamp(1.25rem,1.8vw,1.6rem)}
+.bx-a .bx-body p{font-size:13.5px;-webkit-line-clamp:3}
+.bx-a ul{list-style:none;display:grid;gap:8px;margin:4px 0 8px}
+.bx-a ul li{display:flex;gap:9px;font-size:13.5px;color:var(--soft);align-items:flex-start}
+.bx-a ul li .ic{width:17px;height:17px;color:#1FA860;flex:none;margin-top:2px}
+.bx-a .bx-price b{font-size:19px}
+.bx-a .bx-book{padding:13px 22px;font-size:14px}
+/* the rong B — 2 o ngang */
+.bx-b{grid-area:b}
+.bx-b h3{font-size:17.5px}
+.bx-b .bx-body p{-webkit-line-clamp:2}
+/* NB93-102: gan vung ro rang the c-h — khoi-8 kin o tuyet doi */
+.bx-c{grid-area:c}
+.bx-d{grid-area:d}
+.bx-e{grid-area:e}
+.bx-f{grid-area:f}
+.bx-g{grid-area:g}
+.bx-h{grid-area:h}
+
+/* ============ STATS ============ */
+.stats-band{background:var(--grad-dark);transform:skewY(-1.6deg);margin:30px 0}
+.stats-band .wrap{transform:skewY(1.6deg);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding-top:58px;padding-bottom:58px}
+.stat{text-align:center;color:#fff;min-width:0}
+.stat .st-n{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:900;color:var(--accent-2);letter-spacing:-.02em}
+.stat .st-l{font-size:13px;font-weight:700;color:#CDBFEC;margin-top:4px}
+.stat .ic{width:26px;height:26px;color:rgba(255,255,255,.5);margin:0 auto 10px}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:52px;align-items:center}
+.about-img{position:relative;min-width:0}
+.about-img .ai-main{border-radius:var(--r-l);border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-2deg);overflow:hidden;animation:floatB 8s ease-in-out infinite}
+.about-img .ai-main img{aspect-ratio:3/2;width:100%;object-fit:cover}
+.ai-exp{position:absolute;right:-14px;bottom:-16px;background:var(--grad-accent);color:#3A2503;border-radius:18px;padding:16px 22px;box-shadow:0 14px 30px rgba(245,158,11,.4);text-align:center;z-index:2}
+.ai-exp b{display:block;font-size:26px;font-weight:900;line-height:1}
+.ai-exp span{display:block;font-size:11.5px;font-weight:700;margin-top:3px}
+.about-grid h2.sec{margin-top:18px}
+.a-points{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 28px}
+.a-point{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px;box-shadow:var(--sh-1);min-width:0}
+.a-point .ap-ic{width:42px;height:42px;border-radius:12px;background:var(--texture);color:var(--primary);display:grid;place-items:center;margin-bottom:12px}
+.a-point .ap-ic .ic{width:22px;height:22px}
+.a-point b{display:block;font-size:14.5px;color:var(--ink-head)}
+.a-point span{display:block;font-size:12.5px;color:var(--soft);margin-top:3px}
+.about-grid .h-cta{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ============ BEFORE / AFTER ============ */
+.ba-wrap{max-width:860px;margin:0 auto}
+.ba-frame{position:relative;border-radius:var(--r-l);overflow:hidden;border:5px solid #fff;box-shadow:var(--sh-3);aspect-ratio:3/2;user-select:none}
+.ba-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-before{filter:grayscale(.65) brightness(.72) sepia(.28) contrast(.94)}
+.ba-cover{position:absolute;inset:0;overflow:hidden}
+.ba-line{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15),0 0 18px rgba(0,0,0,.3);z-index:4}
+.ba-handle{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:var(--sh-2);display:grid;place-items:center;color:var(--primary);z-index:5;font-weight:900;font-size:15px;letter-spacing:-2px}
+.ba-tag{position:absolute;top:16px;z-index:4;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:7px 15px;color:#fff}
+.ba-tag.l{left:16px;background:rgba(229,57,53,.85)}
+.ba-tag.r{right:16px;background:rgba(31,168,96,.88)}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:6;margin:0}
+.ba-caption{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.ba-cap{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--ink);box-shadow:var(--sh-1)}
+.ba-cap b{color:#1FA860}
+
+/* ============ PROCESS ============ */
+.proc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.proc{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px 22px;box-shadow:var(--sh-1);position:relative;transition:transform .22s,box-shadow .22s;min-width:0}
+.proc:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.proc .pr-n{position:absolute;top:-16px;left:22px;width:36px;height:36px;border-radius:12px;background:var(--grad-accent);color:#3A2503;font-weight:900;font-size:16px;display:grid;place-items:center;box-shadow:0 8px 18px rgba(245,158,11,.35)}
+.proc .pr-ic{width:56px;height:56px;border-radius:18px;background:var(--texture);color:var(--primary);display:grid;place-items:center;margin:14px 0 16px}
+.proc .pr-ic .ic{width:28px;height:28px}
+.proc b{display:block;font-size:16.5px;font-weight:900;color:var(--ink-head)}
+.proc p{font-size:13px;color:var(--soft);margin-top:7px}
+.proc .m-chip{margin-top:13px}
+
+/* ============ COMMITMENTS ============ */
+.cmt-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:36px}
+.cmt{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-l);padding:26px 22px;color:#fff;transition:.25s;min-width:0}
+.cmt:hover{background:rgba(255,255,255,.14);transform:translateY(-5px)}
+.cmt .cm-ic{width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:var(--accent-2);margin-bottom:16px}
+.cmt .cm-ic .ic{width:26px;height:26px}
+.cmt b{display:block;font-size:16px;font-weight:900}
+.cmt span{display:block;font-size:12.5px;color:#CDBFEC;margin-top:6px}
+.cmt-band{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+
+/* ============ REVIEWS ============ */
+.rev-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:stretch}
+.rev-view{overflow:hidden;min-width:0}
+.rev-run{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1)}
+.rev-card{flex:0 0 100%;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);padding:30px;min-width:0}
+.rev-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.rev-av{width:50px;height:50px;border-radius:50%;background:var(--grad-dark);color:#fff;font-weight:900;font-size:18px;display:grid;place-items:center;flex:none}
+.rev-who b{display:block;font-size:15.5px;color:var(--ink-head)}
+.rev-who span{display:block;font-size:12px;color:var(--soft)}
+.rev-stars{margin-left:auto;color:#F5A623;font-size:15px;letter-spacing:2px;white-space:nowrap}
+.rev-card p{font-size:15px;color:var(--ink);line-height:1.7}
+.rev-job{display:inline-flex;margin-top:16px;font-size:12px;font-weight:800;color:var(--primary);background:var(--texture);border-radius:999px;padding:6px 14px}
+.rev-side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.rev-metric{background:var(--grad-dark);border-radius:var(--r-l);color:#fff;padding:26px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.rev-metric .rm{display:flex;align-items:center;gap:14px}
+.rev-metric .rm .ic{width:22px;height:22px;color:var(--accent-2);flex:none}
+.rev-metric .rm b{font-size:22px;font-weight:900}
+.rev-metric .rm span{display:block;font-size:11.5px;color:#CDBFEC;font-weight:600}
+.brand-chips{display:flex;flex-wrap:wrap;gap:8px}
+.brand-chips i{font-style:normal;font-size:12px;font-weight:800;color:var(--soft);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px}
+
+/*NB93-102: ============ CONTACT (khong iframe — card xuong + form) ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.xo-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-2);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.xo-card .xo-img{aspect-ratio:16/7;overflow:hidden;flex:none}
+.xo-card .xo-img img{width:100%;height:100%;object-fit:cover}
+.xo-body{padding:24px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+.xo-body h3{font-size:19px;font-weight:900;color:var(--ink-head)}
+.xo-row{display:flex;gap:12px;font-size:14px;color:var(--ink);align-items:flex-start}
+.xo-row .ic{width:19px;height:19px;color:var(--primary);flex:none;margin-top:3px}
+.xo-row b{color:var(--ink-head)}
+.xo-map{margin-top:2px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.xo-map svg{display:block;width:100%;height:auto}
+.xo-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto}
+.xo-hotline{display:flex;align-items:center;gap:12px;background:rgba(229,57,53,.07);border:1.5px dashed rgba(229,57,53,.4);border-radius:14px;padding:12px 16px}
+.xo-hotline .ic{width:22px;height:22px;color:var(--red);flex:none}
+.xo-hotline small{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--red);text-transform:uppercase}
+.xo-hotline b{display:block;font-size:18px;color:var(--ink-head)}
+.c-form{background:var(--grad-dark);border-radius:var(--r-l);padding:30px;color:#fff;position:relative;overflow:hidden;min-width:0}
+.c-form::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(64deg,rgba(255,255,255,.035) 0 2px,transparent 2px 28px);pointer-events:none}
+.c-form>*{position:relative}
+.c-form h3{font-size:22px;font-weight:900}
+.c-form .cf-sub{display:block;font-size:13.5px;color:#CDBFEC;margin:8px 0 20px}
+.c-form .fld label{color:#CDBFEC}
+.c-form .fld input,.c-form .fld select,.c-form .fld textarea{background:rgba(255,255,255,.95)}
+.c-form .btn{width:100%;margin-top:18px}
+.cf-secure{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11.5px;color:#CDBFEC;margin-top:13px}
+.cf-secure .ic{width:14px;height:14px}
+.cf-confirm{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:13px;font-weight:700;color:var(--accent-2)}
+
+/* ============ FAQ ============ */
+.faq-wrap{max-width:860px;margin:0 auto}
+.faq-tools{display:grid;gap:14px;margin-bottom:24px}
+.faq-search{display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:13px 22px;box-shadow:var(--sh-1)}
+.faq-search input{flex:1;border:0;background:none;min-width:0;font-size:15px}
+.faq-search .ic{color:var(--soft);width:18px;height:18px}
+.faq-chips{display:flex;flex-wrap:wrap;gap:8px}
+.faq-chip{font-size:12.5px;font-weight:700;color:var(--primary);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 15px;transition:.18s}
+.faq-chip:hover,.faq-chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:grid;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden;transition:box-shadow .2s;min-width:0}
+.faq-item.open{box-shadow:var(--sh-2);border-color:rgba(108,63,197,.4)}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:17px 20px;font-size:15px;font-weight:800;color:var(--ink-head);min-width:0}
+.faq-q .fq-i{width:30px;height:30px;flex:none;border-radius:9px;background:var(--texture);color:var(--primary);display:grid;place-items:center;font-size:13px}
+.faq-q .fq-x{margin-left:auto;flex:none;width:26px;height:26px;border-radius:50%;background:var(--texture);display:grid;place-items:center;color:var(--primary);transition:transform .3s;font-weight:900}
+.faq-item.open .fq-x{transform:rotate(45deg);background:var(--primary);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-in{padding:0 20px 19px 64px;font-size:14px;color:var(--soft);line-height:1.7}
+.faq-empty{text-align:center;color:var(--soft);padding:26px;display:none;font-size:14.5px}
+
+/* ============ FOOTER ============ */
+footer.site-foot{background:var(--ink-head);color:#A898CC;margin-top:0}
+.foot-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:34px;padding:56px 0 40px}
+.foot-col h4{color:#fff;font-size:15px;font-weight:800;letter-spacing:.04em;margin-bottom:18px}
+.foot-col ul{list-style:none;display:grid;gap:10px}
+.foot-col a{font-size:13.5px;transition:.18s}
+.foot-col a:hover{color:var(--accent-2)}
+.foot-col p{font-size:13.5px;line-height:1.75}
+.foot-brand{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.foot-brand .mark{width:44px;height:44px;border-radius:12px;background:var(--grad-dark);display:grid;place-items:center;color:var(--accent-2)}
+.foot-brand .mark .ic{width:24px;height:24px}
+.foot-brand .lg-t strong{color:#fff}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:.2s}
+.socials a:hover{background:var(--accent);color:#3A2503;transform:translateY(-3px)}
+.socials .ic{width:18px;height:18px}
+.foot-contact li{display:flex;gap:10px;font-size:13.5px;align-items:flex-start}
+.foot-contact .ic{width:16px;height:16px;color:var(--accent-2);flex:none;margin-top:3px}
+.foot-hotline{display:flex;align-items:center;gap:12px;background:rgba(229,57,53,.14);border:1.5px solid rgba(229,57,53,.35);border-radius:14px;padding:13px 16px;margin-top:16px}
+.foot-hotline .ic{width:22px;height:22px;color:#FF8A80}
+.foot-hotline small{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#FF8A80;text-transform:uppercase}
+.foot-hotline b{display:block;font-size:18px;color:#fff}
+.foot-bar{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot-bar p{font-size:12.5px}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.pay-chips i{font-style:normal;font-size:11.5px;font-weight:700;color:#CDBFEC;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 12px}
+
+/* ============ FAB DOCK ============ */
+.fab-dock{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:150;background:#fff;border:1.5px solid var(--line);border-radius:999px;box-shadow:var(--sh-3);display:flex;align-items:center;gap:4px;padding:7px;transition:transform .4s,opacity .4s;min-width:0}
+.fab-dock.hide{transform:translateX(-50%) translateY(130px);opacity:0}
+.fab{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;font-size:13px;font-weight:800;color:var(--ink);transition:.2s;white-space:nowrap}
+.fab .ic{width:19px;height:19px}
+.fab:hover{background:var(--texture)}
+.fab.red{background:var(--grad-red);color:#fff;box-shadow:0 8px 18px rgba(229,57,53,.36)}
+.fab.main{background:var(--grad-accent);color:#3A2503;box-shadow:0 8px 18px rgba(245,158,11,.36)}
+.fab.main:hover{filter:brightness(1.06)}
+.fab.up{display:none}
+
+/* ============ DRAWER (BOOKING) ============ */
+.drawer-ov{position:fixed;inset:0;background:rgba(30,11,60,.55);backdrop-filter:blur(3px);z-index:190;opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer-ov.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:#fff;z-index:200;transform:translateX(105%);transition:transform .38s cubic-bezier(.22,.8,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh-3)}
+.drawer.open{transform:translateX(0)}
+.dr-head{background:var(--grad-dark);color:#fff;padding:20px 24px;display:flex;align-items:center;gap:12px}
+.dr-head h3{font-size:17px;font-weight:900;flex:1}
+.dr-head p{display:block;font-size:11.5px;color:#CDBFEC}
+.dr-x{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:18px;display:grid;place-items:center}
+.dr-body{flex:1;overflow-y:auto;padding:20px 24px;display:grid;gap:18px;align-content:start}
+.dr-call{display:flex;align-items:center;gap:12px;background:rgba(229,57,53,.07);border:1.5px dashed rgba(229,57,53,.4);border-radius:14px;padding:12px 15px}
+.dr-call .ic{width:20px;height:20px;color:var(--red)}
+.dr-call b{display:block;font-size:14.5px;color:var(--ink-head)}
+.dr-call span{display:block;font-size:11.5px;color:var(--soft)}
+.dr-call .btn{margin-left:auto;padding:9px 15px;font-size:12.5px;flex:none}
+.dr-foot{padding:16px 24px;border-top:1.5px solid var(--line);display:grid;gap:10px;background:var(--texture-2)}
+.dr-sum{display:flex;justify-content:space-between;font-size:13px;color:var(--soft)}
+.dr-sum b{color:var(--ink-head)}
+.dr-done{padding:30px 24px;text-align:center}
+.dr-done .code{font-size:23px;font-weight:900;letter-spacing:.07em;color:var(--primary);background:var(--texture);border:1.5px dashed var(--primary-2);border-radius:14px;padding:12px 20px;display:inline-block;margin:12px 0}
+
+/* ============ MODAL ============ */
+.modal-ov{position:fixed;inset:0;background:rgba(30,11,60,.6);backdrop-filter:blur(4px);z-index:210;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-ov.open{opacity:1;pointer-events:auto}
+.modal{background:#fff;border-radius:var(--r-l);width:min(680px,100%);max-height:88vh;overflow-y:auto;box-shadow:var(--sh-3);transform:translateY(24px);transition:transform .3s;min-width:0}
+.modal-ov.open .modal{transform:translateY(0)}
+/*NB93-102: anh modal 3/2 — giu nguyen poster, khong crop mat chu*/
+.md-img{aspect-ratio:3/2;overflow:hidden}
+.md-img img{width:100%;height:100%;object-fit:cover}
+.md-body{padding:24px 26px 28px}
+.md-top{display:flex;align-items:flex-start;gap:14px}
+.md-top h3{font-size:21px;font-weight:900;color:var(--ink-head);flex:1}
+.md-x{width:36px;height:36px;flex:none;border-radius:10px;background:var(--texture);color:var(--primary);font-size:18px;display:grid;place-items:center}
+.md-desc{font-size:14px;color:var(--soft);margin:10px 0 16px}
+.md-table{width:100%;border-collapse:collapse;margin-bottom:18px}
+.md-table td{padding:11px 4px;border-bottom:1.5px dashed var(--line);font-size:13.5px}
+.md-table td:last-child{text-align:right;font-weight:800;color:var(--accent);white-space:nowrap}
+.md-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.md-cta{display:grid;grid-template-columns:1fr auto;gap:12px}
+
+/* ============ TOAST (title + message 2 phan tu rieng) ============ */
+.toast{position:fixed;right:24px;bottom:96px;z-index:300;background:var(--ink-head);color:#fff;border-radius:14px;padding:15px 20px;font-size:14px;font-weight:700;box-shadow:var(--sh-3);display:flex;align-items:center;gap:11px;transform:translateY(24px);opacity:0;pointer-events:none;transition:.35s;max-width:min(360px,calc(100vw - 48px))}
+.toast.show{transform:translateY(0);opacity:1}
+.toast .ic{width:19px;height:19px;color:#6FE3A5;flex:none}
+.toast .t-body{display:grid;min-width:0}
+.toast .t-body b{font-size:14px;color:#fff}
+.toast .t-body span{font-size:12.5px;color:#CDBFEC;font-weight:600}
+
+/* ============ REVEAL ============ */
+[data-rv]{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.22,.8,.3,1),transform .7s cubic-bezier(.22,.8,.3,1)}
+[data-rv].rv-in{opacity:1;transform:translateY(0)}
+
+/* ============ RESPONSIVE 1080 ============ */
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr 1fr;gap:30px}
+  .hero-stage{height:460px}
+  .main-nav{display:none}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proc-grid,.cmt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-main{grid-template-columns:1fr 1fr}
+  .book-grid,.calc-grid,.contact-grid,.rev-grid,.about-grid{grid-template-columns:1fr}
+  .bk-side{position:static}
+  .about-img{max-width:560px}
+  /*NB93-102: bento 2 cot tablet — van kin o*/
+  .bento{grid-template-columns:1fr 1fr;grid-template-areas:"a a" "b b" "c d" "e f" "g h"}
+  .ta-grid{grid-template-columns:1fr}
+}
+
+/* ============ MOBILE ≤680 ============ */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .wrap{padding:0 16px}
+  h2.sec{font-size:1.42rem}
+  .sub{font-size:14.5px}
+  .topbar .tb-l .tb-item:nth-child(2){display:none}
+  .site-head .wrap{flex-wrap:wrap;row-gap:10px;padding-top:12px;padding-bottom:12px;min-height:0}
+  .h-search{order:3;flex:1 1 100%}
+  .main-nav,.head-cta .btn,.h-call .ht{display:none}
+  .head-cta{margin-left:auto}
+  .hero .wrap{grid-template-columns:1fr;padding-top:38px;padding-bottom:56px;gap:26px}
+  .hero h1{font-size:1.72rem;margin-top:14px}
+  .hero .h-sub{font-size:14.5px;margin-top:13px}
+  .hero .h-cta{flex-direction:column;margin-top:20px}
+  /*NB93-102: CTA mobile khong bi cat chu*/
+  .hero .h-cta .btn{width:100%;white-space:normal}
+  .trust-chips{grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
+  .t-chip{padding:10px 11px}
+  .t-chip b + span{display:none}
+  .hero-r{order:-1}
+  .hero-stage{height:auto}
+  .stage-circle,.stage-ring{display:none}
+  .img-main{position:relative;left:0;top:0;transform:rotate(0);width:100%;animation:none}
+  .img-main img{aspect-ratio:3/2}
+  .float-badge{right:12px;top:12px;bottom:auto;padding:8px 12px;gap:8px;max-width:56%}
+  .float-badge .fb-i{width:30px;height:30px;border-radius:9px}
+  .float-badge .fb-i .ic{width:16px;height:16px}
+  .float-badge .fb-t b{font-size:12.5px;white-space:nowrap}
+  .float-badge .fb-t span{display:none}
+  .hero-stats{position:static;margin-top:16px;width:100%;justify-content:space-between}
+  .hero-stats .hs{padding:10px 8px;flex:1}
+  .hero-stats b{font-size:16px}
+  .hero-stats span{font-size:12px}
+  .tape{margin-top:-14px}
+  .tape-in{padding:10px 0}
+  .tape-run span{font-size:12.5px;padding:0 14px}
+  .feat-grid,.strip,.a-points,.calc-grid,.book-grid,.contact-grid,.rev-grid,.about-grid{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr}
+  .proc-grid,.cmt-grid,.tip-row{grid-template-columns:1fr}
+  .foot-main{grid-template-columns:1fr;gap:28px;padding:48px 0 34px}
+  .bk-card,.calc-form,.calc-out,.c-form{padding:20px 16px;border-radius:20px}
+  .bk-days{overflow-x:auto;grid-template-columns:repeat(7,86px);padding-bottom:8px}
+  .bk-slots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bk-fields{grid-template-columns:1fr}
+  .ba-frame{aspect-ratio:3/2}
+  .ba-caption{gap:8px}
+  .ba-cap{font-size:12px;padding:8px 13px}
+  .stats-band .wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px}
+  .rev-card{padding:22px 18px}
+  .rev-stars{display:none}
+  .md-cta{grid-template-columns:1fr}
+  .modal{max-height:92vh}
+  .ta-stage{padding:20px 16px;border-radius:22px}
+  .ta-panel,.ta-commit{padding:18px 16px}
+  /*NB93-102: bento mobile 1 cot — thu tu a→h, khong o trong*/
+  .bento{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d" "e" "f" "g" "h";gap:14px}
+  .bx-a .bx-body,.bx-body{padding:16px}
+  .fab-dock{bottom:12px;padding:6px;gap:2px;max-width:calc(100vw - 20px);overflow-x:auto}
+  .fab{padding:11px;min-width:44px;justify-content:center}
+  .fab span{display:none}
+  .fab.main span{display:inline}
+  .toast{right:12px;bottom:86px}
+  footer.site-foot{padding-bottom:88px}
+  footer .foot-bar{justify-content:center;text-align:center}
+}
+
+/* ============ CHU >=12px MOBILE ============ */
+@media(max-width:680px){
+  .logo .lg-t small{font-size:12px;letter-spacing:.16em}
+  .icon-btn .badge{font-size:12px;min-width:22px;height:22px}
+  .f-badge{font-size:12px}
+  .m-chip{font-size:12px}
+  .bk-day small{font-size:12px}
+  .bk-day span{font-size:12px}
+  .bk-slot span{font-size:12px}
+  .sum-note{font-size:12px}
+  .bk-call .bc-t small{font-size:12px}
+  .bk-call .bc-t span{font-size:12px}
+  .calc-out .co-tag{font-size:12px}
+  .calc-out .co-note{font-size:12px}
+  .bx-dur{font-size:12px}
+  .bx-tag{font-size:12px}
+  .bx-price small{font-size:12px}
+  .bx-body p{font-size:12.5px}
+  .ai-exp span{font-size:12px}
+  .ba-tag{font-size:12px;letter-spacing:.03em;padding:6px 10px}
+  .ba-tag.r{top:auto;bottom:16px}
+  .rev-metric .rm span{font-size:12px}
+  .cf-secure{font-size:12px}
+  .foot-hotline small{font-size:12px}
+  .pay-chips i{font-size:12px}
+  .dr-head p{font-size:12px}
+  .dr-call span{font-size:12px}
+  .xo-hotline small{font-size:12px}
+  .ta-tools i{font-size:12px}
+  .chip{padding:11px 14px}
+  .dr-call .btn{padding:11px 16px}
+  .bx-book{padding:11px 16px}
+  .bx-act{width:40px;height:40px}
+  .faq-chip{padding:10px 14px}
+  .dr-x{width:40px;height:40px}
+  .md-x{width:40px;height:40px}
+  .toast{bottom:142px}
+}
+/*NB93-102: topbar 1 hang khong day tran phai tren mobile*/
+@media(max-width:680px){
+  .topbar .wrap{flex-wrap:wrap;row-gap:3px;min-height:0;padding-block:9px}
+  .topbar .tb-l,.topbar .tb-r{max-width:100%;flex-wrap:wrap}
+  .topbar .live{display:none}
+  .topbar .tb-item{max-width:100%}
+}
+/*NB93-102: micro-interaction khi nhan*/
+button:active{transform:scale(.96)}
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+.fchip,.f-chip,.rm-chip,.bchip,.tchip,.wchip,.m-chip,.faq-chip,.proc-chip,.cmp-chip,.kb-chip,.pay-chip,.bs-chip,.dr-chip,.fm-chip,.bk-chip,.chip,.ta-tab,.qk-btn,.pq-btn,.p-mat,.calc-tab,.ch-tab,.ptab,.tab,.pill,.pill-row button,.faq-chips button,.qty button,[class*="search" i] button,.fab,.dr-x,.md-x,.bx-act,.bx-book{min-height:40px!important;min-width:40px!important}
+}
+@media(max-width:640px){
+.btn{min-height:40px!important}
+}
+/*NB93-102: input mobile >=16px chong zoom iOS*/
+@media(max-width:680px){
+  .fld input,.fld select,.fld textarea{font-size:16px}
+  #dat-lich,#lien-he{padding-bottom:150px}
+}
+/*NB93-102: chip "them 7 ngay" — an tren desktop (giu grid 7 cot kin), mo ra o mobile trong dai ngay cuon ngang*/
+.bk-day.bk-more{display:none}
+@media(max-width:680px){
+  .bk-days{scrollbar-width:thin;scrollbar-color:var(--primary-2) var(--line)}
+  .bk-days::-webkit-scrollbar{height:4px}
+  .bk-days::-webkit-scrollbar-track{background:var(--line);border-radius:99px}
+  .bk-days::-webkit-scrollbar-thumb{background:var(--primary-2);border-radius:99px}
+  .bk-day.bk-more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--texture);border:1.5px dashed var(--primary-2)}
+  .bk-day.bk-more b{font-size:20px;line-height:1;color:var(--primary)}
+  .bk-day.bk-more small{font-size:12px;color:var(--primary);letter-spacing:0;text-transform:none}
+  #dwDays{grid-template-columns:repeat(7,86px)!important;overflow-x:auto}
+}
+/*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Xưởng Hơi Âm","telephone":"0908246357","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Sửa guitar, piano – organ, trống, loa – amply, micro tại TP.HCM. Thợ theo từng dòng nhạc cụ 10+ năm, thử âm 6 bước trước khi trả, chỉnh đàn tại chỗ, việc nhỏ lấ","url":"http://127.0.0.1:8174/102-sua-chua-nhac-cu-thiet-bi-am-thanh/"}
+</script>
+<style data-nb93fix="102:input40">
+/*NB93-FIX-102:input40 input tim kiem du 40px touch target*/
+@media(max-width:768px){
+  #navSearch,.navSearch{min-height:40px;height:auto;box-sizing:border-box}
+  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITE -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5v4.6l3.5 2a1 1 0 1 1-1 1.74l-4-2.3A1 1 0 0 1 11 12V7a1 1 0 1 1 2 0Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 4 5.2v5.9c0 5 3.4 9.6 8 10.9 4.6-1.3 8-5.9 8-10.9V5.2L12 2Zm3.7 7.3-4.6 4.6a1 1 0 0 1-1.4 0L7.3 11.5a1 1 0 1 1 1.4-1.4l1.7 1.7 3.9-3.9a1 1 0 1 1 1.4 1.4Z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-1V3a1 1 0 1 0-2 0v1H8V3a1 1 0 1 0-2 0v1H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V10h14v10ZM7 12h4v4H7v-4Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="currentColor" d="m9.6 16.9-3.7-3.7a1 1 0 0 1 1.4-1.4l2.3 2.3 6.8-6.8a1 1 0 0 1 1.4 1.4l-8.2 8.2ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8L12 2Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="currentColor" d="M10 2a8 8 0 1 0 4.9 14.3l5 5a1 1 0 0 0 1.4-1.4l-5-5A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1c0-2.8-3.6-5-8-5Z"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path fill="currentColor" d="M22 3.4c0-.5-.6-.8-1-.4l-2.7 2.7-2-.2-.2-2L18.9.8c.4-.4.1-1-.4-1A6 6 0 0 0 12 6.9L2.6 16.2a2.4 2.4 0 0 0 3.4 3.4l9.3-9.3A6 6 0 0 0 22 3.4ZM5.5 18.7a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4Z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3 9 8h-2v9a1 1 0 0 1-1 1h-4v-6h-4v6H6a1 1 0 0 1-1-1v-9H3l9-8Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="currentColor" d="M17 9V7A5 5 0 0 0 7 7v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1ZM9 7a3 3 0 1 1 6 0v2H9V7Zm3 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-6h2v6Zm0-8h-2V7h2v2Z"/></symbol>
+  <symbol id="i-wash" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm6 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6ZM7 4.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm3 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></symbol>
+  <symbol id="i-zalo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm-2.3 5.6c.3 0 .7.2.8.6l.5 1.3c.1.3 0 .7-.3.9l-.6.5c.4 1 1.2 1.8 2.2 2.2l.5-.6c.2-.3.6-.4.9-.3l1.3.5c.4.1.6.5.6.8 0 .9-.8 1.7-1.7 1.7-2.9 0-5.2-2.3-5.2-5.1 0-1 .8-1.8 1.7-2.5h.3Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="currentColor" d="M13 5.7 19.3 12 13 18.3l-1.4-1.4 4.3-4.3H4v-2h11.9l-4.3-4.3L13 5.7Z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path fill="currentColor" d="m12 6 7 7-1.4 1.4L13 9.8V20h-2V9.8l-4.6 4.6L5 13l7-7Z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5C6.5 5 2.7 9.6 2 12c.7 2.4 4.5 7 10 7s9.3-4.6 10-7c-.7-2.4-4.5-7-10-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></symbol>
+  <symbol id="i-money" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm9 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-8-.5A4.5 4.5 0 0 0 4 15.5a4.5 4.5 0 0 0 0-7Zm16 0a4.5 4.5 0 0 0 0 7 4.5 4.5 0 0 0 0-7Z"/></symbol>
+  <symbol id="i-medal" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h10l-2.2 6.1a7 7 0 1 1-5.6 0L7 2Zm5 8a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2 .9 1.8 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3L12 12Z"/></symbol>
+  <!--NB93-102: icon rieng nghe nhac cu - am thanh-->
+  <symbol id="i-tune" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 3a1 1 0 0 1 2 0v7a4 4 0 0 0 8 0V3a1 1 0 0 1 2 0v7a6 6 0 0 1-12 0V3Zm4.4 13.2h3.2V21a1.6 1.6 0 1 1-3.2 0v-4.8Z"/></symbol>
+  <symbol id="i-guitar" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M20.7 3.3a1 1 0 0 1 0 1.41l-4.6 4.61.14.14a5 5 0 0 1 1.06 5.43c-1.66 3.9-4.6 5.86-7.7 6.14a5.6 5.6 0 0 1-4.33-1.6 5.6 5.6 0 0 1-1.6-4.34c.28-3.1 2.24-6.04 6.14-7.7a5 5 0 0 1 5.43 1.06l.14.14 4.61-4.6a1 1 0 0 1 1.41 0ZM11.3 11a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"/></symbol>
+  <symbol id="i-piano" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm1 2v10h14V7H5Zm1 0h2.6v6H6V7Zm4.7 0h2.6v6h-2.6V7Zm4.7 0H19v6h-2.6V7Z"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm6 4a2.2 2.2 0 1 0 0 4.4A2.2 2.2 0 0 0 12 6Zm0 6a4.6 4.6 0 1 0 0 9.2A4.6 4.6 0 0 0 12 12Zm0 2.3a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6Z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3Zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7Z"/></symbol>
+  <symbol id="i-drum" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 2.5c5 0 9 1.4 9 3.1v12.8c0 1.7-4 3.1-9 3.1s-9-1.4-9-3.1V5.6c0-1.7 4-3.1 9-3.1ZM7 10.7c1.5.55 3.2.8 5 .8s3.5-.25 5-.8v7.4c0 .5-2.1 1.2-5 1.2s-5-.7-5-1.2v-7.4Z"/></symbol>
+</svg>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span class="tb-item"><svg class="ic"><use href="#i-clock"/></svg> 8:30 – 20:00 T2–T7 · CN 9:00–18:00 · Gấp gọi hotline</span>
+      <span class="tb-item"><svg class="ic"><use href="#i-pin"/></svg> Xưởng 2 tầng tại Q.10 — nhận đàn toàn TP.HCM</span>
+    </div>
+    <div class="tb-r">
+      <span class="live"><i></i> 6 thợ theo từng dòng nhạc cụ</span>
+      <a class="tb-item" href="tel:0908246357"><svg class="ic"><use href="#i-phone"/></svg> Hotline xưởng: 0908 246 357</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="mark"><svg class="ic"><use href="#i-tune"/></svg></span>
+      <span class="lg-t"><small>NHẠC CỤ &amp; ÂM THANH</small><strong>Xưởng Hơi Âm</strong></span>
+    </a>
+    <div class="h-search">
+      <div class="box">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="navSearch" type="text" placeholder="Bạn cần sửa gì? vd: lên dây guitar, loa bị rè…" autocomplete="off">
+      </div>
+      <div class="search-panel" id="searchPanel"></div>
+    </div>
+    <nav class="main-nav">
+      <a href="#dich-vu">Dịch vụ</a>
+      <a href="#bang-gia">Bảng giá</a>
+      <a href="#thu-am">Thử âm</a>
+      <a href="#dat-lich">Đặt lịch</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="head-cta">
+      <a class="h-call" href="tel:0908246357">
+        <svg class="ic"><use href="#i-phone"/></svg>
+        <span class="ht"><small>Gọi xưởng</small><b>0908 246 357</b></span>
+      </a>
+      <a class="btn btn-accent" href="#dat-lich" style="padding:12px 20px">Đặt lịch sửa</a>
+      <button class="icon-btn" id="bookOpen" title="Đặt lịch nhanh" aria-label="Mở đặt lịch">
+        <svg class="ic"><use href="#i-cal"/></svg>
+        <span class="badge" id="bookBadge" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-l">
+      <span class="eyebrow"><i class="dot"></i> XƯỞNG SỬA NHẠC CỤ &amp; THIẾT BỊ ÂM THANH — TP.HCM</span>
+      <h1>Thợ từng dòng nhạc cụ, <span class="hl">thử âm đạt mới trả đàn</span></h1>
+      <span class="h-sub">Xưởng Hơi Âm sửa guitar, piano – organ, dàn dây, trống, loa – amply, micro. Báo giá theo bảng giá thiết bị trước khi sửa — chỉnh đàn tại chỗ, việc nhỏ lấy trong ngày.</span>
+      <div class="h-cta">
+        <a class="btn btn-accent big" href="#dat-lich"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch sửa đàn — xác nhận 15 phút</a>
+        <a class="btn btn-red big" href="tel:0908246357"><span class="pulse"></span> Gọi xưởng 0908 246 357</a>
+      </div>
+      <div class="trust-chips">
+        <div class="t-chip"><svg class="ic"><use href="#i-medal"/></svg><span><b>Thợ theo từng dòng nhạc cụ</b><span>Guitar · piano · dàn dây · trống</span></span></div>
+        <div class="t-chip"><svg class="ic"><use href="#i-check"/></svg><span><b>Thử âm 6 bước trước khi trả</b><span>Không đạt — không nhận tiền</span></span></div>
+        <div class="t-chip"><svg class="ic"><use href="#i-home"/></svg><span><b>Chỉnh đàn tại chỗ</b><span>Nhận – trả tại xưởng hoặc tận nơi</span></span></div>
+        <div class="t-chip"><svg class="ic"><use href="#i-bolt"/></svg><span><b>Việc nhỏ lấy trong ngày</b><span>Lên dây, thay sối, xương đàn</span></span></div>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="hero-stage">
+        <div class="stage-ring"></div>
+        <div class="stage-circle"></div>
+        <div class="img-main"><img src="assets/img/cover.webp" alt="Xưởng Hơi Âm — sửa chữa nhạc cụ và thiết bị âm thanh"></div>
+        <div class="float-badge">
+          <span class="fb-i"><svg class="ic"><use href="#i-tune"/></svg></span>
+          <span class="fb-t"><b>Thử âm trước khi trả</b><span>Bạn cầm đàn chơi thử — ký biên bản</span></span>
+        </div>
+        <div class="hero-stats">
+          <div class="hs"><b>14+</b><span>năm theo nghề</span></div>
+          <div class="hs"><b>9.800+</b><span>ca sửa – lên dây</span></div>
+          <div class="hs"><b>98%</b><span>thử âm đạt ngay</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAPE -->
+<div class="tape"><div class="tape-in"><div class="tape-run" id="tapeRun">
+  <span><i class="sf">♪</i> Thử âm 6 bước trước khi trả đàn</span>
+  <span><i class="sf">♪</i> Giá niêm yết theo từng dòng thiết bị</span>
+  <span><i class="sf">♪</i> Thợ 10+ năm theo từng dòng nhạc cụ</span>
+  <span><i class="sf">♪</i> Chỉnh đàn tại chỗ — không tháo rời khi không cần</span>
+  <span><i class="sf">♪</i> Linh kiện chính hãng — phiếu bảo hành riêng</span>
+  <span><i class="sf">♪</i> Việc nhỏ lấy trong ngày</span>
+</div></div></div>
+
+<!-- FEATURED 2 -->
+<section class="sec" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> DỊCH VỤ ĐƯỢC GỌI NHIỀU NHẤT</span>
+      <h2 class="sec">Hai việc khách hàng <span class="hl">gọi xưởng nhiều nhất</span></h2>
+      <span class="sub">Giá trọn gói gồm công thợ + linh kiện thường dùng. Chốt giá chính xác sau khi thợ kiểm tra đàn — bạn đồng ý mới sửa.</span>
+    </div>
+    <div class="feat-grid">
+      <div class="f-card" data-rv>
+        <div class="f-img">
+          <img src="assets/img/p3.webp" alt="Sửa loa – amply lấy trong ngày tại xưởng Hơi Âm" loading="lazy">
+          <span class="f-badge red">LẤY NHANH — TRONG NGÀY</span>
+          <span class="f-price-ov">từ <b>200.000₫</b></span>
+        </div>
+        <div class="f-body">
+          <h3>Sửa loa – amply</h3>
+          <div class="f-meta"><span class="m-chip"><svg class="ic"><use href="#i-clock"/></svg> 45–120 phút</span><span class="m-chip"><svg class="ic"><use href="#i-shield"/></svg> BH 3 tháng</span></div>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> Loa rè, rá sối, amply mất kênh — xử lý trong ngày</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Đo tần – đo trở bằng máy phát tần trước khi trả</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Mang đến xưởng hoặc hẹn thợ đến kiểm tra tại chỗ</li>
+          </ul>
+          <button class="btn btn-accent" data-book="loa"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch sửa loa – amply</button>
+        </div>
+      </div>
+      <div class="f-card dark" data-rv data-d="90">
+        <div class="f-img">
+          <img src="assets/img/p2.webp" alt="Sửa organ – piano điện cho nhà thờ và phòng thu" loading="lazy">
+          <span class="f-badge">NHÀ THỜ – PHÒNG THU</span>
+          <span class="f-price-ov">từ <b>250.000₫</b></span>
+        </div>
+        <div class="f-body">
+          <h3>Sửa organ – piano điện</h3>
+          <div class="f-meta"><span class="m-chip" style="background:rgba(255,255,255,.12);color:#FFC980"><svg class="ic"><use href="#i-clock"/></svg> 60–150 phút</span><span class="m-chip" style="background:rgba(255,255,255,.12);color:#FFC980"><svg class="ic"><use href="#i-piano"/></svg> Test từng phím</span></div>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> Phím lì, mất tiếng, lỗi nguồn – board mọi hãng</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Test toàn bộ phím 3 vòng trước khi trả máy</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Ưu tiên lịch cho đàn dùng lễ – thu âm</li>
+          </ul>
+          <button class="btn btn-accent" data-book="piano"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch sửa organ – piano</button>
+        </div>
+      </div>
+    </div>
+    <div class="strip" data-rv>
+      <div class="s-item" data-book="guitar"><span class="s-ic"><svg class="ic"><use href="#i-guitar"/></svg></span><span class="s-t"><b>Sửa guitar – đàn dây</b><span>từ 150.000₫</span></span><svg class="ic arr"><use href="#i-arrow"/></svg></div>
+      <div class="s-item" data-book="lenday"><span class="s-ic"><svg class="ic"><use href="#i-tune"/></svg></span><span class="s-t"><b>Lên dây – chỉnh âm</b><span>từ 120.000₫</span></span><svg class="ic arr"><use href="#i-arrow"/></svg></div>
+      <div class="s-item" data-book="mic"><span class="s-ic"><svg class="ic"><use href="#i-mic"/></svg></span><span class="s-t"><b>Sửa micro – mixer</b><span>từ 150.000₫</span></span><svg class="ic arr"><use href="#i-arrow"/></svg></div>
+      <div class="s-item" data-book="linhkien"><span class="s-ic"><svg class="ic"><use href="#i-tool"/></svg></span><span class="s-t"><b>Thay linh kiện âm thanh</b><span>từ 100.000₫</span></span><svg class="ic arr"><use href="#i-arrow"/></svg></div>
+      <div class="s-item" data-book="vesinh"><span class="s-ic"><svg class="ic"><use href="#i-wash"/></svg></span><span class="s-t"><b>Vệ sinh – bảo dưỡng</b><span>từ 150.000₫</span></span><svg class="ic arr"><use href="#i-arrow"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING CALENDAR -->
+<section class="sec book-sec" id="dat-lich">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff"><i class="dot"></i> LỊCH XƯỞNG — 4 BƯỚC, 60 GIÂY</span>
+      <h2 class="sec" style="color:#fff">Đặt lịch sửa đàn, <span class="hl">xác nhận sau 15 phút</span></h2>
+      <span class="sub" style="color:#CDBFEC">Chọn dòng nhạc cụ + lỗi → ngày trong 7 ngày tới → khung giờ (có khung GẤP trong 2 giờ) → nhận mã hẹn ngay.</span>
+    </div>
+    <div class="book-grid">
+      <div class="bk-card" data-rv>
+        <div class="bk-step">
+          <div class="bk-label"><span class="n">1</span> Dòng nhạc cụ – thiết bị</div>
+          <div class="chips" id="bkDevice"></div>
+        </div>
+        <div class="bk-step">
+          <div class="bk-label"><span class="n">2</span> Dàn / thiết bị nhà bạn đang bị gì?</div>
+          <div class="chips" id="bkFault"><span style="font-size:13px;color:var(--soft)">Chọn dòng nhạc cụ ở bước 1 để hiện đúng lỗi thường gặp.</span></div>
+        </div>
+        <div class="bk-step">
+          <div class="bk-label"><span class="n">3</span> Ngày mang đến xưởng / hẹn thợ đến (7 ngày tới)</div>
+          <div class="bk-days" id="bkDays"></div>
+        </div>
+        <div class="bk-step">
+          <div class="bk-label"><span class="n">4</span> Khung giờ — cần gấp chọn GẤP (+50.000₫ ưu tiên trong 2 giờ)</div>
+          <div class="bk-slots" id="bkSlots"></div>
+        </div>
+        <div class="bk-step">
+          <div class="bk-label"><span class="n">5</span> Thông tin liên hệ</div>
+          <div class="bk-fields">
+            <div class="fld"><label>Họ tên *</label><input id="bkName" type="text" placeholder="Nguyễn Văn A"></div>
+            <div class="fld"><label>Số điện thoại *</label><input id="bkPhone" type="tel" placeholder="09xx xxx xxx" inputmode="numeric"></div>
+            <div class="fld full"><label>Địa chỉ cần thợ đến (nếu không mang ra xưởng) *</label><input id="bkAddr" type="text" placeholder="Địa chỉ của bạn"></div>
+            <div class="fld full"><label>Ghi chú đàn / thiết bị (không bắt buộc)</label><input id="bkNote" type="text" placeholder="Hãng đàn, đời máy, lần trước sửa gì…"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bk-side">
+        <div class="bk-sum" data-rv>
+          <h3><svg class="ic"><use href="#i-cal"/></svg> Phiếu hẹn của bạn</h3>
+          <div id="bkSumBody">
+            <div class="sum-rows">
+              <div class="sum-row"><span class="k">Thiết bị</span><span class="v" id="sumDevice">— chưa chọn —</span></div>
+              <div class="sum-row"><span class="k">Lỗi mô tả</span><span class="v" id="sumFault">—</span></div>
+              <div class="sum-row"><span class="k">Ngày</span><span class="v" id="sumDay">—</span></div>
+              <div class="sum-row"><span class="k">Khung giờ</span><span class="v" id="sumSlot">—</span></div>
+              <div class="sum-row"><span class="k">Kiểm tra – chẩn đoán</span><span class="v" style="color:#6FE3A5">0₫</span></div>
+              <div class="sum-row"><span class="k">Phí ưu tiên GẤP</span><span class="v" id="sumGap">—</span></div>
+              <div class="sum-row total"><span class="k">Dự kiến sửa từ</span><span class="v" id="sumPrice">chờ xưởng báo giá</span></div>
+            </div>
+            <div class="sum-note"><svg class="ic"><use href="#i-info"/></svg> Giá từ là tham khảo theo bảng giá — xưởng chốt giá chính xác sau khi xem đàn, bạn đồng ý mới sửa, không phát sinh ngoài báo giá.</div>
+          </div>
+          <button class="btn btn-accent" id="bkConfirm"><svg class="ic"><use href="#i-check"/></svg> Xác nhận — nhận mã hẹn</button>
+        </div>
+        <a class="bk-call" href="tel:0908246357" data-rv data-d="90">
+          <span class="bc-ic"><svg class="ic"><use href="#i-phone"/></svg></span>
+          <span class="bc-t"><small>Cần sửa GẤP để kịp show?</small><b>0908 246 357</b><span>Gọi xưởng — nhận đàn ưu tiên trong 2 giờ</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE TABLE -->
+<section class="sec texture" id="bang-gia">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> BẢNG GIÁ THAM KHẢO</span>
+      <h2 class="sec">Giá theo <span class="hl">từng dòng thiết bị</span> — niêm yết công khai</h2>
+      <span class="sub">Chọn nhóm thiết bị để xem hạng mục sửa – lên dây – thay linh kiện kèm thời gian làm tại xưởng.</span>
+    </div>
+    <div class="ptabs" id="ptabs" data-rv>
+      <button class="ptab on" data-pt="guitar"><svg class="ic"><use href="#i-guitar"/></svg> Guitar &amp; đàn dây</button>
+      <button class="ptab" data-pt="piano"><svg class="ic"><use href="#i-piano"/></svg> Piano – organ</button>
+      <button class="ptab" data-pt="loa"><svg class="ic"><use href="#i-speaker"/></svg> Loa – amply</button>
+    </div>
+    <div class="ptable-card" data-rv>
+      <div class="pt-scroll"><table class="ptable"><thead><tr><th>Hạng mục</th><th>Thời gian</th><th>Giá tham khảo</th></tr></thead><tbody id="ptBody"></tbody></table></div>
+    </div>
+    <div class="p-note" data-rv><svg class="ic"><use href="#i-info"/></svg> <span><b>Báo giá chính xác sau khi thợ xem đàn.</b> Kiểm tra – chẩn đoán 0₫ khi bạn chốt sửa; mọi phát sinh phải được bạn đồng ý trước khi thực hiện — không thu thêm ngoài báo giá đã chốt.</span></div>
+    <div class="tip-row" data-rv>
+      <div class="tip-card"><span class="tc-ic"><svg class="ic"><use href="#i-tune"/></svg></span><span><b>Lên dây chuẩn A440</b><span>Đo bằng tuner chuyên dụng — không lên theo cảm tính.</span></span></div>
+      <div class="tip-card"><span class="tc-ic"><svg class="ic"><use href="#i-lock"/></svg></span><span><b>Chốt giá trước khi sửa</b><span>Không đồng ý báo giá? Bạn không mất đồng nào.</span></span></div>
+      <div class="tip-card"><span class="tc-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span><b>Linh kiện chính hãng</b><span>Sối loa, tụ, jack, board — phiếu bảo hành riêng 3–6 tháng.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DAC THU: BAN THU AM -->
+<section class="sec" id="thu-am">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> BÀN THỬ ÂM — ĐIỂM KHÁC BIỆT CỦA XƯỞNG</span>
+      <h2 class="sec">Sửa xong chưa phải xong — <span class="hl">thử âm đạt, mới trả đàn</span></h2>
+      <span class="sub">Mỗi dòng nhạc cụ một chuẩn thử âm riêng, do thợ phụ trách dòng đó chơi mẫu trước — bạn cầm đàn thử lại rồi mới ký bàn giao.</span>
+    </div>
+    <div class="ta-stage" data-rv>
+      <div class="ta-grid">
+        <div>
+          <div class="ta-tabs" id="taTabs"></div>
+          <div class="ta-panel" id="taPanel"></div>
+        </div>
+        <div class="ta-commit">
+          <h3><svg class="ic"><use href="#i-shield"/></svg> Cam kết trên bàn thử âm</h3>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> <span>Thợ chơi mẫu trước — bạn cầm đàn / bật máy thử trực tiếp, không nhìn qua kính.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg> <span>Đo bằng máy: tuner A440, máy phát tần 20Hz–20kHz, đồng hồ trở kháng.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg> <span>Chỉnh đàn tại chỗ khi không cần tháo rời — việc nhỏ lấy ngay trong ngày.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg> <span>Không đạt tiêu chí thử âm — không nhận tiền, không thu công kiểm tra.</span></li>
+          </ul>
+          <div class="ta-note">Toàn bộ kết quả thử âm được ghi vào <b>biên bản bàn giao</b> đính kèm phiếu bảo hành 3 tháng.</div>
+          <div class="eq gold" id="eqGold" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="eq" id="eqMain" aria-hidden="true" style="position:relative;margin-top:22px;opacity:.75"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff"><i class="dot"></i> ƯỚC TÍNH NHANH</span>
+      <h2 class="sec" style="color:#fff">Tính thử <span class="hl">chi phí sửa</span> trước khi mang đàn đến</h2>
+      <span class="sub" style="color:#CDBFEC">Chọn dòng thiết bị + hạng mục + số lượng — xem khoảng giá trọn gói ngay lập tức.</span>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-form" data-rv>
+        <div class="fld" style="margin-bottom:16px"><label>1. Dòng thiết bị</label><select id="calDevice"></select></div>
+        <div class="fld" style="margin-bottom:16px"><label>2. Hạng mục</label><select id="calItem"></select></div>
+        <div class="fld" style="margin-bottom:16px"><label>3. Số dụng cụ cần làm</label>
+          <div class="qty">
+            <button type="button" id="calMinus" aria-label="Giảm">−</button>
+            <b id="calQty">1</b>
+            <button type="button" id="calPlus" aria-label="Tăng">+</button>
+          </div>
+        </div>
+        <div class="fld"><label>4. Bạn muốn làm khi nào?</label><select id="calWhen">
+          <option value="0">Trong ngày — khung giờ thường</option>
+          <option value="50000">GẤP trong 2 giờ (+50.000₫ ưu tiên)</option>
+        </select></div>
+      </div>
+      <div class="calc-out" data-rv data-d="90">
+        <span class="co-tag">KHOẢNG GIÁ THAM KHẢO</span>
+        <div class="co-price" id="calPrice">—</div>
+        <span class="co-sub" id="calSub">Chọn thiết bị để xem giá</span>
+        <div class="co-rows">
+          <div class="co-row"><b>Đơn giá từ</b><span class="fr" id="calUnit">—</span></div>
+          <div class="co-row"><b>Số lượng</b><span class="fr" id="calQtyTxt">1 thiết bị</span></div>
+          <div class="co-row"><b>Phí ưu tiên GẤP</b><span class="fr" id="calGap">0₫</span></div>
+          <div class="co-row"><b>Kiểm tra – chẩn đoán</b><span class="fr" style="color:#1FA860">0₫</span></div>
+        </div>
+        <button class="btn btn-accent" id="calBook"><svg class="ic"><use href="#i-cal"/></svg> Chốt lịch — xưởng xác nhận giá</button>
+        <div class="co-note">Giá chưa gồm vật tư thay mới (nếu có) — chốt giá sau khi thợ xem tận tay đàn.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHOI-8 BENTO -->
+<section class="sec texture" id="tat-ca-dich-vu">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> ĐỦ 8 HẠNG MỤC — MỘT XƯỞNG CHO MỌI NHẠC CỤ</span>
+      <h2 class="sec">Từ cây đàn đến cả dàn loa — <span class="hl">Hơi Âm lo hết</span></h2>
+      <span class="sub">Mỗi hạng mục do thợ chuyên dòng đó phụ trách. Bấm "Đặt lịch" để chọn trước ngày và khung giờ, hoặc "Chi tiết" để xem giá từng việc.</span>
+    </div>
+    <div class="bento" id="bento" data-rv></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stat"><svg class="ic"><use href="#i-medal"/></svg><div class="st-n" data-count="14" data-suffix="+">0</div><div class="st-l">năm theo nghề đàn – âm thanh</div></div>
+    <div class="stat"><svg class="ic"><use href="#i-tune"/></svg><div class="st-n" data-count="9800" data-suffix="+">0</div><div class="st-l">ca sửa – lên dây trong 3 năm qua</div></div>
+    <div class="stat"><svg class="ic"><use href="#i-check"/></svg><div class="st-n" data-count="98" data-suffix="%">0</div><div class="st-l">thử âm đạt ngay lần đầu</div></div>
+    <div class="stat"><svg class="ic"><use href="#i-user"/></svg><div class="st-n" data-count="3000" data-suffix="+">0</div><div class="st-l">khách quen bảo dưỡng định kỳ</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="ve-chung-toi">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img" data-rv>
+        <div class="ai-main"><img src="assets/img/intro.webp" alt="Thợ Xưởng Hơi Âm đang sửa guitar acoustic"></div>
+        <div class="ai-exp"><b>14+</b><span>năm trong nghề</span></div>
+      </div>
+      <div data-rv data-d="90">
+        <span class="eyebrow"><i class="dot"></i> VỀ XƯỞNG HƠI ÂM</span>
+        <h2 class="sec">Xưởng hai tầng ở Quận 10, <span class="hl">thợ làm chung với chủ</span></h2>
+        <span class="sub">Hơi Âm khởi đầu từ góc sửa guitar nhỏ trong hẻm năm 2012. Hôm nay xưởng có 6 thợ — mỗi người theo một dòng: đàn dây, piano – organ, trống – gõ, loa – amply. Chủ xưởng vẫn tự lên dây cây đàn đầu tiên mỗi sáng, và không bao giờ cho trả đàn chưa qua bàn thử âm.</span>
+        <div class="a-points">
+          <div class="a-point"><span class="ap-ic"><svg class="ic"><use href="#i-user"/></svg></span><span><b>Thợ theo từng dòng nhạc cụ</b><span>Ai sửa guitar không sửa loa — một nghề, một tay nghề.</span></span></div>
+          <div class="a-point"><span class="ap-ic"><svg class="ic"><use href="#i-home"/></svg></span><span><b>Chỉnh đàn tại chỗ</b><span>Việc nhỏ làm ngay trước mặt bạn — không để chờ vài ngày.</span></span></div>
+          <div class="a-point"><span class="ap-ic"><svg class="ic"><use href="#i-money"/></svg></span><span><b>Giá niêm yết theo thiết bị</b><span>Bảng giá công khai trên web, chốt trước khi sửa.</span></span></div>
+          <div class="a-point"><span class="ap-ic"><svg class="ic"><use href="#i-tool"/></svg></span><span><b>Đồ đo chuyên dụng</b><span>Tuner, máy phát tần, oscilloscope — không sửa theo cảm tính.</span></span></div>
+        </div>
+        <div class="h-cta">
+          <a class="btn btn-accent" href="#dat-lich"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch sửa đàn</a>
+          <a class="btn btn-ghost" href="tel:0908246357"><svg class="ic"><use href="#i-phone"/></svg> Gọi tư vấn miễn phí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="sec texture">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> TRƯỚC – SAU BẢO DƯỠNG</span>
+      <h2 class="sec">Đàn sạch bụi, <span class="hl">bóng gỗ lên lại như mới</span></h2>
+      <span class="sub">Kéo thanh trượt để xem cây acoustic trước và sau ca vệ sinh – dưỡng dầu định kỳ tại xưởng.</span>
+    </div>
+    <div class="ba-wrap" data-rv>
+      <div class="ba-frame" id="baFrame">
+        <img src="assets/img/p7.webp" alt="Đàn guitar sau khi vệ sinh bảo dưỡng sạch bóng" draggable="false">
+        <div class="ba-cover" id="baCover">
+          <img class="ba-before" src="assets/img/p7.webp" alt="Đàn guitar bám bụi trước khi vệ sinh" draggable="false">
+        </div>
+        <div class="ba-line" id="baLine"></div>
+        <div class="ba-handle" id="baHandle">‹›</div>
+        <span class="ba-tag l">TRƯỚC — BÁM BỤI, MẤT BÓNG</span>
+        <span class="ba-tag r">SAU — SẠCH, ĐUỐI SÁNG</span>
+        <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Kéo so sánh trước sau">
+      </div>
+      <div class="ba-caption">
+        <span class="ba-cap">Vệ sinh định kỳ: <b>phím – dây sáng sạch, không bám bụi</b></span>
+        <span class="ba-cap">Dưỡng dầu gỗ: <b>chống nứt nẻ mùa nồm</b></span>
+        <span class="ba-cap">Bền dây – phím hơn <b>1,5–2 lần</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> QUY TRÌNH RÕ RÀNG</span>
+      <h2 class="sec">Từ khi đặt lịch đến khi <span class="hl">ký biên bản thử âm</span></h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc" data-rv><span class="pr-n">1</span><span class="pr-ic"><svg class="ic"><use href="#i-cal"/></svg></span><b>Gửi ảnh — chốt giá 15 phút</b><p>Nhắn ảnh / video đàn qua Zalo hoặc gọi hotline: xưởng báo giá theo bảng ngay, không để bạn chờ.</p><span class="m-chip"><svg class="ic"><use href="#i-clock"/></svg> 15 phút</span></div>
+      <div class="proc" data-rv data-d="90"><span class="pr-n">2</span><span class="pr-ic"><svg class="ic"><use href="#i-home"/></svg></span><b>Mang đàn đến xưởng hoặc hẹn thợ đến</b><p>Việc nhỏ chỉnh tại chỗ lấy ngay; sửa sâu giữ đàn tại xưởng 2 tầng Q.10 — có tủ khóa riêng.</p><span class="m-chip"><svg class="ic"><use href="#i-bolt"/></svg> Trong ngày</span></div>
+      <div class="proc" data-rv data-d="180"><span class="pr-n">3</span><span class="pr-ic"><svg class="ic"><use href="#i-tool"/></svg></span><b>Sửa – thay linh kiện chính hãng</b><p>Sối loa, tụ, xương đàn, cảm biến, board… đều có phiếu vật tư kèm bảo hành riêng.</p><span class="m-chip"><svg class="ic"><use href="#i-clock"/></svg> 1–3 ngày</span></div>
+      <div class="proc" data-rv data-d="270"><span class="pr-n">4</span><span class="pr-ic"><svg class="ic"><use href="#i-check"/></svg></span><b>Thử âm 6 bước — bàn giao + BH 3 tháng</b><p>Bạn cầm thử trực tiếp trên bàn thử âm, ký biên bản. Lại lỗi trong hạn — nhận lại ngay.</p><span class="m-chip"><svg class="ic"><use href="#i-shield"/></svg> 90 ngày</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENTS -->
+<section class="sec dark" id="cam-ket">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff"><i class="dot"></i> CAM KẾT BẰNG GIẤY TỜ</span>
+      <h2 class="sec" style="color:#fff">4 cam kết xưởng <span class="hl">viết vào phiếu dịch vụ</span></h2>
+    </div>
+    <div class="cmt-grid">
+      <div class="cmt" data-rv><span class="cm-ic"><svg class="ic"><use href="#i-check"/></svg></span><b>Thử âm đạt mới trả đàn</b><span>Bạn cầm thử trực tiếp trên bàn thử âm. Không đạt tiêu chí — không nhận tiền, kể cả công kiểm tra.</span></div>
+      <div class="cmt" data-rv data-d="90"><span class="cm-ic"><svg class="ic"><use href="#i-money"/></svg></span><b>Giá chốt trước, không phát sinh</b><span>Báo giá theo bảng niêm yết từng thiết bị. Muốn thêm gì, thợ phải hỏi lại — bạn ok mới làm.</span></div>
+      <div class="cmt" data-rv data-d="180"><span class="cm-ic"><svg class="ic"><use href="#i-medal"/></svg></span><b>Thợ theo dòng nhạc cụ 10+ năm</b><span>Guitar, piano, dàn dây, trống, loa – amply: mỗi dòng một thợ chuyên — không thợ chay sửa đại.</span></div>
+      <div class="cmt" data-rv data-d="270"><span class="cm-ic"><svg class="ic"><use href="#i-shield"/></svg></span><b>Bảo hành 3 tháng bằng phiếu</b><span>Phiếu ghi rõ hạng mục, ngày, tên thợ. Lại lỗi trong hạn — nhận lại xử lý miễn phí trong 48 giờ.</span></div>
+    </div>
+    <div class="cmt-band" data-rv>
+      <a class="btn btn-red big" href="tel:0908246357"><span class="pulse"></span> Gọi xưởng 0908 246 357</a>
+      <a class="btn btn-ghost big" href="#dat-lich"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch — ưu tiên khung giờ</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec texture" id="review">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> KHÁCH NÓI GÌ</span>
+      <h2 class="sec">1.400+ đàn đã qua tay xưởng — <span class="hl">4.9/5 sao</span></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-view" data-rv>
+        <div class="rev-run" id="revRun">
+          <div class="rev-card">
+            <div class="rev-top"><span class="rev-av">P</span><span class="rev-who"><b>Anh Phát — nhạc công bar khách sạn</b><span>Guitar acoustic Taylor</span></span><span class="rev-stars">★★★★★</span></div>
+            <p>"Tối mai có show mà phát hiện cần cong, rê phím muốn bỏ chơi. Mang đàn tới 9h sáng, 11h xưởng gọi lấy — mài fret và chỉnh truss rod xong, thử âm tại chỗ luôn trước mặt mình. Tối đó đánh barre mượt hẳn."</p>
+            <span class="rev-job">Mài fret + chỉnh cần — lấy ngay 2 giờ</span>
+          </div>
+          <div class="rev-card">
+            <div class="rev-top"><span class="rev-av">U</span><span class="rev-who"><b>Chị Uyên — chủ phòng thu</b><span>Cặp monitor 8 năm</span></span><span class="rev-stars">★★★★★</span></div>
+            <p>"Monitor mất tiếng bên trái, tưởng phải thay cả cặp 15 triệu. Thầy Khang thay sối và sửa crossover chưa tới 1 triệu, đo lại đường tần phẳng phiu. Phòng thu chạy lại êm như mới."</p>
+            <span class="rev-job">Thay sối + crossover — trong ngày</span>
+          </div>
+          <div class="rev-card">
+            <div class="rev-top"><span class="rev-av">V</span><span class="rev-who"><b>Anh Vinh — nhà thờ quận 11</b><span>Dàn âm thanh + organ</span></span><span class="rev-stars">★★★★★</span></div>
+            <p>"Loa nhà thờ rè toả, organ dính mấy phím. Hơi Âm đưa thợ tới 2 buổi: sửa organ tại chỗ không phải mang đi, căn lại cả dàn chống hú. Chủ nhật hát không phải dòm loa lo lắng nữa."</p>
+            <span class="rev-job">Sửa tại chỗ + căn dàn — 2 buổi</span>
+          </div>
+          <div class="rev-card">
+            <div class="rev-top"><span class="rev-av">H</span><span class="rev-who"><b>Ban nhạc Hơi Sóng — nhà sinh hoạt</b><span>Bộ trống + amply cũ</span></span><span class="rev-stars">★★★★★</span></div>
+            <p>"Căn lại cả bộ trống và sửa cây amply bố để lại 20 năm. Anh Sức căn da từng trống đúng tông, chơi thử cùng band luôn trước khi nhận. Giá nói trước — không một đồng phát sinh."</p>
+            <span class="rev-job">Căn trống + sửa amply — 1 buổi</span>
+          </div>
+          <div class="rev-card">
+            <div class="rev-top"><span class="rev-av">Q</span><span class="rev-who"><b>Cô Thanh Hà — giáo viên piano</b><span>Piano điện Yamaha</span></span><span class="rev-stars">★★★★★</span></div>
+            <p>"Phím Đô lì cả cụm, học trò than mãi. Anh Hải thay cụm cảm biến, test từng phím cho mình xem tận mắt. Về dạy lại êm ru, có phiếu bảo hành 3 tháng dán ngay thân máy."</p>
+            <span class="rev-job">Thay cụm cảm biến — 1 ngày</span>
+          </div>
+        </div>
+      </div>
+      <div class="rev-side" data-rv data-d="90">
+        <div class="rev-metric">
+          <div class="rm"><svg class="ic"><use href="#i-star"/></svg><span><b>4.9/5</b><span>1.400+ đánh giá từ khách đã sửa</span></span></div>
+          <div class="rm"><svg class="ic"><use href="#i-bolt"/></svg><span><b>2 giờ</b><span>thời gian lấy trung bình cho việc nhỏ</span></span></div>
+          <div class="rm"><svg class="ic"><use href="#i-check"/></svg><span><b>98%</b><span>thử âm đạt ngay lần đầu</span></span></div>
+          <div class="rm"><svg class="ic"><use href="#i-shield"/></svg><span><b>90 ngày</b><span>bảo hành mọi ca sửa chữa</span></span></div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:var(--soft);margin-bottom:10px">SỬA CHUẨN CÁC HÃNG</div>
+          <div class="brand-chips">
+            <i>Yamaha</i><i>Kawai</i><i>Casio</i><i>Roland</i><i>Fender</i><i>Taylor</i><i>Martin</i><i>Marshall</i><i>Bose</i><i>JBL</i><i>Shure</i><i>Pearl</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="lien-he">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> LIÊN HỆ &amp; ĐẶT LỊCH</span>
+      <h2 class="sec">Mang đàn đến xưởng hoặc <span class="hl">để lại lịch — gọi lại trong 30 phút</span></h2>
+      <span class="sub">Gấp thì gọi hotline. Không gấp, điền form — xưởng gọi lại chốt giờ và báo giá sơ bộ theo bảng.</span>
+    </div>
+    <div class="contact-grid">
+      <div class="xo-card" data-rv>
+        <div class="xo-img"><img src="assets/img/space.webp" alt="Không gian xưởng Hơi Âm — bàn sửa và tường treo đàn" loading="lazy"></div>
+        <div class="xo-body">
+          <h3>Xưởng Hơi Âm — Q.10</h3>
+          <div class="xo-row"><svg class="ic"><use href="#i-pin"/></svg><span><b>217 Nguyễn Chí Thanh, P.2, Q.10, TP.HCM</b><br>Hẻm xe hơi — chỗ đỗ trước cửa, dễ mang đàn vào.</span></div>
+          <div class="xo-row"><svg class="ic"><use href="#i-clock"/></svg><span>8:30 – 20:00 (T2–T7) · CN 9:00 – 18:00 · Gấp ngoài giờ gọi hotline.</span></div>
+          <div class="xo-map">
+            <!--NB93-102: ban do SVG mini theo nghe thay iframe-->
+            <!--NB93-MAP: 10.8019,106.6526-->
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=10.8019,106.6526&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+          </div>
+          <a class="xo-hotline" href="tel:0908246357">
+            <svg class="ic"><use href="#i-phone"/></svg>
+            <span><small>Hotline xưởng — nhận đàn ưu tiên</small><b>0908 246 357</b></span>
+          </a>
+          <div class="xo-acts">
+            <a class="btn btn-purple" href="https://maps.google.com/?q=217+Nguyen+Chi+Thanh+Quan+10+Ho+Chi+Minh" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg> Chỉ đường đến xưởng</a>
+            <a class="btn btn-ghost" href="#dat-lich"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch trước</a>
+          </div>
+        </div>
+      </div>
+      <form class="c-form" id="ctForm" data-rv data-d="90" novalidate>
+        <h3>Form đặt lịch nhanh</h3>
+        <span class="cf-sub">Xưởng gọi lại xác nhận trong 30 phút (8:30–20:00).</span>
+        <div class="bk-fields">
+          <div class="fld"><label>Họ tên *</label><input id="ctName" type="text" placeholder="Nguyễn Văn A" required></div>
+          <div class="fld"><label>Số điện thoại *</label><input id="ctPhone" type="tel" placeholder="09xx xxx xxx" inputmode="numeric" required></div>
+          <div class="fld"><label>Dịch vụ</label><select id="ctService">
+            <option>Sửa guitar – đàn dây</option><option>Lên dây – chỉnh âm nhạc cụ</option><option>Sửa organ – piano điện</option><option>Sửa loa – amply</option><option>Sửa micro không dây</option><option>Thay linh kiện âm thanh</option><option>Vệ sinh – bảo dưỡng nhạc cụ</option><option>Tư vấn nâng cấp dàn âm thanh</option>
+          </select></div>
+          <div class="fld"><label>Ngày giờ mong muốn</label><input id="ctWhen" type="text" placeholder="Hôm nay hoặc mai, kèm giờ"></div>
+          <div class="fld full"><label>Địa chỉ (nếu cần thợ đến) *</label><input id="ctAddr" type="text" placeholder="Địa chỉ của bạn" required></div>
+        </div>
+        <button class="btn btn-accent" type="submit"><svg class="ic"><use href="#i-check"/></svg> Gửi yêu cầu — xác nhận trong 30 phút</button>
+        <span class="cf-confirm"><svg class="ic" style="width:15px;height:15px"><use href="#i-bolt"/></svg> Cần sửa GẤP? Gọi xưởng <a href="tel:0908246357" style="color:#fff;text-decoration:underline">0908 246 357</a></span>
+        <span class="cf-secure"><svg class="ic"><use href="#i-lock"/></svg> Thông tin của bạn chỉ dùng để xác nhận lịch hẹn — không gửi quảng cáo.</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec texture" id="faq">
+  <div class="wrap">
+    <div class="sec-head center" data-rv>
+      <span class="eyebrow"><i class="dot"></i> GIẢI ĐÁP THẮC MẮC</span>
+      <h2 class="sec">Câu hỏi nhạc công hay hỏi <span class="hl">trước khi mang đàn đến</span></h2>
+    </div>
+    <div class="faq-wrap" data-rv>
+      <div class="faq-tools">
+        <div class="faq-search"><svg class="ic"><use href="#i-search"/></svg><input id="faqSearch" type="text" placeholder="Tìm câu hỏi: thử âm, lên dây, bảo hành, giá…"></div>
+        <div class="faq-chips" id="faqChips">
+          <button class="faq-chip on" data-k="">Tất cả</button>
+          <button class="faq-chip" data-k="thử âm">Thử âm</button>
+          <button class="faq-chip" data-k="tại nhà">Tại nhà</button>
+          <button class="faq-chip" data-k="thời gian">Thời gian</button>
+          <button class="faq-chip" data-k="giá">Giá</button>
+          <button class="faq-chip" data-k="bảo hành">Bảo hành</button>
+          <button class="faq-chip" data-k="nhà thờ">Nhà thờ – phòng thu</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <div class="faq-empty" id="faqEmpty">Không tìm thấy câu hỏi phù hợp — bạn cứ gọi <a href="tel:0908246357" style="color:var(--primary);font-weight:800">0908 246 357</a> để được trả lời ngay.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-main">
+      <div class="foot-col">
+        <div class="foot-brand">
+          <span class="mark"><svg class="ic"><use href="#i-tune"/></svg></span>
+          <span class="lg-t"><small style="color:var(--accent-2)">NHẠC CỤ &amp; ÂM THANH</small><strong>Xưởng Hơi Âm</strong></span>
+        </div>
+        <p>Xưởng sửa nhạc cụ &amp; thiết bị âm thanh từ 2012: guitar, dàn dây, piano – organ, trống, loa – amply, micro. Thợ theo từng dòng nhạc cụ, thử âm trước khi trả, bảo hành 3 tháng bằng phiếu.</p>
+        <div class="socials">
+          <a href="#top" title="Facebook"><svg class="ic"><use href="#i-user"/></svg></a>
+          <a href="https://zalo.me/0908246357" title="Zalo"><svg class="ic"><use href="#i-zalo"/></svg></a>
+          <a href="tel:0908246357" title="Gọi hotline"><svg class="ic"><use href="#i-phone"/></svg></a>
+          <a href="#lien-he" title="Bản đồ"><svg class="ic"><use href="#i-pin"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="#tat-ca-dich-vu">Sửa guitar – đàn dây</a></li>
+          <li><a href="#tat-ca-dich-vu">Lên dây – chỉnh âm</a></li>
+          <li><a href="#tat-ca-dich-vu">Sửa organ – piano điện</a></li>
+          <li><a href="#tat-ca-dich-vu">Sửa loa – amply</a></li>
+          <li><a href="#tat-ca-dich-vu">Sửa micro – mixer</a></li>
+          <li><a href="#tat-ca-dich-vu">Vệ sinh – bảo dưỡng</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="#bang-gia">Bảng giá tham khảo</a></li>
+          <li><a href="#dat-lich">Đặt lịch sửa đàn</a></li>
+          <li><a href="#thu-am">Bàn thử âm 6 bước</a></li>
+          <li><a href="#cam-ket">4 cam kết xưởng</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+          <li><a href="#lien-he">Liên hệ – chỉ đường</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Liên hệ</h4>
+        <ul class="foot-contact">
+          <li><svg class="ic"><use href="#i-pin"/></svg> 217 Nguyễn Chí Thanh, P.2, Q.10, TP.HCM</li>
+          <li><svg class="ic"><use href="#i-clock"/></svg> 8:30 – 20:00 T2–T7 · CN 9:00 – 18:00</li>
+          <li><svg class="ic"><use href="#i-user"/></svg> xuonghoiam@gmail.com</li>
+        </ul>
+        <a class="foot-hotline" href="tel:0908246357">
+          <svg class="ic"><use href="#i-phone"/></svg>
+          <span><small>Hotline xưởng — nhận đàn ưu tiên</small><b>0908 246 357</b></span>
+        </a>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <p>© 2026 Xưởng Hơi Âm — MST 031xxxxx82 · Sửa thật – thử thật – bảo hành bằng phiếu.</p>
+      <div class="pay-chips"><i>Tiền mặt</i><i>Chuyển khoản</i><i>MoMo</i><i>VNPay</i><i>Hóa đơn VAT</i></div>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB DOCK -->
+<div class="fab-dock" id="fabDock">
+  <button class="fab main" id="fabBook"><svg class="ic"><use href="#i-cal"/></svg><span>Đặt lịch</span></button>
+  <a class="fab red" href="tel:0908246357"><svg class="ic"><use href="#i-phone"/></svg><span>Gọi xưởng</span></a>
+  <a class="fab" href="https://zalo.me/0908246357" target="_blank" rel="noopener"><svg class="ic"><use href="#i-zalo"/></svg><span>Zalo</span></a>
+  <a class="fab" href="#lien-he"><svg class="ic"><use href="#i-pin"/></svg><span>Chỉ đường</span></a>
+  <button class="fab up" id="fabUp"><svg class="ic"><use href="#i-up"/></svg><span>Lên đầu</span></button>
+</div>
+
+<!-- BOOKING DRAWER -->
+<div class="drawer-ov" id="drawerOv"></div>
+<aside class="drawer" id="drawer" aria-label="Đặt lịch nhanh">
+  <div class="dr-head">
+    <svg class="ic" style="width:22px;height:22px;color:#FFC980"><use href="#i-cal"/></svg>
+    <div><h3>Đặt lịch nhanh</h3><p>Xưởng gọi xác nhận sau 15 phút</p></div>
+    <button class="dr-x" id="drawerX" aria-label="Đóng">✕</button>
+  </div>
+  <div class="dr-body" id="drBody">
+    <a class="dr-call" href="tel:0908246357">
+      <svg class="ic"><use href="#i-phone"/></svg>
+      <span><b>Gấp? Gọi xưởng 0908 246 357</b><span>Nhận đàn ưu tiên trong 2 giờ</span></span>
+      <span class="btn btn-red">Gọi</span>
+    </a>
+    <div class="bk-step">
+      <div class="bk-label"><span class="n">1</span> Dịch vụ</div>
+      <div class="chips" id="dwService"></div>
+    </div>
+    <div class="bk-step">
+      <div class="bk-label"><span class="n">2</span> Ngày</div>
+      <div class="bk-days" id="dwDays" style="grid-template-columns:repeat(7,1fr);gap:6px"></div>
+    </div>
+    <div class="bk-step">
+      <div class="bk-label"><span class="n">3</span> Giờ</div>
+      <div class="bk-slots" id="dwSlots" style="grid-template-columns:repeat(2,1fr);gap:7px"></div>
+    </div>
+    <div class="bk-step">
+      <div class="fld"><label>Số điện thoại *</label><input id="dwPhone" type="tel" placeholder="09xx xxx xxx" inputmode="numeric"></div>
+    </div>
+  </div>
+  <div class="dr-foot" id="drFoot">
+    <div class="dr-sum"><span>Giá từ</span><b id="drPrice">—</b></div>
+    <button class="btn btn-accent" id="dwConfirm"><svg class="ic"><use href="#i-check"/></svg> Xác nhận — nhận mã hẹn</button>
+  </div>
+</aside>
+
+<!-- SERVICE MODAL -->
+<div class="modal-ov" id="modalOv">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="md-img"><img id="mdImg" src="assets/img/p1.webp" alt=""></div>
+    <div class="md-body">
+      <div class="md-top"><h3 id="mdName">Dịch vụ</h3><button class="md-x" id="mdX" aria-label="Đóng">✕</button></div>
+      <p class="md-desc" id="mdDesc"></p>
+      <div class="md-meta" id="mdMeta"></div>
+      <table class="md-table"><tbody id="mdTable"></tbody></table>
+      <div class="md-cta">
+        <button class="btn btn-accent" id="mdBook"><svg class="ic"><use href="#i-cal"/></svg> Đặt lịch dịch vụ này</button>
+        <a class="btn btn-ghost" href="tel:0908246357"><svg class="ic"><use href="#i-phone"/></svg> Gọi hỏi nhanh</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><svg class="ic"><use href="#i-check"/></svg><span class="t-body"><b id="toastTitle">Đã ghi nhận!</b><span id="toastMsg"></span></span></div>
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var fmt=function(n){return n.toLocaleString('vi-VN')+'₫'};
+var HOT='<a href="tel:0908246357">0908 246 357</a>';
+
+/* ============ DATA (NB93-102) ============ */
+var DEVICES={
+  guitar:{name:'Guitar',icon:'i-guitar',from:80000,faults:[['Lên dây – căn tông',80],['Rê phím – mài fret',250],['Cần cong – chỉnh truss rod',300],['Thay ngựa đàn – xương lược',200],['Thân nứt – bong keo mặt đàn',350],['Mạch điện – jack, pickup, pot',250],['Vệ sinh – dưỡng dầu thân đàn',150]]},
+  danday:{name:'Violin – Cello',icon:'i-tune',from:120000,faults:[['Lên dây – căn toàn bộ',120],['Thay bridge – dựng âm lang',250],['Mặt đàn – hông nứt',400],['Cần lệch – cập cổ đàn',350],['Thay bộ dây mới',180]]},
+  piano:{name:'Piano – Organ',icon:'i-piano',from:250000,faults:[['Phím lì – kẹt phím',300],['Mất tiếng – lỗi nguồn, board',450],['Lên dây piano cơ',500],['Căn chỉnh âm sắc – voicing',400],['Vệ sinh bên trong thân máy',250],['Lỗi jack – tai nghe – pedal',300]]},
+  trong:{name:'Trống – Gõ',icon:'i-drum',from:150000,faults:[['Căn da – tông từng trống',150],['Thay da trống mới',250],['Vệ sinh – đánh bóng thân trống',200],['Sửa khung – vòng ép – tay vặn',300],['Lắp đặt bộ trống – phụ kiện',250]]},
+  loa:{name:'Loa – Amply',icon:'i-speaker',from:200000,faults:[['Loa rè – rá sối',250],['Amply mất tiếng – mất kênh',350],['Kêu hum – nhiễu nền',250],['Thay tụ – sửa mạch công suất',400],['Loa bluetooth – loa kéo',300],['Tủ loa xước – phủ lại mặt',350]]},
+  mic:{name:'Micro – Mixer',icon:'i-mic',from:150000,faults:[['Micro không bắt sóng',200],['Mất tiếng – hỏng đầu micro',180],['Sửa nguồn – hộc pin rò điện',150],['Mixer kênh chết – rè',300],['Chống hú – căn chỉnh hệ thống',250]]}
+};
+var BOOKKEY={'guitar':['guitar',0],'piano':['piano',0],'loa':['loa',0],'lenday':['danday',0],'mic':['mic',0],'linhkien':['loa',3],'vesinh':['guitar',6],'nangcap':['mic',4]};
+var SERVICES=[
+  {k:'lenday',name:'Lên dây – chỉnh âm nhạc cụ',img:'assets/img/p5.webp',icon:'i-tune',from:120000,dur:'45–90 phút',badge:'CHỈNH ĐÀN TẠI CHỖ',tagcls:'',desc:'Căn tông chuẩn A440 bằng tuner đo chuyên dụng cho guitar, violin, cello, piano. Chỉnh đàn tại chỗ — không tháo rời khi không cần thiết.',list:['Đo từng dây bằng tuner chuyên dụng, không lên cảm tính','Chỉnh tại chỗ — có mặt xem tận mắt','Kiểm tra lại tông trước khi bàn giao'],cat:[['Lên dây guitar / ukulele','từ 120.000₫'],['Lên dây violin – cello','từ 150.000₫'],['Lên dây piano cơ (tính công)','từ 500.000₫'],['Căn chỉnh âm sắc – voicing','từ 400.000₫']]},
+  {k:'guitar',name:'Sửa guitar – đàn dây',img:'assets/img/p1.webp',icon:'i-guitar',from:150000,dur:'60–120 phút',badge:'ĐƯỢC GỌI NHIỀU NHẤT',tagcls:'red',desc:'Xử lý rê phím, mài fret, chỉnh truss rod, thay ngựa đàn – xương lược đúng tầm tay người chơi. Nhận cả guitar classic, acoustic, điện.',list:['Rê phím hết sau khi mài – thử từng phím 1–20','Chỉnh action theo tầm tay bạn yêu cầu','Thử hợp âm barre trước khi trả đàn'],cat:[['Xử lý rê phím – mài fret','từ 250.000₫'],['Chỉnh cần cong – truss rod','từ 300.000₫'],['Thay ngựa đàn – xương lược','từ 200.000₫'],['Sửa thân nứt – tách keo','từ 350.000₫']]},
+  {k:'loa',name:'Sửa loa – amply',img:'assets/img/p3.webp',icon:'i-speaker',from:200000,dur:'45–120 phút',badge:'LẤY TRONG NGÀY',tagcls:'red',desc:'Thay sối, sửa mạch công suất, xử lý hum – rè cho loa gỗ, loa kéo, amply đèn và transistor. Đo tần – đo trở bằng máy trước khi trả.',list:['Phát tần 20Hz–20kHz kiểm tra cả dải âm','Chạy thử 30 phút không nóng máy','Linh kiện thay mới bảo hành riêng'],cat:[['Thay sối loa – tai voix','từ 250.000₫'],['Sửa amply mất tiếng – mất kênh','từ 350.000₫'],['Thay tụ – mạch công suất','từ 400.000₫'],['Xử lý hum – nhiễu nền','từ 250.000₫']]},
+  {k:'piano',name:'Sửa organ – piano điện',img:'assets/img/p2.webp',icon:'i-piano',from:250000,dur:'60–150 phút',badge:'NHÀ THỜ – PHÒNG THU',tagcls:'purple',desc:'Phím lì, kẹt phím, mất tiếng, lỗi nguồn – board cho organ, piano điện, keyboard mọi hãng. Test từng phím qua 3 vòng trước khi trả máy.',list:['Test toàn bộ phím: không lì, không kép','Nghe âm qua loa máy và tai nghe','Ưu tiên lịch cho đàn dùng lễ – thu âm'],cat:[['Sửa phím lì – kẹt phím','từ 300.000₫'],['Sửa nguồn – board','từ 450.000₫'],['Thay cảm biến phím','từ 350.000₫'],['Lỗi jack – pedal – tai nghe','từ 300.000₫']]},
+  {k:'mic',name:'Sửa micro không dây',img:'assets/img/p4.webp',icon:'i-mic',from:150000,dur:'40–90 phút',badge:'',tagcls:'',desc:'Không bắt sóng, mất tiếng, rò pin — đo băng tần và test với đầu thu thật của bạn ngay tại xưởng.',list:['Đo băng tần – dò sóng lồng kênh','Thay đầu micro chính hãng khi cần','Test kèm đầu thu – loa của bạn'],cat:[['Micro không bắt sóng','từ 200.000₫'],['Hỏng đầu micro – thay đầu','từ 180.000₫'],['Sửa nguồn – hộc pin','từ 150.000₫'],['Sửa đầu thu – antenna','từ 250.000₫']]},
+  {k:'linhkien',name:'Thay linh kiện âm thanh',img:'assets/img/p6.webp',icon:'i-tool',from:100000,dur:'30–90 phút',badge:'',tagcls:'',desc:'Jack, pot, tụ, sối loa, board nhỏ — hàng chính hãng hoặc nhập đúng thông số. Kiểm tra sau thay thế ngay trước mặt bạn.',list:['Đúng thông số – không thay lộn hàng','Hàn thiếc chuẩn, kiểm tra độ bền mối hàn','Phiếu vật tư + bảo hành riêng'],cat:[['Thay jack – pot – công tắc','từ 100.000₫'],['Thay tụ lọc – tụ nguồn','từ 250.000₫'],['Thay sối loa','từ 250.000₫'],['Sửa board nhỏ – mạch bảo vệ','từ 350.000₫']]},
+  {k:'vesinh',name:'Vệ sinh – bảo dưỡng nhạc cụ',img:'assets/img/p7.webp',icon:'i-wash',from:150000,dur:'40–80 phút',badge:'',tagcls:'',desc:'Làm sạch bụi phím – dây – mạch, dưỡng dầu thân gỗ, đánh bóng chrome. Đàn sáng bóng, chạy êm và bền hơn 1,5–2 lần.',list:['Làm sạch từng khe phím, cổ đàn','Dưỡng dầu gỗ chống nứt mùa nồm','Tra dầu bánh răng – khớp kim loại'],cat:[['Vệ sinh guitar / ukulele','từ 150.000₫'],['Vệ sinh – căn da bộ trống','từ 200.000₫'],['Vệ sinh piano điện bên trong','từ 250.000₫'],['Vệ sinh dàn amply – mixer','từ 250.000₫']]},
+  {k:'nangcap',name:'Tư vấn nâng cấp dàn âm thanh',img:'assets/img/p8.webp',icon:'i-medal',from:300000,dur:'90–180 phút',badge:'KHẢO SÁT MIỄN PHÍ',tagcls:'',desc:'Khảo sát không gian nhà thờ, phòng thu, quán bar — đề xuất cấu hình hợp ngân sách, đứng dàn, đi dây và căn chỉnh chống hú.',list:['Khảo sát – đề xuất miễn phí trong TP.HCM','Đứng dàn, đi dây gọn — thẩm mỹ an toàn','Căn chống hú – cân bằng âm vùng nghe'],cat:[['Đứng dàn – đi dây hoàn thiện','từ 300.000₫'],['Căn chỉnh chống hú hệ thống','từ 250.000₫'],['Nâng cấp loa – amply cũ','báo giá theo thiết bị'],['Gói bảo dưỡng định kỳ theo quý','ưu đãi 10%']]}
+];
+var PT={
+  guitar:[['Lên dây – căn tông chuẩn A440','45–90 phút','từ 120.000₫'],['Xử lý rê phím – mài fret','60–120 phút','từ 250.000₫'],['Chỉnh cần cong – truss rod','40–80 phút','từ 300.000₫'],['Thay ngựa đàn – xương lược – éc','60–90 phút','từ 200.000₫'],['Sửa thân nứt – tách keo mặt đàn','90–180 phút','từ 350.000₫'],['Violin / cello: thay bridge + dựng âm lang','60–120 phút','từ 250.000₫']],
+  piano:[['Sửa phím lì – kẹt phím (theo cụm phím)','60–120 phút','từ 300.000₫'],['Sửa nguồn – board piano điện','60–150 phút','từ 450.000₫'],['Lên dây piano cơ (định kỳ 6–12 tháng/lần)','120–180 phút','từ 500.000₫'],['Căn chỉnh âm sắc – voicing búa đàn','90–150 phút','từ 400.000₫'],['Thay cảm biến phím – pin nguồn','45–90 phút','từ 350.000₫'],['Vệ sinh bên trong – chống ẩm','60–90 phút','từ 250.000₫']],
+  loa:[['Thay sối loa – tai voix (tính cặp)','45–90 phút','từ 250.000₫'],['Sửa amply mất tiếng – mất kênh','60–120 phút','từ 350.000₫'],['Thay tụ – sửa mạch công suất','60–150 phút','từ 400.000₫'],['Xử lý hum – nhiễu – chạm mạch','45–90 phút','từ 250.000₫'],['Sửa micro không dây – đầu thu','40–90 phút','từ 180.000₫'],['Sửa mixer kênh chết – căn chống hú','60–120 phút','từ 300.000₫']]
+};
+var CAL={
+  guitar:[['Lên dây – căn tông',120],['Xử lý rê phím – mài fret',250],['Chỉnh cần – truss rod',300],['Sửa thân – thay ngựa đàn',300]],
+  danday:[['Lên dây – căn toàn bộ',150],['Thay bridge – dựng âm lang',250],['Sửa mặt – hông đàn',400]],
+  piano:[['Sửa phím lì – kẹt phím',300],['Sửa nguồn – board',450],['Lên dây piano cơ',500],['Vệ sinh bên trong',250]],
+  trong:[['Căn da – tông trống',150],['Thay da trống',250],['Vệ sinh – đánh bóng',200]],
+  loa:[['Thay sối loa',250],['Sửa amply mất kênh',350],['Thay tụ – mạch công suất',400],['Xử lý hum – nhiễu',250]],
+  mic:[['Sửa micro không dây',180],['Mixer kênh chết',300],['Căn chống hú hệ thống',250]]
+};
+var FAQ=[
+  ['Sửa xong có được thử âm trước khi nhận không?','Đây là quy tắc bắt buộc của xưởng: thợ chơi mẫu trước, sau đó bạn cầm đàn / bật máy thử trực tiếp trên bàn thử âm — đàn thì gảy từng hợp âm, loa thì nghe phát tần và nhạc thật. Chưa đạt tiêu chí bạn ký nhận, xưởng không thu bất kỳ khoản nào.','thử âm'],
+  ['Xưởng có chỉnh đàn tại nhà không?','Có. Guitar, violin, trống, loa – amply đều chỉnh và sửa được tại chỗ. Riêng piano cơ cần lên dây và những ca sửa mạch sâu sẽ mang về xưởng 2 tầng ở Q.10 — có tủ khóa giữ đàn an toàn, việc nhỏ trả trong ngày.','tại nhà'],
+  ['Bao lâu thì lấy được đàn / thiết bị?','Việc nhỏ (lên dây, thay sối, thay xương đàn, vệ sinh) lấy trong ngày — thường 1–2 giờ. Sửa mạch sâu, thay board, sơn mặt đàn: 2–4 ngày. Thợ báo thời gian cụ thể khi chốt giá, trễ hẹn xưởng chủ động gọi trước.','thời gian'],
+  ['Giá tính thế nào, có phát sinh không?','Giá niêm yết công khai theo từng dòng thiết bị như bảng giá trên web. Thợ xem tận tay đàn rồi chốt giá thành văn bản — muốn thêm hạng mục nào phải hỏi lại, bạn đồng ý mới làm, không thu ngoài báo giá.','giá'],
+  ['Bao lâu nên lên dây / bảo dưỡng một lần?','Guitar chơi thường xuyên: 1–2 tháng/lần, mùa nồm nên dày hơn. Piano cơ: 6–12 tháng/lần. Trống: căn da trước mỗi show quan trọng. Loa – amply: vệ sinh bên trong 12 tháng/lần để tránh bụi – ẩm.','lên dây'],
+  ['Linh kiện thay thế có chính hãng và bảo hành không?','Sối loa, tụ, cảm biến, jack, board… đều là hàng chính hãng hoặc nhập đúng thông số, kèm phiếu vật tư và bảo hành riêng 3–6 tháng. Không dùng hàng trôi nổi — bạn được xem linh kiện trước khi thay.','bảo hành'],
+  ['Có nhận dàn âm thanh nhà thờ, phòng thu không?','Có — đây là khách quen của xưởng. Khảo sát tại chỗ miễn phí trong TP.HCM, báo phương án theo ngân sách, sau đó sửa – đứng dàn – đi dây – căn chống hú, có thể làm ngoài giờ để không ảnh hưởng lễ và lịch thu.','nhà thờ'],
+  ['Đàn cũ, amply đèn hiếm có nhận sửa không?','Nhận. Thợ xưởng 14 năm nghề, từng sửa amply đèn, đàn cổ, loa gỗ Việt Nam – Trung Quốc thời trước. Kiểm tra 0đ và tư vấn thẳng: đáng sửa hay không — không sửa được không thu phí.','đàn cũ']
+];
+/*NB93-102: du lieu ban thu am theo tung dong nhac cu*/
+var THUAM={
+  guitar:{label:'Guitar & đàn dây',icon:'i-guitar',tho:'anh Bảo — 12 năm chuyên đàn dây',tools:['Tuner Korg / Peterson','Thước đo action','Bộ mài fret'],steps:['Lên dây từng dây chuẩn A440 — đo bằng tuner chuyên dụng','Kê từng phím kiểm tra fret 1–20: không rê phím, không lép chuông','Chỉnh action (cao dây) theo tầm tay bạn yêu cầu','Gảy thử hợp âm mở – barre ở 3 tông khác nhau','Bạn cầm đàn chơi trực tiếp 10 phút — ký biên bản bàn giao']},
+  piano:{label:'Piano – Organ',icon:'i-piano',tho:'anh Hải — 14 năm keyboard – piano điện',tools:['Máy test MIDI','Tai nghe monitor','Bộ test nguồn'],steps:['Test lần lượt toàn bộ phím: không lì, không kép, không lạch cạch','Đo độ nhạy phím — bấm nhẹ vẫn lên tiếng đều','Nghe âm sắc qua loa máy và tai nghe — không rè, không vỡ','Chạy scale nhanh, hợp âm rộng kiểm tra độ nhạy','Test pedal, jack tai nghe, MIDI ra – vào trước khi đóng máy']},
+  loa:{label:'Loa – Amply',icon:'i-speaker',tho:'thầy Khang — 16 năm mạch âm thanh',tools:['Máy phát tần','Oscilloscope','Đồng hồ đo trở'],steps:['Phát tần 20Hz–20kHz — nghe trầm, trung, cao đều hai kênh','Mở nhạc thử 3 mức âm lượng: nhỏ, vừa, tối đa không vỡ – rè','Xoay hết các núm Volume – Tone: không trầy, không lách tách','Đo trở kháng – công suất thực bằng đồng hồ chuyên dụng','Chạy liên tục 30 phút — không nóng máy, không ngắt bảo vệ']},
+  trong:{label:'Trống – Gõ',icon:'i-drum',tho:'anh Sức — 10 năm trống – gõ',tools:['Dụng cụ căn da','Tuner gõ','Bộ tra dầu'],steps:['Căn da từng trống về tông chuẩn — vặn ốc đều tay theo hình sao','Gõ riêng từng trống: âm thanh, không ù, không dính','Chạy kèm bài thật với cả band — trống nổi trên dàn nhạc','Kiểm tra pedal, ghế, giá – khóa phụ kiện chắc chắn','Bạn chơi thử 10 phút — cảm giác nảy da đúng độ căng']}
+};
+
+/* ============ TOAST ============ */
+var toastT;
+function toast(msg,title){
+  var t=$('#toast');
+  $('#toastTitle').textContent=title||'Đã ghi nhận!';
+  $('#toastMsg').textContent=msg||'';
+  t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},3400);
+}
+
+/* ============ DAYS / SLOTS ============ */
+var WD=['CN','T2','T3','T4','T5','T6','T7'];
+var days=[];
+(function(){var d=new Date();for(var i=0;i<7;i++){var x=new Date(d.getTime()+i*864e5);days.push({t:x,label:i===0?'Hôm nay':(i===1?'Ngày mai':WD[x.getDay()]),date:x.getDate()+'/' +(x.getMonth()+1)})}})();
+var SLOTS=[{t:'08:30–10:30'},{t:'10:30–12:30'},{t:'13:30–15:30'},{t:'15:30–17:30'},{t:'18:00–20:00'},{t:'GẤP trong 2 giờ',gap:true}];
+function avail(di,si){return ['còn 2 chỗ','còn 3 chỗ','còn 1 chỗ','sắp kín'][(di*7+si)%4]}
+function renderDays(el,sel,cb){
+  el.innerHTML='';
+  days.forEach(function(d,i){
+    var b=document.createElement('button');b.type='button';b.className='bk-day'+(sel===i?' on':'');
+    b.innerHTML='<small>'+d.label+'</small><b>'+d.date+'</b><span>'+avail(i,0)+'</span>';
+    b.onclick=function(){cb(i)};el.appendChild(b);
+  });
+  /*NB93-102: chip "+" tai them 7 ngay ke tiep (mobile: dai ngay cuon ngang)*/
+  var more=document.createElement('button');more.type='button';more.className='bk-day bk-more';
+  more.setAttribute('aria-label','Tải thêm 7 ngày kế tiếp');
+  more.innerHTML='<b>＋</b><small>thêm 7 ngày</small>';
+  more.onclick=function(){
+    var last=days[days.length-1].t;
+    for(var k=1;k<=7;k++){var x=new Date(last.getTime()+k*864e5);days.push({t:x,label:WD[x.getDay()],date:x.getDate()+'/'+(x.getMonth()+1)})}
+    try{if(typeof renderBkDays==='function')renderBkDays()}catch(e0){}
+    try{if(typeof dwRenderDays==='function')dwRenderDays()}catch(e1){}
+  };
+  el.appendChild(more);
+}
+function renderSlots(el,sel,cb){
+  el.innerHTML='';
+  SLOTS.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';b.className='bk-slot'+(s.gap?' gap':'')+(sel===i?' on':'');
+    b.innerHTML='<b>'+s.t+'</b><span>'+(s.gap?'+50.000₫ ưu tiên':avail(0,i+1))+'</span>';
+    b.onclick=function(){cb(i)};el.appendChild(b);
+  })
+}
+function dayText(i){var d=days[i];return d.label+' ('+d.date+')'}
+function code(){var d=new Date();var p=function(n){return (n<10?'0':'')+n};return 'HA'+p(d.getDate())+p(d.getMonth()+1)+String(d.getFullYear()).slice(2)+'-'+(100+Math.floor(Math.random()*900))}
+function phoneOk(v){return /^0\d{8,10}$/.test(v.replace(/[\s.]/g,''))}
+
+/* ============ MAIN BOOKING ============ */
+var bk={d:null,f:null,day:null,slot:null};
+function renderBkDevice(){
+  var el=$('#bkDevice');el.innerHTML='';
+  Object.keys(DEVICES).forEach(function(k){
+    var dv=DEVICES[k];
+    var b=document.createElement('button');b.type='button';b.className='chip'+(bk.d===k?' on':'');
+    b.innerHTML='<svg class="ic"><use href="#'+dv.icon+'"/></svg>'+dv.name;
+    b.onclick=function(){bk.d=k;bk.f=null;renderBkDevice();renderBkFault();renderBkSum()};
+    el.appendChild(b);
+  })
+}
+function renderBkFault(){
+  var el=$('#bkFault');el.innerHTML='';
+  if(!bk.d){el.innerHTML='<span style="font-size:13px;color:var(--soft)">Chọn dòng nhạc cụ ở bước 1 để hiện đúng lỗi thường gặp.</span>';return}
+  DEVICES[bk.d].faults.forEach(function(f,i){
+    var b=document.createElement('button');b.type='button';b.className='chip'+(bk.f===i?' on':'');
+    b.innerHTML=f[0]+' <small>từ '+fmt(f[1]*1000)+'</small>';
+    b.onclick=function(){bk.f=i;renderBkFault();renderBkSum()};
+    el.appendChild(b);
+  })
+}
+function bkRerender(){renderBkDays();renderBkSlots()}
+function renderBkDays(){renderDays($('#bkDays'),bk.day,function(i){bk.day=i;renderBkDays();renderBkSum()})}
+function renderBkSlots(){renderSlots($('#bkSlots'),bk.slot,function(i){bk.slot=i;renderBkSlots();renderBkSum()})}
+function renderBkSum(){
+  $('#sumDevice').textContent=bk.d?DEVICES[bk.d].name:'— chưa chọn —';
+  $('#sumFault').textContent=bk.f!=null?DEVICES[bk.d].faults[bk.f][0]:'—';
+  $('#sumDay').textContent=bk.day!=null?dayText(bk.day):'—';
+  $('#sumSlot').textContent=bk.slot!=null?SLOTS[bk.slot].t:'—';
+  $('#sumGap').textContent=(bk.slot!=null&&SLOTS[bk.slot].gap)?'+50.000₫':'—';
+  $('#sumPrice').textContent=(bk.f!=null)?'từ '+fmt(DEVICES[bk.d].faults[bk.f][1]*1000):'chờ xưởng báo giá';
+}
+function bkDone(c){
+  $('#bkSumBody').outerHTML='<div id="bkSumBody" class="bk-done"><span class="done-ic"><svg class="ic"><use href="#i-check"/></svg></span><b style="color:#fff;font-size:17px">Đã nhận yêu cầu đặt lịch!</b><div class="code">'+c+'</div><div class="done-list"><div><span>Thiết bị</span><b>'+DEVICES[bk.d].name+'</b></div><div><span>Ngày giờ</span><b>'+dayText(bk.day)+' · '+SLOTS[bk.slot].t+'</b></div><div><span>Liên hệ</span><b>'+$('#bkName').value.trim()+' · '+$('#bkPhone').value.trim()+'</b></div></div><div style="font-size:12.5px;color:#CDBFEC">Xưởng gọi xác nhận trong 15 phút. Gấp? Gọi xưởng ngay:</div><a class="btn btn-red" href="tel:0908246357" style="width:100%;margin-top:10px"><span class="pulse"></span> 0908 246 357</a></div>';
+  var btn=$('#bkConfirm');btn.textContent='Đặt lịch khác';btn.className='btn btn-ghost';
+  btn.onclick=function(){resetBk()};
+  var badge=$('#bookBadge');badge.textContent=(parseInt(badge.textContent||'0',10)+1)+'';badge.style.display='grid';
+  toast('Mã hẹn '+c+' — xưởng gọi xác nhận trong 15 phút','Đã tạo lịch hẹn');
+}
+function resetBk(){
+  bk={d:null,f:null,day:null,slot:null};
+  $('#bkSumBody').outerHTML='<div id="bkSumBody"><div class="sum-rows"><div class="sum-row"><span class="k">Thiết bị</span><span class="v" id="sumDevice">— chưa chọn —</span></div><div class="sum-row"><span class="k">Lỗi mô tả</span><span class="v" id="sumFault">—</span></div><div class="sum-row"><span class="k">Ngày</span><span class="v" id="sumDay">—</span></div><div class="sum-row"><span class="k">Khung giờ</span><span class="v" id="sumSlot">—</span></div><div class="sum-row"><span class="k">Kiểm tra – chẩn đoán</span><span class="v" style="color:#6FE3A5">0₫</span></div><div class="sum-row"><span class="k">Phí ưu tiên GẤP</span><span class="v" id="sumGap">—</span></div><div class="sum-row total"><span class="k">Dự kiến sửa từ</span><span class="v" id="sumPrice">chờ xưởng báo giá</span></div></div><div class="sum-note"><svg class="ic"><use href="#i-info"/></svg> Giá từ là tham khảo theo bảng giá — xưởng chốt giá chính xác sau khi xem đàn, bạn đồng ý mới sửa, không phát sinh ngoài báo giá.</div></div>';
+  var btn=$('#bkConfirm');btn.innerHTML='<svg class="ic"><use href="#i-check"/></svg> Xác nhận — nhận mã hẹn';btn.className='btn btn-accent';
+  btn.onclick=bkSubmit;renderBkDevice();renderBkFault();bkRerender();
+}
+function bkSubmit(){
+  if(bk.d==null||bk.f==null){toast('Chọn dòng nhạc cụ và mô tả lỗi trước nhé','Thiếu thông tin');return}
+  if(bk.day==null||bk.slot==null){toast('Chọn ngày và khung giờ mang đàn / hẹn thợ','Thiếu thông tin');return}
+  if($('#bkName').value.trim().length<2){toast('Nhập họ tên của bạn','Thiếu thông tin');$('#bkName').focus();return}
+  if(!phoneOk($('#bkPhone').value)){toast('Số điện thoại chưa đúng — vd 0908 246 357','Số không hợp lệ');$('#bkPhone').focus();return}
+  if($('#bkAddr').value.trim().length<6){toast('Nhập địa chỉ nếu cần thợ đến — hoặc ghi "mang ra xưởng"','Thiếu thông tin');$('#bkAddr').focus();return}
+  bkDone(code());
+}
+$('#bkConfirm').onclick=bkSubmit;
+renderBkDevice();renderBkFault();bkRerender();
+
+/* ============ PREFILL data-book ============ */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-book]');
+  if(!t)return;
+  var m=BOOKKEY[t.getAttribute('data-book')];
+  if(!m)return;
+  resetBk();
+  bk.d=m[0];bk.f=m[1];renderBkDevice();renderBkFault();renderBkSum();
+  document.getElementById('dat-lich').scrollIntoView({behavior:'smooth'});
+  toast('Đã chọn: '+DEVICES[m[0]].name+' — chọn ngày & giờ nhé','Chuyển vào phiếu hẹn');
+});
+
+/* ============ PRICE TABLE ============ */
+function renderPT(k){
+  var rows=PT[k];var h='';
+  rows.forEach(function(r){h+='<tr><td><b>'+r[0]+'</b></td><td class="p-time">'+r[1]+'</td><td class="p-price">'+r[2]+'</td></tr>'});
+  h+='<tr><td><b>Sửa micro – mixer · trống – gõ</b></td><td class="p-time">40–150 phút</td><td class="p-price">từ 150.000₫</td></tr>';
+  $('#ptBody').innerHTML=h;
+}
+$$('.ptab').forEach(function(b){
+  b.onclick=function(){
+    $$('.ptab').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    renderPT(b.getAttribute('data-pt'));
+  }
+});
+renderPT('guitar');
+
+/* ============ CALCULATOR ============ */
+var cal={d:'guitar',item:0,qty:1};
+function calFillDevice(){
+  var s=$('#calDevice');s.innerHTML='';
+  Object.keys(DEVICES).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=DEVICES[k].name;s.appendChild(o)});
+}
+function calFillItem(){
+  var s=$('#calItem');s.innerHTML='';
+  CAL[cal.d].forEach(function(it,i){var o=document.createElement('option');o.value=i;o.textContent=it[0]+' — từ '+fmt(it[1]*1000);s.appendChild(o)});
+}
+function calRun(){
+  var u=CAL[cal.d][cal.item][1]*1000;
+  var gap=parseInt($('#calWhen').value,10)||0;
+  var lo=u*cal.qty+gap,hi=Math.round(u*1.6/10000)*10*cal.qty+gap;
+  $('#calPrice').textContent=fmt(lo)+' – '+fmt(hi);
+  $('#calSub').textContent=DEVICES[cal.d].name+' · '+CAL[cal.d][cal.item][0];
+  $('#calUnit').textContent='từ '+fmt(u);
+  $('#calQtyTxt').textContent=cal.qty+' thiết bị';
+  $('#calGap').textContent=gap?'+50.000₫':'0₫';
+}
+$('#calDevice').onchange=function(){cal.d=this.value;cal.item=0;calFillItem();calRun()};
+$('#calItem').onchange=function(){cal.item=parseInt(this.value,10);calRun()};
+$('#calWhen').onchange=calRun;
+$('#calMinus').onclick=function(){if(cal.qty>1){cal.qty--;$('#calQty').textContent=cal.qty;calRun()}};
+$('#calPlus').onclick=function(){if(cal.qty<5){cal.qty++;$('#calQty').textContent=cal.qty;calRun()}};
+$('#calBook').onclick=function(){
+  resetBk();
+  bk.d=cal.d;bk.f=0;renderBkDevice();renderBkFault();renderBkSum();
+  document.getElementById('dat-lich').scrollIntoView({behavior:'smooth'});
+  toast('Mang theo con số ước tính — xưởng chốt giá sau khi xem đàn','Đã chuyển sang phiếu hẹn');
+};
+calFillDevice();calFillItem();calRun();
+
+/* ============ BENTO KHOI-8 (NB93-102) ============ */
+function bentoRender(){
+  var el=$('#bento');el.innerHTML='';
+  var areas=['a','b','c','d','e','f','g','h'];
+  SERVICES.forEach(function(s,i){
+    var card=document.createElement('div');
+    card.className='bx bx-'+areas[i];
+    var big=(i===0),wide=(i===1);
+    var h='<div class="bx-img"><img src="'+s.img+'" alt="'+s.name+'" loading="lazy">';
+    if(s.badge)h+='<span class="bx-tag '+s.tagcls+'">'+s.badge+'</span>';
+    h+='<span class="bx-dur"><svg class="ic"><use href="#i-clock"/></svg>'+s.dur+'</span></div>';
+    h+='<div class="bx-body"><h3>'+s.name+'</h3><p>'+s.desc+'</p>';
+    if(big){
+      h+='<ul>';
+      s.list.forEach(function(li){h+='<li><svg class="ic"><use href="#i-check"/></svg>'+li+'</li>'});
+      h+='</ul>';
+    }
+    h+='<div class="bx-foot"><span class="bx-price"><small>GIÁ TỪ</small><b>'+fmt(s.from)+'</b></span><div class="bx-acts"><button type="button" class="bx-act" data-view="'+i+'" title="Xem chi tiết" aria-label="Xem chi tiết"><svg class="ic"><use href="#i-eye"/></svg></button><button type="button" class="bx-book" data-book="'+s.k+'">Đặt lịch</button></div></div></div>';
+    card.innerHTML=h;
+    el.appendChild(card);
+  });
+}
+bentoRender();
+
+/* ============ BAN THU AM (NB93-102) ============ */
+var taK='guitar';
+function taRenderTabs(){
+  var el=$('#taTabs');el.innerHTML='';
+  Object.keys(THUAM).forEach(function(k){
+    var b=document.createElement('button');b.type='button';b.className='ta-tab'+(taK===k?' on':'');
+    b.innerHTML='<svg class="ic"><use href="#'+THUAM[k].icon+'"/></svg>'+THUAM[k].label;
+    b.onclick=function(){taK=k;taRenderTabs();taRenderPanel()};
+    el.appendChild(b);
+  });
+}
+function taRenderPanel(){
+  var d=THUAM[taK];
+  var h='<h3><svg class="ic"><use href="#'+d.icon+'"/></svg>Chuẩn thử âm: '+d.label+'</h3><ol class="ta-steps">';
+  d.steps.forEach(function(s){h+='<li>'+s+'</li>'});
+  h+='</ol><div class="ta-tho"><span class="tt-ic"><svg class="ic"><use href="#i-user"/></svg></span><span><b>'+d.tho+'</b><span>Người chơi mẫu — bạn thử lại trước khi ký nhận</span></span></div><div class="ta-tools">';
+  d.tools.forEach(function(t){h+='<i>'+t+'</i>'});
+  h+='</div>';
+  $('#taPanel').innerHTML=h;
+}
+taRenderTabs();taRenderPanel();
+/*NB93-102: thanh equalizer trang tri (28 cot, do tre xen ke)*/
+(function(){
+  var eqs=[$('#eqMain'),$('#eqGold')];
+  eqs.forEach(function(eq){
+    if(!eq)return;
+    var h='';
+    for(var i=0;i<28;i++){
+      var d=(i*90)%700;
+      var base=25+((i*37)%55);
+      h+='<i style="animation-delay:-'+d+'ms;height:'+base+'%"></i>';
+    }
+    eq.innerHTML=h;
+  });
+})();
+
+/* ============ MODAL ============ */
+function openModal(idx){
+  var s=SERVICES[idx];
+  $('#mdImg').src=s.img;$('#mdImg').alt=s.name;
+  $('#mdName').textContent=s.name;
+  $('#mdDesc').textContent=s.desc;
+  $('#mdMeta').innerHTML='<span class="m-chip"><svg class="ic"><use href="#i-clock"/></svg> '+s.dur+'</span><span class="m-chip"><svg class="ic"><use href="#i-shield"/></svg> BH 3 tháng</span><span class="m-chip"><svg class="ic"><use href="#i-money"/></svg> Giá từ '+fmt(s.from)+'</span>';
+  var h='';s.cat.forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'});
+  $('#mdTable').innerHTML=h;
+  $('#mdBook').onclick=function(){$('#modalOv').classList.remove('open');
+    var m=BOOKKEY[s.k];resetBk();bk.d=m[0];bk.f=m[1];renderBkDevice();renderBkFault();renderBkSum();
+    document.getElementById('dat-lich').scrollIntoView({behavior:'smooth'});
+    toast('Đã chọn: '+s.name+' — chọn ngày & giờ nhé','Chuyển vào phiếu hẹn')};
+  $('#modalOv').classList.add('open');
+}
+document.addEventListener('click',function(e){
+  var v=e.target.closest('[data-view]');
+  if(v){openModal(parseInt(v.getAttribute('data-view'),10))}
+});
+$('#mdX').onclick=function(){$('#modalOv').classList.remove('open')};
+$('#modalOv').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')});
+
+/* ============ DRAWER BOOKING ============ */
+var dw={s:null,day:null,slot:null};
+function dwRenderService(){
+  var el=$('#dwService');el.innerHTML='';
+  SERVICES.forEach(function(s){
+    var b=document.createElement('button');b.type='button';b.className='chip'+(dw.s===s.k?' on':'');
+    b.textContent=s.name;
+    b.onclick=function(){dw.s=s.k;dwRenderService();$('#drPrice').textContent='từ '+fmt(s.from)};
+    el.appendChild(b);
+  })
+}
+function dwRenderDays(){renderDays($('#dwDays'),dw.day,function(i){dw.day=i;dwRenderDays()})}
+function dwRenderSlots(){renderSlots($('#dwSlots'),dw.slot,function(i){dw.slot=i;dwRenderSlots()})}
+function dwReset(){
+  $('#drBody').innerHTML='<a class="dr-call" href="tel:0908246357"><svg class="ic"><use href="#i-phone"/></svg><span><b>Gấp? Gọi xưởng 0908 246 357</b><span>Nhận đàn ưu tiên trong 2 giờ</span></span><span class="btn btn-red">Gọi</span></a><div class="bk-step"><div class="bk-label"><span class="n">1</span> Dịch vụ</div><div class="chips" id="dwService"></div></div><div class="bk-step"><div class="bk-label"><span class="n">2</span> Ngày</div><div class="bk-days" id="dwDays" style="grid-template-columns:repeat(7,1fr);gap:6px"></div></div><div class="bk-step"><div class="bk-label"><span class="n">3</span> Giờ</div><div class="bk-slots" id="dwSlots" style="grid-template-columns:repeat(2,1fr);gap:7px"></div></div><div class="bk-step"><div class="fld"><label>Số điện thoại *</label><input id="dwPhone" type="tel" placeholder="09xx xxx xxx" inputmode="numeric"></div></div>';
+  $('#drFoot').style.display='grid';
+  $('#drPrice').textContent='—';
+  dw={s:null,day:null,slot:null};
+  dwRenderService();dwRenderDays();dwRenderSlots();
+}
+function openDrawer(){
+  if($('.bk-done',$('#drawer')))dwReset();
+  $('#drawer').classList.add('open');$('#drawerOv').classList.add('open');
+}
+function closeDrawer(){$('#drawer').classList.remove('open');$('#drawerOv').classList.remove('open')}
+$('#bookOpen').onclick=openDrawer;
+$('#fabBook').onclick=openDrawer;
+$('#drawerX').onclick=closeDrawer;
+$('#drawerOv').onclick=closeDrawer;
+$('#dwConfirm').onclick=function(){
+  if(!dw.s){toast('Chọn 1 dịch vụ trước nhé','Thiếu thông tin');return}
+  if(dw.day==null||dw.slot==null){toast('Chọn ngày và khung giờ','Thiếu thông tin');return}
+  if(!phoneOk($('#dwPhone').value)){toast('Số điện thoại chưa đúng — vd 0908 246 357','Số không hợp lệ');$('#dwPhone').focus();return}
+  var c=code();
+  var s=SERVICES.filter(function(x){return x.k===dw.s})[0];
+  $('#drBody').innerHTML='<div class="bk-done"><span class="done-ic"><svg class="ic"><use href="#i-check"/></svg></span><b style="display:block;font-size:17px;margin-bottom:4px">Đã nhận lịch!</b><p style="font-size:13.5px;color:var(--soft)">'+s.name+' · '+dayText(dw.day)+' · '+SLOTS[dw.slot].t+'</p><div class="code">'+c+'</div><p style="font-size:12.5px;color:var(--soft)">Xưởng gọi xác nhận trong 15 phút.</p><a class="btn btn-red" href="tel:0908246357" style="width:100%;margin-top:14px"><span class="pulse"></span> Gọi xác nhận ngay 0908 246 357</a></div>';
+  $('#drFoot').style.display='none';
+  var badge=$('#bookBadge');badge.textContent=(parseInt(badge.textContent||'0',10)+1)+'';badge.style.display='grid';
+  toast('Mã hẹn '+c+' — hẹn gặp bạn tại xưởng','Đã tạo lịch hẹn');
+  setTimeout(closeDrawer,2600);
+};
+dwRenderService();dwRenderDays();dwRenderSlots();
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrawer();$('#modalOv').classList.remove('open')}});
+
+/*NB93-102: ============ SEARCH that (typeahead tu du lieu dich vu + FAQ + muc chinh) ============ */
+var ns=$('#navSearch'),sp=$('#searchPanel');
+var SECIDX=[
+  {t:'Bảng giá tham khảo theo từng thiết bị',d:'Guitar – đàn dây · piano – organ · loa – amply',p:'',act:function(){document.getElementById('bang-gia').scrollIntoView({behavior:'smooth'})}},
+  {t:'Đặt lịch sửa đàn',d:'Chọn thiết bị – lỗi – ngày – giờ, nhận mã hẹn ngay',p:'',act:function(){document.getElementById('dat-lich').scrollIntoView({behavior:'smooth'})}},
+  {t:'Bàn thử âm 6 bước',d:'Thử âm đạt mới trả đàn — cam kết không đạt không nhận tiền',p:'',act:function(){document.getElementById('thu-am').scrollIntoView({behavior:'smooth'})}}
+];
+function buildIdx(){
+  var IDX=[];
+  SERVICES.forEach(function(s){
+    IDX.push({t:s.name,d:s.desc,p:'từ '+fmt(s.from),act:function(){openModal(SERVICES.indexOf(s))}});
+  });
+  FAQ.forEach(function(f){
+    IDX.push({t:f[0],d:f[1],p:'',act:function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'});
+      var chips=$$('#faqChips .faq-chip');if(chips.length){chips.forEach(function(c){c.classList.remove('on')});chips[0].classList.add('on')}
+      $('#faqSearch').value='';faqRender(null);
+      setTimeout(function(){var list=$$('#faqList .faq-item');var nrmf=function(s){return String(s).toLowerCase()};
+        for(var i=0;i<list.length;i++){if(nrmf(list[i].textContent).indexOf(nrmf(f[0]))>-1){var q=list[i].querySelector('.faq-q');if(q&&!list[i].classList.contains('open'))q.click();list[i].scrollIntoView({behavior:'smooth',block:'center'});break}}},350);
+    }});
+  });
+  SECIDX.forEach(function(s){IDX.push(s)});
+  return IDX;
+}
+var IDX=buildIdx();
+function nrm(s){return String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')}
+function searchIdx(q){
+  var nq=nrm(q).replace(/\s+/g,' ').trim();
+  if(!nq)return[];
+  var toks=nq.split(' '),out=[];
+  IDX.forEach(function(it){
+    var hay=nrm(it.t+' '+it.d+' '+it.p),sc=0,ok=true;
+    for(var i=0;i<toks.length;i++){
+      var a=hay.indexOf(toks[i]);
+      if(a<0){ok=false;break}
+      sc+=(a===0?3:2);
+    }
+    if(ok)out.push([sc,it]);
+  });
+  out.sort(function(x,y){return y[0]-x[0]});
+  return out.slice(0,6).map(function(x){return x[1]});
+}
+function spRender(){
+  var q=ns.value.trim();
+  if(!q){sp.classList.remove('open');sp.innerHTML='';return}
+  var list=searchIdx(q);
+  var h='';
+  if(!list.length){
+    h='<div class="sp-item"><span class="sp-t"><b>Không có kết quả khớp "'+q.replace(/</g,'&lt;')+'"</b><span>Gọi '+HOT+' để được tư vấn ngay</span></span></div>';
+  }else{
+    list.forEach(function(it){
+      h+='<div class="sp-item" role="button" tabindex="0"><img src="'+SERVICES[0].img+'" alt=""><span class="sp-t"><b>'+it.t+'</b><span>'+(it.p?it.p+' · ':'')+it.d.slice(0,72)+'</span></span><span class="go">Xem</span></div>';
+    });
+  }
+  sp.innerHTML=h;sp.classList.add('open');
+  var items=$$('.sp-item',sp);
+  items.forEach(function(it,i){
+    it.onclick=function(){sp.classList.remove('open');ns.value='';if(list[i])list[i].act()};
+  });
+}
+ns.addEventListener('input',spRender);
+ns.addEventListener('focus',function(){if(ns.value.trim())spRender()});
+ns.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    var list=searchIdx(ns.value);
+    if(list.length){sp.classList.remove('open');ns.value='';list[0].act()}
+  }
+  if(e.key==='Escape')sp.classList.remove('open');
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.h-search'))sp.classList.remove('open')});
+
+/* ============ FAQ ============ */
+function faqRender(kw){
+  var el=$('#faqList');el.innerHTML='';var n=0;
+  FAQ.forEach(function(f){
+    var hay=(f[0]+' '+f[1]).toLowerCase();
+    if(kw&&hay.indexOf(kw)<0)return;
+    n++;
+    var d=document.createElement('div');d.className='faq-item';
+    d.innerHTML='<button type="button" class="faq-q"><span class="fq-i">?</span>'+f[0]+'<span class="fq-x">+</span></button><div class="faq-a"><div class="faq-a-in">'+f[1]+'</div></div>';
+    var q=$('.faq-q',d);
+    q.onclick=function(){
+      var open=d.classList.contains('open');
+      $$('.faq-item.open',el).forEach(function(x){x.classList.remove('open');$('.faq-a',x).style.maxHeight='0px'});
+      if(!open){d.classList.add('open');var a=$('.faq-a',d);a.style.maxHeight=a.scrollHeight+'px'}
+    };
+    el.appendChild(d);
+  });
+  $('#faqEmpty').style.display=n?'none':'block';
+}
+$('#faqSearch').addEventListener('input',function(){
+  var v=this.value.trim().toLowerCase();
+  $$('.faq-chip').forEach(function(c){c.classList.remove('on')});
+  faqRender(v||null);
+});
+$$('#faqChips .faq-chip').forEach(function(c){
+  c.onclick=function(){
+    $$('#faqChips .faq-chip').forEach(function(x){x.classList.remove('on')});
+    c.classList.add('on');$('#faqSearch').value='';
+    faqRender(c.getAttribute('data-k')||null);
+  }
+});
+faqRender(null);
+
+/* ============ BEFORE / AFTER ============ */
+var ba=$('#baRange');
+function baMove(){
+  var v=parseInt(ba.value,10);
+  $('#baCover').style.width=v+'%';
+  $('#baLine').style.left=v+'%';
+  $('#baHandle').style.left=v+'%';
+}
+ba.addEventListener('input',baMove);baMove();
+
+/* ============ CONTACT FORM ============ */
+$('#ctForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if($('#ctName').value.trim().length<2){toast('Nhập họ tên của bạn','Thiếu thông tin');$('#ctName').focus();return}
+  if(!phoneOk($('#ctPhone').value)){toast('Số điện thoại chưa đúng — vd 0908 246 357','Số không hợp lệ');$('#ctPhone').focus();return}
+  if($('#ctAddr').value.trim().length<6){toast('Nhập địa chỉ nếu cần thợ đến — hoặc ghi "mang ra xưởng"','Thiếu thông tin');$('#ctAddr').focus();return}
+  this.reset();
+  toast('Xưởng gọi lại chốt giờ và báo giá sơ bộ trong 30 phút','Đã gửi yêu cầu');
+});
+
+/* ============ REVEAL / COUNTERS / DOCK ============ */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('rv-in');io.unobserve(en.target)}});
+},{threshold:.12});
+$$('[data-rv]').forEach(function(el){el.style.transitionDelay=(el.getAttribute('data-d')||0)+'ms';io.observe(el)});
+var ioC=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(!en.isIntersecting)return;ioC.unobserve(en.target);
+    var el=en.target,end=parseInt(el.getAttribute('data-count'),10),suf=el.getAttribute('data-suffix')||'',t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1400,1);var v=Math.round(end*(1-Math.pow(1-p,3)));
+      el.textContent=v.toLocaleString('vi-VN')+(p===1?suf:'');if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  });
+},{threshold:.4});
+$$('[data-count]').forEach(function(el){ioC.observe(el)});
+var hero=$('#top');
+var ioH=new IntersectionObserver(function(es){es.forEach(function(en){$('#fabDock').classList.toggle('hide',en.isIntersecting)})},{threshold:.15});
+ioH.observe(hero);
+window.addEventListener('scroll',function(){$('#fabUp').style.display=window.scrollY>700?'inline-flex':'none'},{passive:true});
+$('#fabUp').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+
+/* ============ TAPE DUPLICATE ============ */
+var tr=$('#tapeRun');tr.innerHTML=tr.innerHTML+tr.innerHTML;
+
+/* ============ REVIEWS AUTO ============ */
+var ri=0;
+setInterval(function(){
+  ri=(ri+1)%5;
+  $('#revRun').style.transform='translateX(-'+ri*100+'%)';
+},6000);
+})();
+</script>
+<!-- NB93-102-CHAT: widget chat tu van truc tiep (demo bot nghe nhac cu) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn Xưởng Hơi Âm</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/* NB93-102-CHAT: widget chat */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#6C3FC5,#4A2A8A);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(74,42,138,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(30,11,60,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#4A2A8A,#2A1150);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F7F5FC}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(30,11,60,.08);border-bottom-left-radius:4px;color:#241735}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#6C3FC5,#4A2A8A);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(30,11,60,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9A8FB5;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(30,11,60,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(108,63,197,.4);color:#4A2A8A;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.pkc-chip:hover{background:#F2EEFA}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(30,11,60,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(30,11,60,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#6C3FC5;box-shadow:0 0 0 3px rgba(108,63,197,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#6C3FC5,#4A2A8A);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:78px;width:54px;height:54px}.pkc-x{width:38px;height:38px}.pkc-on{font-size:12px}.pkc-chip{font-size:12px}.pkc-panel{bottom:142px;z-index:185}}
+</style><script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+<script>
+/* NB93-102-FAILSAFE: element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<script>/*NB93-102-DOCKHIDE: dock tu an khi cuon xuong — khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script>
+<style>/*NB93-102-SEARCH: dropdown goi y tim kiem header theo token mau/radius cua site*/
+.search-panel{position:absolute;top:calc(100% + 10px);left:0;right:0;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-m);box-shadow:var(--sh-3);padding:6px;display:none;z-index:130;max-height:min(380px,70vh);overflow:auto}
+.search-panel.open{display:block}
+.sp-item{display:flex;align-items:center;gap:12px;padding:9px 13px;border-radius:10px;cursor:pointer}
+.sp-item:hover{background:var(--texture)}
+.sp-item img{width:52px;height:40px;object-fit:cover;border-radius:9px;flex:none}
+.sp-item .sp-t{display:block;min-width:0;flex:1}
+.sp-item .sp-t b{display:block;font-size:13.5px;line-height:1.35;color:var(--ink-head)}
+.sp-item .sp-t span{display:block;font-size:12.5px;color:var(--soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-item .go{font-size:12px;font-weight:800;color:var(--primary);background:rgba(108,63,197,.1);padding:6px 12px;border-radius:999px;flex:none}
+@media(max-width:680px){.search-panel{max-height:62vh}.sp-item .sp-t b{font-size:14px}.sp-item .sp-t span{font-size:12px}}
+</style>
+</body>
+</html>

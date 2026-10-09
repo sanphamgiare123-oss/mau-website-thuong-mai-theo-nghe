@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Văn phòng Kiến trúc Kiến Tạo — Tư vấn thiết kế kiến trúc &amp; kết cấu | Kiến tạo không gian sống</title>
+<meta name="description" content="Văn phòng Kiến trúc Kiến Tạo — thiết kế nhà phố, biệt thự, nội thất, cafe–shop, văn phòng. Phối cảnh 3D, hồ sơ bản vẽ thi công, hồ sơ xin phép xây dựng, tư vấn phong thủy. Kiến tạo không gian sống, hoàn hảo đến từng chi tiết.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Văn phòng Kiến trúc Kiến Tạo","description":"Tư vấn thiết kế kiến trúc và kết cấu: nhà phố, biệt thự, nội thất, cafe-shop, văn phòng, hồ sơ thi công và xin phép xây dựng","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Số 79 Đường Số 9, P. Bình An, TP. Thủ Đức, TP.HCM","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7910,"longitude":106.7433},"openingHours":"Mo-Sa 08:00-18:30","priceRange":"90.000đ-220.000đ/m2"}
+</script>
+<style>
+/*NB110-132*/
+:root{
+  --navy:#0E2233; --navy-2:#16324A; --navy-3:#081826;
+  --gold:#C9A24B; --gold-2:#E4C87F; --gold-soft:#F3E6C8;
+  --bg:#F4F1E9; --paper:#FFFDF7; --ink:#26313B; --mut:#75808B;
+  --line:#D9D2C0; --line-navy:#2C4A63; --ok:#3E8E5A;
+  --r:6px; --sh:0 2px 10px rgba(14,34,51,.08);
+  --mono:'Consolas','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3{font-family:'Segoe UI',system-ui,Arial,sans-serif;line-height:1.22;text-transform:uppercase;letter-spacing:.4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:58px 0}
+.sec-head{max-width:660px;margin:0 auto 34px;text-align:center}
+.kicker{display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);border:1px dashed var(--gold);padding:5px 12px;border-radius:3px;background:rgba(201,162,75,.07)}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);margin:14px 0 10px;color:var(--navy)}
+.sec-head p{color:var(--mut);font-size:14.5px}
+.sec-head h2 em{font-style:normal;color:var(--gold)}
+
+/* ===== nét bản vẽ: đường ghi kích thước ===== */
+.dim{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#8A8265;margin:0 2px}
+.dim::before,.dim::after{content:"";flex:1;height:0;border-top:1px solid #B9AF8E;position:relative}
+.dim::before{box-shadow:0 -3px 0 -1px #B9AF8E}
+.dim::after{box-shadow:0 -3px 0 -1px #B9AF8E}
+.stamp{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:3px;padding:4px 9px;background:rgba(255,253,247,.85)}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(255,253,247,.96);border-bottom:2px solid var(--navy);backdrop-filter:blur(8px)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:44px;height:44px;flex:none;border:2px solid var(--gold);border-radius:4px;background:var(--navy);display:grid;place-items:center}
+.logo b{display:block;font-size:16.5px;color:var(--navy);letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--mut);text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{padding:9px 11px;font-size:13.5px;font-weight:600;color:var(--navy-2);border-bottom:2px solid transparent}
+nav.main a:hover{border-color:var(--gold);color:var(--navy)}
+.hd-right{display:flex;align-items:center;gap:8px}
+.hd-tel{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:15px;color:var(--navy);border:1.5px solid var(--line);border-radius:4px;padding:9px 12px;background:var(--paper)}
+.hd-tel svg{color:var(--gold)}
+.hd-cta{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--navy-3);font-weight:800;font-size:13px;border-radius:4px;padding:11px 14px;border:0;white-space:nowrap}
+.hd-cta:hover{background:#B8903C;color:#fff}
+
+/* ===== HERO ===== */
+.hero{position:relative;background:
+  linear-gradient(rgba(14,34,51,.035) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(14,34,51,.035) 1px,transparent 1px),
+  linear-gradient(180deg,#EFEADB,var(--bg) 70%);
+  background-size:28px 28px,28px 28px,auto;
+  border-bottom:1px solid var(--line)}
+.hero-g{display:grid;grid-template-columns:1.04fr .96fr;gap:36px;align-items:center;padding:50px 0 44px}
+.hero .kicker{margin-bottom:16px}
+.hero h1{font-size:clamp(28px,4.4vw,44px);color:var(--navy);margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--gold);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:rgba(201,162,75,.5)}
+.hero p.lead{font-size:15.5px;color:#57626D;max-width:500px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:4px;font-weight:800;min-height:47px;padding:12px 19px;font-size:14px;border:0;white-space:nowrap}
+.btn-a{background:var(--gold);color:var(--navy-3);box-shadow:0 3px 0 #9A7A33}
+.btn-a:hover{background:#B8903C;color:#fff}
+.btn-n{background:var(--navy);color:#F5E9CE;box-shadow:0 3px 0 #06121C}
+.btn-n:hover{background:var(--navy-2)}
+.btn-g{background:var(--paper);color:var(--navy);border:1.5px solid var(--line)}
+.btn-g:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:16px}
+.hero-stats div b{font-family:var(--mono);font-size:21px;color:var(--navy);display:block}
+.hero-stats div span{font-size:12px;color:var(--mut)}
+/* khung bản vẽ đựng poster bìa */
+.draft-frame{position:relative;background:var(--navy);border-radius:6px;padding:12px;box-shadow:0 10px 26px rgba(8,24,38,.25)}
+.draft-frame .corner{position:absolute;width:14px;height:14px;border:2px solid var(--gold-2)}
+.draft-frame .c1{top:-4px;left:-4px;border-right:0;border-bottom:0}
+.draft-frame .c2{top:-4px;right:-4px;border-left:0;border-bottom:0}
+.draft-frame .c3{bottom:-4px;left:-4px;border-right:0;border-top:0}
+.draft-frame .c4{bottom:-4px;right:-4px;border-left:0;border-top:0}
+.draft-frame img{border-radius:3px;width:100%}
+.draft-cap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 2px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:#B9C6D2}
+.draft-cap b{color:var(--gold-2)}
+.hero .stamp-float{position:absolute;top:-14px;right:14px;transform:rotate(2deg);box-shadow:0 4px 10px rgba(8,24,38,.2);z-index:2}
+/* bảng thông số mini dưới poster hero */
+.hero-spec{margin-top:14px;background:var(--paper);border:1.5px solid var(--gold);border-radius:5px;overflow:hidden}
+.hero-spec .hs-row{display:flex;justify-content:space-between;gap:10px;padding:8px 13px;border-bottom:1px dashed var(--line);font-size:12.5px}
+.hero-spec .hs-row:last-child{border-bottom:0}
+.hero-spec .hs-row .k{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
+.hero-spec .hs-row .v{font-weight:700;color:var(--navy);text-align:right}
+/* dải hotline TO */
+.hotline-strip{background:var(--navy);border-radius:6px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;margin-bottom:26px;border-left:6px solid var(--gold)}
+.hotline-strip .lbl{font-size:13px;color:#B9C6D2;line-height:1.35}
+.hotline-strip .lbl b{display:block;color:#fff;font-size:14.5px}
+.hotline-strip a.tel{font-family:var(--mono);font-weight:700;font-size:clamp(22px,3vw,30px);color:var(--gold-2);letter-spacing:1px;margin-left:auto;white-space:nowrap}
+.hotline-strip a.tel:hover{color:#fff}
+
+/* ===== USP tem ===== */
+.usp-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.usp{background:var(--paper);border:1px dashed var(--gold);border-radius:4px;padding:15px 16px;display:flex;gap:12px;align-items:flex-start}
+.usp .no{font-family:var(--mono);font-weight:700;font-size:12px;color:var(--gold);border:1px solid var(--gold);border-radius:3px;padding:2px 6px;flex:none;margin-top:2px}
+.usp b{display:block;font-size:14px;color:var(--navy);letter-spacing:.3px}
+.usp span{font-size:12.5px;color:var(--mut)}
+
+/* ===== KHỐI-8: BENTO BẢN VẼ KỸ THUẬT — 1 thẻ lớn + 7 thẻ nhỏ, kín ô ===== */
+.bento-sec{background:
+  linear-gradient(rgba(14,34,51,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(14,34,51,.03) 1px,transparent 1px),var(--bg);
+  background-size:28px 28px,28px 28px,auto}
+.sheet{background:var(--paper);border:2px solid var(--navy);border-radius:6px;box-shadow:0 8px 24px rgba(14,34,51,.10);padding:clamp(14px,2.4vw,24px);position:relative}
+.sheet-tab{position:absolute;top:-13px;left:26px;background:var(--navy);color:#F5E9CE;font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:3px}
+.sheet-tab b{color:var(--gold-2)}
+.sheet-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut)}
+.sheet-foot b{color:var(--gold)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-areas:"big big a b" "big big c d" "e e f g";gap:14px}
+.bcard{background:#FFF;border:1px solid var(--line);border-radius:5px;display:flex;flex-direction:column;overflow:hidden;position:relative;transition:transform .22s,box-shadow .22s,border-color .22s}
+.bcard:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(14,34,51,.13);border-color:var(--gold)}
+.bcard .bimg{padding:10px 10px 0;background:linear-gradient(rgba(14,34,51,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,34,51,.03) 1px,transparent 1px),var(--gold-soft);background-size:20px 20px,20px 20px,auto}
+.bcard .bimg img{border-radius:3px;width:100%;border:1px solid var(--line)}
+.bcard .bhd{display:flex;align-items:center;gap:8px;padding:11px 13px 0}
+.bcard .bno{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);border:1px solid var(--gold-2);background:var(--gold-soft);border-radius:3px;padding:2px 7px;flex:none}
+.bcard h3{font-size:15px;color:var(--navy);letter-spacing:.3px}
+.bcard .bd{padding:7px 13px 12px;display:flex;flex-direction:column;gap:9px;flex:1}
+.bcard .bd p{font-size:12.6px;color:var(--mut);flex:1}
+.bcard .bft{display:flex;align-items:center;gap:10px}
+.pri{font-weight:800;color:var(--navy);font-size:15px;font-family:var(--mono)}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600;font-family:'Segoe UI',Arial,sans-serif}
+.badd{margin-left:auto;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);border-radius:4px;padding:9px 12px;font-weight:800;font-size:12.5px;white-space:nowrap}
+.badd:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-3)}
+.bcard.big{grid-area:big;border:2px solid var(--navy)}
+.bcard.big .big-g{display:flex;flex-direction:column;gap:0;flex:1;padding:12px}
+.bcard.big .bimg{padding:0}
+.bcard.big .bimg img{width:100%}
+.bcard.big .bd{display:flex;flex-direction:column;gap:10px;flex:1;padding:14px 6px 4px}
+.bcard.big .bhd{padding:0}
+.bcard.big h3{font-size:20px}
+.bcard.big .bd p{font-size:13.4px}
+.bcard.big .inc{list-style:none;display:flex;flex-direction:column;gap:5px;font-size:12.8px;color:#4A5560;border-top:1px dashed var(--line);padding-top:10px}
+.bcard.big .inc li::before{content:"▣";color:var(--gold);margin-right:8px;font-size:11px}
+.bcard.big .inc{flex:1;justify-content:center}
+.bcard.big .bft{flex-wrap:wrap;align-items:center}
+.bcard.big .badd{margin-left:auto;min-height:44px;padding:11px 20px;font-size:13.5px}
+.bcard.a{grid-area:a}.bcard.b{grid-area:b}.bcard.c{grid-area:c}.bcard.d{grid-area:d}
+/* thẻ ngang (M.06): poster nguyên khung trên nền phóng bản vẽ */
+.bcard.e{grid-area:e;flex-direction:row;align-items:stretch}
+.bcard.e .bimg{padding:12px;width:68%;flex:none;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(rgba(14,34,51,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,34,51,.03) 1px,transparent 1px),var(--gold-soft);
+  background-size:20px 20px,20px 20px,auto;border-right:1px dashed var(--gold)}
+.bcard.e .bimg img{width:100%;height:auto;border-radius:3px;border:1px solid var(--line);background:#fff}
+.bcard.e .e-bd{padding:13px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.bcard.e .e-bd p{font-size:12.4px;color:var(--mut);flex:1}
+.bcard.e .bft{margin-top:auto}
+.bcard.f{grid-area:f}.bcard.g{grid-area:g}
+/* desktop: poster đứng (M.08) đặt trên khung giấy kẻ ô — giữ nhịp hàng, không cắt chữ */
+@media (min-width:961px){
+  .bcard.g .bimg img{max-height:214px;width:auto;max-width:100%;margin:0 auto}
+}
+.badge-top{position:absolute;top:8px;right:8px;z-index:2;background:var(--navy);color:var(--gold-2);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;border-radius:3px;padding:4px 8px;border:1px solid var(--gold)}
+.badge-top.gold{background:var(--gold);color:var(--navy-3);border-color:#9A7A33}
+
+/* ===== DAC THU — bàn phác thảo hồ sơ ===== */
+.draft-sec{background:
+  linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),var(--navy);
+  background-size:28px 28px,28px 28px,auto;border-radius:8px;padding:clamp(20px,4vw,42px);color:#DDE6EE}
+.draft-sec .kicker{color:var(--gold-2);border-color:var(--gold-2);background:rgba(228,200,127,.08)}
+.draft-sec h2{font-size:clamp(22px,3.4vw,32px);margin:14px 0 8px;color:#fff}
+.draft-sec .sub{color:#9FB2C2;max-width:600px;font-size:14px;margin-bottom:24px}
+.draft-g{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+.q-group label{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-2);margin:16px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid var(--line-navy);background:rgba(255,255,255,.05);color:#DDE6EE;border-radius:4px;padding:9px 14px;font-size:13px;font-weight:600;min-height:40px}
+.chips button:hover{border-color:var(--gold-2)}
+.chips button.on{background:var(--gold);border-color:var(--gold);color:var(--navy-3);font-weight:800}
+.q-note{font-size:12px;color:#9FB2C2;margin-top:14px;line-height:1.5}
+.q-note b{color:var(--gold-2)}
+/* khung tem thông số — output kiểu title block bản vẽ kỹ thuật */
+.tblock{background:#FDFAF2;color:var(--ink);border:2px solid var(--gold);border-radius:5px;overflow:hidden}
+.tblock .tb-head{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--navy);color:#F5E9CE;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase}
+.tblock .tb-head b{color:var(--gold-2)}
+.tb-row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--line);font-size:13px;align-items:baseline}
+.tb-row .k{font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut);width:118px;flex:none}
+.tb-row .v{font-weight:700;color:var(--navy)}
+.tb-row .v.price{font-family:var(--mono);font-size:19px;color:var(--gold);text-shadow:0 1px 0 #fff}
+.tb-row .v small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.tb-list{padding:9px 14px 4px;font-size:12.8px;color:#4A5560}
+.tb-list div{padding:4px 0;border-bottom:1px dotted var(--line)}
+.tb-list div::before{content:"▣";color:var(--gold);margin-right:8px;font-size:11px}
+.tb-cta{width:calc(100% - 28px);margin:12px 14px 14px;background:var(--gold);color:var(--navy-3);border:0;border-radius:4px;font-weight:800;font-size:14px;min-height:46px;box-shadow:0 3px 0 #9A7A33}
+.tb-cta:hover{background:#B8903C;color:#fff}
+.tb-foot{font-size:11px;color:var(--mut);padding:0 14px 12px;text-align:center}
+
+/* ===== QUY TRÌNH ===== */
+.proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.proc{position:relative;padding:0 16px 6px;border-left:1px dashed #B9AF8E}
+.proc:first-child{border-left:0}
+.proc .pno{width:46px;height:46px;border:2px solid var(--navy);border-radius:4px;background:var(--paper);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:16px;color:var(--navy);margin-bottom:12px;box-shadow:3px 3px 0 var(--gold)}
+.proc b{display:block;font-size:15px;color:var(--navy);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+.proc p{font-size:12.8px;color:var(--mut)}
+.proc .pmeta{display:inline-block;margin-top:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;color:var(--gold);text-transform:uppercase}
+
+/* ===== VỀ VĂN PHÒNG ===== */
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.about-g .imgs{display:grid;gap:14px}
+.about-g .imgs img{border-radius:5px;border:1px solid var(--line);box-shadow:var(--sh)}
+.about-txt h2{font-size:clamp(22px,3.4vw,32px);color:var(--navy);margin:14px 0 14px}
+.about-txt p{font-size:14.3px;color:#57626D;margin-bottom:12px}
+.about-txt .sign{font-family:Georgia,serif;font-style:italic;font-size:15px;color:var(--gold)}
+.about-txt .sign b{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:1px;display:block;color:var(--navy);margin-top:3px}
+
+/* ===== ĐÁNH GIÁ ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:5px;padding:17px;display:flex;flex-direction:column;gap:9px}
+.rev .st{color:var(--gold);font-size:13px;letter-spacing:2px}
+.rev p{font-size:12.9px;color:#4A5560;flex:1}
+.rev b{font-size:13px;color:var(--navy)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== NHẬN BÁO GIÁ (lead) ===== */
+.lead-g{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px;align-items:stretch}
+.lead-info{background:var(--navy);color:#DDE6EE;border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.lead-info::after{content:"";position:absolute;right:-34px;bottom:-34px;width:130px;height:130px;border:2px dashed rgba(228,200,127,.35);border-radius:8px;transform:rotate(12deg)}
+.lead-info h3{color:#fff;font-size:19px;text-transform:uppercase}
+.lead-info p{font-size:13.4px;color:#9FB2C2}
+.lead-info .big-tel{font-family:var(--mono);font-weight:700;font-size:clamp(24px,3vw,32px);color:var(--gold-2);letter-spacing:1px}
+.lead-info .li{display:flex;gap:10px;font-size:13px;color:#C4D0DA}
+.lead-info .li i{font-style:normal;color:var(--gold-2)}
+.lead-form{background:var(--paper);border:2px solid var(--navy);border-radius:6px;padding:24px}
+.lead-form h3{color:var(--navy);font-size:18px;text-transform:uppercase;margin-bottom:4px}
+.lead-form .fs{font-size:12.8px;color:var(--mut);margin-bottom:14px}
+.lead-form label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin:10px 0 5px}
+.lead-form label i{color:#B23B3B;font-style:normal}
+.lead-form input,.lead-form select,.lead-form textarea{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:4px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
+.lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:none;border-color:var(--gold)}
+.lead-form input.err,.lead-form textarea.err{border-color:#B23B3B;background:#FFF6F6}
+.lead-form textarea{resize:vertical;min-height:74px}
+.lead-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lead-submit{width:100%;margin-top:16px;background:var(--gold);color:var(--navy-3);border:0;border-radius:4px;font-weight:800;font-size:15px;min-height:48px;box-shadow:0 3px 0 #9A7A33}
+.lead-submit:hover{background:#B8903C;color:#fff}
+.lead-priv{font-size:11.5px;color:var(--mut);text-align:center;margin-top:9px}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:13px}
+.ct-card h3{font-size:17px;color:var(--navy);text-transform:uppercase}
+.ct-line{display:flex;gap:11px;align-items:flex-start;font-size:13.6px;color:#4A5560}
+.ct-line .ic{width:36px;height:36px;flex:none;border-radius:4px;border:1px solid var(--gold-2);background:var(--gold-soft);display:grid;place-items:center;color:var(--navy);font-size:15px}
+.ct-line b{color:var(--navy)}
+.ct-card .tel{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--gold)}
+.ct-card iframe{width:100%;height:236px;border:0;border-radius:4px;flex:1;min-height:236px}
+
+/* ===== FAQ ===== */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 17px;border:0;background:none;text-align:left;font-size:14.3px;font-weight:700;color:var(--navy);min-height:48px}
+.qa>button .qn{font-family:var(--mono);color:var(--gold);margin-right:9px;font-size:12px}
+.qa>button i{font-style:normal;color:var(--gold);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 17px 15px;font-size:13.6px;color:#4A5560}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-3);color:#9FB2C2;margin-top:44px;border-top:3px solid var(--gold)}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:32px 0 22px}
+.ft-g h4{color:#F5E9CE;font-size:12px;margin-bottom:10px;font-family:var(--mono);letter-spacing:1.8px;text-transform:uppercase}
+.ft-g p,.ft-g a{font-size:12.8px;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--gold-2)}
+.ft-brand b{font-size:16px;color:#F5E9CE;display:block;margin-bottom:6px}
+.ft-brand .ft-tel{font-family:var(--mono);color:var(--gold-2);font-weight:700;font-size:15px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.09);padding:13px 0;text-align:center;font-size:11.5px;color:#6E8296}
+
+/* ===== FAB GỬI BRIEF + CHAT ===== */
+.lead-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--gold);color:var(--navy-3);display:grid;place-items:center;box-shadow:0 8px 20px rgba(201,162,75,.45);transition:opacity .25s,transform .25s}
+.lead-fab:hover{background:#B8903C;transform:translateY(-2px)}
+.lead-fab .fab-lb{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--navy);color:#F5E9CE;font-size:12px;font-weight:700;padding:7px 11px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.lead-fab:hover .fab-lb{opacity:1}
+body.chat-open .lead-fab{opacity:0;pointer-events:none}
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--navy);color:#F5E9CE;font-size:22px;box-shadow:0 10px 24px rgba(8,24,38,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 44px rgba(8,24,38,.25);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--navy);color:#F5E9CE}
+.pkc-ava{width:40px;height:40px;border-radius:4px;background:rgba(228,200,127,.16);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#F5E9CE;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#F7F4EC}
+.mg{max-width:82%;padding:9px 12px;border-radius:4px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--gold);color:var(--navy-3)}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line)}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:4px;padding:7px 11px;font-size:12px;font-weight:700;color:var(--navy);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:4px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--gold);color:var(--navy-3);border-radius:4px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+.toast{background:var(--navy-3);color:#E8E0CC;border-radius:5px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.32);animation:tin .3s;border-left:4px solid var(--gold)}
+.toast b{display:block;font-size:13.5px;color:var(--gold-2);margin-bottom:2px}
+.toast span{font-size:12.8px;color:#C9D4DE}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:960px){
+  nav.main{display:none}
+  .hero-g{grid-template-columns:1fr;gap:26px;padding:36px 0}
+  .hero p.lead{max-width:none}
+  .usp-g{grid-template-columns:repeat(2,1fr)}
+  .bento{grid-template-columns:repeat(2,1fr);grid-template-areas:"big big" "a b" "c d" "e e" "f g"}
+  .bcard.big .big-g{grid-template-columns:1fr;gap:10px}
+  .draft-g,.lead-g,.about-g,.ct-g{grid-template-columns:1fr}
+  .proc-g{grid-template-columns:repeat(2,1fr);gap:18px 0}
+  .proc:nth-child(3){border-left:0}
+  .rev-g{grid-template-columns:repeat(2,1fr)}
+  .ft-g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .sec{padding:42px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2;margin-left:auto}
+  .hd-cta{display:none}
+  .usp-g,.rev-g{grid-template-columns:1fr}
+  .hotline-strip{padding:13px 15px;gap:9px}
+  .hotline-strip a.tel{margin-left:0;width:100%;text-align:center}
+  /* khối-8 mobile: thẻ chủ lực đứng đầu + viền vàng nổi */
+  .bento{grid-template-columns:1fr;grid-template-areas:"big" "a" "b" "c" "d" "e" "f" "g";gap:12px}
+  .bcard.big{order:-1;border:2px solid var(--gold);box-shadow:0 10px 24px rgba(201,162,75,.22)}
+  .bcard.big .inc{display:none}
+  .bcard.e{flex-direction:column}
+  .bcard.e .bimg{padding:10px 10px 0;width:100%;border-right:0;border-bottom:1px dashed var(--gold)}
+  .bcard.e .bimg img{height:auto}
+  .proc-g{grid-template-columns:1fr;gap:16px}
+  .proc{border-left:0;border-top:1px dashed #B9AF8E;padding:16px 4px 6px}
+  .proc:first-child{border-top:0;padding-top:0}
+  .lead-form .row2{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 18px}
+  .ft-brand{grid-column:1/-1}
+  .btn{white-space:normal;text-align:center}
+  .hero h1{font-size:27px}
+  .tb-row .k{width:96px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Văn phòng Kiến trúc Kiến Tạo">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#E4C87F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M12 3v4"/></svg>
+      </span>
+      <span><b>Kiến Tạo Architecture</b><small>Thiết kế kiến trúc · kết cấu</small></span>
+    </a>
+    <nav class="main">
+      <a href="#goi-thiet-ke">Gói thiết kế</a>
+      <a href="#ho-so-thu">Phác thảo hồ sơ</a>
+      <a href="#quy-trinh">Quy trình</a>
+      <a href="#ve-chung-toi">Về văn phòng</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="hd-right">
+      <a class="hd-tel" href="tel:0034567899">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+        0034567899
+      </a>
+      <a class="hd-cta" href="#bao-gia">Nhận báo giá</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-g">
+      <div>
+        <span class="kicker">Tư vấn thiết kế kiến trúc &amp; kết cấu · TP. Thủ Đức</span>
+        <h1>Kiến tạo không gian sống,<br><em>hoàn hảo đến từng chi tiết</em></h1>
+        <p class="lead">Gia chủ và chủ đầu tư đến với Kiến Tạo để nhận trọn một bộ: concept công năng, phối cảnh 3D duyệt trước khi xây, bản vẽ thi công và hồ sơ xin phép — nhà phố, biệt thự, cafe–shop hay văn phòng đều làm tới nơi, tới chốn.</p>
+        <div class="hero-cta">
+          <a class="btn btn-a" href="#bao-gia">📩 Nhận hồ sơ + báo phí tư vấn</a>
+          <a class="btn btn-n" href="#ho-so-thu">📐 Phác thảo hồ sơ thử — 5 câu</a>
+        </div>
+        <div class="hotline-strip">
+          <div class="lbl"><b>Hotline tiếp yêu cầu ngay</b>Gọi là có kiến trúc sư nghe — không qua tổng đài</div>
+          <a class="tel" href="tel:0034567899">☎ 0034567899</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>15+</b><span>năm làm hồ sơ thực chiến</span></div>
+          <div><b>480+</b><span>công trình &amp; hồ sơ đã bàn giao</span></div>
+          <div><b>2 lượt</b><span>sửa concept — miễn phí</span></div>
+        </div>
+      </div>
+      <div class="hero-pic rv" style="position:relative">
+        <span class="stamp stamp-float">Hồ sơ chuẩn nộp phép</span>
+        <div class="draft-frame">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <img src="assets/img/cover.webp" alt="Văn phòng tư vấn thiết kế kiến trúc Kiến Tạo — sáng tạo không gian, nâng tầm giá trị" width="1600" height="640" fetchpriority="high">
+          <div class="draft-cap"><span>BẢN VẼ <b>KT-2026-001</b></span><span>TIÊU CHUẨN <b>TCVN 1:100</b></span></div>
+        </div>
+        <div class="hero-spec">
+          <div class="hs-row"><span class="k">Thành lập</span><span class="v">2009 — 15+ năm hồ sơ thực chiến</span></div>
+          <div class="hs-row"><span class="k">Nhân sự</span><span class="v">3 KTS · 2 kỹ sư kết cấu</span></div>
+          <div class="hs-row"><span class="k">Đã bàn giao</span><span class="v">480+ công trình &amp; hồ sơ</span></div>
+          <div class="hs-row"><span class="k">Phạm vi</span><span class="v">TP.HCM · Bình Dương · Đồng Nai</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="dim" style="margin-bottom:14px">Khảo sát → Concept → 3D → Bản vẽ thi công → Xin phép → Giám sát tác giả</div>
+    <div class="usp-g">
+      <div class="usp rv"><span class="no">01</span><div><b>Khảo sát miễn phí trong 30km</b><span>Đo đạc hiện trạng tận lô đất, ghi đủ vị trí — hướng nắng gió trước khi phác.</span></div></div>
+      <div class="usp rv"><span class="no">02</span><div><b>Hồ sơ xin phép trọn bộ</b><span>Nộp phối hợp Sở Xây dựng — đại diện văn phòng đi làm thay.</span></div></div>
+      <div class="usp rv"><span class="no">03</span><div><b>3D duyệt trước khi xây</b><span>Nhìn rõ mặt tiền, vật liệu, ánh đèn — chấm xong mới ra bản vẽ.</span></div></div>
+      <div class="usp rv"><span class="no">04</span><div><b>Giám sát tác giả 100%</b><span>KTS hiện trường từng giai đoạn, nhà thầu làm đúng bản vẽ.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHỐI-8 · PATTERN #4: BENTO BẢN VẼ KỸ THUẬT (1 lớn + 7 nhỏ, kín ô) ===== -->
+<section class="sec bento-sec" id="goi-thiet-ke">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Bảng phác thảo dịch vụ · tỉ lệ 1:100</span>
+      <h2>8 gói thiết kế — <em>chọn đúng việc bạn cần làm</em></h2>
+      <p>Mỗi gói là một "bản vẽ" riêng trong hồ sơ của bạn. Giá là đơn giá tham chiếu 2026 — chốt chính thức sau khảo sát miễn phí.</p>
+    </div>
+    <div class="sheet rv">
+      <span class="sheet-tab">HỒ SƠ <b>KT-132</b> · GÓI THIẾT KẾ</span>
+      <div class="bento" id="bentoGrid"></div>
+      <div class="sheet-foot"><span>NGƯỜI SOẠN: <b>KTS. ĐẶNG KIẾN TẠO</b></span><span>NGÀY: <b>10/2026</b></span><span>KIỂM SOÁT: <b>BP KẾT CẤU</b></span><span>LẦN CHỈNH: <b>R0</b></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAC THU: BỘ CÂU HỎI CÔNG TRÌNH → GÓI HỒ SƠ + PHÍ TƯ VẤN ===== -->
+<section class="sec" id="ho-so-thu">
+  <div class="wrap">
+    <div class="draft-sec rv">
+      <span class="kicker">Bàn phác thảo nhanh — công cụ của Kiến Tạo</span>
+      <h2>Trả lời 5 câu công trình — biết ngay gói hồ sơ &amp; phí tư vấn</h2>
+      <p class="sub">Đúng như lần đầu gặp kiến trúc sư tại văn phòng: diện tích bao nhiêu, đất thế nào, thích phong cách gì — máy phác gói hồ sơ và mức phí tư vấn ngay tại chỗ, gửi brief cho KTS gọi lại chốt.</p>
+      <div class="draft-g">
+        <div class="q-group">
+          <label>1 · Bạn cần thiết kế công trình gì?</label>
+          <div class="chips" id="qType">
+            <button data-v="pho" class="on">Nhà phố</button>
+            <button data-v="bietthu">Biệt thự</button>
+            <button data-v="cafe">Quán cafe – shop</button>
+            <button data-v="vanphong">Văn phòng</button>
+          </div>
+          <label>2 · Diện tích xây dựng dự kiến?</label>
+          <div class="chips" id="qArea">
+            <button data-v="70">Dưới 80 m²</button>
+            <button data-v="115" class="on">80 – 150 m²</button>
+            <button data-v="200">150 – 250 m²</button>
+            <button data-v="320">250 – 400 m²</button>
+            <button data-v="480">Trên 400 m²</button>
+          </div>
+          <label>3 · Hiện trạng lô/nhà?</label>
+          <div class="chips" id="qState">
+            <button data-v="moi" class="on">Đất trống — xây mới</button>
+            <button data-v="caitao">Nhà đang ở — cải tạo, nâng tầng</button>
+            <button data-v="hoanthien">Có khung — hoàn thiện</button>
+          </div>
+          <label>4 · Phong cách ưng nhất?</label>
+          <div class="chips" id="qStyle">
+            <button data-v="hiendai" class="on">Hiện đại</button>
+            <button data-v="toigian">Tối giản</button>
+            <button data-v="tancodien">Tân cổ điển</button>
+            <button data-v="dongduong">Đông Dương</button>
+          </div>
+          <label>5 · Đất nền yếu, cần khảo sát địa chất?</label>
+          <div class="chips" id="qSoil">
+            <button data-v="khong" class="on">Không — đất ổn</button>
+            <button data-v="co">Có — ven sông, đất lấp, nền yếu</button>
+          </div>
+          <p class="q-note">💡 Gói phác theo kinh nghiệm <b>480+ hồ sơ</b> của văn phòng. Phí khảo sát địa chất (nếu có) được <b>khấu trừ trọn</b> khi ký hợp đồng thiết kế.</p>
+        </div>
+        <div class="tblock" aria-live="polite">
+          <div class="tb-head"><span>KHUNG THÔNG SỐ CÔNG TRÌNH</span><b>KIỂM ĐỦ · CHƯA CHỐT</b></div>
+          <div class="tb-row"><span class="k">Gói hồ sơ</span><span class="v" id="oPkg">—</span></div>
+          <div class="tb-row"><span class="k">Công trình</span><span class="v" id="oDesc">—</span></div>
+          <div class="tb-row"><span class="k">Phí tư vấn</span><span class="v price" id="oPrice">—</span></div>
+          <div class="tb-row"><span class="k">Thời gian</span><span class="v" id="oTime">—</span></div>
+          <div id="oSoil"></div>
+          <div class="tb-list" id="oList"></div>
+          <button class="tb-cta" id="tbSend">📩 Gửi cấu hình này — nhận báo giá chi tiết</button>
+          <p class="tb-foot">Ước tính tham khảo ±10% · Báo giá chính thức sau khảo sát miễn phí trong 30km</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUY TRÌNH ===== -->
+<section class="sec" id="quy-trinh" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Từ lô đất đến giấy phép</span>
+      <h2>Bốn bước — mỗi bước có người chịu trách nhiệm</h2>
+    </div>
+    <div class="dim" style="margin-bottom:22px">Đo theo phương ngang — tổng thời gian trung bình 30–45 ngày tuỳ gói</div>
+    <div class="proc-g">
+      <div class="proc rv"><span class="pno">01</span><b>Khảo sát &amp; nghe nhu cầu</b><p>Đến tận lô đất, đo hiện trạng, nghe gia chủ kể thói quen sinh hoạt — không vẽ ngay khi chưa hiểu người ở.</p><span class="pmeta">Miễn phí · trong 30km</span></div>
+      <div class="proc rv"><span class="pno">02</span><b>Concept 2 phương án</b><p>Mặt bằng công năng + hình khối mặt tiền theo 2 hướng xử lý. Sửa miễn phí 2 lượt cho đến khi ưng.</p><span class="pmeta">5–7 ngày</span></div>
+      <div class="proc rv"><span class="pno">03</span><b>Hồ sơ kỹ thuật + 3D</b><p>Phối cảnh duyệt chốt chất liệu, rồi ra trọn bộ bản vẽ kiến trúc – kết cấu – điện nước để thi công.</p><span class="pmeta">14–30 ngày</span></div>
+      <div class="proc rv"><span class="pno">04</span><b>Xin phép &amp; giám sát</b><p>Đại diện nộp hồ sơ xin phép xây dựng; công trình khởi công thì KTS giám sát tác giả tới khi xong.</p><span class="pmeta">Theo tiến độ nhà thầu</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VỀ VĂN PHÒNG ===== -->
+<section class="sec bento-sec" id="ve-chung-toi" style="background:var(--bg)">
+  <div class="wrap about-g">
+    <div class="imgs rv">
+      <img src="assets/img/intro.webp" alt="Kiến trúc sư Kiến Tạo tư vấn trực tiếp cho gia chủ bên mô hình công trình" width="1536" height="1024">
+      <img src="assets/img/space.webp" alt="Không gian văn phòng Kiến Tạo — khu thiết kế, phòng họp, thư viện vật liệu" width="1536" height="1024">
+    </div>
+    <div class="about-txt rv">
+      <span class="kicker">Về văn phòng</span>
+      <h2>Một bàn vẽ, một đội kết cấu — làm đến khi chủ nhà gật đầu</h2>
+      <p>Kiến Tạo bắt đầu từ một bàn vẽ nhỏ ở Thủ Đức năm 2009. Hôm nay văn phòng có 3 kiến trúc sư, 2 kỹ sư kết cấu và một thư viện vật liệu thật — khách sờ được đá, mở được bản vẽ mẫu trước khi chọn.</p>
+      <p>Cái văn phòng giữ từ ngày đầu: không vẽ "cho đẹp bản vẽ". Mỗi đường tường đều phải trả lời được câu hỏi của người sẽ ở trong đó — phòng khách có đông đủ ngày Tết không, căng xe vào cổng có vướng không, nắng chiều có chiếu vào bàn ăn không.</p>
+      <p>Chủ đầu tư cafe–shop, văn phòng làm việc cùng Kiến Tạo còn nhận thêm bảng dự toán vật liệu theo bản vẽ — khỏi lo nhà thầu "vẽ chưa chốt đã báo giá".</p>
+      <p class="sign">"Bản vẽ tốt là bản vẽ thi công được."<b>— KTS. Đặng Kiến Tạo · sáng lập văn phòng</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ ===== -->
+<section class="sec" id="danh-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Chủ nhà &amp; chủ đầu tư nói gì</span>
+      <h2>Hồ sơ chỉ đóng góp khi công trình đứng lên đúng hẹn</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Lô 4×18 hẻm xe tải, tưởng chịu thua. Anh Kiến Tạo xoay phòng khách ra sau, giếng trời giữa nhà — mát hẳn, chẳng cần máy lạnh ban ngày."</p><b>Anh Quốc Bảo</b><span>gia chủ nhà phố · P. Bình An</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Nhà tân cổ điển mà giấy phép nộp một phát đậu. Cô chú em đi làm thay cả hồ sơ, hai vợ chồng chỉ việc ký."</p><b>Cô Hồng Nhung</b><span>gia chủ biệt thự · Dĩ An</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Quán cafe 180 m² mở đúng hẹn mùa lễ. Sơ đồ quầy vẽ sẵn luồng khách, cuối tuần không còn cảnh dồn cục ở lối vào."</p><b>Anh Minh Trí</b><span>chủ đầu tư F&amp;B · Q. Thủ Đức</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Văn phòng 25 nhân sự cải tạo trong khi vẫn chạy việc. Bản vẽ điện nước chi tiết, thợ làm không phải hỏi lại lần nào."</p><b>Chị Thanh Hà</b><span>giám đốc công ty · KCN Sóng Thần</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NHẬN BÁO GIÁ — FORM LEAD (chính = LEAD) ===== -->
+<section class="sec bento-sec" id="bao-gia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Nhận báo giá</span>
+      <h2>Để lại thông tin — <em>KTS gọi lại trong 30 phút</em></h2>
+      <p>Giờ làm việc 08:00–18:30. Ngoài giờ, điền form để sáng hôm sau được gọi đầu tiên.</p>
+    </div>
+    <div class="lead-g">
+      <div class="lead-info rv">
+        <h3>Gọi trực tiếp kiến trúc sư</h3>
+        <p>Không tổng đài, không bán hàng qua điện thoại — người nghe máy là người vẽ cho bạn.</p>
+        <a class="big-tel" href="tel:0034567899">☎ 0034567899</a>
+        <div class="li"><i>▣</i><span>Khảo sát lô đất miễn phí trong 30km — đi trong ngày</span></div>
+        <div class="li"><i>▣</i><span>Báo giá chi tiết từng hạng mục sau khảo sát 1–2 ngày</span></div>
+        <div class="li"><i>▣</i><span>Công trình ngoài 30km: nhận tới Bình Dương, Đồng Nai, Bà Rịa</span></div>
+      </div>
+      <form class="lead-form rv" id="leadForm" novalidate>
+        <h3>📩 Gửi yêu cầu thiết kế</h3>
+        <p class="fs">Điền 3 dòng là đủ — nhu cầu ghi thêm giúp KTS chuẩn bị kỹ hơn khi gọi.</p>
+        <div class="row2">
+          <div><label for="fName">Họ tên <i>*</i></label><input id="fName" type="text" placeholder="VD: Nguyễn Văn Bảo"></div>
+          <div><label for="fPhone">Số điện thoại <i>*</i></label><input id="fPhone" type="tel" placeholder="VD: 0901 234 567"></div>
+        </div>
+        <label for="fCat">Loại công trình</label>
+        <select id="fCat">
+          <option value="">— Chọn loại công trình —</option>
+          <option value="Nhà phố">Nhà phố</option>
+          <option value="Biệt thự">Biệt thự</option>
+          <option value="Quán cafe – shop">Quán cafe – shop</option>
+          <option value="Văn phòng">Văn phòng</option>
+          <option value="Nội thất / hoàn thiện">Nội thất / hoàn thiện</option>
+          <option value="Hồ sơ xin phép / thi công">Hồ sơ xin phép / thi công</option>
+          <option value="Khác">Khác</option>
+        </select>
+        <label for="fNeed">Nhu cầu của bạn</label>
+        <textarea id="fNeed" placeholder="VD: lô đất 5×20 Thủ Đức, muốn xây 1 trệt 2 lầu phong cách hiện đại, cần hồ sơ xin phép + 3D"></textarea>
+        <button class="lead-submit" type="submit" id="leadSubmit">Gửi cho kiến trúc sư Kiến Tạo</button>
+        <p class="lead-priv">Thông tin chỉ dùng để tư vấn thiết kế — không gửi cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ ===== -->
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏢 Ghé văn phòng xem bản vẽ thật</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Văn phòng Kiến Tạo</b><br>Số 79 Đường Số 9, P. Bình An, TP. Thủ Đức, TP.HCM</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ làm việc</b><br>08:00 – 18:30 thứ 2 đến thứ 7 · Chủ nhật hẹn trước</div></div>
+      <a class="btn btn-g" style="align-self:flex-start" href="https://www.google.com/maps?q=10.7910,106.7433&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới văn phòng</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.7910,106.7433 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.7910,106.7433&z=15&output=embed&hl=vi" title="Bản đồ Văn phòng Kiến trúc Kiến Tạo"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều gia chủ hay hỏi trước khi ký</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button><span><span class="qn">Q1</span>Phí thiết kế tính theo m² hay trọn gói?<i>+</i></span></button><div class="a">Tính theo m² xây dựng cho nhà ở (nhà phố từ 160.000đ/m², biệt thự từ 220.000đ/m²). Công trình cafe–shop, văn phòng báo trọn gói theo diện tích và mức đầu tư — chốt bằng văn bản trước khi vẽ, không phát sinh giữa chừng.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q2</span>Văn phòng làm hộ giấy phép xây dựng không?<i>+</i></span></button><div class="a">Có — hồ sơ xin phép là một phần trong gói: bản vẽ chuẩn quy chuẩn, đại diện nộp và phối hợp chỉnh theo góp ý cơ quan chức năng đến khi được cấp. Phí lệ phí nhà nước khách nộp trực tiếp, văn phòng không thu trung gian.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q3</span>Hồ sơ nhận lại gồm những gì?<i>+</i></span></button><div class="a">Bản in + bản mềm: mặt bằng công năng, các mặt tiền và mặt cắt, phối cảnh 3D, bản vẽ kiến trúc – kết cấu – điện – nước chi tiết cho thợ thi công, kèm bảng dự toán vật liệu tham khảo.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q4</span>Bao lâu thì xong hồ sơ?<i>+</i></span></button><div class="a">Concept 5–7 ngày. Nhà phố xây mới trọn bộ khoảng 3 tuần; biệt thự hoặc có tân cổ điển 4–6 tuần; công trình cải tạo cộng thêm 5–7 ngày khảo sát. Có lịch trình cụ thể ngay trong hợp đồng.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q5</span>Sửa bản vẽ có tính phí thêm không?<i>+</i></span></button><div class="a">Giai đoạn concept sửa miễn phí 2 lượt — sửa đến khi ưng hướng xử lý rồi mới vào kỹ thuật. Từ bản vẽ thi công, chỉnh chi tiết nhỏ (cửa, vật liệu, vị trí thiết bị) vẫn miễn phí; đổi kết cấu lớn mới tính lại theo phần thay đổi.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q6</span>Công trình ở tỉnh xa có nhận không?<i>+</i></span></button><div class="a">Nhận — TP.HCM, Bình Dương, Đồng Nai, Bà Rịa và các tỉnh lân cận. Khảo sát xa 30km tính thêm chi phí đi lại đúng chi tiêu thực; phần vẽ và phối hợp giấy phép làm online với lịch hẹn hiện trường cụ thể.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q7</span>Đất nền yếu thì khảo sát địa chất thế nào?<i>+</i></span></button><div class="a">Văn phòng phối hợp đơn vị khoan khảo sát, kỹ sư kết cấu đọc kết quả và chọn phương án móng (móng băng, cọc bê tông, cọc ly tâm) trước khi chốt bản vẽ. Phí khoan được khấu trừ trọn khi ký hợp đồng thiết kế.</div></div>
+      <div class="qa rv"><button><span><span class="qn">Q8</span>Tư vấn phong thủy có tính phí riêng?<i>+</i></span></button><div class="a">Phong thủy ứng dụng (hướng cửa chính, bếp, thờ theo tuổi gia chủ) đã gồm trong gói thiết kế nhà ở. Riêng lượt tư vấn chuyên sâu độc lập — xem nhà sẵn có, chọn ngày khởi công — từ 1.500.000đ/lượt.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>📐 Kiến Tạo Architecture</b>
+      <p>Văn phòng tư vấn thiết kế kiến trúc &amp; kết cấu tại Thủ Đức — kiến tạo không gian sống, hoàn hảo đến từng chi tiết, cho gia chủ và chủ đầu tư.</p>
+      <p style="margin-top:8px">📞 Hotline: <a class="ft-tel" href="tel:0034567899">0034567899</a></p>
+    </div>
+    <div>
+      <h4>Hồ sơ thiết kế</h4>
+      <a href="#goi-thiet-ke">8 gói thiết kế</a>
+      <a href="#ho-so-thu">Phác thảo hồ sơ thử</a>
+      <a href="#quy-trinh">Quy trình 4 bước</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 Số 79 Đường Số 9, P. Bình An, TP. Thủ Đức, TP.HCM</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 08:00 – 18:30 · T2 – T7</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Văn phòng Kiến trúc Kiến Tạo · Đơn giá tham chiếu 2026 — báo giá chính thức sau khảo sát</div>
+</footer>
+
+<!-- ===== FAB GỬI BRIEF (xếp trên chat) ===== -->
+<button class="lead-fab" id="leadFab" aria-label="Gửi yêu cầu thiết kế">
+  <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg>
+  <span class="fab-lb">Gửi yêu cầu thiết kế</span>
+</button>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">📐</div>
+    <div><div class="pkc-name">KTS tư vấn <span data-pkc="brand">Kiến Tạo</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">💰 Phí thiết kế nhà phố?</button>
+    <button class="pkc-chip">📄 Làm hộ xin phép xây dựng?</button>
+    <button class="pkc-chip">⏱ Bao lâu xong hồ sơ?</button>
+    <button class="pkc-chip">✏️ Sửa bản vẽ có mất phí?</button>
+    <button class="pkc-chip">🧭 Công trình tỉnh xa nhận không?</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho kiến trúc sư…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-132*/
+'use strict';
+/* ===== DỮ LIỆU 8 GÓI THIẾT KẾ (khối-8 bento) ===== */
+var P = [
+  {key:'pho', no:'M.01', n:'Thiết kế nhà phố', img:'assets/img/p1.webp', w:714, h:534, feat:'GÓI CHỦ LỰC', price:'160.000đ', unit:'/m²',
+   d:'Lô phố 3,5–7 tầng: mặt bằng công năng theo thói quen gia đình, mặt tiền riêng không đụng hàng, đủ bộ xin phép và thi công.',
+   big:true},
+  {key:'bietthu', no:'M.02', n:'Thiết kế biệt thự', img:'assets/img/p2.webp', w:718, h:534, price:'220.000đ', unit:'/m²',
+   d:'Tỷ lệ mặt tiền – sân vườn – cảnh quan gói chung một khối; kết cấu tính riêng cho gian khách lớn, vách kính.'},
+  {key:'noithat', no:'M.03', n:'Thiết kế nội thất', img:'assets/img/p3.webp', w:532, h:395, price:'150.000đ', unit:'/m²',
+   d:'Từ 3D đến bản vẽ xưởng mộc: đá, gỗ, đèn chốt theo mẫu thật trong thư viện vật liệu của văn phòng.'},
+  {key:'cafe', no:'M.04', n:'Thiết kế quán cafe – shop', img:'assets/img/p4.webp', w:540, h:417, price:'140.000đ', unit:'/m²',
+   d:'Luồng khách – quầy bar – góc "sống ảo" tính trước trên sơ đồ; mở cửa đúng mùa lễ, không đội chi phí phá dỡ.'},
+  {key:'vanphong', no:'M.05', n:'Thiết kế văn phòng', img:'assets/img/p5.webp', w:544, h:426, price:'120.000đ', unit:'/m²',
+   d:'Cải tạo khi công ty vẫn chạy việc: chia module bàn – điện – mạng theo đội nhóm, nghiệm thu từng khu.'},
+  {key:'thicong', no:'M.06', n:'Hồ sơ bản vẽ thi công', img:'assets/img/p6.webp', w:551, h:437, price:'90.000đ', unit:'/m²', wide:true,
+   d:'Trọn bộ kiến trúc – kết cấu – điện nước chi tiết, báo giá nhà thầu sít sao, nghiệm thu khỏi tranh cãi.'},
+  {key:'3d', no:'M.07', n:'Phối cảnh 3D', img:'assets/img/p7.webp', w:553, h:485, price:'900.000đ', unit:'/khung',
+   d:'Ngoại thất hoặc nội thất giống ảnh chụp: ánh đèn thật, vật liệu thật — duyệt xong mới ra bản vẽ chi tiết.'},
+  {key:'phongthuy', no:'M.08', n:'Tư vấn phong thủy', img:'assets/img/p8.webp', w:344, h:384, price:'1.500.000đ', unit:'/lượt',
+   d:'Xem hướng cửa chính, bếp, phòng thờ theo tuổi gia chủ; chọn phương án mở cửa – cấp thoát nước thuận.'}
+];
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3800);
+}
+
+/* ===== RENDER BENTO KHỐI-8 (1 lớn + 7 nhỏ, kín ô) ===== */
+function renderBento(){
+  var g = document.getElementById('bentoGrid');
+  var html = '';
+  for (var i=0;i<P.length;i++){
+    var p = P[i];
+    if (p.big){
+      html += '<article class="bcard big rv">'
+        + '<span class="badge-top gold">'+p.feat+'</span>'
+        + '<div class="big-g">'
+        + '<div class="bimg"><img src="'+p.img+'" alt="'+p.n+'" width="'+p.w+'" height="'+p.h+'"></div>'
+        + '<div class="bd"><div class="bhd"><span class="bno">'+p.no+'</span><h3>'+p.n+'</h3></div>'
+        + '<p>'+p.d+'</p>'
+        + '<ul class="inc"><li>Mặt bằng công năng + 2 hướng mặt tiền</li><li>3D duyệt trước khi ra bản vẽ thi công</li><li>Hồ sơ xin phép + bảng dự toán vật liệu</li></ul>'
+        + '<div class="bft"><span class="pri" style="font-size:18px">'+p.price+'<small>'+p.unit+' · tham chiếu 2026</small></span>'
+        + '<button class="badd" data-key="'+p.key+'">📐 Báo gói này</button></div>'
+        + '</div></div></article>';
+    } else if (p.wide){
+      html += '<article class="bcard e rv">'
+        + '<div class="bimg"><img src="'+p.img+'" alt="'+p.n+'" width="'+p.w+'" height="'+p.h+'"></div>'
+        + '<div class="e-bd"><div class="bhd" style="padding:0"><span class="bno">'+p.no+'</span><h3>'+p.n+'</h3></div>'
+        + '<p>'+p.d+'</p>'
+        + '<div class="bft"><span class="pri">'+p.price+'<small>'+p.unit+' · tham chiếu 2026</small></span>'
+        + '<button class="badd" data-key="'+p.key+'">Báo gói này</button></div>'
+        + '</div></article>';
+    } else {
+      html += '<article class="bcard '+String.fromCharCode(97+i-1)+' rv">'
+        + '<div class="bimg"><img src="'+p.img+'" alt="'+p.n+'" width="'+p.w+'" height="'+p.h+'"></div>'
+        + '<div class="bhd"><span class="bno">'+p.no+'</span><h3>'+p.n+'</h3></div>'
+        + '<div class="bd"><p>'+p.d+'</p>'
+        + '<div class="bft"><span class="pri">'+p.price+'<small>'+p.unit+'</small></span>'
+        + '<button class="badd" data-key="'+p.key+'">Báo gói</button></div>'
+        + '</div></article>';
+    }
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-key]'); if (!btn) return;
+    prefillLead(btn.getAttribute('data-key'));
+  });
+}
+
+/* ===== CHỌN GÓI → ĐIỀN FORM LEAD (không giỏ, không đặt lịch) ===== */
+function keyToCat(key){
+  return {pho:'Nhà phố', bietthu:'Biệt thự', noithat:'Nội thất / hoàn thiện', cafe:'Quán cafe – shop',
+          vanphong:'Văn phòng', thicong:'Hồ sơ xin phép / thi công', '3d':'Hồ sơ xin phép / thi công', phongthuy:'Khác'}[key] || '';
+}
+function prefillLead(key, extraNote){
+  var p = null;
+  for (var i=0;i<P.length;i++){ if (P[i].key===key) p = P[i]; }
+  document.getElementById('fCat').value = keyToCat(key);
+  var need = document.getElementById('fNeed');
+  if (!need.value.trim() || extraNote){
+    need.value = (extraNote ? extraNote : 'Quan tâm gói: ' + p.n + ' (' + p.price + p.unit + ').');
+  }
+  document.getElementById('bao-gia').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){ document.getElementById('fName').focus({preventScroll:true}); }, 450);
+  toast('Đã chọn gói: ' + p.n, 'Điền tên + số điện thoại rồi bấm gửi — KTS gọi lại trong 30 phút.');
+}
+
+/* ===== DAC THU: BỘ CÂU HỎI CÔNG TRÌNH → GÓI + PHÍ TƯ VẤN ===== */
+var Q = {type:'pho', area:115, state:'moi', style:'hiendai', soil:'khong'};
+var RATE  = {pho:160000, bietthu:220000, cafe:140000, vanphong:120000};
+var NAME  = {pho:'nhà phố', bietthu:'biệt thự', cafe:'quán cafe – shop', vanphong:'văn phòng'};
+var SNAME = {moi:'xây mới', caitao:'cải tạo, nâng tầng', hoanthien:'hoàn thiện có khung'};
+var STY   = {hiendai:['Hiện đại',1.0], toigian:['Tối giản',1.0], tancodien:['Tân cổ điển',1.25], dongduong:['Đông Dương',1.15]};
+var SFAC  = {moi:1.0, caitao:1.15, hoanthien:0.75};
+
+function chipGroup(id, onPick){
+  document.getElementById(id).addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var bs = this.querySelectorAll('button');
+    for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+    b.classList.add('on');
+    onPick(b);
+  });
+}
+chipGroup('qType',   function(b){ Q.type = b.getAttribute('data-v'); renderQuote(); });
+chipGroup('qArea',   function(b){ Q.area = parseInt(b.getAttribute('data-v'),10); renderQuote(); });
+chipGroup('qState',  function(b){ Q.state = b.getAttribute('data-v'); renderQuote(); });
+chipGroup('qStyle',  function(b){ Q.style = b.getAttribute('data-v'); renderQuote(); });
+chipGroup('qSoil',   function(b){ Q.soil = b.getAttribute('data-v'); renderQuote(); });
+
+function round100k(n){ return Math.round(n / 100000) * 100000; }
+function fmtVnd(n){ return n.toLocaleString('vi-VN') + 'đ'; }
+
+function renderQuote(){
+  var area = Q.area;
+  /* chọn gói hồ sơ: diện tích & hiện trạng quyết định */
+  var pkg, mult;
+  if (area >= 200 || (Q.state==='caitao' && area >= 120)) { pkg = 'Trọn gói A–Z: concept → 3D → bản vẽ thi công → đại diện xin phép → giám sát tác giả'; mult = 1.45; }
+  else if (area >= 80) { pkg = 'Gói Chuẩn: concept → 3D mặt tiền → bản vẽ kiến trúc – kết cấu – điện nước → hồ sơ xin phép'; mult = 1.0; }
+  else { pkg = 'Gói Cơ bản: mặt bằng công năng → mặt tiền → hồ sơ xin phép xây dựng'; mult = 0.55; }
+  var fee = round100k(area * RATE[Q.type] * SFAC[Q.state] * STY[Q.style][1] * mult);
+  var lo = round100k(fee * 0.9), hi = round100k(fee * 1.1);
+  var days = pkg.indexOf('Trọn gói')===0 ? '35 – 55 ngày' : (pkg.indexOf('Chuẩn')===0 ? '21 – 35 ngày' : '14 – 21 ngày');
+  if (Q.state==='caitao'){ days = days.replace(/(\d+) – (\d+)/, function(m,a,b){ return (parseInt(a,10)+7) + ' – ' + (parseInt(b,10)+7); }) + ' (cộng khảo sát hiện trạng)'; }
+  document.getElementById('oPkg').textContent = pkg.split(':')[0];
+  document.getElementById('oDesc').textContent = NAME[Q.type] + ' · ~' + area + ' m² · ' + SNAME[Q.state] + ' · ' + STY[Q.style][0];
+  document.getElementById('oPrice').innerHTML = fmtVnd(lo) + ' – ' + fmtVnd(hi) + '<small>phí tư vấn &amp; thiết kế trọn gói · ±10%</small>';
+  document.getElementById('oTime').textContent = days;
+  document.getElementById('oSoil').innerHTML = Q.soil==='co'
+    ? '<div class="tb-row"><span class="k">Địa chất</span><span class="v">Nên khoan khảo sát — +5.000.000đ (khấu trừ khi ký HĐ thiết kế)</span></div>'
+    : '<div class="tb-row"><span class="k">Địa chất</span><span class="v">Đất ổn — không cần khoan thêm</span></div>';
+  var list = '<div>Mặt bằng công năng + 2 phương án concept</div>'
+    + (mult>0.6 ? '<div>Phối cảnh 3D mặt tiền duyệt trước khi ra bản vẽ</div>' : '')
+    + '<div>Bản vẽ kiến trúc – kết cấu – điện nước (thi công được ngay)</div>'
+    + (mult>=1.0 ? '<div>Hồ sơ xin phép xây dựng — văn phòng đi nộp thay</div>' : '')
+    + (mult>1.4 ? '<div>Giám sát tác giả theo tiến độ nhà thầu</div>' : '');
+  document.getElementById('oList').innerHTML = list;
+  renderQuote._last = {pkg:pkg, lo:lo, hi:hi};
+}
+document.getElementById('tbSend').addEventListener('click', function(){
+  var last = renderQuote._last || {pkg:'Gói Chuẩn', lo:0, hi:0};
+  var area = Q.area;
+  var note = 'Phác thảo nhanh: ' + NAME[Q.type] + ' ~' + area + ' m², ' + SNAME[Q.state] + ', phong cách ' + STY[Q.style][0]
+    + ', ' + (Q.soil==='co' ? 'nghi đất nền yếu' : 'đất ổn')
+    + '. Gói đề xuất: ' + last.pkg.split(':')[0] + ' — phí tư vấn ước tính ' + fmtVnd(last.lo) + ' – ' + fmtVnd(last.hi) + '.';
+  prefillLead(Q.type, note);
+});
+
+/* ===== FORM LEAD: validate + toast xác nhận ===== */
+document.getElementById('leadSubmit').addEventListener('click', function(e){
+  e.preventDefault();
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var ok = true;
+  name.classList.remove('err'); phone.classList.remove('err');
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho văn phòng xin họ tên và số điện thoại (bắt đầu bằng 0, 9–11 số) để KTS gọi lại nhé!'); return; }
+  var cat = document.getElementById('fCat').value || 'chưa chọn loại công trình';
+  toast('Đã nhận yêu cầu — cảm ơn ' + name.value.trim() + '!',
+        'KTS Kiến Tạo gọi lại trong 30 phút (giờ làm việc) về: ' + cat + ' · Hotline 0034567899');
+  document.getElementById('leadForm').reset();
+});
+
+/* ===== FAB → form lead ===== */
+document.getElementById('leadFab').addEventListener('click', function(){
+  document.getElementById('bao-gia').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){ document.getElementById('fName').focus({preventScroll:true}); }, 450);
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu + hẹn KTS phản hồi ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderBento();
+renderQuote();
+initReveal();
+</script>
+</body>
+</html>

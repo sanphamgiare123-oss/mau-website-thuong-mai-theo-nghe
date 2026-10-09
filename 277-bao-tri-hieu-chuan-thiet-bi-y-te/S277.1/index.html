@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDIQ — Bảo trì &amp; Hiệu chuẩn Thiết bị Y tế tại phòng khám, bệnh viện, lab | TP.HCM</title>
+<meta name="description" content="MEDIQ — trung tâm kỹ thuật y tế B2B: bảo trì máy monitor, siêu âm, X-quang, máy xét nghiệm, hiệu chuẩn bơm tiêm điện – máy thở – gây mê, kiểm tra an toàn điện IEC 62353. Kỹ thuật viên tác nghiệp tại phòng khám — không cần mang máy đi. Giấy chứng nhận hiệu chuẩn có số hiệu HC.2026.xxxx, nhắc chu kỳ trước 30 ngày. Hotline: 0902 777 277.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/*NB93-277: TOKENS — xanh y tế sâu & xanh lục y khoa & vàng con dấu GCN — nghề bảo trì, hiệu chuẩn thiết bị y tế*/
+:root{
+  --primary:#0D4A73;
+  --primary-2:#155E92;
+  --primary-deep:#082C46;
+  --ink:#15293B;
+  --soft:#54708A;
+  --texture:#F1F6FA;
+  --texture-2:#DFEAF3;
+  --card:#FFFFFF;
+  --line:#D6E3EE;
+  --line-2:#BFD2E2;
+  --accent:#0F8A62;
+  --accent-deep:#0B6B4B;
+  --accent-100:#E6F4EE;
+  --gold:#C9A227;
+  --gold-100:#FBF4DF;
+  --ok:#1E8E5A;
+  --danger:#C2372B;
+  --grad-accent:linear-gradient(135deg,#12996D,#0B6B4B);
+  --grad-gold:linear-gradient(135deg,#D9B441,#B08E1C);
+  --grad-dark:linear-gradient(140deg,#155E92,#0D4A73 52%,#082C46);
+  --sh1:0 2px 10px rgba(8,44,70,.08);
+  --sh2:0 12px 32px rgba(8,44,70,.13);
+  --sh3:0 26px 64px rgba(8,44,70,.22);
+  --r1:12px; --r2:18px; --r3:26px; --r4:32px;
+  --plus:repeating-linear-gradient(0deg,rgba(21,94,146,.07) 0 1.5px,transparent 1.5px 26px),repeating-linear-gradient(90deg,rgba(21,94,146,.07) 0 1.5px,transparent 1.5px 26px);
+  --ticks:repeating-linear-gradient(90deg,rgba(201,162,39,.85) 0 2px,transparent 2px 14px);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
+  color:var(--ink);background:var(--texture);
+  line-height:1.6;font-size:15.5px;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+::selection{background:var(--accent-100);color:var(--accent-deep)}
+h1,h2,h3,h4{line-height:1.22;letter-spacing:-.01em}
+.sec-title{text-align:center;font-size:2.05rem;font-weight:900;color:var(--primary)}
+.sec-sub{display:block;text-align:center;color:var(--soft);font-size:.97rem;margin-top:8px;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:var(--accent-deep);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1.5px solid rgba(15,138,98,.3)}
+.hl{background:var(--grad-accent);color:#fff;padding:2px 12px 4px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block}
+.gc{font-family:var(--mono);font-weight:700;letter-spacing:.02em}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+/* vạch nhịp tim + lưới chữ thập — hoạ tiết nhận diện nghề y tế kỹ thuật */
+.ticks{height:14px;background:var(--ticks);opacity:.9;border-bottom:2.5px solid var(--primary-deep)}
+
+/* ============ NÚT ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;border-radius:13px;padding:14px 24px;font-size:.97rem;transition:.25s;position:relative;overflow:hidden;min-height:50px}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 10px 26px rgba(11,107,75,.3)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(11,107,75,.4)}
+.btn-accent::after{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-22deg);transition:left .55s}
+.btn-accent:hover::after{left:130%}
+.btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line-2);box-shadow:var(--sh1)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-dark:hover{background:var(--primary-2);transform:translateY(-2px)}
+.btn-hot{background:var(--grad-dark);color:#fff;box-shadow:0 12px 30px rgba(8,44,70,.34)}
+.btn-hot:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(8,44,70,.44)}
+.btn-gold{background:var(--grad-gold);color:var(--primary-deep);box-shadow:0 10px 26px rgba(176,142,28,.32)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(176,142,28,.42)}
+.btn-line{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.42)}
+.btn-line:hover{border-color:#E3C565;color:#E3C565;transform:translateY(-2px)}
+.btn-xl{font-size:1.14rem;padding:19px 32px;border-radius:16px;min-height:68px}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--primary-deep);color:#C3D8E6;font-size:.82rem;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 22px;flex-wrap:wrap}
+.topbar .tb-l{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-width:0}
+.topbar .tb-l span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar .i{width:15px;height:15px;color:#7FD3A8}
+.topbar .hot{color:#EFDA9A;font-weight:800;display:inline-flex;gap:6px;align-items:center}
+.topbar .hot b{font-size:1.02em;color:#fff;letter-spacing:.03em}
+
+/* ============ HEADER ============ */
+header.hd{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:11px;min-width:0}
+.logo .mark{width:46px;height:46px;border-radius:14px;background:var(--grad-dark);display:grid;place-items:center;color:#7FD3A8;box-shadow:0 8px 20px rgba(8,44,70,.32);border:1.5px solid rgba(127,211,168,.45)}
+.logo .mark .i{width:26px;height:26px}
+.logo .lg-t{display:block;font-weight:900;font-size:1.22rem;line-height:1.1;color:var(--primary)}
+.logo .lg-s{display:block;font-size:.67rem;font-weight:700;color:var(--soft);letter-spacing:.05em;text-transform:uppercase}
+.search{position:relative;flex:1;max-width:330px;min-width:0}
+.search input{width:100%;padding:11px 14px 11px 40px;border-radius:12px;border:1.5px solid var(--line);background:var(--texture);transition:.2s}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-100)}
+.search .i{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.search .drop{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:14px;border:1.5px solid var(--line);box-shadow:var(--sh2);overflow:hidden;display:none;z-index:70}
+.search .drop.open{display:block}
+.search .drop button{display:flex;width:100%;gap:10px;align-items:center;padding:11px 14px;font-size:.88rem;font-weight:600;text-align:left;border-bottom:1px solid #EBF1F8}
+.search .drop button:last-child{border-bottom:0}
+.search .drop button:hover{background:var(--accent-100)}
+.search .drop .i{position:static;transform:none;width:16px;height:16px;color:var(--accent)}
+/*NB93-277-FIX: dòng báo không tìm thấy trong drop tìm kiếm*/
+.search .drop .drop-nr{padding:12px 14px;font-size:.84rem;font-weight:600;color:var(--soft);line-height:1.45}
+.search .drop .drop-nr b{color:var(--danger)}
+nav.main{display:flex;gap:2px}
+nav.main a{font-weight:700;font-size:.9rem;color:var(--ink);padding:9px 11px;border-radius:10px;transition:.2s;white-space:nowrap}
+nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
+.hd-cta{display:flex;gap:10px;align-items:center;margin-left:auto}
+.hd-cta .btn{padding:11px 14px;min-height:46px;font-size:.88rem;white-space:nowrap}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--grad-dark);color:#fff;overflow:clip;padding:60px 0 92px}
+.hero::before{content:'';position:absolute;inset:0;background-image:var(--plus);opacity:.7}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center}
+.hero .eyebrow{background:rgba(127,211,168,.12);border-color:rgba(127,211,168,.4);color:#9FE0C3}
+.hero h1{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:900;margin:18px 0 14px;color:#fff}
+.hero .lead{color:#C3D8E6;font-size:1.02rem;max-width:560px;font-weight:500}
+.hero .lead b{color:#fff}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.hero-cta .btn-hot{white-space:nowrap}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);padding:8px 13px;border-radius:999px;color:#D9E6F1}
+.trust .i{width:15px;height:15px;color:#7FD3A8}
+.hero-media{position:relative;min-width:0}
+.hm-main{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh3);overflow:hidden;position:relative;z-index:2;transform:rotate(-1.2deg)}
+.hm-main img{aspect-ratio:1122/1402;object-fit:cover;width:100%}
+.hm-cap{background:var(--primary-deep);color:#D9E6F1;font-size:.8rem;font-weight:700;padding:11px 16px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.hm-cap .i{width:16px;height:16px;color:#7FD3A8;flex:0 0 auto}
+.hm-cap .gc{color:#EBD38A}
+.hm-badge{position:absolute;right:-8px;top:-14px;z-index:4;background:var(--grad-gold);color:var(--primary-deep);border-radius:16px;padding:13px 17px;text-align:center;transform:rotate(4deg);box-shadow:0 14px 30px rgba(176,142,28,.4);animation:fl2 7.5s ease-in-out infinite}
+.hm-badge .bt{display:block;font-size:1.32rem;font-weight:900;line-height:1}
+.hm-badge .bs{display:block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
+@keyframes fl2{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(3deg) translateY(-10px)}}
+
+/* ============ DẢI MARQUEE ============ */
+.tape{background:var(--grad-gold);transform:rotate(-1deg) scale(1.02);margin:-38px 0 0;position:relative;z-index:10;box-shadow:0 14px 34px rgba(176,142,28,.3);overflow:hidden;border-top:3px solid var(--primary-deep);border-bottom:3px solid var(--primary-deep)}
+.tape-track{display:flex;gap:0;width:max-content;animation:tape 32s linear infinite;padding:12px 0}
+.tape-track span{display:inline-flex;align-items:center;gap:10px;color:var(--primary-deep);font-weight:800;font-size:.9rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(8,44,70,.32)}
+.tape-track .i{width:17px;height:17px}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ============ SECTION KHUNG ============ */
+section{position:relative}
+section[id]{scroll-margin-top:78px}
+.sec{padding:86px 0}
+.sec.alt{background:linear-gradient(180deg,#fff,var(--texture))}
+.sec .head{max-width:760px;margin:0 auto 44px}
+
+/* ============ KHỐI-8 DỊCH VỤ — 2 THẺ NỔI BẬT TO (full-width) + 6 THẺ ĐỀU NHAU (grid 3 kín ô) ============ */
+#dichvu{background:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;grid-auto-flow:dense}
+/* thẻ nổi bật — chiếm trọn hàng, ảnh lớn + nội dung rộng */
+.svc-f{grid-column:1/-1;display:grid;grid-template-columns:340px 1fr;background:#fff;border:2px solid var(--line-2);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh2);transition:.3s;min-width:0;position:relative}
+.svc-f::before{content:'';position:absolute;inset:0 auto 0 0;width:6px;background:var(--grad-accent);z-index:3}
+.svc-f:hover{transform:translateY(-5px);box-shadow:var(--sh3);border-color:rgba(15,138,98,.5)}
+.sf-img{position:relative;overflow:hidden;min-height:0;min-width:0}
+.sf-img img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;transition:transform .6s}
+.svc-f:hover .sf-img img{transform:scale(1.04)}
+.sf-tag{position:absolute;left:14px;top:14px;z-index:2;background:var(--grad-gold);color:var(--primary-deep);font-size:.72rem;font-weight:900;padding:7px 13px;border-radius:999px;display:inline-flex;gap:6px;align-items:center;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 8px 20px rgba(176,142,28,.4)}
+.sf-tag .i{width:13px;height:13px}
+.sf-body{padding:26px 28px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.sf-body .chips{display:flex;gap:8px;flex-wrap:wrap}
+.sf-body .chip{display:inline-flex;gap:6px;align-items:center;font-size:.74rem;font-weight:800;padding:6px 11px;border-radius:999px;letter-spacing:.02em}
+.chip.c-green{background:var(--accent-100);color:var(--accent-deep);border:1.5px solid rgba(15,138,98,.3)}
+.chip.c-blue{background:#EAF2FB;color:#0F4FA0;border:1.5px solid rgba(29,111,209,.28)}
+.chip .i{width:13px;height:13px}
+.sf-body h3{font-size:1.5rem;font-weight:900;color:var(--primary)}
+.sf-body ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.sf-body ul li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;color:var(--soft);font-weight:500}
+.sf-body ul li .i{width:17px;height:17px;color:var(--ok);margin-top:2px}
+.sf-price{font-size:.9rem;font-weight:800;color:var(--accent-deep);display:inline-flex;gap:7px;align-items:center;background:var(--accent-100);padding:8px 14px;border-radius:12px;width:max-content;max-width:100%}
+.sf-price .i{width:15px;height:15px}
+.sf-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto}
+.sf-acts .btn{flex:1;min-width:210px}
+/* thẻ thường — đồng đều, kín ô */
+.svc-c{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh1);display:flex;flex-direction:column;transition:.3s;min-width:0;position:relative}
+.svc-c:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:var(--line-2)}
+.sc-img{position:relative;overflow:hidden;aspect-ratio:4/5;min-height:0;background:linear-gradient(165deg,#EAF2FB,#F7FAFD)}
+.sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.svc-c:hover .sc-img img{transform:scale(1.05)}
+.sc-chu{position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(8,44,70,.82);backdrop-filter:blur(6px);color:#fff;font-size:.72rem;font-weight:800;padding:6px 11px;border-radius:10px;display:inline-flex;gap:6px;align-items:center;max-width:calc(100% - 24px)}
+.sc-chu .i{width:13px;height:13px;color:#7FD3A8}
+.sc-body{padding:18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.sc-body h3{font-size:1.02rem;font-weight:900;color:var(--primary)}
+.sc-body .sc-sub{font-size:.8rem;color:var(--soft);font-weight:500}
+.sc-foot{margin-top:auto;padding-top:10px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1.5px dashed var(--line)}
+.sc-price{font-size:.8rem;font-weight:800;color:var(--accent-deep)}
+.sc-more{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:var(--primary);background:var(--accent-100);padding:9px 13px;border-radius:11px;transition:.2s;min-height:40px}
+.sc-more:hover{background:var(--grad-accent);color:#fff}
+.sc-more .i{width:14px;height:14px}
+/* flash khi tìm kiếm nhảy tới thẻ */
+@keyframes svcFlash{0%,100%{box-shadow:var(--sh1)}30%{box-shadow:0 0 0 5px rgba(15,138,98,.45)}}
+.svc-c.flash,.svc-f.flash{animation:svcFlash 1.2s ease 2}
+
+/* ============ KHỐI ĐẶC THÙ — SỔ HIỆU CHUẨN: MA TRẬN CHU KỲ + GIẤY CHỨNG NHẬN ============ */
+#chuky{background:linear-gradient(180deg,var(--texture),#fff)}
+.cy-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:24px;align-items:stretch}
+.cy-table{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh1);display:flex;flex-direction:column}
+.cy-head{background:var(--grad-dark);color:#fff;padding:15px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cy-head .i{width:19px;height:19px;color:#7FD3A8}
+.cy-head b{font-size:.98rem;font-weight:900}
+.cy-head small{font-size:.74rem;color:#C3D8E6;font-weight:600;width:100%;margin-top:-4px}
+.cy-row{display:grid;grid-template-columns:44px 1.15fr .8fr 1.15fr;gap:10px;align-items:center;padding:13px 18px;border-bottom:1.5px solid #EBF1F8;text-align:left;width:100%;transition:.2s;min-height:58px;background:#fff}
+.cy-row:last-of-type{border-bottom:0}
+.cy-row:hover{background:var(--accent-100)}
+.cy-row .ci{width:38px;height:38px;border-radius:11px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center}
+.cy-row .ci .i{width:19px;height:19px}
+.cy-row .cn{font-size:.74rem;font-weight:800;color:var(--primary);line-height:1.3}
+.cy-row .cn small{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.cy-row .cc{display:inline-flex;align-items:center;gap:6px;background:var(--gold-100);border:1.5px solid rgba(201,162,39,.4);color:#8A6D14;font-weight:800;font-size:.74rem;padding:5px 10px;border-radius:999px;width:max-content}
+.cy-row .cd{font-size:.76rem;color:var(--soft);font-weight:600;line-height:1.45}
+.cy-cta{margin-top:auto;padding:13px 18px;border-top:1.5px dashed var(--line-2);display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--texture)}
+.cy-cta p{font-size:.76rem;color:var(--soft);font-weight:600;flex:1;min-width:200px}
+.cy-cta .btn{padding:10px 16px;min-height:42px;font-size:.84rem}
+/* thẻ GCN hiệu chuẩn — con dấu vàng viền kép */
+.gcn-card{background:var(--grad-dark);color:#fff;border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh2);display:flex;flex-direction:column;border:1.5px solid rgba(201,162,39,.3)}
+.gcn-top{padding:20px 22px 18px;display:flex;flex-direction:column;gap:12px}
+.gcn-frame{background:#FDFBF4;color:var(--primary-deep);border-radius:14px;border:2px solid var(--gold);outline:1.5px dashed rgba(176,142,28,.55);outline-offset:-7px;padding:16px 18px;position:relative}
+.gcn-frame .gcn-h{text-align:center;font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#8A6D14}
+.gcn-frame .gcn-no{text-align:center;font-size:.78rem;font-weight:600;margin-top:3px}
+.gcn-frame .gcn-no b{font-size:.9rem;color:var(--primary)}
+.gcn-rows{margin-top:10px;display:flex;flex-direction:column}
+.gcn-r{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:6.5px 2px;border-bottom:1px dashed rgba(8,44,70,.16);font-size:.78rem;align-items:baseline}
+.gcn-r:last-child{border-bottom:0}
+.gcn-r .k{font-weight:800;color:var(--soft);text-transform:uppercase;font-size:.66rem;letter-spacing:.05em}
+.gcn-r .v{font-weight:700}
+.gcn-r .v .gc{color:var(--accent-deep)}
+.gcn-seal{position:absolute;right:10px;top:10px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#E4C25C,#B08E1C 70%);display:grid;place-items:center;color:#5C470E;font-weight:900;font-size:.5rem;letter-spacing:.06em;text-align:center;line-height:1.25;box-shadow:0 6px 16px rgba(176,142,28,.45);border:2px solid rgba(255,255,255,.6);transform:rotate(-8deg)}
+.gcn-body{padding:4px 22px 22px;display:flex;flex-direction:column;gap:11px;flex:1}
+.gcn-body h3{font-size:1.12rem;font-weight:900;color:#fff;display:flex;gap:9px;align-items:center}
+.gcn-body h3 .i{width:20px;height:20px;color:#EBD38A}
+.gcn-body ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.gcn-body ul li{display:flex;gap:9px;align-items:flex-start;font-size:.83rem;font-weight:600;color:#D9E6F1}
+.gcn-body ul li .i{width:17px;height:17px;color:#7FD3A8;margin-top:2px}
+.gcn-body ul .gc{color:#EBD38A}
+.gcn-acts{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.gcn-acts .btn{width:100%}
+.gcn-fine{font-size:12px;color:#8FA6BD;display:flex;gap:7px;align-items:center;font-weight:600}
+.gcn-fine .i{width:14px;height:14px;color:#7FD3A8}
+
+/* ============ QUY TRÌNH ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:stp}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;position:relative;box-shadow:var(--sh1);transition:.3s;min-width:0}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .s-ic{width:54px;height:54px;border-radius:50%;background:var(--grad-dark);color:#7FD3A8;display:grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(8,44,70,.26);border:1.5px solid rgba(127,211,168,.45)}
+.step .s-ic .i{width:24px;height:24px}
+.step .s-ic::after{counter-increment:stp;content:counter(stp);position:absolute;top:-6px;right:-6px;width:24px;height:24px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:900;border-radius:50%;display:grid;place-items:center;border:2.5px solid #fff}
+.step h3{font-size:1rem;font-weight:900;color:var(--primary);margin:15px 0 8px}
+.step p{font-size:.82rem;color:var(--soft);font-weight:500}
+.step .meta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--accent-100);color:var(--accent-deep);font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:999px}
+.step .meta .i{width:13px;height:13px}
+
+/* ============ CAM KẾT ============ */
+#commit{background:linear-gradient(180deg,#fff,var(--texture))}
+.com-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.com-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);padding:26px 22px;box-shadow:var(--sh1);transition:.3s;position:relative;overflow:hidden;min-width:0}
+.com-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(15,138,98,.4)}
+.com-card .cc-ic{width:54px;height:54px;border-radius:16px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:16px;transition:.3s;border:1.5px dashed rgba(15,138,98,.35)}
+.com-card:hover .cc-ic{background:var(--grad-accent);color:#fff;transform:rotate(-5deg);border-style:solid}
+.com-card .cc-ic .i{width:25px;height:25px}
+.com-card h3{font-size:1rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+.com-card p{font-size:.84rem;color:var(--soft);font-weight:500}
+.com-card .gc{color:var(--accent-deep)}
+.com-card .cc-num{position:absolute;right:14px;top:10px;font-size:2.6rem;font-weight:900;color:var(--texture-2);line-height:1;z-index:0}
+.hot-strip{margin-top:34px;background:var(--grad-dark);border-radius:var(--r4);padding:32px 38px;display:flex;align-items:center;gap:26px;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden;border:1.5px solid rgba(127,211,168,.3)}
+.hot-strip::before{content:'';position:absolute;inset:0;background-image:var(--plus);opacity:.6}
+.hot-strip>*{position:relative}
+.hot-strip .hs-t h3{color:#fff;font-size:1.45rem;font-weight:900}
+.hot-strip .hs-t p{color:#C3D8E6;font-size:.9rem;font-weight:500}
+.hot-strip .hs-acts{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--grad-dark);color:#fff;padding:60px 0;position:relative;overflow:clip}
+.stats::before{content:'';position:absolute;inset:0;background-image:var(--plus);opacity:.55}
+.stats .wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat b{font-size:2.6rem;font-weight:900;color:#EBD38A;display:block;line-height:1.1}
+.stat b em{font-style:normal;font-size:1.35rem}
+.stat span{display:block;font-size:.84rem;font-weight:600;color:#C3D8E6;margin-top:6px}
+
+/* ============ ABOUT ============ */
+#about .ab-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:start}
+.ab-col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.ab-img{position:relative;min-width:0}
+.ab-frame{border-radius:var(--r3);border:6px solid #fff;box-shadow:var(--sh2);overflow:hidden;transform:rotate(-1.5deg)}
+.ab-frame.r2{transform:rotate(1.2deg)}
+.ab-img img{width:100%;object-fit:cover}
+.ab-frame.f-portrait img{aspect-ratio:1122/1402}
+.ab-frame.f-land img{aspect-ratio:3/2}
+.ab-cap{background:var(--primary-deep);color:#D9E6F1;font-size:.78rem;font-weight:700;padding:10px 15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ab-cap .i{width:15px;height:15px;color:#7FD3A8}
+.ab-txt h2{font-size:1.95rem;font-weight:900;color:var(--primary);margin:16px 0 12px}
+.ab-txt>p{color:var(--soft);font-weight:500;font-size:.95rem}
+.ab-pts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.ab-pt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:15px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh1);transition:.25s;min-width:0}
+.ab-pt:hover{border-color:rgba(15,138,98,.4);transform:translateY(-3px)}
+.ab-pt .i{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.ab-pt b{display:block;font-size:.87rem;color:var(--primary);font-weight:800}
+.ab-pt span{display:block;font-size:.75rem;color:var(--soft);font-weight:500}
+.ab-cta{display:flex;gap:13px;margin-top:24px;flex-wrap:wrap}
+
+/* ============ SOCIAL PROOF ============ */
+#proof{background:var(--texture)}
+.rvw-shell{display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:stretch}
+.rvw-shell>div{min-width:0}
+.rvw-view{overflow:hidden;border-radius:var(--r3);min-width:0;max-width:100%}
+.rvw-track{display:flex;transition:transform .55s cubic-bezier(.25,.8,.3,1)}
+.rvw-slide{flex:0 0 100%;padding:2px;min-width:0}
+.rvw-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r3);box-shadow:var(--sh1);padding:30px;height:100%;display:flex;flex-direction:column;gap:14px}
+.rvw-card .stars{display:flex;gap:3px;color:#E0A215}
+.rvw-card .stars .i{width:16px;height:16px}
+.rvw-card p{font-size:.95rem;color:var(--ink);font-weight:500;flex:1}
+.rvw-card .who{display:flex;gap:12px;align-items:center}
+.rvw-card .avt{width:46px;height:46px;border-radius:50%;background:var(--grad-dark);color:#7FD3A8;display:grid;place-items:center;font-weight:900;font-size:.95rem;flex:0 0 auto;border:1.5px solid rgba(127,211,168,.45)}
+.rvw-card .who b{display:block;font-size:.9rem;color:var(--primary)}
+.rvw-card .who span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+.rvw-side{background:var(--grad-dark);color:#fff;border-radius:var(--r3);padding:28px;display:flex;flex-direction:column;gap:18px;min-width:0;border:1.5px solid rgba(127,211,168,.3)}
+.rvw-side .metric b{display:block;font-size:2.6rem;font-weight:900;color:#EBD38A;line-height:1}
+.rvw-side .metric span{display:block;font-size:.82rem;color:#C3D8E6;font-weight:600;margin-top:6px}
+.rvw-side .mrow{display:flex;justify-content:space-between;font-size:.8rem;color:#D9E6F1;font-weight:600;border-bottom:1.5px dashed rgba(255,255,255,.14);padding-bottom:9px}
+.rvw-side .mrow b{color:#7FD3A8}
+.rvw-side h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#8FA6BD;font-weight:800}
+.pchips{display:flex;gap:8px;flex-wrap:wrap}
+.pchips span{font-size:.72rem;font-weight:800;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;color:#D9E6F1}
+.rvw-dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.rvw-dots button{width:9px;height:9px;border-radius:99px;background:var(--line-2);transition:.25s;padding:0}
+.rvw-dots button.on{width:26px;background:var(--accent)}
+
+/* ============ FORM NHẬN YÊU CẦU + MAP ============ */
+#yeucau{background:var(--grad-dark);color:#fff;overflow:clip}
+#yeucau::before{content:'';position:absolute;inset:0;background-image:var(--plus);opacity:.5}
+#yeucau .wrap{position:relative}
+.ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;margin-top:44px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ct-info .ci-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r2);padding:18px 20px;display:flex;gap:15px;align-items:flex-start;min-width:0}
+.ct-info .ci-ic{width:46px;height:46px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#fff;flex:0 0 auto}
+.ct-info .ci-ic.y{background:var(--grad-gold);color:var(--primary-deep)}
+.ct-info b{display:block;font-size:.93rem;font-weight:800}
+.ct-info span{display:block;font-size:.82rem;color:#C3D8E6;font-weight:500;margin-top:3px}
+.map-embed{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(255,255,255,.16);min-height:230px}
+.map-embed iframe{width:100%;height:100%;min-height:230px;border:0;display:block}
+.map-dir{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:.8rem;font-weight:800;color:#EBD38A;background:rgba(201,162,39,.12);border:1.5px solid rgba(201,162,39,.4);padding:8px 14px;border-radius:999px;transition:.2s}
+.map-dir:hover{background:rgba(201,162,39,.24)}
+.map-dir .i{width:15px;height:15px}
+.ct-form{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.14);border-radius:var(--r3);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;color-scheme:dark}
+.ct-form h3{font-size:1.3rem;font-weight:900;color:#fff}
+.ct-form .fsub{font-size:.84rem;color:#C3D8E6;font-weight:500;margin-top:-6px}
+.ct-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-form .frow .full{grid-column:1/-1}
+.ct-form input,.ct-form select,.ct-form textarea{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;min-width:0}
+.ct-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B9C6D8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.ct-form select option{color:var(--ink);background:#fff}
+.ct-form textarea{min-height:70px;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:#8FA6BD}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-color:#E3C565;background:rgba(255,255,255,.1)}
+.ct-form .btn{width:100%;margin-top:4px}
+.ct-form .secure{font-size:.74rem;color:#8FA6BD;display:flex;gap:7px;align-items:center;justify-content:center;font-weight:600}
+.ct-form .secure .i{width:14px;height:14px;color:#7FD3A8}
+
+/* ============ FAQ ============ */
+.faq-shell{max-width:820px;margin:0 auto}
+.faq-tools{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap;justify-content:center}
+.faq-search{position:relative;flex:1;max-width:420px;min-width:230px}
+.faq-search input{width:100%;padding:13px 15px 13px 42px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;box-shadow:var(--sh1)}
+.faq-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-100)}
+.faq-search .i{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--soft)}
+.faq-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fchip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:.78rem;font-weight:800;color:var(--soft);transition:.2s}
+.fchip:hover{border-color:var(--accent)}
+.fchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:var(--sh1)}
+.faq-item.open{border-color:rgba(15,138,98,.4)}
+.faq-q{width:100%;display:flex;align-items:center;gap:13px;padding:17px 20px;font-weight:800;font-size:.94rem;color:var(--primary);text-align:left;min-width:0}
+.faq-q .fq-ic{width:34px;height:34px;border-radius:10px;background:var(--accent-100);color:var(--accent-deep);display:grid;place-items:center;flex:0 0 auto;transition:.25s}
+.faq-q .fq-ic .i{width:16px;height:16px}
+.faq-item.open .fq-ic{background:var(--grad-accent);color:#fff}
+.faq-q .chev{margin-left:auto;transition:.3s;color:var(--soft)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 20px 19px 67px;font-size:.87rem;color:var(--soft);font-weight:500}
+.faq-empty{text-align:center;color:var(--soft);font-weight:600;padding:26px;display:none}
+
+/* ============ FOOTER — GỌN 1 TẦNG CHÍNH ============ */
+footer{background:var(--primary-deep);color:#B9C9D8;font-size:.86rem}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1.1fr;gap:34px;padding:52px 0 36px}
+.ft-grid h4{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:15px}
+.ft-grid ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-grid ul a{transition:.2s;font-weight:500}
+.ft-grid ul a:hover{color:#7FD3A8}
+.ft-brand .lg-t{color:#fff}
+.ft-brand .lg-s{color:#8FA6BD}
+.ft-brand p{margin-top:14px;font-weight:500;max-width:420px}
+.ft-hot{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:var(--grad-accent);padding:11px 18px;border-radius:13px;color:#fff;font-weight:900;font-size:1.02rem;box-shadow:0 10px 24px rgba(11,107,75,.4)}
+.ft-hot .i{width:18px;height:18px}
+.ft-bar{border-top:1.5px solid rgba(255,255,255,.09);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.75rem;font-weight:600}
+.ft-bar .pay-chips{display:flex;gap:8px;flex-wrap:wrap}
+.ft-bar .pay-chips span{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:8px;font-weight:700;color:#D9E6F1}
+
+/* ============ FAB DOCK ============ */
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:9px;background:rgba(8,44,70,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.15);padding:9px;border-radius:22px;box-shadow:var(--sh3);transition:.4s;max-width:calc(100vw - 20px)}
+.dock.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(90px)}
+.dock button,.dock a{display:flex;align-items:center;gap:8px;border-radius:15px;padding:11px 15px;color:#D9E6F1;font-weight:800;font-size:.8rem;transition:.2s;white-space:nowrap}
+.dock .i{width:19px;height:19px}
+.dock .d-hot{background:var(--grad-accent);color:#fff}
+.dock .d-main{background:var(--grad-gold);color:var(--primary-deep)}
+.dock button:hover,.dock a:hover{transform:translateY(-3px)}
+
+/* ============ TOAST — pointer-events none khi không tương tác ============ */
+#toasts{position:fixed;right:18px;bottom:96px;z-index:120;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--primary);color:#fff;padding:13px 18px;border-radius:14px;box-shadow:var(--sh3);font-size:.84rem;font-weight:600;display:flex;gap:10px;align-items:flex-start;max-width:360px;animation:toastIn .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast .i{width:18px;height:18px;color:#7FD3A8;flex:0 0 auto;margin-top:2px}
+.toast .tx b{display:block;font-size:.88rem;font-weight:900;color:#fff}
+.toast .tx span{display:block;margin-top:2px;color:#C3D8E6;font-weight:500}
+@keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+
+/* ============ RESPONSIVE 1080px ============ */
+@media(max-width:1080px){
+  nav.main{display:none}
+  .hero .wrap{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc-f{grid-template-columns:300px 1fr}
+  .cy-grid{grid-template-columns:1fr}
+  .com-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  #about .ab-grid{grid-template-columns:1fr}
+  .rvw-shell{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============ MOBILE ≤680px — thiết kế riêng, đủ chức năng ============ */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .sec-title{font-size:1.4rem}
+  .sec .head{margin-bottom:28px}
+  .hd .wrap{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .topbar .tb-l:first-child{display:none}
+  .topbar .wrap{justify-content:center}
+  .topbar .tb-l span{white-space:normal}
+  .search{order:3;max-width:none;flex:1 0 100%}
+  .hd-cta .btn-dark{display:none}
+  .hd-cta{margin-left:auto}
+  .hd-cta .btn-hot{font-size:.84rem;padding:11px 14px}
+  .logo .lg-s{display:none}
+  .hero{padding:42px 0 68px}
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .hero h1{font-size:1.68rem}
+  .hero .lead{font-size:.92rem}
+  .hm-badge{right:10px;top:10px;padding:8px 12px;border-radius:12px}
+  .hm-badge .bt{font-size:1.02rem}
+  .hm-badge .bs{font-size:12px}
+  .hm-main{transform:none;border-radius:var(--r2);border-width:4px}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:11px}
+  .hero-cta .btn{width:100%}
+  .hero-cta .btn-hot{white-space:normal;text-align:center;font-size:1rem}
+  .trust{gap:7px}
+  .trust span{font-size:12px;padding:7px 10px}
+  .tape-track span{font-size:.8rem;padding:0 14px}
+  .svc-grid{grid-template-columns:1fr;gap:16px}
+  .svc-f{grid-template-columns:1fr}
+  .svc-f::before{width:auto;height:6px;inset:0 0 auto 0}
+  .sf-img img{aspect-ratio:4/5}
+  .sf-body{padding:20px 16px}
+  .sf-body h3{font-size:1.24rem}
+  .sf-acts{flex-direction:column}
+  .sf-acts .btn{min-width:100%}
+  .sc-body{padding:16px}
+  .cy-head{padding:14px 16px}
+  .cy-row{grid-template-columns:40px 1fr;row-gap:6px;padding:12px 14px}
+  .cy-row .cc{grid-column:2}
+  .cy-row .cd{grid-column:2}
+  .cy-cta{padding:12px 14px}
+  .cy-cta .btn{width:100%}
+  .gcn-top{padding:16px 14px}
+  .gcn-frame{padding:14px 12px}
+  .gcn-r{grid-template-columns:118px 1fr;font-size:.74rem}
+  .gcn-seal{width:48px;height:48px;font-size:.42rem;right:8px;bottom:8px}
+  .gcn-body{padding:4px 16px 18px}
+  .com-grid{grid-template-columns:1fr}
+  .hot-strip{padding:26px 20px;text-align:left}
+  .hot-strip .hs-acts{width:100%;flex-direction:column}
+  .hot-strip .hs-acts .btn{width:100%}
+  .stat b{font-size:2rem}
+  .steps{grid-template-columns:1fr}
+  .ab-pts{grid-template-columns:1fr}
+  .ab-txt h2{font-size:1.4rem}
+  .ab-cta .btn{width:100%}
+  .ct-form .frow{grid-template-columns:1fr}
+  .ct-form{padding:22px 16px}
+  .ct-form .btn{width:100%}
+  .faq-a p{padding-left:20px}
+  .ft-grid{grid-template-columns:1fr;gap:26px;padding:42px 0 28px}
+  .ft-bar{justify-content:center;text-align:center}
+  .dock{bottom:12px;padding:8px;gap:6px;border-radius:20px}
+  .dock button,.dock a{padding:12px;font-size:0;gap:0}
+  .dock .i{width:21px;height:21px}
+  #toasts{right:12px;left:12px;bottom:150px}
+  .toast{max-width:none}
+}
+/*NB93-277: MOBILEFIX — chữ >=12px, nút >=40px, chat không đè dock*/
+@media(max-width:680px){
+  .sf-body .chip{font-size:12px}
+  .sf-price{font-size:13px}
+  .sc-price{font-size:12px}
+  .sc-more{font-size:12px}
+  .cy-row .cd{font-size:12px}
+  .cy-row .cc{font-size:12px}
+  .gcn-r .k{font-size:12px}
+  .step .meta{font-size:12px}
+  .ab-cap{font-size:12px}
+  .rvw-card .who span{font-size:12px}
+  .pchips span{font-size:12px}
+  .ct-form .secure{font-size:12px}
+  .hm-cap{font-size:12px}
+  .btn{min-height:44px}
+  .ct-form input,.ct-form select,.ct-form textarea{min-height:44px}
+  body{padding-bottom:76px}
+  .pkc-fab{bottom:88px !important}
+  .pkc-panel{bottom:148px !important}
+  .pkc-chip{font-size:12px}
+  .pkc-on{font-size:12px}
+  .pkc-x{width:40px;height:40px}
+  .fchip{min-height:40px}
+}
+/*NB93-277: MOBILE-TAP40 — mọi điều khiển chạm >=40px*/
+@media(max-width:640px){
+  .fchip,.faq-chips button,.cy-row,.svc-c,.strip a,.search .drop button,.fab,.pkc-chip,.pkc-x,.rvw-dots button{min-height:40px!important}
+  .btn{min-height:40px!important}
+  .sc-more{min-height:40px!important}
+}
+</style>
+<style data-nb93fix="277:fab">
+/*NB93-FIX-277:fab CTA day phai tranh fab chat*/
+@media(max-width:768px){
+  .btn-xl{padding-right:64px}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-6 4 12 2-6h6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6l8-3.5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3-1.1-6.4L.4 9.4l6.5-.9L12 2.6z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20 3 12.5z"/><circle cx="7.5" cy="7.5" r="1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-5.5 8-5.5s6.5 1.7 8 5.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8 7.5 21l4.5-2.6L16.5 21l-1.3-7.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 15l4-6M4.5 18.5a9 9 0 1 1 15 0"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="10" height="18" rx="1.5"/><path d="M15 9h4a1 1 0 0 1 1 1v11M3 21h18M8.5 7h3M8.5 11h3M8.5 15h3"/></symbol>
+  <symbol id="i-lab" viewBox="0 0 24 24"><path d="M10 3h4M10 3v6L4.6 18.6A2 2 0 0 0 6.4 21h11.2a2 2 0 0 0 1.8-2.4L14 9V3"/><path d="M7.5 14h9"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12h3l2-5 3 10 2-5h3l2-3 2 3h3"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 10h3l1.5-3 2 6 1.5-3H17M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-sono" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4V4z"/><circle cx="11" cy="10" r="1.6"/><circle cx="15" cy="7.5" r="1"/><circle cx="15.5" cy="12" r="1"/></symbol>
+  <symbol id="i-xray" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 6v14M8 9c1 1.4 2.5 2 4 2s3-.6 4-2M8.5 14c1 .9 2.2 1.4 3.5 1.4s2.5-.5 3.5-1.4"/></symbol>
+  <symbol id="i-lung" viewBox="0 0 24 24"><path d="M12 3v8M12 8c-1.4-2-3.4-2.6-5-2-1.6.7-2.4 4.6-2.4 8 0 2.6.8 4 2.4 4 2 0 3.6-1.6 5-4M12 8c1.4-2 3.4-2.6 5-2 1.6.7 2.4 4.6 2.4 8 0 2.6-.8 4-2.4 4-2 0-3.6-1.6-5-4"/></symbol>
+  <symbol id="i-vial" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.5L7.5 17a2.5 2.5 0 0 0 2.4 3.2h4.2A2.5 2.5 0 0 0 16.5 17L14 9.5V3"/><path d="M8.6 13.5h6.8"/></symbol>
+  <symbol id="i-steam" viewBox="0 0 24 24"><path d="M4 21h16M5 21v-9a7 7 0 0 1 14 0v9M9.5 21v-4.5M14.5 21v-4.5"/><path d="M9.5 3.5c0 1-1 1.5-1 2.5M14.5 3.5c0 1-1 1.5-1 2.5"/></symbol>
+  <symbol id="i-syringe" viewBox="0 0 24 24"><path d="M19 3l2 2M20.5 7.5 16.5 3.5M18 5l-8.5 8.5M4 20l2.5-2.5M6 21l-3-3 1.5-1.5 3 3L6 21zM9 12l3 3M11 10l3 3"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4L15 12l-3-3 2.7-2.7z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 3v6h-6"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6.5L9 22l11-12.5h-6.5L15 2z"/></symbol>
+</svg>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><svg class="i"><use href="#i-tools"/></svg>Kỹ thuật viên tác nghiệp tại phòng khám — không cần mang máy đi</span>
+      <span><svg class="i"><use href="#i-refresh"/></svg>Nhắc chu kỳ hiệu chuẩn – bảo trì trước 30 ngày</span>
+    </div>
+    <div class="tb-l">
+      <span class="hot"><svg class="i"><use href="#i-phone"/></svg>Hotline: <b>0902 777 277</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="MEDIQ">
+      <span class="mark"><svg class="i"><use href="#i-pulse"/></svg></span>
+      <span><span class="lg-t">MEDIQ</span><span class="lg-s">Bảo trì · Hiệu chuẩn Y tế</span></span>
+    </a>
+    <div class="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchInput" type="text" placeholder="Tìm: monitor, siêu âm, X-quang…" autocomplete="off">
+      <div class="drop" id="searchDrop"></div>
+    </div>
+    <nav class="main">
+      <a href="#dichvu">Dịch vụ</a>
+      <a href="#chuky">Chu kỳ</a>
+      <a href="#quytrinh">Quy trình</a>
+      <a href="#about">Về MEDIQ</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="btn btn-hot" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>0902 777 277</a>
+      <button class="btn btn-dark" id="hdQuote"><svg class="i"><use href="#i-doc"/></svg>Gửi yêu cầu</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="eyebrow"><svg class="i"><use href="#i-shield"/></svg>Kỹ thuật y tế B2B — phòng khám · bệnh viện · lab</span>
+      <h1>Thiết bị đo đúng — <span class="hl">phòng khám vận&nbsp;hành</span> không gián đoạn</h1>
+      <p class="lead">MEDIQ nhận yêu cầu <b>bảo trì và hiệu chuẩn thiết bị y tế tại chỗ</b>: máy monitor, siêu âm, X-quang, máy xét nghiệm, máy thở – gây mê, bơm tiêm điện, nồi hấp tiệt trùng. Kỹ thuật viên đến tận cơ sở, <b>sửa trong giờ hẹn — không mang máy đi</b>, bàn giao <b>giấy chứng nhận hiệu chuẩn có số hiệu HC.2026.xxxx</b> kèm tem dán và hệ thống nhắc chu kỳ trước 30 ngày.</p>
+      <div class="hero-cta">
+        <a class="btn btn-hot btn-xl" href="tel:0902777277"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>0902 777 277 — gọi kỹ thuật viên trực</a>
+        <a class="btn btn-line btn-xl" href="#yeucau"><svg class="i" style="width:22px;height:22px"><use href="#i-doc"/></svg>Gửi yêu cầu — khảo sát &amp; báo giá trong 24 giờ</a>
+      </div>
+      <div class="trust">
+        <span><svg class="i"><use href="#i-doc"/></svg>GCN hiệu chuẩn có số hiệu — tra cứu được</span>
+        <span><svg class="i"><use href="#i-pin"/></svg>Bảo trì tại phòng khám — không mang máy đi</span>
+        <span><svg class="i"><use href="#i-bolt"/></svg>An toàn điện y tế theo IEC 62353</span>
+        <span><svg class="i"><use href="#i-refresh"/></svg>Nhắc chu kỳ trước 30 ngày</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hm-badge"><span class="bt">HC.2026</span><span class="bs">GCN hiệu chuẩn · tem dán máy</span></div>
+      <div class="hm-main">
+        <img src="assets/img/cover.webp" alt="Bảo trì và hiệu chuẩn thiết bị y tế tại phòng khám — kỹ thuật viên MEDIQ tác nghiệp tại chỗ">
+        <div class="hm-cap"><svg class="i"><use href="#i-doc"/></svg>Mẫu giấy chứng nhận hiệu chuẩn <span class="gc">HC.2026.0277</span> — kèm tem dán ghi hạn trên từng thiết bị</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DẢI MARQUEE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" id="tapeTrack">
+    <span><svg class="i"><use href="#i-pin"/></svg>Bảo trì ngay tại phòng khám — không mang máy đi đâu cả</span>
+    <span><svg class="i"><use href="#i-doc"/></svg>Mọi đợt hiệu chuẩn đều cấp GCN có số hiệu HC.2026.xxxx</span>
+    <span><svg class="i"><use href="#i-refresh"/></svg>Nhắc chu kỳ định kỳ trước 30 ngày — miễn phí</span>
+    <span><svg class="i"><use href="#i-bolt"/></svg>Kiểm tra an toàn điện y tế theo IEC 62353</span>
+    <span><svg class="i"><use href="#i-clock"/></svg>Phản hồi sự cố trong 4 giờ làm việc — nội thành TP.HCM</span>
+    <span><svg class="i"><use href="#i-tools"/></svg>Làm ngoài giờ khám — không gián đoạn bệnh nhân</span>
+    <span><svg class="i"><use href="#i-check"/></svg>Bộ chuẩn so sánh — số liệu ghi rõ trên từng GCN</span>
+  </div>
+</div>
+
+<!-- ============ KHỐI-8 DỊCH VỤ ============ -->
+<section class="sec" id="dichvu">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">8 dịch vụ kỹ thuật — phòng khám, bệnh viện và lab dùng nhiều nhất</h2>
+      <span class="sec-sub">Tác nghiệp tại cơ sở theo giờ hẹn · mỗi đợt hiệu chuẩn cấp GCN có số hiệu · giá tham chiếu giảm theo hợp đồng năm</span>
+    </div>
+    <div class="svc-grid rv" data-d="1">
+
+      <!-- Thẻ nổi bật 1 — Monitor -->
+      <article class="svc-f" id="svc-0">
+        <div class="sf-img">
+          <img src="assets/img/p1.webp" alt="Bảo trì máy monitor bệnh nhân tại phòng khám" loading="lazy">
+          <span class="sf-tag"><svg class="i"><use href="#i-star"/></svg>Nổi bật</span>
+        </div>
+        <div class="sf-body">
+          <div class="chips">
+            <span class="chip c-green"><svg class="i"><use href="#i-screen"/></svg>Thiết bị giám sát</span>
+            <span class="chip c-blue"><svg class="i"><use href="#i-refresh"/></svg>Chu kỳ 6–12 tháng</span>
+          </div>
+          <h3>BẢO TRÌ MÁY MONITOR BỆNH NHÂN</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Kiểm tra – vệ sinh module SpO₂, ECG, NIBP và huyết áp không xâm lấn</li>
+            <li><svg class="i"><use href="#i-check"/></svg>So sánh thông số với bộ chuẩn áp suất – lưu lượng, ghi kết quả trên GCN</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Tác nghiệp ngay tại khoa — làm ca làm việc nghỉ, không ngắt giám sát bệnh nhân</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Cấp GCN hiệu chuẩn số hiệu HC.2026.xxxx + tem dán hạn trên từng máy</li>
+          </ul>
+          <span class="sf-price"><svg class="i"><use href="#i-tag"/></svg>Từ 450.000đ/máy/lượt — giảm theo hợp đồng năm</span>
+          <div class="sf-acts">
+            <button type="button" class="btn btn-accent lead-btn" data-lead="Bảo trì máy monitor bệnh nhân"><svg class="i"><use href="#i-doc"/></svg>Nhận báo giá bảo trì monitor</button>
+            <a class="btn btn-ghost" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>Gọi: 0902 777 277</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 thẻ thường -->
+      <article class="svc-c" id="svc-1">
+        <div class="sc-img">
+          <img src="assets/img/p2.webp" alt="Bảo trì máy siêu âm tại phòng khám" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Bảo dưỡng 6 tháng/lượt</span>
+        </div>
+        <div class="sc-body">
+          <h3>Bảo trì máy siêu âm</h3>
+          <p class="sc-sub">Vệ sinh tản nhiệt · kiểm tra đầu dò · hình ảnh nét, chẩn đoán chính xác</p>
+          <div class="sc-foot"><span class="sc-price">từ 1.500.000đ/máy</span><button type="button" class="sc-more lead-btn" data-lead="Bảo trì máy siêu âm"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <article class="svc-c" id="svc-2">
+        <div class="sc-img">
+          <img src="assets/img/p3.webp" alt="Hiệu chuẩn và kiểm tra máy X-quang" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Kiểm tra 12 tháng/lượt</span>
+        </div>
+        <div class="sc-body">
+          <h3>Hiệu chuẩn &amp; kiểm tra máy X-quang</h3>
+          <p class="sc-sub">Chất lượng ảnh · thông số phơi sáng · an toàn vận hành cho người bệnh</p>
+          <div class="sc-foot"><span class="sc-price">từ 3.500.000đ/hệ</span><button type="button" class="sc-more lead-btn" data-lead="Hiệu chuẩn &amp; kiểm tra máy X-quang"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <article class="svc-c" id="svc-3">
+        <div class="sc-img">
+          <img src="assets/img/p4.webp" alt="Hiệu chuẩn máy thở và gây mê" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Hiệu chuẩn 6–12 tháng</span>
+        </div>
+        <div class="sc-body">
+          <h3>Hiệu chuẩn máy thở &amp; gây mê</h3>
+          <p class="sc-sub">Cảm biến lưu lượng – áp lực với tester chuyên dụng, an toàn người bệnh</p>
+          <div class="sc-foot"><span class="sc-price">từ 900.000đ/máy</span><button type="button" class="sc-more lead-btn" data-lead="Hiệu chuẩn máy thở &amp; gây mê"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <article class="svc-c" id="svc-4">
+        <div class="sc-img">
+          <img src="assets/img/p5.webp" alt="Bảo trì máy xét nghiệm tại lab" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Bảo dưỡng 6 tháng/lượt</span>
+        </div>
+        <div class="sc-body">
+          <h3>Bảo trì máy xét nghiệm</h3>
+          <p class="sc-sub">Sinh hoá · huyết học · nước tiểu — giữ kết quả chạy ổn định giữa 2 kỳ HC</p>
+          <div class="sc-foot"><span class="sc-price">từ 2.000.000đ/máy</span><button type="button" class="sc-more lead-btn" data-lead="Bảo trì máy xét nghiệm"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <article class="svc-c" id="svc-5">
+        <div class="sc-img">
+          <img src="assets/img/p6.webp" alt="Bảo trì nồi hấp tiệt trùng phòng khám" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Kiểm tra 12 tháng/lượt</span>
+        </div>
+        <div class="sc-body">
+          <h3>Bảo trì nồi hấp tiệt trùng</h3>
+          <p class="sc-sub">Đo nhiệt độ điểm lạnh · kiểm gioăng, van an toàn — đạt kiểm soát nhiễm khuẩn</p>
+          <div class="sc-foot"><span class="sc-price">từ 700.000đ/nồi</span><button type="button" class="sc-more lead-btn" data-lead="Bảo trì nồi hấp tiệt trùng"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <article class="svc-c" id="svc-6">
+        <div class="sc-img">
+          <img src="assets/img/p7.webp" alt="Hiệu chuẩn bơm tiêm điện và máy truyền dịch" loading="lazy">
+          <span class="sc-chu"><svg class="i"><use href="#i-refresh"/></svg>Hiệu chuẩn 12 tháng/lượt</span>
+        </div>
+        <div class="sc-body">
+          <h3>Hiệu chuẩn bơm tiêm điện &amp; máy truyền dịch</h3>
+          <p class="sc-sub">Kiểm tra tốc độ truyền với bộ chuẩn lưu lượng — liều chính xác, an toàn</p>
+          <div class="sc-foot"><span class="sc-price">từ 180.000đ/bơm</span><button type="button" class="sc-more lead-btn" data-lead="Hiệu chuẩn bơm tiêm điện &amp; máy truyền dịch"><svg class="i"><use href="#i-right"/></svg>Báo giá</button></div>
+        </div>
+      </article>
+
+      <!-- Thẻ nổi bật 2 — Tận nơi -->
+      <article class="svc-f" id="svc-7">
+        <div class="sf-img">
+          <img src="assets/img/p8.webp" alt="Hỗ trợ kỹ thuật và sửa chữa thiết bị y tế tận nơi" loading="lazy">
+          <span class="sf-tag"><svg class="i"><use href="#i-star"/></svg>Nổi bật</span>
+        </div>
+        <div class="sf-body">
+          <div class="chips">
+            <span class="chip c-green"><svg class="i"><use href="#i-tools"/></svg>Sửa tại chỗ</span>
+            <span class="chip c-blue"><svg class="i"><use href="#i-clock"/></svg>Phản hồi 4 giờ nội thành</span>
+          </div>
+          <h3>HỖ TRỢ KỸ THUẬT &amp; SỬA CHỮA TẬN NƠI</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Kỹ thuật viên đến phòng khám — <b>sửa ngay tại chỗ, không mang máy ra ngoài</b></li>
+            <li><svg class="i"><use href="#i-check"/></svg>Khắc phục nhanh sự cố monitor, bơm tiêm, siêu âm — giữ hoạt động khám chữa bệnh</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Xử lý sự cố nguồn, kiểm tra an toàn điện theo IEC 62353 sau mỗi lượt sửa</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Hướng dẫn sử dụng – bảo quản đúng cách, giảm hỏng vặt cho nhân sự cơ sở</li>
+          </ul>
+          <span class="sf-price"><svg class="i"><use href="#i-tag"/></svg>Phí thăm khám từ 300.000đ — khấu trừ khi sửa chữa</span>
+          <div class="sf-acts">
+            <button type="button" class="btn btn-accent lead-btn" data-lead="Hỗ trợ kỹ thuật &amp; sửa chữa tận nơi"><svg class="i"><use href="#i-doc"/></svg>Gửi yêu cầu kỹ thuật viên đến ngay</button>
+            <a class="btn btn-ghost" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>Gọi: 0902 777 277</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHỐI ĐẶC THÙ — SỔ HIỆU CHUẨN: CHU KỲ + GCN CÓ SỐ HIỆU ============ -->
+<section class="sec" id="chuky">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Sổ hiệu chuẩn từng thiết bị — đến hạn là có người nhắc</h2>
+      <span class="sec-sub">Thiết bị quá hạn hiệu chuẩn: thông số không còn đáng tin và cơ sở rủi ro khi thanh tra — MEDIQ lưu sổ theo từng máy và nhắc trước hạn 30 ngày</span>
+    </div>
+    <div class="cy-grid">
+      <div class="cy-table rv">
+        <div class="cy-head">
+          <svg class="i"><use href="#i-cal"/></svg><b>Ma trận chu kỳ khuyến nghị theo nhóm thiết bị</b>
+          <small>Bấm một nhóm để gửi yêu cầu kèm sẵn nhóm thiết bị — kỹ thuật viên gọi lại chốt danh mục</small>
+        </div>
+        <button type="button" class="cy-row" data-cycle="Monitor &amp; máy đo huyết áp">
+          <span class="ci"><svg class="i"><use href="#i-screen"/></svg></span>
+          <span class="cn">Monitor &amp; máy đo huyết áp<small>monitor bệnh nhân, máy đo HA lập bàn, SpO₂</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>6–12 tháng</span>
+          <span class="cd">So sánh thông số với bộ chuẩn áp suất – lưu lượng; GCN ghi sai số từng thông số đo</span>
+        </button>
+        <button type="button" class="cy-row" data-cycle="Bơm tiêm điện &amp; máy truyền dịch">
+          <span class="ci"><svg class="i"><use href="#i-syringe"/></svg></span>
+          <span class="cn">Bơm tiêm điện &amp; máy truyền dịch<small>bơm tiêm, bơm truyền dịch, bơm tủa</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>12 tháng</span>
+          <span class="cd">Kiểm tra tốc độ truyền với bộ chuẩn lưu lượng — liều truyền đúng kê đơn</span>
+        </button>
+        <button type="button" class="cy-row" data-cycle="Máy siêu âm &amp; máy xét nghiệm">
+          <span class="ci"><svg class="i"><use href="#i-sono"/></svg></span>
+          <span class="cn">Máy siêu âm &amp; máy xét nghiệm<small>siêu âm 2D/4D, sinh hoá, huyết học</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>6 tháng</span>
+          <span class="cd">Bảo dưỡng định kỳ: vệ sinh tản nhiệt, kiểm đầu dò, kiểm tra mô-đun quang – điện</span>
+        </button>
+        <button type="button" class="cy-row" data-cycle="Nồi hấp tiệt trùng">
+          <span class="ci"><svg class="i"><use href="#i-steam"/></svg></span>
+          <span class="cn">Nồi hấp tiệt trùng<small>nồi hấp bàn, nồi hấp dọc, autoclave</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>12 tháng</span>
+          <span class="cd">Đo nhiệt độ điểm lạnh bằng bộ chuẩn nhiệt; kiểm van an toàn áp lực, gioăng kín</span>
+        </button>
+        <button type="button" class="cy-row" data-cycle="Máy thở &amp; gây mê">
+          <span class="ci"><svg class="i"><use href="#i-lung"/></svg></span>
+          <span class="cn">Máy thở &amp; máy gây mê<small>máy thở ICU, máy gây mê hồi sức</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>6–12 tháng</span>
+          <span class="cd">Hiệu chuẩn cảm biến lưu lượng – áp lực bằng tester chuyên dụng trước khi đưa vào ca</span>
+        </button>
+        <button type="button" class="cy-row" data-cycle="An toàn điện thiết bị y tế">
+          <span class="ci"><svg class="i"><use href="#i-bolt"/></svg></span>
+          <span class="cn">An toàn điện thiết bị y tế<small>dòng rò, điện trở tiếp đất từng máy</small></span>
+          <span class="cc"><svg class="i"><use href="#i-refresh"/></svg>12 tháng</span>
+          <span class="cd">Đo theo IEC 62353 — kết quả kèm GCN, phục vụ thanh tra và audit chất lượng</span>
+        </button>
+        <div class="cy-cta">
+          <p>Nhận lịch nhắc chu kỳ cho cả danh mục thiết bị — miễn phí cho khách hợp đồng năm.</p>
+          <button type="button" class="btn btn-gold" id="cyLead"><svg class="i"><use href="#i-refresh"/></svg>Nhận lịch nhắc chu kỳ</button>
+        </div>
+      </div>
+      <aside class="gcn-card rv" data-d="1">
+        <div class="gcn-top">
+          <div class="gcn-frame">
+            <div class="gcn-h">Giấy chứng nhận hiệu chuẩn</div>
+            <div class="gcn-no">Số: <b class="gc">HC.2026.0277</b></div>
+            <div class="gcn-rows">
+              <div class="gcn-r"><span class="k">Thiết bị</span><span class="v">Máy monitor bệnh nhân — Model MP-30</span></div>
+              <div class="gcn-r"><span class="k">Phương pháp</span><span class="v">So sánh với bộ chuẩn áp suất – lưu lượng</span></div>
+              <div class="gcn-r"><span class="k">Kết quả</span><span class="v"><span class="gc">ĐẠT</span> — sai số trong dung sai cho phép</span></div>
+              <div class="gcn-r"><span class="k">Ngày hiệu chuẩn</span><span class="v">12/02/2026 — tại cơ sở</span></div>
+              <div class="gcn-r"><span class="k">Hạn kế tiếp</span><span class="v">12/02/2027 — nhắc trước 30 ngày</span></div>
+            </div>
+            <span class="gcn-seal">MEDIQ<br>QC · SEAL</span>
+          </div>
+        </div>
+        <div class="gcn-body">
+          <h3><svg class="i"><use href="#i-award"/></svg>GCN có số hiệu — tem dán từng máy</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>Mỗi GCN mang số hiệu riêng <span class="gc">HC.2026.xxxx</span> — đối chiếu được khi thanh tra, audit</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Tem hiệu chuẩn dán trên máy: ghi ngày HC và hạn HC kế tiếp</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Sổ tay hồ sơ theo từng thiết bị — lưu truy xuất cho từng cơ sở</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Gửi mẫu GCN và quy trình tác nghiệp trọn bộ khi báo giá</li>
+          </ul>
+          <div class="gcn-acts">
+            <button type="button" class="btn btn-gold lead-btn" data-lead="Nhận mẫu GCN &amp; hồ sơ năng lực"><svg class="i"><use href="#i-doc"/></svg>Nhận mẫu GCN &amp; hồ sơ năng lực</button>
+            <span class="gcn-fine"><svg class="i"><use href="#i-lock"/></svg>Hồ sơ gửi bằng email công ty — không phát sinh phí</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUY TRÌNH 4 BƯỚC ============ -->
+<section class="sec alt" id="quytrinh">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Từ yêu cầu đến GCN có số hiệu — làm ngay tại cơ sở của bạn</h2>
+      <span class="sec-sub">Mỗi bước có mốc thời gian cam kết — cơ sở luôn biết thiết bị của mình đang ở khâu nào</span>
+    </div>
+    <div class="steps">
+      <article class="step rv" data-d="0">
+        <div class="s-ic"><svg class="i"><use href="#i-list"/></svg></div>
+        <h3>Gửi danh mục thiết bị</h3>
+        <p>Liệt kê loại máy, model, số lượng — khảo sát miễn phí tại cơ sở và báo giá trong 24 giờ.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Báo giá trong 24 giờ</span>
+      </article>
+      <article class="step rv" data-d="1">
+        <div class="s-ic"><svg class="i"><use href="#i-cal"/></svg></div>
+        <h3>Hẹn lịch theo giờ của cơ sở</h3>
+        <p>Chọn giờ hẹn không trùng khung khám — kể cả ngoài giờ, cuối tuần — phụ lục danh mục kèm hợp đồng.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Lên lịch trong 3 ngày</span>
+      </article>
+      <article class="step rv" data-d="2">
+        <div class="s-ic"><svg class="i"><use href="#i-tools"/></svg></div>
+        <h3>Tác nghiệp tại cơ sở</h3>
+        <p>Kỹ thuật viên mang bộ chuẩn đến — bảo trì, hiệu chuẩn tại chỗ, hiệu chỉnh khi lệch ngoài dung sai.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>Không mang máy đi</span>
+      </article>
+      <article class="step rv" data-d="3">
+        <div class="s-ic"><svg class="i"><use href="#i-doc"/></svg></div>
+        <h3>Bàn giao GCN + tem + nhắc chu kỳ</h3>
+        <p>GCN có số hiệu riêng, tem dán từng máy, sổ tay hồ sơ — hệ thống tự nhắc trước hạn 30 ngày.</p>
+        <span class="meta"><svg class="i"><use href="#i-clock"/></svg>GCN sau 3 ngày làm việc</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAM KẾT ============ -->
+<section class="sec" id="commit">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">4 cam kết viết vào hợp đồng với mỗi cơ sở y tế</h2>
+      <span class="sec-sub">Cơ sở khám chữa bệnh cần bằng chứng, không cần lời hứa — mỗi cam kết là một điều khoản hợp đồng</span>
+    </div>
+    <div class="com-grid">
+      <article class="com-card rv" data-d="0">
+        <span class="cc-num">01</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-pin"/></svg></div>
+        <h3>Bảo trì tại chỗ — không mang máy đi</h3>
+        <p>Kỹ thuật viên tác nghiệp ngay tại phòng khám theo giờ hẹn, kể cả ngoài giờ khám. Thiết bị không rời cơ sở — bệnh nhân không bị gián đoạn.</p>
+      </article>
+      <article class="com-card rv" data-d="1">
+        <span class="cc-num">02</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-doc"/></svg></div>
+        <h3>GCN hiệu chuẩn có số hiệu</h3>
+        <p>Mỗi giấy chứng nhận mang số hiệu <span class="gc">HC.2026.xxxx</span> kèm tem dán ghi hạn trên từng máy — tra đối chiếu rõ ràng khi thanh tra, audit.</p>
+      </article>
+      <article class="com-card rv" data-d="2">
+        <span class="cc-num">03</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-clock"/></svg></div>
+        <h3>Phản hồi sự cố trong 4 giờ</h3>
+        <p>Sự cố thiết bị trong giờ làm việc, khu vực nội thành: kỹ thuật viên có mặt trong 4 giờ. Trễ vì lỗi MEDIQ — lượt thăm khám đó miễn phí.</p>
+      </article>
+      <article class="com-card rv" data-d="3">
+        <span class="cc-num">04</span>
+        <div class="cc-ic"><svg class="i"><use href="#i-refresh"/></svg></div>
+        <h3>Nhắc chu kỳ định kỳ miễn phí</h3>
+        <p>Sổ theo dõi từng thiết bị trong phụ lục hợp đồng — nhắc trước hạn 30 ngày, khách hợp đồng năm giữ giá 12 tháng.</p>
+      </article>
+    </div>
+    <div class="hot-strip rv" data-d="1">
+      <div class="hs-t">
+        <h3>Thiết bị sắp đến hạn hiệu chuẩn — hay đang hỏng giữa giờ khám?</h3>
+        <p>Gửi yêu cầu — kỹ thuật viên gọi lại trong 30 phút, khảo sát và báo giá trong 24 giờ.</p>
+      </div>
+      <div class="hs-acts">
+        <a class="btn btn-hot btn-xl" href="tel:0902777277"><svg class="i" style="width:24px;height:24px"><use href="#i-phone"/></svg>0902 777 277 — gọi kỹ thuật viên trực</a>
+        <a class="btn btn-line btn-xl" href="#yeucau"><svg class="i" style="width:22px;height:22px"><use href="#i-doc"/></svg>Gửi yêu cầu trong 1 phút</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat rv" data-d="0"><b><span class="cnt" data-n="12">0</span><em> năm</em></b><span>bảo trì – hiệu chuẩn thiết bị y tế</span></div>
+    <div class="stat rv" data-d="1"><b><span class="cnt" data-n="9800">0</span><em>+</em></b><span>thiết bị bảo trì &amp; hiệu chuẩn mỗi năm</span></div>
+    <div class="stat rv" data-d="2"><b><span class="cnt" data-n="180">0</span><em>+</em></b><span>phòng khám, bệnh viện &amp; lab ký hợp đồng năm</span></div>
+    <div class="stat rv" data-d="3"><b><span class="cnt" data-n="98">0</span><em>%</em></b><span>lịch hẹn tác nghiệp đúng giờ cam kết</span></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div class="ab-col rv">
+        <div class="ab-img">
+          <div class="ab-frame f-portrait">
+            <img src="assets/img/intro.webp" alt="Giới thiệu dịch vụ bảo trì và hiệu chuẩn thiết bị y tế MEDIQ" loading="lazy">
+            <div class="ab-cap"><svg class="i"><use href="#i-shield"/></svg>An toàn thiết bị — nền tảng hoạt động chuyên môn</div>
+          </div>
+        </div>
+        <div class="ab-img">
+          <div class="ab-frame r2 f-land">
+            <img src="assets/img/space.webp" alt="Xưởng hiệu chuẩn và kho thiết bị chuẩn của MEDIQ" loading="lazy">
+            <div class="ab-cap"><svg class="i"><use href="#i-gauge"/></svg>Xưởng kiểm tra – khu hiệu chuẩn với bộ chuẩn so sánh tại trụ MEDIQ</div>
+          </div>
+        </div>
+      </div>
+      <div class="ab-txt rv" data-d="1">
+        <span class="eyebrow"><svg class="i"><use href="#i-pulse"/></svg>Về MEDIQ</span>
+        <h2>Đội kỹ thuật viên y tế toàn thời gian — phục vụ 180+ cơ sở khám chữa bệnh và lab</h2>
+        <p>MEDIQ tập hợp kỹ sư điện – điện tử và kỹ thuật viên thiết bị y tế được đào tạo theo hướng dẫn của nhà sản xuất. Chúng tôi làm việc như một bộ phận kỹ thuật thuê ngoài của từng cơ sở: theo dõi trạng thái từng máy trong danh mục, tác nghiệp tại chỗ theo giờ hẹn, bàn giao GCN – tem – hồ sơ đầy đủ và chịu trách nhiệm nhắc chu kỳ. Phòng khám nhỏ dùng 10 thiết bị hay bệnh viện quản lý hàng trăm máy đều theo một quy trình như nhau.</p>
+        <div class="ab-pts">
+          <div class="ab-pt"><svg class="i"><use href="#i-pin"/></svg><span><b>Tác nghiệp tại cơ sở</b><span>Máy không rời phòng khám — không gián đoạn khám chữa bệnh</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-gauge"/></svg><span><b>Bộ chuẩn so sánh</b><span>Số liệu đo ghi rõ trên từng GCN — truy xuất được</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-bolt"/></svg><span><b>An toàn điện IEC 62353</b><span>Đo dòng rò – tiếp đất định kỳ cho từng thiết bị</span></span></div>
+          <div class="ab-pt"><svg class="i"><use href="#i-refresh"/></svg><span><b>Sổ &amp; nhắc chu kỳ</b><span>Hồ sơ theo từng máy — nhắc trước hạn 30 ngày</span></span></div>
+        </div>
+        <div class="ab-cta">
+          <a class="btn btn-hot" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>Gọi kỹ thuật viên: 0902 777 277</a>
+          <a class="btn btn-ghost" href="#yeucau"><svg class="i"><use href="#i-doc"/></svg>Nhận báo giá trong 24 giờ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF — CƠ SỞ Y TẾ ============ -->
+<section class="sec" id="proof" style="background:var(--texture)">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Cơ sở y tế kể về quy trình bảo trì của họ</h2>
+      <span class="sec-sub">Đánh giá theo kỳ hợp đồng — đầu mối kỹ thuật đối chất hồ sơ và nhắc chu kỳ mỗi quý</span>
+    </div>
+    <div class="rvw-shell rv" data-d="1">
+      <div>
+        <div class="rvw-view">
+          <div class="rvw-track" id="rvwTrack"></div>
+        </div>
+        <div class="rvw-dots" id="rvwDots"></div>
+      </div>
+      <aside class="rvw-side">
+        <div class="metric"><b>4.9/5</b><span>từ 180+ phòng khám, bệnh viện &amp; lab hợp đồng năm</span></div>
+        <div class="mrow"><span>Lịch hẹn đúng giờ cam kết</span><b>98%</b></div>
+        <div class="mrow"><span>Hồ sơ đạt khi thanh tra/audit</span><b>100%</b></div>
+        <div class="mrow"><span>Cơ sở gia hạn hợp đồng năm</span><b>93%</b></div>
+        <div>
+          <h4 style="margin-bottom:10px">Thiết bị tác nghiệp thường xuyên</h4>
+          <div class="pchips"><span>Monitor bệnh nhân</span><span>Máy siêu âm</span><span>Bơm tiêm điện</span><span>Nồi hấp tiệt trùng</span><span>Máy xét nghiệm</span><span>Máy thở – gây mê</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM NHẬN YÊU CẦU ============ -->
+<section class="sec" id="yeucau">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Gửi yêu cầu — kỹ thuật viên gọi lại trong 30 phút</h2>
+      <span class="sec-sub">Điền nhanh 5 dòng — khảo sát tại cơ sở miễn phí, báo giá kèm danh mục và lịch hẹn gửi trong 24 giờ</span>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info rv">
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-pin"/></svg></span>
+          <span><b>Trung tâm MEDIQ</b><span>Số 7A, đường Đinh Bộ Lĩnh, P. 24, Q. Bình Thạnh, TP.HCM</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic"><svg class="i"><use href="#i-phone"/></svg></span>
+          <span><b>Hotline: 0902 777 277</b><span>Gọi trực tiếp kỹ thuật viên phụ trách — nhận yêu cầu 7:30–18:00, cả thứ 7</span></span>
+        </div>
+        <div class="ci-card">
+          <span class="ci-ic y"><svg class="i"><use href="#i-clock"/></svg></span>
+          <span><b>Giờ tiếp nhận yêu cầu</b><span>7:30–18:00 thứ 2 – thứ 7 · tác nghiệp ngoài giờ khám theo hẹn, sự cố nội thành phản hồi 4 giờ</span></span>
+        </div>
+        <div class="map-embed">
+          <iframe title="Bản đồ trung tâm MEDIQ" src="https://www.google.com/maps?q=10.8015,106.6880&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a class="map-dir" href="https://www.google.com/maps/dir/?api=1&destination=10.8015,106.6880" target="_blank" rel="noopener"><svg class="i"><use href="#i-pin"/></svg>Chỉ đường tới trung tâm MEDIQ</a>
+      </div>
+      <form class="ct-form rv" data-d="1" id="ctForm" novalidate>
+        <h3>Phiếu nhận yêu cầu bảo trì – hiệu chuẩn</h3>
+        <p class="fsub">Bộ phận kỹ thuật trả lời trong giờ — gọi lại trong 30 phút kể từ khi gửi</p>
+        <div class="frow">
+          <input type="text" id="ctName" placeholder="Họ tên người phụ trách *">
+          <input type="tel" id="ctPhone" placeholder="Số điện thoại *">
+        </div>
+        <div class="frow">
+          <select id="ctService" class="full">
+            <option value="">Dịch vụ cần triển khai…</option>
+            <option>Bảo trì máy monitor bệnh nhân</option>
+            <option>Bảo trì máy siêu âm</option>
+            <option>Hiệu chuẩn &amp; kiểm tra máy X-quang</option>
+            <option>Hiệu chuẩn máy thở &amp; gây mê</option>
+            <option>Bảo trì máy xét nghiệm</option>
+            <option>Bảo trì nồi hấp tiệt trùng</option>
+            <option>Hiệu chuẩn bơm tiêm điện &amp; máy truyền dịch</option>
+            <option>Hỗ trợ kỹ thuật &amp; sửa chữa tận nơi</option>
+            <option>Hợp đồng bảo trì định kỳ theo năm</option>
+            <option>Nhận mẫu GCN &amp; hồ sơ năng lực</option>
+            <option>Nhận lịch nhắc chu kỳ</option>
+          </select>
+        </div>
+        <div class="frow">
+          <input type="text" id="ctAddr" class="full" placeholder="Tên cơ sở &amp; khu vực (vd: phòng khám đa khoa — Bình Thạnh) *">
+        </div>
+        <div class="frow">
+          <textarea class="full" id="ctDesc" placeholder="Mô tả thiết bị (không bắt buộc): vd “6 máy monitor + 2 nồi hấp, sắp đến hạn hiệu chuẩn, cần làm ngoài giờ khám”…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold"><svg class="i"><use href="#i-send"/></svg>Gửi yêu cầu — gọi lại trong 30 phút</button>
+        <p class="secure"><svg class="i"><use href="#i-lock"/></svg>Thông tin chỉ dùng để khảo sát và lập báo giá — không chia sẻ cho bên thứ ba.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="sec-title">Hỏi nhanh — đáp gọn trước khi gửi yêu cầu</h2>
+      <span class="sec-sub">Tìm bằng từ khoá hoặc chạm chip chủ đề bạn quan tâm</span>
+    </div>
+    <div class="faq-shell rv" data-d="1">
+      <div class="faq-tools">
+        <div class="faq-search">
+          <svg class="i"><use href="#i-search"/></svg>
+          <input id="faqSearch" type="text" placeholder="Tìm: chu kỳ, GCN, tận nơi, IEC 62353, hợp đồng…">
+        </div>
+        <div class="faq-chips" id="faqChips">
+          <button class="fchip" data-k="tận nơi">Bảo trì tại chỗ</button>
+          <button class="fchip" data-k="gcn">GCN số hiệu</button>
+          <button class="fchip" data-k="chu kỳ">Chu kỳ định kỳ</button>
+          <button class="fchip" data-k="62353">An toàn điện IEC</button>
+          <button class="fchip" data-k="báo giá">Báo giá</button>
+          <button class="fchip" data-k="sự cố">Sự cố khẩn</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Không tìm thấy câu phù hợp — gọi 0902 777 277 để kỹ thuật viên trả lời ngay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER — GỌN ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero">
+          <span class="mark"><svg class="i"><use href="#i-pulse"/></svg></span>
+          <span><span class="lg-t">MEDIQ</span><span class="lg-s">Bảo trì · Hiệu chuẩn Y tế</span></span>
+        </a>
+        <p>Trung tâm kỹ thuật y tế B2B: bảo trì và hiệu chuẩn thiết bị y tế tại chỗ cho phòng khám, bệnh viện và lab — GCN hiệu chuẩn có số hiệu, tem dán từng máy, nhắc chu kỳ trước 30 ngày.</p>
+        <a class="ft-hot" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>0902 777 277</a>
+      </div>
+      <div>
+        <h4>Liên kết nhanh</h4>
+        <ul>
+          <li><a href="#dichvu">8 dịch vụ kỹ thuật</a></li>
+          <li><a href="#chuky">Chu kỳ &amp; GCN hiệu chuẩn</a></li>
+          <li><a href="#quytrinh">Quy trình 4 bước</a></li>
+          <li><a href="#commit">4 cam kết hợp đồng</a></li>
+          <li><a href="#about">Về MEDIQ</a></li>
+          <li><a href="#yeucau">Gửi yêu cầu</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>Trung tâm: Số 7A, đường Đinh Bộ Lĩnh, P. 24, Q. Bình Thạnh, TP.HCM</li>
+          <li>Hotline: <b style="color:#fff">0902 777 277</b></li>
+          <li>Email: kythuat@mediq.vn</li>
+          <li>Tiếp nhận yêu cầu: 7:30–18:00, thứ 2 – thứ 7</li>
+          <li>Tác nghiệp tại cơ sở — TP.HCM và các tỉnh lân cận</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span>© 2026 MEDIQ — Trung tâm Bảo trì &amp; Hiệu chuẩn Thiết bị Y tế. Tại chỗ — đúng hạn — GCN có số hiệu.</span>
+      <div class="pay-chips"><span>Hợp đồng năm</span><span>Hoá đơn VAT</span><span>Chuyển khoản</span><span>SLA ghi hợp đồng</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FAB DOCK ============ -->
+<div class="dock hide" id="dock">
+  <a class="d-hot" href="tel:0902777277"><svg class="i"><use href="#i-phone"/></svg>Gọi kỹ thuật viên</a>
+  <a class="d-main" href="#yeucau"><svg class="i"><use href="#i-doc"/></svg>Gửi yêu cầu</a>
+  <a href="https://zalo.me/0902777277" target="_blank" rel="noopener" title="Zalo"><svg class="i"><use href="#i-chat"/></svg>Zalo</a>
+  <a href="#dichvu" title="8 dịch vụ"><svg class="i"><use href="#i-list"/></svg>Dịch vụ</a>
+  <a href="#chuky" title="Chu kỳ & GCN"><svg class="i"><use href="#i-refresh"/></svg>Chu kỳ</a>
+  <button id="dockTop" title="Lên đầu trang"><svg class="i"><use href="#i-up"/></svg>Lên đầu</button>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ================= NB93-277: DỮ LIỆU ================= */
+var HOTLINE = '0902 777 277';
+var TEL = 'tel:0902777277';
+
+/* 8 dịch vụ — hiển thị khối-8 (2 nổi bật + 6 thường) & tìm kiếm */
+var SVC = [
+  {n:'Bảo trì máy monitor bệnh nhân', sub:'giám sát liên tục · khoa nội & hồi sức', ic:'i-screen', img:'assets/img/p1.webp', feat:true,
+   d:'Kiểm tra – vệ sinh module SpO₂, ECG, NIBP; so sánh thông số với bộ chuẩn áp suất – lưu lượng; cấp GCN hiệu chuẩn số hiệu riêng kèm tem dán hạn cho từng máy.',
+   chu:'6–12 tháng', price:'từ 450.000đ/máy/lượt'},
+  {n:'Bảo trì máy siêu âm', sub:'vệ sinh tản nhiệt · kiểm tra đầu dò', ic:'i-sono', img:'assets/img/p2.webp', feat:false,
+   d:'Bảo dưỡng định kỳ giúp hình ảnh nét ổn định: vệ sinh quạt – mạch nguồn, kiểm tra đầu dò nứt – khe hở, kiểm tra bàn phím và chân xoay trước kỳ hiệu chuẩn tiếp theo.',
+   chu:'6 tháng/lượt', price:'từ 1.500.000đ/máy'},
+  {n:'Hiệu chuẩn &amp; kiểm tra máy X-quang', sub:'chất lượng ảnh · thông số phơi sáng', ic:'i-xray', img:'assets/img/p3.webp', feat:false,
+   d:'Kiểm tra chất lượng ảnh, đồng bộ thông số phơi sáng và an toàn vận hành; kết hợp kiểm tra an toàn điện — hồ sơ đầy đủ để cơ sở sẵn sàng cho đợt thanh tra.',
+   chu:'12 tháng/lượt', price:'từ 3.500.000đ/hệ'},
+  {n:'Hiệu chuẩn máy thở &amp; gây mê', sub:'cảm biến lưu lượng · áp lực', ic:'i-lung', img:'assets/img/p4.webp', feat:false,
+   d:'Hiệu chuẩn cảm biến lưu lượng – áp lực bằng tester chuyên dụng theo hướng dẫn hãng; kiểm báo động và hệ thống dẫn khí trước khi đưa máy vào ca mổ hoặc ICU.',
+   chu:'6–12 tháng', price:'từ 900.000đ/máy'},
+  {n:'Bảo trì máy xét nghiệm', sub:'sinh hoá · huyết học · nước tiểu', ic:'i-vial', img:'assets/img/p5.webp', feat:false,
+   d:'Bảo dưỡng định kỳ: vệ sinh hệ thống hút – rửa, kiểm tra mô-đun quang – điện, hiệu chỉnh nền đo — giữ kết quả chạy ổn định giữa hai kỳ hiệu chuẩn.',
+   chu:'6 tháng/lượt', price:'từ 2.000.000đ/máy'},
+  {n:'Bảo trì nồi hấp tiệt trùng', sub:'nhiệt độ điểm lạnh · van an toàn', ic:'i-steam', img:'assets/img/p6.webp', feat:false,
+   d:'Đo nhiệt độ điểm lạnh bằng bộ chuẩn nhiệt, kiểm gioăng kín và van an toàn áp lực — bảo đảm chu trình tiệt trùng đạt yêu cầu kiểm soát nhiễm khuẩn.',
+   chu:'12 tháng/lượt', price:'từ 700.000đ/nồi'},
+  {n:'Hiệu chuẩn bơm tiêm điện &amp; máy truyền dịch', sub:'tốc độ truyền chính xác · an toàn liều', ic:'i-syringe', img:'assets/img/p7.webp', feat:false,
+   d:'Kiểm tra tốc độ truyền trên các mức thông dụng với bộ chuẩn lưu lượng; hiệu chỉnh khi lệch ngoài dung sai — GCN ghi kết quả từng điểm đo kèm tem dán hạn.',
+   chu:'12 tháng', price:'từ 180.000đ/bơm'},
+  {n:'Hỗ trợ kỹ thuật &amp; sửa chữa tận nơi', sub:'sửa tại chỗ · không mang máy đi', ic:'i-tools', img:'assets/img/p8.webp', feat:true,
+   d:'Kỹ thuật viên đến cơ sở, chẩn đoán và sửa chữa ngay tại phòng khám — thiết bị không rời cơ sở; xử lý sự cố nguồn, kiểm an toàn điện IEC 62353 sau mỗi lượt sửa.',
+   chu:'Phản hồi 4 giờ', price:'thăm khám từ 300.000đ'}
+];
+var HOTLINE_LBL = HOTLINE;
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(title, msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<svg class="i"><use href="#i-check"/></svg><span class="tx"><b>' + title + '</b><span>' + msg + '</span></span>';
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; t.style.transition = '.4s'; }, 3300);
+  setTimeout(function(){ t.remove(); }, 3800);
+}
+
+/* ================= KHỐI-8: gắn CTA nhận báo giá theo thẻ ================= */
+document.querySelectorAll('.lead-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    openLead(b.getAttribute('data-lead'));
+  });
+});
+
+/* Prefill phiếu nhận yêu cầu */
+function openLead(service){
+  var sel = $('ctService');
+  var want = service.replace(/&amp;/g,'&');
+  for(var i=0;i<sel.options.length;i++){
+    if(sel.options[i].text === want){ sel.selectedIndex = i; break; }
+  }
+  document.getElementById('yeucau').scrollIntoView({behavior:'smooth'});
+  toast('Đã chọn "' + want + '"', 'Điền SĐT để kỹ thuật viên gọi lại trong 30 phút');
+}
+
+/* ================= HEADER: nút gửi yêu cầu + tìm kiếm typeahead ================= */
+$('hdQuote').addEventListener('click', function(){
+  document.getElementById('yeucau').scrollIntoView({behavior:'smooth'});
+});
+$('searchInput').addEventListener('input', function(){
+  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
+  if(!q){ drop.classList.remove('open'); return; }
+  var m = [];
+  SVC.forEach(function(s, i){ if((s.n + ' ' + s.sub + ' ' + s.d).toLowerCase().indexOf(q) !== -1) m.push(i); });
+  /*NB93-277-FIX: tìm kiếm không còn im lặng — luôn phản hồi khi gõ (có kết quả → danh sách, không có → dòng báo + gợi ý hotline)*/
+  if(!m.length){
+    drop.innerHTML = '<div class="drop-nr">Không có dịch vụ khớp "<b>' + esc(q) + '</b>" — gọi ' + HOTLINE + ' để được tư vấn ngay</div>';
+    drop.classList.add('open');
+    return;
+  }
+  drop.innerHTML = m.map(function(i){ return '<button data-svq="' + i + '"><svg class="i"><use href="#' + SVC[i].ic + '"/></svg>' + SVC[i].n + '</button>'; }).join('');
+  drop.classList.add('open');
+  drop.querySelectorAll('[data-svq]').forEach(function(b){
+    b.addEventListener('click', function(){
+      drop.classList.remove('open'); $('searchInput').value = '';
+      svcJump(+b.getAttribute('data-svq'));
+    });
+  });
+});
+function svcJump(i){
+  var el = document.getElementById('svc-' + i);
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  toast('Đã tìm thấy dịch vụ', SVC[i].n.replace(/&amp;/g,'&'));
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search')) $('searchDrop').classList.remove('open');
+});
+
+/* ================= MA TRẬN CHU KỲ — prefill phiếu yêu cầu ================= */
+document.querySelectorAll('.cy-row').forEach(function(r){
+  r.addEventListener('click', function(){
+    openLead('Nhận lịch nhắc chu kỳ');
+    $('ctDesc').value = 'Nhóm thiết bị: ' + r.getAttribute('data-cycle').replace(/&amp;/g,'&') + ' — cần lịch nhắc chu kỳ định kỳ.';
+    toast('Đã chọn nhóm thiết bị', r.getAttribute('data-cycle').replace(/&amp;/g,'&') + ' — điền SĐT để nhận lịch nhắc');
+  });
+});
+$('cyLead').addEventListener('click', function(){
+  openLead('Nhận lịch nhắc chu kỳ');
+});
+
+/* ================= REVEAL + COUNTER + DOCK ================= */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+var cio = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, target = +el.getAttribute('data-n'), t0 = performance.now(), dur = 1300;
+    function tick(t){
+      var p = Math.min((t - t0)/dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p,3))).toLocaleString('vi-VN');
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:.4});
+document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
+/* Dock: cuộn xuống >100px → ẩn, cuộn lên → hiện lại */
+var heroEl = $('hero'), heroVis = true, lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+function syncDock(){
+  var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  var down = y > lastY + 2, up = y < lastY - 2;
+  $('dock').classList.toggle('hide', heroVis || (y > 100 && down && !up));
+}
+new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; syncDock(); },{threshold:.15}).observe(heroEl);
+window.addEventListener('scroll', function(){ syncDock(); lastY = window.pageYOffset || document.documentElement.scrollTop || 0; }, {passive:true});
+$('dockTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/* ================= TAPE: nhân đôi nội dung để chạy liền mạch ================= */
+$('tapeTrack').innerHTML += $('tapeTrack').innerHTML;
+
+/* ================= SOCIAL PROOF — 4 CƠ SỞ Y TẾ ================= */
+var RVW = [
+  {t:'42 máy monitor được hiệu chuẩn đúng lịch, từng máy dán tem ghi hạn, GCN số hiệu riêng lưu sổ. Đoàn thanh tra đối chiếu hồ sơ xong trong buổi — không phải bổ sung gì thêm.', n:'Ông Ngô Văn Hậu', w:'Quản lý thiết bị — bệnh viện đa khoa tư nhân, TP.HCM', i:'NH'},
+  {t:'Máy siêu âm hỏng giữa buổi khám, kỹ thuật viên đến trong giờ nghỉ trưa và sửa ngay tại phòng khám — không phải mang máy đi đâu cả. Chiều đó khám lại bình thường.', n:'Bác sĩ Trần Thị Mai', w:'Chủ phòng khám đa khoa, quận Bình Thạnh', i:'TM'},
+  {t:'Máy sinh hoá được bảo dưỡng 6 tháng một lần, nền đo ổn định, QC hằng ngày không báo động vặt. Mỗi kỳ hiệu chuẩn có GCN số hiệu để đối chiếu hồ sơ truy xuất của lab.', n:'ThS. Lê Hoàng Đạt', w:'Trưởng lab xét nghiệm — trung tâm y tế, quận 7', i:'HD'},
+  {t:'Bơm tiêm điện hiệu chuẩn đúng hạn, tem dán từng máy ghi rõ hạn kế tiếp; hợp đồng năm kèm nhắc chu kỳ trước 30 ngày — khoa không còn cảnh tá hỏa vì hết hạn.', n:'Nữ điều dưỡng trưởng Đặng Thu Hương', w:'Khoa hồi sức — cơ sở khám chữa bệnh, Thủ Đức', i:'TH'}
+];
+var rvIdx = 0, rvTimer = null;
+function rvRender(){
+  var h = '';
+  RVW.forEach(function(r){
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<svg class="i"><use href="#i-star"/></svg>';
+    h += '<div class="rvw-slide"><div class="rvw-card"><div class="stars">' + stars + '</div>' +
+      '<p>"' + esc(r.t) + '"</p>' +
+      '<div class="who"><span class="avt">' + r.i + '</span><span><b>' + esc(r.n) + '</b><span>' + esc(r.w) + '</span></span></div>' +
+      '</div></div>';
+  });
+  $('rvwTrack').innerHTML = h;
+  var d = '';
+  RVW.forEach(function(_, i){ d += '<button data-d="' + i + '" aria-label="Đánh giá ' + (i+1) + '"></button>'; });
+  $('rvwDots').innerHTML = d;
+  $('rvwDots').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ rvGo(+b.getAttribute('data-d')); rvAuto(); });
+  });
+  rvGo(0);
+}
+function rvGo(i){
+  rvIdx = (i + RVW.length) % RVW.length;
+  $('rvwTrack').style.transform = 'translateX(' + (-rvIdx * 100) + '%)';
+  $('rvwDots').querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===rvIdx); });
+}
+function rvAuto(){
+  clearInterval(rvTimer);
+  rvTimer = setInterval(function(){ rvGo(rvIdx + 1); }, 6000);
+}
+var rvShell = document.querySelector('.rvw-shell');
+rvShell.addEventListener('mouseenter', function(){ clearInterval(rvTimer); });
+rvShell.addEventListener('mouseleave', rvAuto);
+rvRender(); rvAuto();
+
+/* ================= FORM NHẬN YÊU CẦU (C2 — lead, không giỏ/không booking) ================= */
+$('ctForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('ctName').value.trim(), phone = $('ctPhone').value.trim(), svc = $('ctService').value, addr = $('ctAddr').value.trim();
+  if(!name || !phone || !svc || !addr){ toast('Thiếu thông tin', 'Điền đủ họ tên, SĐT, dịch vụ và tên cơ sở nhé!'); return; }
+  if(!/^(0|\+84)[0-9\s.-]{8,}$/.test(phone)){ toast('Số điện thoại chưa hợp lệ', 'Kiểm tra lại số điện thoại giúp chúng tôi nhé!'); return; }
+  this.reset();
+  toast('Đã gửi yêu cầu thành công', 'Kỹ thuật viên gọi lại trong 30 phút — khảo sát miễn phí, báo giá trong 24 giờ');
+});
+
+/* ================= FAQ 8 CÂU ================= */
+var FAQ = [
+  {q:'Bảo trì và hiệu chuẩn thiết bị y tế khác nhau thế nào?', k:'bảo trì hiệu chuẩn khác nhau phân biệt định nghĩa',
+   a:'Bảo trì: kiểm tra, vệ sinh, thay linh kiện hao mòn để máy chạy ổn định và bền. Hiệu chuẩn: so sánh thông số máy với bộ chuẩn, cấp giấy chứng nhận ghi sai số — trả lời câu hỏi "số máy đọc có tin được không". Một đợt tác nghiệp có thể làm cả hai — GCN cấp riêng cho phần hiệu chuẩn.'},
+  {q:'Có phải mang máy đến trung tâm của MEDIQ không?', k:'tận nơi tại phòng khám mang máy đi tại chỗ lưu động',
+   a:'Không cần. Kỹ thuật viên mang bộ chuẩn đến tác nghiệp ngay tại phòng khám theo giờ hẹn — kể cả ngoài giờ khám, cuối tuần. Máy không rời cơ sở nên hoạt động khám chữa bệnh không gián đoạn. Riêng thiết bị cần điều kiện xưởng đặc biệt, lịch gửi – nhận sẽ ghi rõ trong báo giá.'},
+  {q:'Giấy chứng nhận hiệu chuẩn có số hiệu dùng để làm gì?', k:'gcn số hiệu hc.2026 tra cứu tem dán thanh tra audit',
+   a:'Mỗi GCN mang số hiệu riêng dạng HC.2026.xxxx, ghi phương pháp, bộ chuẩn so sánh, kết quả từng điểm đo, ngày hiệu chuẩn và hạn kế tiếp — kèm tem dán trên máy. Khi thanh tra hoặc audit chất lượng, cơ sở đối chiếu GCN – tem – sổ theo dõi là đủ hồ sơ.'},
+  {q:'Chu kỳ hiệu chuẩn, bảo trì từng loại máy là bao lâu?', k:'chu kỳ 6 tháng 12 tháng nhắc trước 30 ngày định kỳ',
+   a:'Phổ biến: monitor và máy đo huyết áp 6–12 tháng; bơm tiêm điện 12 tháng; máy siêu âm và máy xét nghiệm bảo dưỡng 6 tháng/lượt; nồi hấp 12 tháng; máy thở – gây mê 6–12 tháng; an toàn điện IEC 62353 12 tháng. Khách hợp đồng năm được nhắc tự động trước hạn 30 ngày cho từng thiết bị.'},
+  {q:'Máy hỏng giữa giờ khám — bao lâu thì có mặt?', k:'sự cố khẩn 4 giờ nội thành phản hồi sửa chữa gấp',
+   a:'Gọi hotline 0902 777 277: sự cố trong giờ làm việc, khu vực nội thành TP.HCM — kỹ thuật viên có mặt trong 4 giờ, xử lý ngay tại chỗ. Các khu vực khác chốt thời gian theo hợp đồng. Trễ hẹn vì lỗi MEDIQ, lượt thăm khám đó miễn phí.'},
+  {q:'Báo giá tính theo cách nào?', k:'báo giá danh mục đơn giá vat hợp đồng chi phí',
+   a:'Giá theo từng thiết bị và lượt tác nghiệp — ghi rõ trong báo giá trước khi làm: vd monitor từ 450.000đ/máy, bơm tiêm từ 180.000đ/bơm, siêu âm từ 1.500.000đ/máy. Khảo sát tại cơ sở miễn phí; số lượng lớn giảm theo hợp đồng năm. Hoá đơn VAT đầy đủ cho phòng kế toán.'},
+  {q:'Hợp đồng bảo trì định kỳ theo năm gồm những gì?', k:'hợp đồng năm sla phụ lục danh mục bảo trì định kỳ',
+   a:'Phụ lục danh mục từng thiết bị (loại, model, số máy), lịch tác nghiệp theo chu kỳ, SLA phản hồi sự cố, giá từng lượt và cam kết nhắc trước hạn 30 ngày. Khách hợp đồng năm giữ giá 12 tháng, nhận sổ theo dõi trạng thái từng máy và ưu tiên lịch ngoài giờ khám.'},
+  {q:'An toàn điện thiết bị y tế theo IEC 62353 là gì?', k:'62353 an toàn điện dòng rò tiếp đất iec',
+   a:'IEC 62353 là tiêu chuẩn kiểm tra an toàn điện lặp định kỳ cho thiết bị y tế: đo dòng rò, điện trở tiếp đất, kiểm tra cách điện trên từng máy. Kết quả kèm GCN riêng — nhiều cơ sở bị yêu cầu mục này khi thanh tra, trong khi nhân sự nội bộ không có máy đo chuyên dụng.'}
+];
+function faqRender(list){
+  var h = '';
+  list.forEach(function(f){
+    h += '<div class="faq-item"><button class="faq-q"><span class="fq-ic"><svg class="i"><use href="#i-chat"/></svg></span>' +
+      '<span>' + esc(f.q) + '</span><svg class="i chev"><use href="#i-chevd"/></svg></button>' +
+      '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  });
+  $('faqList').innerHTML = h;
+  $('faqEmpty').style.display = list.length ? 'none' : 'block';
+  $('faqList').querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.parentElement, body = item.querySelector('.faq-a'), open = item.classList.contains('open');
+      $('faqList').querySelectorAll('.faq-item.open').forEach(function(x){
+        x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+}
+function faqFilter(q){
+  if(!q){ faqRender(FAQ); return; }
+  q = q.toLowerCase();
+  var m = FAQ.filter(function(f){ return (f.q + ' ' + f.a + ' ' + f.k).toLowerCase().indexOf(q) !== -1; });
+  faqRender(m);
+}
+$('faqSearch').addEventListener('input', function(){
+  $('faqChips').querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+  faqFilter(this.value.trim());
+});
+$('faqChips').querySelectorAll('.fchip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var on = c.classList.contains('on');
+    $('faqChips').querySelectorAll('.fchip').forEach(function(x){ x.classList.remove('on'); });
+    $('faqSearch').value = '';
+    if(on){ faqRender(FAQ); } else { c.classList.add('on'); faqFilter(c.getAttribute('data-k')); }
+  });
+});
+faqRender(FAQ);
+</script>
+
+<!-- CHAT: widget tư vấn trực tiếp (demo bot — kịch bản bảo trì, hiệu chuẩn thiết bị y tế) -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">🩺</div>
+    <div><div class="pkc-name">Tư vấn kỹ thuật <span data-pkc="brand">MEDIQ</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-277: CHAT — widget tư vấn kỹ thuật y tế*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:var(--grad-accent,#0F8A62);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(11,107,75,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#C9A227;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(201,162,39,.18)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,44,70,.5);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:var(--grad-dark,#0D4A73);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0;border-bottom:2px solid #C9A227}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(127,211,168,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F1F6FA}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(8,44,70,.08);border-bottom-left-radius:4px;color:#15293B}
+.pkc-u{align-self:flex-end;background:var(--grad-dark,#0D4A73);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(8,44,70,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(8,44,70,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(15,138,98,.4);color:#0B6B4B;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap;min-height:40px}
+.pkc-chip:hover{background:#E6F4EE}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(8,44,70,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(8,44,70,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none;min-width:0}
+.pkc-inrow input:focus{border-color:#0F8A62;box-shadow:0 0 0 3px rgba(15,138,98,.12)}
+.pkc-inrow button{width:44px;border-radius:11px;background:var(--grad-accent,#0F8A62);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style><script>(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();</script>
+<script>
+/* FAILSAFE: element reveal bi ket lai tu hien sau 1.6s */
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"MEDIQ — Trung tâm Bảo trì & Hiệu chuẩn Thiết bị Y tế",
+  "slogan":"Tại chỗ — đúng hạn — GCN có số hiệu",
+  "telephone":"0902777277",
+  "address":{"@type":"PostalAddress","streetAddress":"Số 7A, đường Đinh Bộ Lĩnh, Phường 24","addressLocality":"Q. Bình Thạnh, TP.HCM","addressCountry":"VN"},
+  "openingHours":"Mo-Sa 07:30-18:00",
+  "areaServed":["TP.HCM","Bình Dương","Đồng Nai","Long An","Bà Rịa – Vũng Tàu"]
+}
+</script>
+</body>
+</html>

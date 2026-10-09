@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mecamo — Cửa hàng mô hình &amp; đồ chơi sở thích | Gundam, tank, board game</title>
+<meta name="description" content="Mecamo — mô hình genuine có tem: kit Gundam lắp ráp, mô hình tĩnh xe/tank, figure sưu tầm, board game. Thợ ráp & chỉn màu theo yêu cầu từ 90K, workshop cuối tuần, cộng đồng 5.200+ mọt. Freeship từ 350K.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*NB93-264*/
+/* ================= ROOT / PALETTE ================= */
+:root{
+  --primary:#151C2C;          /* navy khung nova — header, section tối, footer */
+  --primary-2:#233354;
+  --primary-3:#0C1220;
+  --texture:#F4F1E9;          /* kraft nhạt — nền xen kẽ */
+  --accent:#F2661D;           /* cam hobby — CTA, giá, badge */
+  --accent-100:#FDE9DB;
+  --accent-200:#F7CDAF;
+  --grad-accent:linear-gradient(135deg,#FF9046,#F2591D);
+  --blue:#2E6FD8;             /* xanh bản vẽ — badge genuine, chip info */
+  --blue-100:#E3EDFB;
+  --red:#D62828;              /* đỏ tem genuine */
+  --ink:#1B2434;--soft:#55627A;
+  --line:rgba(21,28,44,.14);
+  --w:#fff;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:32px;
+  --sh-1:0 2px 10px rgba(21,28,44,.06);
+  --sh-2:0 10px 30px rgba(21,28,44,.10);
+  --sh-3:0 24px 60px rgba(21,28,44,.18);
+  --grad-dark:linear-gradient(140deg,var(--primary-2),var(--primary) 55%,var(--primary-3));
+  --grid-bg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Cpath d='M36 0H0v36' fill='none' stroke='%23151C2C' stroke-opacity='.06'/%3E%3Ccircle cx='0' cy='0' r='1.6' fill='%23151C2C' fill-opacity='.10'/%3E%3C/svg%3E");
+  --panel:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M-8 34 L34 -8' stroke='%23F2591D' stroke-opacity='.08' stroke-width='1.4'/%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip;scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:var(--w);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{position:relative}
+.sec{padding:84px 0}
+.sec-t{font-size:2.1rem;font-weight:900;line-height:1.25;letter-spacing:-.5px}
+.sec-t .hl{display:inline;background:linear-gradient(120deg,var(--accent-200),var(--accent-100));padding:2px 12px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;transform:rotate(-1deg)}
+.sec-sub{display:block;color:var(--soft);margin-top:12px;max-width:660px;font-size:1.02rem}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-100);color:#C24A12;font-weight:800;font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1.5px solid var(--accent-200)}
+.mini-t{display:block;font-weight:900;font-size:1.16rem;margin-bottom:4px}
+.mini-s{display:block;color:var(--soft);font-size:.9rem}
+
+/* ================= FX chung ================= */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.12s}
+.rv[data-d="2"]{transition-delay:.24s}
+.rv[data-d="3"]{transition-delay:.36s}
+.spot{position:relative;overflow:hidden}
+.spot::before{content:"";position:absolute;inset:0;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(242,89,29,.10),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
+.spot:hover::before{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:.95rem;padding:14px 26px;border-radius:999px;transition:.25s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-a{background:var(--grad-accent);color:#fff;box-shadow:0 10px 24px rgba(242,89,29,.35)}
+.btn-a::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(242,89,29,.45)}
+.btn-a:hover::after{left:120%}
+.btn-g{background:#fff;color:var(--primary);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-d{background:#fff;color:var(--accent);border:1.5px solid var(--accent-200)}
+.btn-d:hover{background:var(--accent);color:#fff}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.84rem;font-weight:600;color:var(--soft)}
+.chip svg{width:15px;height:15px;color:var(--accent);flex:none}
+.tick{color:#18825E;font-weight:900}
+/*NB93-264 tem genuine — con dấu tròn xoay nhẹ*/
+.stamp{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--red);color:var(--red);border-radius:999px;padding:7px 15px;font-weight:900;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;transform:rotate(-2deg);background:#fff}
+
+/* ================= TOPBAR ================= */
+.topbar{background:var(--grad-dark);color:#DCE5F2;font-size:.82rem;padding:9px 0;position:relative;z-index:60}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.topbar b{color:#fff}
+.tb-l{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.tb-r{display:flex;gap:18px;align-items:center}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:#7BE3B5;display:inline-block;margin-right:7px;box-shadow:0 0 0 3px rgba(123,227,181,.2)}
+.topbar a{color:#fff;font-weight:700}
+
+/* ================= HEADER ================= */
+header{position:sticky;top:0;z-index:55;background:rgba(255,255,255,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line);transition:.3s}
+header.scrolled{box-shadow:0 8px 30px rgba(21,28,44,.10)}
+.hd{display:flex;align-items:center;gap:18px;padding:14px 24px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-ic{width:44px;height:44px;border-radius:14px;background:var(--grad-dark);color:#FFB27E;display:grid;place-items:center;font-weight:900;font-size:1.1rem;position:relative}
+.logo-ic::after{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(255,178,126,.5);border-radius:10px}
+.logo b{display:block;font-size:1.28rem;font-weight:900;letter-spacing:-.4px;color:var(--primary);line-height:1.1}
+.logo span{display:block;font-size:.68rem;letter-spacing:2.2px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.hd-search{flex:1;min-width:0;position:relative}
+.hd-search input{width:100%;padding:12px 18px 12px 44px;border:1.5px solid var(--line);border-radius:999px;background:var(--texture);outline:none;transition:.25s}
+.hd-search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-100)}
+.hd-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--soft)}
+nav.main{display:flex;gap:2px}
+nav.main a{padding:9px 12px;border-radius:999px;font-weight:700;font-size:.87rem;color:var(--primary);transition:.2s;white-space:nowrap}
+nav.main a:hover{background:var(--accent-100);color:var(--accent)}
+.cart-btn{position:relative;width:48px;height:48px;border-radius:16px;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;transition:.25s;flex:none}
+.cart-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cart-btn svg{width:21px;height:21px}
+.cart-n{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:999px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;padding:0 5px;box-shadow:0 3px 8px rgba(242,89,29,.4)}
+
+/* ================= HERO ================= */
+.hero{background:var(--texture);background-image:var(--grid-bg);padding:60px 0 84px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.02fr 1fr;gap:52px;align-items:center}
+.hero-tag{margin-bottom:18px}
+h1{font-size:clamp(2.2rem,4.4vw,3.3rem);font-weight:900;line-height:1.14;letter-spacing:-1px;color:var(--primary)}
+h1 .hl{display:inline;background:var(--grad-accent);color:#fff;padding:1px 14px 3px;border-radius:10px;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(242,89,29,.3)}
+.hero-sub{display:block;color:var(--soft);margin:18px 0 26px;font-size:1.06rem;max-width:540px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:500px}
+.trust .chip{justify-content:flex-start}
+/*NB93-264 hero giữ nguyên khung poster 4/3 — không crop chữ trên ảnh; cờ + stat nằm dưới ảnh, không đè poster*/
+.hero-vis{position:relative}
+.hv-main{border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:var(--sh-3);transform:rotate(-1.5deg);position:relative}
+.hv-main img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.hero-foot{margin-top:16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.hero-stat{position:relative;display:flex;gap:20px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.95);border-radius:20px;padding:16px 22px;box-shadow:var(--sh-2);width:max-content;max-width:100%}
+.hs-i b{display:block;font-size:1.3rem;font-weight:900;color:var(--primary);white-space:nowrap}
+.hs-i span{display:block;font-size:.74rem;color:var(--soft);font-weight:600}
+
+/* ================= TAPE MARQUEE ================= */
+.tape{background:var(--grad-accent);transform:rotate(-1deg) scale(1.02);padding:15px 0;overflow:hidden;box-shadow:var(--sh-2);position:relative;z-index:5;margin:-26px 0}
+.tape-in{display:flex;width:max-content;animation:tape 26s linear infinite}
+.tape span{color:#fff;font-weight:900;font-size:.95rem;letter-spacing:1.5px;text-transform:uppercase;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.tape span::after{content:"✦";font-size:.8rem;opacity:.85}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* ================= 2 THẺ NỔI BẬT ================= */
+.feat{background:#fff;padding-top:104px}
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px}
+.f-card{border-radius:var(--r-l);overflow:hidden;background:#fff;border:1.5px solid var(--line);box-shadow:var(--sh-1);transition:.3s;display:flex;flex-direction:column}
+.f-card:hover{transform:translateY(-8px);box-shadow:var(--sh-3)}
+.f-media{position:relative;aspect-ratio:4/3;overflow:hidden}
+.f-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.f-card:hover .f-media img{transform:scale(1.05)}
+/*NB93-264 meta nằm trong thân thẻ, không đè ảnh*/
+.f-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.f-meta .f-pr{display:flex;align-items:baseline;gap:8px}
+.f-meta .f-pr em{font-style:normal;font-weight:900;font-size:1.3rem;color:var(--accent)}
+.f-meta .f-pr s{color:var(--soft);font-weight:600;font-size:.85rem}
+.f-card.dark .f-meta .f-pr s{color:#9FB2D2}
+.f-body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.f-body h3{font-size:1.22rem;font-weight:900;color:var(--primary)}
+.f-body ul{display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--soft)}
+.f-body .btn{margin-top:auto;width:100%}
+.f-card.dark{background:var(--grad-dark);border-color:transparent}
+.f-card.dark h3{color:#fff}
+.f-card.dark ul{color:#C4D2EA}
+.f-card.dark .f-body .mini-s{color:#9FB2D2}
+
+/* ================= DẢI 5 NHÓM HÀNG ================= */
+.strip{background:#fff;padding:0 0 70px}
+.strip-in{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.s-item{display:flex;align-items:center;gap:12px;background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-m);padding:15px 17px;font-weight:800;font-size:.9rem;color:var(--primary);transition:.25s}
+.s-item:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:var(--accent-200);background:#fff}
+.s-ic{width:40px;height:40px;flex:none;border-radius:12px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center}
+.s-ic svg{width:20px;height:20px}
+.s-item i{margin-left:auto;font-style:normal;color:var(--accent);font-weight:900;transition:.25s}
+.s-item:hover i{transform:translateX(4px)}
+
+/* ================= KHỐI-8 FLASH BENTO ================= */
+.deal{background:var(--grad-dark);color:#fff;overflow:hidden}
+.deal::before{content:"";position:absolute;inset:0;background-image:var(--grid-bg);opacity:.5}
+.deal .wrap{position:relative;z-index:2}
+.deal-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-bottom:40px}
+.deal-head .eyebrow{background:rgba(255,255,255,.12);color:#FFB27E;border-color:rgba(247,205,175,.3)}
+.deal-head h2{color:#fff}
+.deal-head .hl{background:var(--grad-accent);color:#fff}
+.deal-head .sec-sub{color:#C4D2EA}
+.deal-head .sec-sub b{color:#fff}
+.cd{display:flex;align-items:center;gap:12px;justify-content:flex-end}
+.cd-lb{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#FFB27E;text-align:right;line-height:1.5}
+.cd-box{background:rgba(255,255,255,.1);border:1.5px solid rgba(247,205,175,.35);backdrop-filter:blur(8px);border-radius:16px;min-width:74px;padding:12px 8px;text-align:center}
+.cd-box b{display:block;font-size:2rem;font-weight:900;font-variant-numeric:tabular-nums;color:#fff;line-height:1.1}
+.cd-box span{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:1.5px;color:#C4D2EA;font-weight:700}
+.cd-sep{font-size:1.6rem;font-weight:900;color:#FFB27E}
+.deal-tier{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.deal-tier span{background:rgba(255,255,255,.1);border:1.5px solid rgba(247,205,175,.3);border-radius:999px;padding:8px 15px;font-size:.82rem;font-weight:700}
+.deal-tier b{color:#FFB27E}
+/*NB93-264 bento 12 ô kín: nổi bật 2x2 + 7 thẻ + 1 ô workshop vé*/
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:18px;grid-auto-flow:dense}
+.b-feat{grid-column:span 2;grid-row:span 2;background:#fff;border-radius:var(--r-l);overflow:hidden;color:var(--ink);display:flex;flex-direction:column;position:relative}
+.b-feat .p-media{aspect-ratio:4/3}
+.b-feat .p-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.b-feat h3{font-size:1.5rem;font-weight:900;color:var(--primary);line-height:1.2}
+.b-feat .p-desc{font-size:.92rem;color:var(--soft)}
+.b-feat .btn{width:100%;font-size:1.02rem;padding:16px 26px;margin-top:4px}
+.chip-tag{display:inline-flex;align-items:center;font-size:.68rem;font-weight:900;letter-spacing:.8px;text-transform:uppercase;border-radius:999px;padding:5px 11px}
+.chip-tag.hot{background:var(--grad-accent);color:#fff}
+.chip-tag.off{background:#fff;color:var(--accent);border:1.5px solid var(--accent-200)}
+.p-meta-row{display:flex;gap:7px;flex-wrap:wrap}
+.p-card{background:#fff;border-radius:var(--r-l);overflow:hidden;color:var(--ink);position:relative;display:flex;flex-direction:column}
+.p-card.b-cta{background:var(--blue-100);border:2px dashed var(--blue);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;gap:10px}
+.p-card.b-cta .ic{width:56px;height:56px;border-radius:18px;background:#fff;color:var(--blue);display:grid;place-items:center;box-shadow:var(--sh-1)}
+.p-card.b-cta .ic svg{width:26px;height:26px}
+.p-card.b-cta b{font-size:1.05rem;color:var(--primary)}
+.p-card.b-cta span{font-size:.82rem;color:var(--soft)}
+.p-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--texture)}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.p-card:hover .p-media img{transform:scale(1.06)}
+.p-btns{display:flex;gap:8px;margin-top:10px}
+.p-btns button{flex:1;padding:10px 8px;border-radius:12px;font-weight:800;font-size:.8rem;min-height:40px;transition:.2s}
+.pa-qv{background:#fff;color:var(--primary);border:1.5px solid var(--line)}
+.pa-qv:hover{border-color:var(--accent);color:var(--accent)}
+.pa-add{background:var(--grad-accent);color:#fff;box-shadow:0 6px 16px rgba(242,89,29,.35)}
+.pa-add:hover{filter:brightness(1.05)}
+.p-body{padding:15px 17px 17px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p-body .p-cat{display:block;font-size:.72rem;color:var(--soft);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.p-body h3{font-size:1rem;font-weight:800;color:var(--primary);line-height:1.35}
+.p-spec{display:flex;gap:5px;flex-wrap:wrap}
+.p-spec b{font-size:.62rem;font-weight:800;color:var(--soft);border:1px solid var(--line);border-radius:6px;padding:2.5px 7px;line-height:1.4;letter-spacing:.3px}
+.p-pr{display:flex;align-items:baseline;gap:9px;margin-top:auto}
+.p-pr em{font-style:normal;font-weight:900;font-size:1.14rem;color:var(--accent)}
+.p-pr s{color:var(--soft);font-size:.8rem}
+
+/* ================= DỊCH VỤ RÁP — ESTIMATOR (đặc thù) ================= */
+.rapsvc{background:var(--texture);background-image:var(--grid-bg)}
+.rp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;margin-top:44px;align-items:stretch}
+.rp-form{background:var(--grad-dark);border-radius:var(--r-xl);padding:34px;color:#fff;position:relative;overflow:hidden}
+.rp-form::before{content:"";position:absolute;inset:0;background-image:var(--grid-bg);opacity:.55;pointer-events:none}
+.rp-form>*{position:relative}
+.rp-form h3{font-size:1.35rem;font-weight:900;margin-bottom:6px}
+.rp-form .mini-s{color:#C4D2EA;margin-bottom:22px}
+.rp-lb{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#FFB27E;margin:20px 0 10px}
+.rp-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rp-opt{text-align:left;border:1.5px solid rgba(247,205,175,.3);border-radius:14px;padding:13px 15px;background:rgba(255,255,255,.06);transition:.22s;color:#E7EDF7}
+.rp-opt b{display:block;font-size:.92rem;color:#fff}
+.rp-opt span{display:block;font-size:.76rem;color:#C4D2EA;margin-top:2px}
+.rp-opt:hover{border-color:var(--accent)}
+.rp-opt.pick{border-color:var(--accent);background:var(--grad-accent);box-shadow:0 10px 22px rgba(242,89,29,.35)}
+.rp-opt.pick b,.rp-opt.pick span{color:#fff}
+.rp-checks{display:flex;flex-direction:column;gap:9px}
+.rp-ck{display:flex;align-items:center;gap:11px;border:1.5px solid rgba(247,205,175,.3);border-radius:12px;padding:11px 14px;font-size:.88rem;font-weight:600;color:#E7EDF7;cursor:pointer;transition:.2s}
+.rp-ck:hover{border-color:var(--accent)}
+.rp-ck.on{border-color:var(--accent);background:rgba(242,89,29,.18)}
+.rp-ck .box{width:22px;height:22px;flex:none;border-radius:7px;border:1.5px solid rgba(247,205,175,.4);display:grid;place-items:center;font-weight:900;font-size:.8rem;color:transparent;transition:.2s}
+.rp-ck.on .box{background:var(--grad-accent);border-color:transparent;color:#fff}
+.rp-res{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:34px;box-shadow:var(--sh-2);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.rp-res::after{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--accent) 0 26px,var(--blue) 26px 52px,var(--red) 52px 78px)}
+.rp-res .mini-t{font-size:1.25rem}
+.rp-line{display:flex;justify-content:space-between;gap:14px;font-size:.92rem;padding:11px 0;border-bottom:1px dashed var(--line)}
+.rp-line b{color:var(--primary)}
+.rp-line span{font-weight:700;color:var(--soft)}
+.rp-line.last{border-bottom:none}
+.rp-line.last span{font-weight:900;font-size:1.5rem;color:var(--accent)}
+.rp-eta{display:inline-flex;margin:10px 0 16px;background:var(--blue-100);color:#1D4FA8;font-size:.8rem;font-weight:800;border-radius:999px;padding:7px 14px;width:max-content}
+.rp-note{background:var(--texture);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;font-size:.83rem;color:var(--soft);margin-top:14px}
+.rp-note b{color:var(--primary)}
+/* workshop + community */
+.wk-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:26px}
+.wk-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-l);padding:24px;display:flex;flex-direction:column;gap:10px;transition:.25s}
+.wk-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.wk-day{display:inline-flex;width:max-content;background:var(--grad-accent);color:#fff;font-weight:900;font-size:.74rem;letter-spacing:1.2px;text-transform:uppercase;border-radius:999px;padding:6px 13px}
+.wk-card h4{font-size:1.1rem;font-weight:900;color:var(--primary)}
+.wk-card p{font-size:.86rem;color:var(--soft)}
+.wk-meta{display:flex;gap:14px;font-size:.76rem;font-weight:700;color:var(--soft);flex-wrap:wrap}
+.wk-meta svg{width:14px;height:14px;color:var(--accent);vertical-align:-2px;margin-right:4px}
+.wk-card .btn{margin-top:auto;width:100%}
+.wk-card.club{background:var(--grad-dark);border-color:transparent;color:#fff}
+.wk-card.club h4{color:#fff}
+.wk-card.club p{color:#C4D2EA}
+.wk-card.club .wk-meta{color:#9FB2D2}
+.wk-card.club .btn{margin-top:auto}
+
+/* ================= STATS ================= */
+.stats{background:var(--texture);background-image:var(--grid-bg);padding:64px 0;position:relative}
+.stats::before,.stats::after{content:"";position:absolute;left:0;right:0;height:46px;background:var(--grad-dark)}
+.stats::before{top:-23px;transform:skewY(-1.2deg)}
+.stats::after{bottom:-23px;transform:skewY(-1.2deg)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.st{text-align:center;padding:26px 12px;background:#fff;border-radius:var(--r-l);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+.st b{display:block;font-size:2.3rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.st span{display:block;font-size:.85rem;color:var(--soft);font-weight:700;margin-top:4px}
+
+/* ================= ABOUT ================= */
+.about{background:#fff}
+.ab-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.ab-img{position:relative;transform:rotate(-1.5deg)}
+.ab-img img{border-radius:var(--r-xl);border:7px solid #fff;box-shadow:var(--sh-3);aspect-ratio:4/3;object-fit:cover;width:100%}
+.ab-since{position:absolute;right:-12px;bottom:24px;background:var(--grad-dark);color:#fff;border-radius:20px;padding:16px 22px;box-shadow:var(--sh-2);transform:rotate(2deg)}
+.ab-since b{display:block;font-size:1.5rem;font-weight:900;color:#FFB27E}
+.ab-since span{display:block;font-size:.75rem;font-weight:600;color:#C4D2EA}
+.ab-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 28px}
+.ab-card{background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-m);padding:20px;transition:.25s}
+.ab-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);background:#fff;border-color:var(--accent-200)}
+.ab-card .ic{width:44px;height:44px;border-radius:14px;background:#fff;border:1.5px solid var(--accent-200);color:var(--accent);display:grid;place-items:center;margin-bottom:12px}
+.ab-card .ic svg{width:21px;height:21px}
+.ab-card b{display:block;font-size:.98rem;color:var(--primary)}
+.ab-card span{display:block;font-size:.82rem;color:var(--soft);margin-top:3px}
+.ab-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ================= BẢNG PHÂN CẤP 3 TAB ================= */
+.charts{background:var(--grad-dark);color:#fff}
+.charts .sec-t{color:#fff}
+.charts .sec-sub{color:#C4D2EA}
+.charts .eyebrow{background:rgba(255,255,255,.12);color:#FFB27E;border-color:rgba(247,205,175,.3)}
+.ch-tabs{display:flex;gap:10px;margin:34px 0 24px;flex-wrap:wrap}
+.ch-tab{padding:11px 20px;border-radius:999px;font-weight:800;font-size:.88rem;background:rgba(255,255,255,.1);border:1.5px solid rgba(247,205,175,.3);color:#DCE5F2;transition:.25s}
+.ch-tab.on{background:#fff;color:var(--primary);border-color:#fff}
+.ch-panel{display:none}
+.ch-panel.on{display:grid;grid-template-columns:1.25fr .75fr;gap:26px;animation:fadeUp .45s ease}
+.ch-tbl-wrap{background:#fff;border-radius:var(--r-l);padding:8px;color:var(--ink)}
+.ch-tbl-wrap .scroll{overflow-x:auto}
+.ch-tbl{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+.ch-tbl th{background:var(--texture);color:var(--primary);padding:12px 14px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:1px}
+.ch-tbl th:first-child{border-radius:12px 0 0 12px}.ch-tbl th:last-child{border-radius:0 12px 12px 0}
+.ch-tbl td{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:600}
+.ch-tbl tr:last-child td{border-bottom:none}
+.ch-tbl td:first-child{font-weight:900;color:var(--primary)}
+.ch-tbl td.hl-col{background:var(--accent-100);color:#C24A12;font-weight:900}
+.ch-side{display:flex;flex-direction:column;gap:14px}
+.tip{background:rgba(255,255,255,.08);border:1.5px solid rgba(247,205,175,.28);border-radius:var(--r-m);padding:17px 18px;backdrop-filter:blur(6px)}
+.tip b{display:flex;gap:9px;align-items:center;font-size:.94rem;color:#fff}
+.tip b::before{content:"✓";width:22px;height:22px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-size:.72rem}
+.tip p{font-size:.82rem;color:#C4D2EA;margin-top:7px}
+
+/* ================= REVIEWS ================= */
+.reviews{background:var(--texture);background-image:var(--grid-bg);overflow:hidden}
+.rw-vp{overflow:hidden;margin-top:42px}
+.rw-track{display:flex;transition:transform .55s cubic-bezier(.22,1,.3,1)}
+.rw{flex:0 0 100%;display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-xl);padding:38px 42px;box-shadow:var(--sh-1)}
+.rw-quote{font-size:1.06rem;color:var(--ink);line-height:1.75}
+.rw-quote::before{content:"“";display:block;font-size:3.4rem;line-height:.6;color:var(--accent);font-weight:900;margin-bottom:14px}
+.rw-who{display:flex;align-items:center;gap:13px;margin-top:22px}
+.rw-av{width:48px;height:48px;border-radius:50%;background:var(--grad-accent);color:#fff;font-weight:900;display:grid;place-items:center;font-size:1.05rem}
+.rw-who b{display:block;font-size:.95rem;color:var(--primary)}
+.rw-who span{display:block;font-size:.78rem;color:var(--soft)}
+.rw-meta{background:var(--grad-dark);border-radius:var(--r-l);padding:28px;color:#fff;text-align:center}
+.rw-meta .big{font-size:2.6rem;font-weight:900;color:#FFB27E;line-height:1}
+.rw-meta .lbl{display:block;font-size:.8rem;color:#C4D2EA;font-weight:600;margin-top:6px}
+.rw-bars{display:flex;flex-direction:column;gap:9px;margin-top:18px;text-align:left}
+.rw-bar{display:grid;grid-template-columns:96px 1fr 34px;gap:9px;align-items:center;font-size:.72rem;color:#DCE5F2;font-weight:600}
+.rw-bar i{display:block;height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+.rw-bar i b{display:block;height:100%;background:var(--grad-accent);border-radius:99px}
+.rw-dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
+.rw-dot{width:9px;height:9px;border-radius:50%;background:var(--accent-200);transition:.25s}
+.rw-dot.on{width:26px;background:var(--accent)}
+
+/* ================= CONTACT + MAP ================= */
+.contact{background:#fff}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px;align-items:stretch}
+.ct-map{border-radius:var(--r-l);overflow:hidden;border:1.5px solid var(--line);min-height:380px;box-shadow:var(--sh-1);position:relative}
+.ct-map iframe{width:100%;height:100%;border:0;min-height:380px}
+.ct-dir{position:absolute;left:14px;bottom:14px;z-index:2}
+.ct-info{display:flex;flex-direction:column;gap:14px}
+.ct-line{display:flex;gap:15px;align-items:flex-start;background:var(--texture);border:1.5px solid var(--line);border-radius:var(--r-m);padding:17px 19px}
+.ct-line .ic{width:42px;height:42px;flex:none;border-radius:13px;background:#fff;border:1.5px solid var(--accent-200);color:var(--accent);display:grid;place-items:center}
+.ct-line .ic svg{width:20px;height:20px}
+.ct-line b{display:block;font-size:.92rem;color:var(--primary)}
+.ct-line p,.ct-line a{display:block;font-size:.88rem;color:var(--soft);font-weight:600}
+.ct-line a:hover{color:var(--accent)}
+.ct-hotline{background:var(--grad-accent);border:none;color:#fff}
+.ct-hotline .ic{background:rgba(255,255,255,.2);border-color:transparent;color:#fff}
+.ct-hotline b,.ct-hotline a{color:#fff}
+.ct-hotline a{font-size:1.25rem;font-weight:900}
+
+/* ================= FORM GLASS NAVY ================= */
+.formband{background:var(--grad-dark);position:relative;overflow:hidden}
+.formband::before{content:"";position:absolute;inset:0;background-image:var(--grid-bg);opacity:.55}
+.fb-grid{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center;color:#fff}
+.fb-grid h2{color:#fff;font-size:2rem;font-weight:900;line-height:1.25}
+.fb-grid .sec-sub{color:#C4D2EA}
+.fb-list{display:flex;flex-direction:column;gap:13px;margin-top:24px}
+.fb-list li{display:flex;gap:11px;align-items:center;font-size:.94rem;color:#DCE5F2;font-weight:600}
+.fb-list li::before{content:"✓";width:24px;height:24px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-size:.75rem;font-weight:900}
+.fb-form{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(247,205,175,.3);border-radius:var(--r-xl);padding:32px}
+.fb-form h3{font-size:1.2rem;font-weight:900;margin-bottom:20px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-field{margin-bottom:14px}
+.f-field label{display:block;font-size:.78rem;font-weight:800;color:#FFB27E;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px}
+.f-field input,.f-field select,.f-field textarea{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid rgba(247,205,175,.3);background:rgba(255,255,255,.1);color:#fff;outline:none;transition:.25s}
+.f-field textarea{resize:vertical;min-height:84px}
+.f-field input::placeholder,.f-field textarea::placeholder{color:#9FB2D2}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.16);box-shadow:0 0 0 4px rgba(242,89,29,.2)}
+.f-field select option{color:var(--ink)}
+.fb-form .btn{width:100%;margin-top:8px}
+.fb-safe{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.75rem;color:#9FB2D2;margin-top:14px;font-weight:600}
+
+/* ================= FAQ ================= */
+.faq{background:#fff}
+.faq-in{max-width:820px;margin:40px auto 0}
+.faq-chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px;justify-content:center}
+.faq-chips button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:.8rem;font-weight:700;color:var(--soft);transition:.2s}
+.faq-chips button:hover,.faq-chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.faq-item{border:1.5px solid var(--line);border-radius:var(--r-m);margin-bottom:12px;overflow:hidden;background:#fff;transition:.25s}
+.faq-item.open{border-color:var(--accent-200);box-shadow:var(--sh-1)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:18px 22px;font-weight:800;font-size:.98rem;color:var(--primary)}
+.faq-q .pm{width:30px;height:30px;flex:none;border-radius:50%;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;font-weight:900;transition:.3s;font-size:1.05rem}
+.faq-item.open .pm{background:var(--grad-accent);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 22px 20px;color:var(--soft);font-size:.92rem}
+.faq-empty{text-align:center;color:var(--soft);padding:30px;display:none}
+
+/* ================= FOOTER GỌN ================= */
+footer{background:var(--grad-dark);color:#DCE5F2;position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;inset:0;background-image:var(--grid-bg);opacity:.45}
+.ft-grid{position:relative;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:38px;padding:54px 0 40px}
+.ft-col h4{color:#fff;font-size:.95rem;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px}
+.ft-col p{font-size:.86rem;color:#9FB2D2}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.ft-brand .logo-ic{width:40px;height:40px;font-size:1rem}
+.ft-brand b{color:#fff;font-size:1.2rem;font-weight:900;display:block;line-height:1.1}
+.ft-brand span{display:block;font-size:.64rem;letter-spacing:2.2px;color:var(--accent);font-weight:700;text-transform:uppercase}
+.ft-col ul{display:flex;flex-direction:column;gap:10px}
+.ft-col ul a{font-size:.88rem;color:#9FB2D2;font-weight:600;transition:.2s}
+.ft-col ul a:hover{color:#fff;padding-left:5px}
+.ft-addr li{display:flex;gap:10px;font-size:.86rem;color:#9FB2D2;align-items:flex-start}
+.ft-addr svg{width:16px;height:16px;flex:none;color:var(--accent);margin-top:4px}
+.ft-pay{position:relative;border-top:1.5px solid rgba(247,205,175,.2);padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.ft-pay span{font-size:.78rem;color:#9FB2D2;font-weight:600}
+.ft-pay .pms{display:flex;gap:8px;flex-wrap:wrap}
+.ft-pay .pms i{font-style:normal;background:rgba(255,255,255,.1);border:1.5px solid rgba(247,205,175,.25);border-radius:9px;padding:6px 13px;font-size:.72rem;font-weight:900;color:#DCE5F2;letter-spacing:.5px}
+.ft-copy{position:relative;border-top:1.5px solid rgba(247,205,175,.2);padding:16px 0;text-align:center;font-size:.76rem;color:#9FB2D2}
+
+/* ================= FAB DOCK ================= */
+.fab{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:8px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border:1.5px solid var(--line);border-radius:999px;padding:8px;box-shadow:var(--sh-3);transition:.35s}
+.fab.hide{transform:translateX(-50%) translateY(120px)}
+.fab a,.fab button{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;color:var(--primary);transition:.22s;position:relative}
+.fab a:hover,.fab button:hover{background:var(--accent-100);color:var(--accent);transform:translateY(-3px)}
+.fab svg{width:22px;height:22px}
+.fab .fab-main{background:var(--grad-accent);color:#fff;box-shadow:0 8px 20px rgba(242,89,29,.4)}
+.fab .fab-main:hover{background:var(--grad-accent);color:#fff}
+.fab .tip-t{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.68rem;font-weight:700;border-radius:8px;padding:5px 10px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.fab a:hover .tip-t,.fab button:hover .tip-t{opacity:1}
+
+/* ================= CART DRAWER ================= */
+.ovl{position:fixed;inset:0;background:rgba(12,18,32,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+.ovl.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:-440px;width:min(430px,100vw);height:100dvh;background:#fff;z-index:85;transition:right .4s cubic-bezier(.22,1,.3,1);display:flex;flex-direction:column;box-shadow:var(--sh-3)}
+.drawer.on{right:0}
+.dw-head{padding:22px 24px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.dw-head b{font-size:1.15rem;font-weight:900;color:var(--primary)}
+.dw-close{width:38px;height:38px;border-radius:12px;background:var(--texture);display:grid;place-items:center;font-size:1.1rem;font-weight:900;color:var(--primary);transition:.2s}
+.dw-close:hover{background:var(--accent-100);color:var(--accent)}
+.dw-ship{margin:16px 24px 0;background:var(--accent-100);border:1.5px solid var(--accent-200);border-radius:14px;padding:12px 15px;font-size:.8rem;font-weight:700;color:#C24A12}
+.dw-ship .bar{height:7px;border-radius:99px;background:#fff;margin-top:9px;overflow:hidden}
+.dw-ship .bar i{display:block;height:100%;background:var(--grad-accent);border-radius:99px;transition:width .5s}
+.dw-tier{margin:12px 24px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:.68rem;font-weight:800;text-align:center;color:var(--soft)}
+.dw-tier span{background:var(--texture);border:1.5px solid var(--line);border-radius:10px;padding:7px 4px;transition:.3s}
+.dw-tier span.on{background:var(--grad-accent);color:#fff;border-color:transparent}
+.dw-items{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:14px}
+.dw-item{display:grid;grid-template-columns:74px 1fr auto;gap:13px;align-items:center;border:1.5px solid var(--line);border-radius:var(--r-m);padding:11px}
+.dw-item img{width:74px;height:74px;object-fit:cover;border-radius:11px}
+.dw-item .nm{font-size:.86rem;font-weight:800;color:var(--primary);line-height:1.35}
+.dw-item .pr{font-size:.86rem;font-weight:900;color:var(--accent);margin-top:3px}
+.dw-qty{display:flex;align-items:center;gap:2px;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.dw-qty button{width:26px;height:26px;border-radius:50%;font-weight:900;color:var(--primary);display:grid;place-items:center}
+.dw-qty button:hover{background:var(--accent-100);color:var(--accent)}
+.dw-qty b{min-width:24px;text-align:center;font-size:.85rem}
+.dw-del{color:var(--soft);font-size:.72rem;font-weight:700;text-decoration:underline;margin-top:5px;display:inline-block;background:none}
+.dw-del:hover{color:var(--accent)}
+.dw-empty{margin:auto;text-align:center;color:var(--soft);padding:30px}
+.dw-empty .ic{width:74px;height:74px;border-radius:50%;background:var(--texture);display:grid;place-items:center;margin:0 auto 14px;color:var(--accent)}
+.dw-empty .ic svg{width:32px;height:32px}
+.dw-foot{border-top:1.5px solid var(--line);padding:18px 24px 22px;background:var(--texture)}
+.dw-row{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600;color:var(--soft);margin-bottom:8px}
+.dw-row.tot{font-size:1.15rem;font-weight:900;color:var(--primary);margin-top:4px}
+.dw-row .minus{color:var(--accent);font-weight:900}
+.dw-foot .btn{width:100%;margin-top:12px}
+.dw-note{text-align:center;font-size:.74rem;color:var(--soft);margin-top:11px}
+
+/* ================= QUICK VIEW ================= */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.3s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-box{width:min(760px,100%);max-height:92dvh;overflow-y:auto;background:#fff;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-3);transform:translateY(26px) scale(.97);transition:.35s}
+.modal.on .modal-box{transform:none}
+.mv-media{position:relative;aspect-ratio:4/3;background:var(--texture)}
+.mv-media img{width:100%;height:100%;object-fit:cover}
+.mv-tag{position:absolute;top:16px;left:16px;background:var(--grad-accent);color:#fff;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;border-radius:999px;padding:6px 13px}
+.mv-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;font-weight:900;color:var(--primary);box-shadow:var(--sh-1)}
+.mv-body{padding:26px 30px 30px}
+.mv-body h3{font-size:1.45rem;font-weight:900;color:var(--primary);margin:4px 0 8px}
+.mv-desc{font-size:.92rem;color:var(--soft);margin-bottom:18px}
+.mv-tier{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.mv-tier div{border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:.75rem;font-weight:700;color:var(--soft)}
+.mv-tier div b{display:block;font-size:.95rem;color:var(--primary)}
+.mv-tier div.hot{border-color:var(--accent);background:var(--accent-100);color:#C24A12}
+.mv-tier div.hot b{color:var(--accent)}
+.mv-act{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.mv-qty{display:flex;align-items:center;gap:4px;border:1.5px solid var(--line);border-radius:999px;padding:5px}
+.mv-qty button{width:34px;height:34px;border-radius:50%;font-weight:900;font-size:1.05rem;color:var(--primary)}
+.mv-qty button:hover{background:var(--accent-100);color:var(--accent)}
+.mv-qty b{min-width:30px;text-align:center}
+.mv-total{font-size:1.1rem;font-weight:900;color:var(--accent);margin-left:auto;font-variant-numeric:tabular-nums}
+.mv-btns{display:flex;gap:12px;margin-top:18px}
+.mv-btns .btn{flex:1}
+.mv-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1.5px dashed var(--line)}
+.mv-meta span{display:flex;gap:7px;align-items:center;font-size:.78rem;font-weight:700;color:var(--soft)}
+.mv-meta svg{width:15px;height:15px;color:var(--accent)}
+
+/* ================= TOAST ================= */
+.toast{position:fixed;top:86px;right:24px;z-index:100;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.tst{display:flex;gap:12px;align-items:center;background:var(--primary);color:#fff;border-radius:16px;padding:14px 18px;box-shadow:var(--sh-3);font-size:.88rem;font-weight:700;min-width:270px;max-width:340px;animation:tin .4s cubic-bezier(.22,1,.3,1);border-left:4px solid var(--accent)}
+.tst .tk{width:26px;height:26px;flex:none;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;font-size:.72rem}
+@keyframes tin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.tst.out{opacity:0;transform:translateX(40px);transition:.35s}
+
+/* ================= RESPONSIVE 1080 ================= */
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-vis{max-width:640px}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .strip-in{grid-template-columns:repeat(3,1fr)}
+  .bento{grid-template-columns:repeat(3,1fr)}
+  .rp-grid,.ab-grid,.ct-grid,.fb-grid{grid-template-columns:1fr}
+  .deal-head{grid-template-columns:1fr}
+  .cd{justify-content:flex-start}
+  .wk-grid{grid-template-columns:1fr 1fr}
+  .wk-card.club{grid-column:1/-1}
+  .ch-panel.on{grid-template-columns:1fr}
+  .rw{grid-template-columns:1fr;padding:28px}
+  .rw-meta{max-width:420px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+}
+
+/* ================= MOBILE BRANCH ≤680 ================= */
+@media(max-width:680px){
+  body{font-size:15px}
+  .sec{padding:50px 0}
+  .wrap{padding:0 16px}
+  .hd{flex-wrap:wrap;padding:12px 16px;gap:12px;row-gap:10px}
+  .logo{order:1}.cart-btn{order:2;margin-left:auto}
+  .hd-search{order:3;flex:1 0 100%}
+  .topbar .wrap{justify-content:center}
+  .tb-r{display:none}
+  .hero{padding:34px 0 58px}
+  .hv-main{transform:none;border-width:5px}
+  .hv-main img{aspect-ratio:4/3}
+  .hero-foot{margin-top:12px;gap:10px;align-items:stretch}
+  .hero-stat{width:100%;justify-content:space-between;padding:13px 16px;gap:10px;flex-wrap:wrap}
+  .hs-i b{font-size:1.05rem}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%;white-space:normal}
+  .trust{grid-template-columns:1fr 1fr;gap:8px}
+  .trust .chip{font-size:.74rem;padding:8px 10px}
+  h1{font-size:1.75rem}
+  .hero-sub{font-size:.95rem}
+  .tape{padding:11px 0;margin:-16px 0}
+  .tape span{font-size:.78rem;padding:0 18px;gap:18px}
+  .feat{padding-top:70px}
+  .feat-grid{grid-template-columns:1fr}
+  .strip-in{grid-template-columns:1fr 1fr;gap:10px}
+  .s-item{font-size:.8rem;padding:12px 13px}
+  .sec-t{font-size:1.42rem}
+  .sec-sub{font-size:.9rem}
+  /*NB93-264 khối-8 mobile: nổi bật full-width, còn lại 1 cột — kín ô không hở*/
+  .bento{grid-template-columns:1fr;gap:14px}
+  .b-feat{grid-column:auto;grid-row:auto}
+  .b-feat h3{font-size:1.24rem}
+  .cd-box{min-width:58px;padding:9px 6px}
+  .cd-box b{font-size:1.4rem}
+  .cd-lb{text-align:left}
+  .deal-tier span{font-size:.74rem;padding:7px 11px}
+  .p-btns button{min-height:40px;font-size:.85rem}
+  .stats .wrap{grid-template-columns:1fr 1fr;gap:12px}
+  .st{padding:18px 8px}
+  .st b{font-size:1.6rem}
+  .rp-form,.rp-res{padding:24px 20px}
+  .rp-opts{grid-template-columns:1fr}
+  .wk-grid{grid-template-columns:1fr;gap:14px}
+  .ab-cards{grid-template-columns:1fr 1fr;gap:10px}
+  .ab-card{padding:15px}
+  .ab-cta{flex-direction:column}
+  .ab-cta .btn{width:100%}
+  .ab-img{transform:none}
+  .ab-since{right:8px;bottom:12px;padding:12px 16px}
+  .ab-since b{font-size:1.15rem}
+  .ch-tab{padding:9px 15px;font-size:.8rem}
+  .mv-tier{grid-template-columns:1fr}
+  .mv-body{padding:20px}
+  .mv-total{margin-left:0;width:100%}
+  .mv-btns{flex-direction:column}
+  .ct-map,.ct-map iframe{min-height:260px}
+  .f-row{grid-template-columns:1fr}
+  .faq-q{font-size:.88rem;padding:15px 16px}
+  .faq-a p{padding:0 16px 16px}
+  .ft-grid{grid-template-columns:1fr;gap:28px;padding:46px 0 34px}
+  .ft-pay{justify-content:center;text-align:center}
+  .fab{bottom:12px;padding:7px;gap:6px}
+  .fab a,.fab button{width:46px;height:46px}
+  .fab .tip-t{display:none}
+  .toast{top:auto;bottom:86px;right:12px;left:12px}
+  .tst{min-width:0;width:100%}
+  .drawer{width:100vw}
+}
+
+/*NB93-264: nút CTA mobile không cắt chữ*/
+@media(max-width:680px){
+  .btn{white-space:normal;min-height:40px}
+  .b-feat .btn{font-size:.95rem;padding:14px 18px}
+}
+/*MOBILE-TAP40: dieu khien cam >=40px*/
+@media(max-width:640px){
+.faq-chips button,.chip,.ch-tab,.tab,.dw-qty button,.mv-qty button,.faq-q,.rp-opt,.rp-ck,.fab,.dw-close,.mv-close,.s-item{min-height:40px}
+.dw-qty button,.mv-qty button{min-width:40px}
+}
+
+/* BULKFIX7-264: micro-interaction nhan nut */
+button:active{transform:scale(.96)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Mecamo","telephone":"0903456789","address":{"@type":"PostalAddress","addressCountry":"VN"},"description":"Mecamo — mô hình genuine có tem: kit Gundam lắp ráp, mô hình tĩnh xe/tank, figure sưu tầm, board game. Thợ ráp & chỉn màu theo yêu cầu từ 90K, workshop cuối tuầ","url":"http://127.0.0.1:8174/264-cua-hang-mo-hinh-do-choi-so-thich/"}
+</script>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span><i class="tb-dot"></i>Mở cửa <b>9:00 – 21:30</b> tất cả các ngày</span>
+      <span>Hàng genuine <b>có tem kiểm từng hộp</b> — Freeship đơn từ <b>350K</b></span>
+    </div>
+    <div class="tb-r">
+      <a href="tel:0903456789">Hotline 0903 456 789</a>
+      <span>|</span>
+      <span>88 Sao Bàng, P. Đầm Mê</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header id="hd">
+  <div class="hd">
+    <a class="logo" href="#top">
+      <span class="logo-ic">MC</span>
+      <span><b>Mecamo</b><span>Mô hình &amp; Đồ chơi sở thích</span></span>
+    </a>
+    <div class="hd-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Tìm kit Gundam, tank 1:35, board game… (Enter)" aria-label="Tìm sản phẩm">
+    </div>
+    <nav class="main" aria-label="Menu chính">
+      <a href="#kho">Kho hay</a>
+      <a href="#rap">Dịch vụ ráp</a>
+      <a href="#workshop">Workshop</a>
+      <a href="#banggia">Phân cấp kit</a>
+      <a href="#about">Về shop</a>
+      <a href="#lienhe">Liên hệ</a>
+    </nav>
+    <button class="cart-btn" id="cartOpen" aria-label="Mở giỏ hàng">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-n" id="cartN">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow hero-tag">Đợt kit mới về tuần này — genuine có tem</span>
+      <h1>Ráp một thế giới <span class="hl">trong tầm tay</span></h1>
+      <span class="hero-sub">Mecamo gom đủ thú chơi cho hội mọt: kit Gundam HG→PG, mô hình tĩnh xe – tank – máy bay, figure sưu tầm, board game và đầy đủ dụng cụ sơn. Chưa có thời gian ráp? Thợ shop ráp &amp; chỉn màu theo yêu cầu — nhận hộp về là đẹp luôn kệ.</span>
+      <div class="hero-cta">
+        <a href="#kho" class="btn btn-a">Lướt kho hay hôm nay</a>
+        <a href="#rap" class="btn btn-g">Nhờ thợ ráp — tính phí 30 giây</a>
+      </div>
+      <div class="trust">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Genuine 100% — tem vér từng hộp</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg>Thợ ráp &amp; sơn từ 90K</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>Workshop cuối tuần 8 ghế</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>Freeship đơn từ 350K</span>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hv-main">
+        <img src="assets/img/cover.webp" alt="Cửa hàng mô hình và đồ chơi sở thích Mecamo — đa dạng lựa chọn, không gian đam mê" width="1448" height="1086">
+      </div>
+      <div class="hero-foot">
+        <span class="stamp">Tem genuine — kiểm từng hộp trước khi đóng gói</span>
+        <div class="hero-stat">
+          <div class="hs-i"><b>12+</b><span>năm chơi &amp; bán mô hình</span></div>
+          <div class="hs-i"><b>8.500+</b><span>kit đã ráp hộ khách</span></div>
+          <div class="hs-i"><b>600+</b><span>mẫu genuine trên kệ</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAPE ================= -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-in" id="tapeIn">
+    <span>Genuine 100% có tem</span><span>Thợ ráp từ 90K — full chỉn màu</span><span>Workshop cuối tuần 8 ghế</span><span>Cộng đồng Mecamo Club 5.200+ mọt</span><span>Đổi trả 7 ngày</span><span>Freeship từ 350K</span>
+  </div>
+</div>
+
+<!-- ================= 2 THẺ NỔI BẬT ================= -->
+<section class="feat sec">
+  <div class="wrap">
+    <span class="eyebrow rv">Chọn nhanh theo nhu cầu</span>
+    <h2 class="sec-t rv" data-d="1">Hai lối vào <span class="hl">dễ nhất</span> cho mọt mới và mọt lâu năm</h2>
+    <span class="sec-sub rv" data-d="2">Mua kit về tự ráp, hoặc giao thợ shop ráp trọn từ bỏ nova tới phủ top coat — cả hai đều bắt đầu từ đây.</span>
+    <div class="feat-grid">
+      <article class="f-card spot rv">
+        <div class="f-media">
+          <img src="assets/img/p8.webp" alt="Thợ Mecamo tư vấn đặt và ráp mô hình theo yêu cầu" loading="lazy">
+        </div>
+        <div class="f-body">
+          <div class="f-meta"><span class="chip-tag hot">Dịch vụ đắt nhất shop</span><span class="f-pr"><em>Từ 90.000đ</em><s>theo cấp kit</s></span></div>
+          <span class="mini-t">Thợ ráp &amp; chỉn màu theo yêu cầu</span>
+          <span class="mini-s">Mang kit bất kỳ nguồn nào tới shop — thợ 12 năm kinh nghiệm ráp hộ, từ trơn đến full finish.</span>
+          <ul>
+            <li><span class="tick">✓</span>4 mức: ráp trơn · rút nova · panel line + decal · full phủ mờ/bóng</li>
+            <li><span class="tick">✓</span>Kit mua tại shop kèm dịch vụ được giảm thêm 10%</li>
+            <li><span class="tick">✓</span>Ảnh tiến độ gửi Zalo từng công đoạn</li>
+          </ul>
+          <a href="#rap" class="btn btn-a">Tính phí ráp — 30 giây</a>
+        </div>
+      </article>
+      <article class="f-card dark spot rv" data-d="1">
+        <div class="f-media">
+          <img src="assets/img/p4.webp" alt="Combo starter người mới: kit + bộ dụng cụ sơn mô hình" loading="lazy">
+        </div>
+        <div class="f-body">
+          <div class="f-meta"><span class="chip-tag hot">Mọt mới nên lấy</span><span class="f-pr"><em>1.250.000đ</em><s>1.470.000đ</s></span></div>
+          <span class="mini-t">Combo Starter người mới bắt đầu</span>
+          <span class="mini-s">1 kit HG tuỳ chọn + bộ dụng cụ đầy đủ + keo + đế mica — về là ráp được ngay, giảm 15%.</span>
+          <ul>
+            <li><span class="tick">✓</span>Kit HG/SD bất kỳ trên kệ + kìm rút nova lưỡi thép</li>
+            <li><span class="tick">✓</span>Góc nhám 4 độ + keo bấm + marker panel line</li>
+            <li><span class="tick">✓</span>Kèm 1 vé workshop cuối tuần học cùng thợ</li>
+          </ul>
+          <button class="btn btn-d" onclick="addCombo()">Thêm combo vào giỏ — 1.250.000đ</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DẢI 5 NHÓM HÀNG ================= -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-in">
+      <a class="s-item spot" href="#kho"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 1-4.5 4.4L18 20l-6-3-6 3 1.5-6.6L3 9l6-1z"/></svg></span>Kit lắp ráp robot<i>›</i></a>
+      <a class="s-item spot" href="#kho"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M5 11h14M5 11v6h2m10-6v6h-2M7 17h10"/></svg></span>Mô hình tĩnh xe – tank<i>›</i></a>
+      <a class="s-item spot" href="#kho"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg></span>Figure sưu tầm<i>›</i></a>
+      <a class="s-item spot" href="#kho"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span>Board game – cờ bàn<i>›</i></a>
+      <a class="s-item spot" href="#kho"><span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></span>Dụng cụ &amp; phụ kiện trưng bày<i>›</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KHỐI-8 FLASH BENTO ================= -->
+<section class="deal sec" id="kho">
+  <div class="wrap">
+    <div class="deal-head">
+      <div>
+        <span class="eyebrow rv">Kho hay hôm nay</span>
+        <h2 class="sec-t rv" data-d="1">8 mặt hàng <span class="hl">chạy nhất cửa hàng</span> — giá tốt tới hết hôm nay</h2>
+        <span class="sec-sub rv" data-d="2">Tất cả genuine có tem, kiểm từng hộp trước khi đóng gói. Hết giờ giá về như cũ, <b>không kéo dài</b> — kit Nhật vào lô là có hạn.</span>
+        <div class="deal-tier rv" data-d="3">
+          <span>Mua <b>2 món</b> → tự động −5%</span>
+          <span>Mua <b>4 món</b> trở lên → −10%</span>
+          <span>Đơn từ <b>350K</b> → freeship</span>
+        </div>
+      </div>
+      <div class="cd rv" data-d="2" aria-label="Đếm ngược hết flash sale">
+        <div class="cd-lb">Còn lại<br>trong hôm nay</div>
+        <div class="cd-box"><b id="cdH">00</b><span>giờ</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-box"><b id="cdM">00</b><span>phút</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-box"><b id="cdS">00</b><span>giây</span></div>
+      </div>
+    </div>
+    <div class="bento rv" id="bento"></div>
+  </div>
+</section>
+
+<!-- ================= DỊCH VỤ RÁP — MÁY TÍNH PHÍ (đặc thù) ================= -->
+<section class="rapsvc sec" id="rap">
+  <div class="wrap">
+    <span class="eyebrow rv">Điểm nhấn của Mecamo</span>
+    <h2 class="sec-t rv" data-d="1">Máy tính phí <span class="hl">thợ ráp &amp; chỉn màu</span> — báo giá trước khi mang kit tới</h2>
+    <span class="sec-sub rv" data-d="2">Chọn cấp kit và mức finish, máy chốt giá ngay. Giá đã gồm vật tư: keo, marker panel line, decal setter, top coat. Kit mua tại shop kèm dịch vụ giảm thêm 10%.</span>
+    <div class="rp-grid">
+      <form class="rp-form rv" id="rpForm">
+        <h3>Yêu cầu ráp của bạn</h3>
+        <span class="mini-s">Đổi tuỳ chọn bất cứ lúc nào — giá cập nhật tức thì bên phải.</span>
+        <span class="rp-lb">1 · Cấp kit / loại mô hình</span>
+        <div class="rp-opts" id="rpKit">
+          <button type="button" class="rp-opt pick" data-base="90000" data-day="2-3" data-k="HG/SD (1/144)"><b>HG / SD (1/144)</b><span>phí nền 90K · dễ, hợp người mới</span></button>
+          <button type="button" class="rp-opt" data-base="150000" data-day="3-5" data-k="RG (1/144)"><b>RG (1/144)</b><span>phí nền 150K · nhiều chi tiết nhỏ</span></button>
+          <button type="button" class="rp-opt" data-base="220000" data-day="4-7" data-k="MG (1/100)"><b>MG (1/100)</b><span>phí nền 220K · khung nội lực</span></button>
+          <button type="button" class="rp-opt" data-base="450000" data-day="10-14" data-k="PG (1/60)"><b>PG (1/60)</b><span>phí nền 450K · boss cuối</span></button>
+          <button type="button" class="rp-opt" data-base="180000" data-day="4-6" data-k="Mô hình tĩnh (xe/tank)"><b>Mô hình tĩnh xe/tank</b><span>phí nền 180K · kèm xử lý mối nối</span></button>
+          <button type="button" class="rp-opt" data-base="250000" data-day="5-8" data-k="Figure sơn lại"><b>Figure sơn lại</b><span>phí nền 250K · sơn detail theo ảnh</span></button>
+        </div>
+        <span class="rp-lb">2 · Mức finish</span>
+        <div class="rp-opts" id="rpFin">
+          <button type="button" class="rp-opt pick" data-mult="1" data-fk="Ráp trơn — rút nova, chà mạch"><b>Ráp trơn</b><span>bỏ nova sạch, chà mạch nước · ×1</span></button>
+          <button type="button" class="rp-opt" data-mult="1.45" data-fk="Ráp + panel line + decal"><b>Ráp + panel line + decal</b><span>kẻ mạch, dán decal soften · ×1.45</span></button>
+          <button type="button" class="rp-opt" data-mult="1.75" data-fk="Full finish — sơn phủ mờ/bóng"><b>Full finish</b><span>tháo kit, sơn phủ mờ hoặc bóng · ×1.75</span></button>
+          <button type="button" class="rp-opt" data-mult="2.2" data-fk="Battle damage — làm cũ chiến đấu"><b>Battle damage</b><span>làm cũ, trầy xước, dầu nhòe · ×2.2</span></button>
+        </div>
+        <span class="rp-lb">3 · Tuỳ chọn thêm</span>
+        <div class="rp-checks" id="rpAdd">
+          <label class="rp-ck" data-flag="express" data-lb="Express 3 ngày (+40%)"><span class="box">✓</span><span>Express 3 ngày — ưu tiên hàng đợi, rút ngắn thời gian +40%</span></label>
+          <label class="rp-ck" data-price="80000" data-lb="Hộp mica + đế LED (+80K)"><span class="box">✓</span><span>Hộp mica + đế LED trưng bày +80K</span></label>
+          <label class="rp-ck" data-price="0" data-lb="Sơn phối màu riêng (báo sau)"><span class="box">✓</span><span>Sơn phối màu riêng theo ảnh mẫu — shop báo giá sau</span></label>
+        </div>
+      </form>
+      <div class="rp-res rv" data-d="1">
+        <span class="eyebrow">Báo giá tạm tính</span>
+        <span class="mini-t" id="rpName" style="margin-top:12px">HG/SD (1/144) · Ráp trơn</span>
+        <span class="mini-s" id="rpDesc">Dịch vụ thợ ráp — nhận hộp, trả mô hình lên kệ đẹp ngay.</span>
+        <div class="rp-line"><b>Phí dịch vụ nền</b><span id="rpBase">90.000đ</span></div>
+        <div class="rp-line"><b>Hệ số finish</b><span id="rpMult">×1</span></div>
+        <div class="rp-line"><b>Tuỳ chọn thêm</b><span id="rpExtra">Không</span></div>
+        <div class="rp-line last"><b>Tạm tính</b><span id="rpTotal">90.000đ</span></div>
+        <span class="rp-eta" id="rpEta">Hoàn thành dự kiến: 2-3 ngày</span>
+        <button class="btn btn-a" onclick="addService()">Thêm dịch vụ này vào giỏ</button>
+        <div class="rp-note"><b>Lưu ý:</b> đây là phí dịch vụ, chưa gồm giá kit. Mang kit cũ đã ráp tới shop, thợ tách &amp; làm lại tính thêm 15%. Ảnh từng công đoạn được gửi Zalo để bạn duyệt trước khi phủ màu.</div>
+      </div>
+    </div>
+
+    <h2 class="sec-t rv" data-d="1" style="margin-top:64px">Workshop cuối tuần — <span class="hl">ghép bàn cùng mọt</span></h2>
+    <span class="sec-sub rv" data-d="2">Cuối tuần nào shop cũng mở 2 buổi workshop tại không gian trưng bày: kit + dụng cụ + nước sẵn sàng, thợ ngồi cạnh chỉ từng bước. 8 ghế mỗi buổi, đặt vé trước kẻo hết chỗ.</span>
+    <div class="wk-grid" id="workshop">
+      <div class="wk-card rv">
+        <span class="wk-day">Thứ 7 · 14:00–17:00</span>
+        <h4>Ráp kit đầu tiên trong đời</h4>
+        <p>Cho người chưa cầm kìm lần nào: đọc bảng hướng dẫn, rút nova sạch, chà mạch nước — về nhà tự ráp tiếp được ngay.</p>
+        <div class="wk-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>8 ghế / buổi</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>3 tiếng</span></div>
+        <button class="btn btn-a" onclick="addWorkshop('Thứ 7 — Ráp kit đầu tiên')">Giữ vé T7 — 150.000đ</button>
+      </div>
+      <div class="wk-card rv" data-d="1">
+        <span class="wk-day">Chủ nhật · 9:30–12:30</span>
+        <h4>Panel line &amp; decal như thợ</h4>
+        <p>Buổi chỉn màu: kẻ mạch thẳng tay, xử lý decal soften, phủ mờ local — mang kit HG của bạn tới, về là lên level.</p>
+        <div class="wk-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>8 ghế / buổi</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>3 tiếng</span></div>
+        <button class="btn btn-a" onclick="addWorkshop('Chủ nhật — Panel line & decal')">Giữ vé CN — 150.000đ</button>
+      </div>
+      <div class="wk-card club rv" data-d="2">
+        <span class="wk-day" style="background:rgba(255,255,255,.14)">Mecamo Club</span>
+        <h4>Cộng đồng 5.200+ mọt</h4>
+        <p>Nhóm Zalo họp mặt cuối tháng ngay tại shop: trưng bày build, đổi kit cũ, vote kit tháng. Thành viên club giảm 5% mọi đơn.</p>
+        <div class="wk-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>5.200+ thành viên</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Họp mặt cuối tháng</span></div>
+        <a class="btn btn-d" href="#lienhe" style="width:100%">Nhận lời mời vào club</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="st rv"><b data-count="12" data-suffix="+">0</b><span>năm gói ghém với nghề mô hình</span></div>
+    <div class="st rv" data-d="1"><b data-count="8500" data-suffix="+">0</b><span>kit đã ráp &amp; chỉn màu hộ khách</span></div>
+    <div class="st rv" data-d="2"><b data-count="5200" data-suffix="+">0</b><span>thành viên Mecamo Club</span></div>
+    <div class="st rv" data-d="3"><b data-count="4.9" data-decimal="1" data-suffix="/5">0</b><span>điểm review từ hội sưu tầm</span></div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about sec" id="about">
+  <div class="wrap ab-grid">
+    <div class="ab-img rv">
+      <img src="assets/img/intro.webp" alt="Không gian Mecamo — kệ trưng bày, bàn ráp và kho kit genuine" loading="lazy">
+      <div class="ab-since"><b>2014</b><span>một góc nhỏ cho đam mê</span></div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Về Mecamo</span>
+      <h2 class="sec-t rv" data-d="1">Cửa hàng của mọt, <span class="hl">làm cho mọt</span> — từ 2014</h2>
+      <span class="sec-sub rv" data-d="2">Mecamo bắt đầu từ một bàn ráp 4m² của dân chơi Gunpla. Giờ là cửa hàng trưng bày 600+ mẫu genuine: kiểm tem từng hộp, cất kit đúng nhiệt độ độ ẩm, và một xưởng nhỏ nơi thợ ráp hàng nghìn kit mỗi năm cho khách không có thời gian.</span>
+      <div class="ab-cards">
+        <div class="ab-card rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><b>Genuine có tem kiểm</b><span>Mỗi hộp được soi tem, check mã trước khi lên kệ — fake hoàn tiền 200%.</span></div>
+        <div class="ab-card rv" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></div><b>Đội thợ 12 năm tay nghề</b><span>3 thợ chính bắt đầu từ hội thi build — battle damage, sơn bóng mirror đều làm.</span></div>
+        <div class="ab-card rv" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><b>Workshop mỗi cuối tuần</b><span>2 buổi/tuần, tối đa 8 người — dạy tay thật, không giảng lý thuyết suông.</span></div>
+        <div class="ab-card rv" data-d="3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><b>Community Mecamo Club</b><span>5.200+ mọt, họp mặt cuối tháng, giảm 5% cho thành viên.</span></div>
+      </div>
+      <div class="ab-cta rv">
+        <a href="#kho" class="btn btn-a">Xem 8 món đang giảm hôm nay</a>
+        <a href="#lienhe" class="btn btn-g">Ghé shop — chỉ đường ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BẢNG PHÂN CẤP 3 TAB ================= -->
+<section class="charts sec" id="banggia">
+  <div class="wrap">
+    <span class="eyebrow rv">Bảng giá chuyên môn</span>
+    <h2 class="sec-t rv" data-d="1">Phân cấp kit &amp; phí dịch vụ <span class="hl" style="background:rgba(255,255,255,.14);color:#FFB27E">theo từng dòng</span></h2>
+    <span class="sec-sub rv" data-d="2">Bảng đối chiếu nhanh để chọn đúng cấp kit và mức dịch vụ — giá kit lẻ niêm yết trên từng hộp, phí thợ theo bảng dưới đây.</span>
+    <div class="ch-tabs rv" role="tablist">
+      <button class="ch-tab on" data-ch="gunpla">Kit lắp ráp robot</button>
+      <button class="ch-tab" data-ch="static">Mô hình tĩnh</button>
+      <button class="ch-tab" data-ch="other">Figure &amp; board game</button>
+    </div>
+    <div class="ch-panel on" id="ch-gunpla">
+      <div class="ch-tbl-wrap rv"><div class="scroll">
+        <table class="ch-tbl">
+          <thead><tr><th>Cấp kit</th><th>Tỷ lệ</th><th>Số chi tiết</th><th>Phí ráp trơn</th><th>Full finish</th></tr></thead>
+          <tbody>
+            <tr><td>SD / EG</td><td>không chuẩn</td><td>80–120</td><td>70.000đ</td><td>130.000đ</td></tr>
+            <tr><td>HG</td><td>1/144</td><td>120–200</td><td>90.000đ</td><td>160.000đ</td></tr>
+            <tr><td class="hl-col">RG (hot nhất)</td><td class="hl-col">1/144</td><td class="hl-col">200–280</td><td class="hl-col">150.000đ</td><td class="hl-col">260.000đ</td></tr>
+            <tr><td>MG</td><td>1/100</td><td>250–400</td><td>220.000đ</td><td>380.000đ</td></tr>
+            <tr><td>PG</td><td>1/60</td><td>500+</td><td>450.000đ</td><td>780.000đ</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+      <div class="ch-side">
+        <div class="tip rv"><b>Người mới lấy HG là vừa</b><p>120–200 chi tiết, bỏ nova dễ, giá mềm — ráp xong có cảm giác thành tựu mà không nản giữa chừng.</p></div>
+        <div class="tip rv" data-d="1"><b>RG đẹp nhất kệ nhưng khó nhất 1/144</b><p>Khung RG nhiều mảnh nhỏ dưới 5mm — nếu tay to thì nhờ thợ, tự ráp dễ mất springs lò xo nhỏ.</p></div>
+        <div class="tip rv" data-d="2"><b>MG/PG nên full finish</b><p>Kit to bề mặt rộng, chỉ ráp trơn hơi trống — thêm panel line + phủ mờ là lên ảnh như studio.</p></div>
+      </div>
+    </div>
+    <div class="ch-panel" id="ch-static">
+      <div class="ch-tbl-wrap"><div class="scroll">
+        <table class="ch-tbl">
+          <thead><tr><th>Dòng</th><th>Tỷ lệ phổ biến</th><th>Phí ráp trơn</th><th>Sơn + làm cũ</th><th>Thời gian</th></tr></thead>
+          <tbody>
+            <tr><td>Xe cổ / siêu xe</td><td>1:24 – 1:18</td><td>180.000đ</td><td>350.000đ</td></tr>
+            <tr><td class="hl-col">Tank quân sự (hot)</td><td class="hl-col">1:35</td><td class="hl-col">180.000đ</td><td class="hl-col">400.000đ</td></tr>
+            <tr><td>Máy bay quân sự</td><td>1:48 – 1:72</td><td>160.000đ</td><td>320.000đ</td></tr>
+            <tr><td>Tàu chiến</td><td>1:350 – 1:700</td><td>250.000đ</td><td>480.000đ</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+      <div class="ch-side">
+        <div class="tip"><b>Tank 1:35 là cửa ngõ vào quân sự</b><p>Ít chi tiết lởm chởm hơn máy bay, mặt to dễ sơn — đi kèm decal heel xịn nên làm cũ lên rất đã tay.</p></div>
+        <div class="tip" data-d="1"><b>Sơn tĩnh cần bề mặt sạch</b><p>Xử lý mối nối + rửa khuôn (dùng xà phòng ấm) là bước bắt buộc trước khi sơn — thợ shop làm trọn trong giá.</p></div>
+        <div class="tip" data-d="2"><b>Tàu 1/700 hợp bàn làm việc</b><p>Tỷ lệ nhỏ, chân đế gọn — dân văn phòng hay chọn kèm hộp mica chống bụi của shop.</p></div>
+      </div>
+    </div>
+    <div class="ch-panel" id="ch-other">
+      <div class="ch-tbl-wrap"><div class="scroll">
+        <table class="ch-tbl">
+          <thead><tr><th>Mặt hàng</th><th>Quy cách</th><th>Dịch vụ kèm</th><th>Giá dịch vụ</th></tr></thead>
+          <tbody>
+            <tr><td>Figure sưu tầm</td><td>chibi 10cm – 1/7 scale</td><td>sơn lại detail theo ảnh</td><td>250.000đ</td></tr>
+            <tr><td class="hl-col">Board game</td><td class="hl-col">2–6 người chơi</td><td class="hl-col">làm token + hộp mica + mat</td><td class="hl-col">từ 120.000đ</td></tr>
+            <tr><td>Kit nhà LED</td><td>DIY mini 1:24</td><td>ráp + đi đèn trọn gói</td><td>150.000đ</td></tr>
+            <tr><td>Hộp mica / kệ LED</td><td>theo kích thước kit</td><td>cut đúng số đo mang tới</td><td>từ 90.000đ</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+      <div class="ch-side">
+        <div class="tip"><b>Figure sơn lại cần ảnh mẫu</b><p>Gửi ảnh tham khảo trước, thợ pha màu riêng — thời gian 5-8 ngày vì mỗi lớp sơn phải khô tự nhiên.</p></div>
+        <div class="tip" data-d="1"><b>Board game chơi thử tại shop</b><p>Khu bàn chơi mở 18:00–21:00 mỗi tối: gọi 1 nước là ngồi chơi free, thích mới mua — kệ board cập nhật meta mỗi tháng.</p></div>
+        <div class="tip" data-d="2"><b>Kit nhà LED cực hợp quà</b><p>Ráp 4-6 tiếng, có đèn đêm — tặng người yêu/bạn cùng bàn làm việc là lên hình tối nào cũng lung linh.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews sec">
+  <div class="wrap">
+    <div style="text-align:center;max-width:640px;margin:0 auto">
+      <span class="eyebrow rv">Mọt nói gì</span>
+      <h2 class="sec-t rv" data-d="1">2.100+ review — <span class="hl">đọc thử vài chuyện thật</span></h2>
+    </div>
+    <div class="rw-vp rv">
+      <div class="rw-track" id="rwTrack"></div>
+    </div>
+    <div class="rw-dots" id="rwDots"></div>
+    <div class="partners rv" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:30px">
+      <span style="background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:.8rem;font-weight:800;color:var(--soft)">Mecamo Club HN</span>
+      <span style="background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:.8rem;font-weight:800;color:var(--soft)">Gunpla Builders SGN</span>
+      <span style="background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:.8rem;font-weight:800;color:var(--soft)">Team Tank 1:35 Việt</span>
+      <span style="background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-size:.8rem;font-weight:800;color:var(--soft)">Board Game Night</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT + MAP ================= -->
+<section class="contact sec" id="lienhe">
+  <div class="wrap">
+    <span class="eyebrow rv">Ghé shop hoặc nhắn trước</span>
+    <h2 class="sec-t rv" data-d="1">88 Sao Bàng, P. Đầm Mê — <span class="hl">bàn chơi mở tới 21:00 mỗi tối</span></h2>
+    <span class="sec-sub rv" data-d="2">Nhắn trước 30 phút để shop giữ kit hoặc chuẩn bị bàn chơi board game — tới là chơi, không phải chờ.</span>
+    <div class="ct-grid">
+      <div class="ct-map rv">
+        <iframe title="Bản đồ Mecamo" src="https://www.google.com/maps?q=10.7905,106.7292&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="btn btn-a ct-dir" href="https://www.google.com/maps/dir/?api=1&destination=10.7905,106.7292" target="_blank" rel="noopener">Chỉ đường</a>
+      </div>
+      <div class="ct-info">
+        <div class="ct-line ct-hotline rv">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <span><b>Hotline &amp; Zalo — trả lời trong 15 phút</b><a href="tel:0903456789">0903 456 789</a></span>
+        </div>
+        <div class="ct-line rv" data-d="1">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><b>Địa chỉ</b><p>88 Đường Sao Bàng, P. Đầm Mê — 5 phút từ ngã tư Sở Thú, có chỗ gửi xe.</p></span>
+        </div>
+        <div class="ct-line rv" data-d="2">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><b>Giờ mở cửa</b><p>9:00 – 21:30 tất cả các ngày. Khu bàn chơi board game mở 18:00–21:00, workshop cuối tuần 2 buổi.</p></span>
+        </div>
+        <div class="ct-line rv" data-d="3">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg></span>
+          <span><b>Giao hàng &amp; đổi trả</b><p>Nội thành trong ngày · tỉnh 1–3 ngày · đóng xốp chống sốc riêng cho kit · đổi trả 7 ngày.</p></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORM GLASS NAVY ================= -->
+<section class="formband sec">
+  <div class="wrap fb-grid">
+    <div>
+      <span class="eyebrow rv" style="background:rgba(255,255,255,.12);color:#FFB27E;border-color:rgba(247,205,175,.3)">Để shop phụ bạn</span>
+      <h2 class="rv" data-d="1">Nhắn mẫu cần tìm hoặc kit cần ráp —<br><span style="color:#FFB27E">nhận báo giá trong 15 phút</span></h2>
+      <span class="sec-sub rv" data-d="2">Kit Nhật về lô có hạn, mẫu off-shelf phải order. Kể tên mẫu + ngân sách, Mecamo soán kệ và gửi ảnh thật kèm giá — không giữ chân bạn xem trăm mẫu.</span>
+      <ul class="fb-list rv" data-d="3">
+        <li>Giữ kit cho bạn trong 48 giờ sau khi nhắn</li>
+        <li>Order mẫu hiếm từ nhà máy — cọc chỉ 200K</li>
+        <li>Tư vấn cấp kit hợp tay nghề, không đẩy hàng đắt</li>
+      </ul>
+    </div>
+    <form class="fb-form rv" data-d="1" id="ctForm" novalidate>
+      <h3>Gửi yêu cầu cho Mecamo</h3>
+      <div class="f-row">
+        <div class="f-field"><label for="fName">Họ tên</label><input id="fName" type="text" placeholder="Nguyễn Mọt Mô Hình" required></div>
+        <div class="f-field"><label for="fPhone">Số điện thoại</label><input id="fPhone" type="tel" placeholder="09xx xxx xxx" required></div>
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label for="fNeed">Bạn quan tâm</label>
+          <select id="fNeed">
+            <option>Tìm / đặt kit theo yêu cầu</option>
+            <option>Dịch vụ thợ ráp &amp; chỉn màu</option>
+            <option>Đăng ký workshop cuối tuần</option>
+            <option>Board game — xin tư vấn theo nhóm chơi</option>
+            <option>Vào Mecamo Club</option>
+          </select>
+        </div>
+        <div class="f-field"><label for="fBudget">Ngân sách (tuỳ chọn)</label><input id="fBudget" type="text" placeholder="VD: dưới 1 triệu"></div>
+      </div>
+      <div class="f-field"><label for="fMsg">Lời nhắn</label><textarea id="fMsg" placeholder="Mình tìm MG Strike Freedom bản_VER_II, cần ráp full phủ mờ trước 20/10…"></textarea></div>
+      <button type="submit" class="btn btn-a">Gửi — nhận báo giá trong 15 phút</button>
+      <span class="fb-safe"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Thông tin của bạn chỉ dùng để tư vấn — không chia sẻ cho bên thứ ba.</span>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq sec">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="eyebrow rv">Giải đáp nhanh</span>
+      <h2 class="sec-t rv" data-d="1">Câu hỏi <span class="hl">mọt hay hỏi nhất</span></h2>
+    </div>
+    <div class="faq-in rv" data-d="1">
+      <div class="faq-chips" id="faqChips">
+        <button data-k="tem">Tem genuine</button>
+        <button data-k="thợ ráp">Phí thợ ráp</button>
+        <button data-k="workshop">Workshop</button>
+        <button data-k="order">Đặt kit theo yêu cầu</button>
+        <button data-k="ship">Đóng gói &amp; ship</button>
+        <button data-k="đổi trả">Đổi trả</button>
+      </div>
+      <div id="faqList"></div>
+      <p class="faq-empty" id="faqEmpty">Chưa có câu khớp — gọi <a href="tel:0903456789" style="color:var(--accent);font-weight:800">0903 456 789</a> để được giải đáp trong 15 phút nhé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER GỌN ================= -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-col">
+        <div class="ft-brand">
+          <span class="logo-ic">MC</span>
+          <span><b>Mecamo</b><span>Mô hình &amp; Đồ chơi sở thích</span></span>
+        </div>
+        <p>Genuine có tem, thợ ráp 12 năm tay nghề, workshop mỗi cuối tuần và Mecamo Club 5.200+ mọt. Mỗi hộp qua tay shop đều phải xứng đáng lên kệ trưng bày của bạn.</p>
+        <ul class="ft-addr" style="margin-top:14px">
+          <li style="display:flex;gap:10px;font-size:.86rem;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="flex:none;color:var(--accent);margin-top:4px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>88 Đường Sao Bàng, P. Đầm Mê — 9:00–21:30 mỗi ngày</li>
+          <li style="display:flex;gap:10px;font-size:.86rem;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="flex:none;color:var(--accent);margin-top:4px"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:0903456789" style="color:#fff;font-weight:800">0903 456 789</a>&nbsp;— Zalo &amp; hotline</li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Kho &amp; dịch vụ</h4>
+        <ul>
+          <li><a href="#kho">Kit lắp ráp robot</a></li>
+          <li><a href="#kho">Mô hình tĩnh xe – tank</a></li>
+          <li><a href="#kho">Figure &amp; board game</a></li>
+          <li><a href="#rap">Thợ ráp &amp; chỉn màu</a></li>
+          <li><a href="#workshop">Workshop cuối tuần</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Mọt cần biết</h4>
+        <ul>
+          <li><a href="#banggia">Bảng phân cấp kit &amp; phí</a></li>
+          <li><a href="#lienhe">Chính sách đổi trả 7 ngày</a></li>
+          <li><a href="#lienhe">Freeship đơn từ 350K</a></li>
+          <li><a href="#lienhe">Mecamo Club — vào nhóm</a></li>
+          <li><a href="#lienhe">Đặt kit theo yêu cầu</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-pay">
+      <span>Thanh toán linh hoạt — COD kiểm hàng trước khi trả tiền</span>
+      <div class="pms"><i>COD</i><i>MOMO</i><i>ZALOPAY</i><i>VNPAY</i><i>VISA</i><i>CHUYỂN KHOẢN</i></div>
+    </div>
+    <div class="ft-copy">© 2026 Mecamo — 88 Sao Bàng, P. Đầm Mê · GPKD số 03G-8412204 · Đổi trả 7 ngày · Freeship từ 350K</div>
+  </div>
+</footer>
+
+<!-- ================= FAB DOCK ================= -->
+<div class="fab" id="fab">
+  <a href="#top" aria-label="Lên đầu trang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span class="tip-t">Lên đầu trang</span></a>
+  <a href="tel:0903456789" aria-label="Gọi hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span class="tip-t">Gọi 0903 456 789</span></a>
+  <a href="#rap" aria-label="Tính phí ráp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg><span class="tip-t">Tính phí ráp</span></a>
+  <a href="#workshop" aria-label="Workshop cuối tuần"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg><span class="tip-t">Workshop cuối tuần</span></a>
+  <button class="fab-main" id="fabCart" aria-label="Giỏ hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="tip-t">Giỏ hàng</span></button>
+</div>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="ovl" id="ovl"></div>
+<aside class="drawer" id="drawer" aria-label="Giỏ hàng">
+  <div class="dw-head">
+    <b>Giỏ của mọt (<span id="dwCount">0</span> món)</b>
+    <button class="dw-close" id="dwClose" aria-label="Đóng giỏ">✕</button>
+  </div>
+  <div class="dw-ship" id="dwShip">
+    <span id="dwShipTxt">Thêm <b>350.000đ</b> nữa để được <b>freeship</b></span>
+    <div class="bar"><i id="dwShipBar" style="width:0%"></i></div>
+  </div>
+  <div class="dw-tier" id="dwTier">
+    <span class="on">1 món · lẻ</span>
+    <span>2–3 món · −5%</span>
+    <span>4+ món · −10%</span>
+  </div>
+  <div class="dw-items" id="dwItems"></div>
+  <div class="dw-foot">
+    <div class="dw-row"><span>Tạm tính</span><span id="dwSub">0đ</span></div>
+    <div class="dw-row"><span>Giảm giá số lượng <span class="minus" id="dwTierLb"></span></span><span class="minus" id="dwDisc">0đ</span></div>
+    <div class="dw-row"><span>Phí giao (nội thành)</span><span id="dwFee">25.000đ</span></div>
+    <div class="dw-row tot"><span>Tổng cộng</span><span id="dwTot">0đ</span></div>
+    <button class="btn btn-a" id="dwCheckout">Đặt đơn — giao nội thành trong ngày</button>
+    <span class="dw-note">Đổi trả 7 ngày · COD kiểm hàng · kit đóng xốp chống sốc riêng</span>
+  </div>
+</aside>
+
+<!-- ================= QUICK VIEW ================= -->
+<div class="modal" id="modal">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast"></div>
+
+<script>
+/*NB93-264*/
+/* ============ DATA ============ */
+var PRODUCTS=[
+ {id:'p1',name:'MG Gundam Astray — kit lắp ráp 1/100',cat:'Kit lắp ráp robot',price:1190000,old:1390000,img:'assets/img/p1.webp',tag:'Bán chạy nhất',spec:['MG','1/100','~300 chi tiết'],desc:'Kit MG trâu bò nhất kệ: khung nội lực, bộ decal water slide, kèm đế trưng bày. Ráp trơn 2 buổi tối là có chú đứng kệ — thích ngầu hơn thì kèm dịch vụ panel line của shop.'},
+ {id:'p2',name:'Mô hình tĩnh xe cổ — mô tô kiệu 1:24',cat:'Mô hình tĩnh',price:690000,old:790000,img:'assets/img/p2.webp',tag:'Sưu tầm',spec:['Tĩnh','1:24','Sơn sẵn'],desc:'Đã sơn hoàn thiện, chi tiết mâm – nội thất sắc nét. Kệ bàn làm việc hay tủ kính sưu tầm đều lên ảnh ngon, kèm đế gỗ nam hoa.'},
+ {id:'p3',name:'Set figure chibi sưu tầm — hộp 6 nhân vật',cat:'Figure sưu tầm',price:290000,old:340000,img:'assets/img/p3.webp',tag:'Hộp mọt hay lùng',spec:['Chibi','~10cm','Set 6 con'],desc:'Set chibi dễ thương sơn tay sạch mũi cọ, chân đế rời để xếp lại kệ tuỳ thích. Hàng chính hãng có tem shop kiểm trước khi đóng gói.'},
+ {id:'p4',name:'Bộ dụng cụ sơn & airbrush cơ bản',cat:'Dụng cụ – sơn',price:850000,old:990000,img:'assets/img/p4.webp',tag:'Trọn bộ mới chơi',spec:['Airbrush','12 màu','Có máy nén'],desc:'Máy nén mini + súng phun kép, 12 lọ sơn màu cơ bản, kìm rút nova, góc nhám 4 độ — đủ bộ start làm màu cho mọi kit nhỏ.'},
+ {id:'p5',name:'Board game chiến thuật — cày cùng nhóm',cat:'Board game – cờ bàn',price:550000,old:650000,img:'assets/img/p5.webp',tag:'Chơi tại shop được',spec:['2–5 người','60–90 phút','Tiếng Việt'],desc:'Bản dịch tiếng Việt đầy đủ rulebook, token đã tẩy sẵn. Khu bàn chơi của shop mở tới 21:00 — gọi nước là ngồi chơi thử miễn phí trước khi chốt.'},
+ {id:'p6',name:'Kit nhà mini LED — lắp ráp trang trí bàn',cat:'Kit trang trí',price:480000,old:560000,img:'assets/img/p6.webp',tag:'Quà hợp lý',spec:['DIY','Đèn LED','4-6 tiếng'],desc:'Ráp từng mảnh gỗ + đồ mini, có chuỗi đèn ấm đêm về. Hợp làm quà cho người yêu hay tự thưởng cho góc bàn làm việc.'},
+ {id:'p7',name:'Hộp mica + đế LED trưng bày mô hình',cat:'Phụ kiện trưng bày',price:180000,old:220000,img:'assets/img/p7.webp',tag:'Chống bụi',spec:['Mica 3mm','Có đèn','Cut theo kit'],desc:'Hộp mica trong suốt chống bụi với đế LED 3 mode sáng. Nhắn số đo kit, shop cắt đúng khổ — kit đắt tiền phải được ở trong hộp xứng đáng.'},
+ {id:'p8',name:'Đặt & ráp mô hình theo yêu cầu — cọc giữ kit',cat:'Dịch vụ thợ ráp',price:200000,old:250000,img:'assets/img/p8.webp',tag:'Cọc trừ vào đơn',spec:['Order','Cọc 200K','Báo 15 phút'],desc:'Chốt cọc 200K để shop order mẫu hiếm hoặc giữ lịch thợ. Phí dịch vụ ráp tính theo bảng phân cấp — cọc trừ hết vào đơn cuối cùng.'}
+];
+var COMBO={name:'Combo Starter người mới (kit HG + dụng cụ + vé workshop)',desc:'Kit HG tuỳ chọn + kìm rút nova + góc nhám + keo + marker panel line + 1 vé workshop cuối tuần.',price:1250000,old:1470000,img:'assets/img/p4.webp'};
+function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+function prod(id){for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id===id)return PRODUCTS[i]}return null}
+
+/* ============ TOAST ============ */
+function toast(msg,sub){
+ var t=document.getElementById('toast');var el=document.createElement('div');el.className='tst';
+ el.innerHTML='<span class="tk">✓</span><span>'+msg+(sub?'<br><small style="opacity:.75;font-weight:600">'+sub+'</small>':'')+'</span>';
+ t.appendChild(el);setTimeout(function(){el.classList.add('out')},3200);setTimeout(function(){el.remove()},3700);
+}
+
+/* ============ CART ============ */
+var cart=[];
+function cartQty(){return cart.reduce(function(s,i){return s+i.qty},0)}
+function cartSub(){return cart.reduce(function(s,i){return s+i.price*i.qty},0)}
+function tierOf(q){return q>=4?0.10:(q>=2?0.05:0)}
+function addToCart(o,silent){
+ for(var i=0;i<cart.length;i++){
+  if(cart[i].name===o.name){cart[i].qty+=o.qty;renderCart();return}
+ }
+ cart.push(o);renderCart();
+ if(!silent)toast('Đã thêm: '+o.name,'Giỏ đang có '+cartQty()+' món — mua 2 món tự giảm 5%');
+}
+function renderCart(){
+ var n=cartQty();document.getElementById('cartN').textContent=n;
+ document.getElementById('dwCount').textContent=n;
+ var box=document.getElementById('dwItems');
+ if(!cart.length){
+  box.innerHTML='<div class="dw-empty"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></div><b style="display:block;color:var(--primary)">Giỏ của mọt còn trống…</b><span style="font-size:.85rem">Lấy nhanh combo starter hoặc 1 kit đang flash sale nhé!</span><br><button class="btn btn-a" style="margin-top:14px" onclick="closeDrawer();document.getElementById(\'kho\').scrollIntoView({behavior:\'smooth\'})">Xem kho hay</button></div>';
+ }else{
+  box.innerHTML=cart.map(function(it,idx){
+   var img=it.img?'<img src="'+it.img+'" alt="">':'<span style="width:74px;height:74px;border-radius:11px;background:var(--accent-100);display:grid;place-items:center;color:var(--accent);font-weight:900;font-size:.7rem;text-align:center;line-height:1.2">DỊCH<br>VỤ</span>';
+   return '<div class="dw-item">'+img+
+    '<div><span class="nm">'+it.name+'</span><div class="pr">'+vnd(it.price)+' × '+it.qty+'</div>'+
+    '<button class="dw-del" onclick="delItem('+idx+')">Xoá</button></div>'+
+    '<div class="dw-qty"><button onclick="qtyItem('+idx+',-1)" aria-label="Giảm">−</button><b>'+it.qty+'</b><button onclick="qtyItem('+idx+',1)" aria-label="Tăng">+</button></div></div>';
+  }).join('');
+ }
+ var sub=cartSub(),tier=tierOf(n),disc=Math.round(sub*tier/1000)*1000;
+ var fee=(sub>=350000||sub===0)?0:25000;
+ document.getElementById('dwSub').textContent=vnd(sub);
+ document.getElementById('dwDisc').textContent='−'+vnd(disc);
+ document.getElementById('dwTierLb').textContent=tier?'−'+(tier*100)+'%':'';
+ document.getElementById('dwFee').textContent=fee?vnd(fee):'Freeship';
+ document.getElementById('dwTot').textContent=vnd(Math.max(0,sub-disc+fee));
+ var t=document.getElementById('dwTier').children;
+ t[0].className=(n===1)?'on':'';
+ t[1].className=(n>=2&&n<=3)?'on':'';
+ t[2].className=(n>=4)?'on':'';
+ var pct=Math.min(100,Math.round(sub/350000*100));
+ document.getElementById('dwShipBar').style.width=pct+'%';
+ document.getElementById('dwShipTxt').innerHTML=sub>=350000?
+  'Đơn của mọt đã được <b>freeship</b> — shop đóng xốp chống sốc riêng cho kit':
+  'Thêm <b>'+vnd(350000-sub)+'</b> nữa để được <b>freeship</b>';
+}
+function qtyItem(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);renderCart()}
+function delItem(i){cart.splice(i,1);renderCart()}
+function addProduct(id,qty){var p=prod(id);addToCart({name:p.name,price:p.price,img:p.img,qty:qty||1});openDrawer()}
+function addCombo(){
+ addToCart({name:COMBO.name,price:COMBO.price,img:COMBO.img,qty:1},true);
+ toast('Đã thêm Combo Starter','Trọn bộ '+vnd(COMBO.price)+' — đã giảm 15%');
+ openDrawer();
+}
+function addWorkshop(day){
+ addToCart({name:'Vé workshop cuối tuần — '+day,price:150000,img:'assets/img/space.webp',qty:1},true);
+ toast('Đã giữ vé workshop '+day,'8 ghế/buổi — shop gọi xác nhận khung giờ');
+ openDrawer();
+}
+function openDrawer(){document.getElementById('drawer').classList.add('on');document.getElementById('ovl').classList.add('on')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('on');document.getElementById('ovl').classList.remove('on');document.getElementById('modal').classList.remove('on')}
+document.getElementById('cartOpen').onclick=openDrawer;
+document.getElementById('fabCart').onclick=openDrawer;
+document.getElementById('dwClose').onclick=closeDrawer;
+document.getElementById('ovl').onclick=closeDrawer;
+document.getElementById('dwCheckout').onclick=function(){
+ if(!cart.length){toast('Giỏ đang trống','Chọn 1 kit flash sale hoặc combo starter trước nhé');return}
+ var code='MC'+Math.floor(1000+Math.random()*9000);
+ toast('Đặt đơn thành công — mã '+code,'Shop gọi xác nhận trong 15 phút. Kit đóng xốp chống sốc nhé!');
+ cart=[];renderCart();setTimeout(closeDrawer,1200);
+};
+renderCart();
+
+/* ============ QUICK VIEW ============ */
+var mvQty=1,mvCur=null;
+function quickView(id){
+ var p=prod(id);mvCur=p;mvQty=1;
+ var save=Math.round((1-p.price/p.old)*100);
+ document.getElementById('modalBox').innerHTML=
+ '<div class="mv-media"><img src="'+p.img+'" alt="'+p.name+'"><span class="mv-tag">'+p.tag+'</span><button class="mv-close" onclick="closeDrawer()">✕</button></div>'+
+ '<div class="mv-body"><span class="p-cat" style="display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--soft)">'+p.cat+' · Mecamo</span>'+
+ '<h3>'+p.name+'</h3><p class="mv-desc">'+p.desc+'</p>'+
+ '<div class="mv-tier"><div><b>'+vnd(p.price)+'</b>Mua 1 món</div><div class="hot"><b>−5% · '+vnd(Math.round(p.price*0.95/1000)*1000)+'</b>Mua 2–3 món cùng lúc</div><div><b>−10% · '+vnd(Math.round(p.price*0.9/1000)*1000)+'</b>Mua 4 món trở lên</div></div>'+
+ '<div class="mv-act"><div class="mv-qty"><button onclick="mvStep(-1)">−</button><b id="mvQty">1</b><button onclick="mvStep(1)">+</button></div>'+
+ '<span class="mv-total" id="mvTotal">'+vnd(p.price)+'</span></div>'+
+ '<div class="mv-btns"><button class="btn btn-g" onclick="mvAdd()">Thêm vào giỏ</button><button class="btn btn-a" onclick="mvBuy()">Đặt ngay — giao trong ngày</button></div>'+
+ '<div class="mv-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Genuine có tem kiểm</span>'+
+ '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="15" height="12" rx="2"/><path d="M16 9h4l3 3v5h-7z"/></svg>Freeship từ 350K</span>'+
+ '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>COD — kiểm hàng trước khi trả</span></div></div>';
+ document.getElementById('modal').classList.add('on');
+ document.getElementById('ovl').classList.add('on');
+}
+function mvStep(d){mvQty=Math.max(1,mvQty+d);document.getElementById('mvQty').textContent=mvQty;
+ document.getElementById('mvTotal').textContent=vnd(mvCur.price*mvQty)}
+function mvAdd(){addToCart({name:mvCur.name,price:mvCur.price,img:mvCur.img,qty:mvQty});closeDrawer();openDrawer()}
+function mvBuy(){addToCart({name:mvCur.name,price:mvCur.price,img:mvCur.img,qty:mvQty},true);toast('Đã giữ đơn '+mvCur.name,'Shop gọi xác nhận trong 15 phút');closeDrawer();openDrawer()}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeDrawer()});
+
+/* ============ BENTO KHỐI-8 ============ */
+/*NB93-264: bento 4x3 = 12 ô kín (nổi bật 2x2 + 7 thẻ + 1 ô vé workshop)*/
+var bentoList=PRODUCTS;
+function renderBento(){
+ var feat=prod('p1');
+ document.getElementById('bento').style.gridTemplateColumns='';
+ var html='<article class="b-feat spot">'+
+  '<div class="p-media"><img src="'+feat.img+'" alt="'+feat.name+'" loading="lazy"></div>'+
+  '<div class="p-body"><div class="p-meta-row"><span class="chip-tag hot">Nổi bật · Best seller</span><span class="chip-tag off">−'+Math.round((1-feat.price/feat.old)*100)+'%</span></div>'+
+  '<span class="p-cat">'+feat.cat+'</span><h3>'+feat.name+'</h3>'+
+  '<span class="p-desc">'+feat.desc+'</span>'+
+  '<div class="p-spec">'+feat.spec.map(function(s){return '<b>'+s+'</b>'}).join('')+'</div>'+
+  '<div class="p-pr"><em>'+vnd(feat.price)+'</em><s>'+vnd(feat.old)+'</s></div>'+
+  '<button class="btn btn-a" onclick="addProduct(\'p1\')">Thêm vào giỏ — '+vnd(feat.price)+'</button></div></article>';
+ PRODUCTS.forEach(function(p){
+  if(p.id==='p1')return;
+  var off=Math.round((1-p.price/p.old)*100);
+  html+='<article class="p-card spot"><div class="p-media"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy"></div>'+
+  '<div class="p-body"><div class="p-meta-row"><span class="chip-tag hot">'+p.tag+'</span><span class="chip-tag off">−'+off+'%</span></div>'+
+  '<span class="p-cat">'+p.cat+'</span><h3>'+p.name+'</h3>'+
+  '<div class="p-spec">'+p.spec.map(function(s){return '<b>'+s+'</b>'}).join('')+'</div>'+
+  '<div class="p-pr"><em>'+vnd(p.price)+'</em><s>'+vnd(p.old)+'</s></div>'+
+  '<div class="p-btns"><button class="pa-qv" onclick="quickView(\''+p.id+'\')">Xem nhanh</button><button class="pa-add" onclick="addProduct(\''+p.id+'\')">Thêm giỏ</button></div></div></article>';
+ });
+ html+='<article class="p-card b-cta spot"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5M12 13v4M10 15h4"/></svg></div>'+
+ '<b>Ghép kèm workshop cuối tuần</b><span>Vé 150K — kit + dụng cụ có sẵn, thợ chỉ từng bước</span>'+
+ '<button class="btn btn-d" onclick="addWorkshop(\'T7 — Ráp kit đầu tiên\')">Giữ vé workshop — 150.000đ</button></article>';
+ document.getElementById('bento').innerHTML=html;
+}
+renderBento();
+
+/* ============ COUNTDOWN tới cuối ngày ============ */
+function tickCd(){
+ var now=new Date(),end=new Date(now);end.setHours(23,59,59,999);
+ var s=Math.max(0,Math.floor((end-now)/1000));
+ var h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+ document.getElementById('cdH').textContent=(h<10?'0':'')+h;
+ document.getElementById('cdM').textContent=(m<10?'0':'')+m;
+ document.getElementById('cdS').textContent=(sec<10?'0':'')+sec;
+}
+tickCd();setInterval(tickCd,1000);
+
+/* ============ MÁY TÍNH PHÍ RÁP (đặc thù) ============ */
+/*NB93-264: chốt kit + finish + tuỳ chọn -> phí tạm tính, thêm vào giỏ như 1 dịch vụ*/
+var rpKit={base:90000,k:'HG/SD (1/144)',day:'2-3'};
+var rpFin={mult:1,k:'Ráp trơn — rút nova, chà mạch'};
+var rpExtras=[];
+function rpCalc(){
+ var extra=0,labels=[],express=false;
+ rpExtras.forEach(function(e){extra+=e.price;labels.push(e.lb);if(e.flag==='express')express=true});
+ var core=Math.round(rpKit.base*rpFin.mult/1000)*1000;
+ var total=core+(express?Math.round(core*0.4/1000)*1000:0)+extra;
+ document.getElementById('rpName').textContent=rpKit.k+' · '+rpFin.k.split('—')[0].trim();
+ document.getElementById('rpBase').textContent=vnd(rpKit.base);
+ document.getElementById('rpMult').textContent='×'+rpFin.mult;
+ document.getElementById('rpExtra').textContent=labels.length?labels.join(' + '):'Không';
+ document.getElementById('rpTotal').textContent=vnd(total);
+ document.getElementById('rpEta').textContent='Hoàn thành dự kiến: '+rpKit.day+' ngày'+(express?' — express ưu tiên rút ngắn ~40% thời gian':'');
+ return {name:'Dịch vụ thợ ráp — '+rpKit.k+' · '+rpFin.k.split('—')[0].trim(),price:total,desc:rpFin.k};
+}
+function addService(){
+ var s=rpCalc();
+ addToCart({name:s.name,price:s.price,img:null,qty:1},true);
+ toast('Đã thêm dịch vụ ráp vào giỏ','Tạm tính '+vnd(s.price)+' — mang kit tới shop là bắt tay vào việc');
+ openDrawer();
+}
+document.querySelectorAll('#rpKit .rp-opt').forEach(function(b){
+ b.onclick=function(){
+  document.querySelectorAll('#rpKit .rp-opt').forEach(function(x){x.classList.remove('pick')});
+  b.classList.add('pick');
+  rpKit={base:+b.dataset.base,k:b.dataset.k,day:b.dataset.day};
+  rpCalc();
+ };
+});
+document.querySelectorAll('#rpFin .rp-opt').forEach(function(b){
+ b.onclick=function(){
+  document.querySelectorAll('#rpFin .rp-opt').forEach(function(x){x.classList.remove('pick')});
+  b.classList.add('pick');
+  rpFin={mult:parseFloat(b.dataset.mult),k:b.dataset.fk};
+  rpCalc();
+ };
+});
+document.querySelectorAll('#rpAdd .rp-ck').forEach(function(ck){
+ ck.onclick=function(){
+  ck.classList.toggle('on');
+  var lb=ck.dataset.lb||ck.textContent.trim();
+  if(ck.classList.contains('on'))rpExtras.push({price:+(ck.dataset.price||0),lb:lb,flag:ck.dataset.flag||''});
+  else rpExtras=rpExtras.filter(function(e){return e.lb!==lb});
+  rpCalc();
+ };
+});
+rpCalc();
+
+/* ============ TABS BẢNG PHÂN CẤP ============ */
+document.querySelectorAll('.ch-tab').forEach(function(t){
+ t.onclick=function(){
+  document.querySelectorAll('.ch-tab').forEach(function(x){x.classList.remove('on')});
+  t.classList.add('on');
+  document.querySelectorAll('.ch-panel').forEach(function(p){p.classList.remove('on')});
+  document.getElementById('ch-'+t.dataset.ch).classList.add('on');
+ };
+});
+
+/* ============ REVIEWS ============ */
+var REVIEWS=[
+ {n:'Minh Quân',m:'Sưu tầm MG 6 năm — Mecamo Club',q:'Mang MG Exia tự ráp dở 2 năm trời tới shop, thợ làm lại panel line + phủ mờ trọn 380K. Trả kit đúng hẹn, mạch kẻ thẳng không được chỗ nào chê — giờ cả kệ của tôi đều qua tay Mecamo.'},
+ {n:'Thu Thảo',m:'Mọt mới — học từ workshop T7',q:'Người chưa cầm kìm lần nào, đi workshop về ráp được luôn con HG Bartar. Combo starter 1,25 triệu gồm đủ dụng cụ với vé học, tính ra rẻ hơn tự mò mua sai đồ.'},
+ {n:'Hoàng Long',m:'Team tank 1:35',q:'Đặt táp T-90 sơn làm cũ, thợ gửi ảnh từng lớp màu qua Zalo để duyệt. Hộp về đóng xốp 3 lớp, kit nguyên vẹn từng mảnh nhỏ — chơi tĩnh 8 năm chưa thấy shop nào kỹ thế.'},
+ {n:'Hà Vy',m:'Nhóm board game 4 người',q:'Tối nào nhóm mình cũng ghé bàn chơi của shop, gọi 1 nước là ngồi free tới 21h. Chơi thử xong mới mua, chưa hỏng bộ nào — token shop làm mica đẹp hơn cả bản gốc.'},
+ {n:'Khôi',m:'Sưu tầm figure scale 1/7',q:'Sơn lại figure theo ảnh mẫu, pha màu chuẩn tới từng chiếc váy. 5.200 mọt trong club đều từ từ mà chất — họp mặt cuối tháng khoe build vui hơn cả đi chợ đồ chơi.'}
+];
+var rwI=0,rwTimer;
+function renderReviews(){
+ document.getElementById('rwTrack').innerHTML=REVIEWS.map(function(r,i){
+  return '<div class="rw"><div><p class="rw-quote">'+r.q+'</p><div class="rw-who"><span class="rw-av">'+r.n.charAt(0)+'</span><span><b>'+r.n+'</b><span>'+r.m+'</span></span></div></div>'+
+  '<div class="rw-meta"><span class="big">'+(4.8+i%2*0.1).toFixed(1)+'/5</span><span class="lbl">điểm trung bình '+r.n.charAt(0)+' chấm cho shop</span>'+
+  '<div class="rw-bars"><div class="rw-bar"><span>Hàng genuine</span><i><b style="width:99%"></b></i><span>99%</span></div>'+
+  '<div class="rw-bar"><span>Đóng gói kit</span><i><b style="width:97%"></b></i><span>97%</span></div>'+
+  '<div class="rw-bar"><span>Tư vấn kỹ thuật</span><i><b style="width:96%"></b></i><span>96%</span></div></div></div></div>';
+ }).join('');
+ document.getElementById('rwDots').innerHTML=REVIEWS.map(function(_,i){
+  return '<button class="rw-dot'+(i===0?' on':'')+'" data-i="'+i+'" aria-label="Review '+(i+1)+'"></button>';
+ }).join('');
+ document.querySelectorAll('.rw-dot').forEach(function(d){
+  d.onclick=function(){rwGo(+d.dataset.i);rwAuto()};
+ });
+}
+function rwGo(i){
+ rwI=i%REVIEWS.length;
+ document.getElementById('rwTrack').style.transform='translateX(-'+rwI*100+'%)';
+ document.querySelectorAll('.rw-dot').forEach(function(d,j){d.classList.toggle('on',j===rwI)});
+}
+function rwAuto(){clearInterval(rwTimer);rwTimer=setInterval(function(){rwGo(rwI+1)},6000)}
+renderReviews();rwAuto();
+
+/* ============ FAQ ============ */
+var FAQS=[
+ {q:'Làm sao biết mình mua đúng hàng genuine có tem?',a:'Mọi kit tại Mecamo đều có tem chống giả của shop đóng lên niêm phong, kèm mã kiểm tra in trên hộp. Bạn có thể yêu cầu soi tem + chụp mã trước khi nhận — phát hiện fake, shop hoàn tiền 200% và tố nhà cung cấp. Hàng order về cũng qua khâu kiểm tem giống hệt hàng kệ.'},
+ {q:'Phí dịch vụ thợ ráp tính thế nào?',a:'Theo cấp kit và mức finish: HG ráp trơn từ 90K, RG 150K, MG 220K, PG 450K; thêm panel line + decal ×1.45, full phủ mờ/bóng ×1.75, battle damage ×2.2. Dùng "Máy tính phí thợ ráp" ngay trên trang để chốt giá trước — giá đã gồm keo, marker, top coat. Kit mua tại shop kèm dịch vụ giảm thêm 10%.'},
+ {q:'Người mới chưa biết gì có tham gia workshop được không?',a:'Được — chính là buổi "Ráp kit đầu tiên trong đời" sáng thứ 7 dành cho người chưa cầm kìm. Vé 150K đã gồm kit HG mini, dụng cụ và nước; thợ ngồi cạnh chỉ từng bước từ đọc bảng hướng dẫn tới rút nova. Tối đa 8 người mỗi buổi nên ai cũng được sửa tay, vé giữ trong giỏ trước để chốt chỗ.'},
+ {q:'Đặt kit theo yêu cầu (mẫu hiếm, off-shelf) mất bao lâu?',a:'Nhắn tên mẫu + ngân sách qua Zalo, shop báo giá trong 15 phút. Hàng order về Việt Nam thường 7–21 ngày tuỳ lô, cọc giữ kit chỉ 200K và trừ hết vào đơn. Mẫu đã ngừng sản xuất, shop lùng lại hàng sưu tầm — giá báo riêng kèm tình trạng hộp.'},
+ {q:'Kit ship đi xa có bị nứt, vỡ chi tiết nhỏ không?',a:'Mỗi kit được đóng xốp chống sốc riêng, bọc mủi hơi, cần gạt phía trong cố định. Nội thành giao trong ngày bằng xe có thùng, tỉnh 1–3 ngày qua đối tác — đến nay 8.500+ đơn chưa có ca vỡ khung. Nếu lỡ có mảnh nứt do vận chuyển, shop hỗ trợ thay mảnh/sản xuất lại miễn phí.'},
+ {q:'Đổi trả thế nào nếu kit lỗi hoặc không ưng?',a:'Trong 7 ngày kể từ ngày nhận, hộp còn nguyên tem niêm phong là đổi mẫu khác hoặc hoàn tiền — không hỏi lý do. Lỗi nhà sản xuất (khớp lệch, thiếu mảnh) được đổi mới bất kể thời hạn khi báo kèm ảnh. Riêng dịch vụ thợ ráp cam kết sửa lại miễn phí nếu finish không đúng mức đã chốt.'},
+ {q:'Có chơi thử board game trước khi mua được không?',a:'Có — khu bàn chơi của shop mở 18:00–21:00 mỗi tối: gọi 1 nước bất kỳ là ngồi chơi thử miễn phí, có nhân viên đọc rulebook hộ nhóm mới. Thích mới mua, kèm dịch vụ làm token mica + hộp chống nước nếu muốn nâng cấp bộ của mình.'}
+];
+function faqRender(kw){
+ var list=document.getElementById('faqList'),empty=document.getElementById('faqEmpty');
+ var html='',shown=0;
+ FAQS.forEach(function(f,i){
+  var hit=!kw||(f.q+' '+f.a).toLowerCase().indexOf(kw.toLowerCase())>-1;
+  if(!hit)return;shown++;
+  html+='<div class="faq-item'+(i===0&&!kw?' open':'')+'"><button class="faq-q" onclick="faqToggle(this)"><span>'+f.q+'</span><span class="pm">+</span></button><div class="faq-a"><p>'+f.a+'</p></div></div>';
+ });
+ list.innerHTML=html;
+ empty.style.display=shown?'none':'block';
+ var first=list.querySelector('.faq-item');
+ if(first){var fa=first.querySelector('.faq-a');fa.style.maxHeight=fa.scrollHeight+'px'}
+}
+function faqToggle(btn){
+ var item=btn.parentElement,ans=item.querySelector('.faq-a'),open=item.classList.contains('open');
+ document.querySelectorAll('.faq-item.open').forEach(function(x){x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+ if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+}
+document.querySelectorAll('.faq-chips button').forEach(function(c){
+ c.onclick=function(){
+  document.querySelectorAll('.faq-chips button').forEach(function(x){x.classList.remove('on')});
+  c.classList.add('on');
+  faqRender(c.dataset.k);
+  var first=document.querySelector('.faq-item');
+  if(first&&!first.classList.contains('open'))faqToggle(first.querySelector('.faq-q'));
+ };
+});
+faqRender('');
+
+/* ============ FORM ============ */
+document.getElementById('ctForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ var n=document.getElementById('fName').value.trim();
+ if(!n){toast('Cho shop xin họ tên nhé','Điền tên + số điện thoại để nhận báo giá trong 15 phút');return}
+ var ph=document.getElementById('fPhone').value.trim();
+ if(!ph){toast('Thiếu số điện thoại','Shop cần số để gọi xác nhận giá kit/dịch vụ');return}
+ toast('Cảm ơn '+n+'!','Mecamo gọi lại trong 15 phút — kềm kìm chờ nhé');
+ this.reset();
+});
+
+/* ============ SEARCH ============ */
+/*NB93-264: search that — loc bento theo tu khoa, ra ket qua dang grid den*/
+document.getElementById('q').addEventListener('keydown',function(e){
+ if(e.key!=='Enter')return;
+ var k=this.value.trim();
+ var box=document.getElementById('bento');
+ if(!k){bentoList=PRODUCTS;renderBento();toast('Đã hiện lại đủ 8 mặt hàng kho hay');return;}
+ var dk=k.toLowerCase();
+ var hits=PRODUCTS.filter(function(p){return ((p.name||'')+' '+(p.cat||'')+' '+(p.desc||'')+' '+(p.spec||[]).join(' ')).toLowerCase().indexOf(dk)>-1;});
+ if(!hits.length){toast('Chưa có món khớp "'+k+'"','Thử: gundam, tank, board game, figure, mica — hoặc nhắn shop order giùm');return;}
+ box.innerHTML=hits.map(function(p){
+  var off=Math.round((1-p.price/p.old)*100);
+  return '<article class="p-card spot"><div class="p-media"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy"></div>'+
+  '<div class="p-body"><div class="p-meta-row"><span class="chip-tag hot">'+p.tag+'</span><span class="chip-tag off">−'+off+'%</span></div>'+
+  '<span class="p-cat">'+p.cat+'</span><h3>'+p.name+'</h3>'+
+  '<div class="p-spec">'+p.spec.map(function(s){return '<b>'+s+'</b>'}).join('')+'</div>'+
+  '<div class="p-pr"><em>'+vnd(p.price)+'</em><s>'+vnd(p.old)+'</s></div>'+
+  '<div class="p-btns"><button class="pa-qv" onclick="quickView(\''+p.id+'\')">Xem nhanh</button><button class="pa-add" onclick="addProduct(\''+p.id+'\')">Thêm giỏ</button></div></div></article>';
+ }).join('');
+ box.style.gridTemplateColumns='repeat(auto-fill,minmax(240px,1fr))';
+ document.getElementById('kho').scrollIntoView({behavior:'smooth'});
+ toast('Tìm thấy '+hits.length+' món cho "'+k+'"','Kho hay đang hiện đúng các món khớp');
+});
+
+/* ============ REVEAL / SPOTLIGHT / COUNTER / HEADER / FAB ============ */
+var io=new IntersectionObserver(function(es){
+ es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+document.addEventListener('mousemove',function(e){
+ var el=e.target.closest?e.target.closest('.spot'):null;
+ if(!el)return;
+ var r=el.getBoundingClientRect();
+ el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+ el.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+
+var ioC=new IntersectionObserver(function(es){
+ es.forEach(function(en){
+  if(!en.isIntersecting)return;
+  var el=en.target,io2=ioC;io2.unobserve(el);
+  var target=parseFloat(el.dataset.count),dec=el.dataset.decimal?1:0,suf=el.dataset.suffix||'';
+  var t0=null;
+  function step(ts){
+   if(!t0)t0=ts;
+   var p=Math.min(1,(ts-t0)/1400),e2=1-Math.pow(1-p,3);
+   var v=target*e2;
+   el.textContent=(dec?v.toFixed(1):Math.round(v).toLocaleString('vi-VN'))+suf;
+   if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+ });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(function(el){ioC.observe(el)});
+
+var hd=document.getElementById('hd'),fab=document.getElementById('fab'),hero=document.getElementById('top');
+window.addEventListener('scroll',function(){
+ hd.classList.toggle('scrolled',window.scrollY>10);
+ var hr=hero.getBoundingClientRect();
+ fab.classList.toggle('hide',hr.bottom>120);
+},{passive:true});
+
+/* marquee nhân đôi nội dung để chạy liền mạch */
+(function(){var t=document.getElementById('tapeIn');t.innerHTML=t.innerHTML+t.innerHTML})();
+</script>
+<!-- NB93-264 chat widget: tu van truc tiep -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.8-.8L3 21l1.9-5.2A8.4 8.4 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+  <span class="pkc-dot"></span>
+</button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn Mecamo</div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div class="pkc-msgs" id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips"></div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhập câu hỏi của bạn…" autocomplete="off">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+<style>
+/*NB93-264 chat widget*/
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2E6FD8,#1D4FA8);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(29,79,168,.55);transition:.25s}
+.pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+.pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
+@keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
+.pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}
+.pkc-panel.show{opacity:1;visibility:visible;transform:none}
+.pkc-head{background:linear-gradient(135deg,#1D4FA8,#143B7E);color:#fff;padding:14px 16px;display:flex;gap:11px;align-items:center;flex-shrink:0}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.15rem;flex-shrink:0}
+.pkc-name{font-weight:800;font-size:.92rem}
+.pkc-on{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+.pkc-on i{width:8px;height:8px;border-radius:50%;background:#7FE0AE;display:inline-block;animation:pkcPulse 1.6s infinite}
+.pkc-x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.pkc-x:hover{background:rgba(255,255,255,.3)}
+.pkc-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:#F4F1E9}
+.pkc-m{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.84rem;line-height:1.5;animation:pkcIn .25s both}
+@keyframes pkcIn{from{opacity:0;transform:translateY(8px)}}
+.pkc-b{align-self:flex-start;background:#fff;border:1px solid rgba(21,28,44,.08);border-bottom-left-radius:4px;color:#1B2434}
+.pkc-u{align-self:flex-end;background:linear-gradient(135deg,#2E6FD8,#1D4FA8);color:#fff;border-bottom-right-radius:4px}
+.pkc-typing{align-self:flex-start;background:#fff;border:1px solid rgba(21,28,44,.08);border-radius:14px;padding:11px 15px;display:flex;gap:4px}
+.pkc-typing i{width:6px;height:6px;border-radius:50%;background:#9AA9B8;animation:pkcB 1s infinite}
+.pkc-typing i:nth-child(2){animation-delay:.15s}.pkc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes pkcB{50%{transform:translateY(-4px);opacity:.5}}
+.pkc-chips{display:flex;gap:7px;padding:9px 12px;overflow-x:auto;background:#fff;border-top:1px solid rgba(21,28,44,.07);flex-shrink:0;scrollbar-width:none}
+.pkc-chips::-webkit-scrollbar{display:none}
+.pkc-chip{flex-shrink:0;border:1.5px solid rgba(29,79,168,.4);color:#1D4FA8;background:#fff;font-weight:700;font-size:.72rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.2s;min-height:32px}
+.pkc-chip:hover{background:#E3EDFB}
+.pkc-inrow{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid rgba(21,28,44,.07);flex-shrink:0}
+.pkc-inrow input{flex:1;border:1.5px solid rgba(21,28,44,.16);border-radius:11px;padding:10px 13px;font-size:.85rem;font-family:inherit;outline:none}
+.pkc-inrow input:focus{border-color:#2E6FD8;box-shadow:0 0 0 3px rgba(46,111,216,.13)}
+.pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2E6FD8,#1D4FA8);color:#fff;border:none;cursor:pointer;font-size:1rem}
+.pkc-inrow button:hover{filter:brightness(1.08)}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
+</style><script>
+/*NB93-264 chat logic*/
+(function(){
+  var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
+      inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
+  if(!fab||!panel)return;
+  /* NGHE-14-BOTFIX: bo toan bo bot mau (botReply, reply, GREET, sendMsg, bien
+     brand/hotline/addr chi phuc vu bot). Chat that do C3 bridge dieu hanh:
+     tu chao khi mo chat, gui tin that len backend, nhan tra loi chu shop poll 7s.
+     Template chi giu widget + mo/dong panel + ham add() du phong. */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function add(text,who){var d=document.createElement('div');d.className='pkc-m '+(who==='u'?'pkc-u':'pkc-b');d.innerHTML=esc(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function openChat(){
+    panel.classList.add('show');fab.style.display='none';
+    var dot=fab.querySelector('.pkc-dot');if(dot)dot.style.display='none';
+    setTimeout(function(){if(inp)inp.focus();},300);
+  }
+  function closeChat(){panel.classList.remove('show');fab.style.display='grid';}
+  fab.onclick=openChat;
+  var xbtn=document.getElementById('pkcClose');if(xbtn)xbtn.onclick=closeChat;
+  /* NGHE-14-BOTFIX: khong gan handler Gui/Enter o template level — C3 bridge da
+     chiem quyen o capture-phase; gan them se hai handler chay song song. */
+  /* NGHE-14-BOTFIX: chips chi dien text vao o nhap de khach xem lai roi tu gui
+     (Enter hoac nut Gui — deu do C3 bridge xu ly), khong tu gui, khong bot tra loi. */
+  var CHIPS=[['💰 Báo giá','Cho em xin bảng giá ạ'],['📍 Địa chỉ','Bên em ở địa chỉ nào ạ?'],['📞 Hotline','Cho em xin số hotline'],['🚚 Giao hàng','Bên em giao hàng thế nào ạ?'],['🛡️ Bảo hành','Chính sách bảo hành như thế nào ạ?']];
+  if(chips)CHIPS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='pkc-chip';b.textContent=c[0];
+    b.onclick=function(){if(inp){inp.value=c[1];inp.focus();}};
+    chips.appendChild(b);
+  });
+})();
+</script>
+<script>
+/*NB93-264 failsafe: element reveal bi ket lai tu hien sau 1.6s*/
+(function(){setTimeout(function(){try{
+document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').forEach(function(el){
+  if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
+});
+}catch(e){}},1600);})();
+</script>
+<script>/*NB93-264 dock tu an khi cuon — khong che gia/CTA*/
+(function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script>
+<script>/*NB93-264 mobile: body chua du cho dock + chat fab khong de len dock*/
+(function(){
+ if(window.innerWidth>680)return;
+ document.body.style.paddingBottom='84px';
+ var cf=document.getElementById('pkcFab');
+ if(cf)cf.style.bottom='84px';
+ var cp=document.getElementById('pkcPanel');
+ if(cp){cp.style.bottom='142px';cp.style.height='min(440px,calc(100vh - 168px))';}
+ var t=document.getElementById('toast');
+ if(t)t.style.bottom='144px';
+})();</script>
+<!--NGHE-15-CART-BAKE: form dat hang chuan — gui don qua C3 bridge (data-nghe-order-submit)--><form data-nghe-checkout-bake="1" id="nghe-checkout-panel" hidden style="position:fixed;z-index:99990;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:1px solid #e3e6eb;padding:16px;overflow-y:auto;font:inherit"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px"><b style="font-size:.95rem">📦 Thông tin nhận hàng</b><button type="button" data-nghe-checkout-back title="Đóng phần này — bấm Xác nhận đơn để mở lại" style="border:1.5px solid #d4d7dd;background:#fff;color:#3d4550;font:700 .78rem/1 system-ui,sans-serif;cursor:pointer;border-radius:99px;padding:6px 11px">✕ Quay lại</button></div><div style="display:flex;gap:8px;flex-wrap:wrap"><input data-nghe-order="name" placeholder="Họ và tên *" style="flex:1 1 150px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><input data-nghe-order="phone" placeholder="Số điện thoại *" inputmode="tel" style="flex:1 1 130px;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"></div><input data-nghe-order="address" placeholder="Địa chỉ nhận hàng" style="width:100%;min-height:42px;margin:0 0 8px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;outline:none"><div data-nghe-checkout-map hidden style="width:100%;height:150px;margin:0 0 8px;border:1px solid #e3e6eb;border-radius:10px;overflow:hidden"><iframe data-nghe-checkout-map-frame title="Vị trí nhận hàng trên bản đồ" style="width:100%;height:150px;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a data-nghe-checkout-mapslink target="_blank" rel="noopener" hidden style="display:none;font-size:.8rem;color:#0a7d4f;margin:0 0 8px">🔍 Xem/mở vị trí trong Google Maps</a><textarea data-nghe-order="note" placeholder="Ghi chú (tuỳ chọn)" style="width:100%;min-height:52px;margin:0 0 4px;padding:9px 11px;border:1.5px solid #d4d7dd;border-radius:10px;font:inherit;resize:vertical;outline:none"></textarea><button type="button" data-nghe-order-submit disabled style="width:100%;min-height:44px;margin-top:8px;border:0;border-radius:10px;background:var(--accent,var(--primary,#0a7d4f));color:#fff;font:700 .98rem/1 system-ui,sans-serif;cursor:pointer">Gửi đơn hàng</button><p data-nghe-checkout-hint style="margin:8px 0 0;font-size:.8rem;color:#8a93a0;display:none"></p></form><script data-nghe-checkout-bake-js>(function(){
+  /* NGHE-15-CART-BAKE — panel đặt hàng: gắn body (fixed), KHÔNG dò nút xác
+     nhận lúc init (drawer nhiều site render động). Dò TẠI LÚC CLICK: click
+     trúng nút xác nhận → chặn handler demo + hiện panel FULL trong giỏ */
+  /* NGHE-16 v4 — id chuẩn chỉ nhận khi trúng NÚT BẤM thật (button/a/
+     input-submit/role=button). Họ 013 có id "orderForm" nằm trên FORM LIÊN HỆ
+     → trước đây che mất drCheckout (nút chốt giỏ thật) → handler demo chạy,
+     giỏ bị xoá, không có đơn. Form chỉ là fallback khi site không có id nào
+     trên nút. var extra = id nút xác nhận thật đã audit tĩnh theo từng site. */
+  var extra=[];
+  var ids=['checkoutBtn','dwCheckout','btnCheckout','odSubmit','orderForm','drCheckout','drOrder','dwOrder','cartCheckout','btnOrder','orderBtn','checkout','mua','muamua','srBuy'];
+  function btnLike(el){
+    if(!el||!el.tagName)return false;
+    var tg=String(el.tagName).toUpperCase();
+    if(tg==='BUTTON'||tg==='A')return true;
+    if(tg==='INPUT'){var ty=el.getAttribute('type');return !ty||ty==='submit'||ty==='button';}
+    return !!(el.getAttribute&&el.getAttribute('role')==='button');
+  }
+  function findConfirmBtn(){
+    var seq=(extra&&extra.length?extra:[]).concat(ids);
+    var formHit=null;
+    for(var i=0;i<seq.length;i++){
+      var el=document.getElementById(seq[i]);
+      if(!el)continue;
+      if(btnLike(el))return el;
+      if(!formHit&&String(el.tagName||'').toUpperCase()==='FORM')formHit=el;
+    }
+    if(formHit)return formHit;
+    var els=document.querySelectorAll('button,[role=button],a');
+    var rx=/(xác nhận|thanh toán|gửi đơn|checkout|đặt hàng)/i;
+    for(var j=0;j<els.length;j++){
+      var t=(els[j].textContent||'').trim();
+      if(t&&t.length<60&&rx.test(t))return els[j];
+    }
+    return null;
+  }
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  document.body.appendChild(panel);
+  /* NGHE-16 — panel fixed chiếm nguyên cạnh phải, không cần co giãn; stub giữ
+     cho reveal() khỏi ReferenceError (bản cũ gọi fitPanel chưa từng định nghĩa). */
+  function fitPanel(){}
+  var nameI=panel.querySelector('[data-nghe-order=name]'),phoneI=panel.querySelector('[data-nghe-order=phone]');
+  var sub=panel.querySelector('[data-nghe-order-submit]'),hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var back=panel.querySelector('[data-nghe-checkout-back]');
+  var formOpen=false;
+  function upd(){sub.disabled=!(nameI.value.trim()&&phoneI.value.trim());}
+  nameI.addEventListener('input',upd);phoneI.addEventListener('input',upd);upd();
+  function reveal(){
+    panel.hidden=false;formOpen=true;
+    fitPanel();
+    setTimeout(fitPanel,120);setTimeout(fitPanel,400);
+    nameI.focus();
+  }
+  function doBack(){
+    panel.hidden=true;formOpen=false;
+    try{var btn=findConfirmBtn();if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){}
+  }
+  /* chặn click nút xác nhận (capture — trước handler demo của site) */
+  document.addEventListener('click',function(ev){
+    var btn=findConfirmBtn();
+    if(!btn)return;
+    var t=ev.target;
+    var onBtn=t&&(t===btn||(btn.contains&&btn.contains(t)));
+    if(!onBtn)return;
+    ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();
+    reveal();
+  },true);
+  if(back)back.addEventListener('click',function(){panel.hidden=true;formOpen=false;});
+  /* trạng thái đang gửi: capture KHÔNG chặn — bridge phía sau xử lý gửi */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1'){ev.stopImmediatePropagation();ev.stopPropagation();return;}
+    if(sub.disabled)return;
+    sub.setAttribute('data-sent','1');
+    sub.textContent='✓ Đã gửi đơn — shop sẽ gọi lại xác nhận';
+    panel.querySelectorAll('input,textarea').forEach(function(x){x.setAttribute('readonly','readonly');});
+    sub.disabled=true;
+  },true);
+  panel.addEventListener('submit',function(ev){ev.preventDefault();if(!sub.disabled)sub.click();});
+  /* map: khách gõ địa chỉ → Google Maps đúng vị trí + link mở Maps */
+  var addrI=panel.querySelector('[data-nghe-order=address]');
+  var mapWrap=panel.querySelector('[data-nghe-checkout-map]');
+  var mapFrame=panel.querySelector('[data-nghe-checkout-map-frame]');
+  var mapsLink=panel.querySelector('[data-nghe-checkout-mapslink]');
+  var mapTimer=null;
+  function updateMap(){
+    var v=(addrI&&addrI.value||'').trim();
+    if(v.length<8){mapWrap.hidden=true;mapWrap.style.display='none';if(mapsLink)mapsLink.style.display='none';return;}
+    var q=encodeURIComponent(v);
+    if(mapFrame)mapFrame.src='https://www.google.com/maps?q='+q+'&z=15&output=embed&hl=vi';
+    if(mapWrap){mapWrap.hidden=false;mapWrap.style.display='block';}
+    if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
+  }
+  if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>

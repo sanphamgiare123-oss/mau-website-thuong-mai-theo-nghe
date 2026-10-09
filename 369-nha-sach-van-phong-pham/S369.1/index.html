@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nhà Sách Góc Đọc Vui — Nhà sách &amp; văn phòng phẩm | Chạm trang sách, mở lối ý tưởng</title>
+<meta name="description" content="Nhà sách Góc Đọc Vui — sách văn học, thiếu nhi, giáo khoa, văn phòng phẩm, combo quà tặng tri thức. Chạm trang sách, mở lối ý tưởng. Giao hàng nhanh, gói quà miễn phí.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BookStore","name":"Nhà Sách Góc Đọc Vui","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Phố Tri Thức, Góc Đọc Vui","addressCountry":"VN"},"geo":{"@type":"GeoCoordinates","latitude":10.7544,"longitude":106.7235},"openingHours":"Mo-Su 07:30-22:00","priceRange":"12.000đ-499.000đ"}
+</script>
+<style>
+/*NB110-369*/
+:root{
+  --primary:#4A2C17; --primary-2:#6B4526; --primary-3:#2E1A0C;
+  --accent:#E07B2A; --accent-2:#F0A45C; --gold:#C99A3C;
+  --bg:#FAF4EA; --paper:#FFFDF8; --ink:#33241A; --mut:#8A7462;
+  --navy:#1F3A5F; --teal:#2F7F76; --line:#E8DAC6; --ok:#2F9E6E; --bad:#D64545;
+  --sh:0 10px 28px rgba(74,44,23,.10); --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,.serif{font-family:Georgia,'Times New Roman',serif;line-height:1.25}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.sec{padding:56px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.kicker::before,.kicker::after{content:"";width:26px;height:1px;background:var(--accent-2)}
+.sec-head h2{font-size:clamp(26px,4vw,36px);margin:8px 0 10px;color:var(--primary)}
+.sec-head p{color:var(--mut)}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(250,244,234,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:42px;height:42px;border-radius:12px;background:var(--primary);color:#FFE9C7;display:grid;place-items:center;font-size:20px;flex:none}
+.logo b{font-family:Georgia,serif;font-size:17px;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo small{display:block;font-size:10.5px;color:var(--mut);font-weight:400;letter-spacing:.4px}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{padding:9px 12px;border-radius:10px;font-size:14px;font-weight:600;color:var(--primary-2)}
+nav.main a:hover{background:#F1E5D2}
+.hd-right{display:flex;align-items:center;gap:8px}
+/*NB110-369 search*/
+.srch{position:relative}
+.srch input{width:210px;padding:10px 34px 10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);font-size:13.5px;color:var(--ink)}
+.srch input:focus{outline:none;border-color:var(--accent)}
+.srch .s-ic{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:14px;color:var(--mut);pointer-events:none}
+.s-pop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh);overflow:hidden;display:none;z-index:70}
+.s-pop.open{display:block}
+.s-pop button{display:flex;width:100%;text-align:left;gap:8px;align-items:center;padding:9px 12px;border:0;background:none;font-size:13px}
+.s-pop button:hover{background:#F6EBD9}
+.s-pop button b{color:var(--accent);font-size:12px;margin-left:auto;white-space:nowrap}
+/*NB110-369 — giỏ = FAB nổi xếp trên chat (đúng góp ý chủ project: khỏi để trên header)*/
+.cart-fab{position:fixed;right:18px;bottom:86px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--primary);color:#FFE9C7;display:grid;place-items:center;padding:0;box-shadow:0 10px 24px rgba(74,44,23,.38);transition:opacity .25s,transform .25s}
+.cart-fab:hover{background:var(--accent);transform:translateY(-2px)}
+.cart-fab .pkc-dot{position:absolute;top:2px;right:2px}
+.cart-fab[hidden]{display:none}
+/*NB110-369 — chat mở thì giỏ tạm nhường (điều khiển qua body.chat-open trong JS)*/
+body.chat-open .cart-fab{opacity:0;pointer-events:none}
+#cartN{position:absolute;top:-5px;right:-5px;background:var(--accent);color:#fff;border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:11.5px;padding:0 6px;font-weight:800;border:2px solid var(--paper)}
+#cartN[hidden]{display:none}
+.call{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 13px;font-weight:700;font-size:13px;color:var(--primary);min-height:42px;white-space:nowrap}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(180deg,#F4E8D4 0%,var(--bg) 100%);border-bottom:1px solid var(--line)}
+.hero-g{display:grid;grid-template-columns:1.02fr .98fr;gap:38px;align-items:center;padding:52px 0 56px}
+.hero .kicker{margin-bottom:14px}
+.hero h1{font-size:clamp(30px,4.6vw,46px);color:var(--primary);margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative}
+.hero p.lead{color:#6B543E;font-size:15.5px;max-width:480px;margin-bottom:20px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;font-weight:800;min-height:46px;padding:12px 20px;font-size:14.5px;border:0;white-space:nowrap}
+.btn-a{background:var(--accent);color:#fff;box-shadow:0 8px 18px rgba(224,123,42,.30)}
+.btn-a:hover{background:#CE6B1E}
+.btn-g{background:var(--paper);color:var(--primary);border:1.5px solid var(--line)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap}
+.hero-stats div b{font-family:Georgia,serif;font-size:22px;color:var(--primary);display:block}
+.hero-stats div span{font-size:12.5px;color:var(--mut)}
+.hero-pic{position:relative}
+.frame{background:var(--primary-3);padding:12px 12px 14px;border-radius:18px;box-shadow:var(--sh)}
+.frame .bar{height:9px;border-radius:99px;background:linear-gradient(90deg,#8A5A2E,#A9743F 55%,#7B4E26);margin:-6px 4px 12px;box-shadow:0 3px 0 #5C3A1E}
+.frame img{border-radius:10px;width:100%}
+.poster-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid var(--line);border-radius:99px;padding:9px 15px;font-size:13px;font-weight:700;color:var(--primary)}
+.pchip i{font-style:normal;background:#F6E7CE;border-radius:99px;width:26px;height:26px;display:grid;place-items:center;font-size:13px}
+
+/* ===== SERVICES ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start}
+.svc .ic{width:46px;height:46px;flex:none;border-radius:13px;background:#F6E7CE;display:grid;place-items:center;font-size:21px}
+.svc b{display:block;font-size:15px;color:var(--primary)}
+.svc span{font-size:13px;color:var(--mut)}
+
+/* ===== KỆ SÁCH — KHỐI 8 ===== */
+.shelf-sec{background:linear-gradient(180deg,var(--bg),#F3E8D3)}
+.shelf-g{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 18px}
+.shelf-g .feat{grid-column:span 2}
+.shelf{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s}
+.shelf:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.shelf .spine{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:11.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#fff}
+.shelf .spine i{width:14px;height:14px;border-radius:4px;flex:none;box-shadow:inset -3px 0 0 rgba(255,255,255,.35)}
+.shelf .ph{padding:0 14px}
+.shelf .ph img{border-radius:9px;width:100%}
+.shelf .bd{padding:13px 15px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
+.shelf h3{font-size:16.5px;color:var(--primary)}
+.shelf.feat h3{font-size:21px}
+.shelf p{font-size:12.8px;color:var(--mut);flex:1}
+.shelf .ft{display:flex;align-items:center;gap:10px}
+.pri{font-weight:800;color:var(--accent);font-size:16px;white-space:normal}
+.pri small{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.shelf.feat .pri{font-size:19px}
+.add{margin-left:auto;border:0;background:var(--primary);color:#FFE9C7;border-radius:11px;padding:10px 15px;font-weight:700;font-size:13px;min-height:42px;white-space:normal;text-align:center}
+.add:hover{background:var(--accent)}
+.badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:5px 11px;letter-spacing:.5px;z-index:2;box-shadow:0 4px 10px rgba(224,123,42,.35)}
+.badge.navy{background:var(--navy)}
+/* ván kệ dưới mỗi hàng card */
+.shelf::after{content:"";order:99;display:block;height:10px;margin:0 -1px -1px;border-radius:0 0 var(--r) var(--r);background:linear-gradient(180deg,#B27C42,#8A5A2E);box-shadow:0 4px 0 rgba(92,58,30,.35)}
+
+/* ===== COMBO ===== */
+.combo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.combo{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.combo.hot{border-color:var(--accent);background:linear-gradient(180deg,#FFF6EA,#FFFDF8)}
+.combo h3{font-size:18px;color:var(--primary)}
+.combo ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:#5D4834}
+.combo ul li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:8px}
+.combo .pr{display:flex;align-items:baseline;gap:9px;margin-top:auto}
+.combo .pr b{font-size:23px;color:var(--accent);font-family:Georgia,serif}
+.combo .pr s{color:var(--mut);font-size:13.5px}
+.combo .add{margin-left:0;width:100%}
+
+/* ===== BỘ TÚI THEO LỚP (dacThu) ===== */
+.kit-sec{background:var(--navy);color:#EAF1FA;border-radius:26px;padding:44px clamp(18px,4vw,44px);position:relative;overflow:hidden}
+.kit-sec .kicker{color:var(--accent-2)}
+.kit-sec .kicker::before,.kit-sec .kicker::after{background:var(--accent-2)}
+.kit-sec h2{font-size:clamp(24px,3.6vw,34px);margin:8px 0 8px;color:#fff}
+.kit-sec .sub{color:#B9C9DE;max-width:560px;font-size:14.5px;margin-bottom:22px}
+.kit-steps{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start}
+.kit-pick label{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#9FB4CC;display:block;margin:14px 0 8px}
+.lvl-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lvl-chips button{border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#EAF1FA;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:700;min-height:40px}
+.lvl-chips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+select#kitGrade{width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:14px;min-height:44px}
+select#kitGrade option{color:#222}
+.kit-note{font-size:12px;color:#9FB4CC;margin-top:12px}
+.kit-out{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:18px}
+.kit-out h3{font-size:15.5px;color:#fff;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px}
+.kit-out h3 small{color:#9FB4CC;font-weight:600;font-size:12px}
+.kit-list{display:flex;flex-direction:column}
+.kit-row{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px dashed rgba(255,255,255,.14);font-size:13.5px}
+.kit-row .n{flex:1;min-width:0}
+.kit-row .q{color:#9FB4CC;font-size:12.5px;white-space:nowrap}
+.kit-row .m{font-weight:700;white-space:nowrap}
+.kit-total{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 4px;font-size:14px}
+.kit-total b{font-size:21px;color:var(--accent-2);font-family:Georgia,serif}
+.kit-add{width:100%;border:0;background:var(--accent);color:#fff;font-weight:800;border-radius:12px;padding:13px;font-size:14.5px;min-height:46px;margin-top:10px}
+.kit-add:hover{background:#CE6B1E}
+.kit-out .tiny{font-size:11.5px;color:#9FB4CC;text-align:center;margin-top:8px}
+
+/* ===== VỀ CHÚNG TÔI ===== */
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.about-g .imgs{display:grid;gap:14px}
+.about-g .imgs img{border-radius:var(--r);box-shadow:var(--sh)}
+.about-txt h2{font-size:clamp(24px,3.6vw,34px);color:var(--primary);margin:8px 0 14px}
+.about-txt p{color:#6B543E;font-size:14.5px;margin-bottom:12px}
+.about-txt .sign{font-family:Georgia,serif;font-style:italic;color:var(--accent);font-size:15px}
+
+/* ===== REVIEW ===== */
+.rev-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
+.rev .st{color:var(--gold);font-size:14px;letter-spacing:2px}
+.rev p{font-size:13px;color:#5D4834;flex:1}
+.rev b{font-size:13px;color:var(--primary)}
+.rev span{font-size:11.5px;color:var(--mut)}
+
+/* ===== LIÊN HỆ ===== */
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ct-card h3{font-size:19px;color:var(--primary)}
+.ct-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#5D4834}
+.ct-line .ic{width:38px;height:38px;flex:none;border-radius:11px;background:#F6E7CE;display:grid;place-items:center;font-size:17px}
+.ct-line b{color:var(--primary)}
+.ct-card .tel{font-size:21px;font-weight:800;color:var(--accent);font-family:Georgia,serif}
+.ct-card iframe{width:100%;height:230px;border:0;border-radius:12px;flex:1;min-height:230px}
+.dir-btn{align-self:flex-start}
+
+/* ===== FAQ ===== */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.qa>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:0;background:none;text-align:left;font-size:14.5px;font-weight:700;color:var(--primary);min-height:48px}
+.qa>button i{font-style:normal;color:var(--accent);font-size:18px;transition:transform .25s;flex:none}
+.qa.open>button i{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 18px 16px;font-size:13.8px;color:#5D4834}
+.qa.open .a{display:block}
+
+/* ===== FOOTER ===== */
+footer{background:var(--primary-3);color:#CBB59B;margin-top:40px}
+.ft-g{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;padding:32px 0 22px}
+.ft-g h4{color:#FFE9C7;font-size:13.5px;margin-bottom:10px;letter-spacing:.6px}
+.ft-g p,.ft-g a{font-size:12.8px;color:#CBB59B;display:block;margin-bottom:6px}
+.ft-g a:hover{color:var(--accent-2)}
+.ft-brand b{font-family:Georgia,serif;font-size:17px;color:#FFE9C7;display:block;margin-bottom:6px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.10);padding:12px 0;text-align:center;font-size:11.5px;color:#8F7B65}
+
+/* ===== CART DRAWER ===== */
+.dr-mask{position:fixed;inset:0;background:rgba(30,18,8,.5);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.dr-mask.on{opacity:1;pointer-events:auto}
+/*NB110-369 — ẩn drawer bằng translateX(theo bề rộng chính nó): right:-420px
+  cũ làm ló dải bên phải ở viewport 421-640px (width=100vw > offset 420px)*/
+#cartDrawer{position:fixed;top:0;right:0;width:400px;max-width:96vw;height:100dvh;background:var(--paper);z-index:95;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(0,0,0,.18)}
+#cartDrawer.on{transform:none}
+.dr-head{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dr-head h3{font-size:17px;color:var(--primary);flex:1}
+.dr-x{border:0;background:#F1E5D2;width:38px;height:38px;border-radius:11px;font-size:16px;color:var(--primary)}
+.dr-body{flex:1;min-height:0;overflow-y:auto;padding:14px 18px}
+.dr-empty{text-align:center;color:var(--mut);padding:44px 10px;font-size:14px}
+.dr-empty .big{font-size:40px;display:block;margin-bottom:10px}
+.ci{display:flex;gap:11px;padding:11px 0;border-bottom:1px dashed var(--line);align-items:center}
+.ci img{width:64px;height:48px;object-fit:cover;border-radius:9px;flex:none}
+.ci .nm{font-size:13px;font-weight:700;color:var(--primary);line-height:1.35}
+.ci .pr{font-size:12px;color:var(--accent);font-weight:700}
+.qty{display:flex;align-items:center;gap:7px;margin-left:auto}
+.qty button{width:38px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);font-weight:800;color:var(--primary);font-size:16px}
+.qty span{min-width:20px;text-align:center;font-weight:800;font-size:13.5px}
+.dr-foot{border-top:1px solid var(--line);padding:14px 18px 18px;background:#FDFAF3;flex-shrink:0;max-height:calc(100dvh - 90px);overflow-y:auto}
+.dr-tot{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px;color:#5D4834}
+.dr-tot.big{font-size:16.5px;font-weight:800;color:var(--primary)}
+.dr-tot.big b{color:var(--accent);font-size:20px;font-family:Georgia,serif}
+.dr-cta{width:100%;margin-top:12px}
+/* form đặt hàng trong drawer */
+.dr-form{display:none;flex-direction:column;gap:9px}
+.dr-form.on{display:flex}
+.dr-form label{font-size:12px;font-weight:700;color:var(--primary)}
+.dr-form input,.dr-form textarea{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:14px;font-family:inherit;background:#fff}
+.dr-form input.err{border-color:var(--bad);background:#FFF5F5}
+.dr-form textarea{resize:vertical;min-height:56px}
+.dr-opt{font-size:12px;font-weight:700;color:var(--mut);margin-top:6px}
+.dr-back{border:0;background:none;color:var(--mut);font-size:13px;padding:8px 0;text-align:left;min-height:38px}
+.dr-back:hover{color:var(--accent)}
+
+/* ===== CHAT WIDGET (pkc) ===== */
+.pkc-fab{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:99px;border:0;background:var(--accent);color:#fff;font-size:23px;box-shadow:0 10px 24px rgba(224,123,42,.4)}
+.pkc-fab .pkc-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:99px;background:#35D07F;border:2.5px solid #fff}
+.pkc-panel{position:fixed;right:18px;bottom:84px;z-index:81;width:330px;max-width:calc(100vw - 36px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(40,22,8,.22);display:none;overflow:hidden}
+.pkc-panel.on{display:block}
+.pkc-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:var(--primary);color:#FFE9C7}
+.pkc-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:19px;flex:none}
+.pkc-name{font-weight:800;font-size:14px}
+.pkc-on{font-size:11.5px;opacity:.85}
+.pkc-on i{display:inline-block;width:8px;height:8px;border-radius:99px;background:#35D07F;margin-right:5px}
+.pkc-x{margin-left:auto;border:0;background:none;color:#FFE9C7;font-size:17px;width:34px;height:38px}
+#pkcMsgs{height:250px;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:#FBF6ED}
+.mg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45}
+.mg.v{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.mg.s{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.pkc-chips{display:flex;gap:6px;padding:0 13px 9px;flex-wrap:wrap}
+.pkc-chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--primary);min-height:36px}
+.pkc-inrow{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--line);background:var(--paper)}
+#pkcInput{flex:1;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;font-size:13.5px;min-height:42px}
+#pkcSend{border:0;background:var(--accent);color:#fff;border-radius:11px;width:46px;min-height:42px;font-size:16px;font-weight:800}
+
+/* ===== TOAST ===== */
+.toast-zone{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:9px;pointer-events:none;width:min(430px,92vw)}
+/*NB110-369 — khi drawer mở, toast dời lên đỉnh: không đè chân giỏ/thanh C3*/
+body.dr-open .toast-zone{bottom:auto;top:14px}
+.toast{background:#2E1A0C;color:#FFEFD9;border-radius:14px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:tin .3s}
+.toast b{display:block;font-size:13.5px;color:#FFD9A8;margin-bottom:2px}
+.toast span{font-size:12.8px;color:#E8D4BC}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE — MOBILE RIÊNG ===== */
+@media (max-width:920px){
+  .hero-g{grid-template-columns:1fr;gap:26px;padding:34px 0}
+  .hero p.lead{max-width:none}
+  .shelf-g{grid-template-columns:repeat(2,1fr)}
+  .shelf-g .feat{grid-column:span 2}
+  .kit-steps{grid-template-columns:1fr}
+  .about-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:repeat(2,1fr)}
+  .ct-g{grid-template-columns:1fr}
+  .ft-g{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .srch input{width:150px}
+}
+@media (max-width:640px){
+  .sec{padding:40px 0}
+  .hd{flex-wrap:wrap;gap:8px}
+  .logo{order:1;flex:1}
+  .hd-right{order:2}
+  .srch{order:3;width:100%}
+  .srch input{width:100%}
+  .call span{display:none}
+  .call{padding:10px 12px}
+  .svc-g{grid-template-columns:1fr}
+  .shelf-g{grid-template-columns:1fr}
+  .shelf-g .feat{grid-column:span 1}
+  /*NB110-369 — mobile: thẻ nổi bật phải THẬT nổi (góp ý chủ project): lên đầu kệ + viền cam + CTA to*/
+  .shelf.feat{order:-1;border:2px solid var(--accent);box-shadow:0 12px 26px rgba(224,123,42,.18)}
+  .shelf.feat .bd h3{font-size:19px}
+  .shelf.feat .pri{font-size:18px}
+  .shelf.feat .add{width:100%}
+  .combo-g{grid-template-columns:1fr}
+  .rev-g{grid-template-columns:1fr}
+  /*NB110-369 — footer gọn 2 hàng: brand full-width + 2 cột cạnh nhau, hết khoảng trống thừa*/
+  .ft-g{grid-template-columns:1fr 1fr;gap:16px;padding:26px 0 18px}
+  .ft-brand{grid-column:1/-1}
+  .ft-brand p{margin-bottom:0}
+  .btn{white-space:normal;text-align:center}
+  .hero-stats{gap:16px}
+  #cartDrawer{width:100vw;max-width:100vw}
+  /*NB110-369 — mobile: nhún chân giỏ lên cao hơn thanh "Trợ lý đặt hàng" của C3*/
+  .dr-foot{padding-bottom:60px}
+  .hero h1{font-size:29px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top">
+      <span class="mark">📚</span>
+      <span><b>Góc Đọc Vui</b><small>Nhà sách &amp; văn phòng phẩm</small></span>
+    </a>
+    <nav class="main">
+      <a href="#ke-sach">Kệ sách</a>
+      <a href="#combo">Combo</a>
+      <a href="#bo-tui">Bộ túi theo lớp</a>
+      <a href="#ve-chung-toi">Về chúng tôi</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <div class="srch">
+      <input id="q" type="text" placeholder="Tìm sách, bút, combo…" autocomplete="off" aria-label="Tìm sản phẩm">
+      <span class="s-ic">🔍</span>
+      <div class="s-pop" id="sPop"></div>
+    </div>
+    <div class="hd-right">
+      <a class="call" href="tel:0034567899">📞<span>0034567899</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div>
+      <span class="kicker">Phố Tri Thức · Góc Đọc Vui</span>
+      <h1>Chạm trang sách,<br><em>mở lối ý tưởng</em></h1>
+      <p class="lead">Sách văn học, thiếu nhi, giáo khoa cùng góc văn phòng phẩm được chọn kỹ từng cuốn, từng cây bút — cho học đường, gia đình và văn phòng của bạn.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#ke-sach">🛍 Xem kệ sách hôm nay</a>
+        <a class="btn btn-g" href="#bo-tui">🎒 Lập bộ túi theo lớp</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>3.000+</b><span>tựa sách &amp; mặt hàng</span></div>
+        <div><b>2 giờ</b><span>giao nội thành</span></div>
+        <div><b>Miễn phí</b><span>gói quà tri thức</span></div>
+      </div>
+    </div>
+    <div class="hero-pic rv">
+      <div class="frame">
+        <div class="bar"></div>
+        <img src="assets/img/cover.webp" alt="Nhà Sách Góc Đọc Vui — kệ sách và văn phòng phẩm" width="1400" height="875" fetchpriority="high">
+      </div>
+      <div class="poster-chips">
+        <a class="pchip" href="#ke-sach"><i>📖</i> Sách đã chọn</a>
+        <a class="pchip" href="#ke-sach"><i>✏️</i> Dụng cụ học tập</a>
+        <a class="pchip" href="#combo"><i>🎁</i> Quà tặng chill chill</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="dich-vu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Tiện ích cửa hàng</span>
+      <h2>Mua sách tại Góc Đọc Vui, nhẹ cả tay lẫn lòng</h2>
+      <p>Ba việc nhỏ chúng mình làm kỹ để bạn chỉ việc mở sách ra đọc.</p>
+    </div>
+    <div class="svc-g">
+      <div class="svc rv"><div class="ic">🛵</div><div><b>Giao trong 2 giờ nội thành</b><span>Đặt trước 20:00 — sách tới trước giờ đi ngủ.</span></div></div>
+      <div class="svc rv"><div class="ic">🎀</div><div><b>Gói quà tri thức miễn phí</b><span>Giấy kraft, ruy băng và thiệp viết tay theo yêu cầu.</span></div></div>
+      <div class="svc rv"><div class="ic">📲</div><div><b>Đặt trước — tư vấn chọn sách</b><span>Tựa khan, sách thiếu: nhắn một dòng, mình săn giúp.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec shelf-sec" id="ke-sach">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Kệ sách hôm nay</span>
+      <h2>8 gian hàng, một góc đọc cho mọi lứa tuổi</h2>
+      <p>Những gì đang được mở nhiều nhất trên kệ tuần này — chạm là thêm vào giỏ.</p>
+    </div>
+    <div class="shelf-g" id="shelfGrid"></div>
+  </div>
+</section>
+
+<section class="sec" id="combo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Combo &amp; khuyến mãi</span>
+      <h2>Gộp lại mua, giảm hẳn giá</h2>
+      <p>Ba combo được gói sẵn theo mùa — đỡ chọn, lại tiết kiệm hơn mua lẻ.</p>
+    </div>
+    <div class="combo-g">
+      <div class="combo rv">
+        <h3>🎒 Combo đầu năm Tiểu học</h3>
+        <ul><li>5 vở ô ly &amp; ngang khổ to</li><li>10 bút chì + gôm, thước kẻ</li><li>1 hộp bút vải đựng gọn gàng</li><li>Tặng dán tên áo &amp; dụng cụ</li></ul>
+        <div class="pr"><b>149.000đ</b><s>178.000đ</s></div>
+        <button class="add" onclick="addCombo(0)">Thêm combo vào giỏ</button>
+      </div>
+      <div class="combo hot rv">
+        <span class="badge">ĐANG ĐƯỢC MUA NHIỀU</span>
+        <h3>🎁 Quà tặng tri thức</h3>
+        <ul><li>1 combo sách chọn theo sở thích</li><li>1 sổ tay bìa da + bút ký khắc tên</li><li>Hộp quà + thiệp viết tay miễn phí</li><li>Giao tận nơi kèm lịch hẹn</li></ul>
+        <div class="pr"><b>299.000đ</b><s>359.000đ</s></div>
+        <button class="add" onclick="addCombo(1)">Thêm combo vào giỏ</button>
+      </div>
+      <div class="combo rv">
+        <h3>💼 Combo văn phòng tháng đầu</h3>
+        <ul><li>5 bút bi gel viết mượt</li><li>1 sổ ghi chép A5 + note dán</li><li>Kẹp giấy, bấm kim đầy đủ</li><li>Đổi hàng tận bàn trong ngày</li></ul>
+        <div class="pr"><b>129.000đ</b><s>159.000đ</s></div>
+        <button class="add" onclick="addCombo(2)">Thêm combo vào giỏ</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="bo-tui">
+  <div class="wrap">
+    <div class="kit-sec rv">
+      <span class="kicker">Công cụ đặc biệt của Góc Đọc Vui</span>
+      <h2>🎒 Bộ túi theo lớp — đầu năm đỡ lăn tăn</h2>
+      <p class="sub">Chọn cấp học và khối lớp, nhà sách gói sẵn danh sách cần mua kèm giá — nhìn một phát biết mua gì, hết bao nhiêu, thêm cả bộ vào giỏ một nút.</p>
+      <div class="kit-steps">
+        <div class="kit-pick">
+          <label>1 · Con bạn / bạn đang học cấp nào?</label>
+          <div class="lvl-chips" id="kitLvl">
+            <button data-l="mam-non" class="on">Mầm non</button>
+            <button data-l="cap-1">Tiểu học</button>
+            <button data-l="cap-2">THCS</button>
+            <button data-l="cap-3">THPT</button>
+            <button data-l="sinh-vien">Sinh viên</button>
+            <button data-l="van-phong">Văn phòng</button>
+          </div>
+          <label for="kitGrade">2 · Chọn khối lớp</label>
+          <select id="kitGrade"></select>
+          <p class="kit-note">💡 Danh sách theo khung phổ thông đầu năm; nếu trường có danh sách riêng, chụp gửi hotline <b>0034567899</b> — mình soạn đúng danh sách đó, giá không đổi.</p>
+        </div>
+        <div class="kit-out">
+          <h3><span id="kitName">Bộ túi Mầm non</span><small id="kitCount"></small></h3>
+          <div class="kit-list" id="kitList"></div>
+          <div class="kit-total"><span>Tạm tính cả bộ</span><b id="kitTotal">0đ</b></div>
+          <button class="kit-add" id="kitAdd">🛒 Thêm cả bộ vào giỏ</button>
+          <p class="tiny">Đổi trả trong 7 ngày · Đồng giá giao 2 giờ nội thành</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ve-chung-toi">
+  <div class="wrap about-g">
+    <div class="imgs rv">
+      <img src="assets/img/intro.webp" alt="Góc sách văn học và kỹ năng tại Nhà Sách Góc Đọc Vui" width="1586" height="992">
+      <img src="assets/img/space.webp" alt="Không gian kệ truyện và dụng cụ học tập" width="1586" height="992">
+    </div>
+    <div class="about-txt rv">
+      <span class="kicker">Về chúng tôi</span>
+      <h2>Một góc nhỏ Phố Tri Thức, mở cửa mỗi ngày</h2>
+      <p>Góc Đọc Vui bắt đầu từ một kệ sách mượn ở góc nhà, nay đã thành nhà sách có gần 3.000 tựa và một quầy văn phòng phẩm cho cả học đường lẫn văn phòng. Cái mình giữ nguyên từ ngày đầu: mỗi cuốn lên kệ đều phải có người đọc thử và gật đầu.</p>
+      <p>Chủ nhật tuần nào cũng có góc đọc to hội cho bé; mùa tựu trường, các cô phụ trách giúp phụ huynh gói bộ túi theo lớp chỉ trong một lần ghé.</p>
+      <p class="sign">— Hồng Nhung, chủ nhà sách —</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Khách nói về Góc Đọc Vui</span>
+      <h2>Người mua sách, người đi học đều quay lại</h2>
+    </div>
+    <div class="rev-g">
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Cuối năm mua combo quà tặng tặng colleagues — gói đẹp, thiệp viết tay khiến cô đồng nghiệp nghẹn cảm động."</p><b>Chị Thanh Hà</b><span>kế toán · Q.Bình Thạnh</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Công cụ bộ túi theo lớp là cứu tinh mùa tựu trường: chọn lớp 3 là biết mua gì, không lo thiếu vở."</p><b>Chị Ngọc Bích</b><span>phụ huynh 2 con · Thủ Đức</span></div>
+      <div class="rev rv"><div class="st">★★★★★</div><p>"Đặt trước bộ truyện khan, 4 ngày sau có hàng. Ai nuôi con đọc truyện đều hiểu cảm giác đó."</p><b>Anh Minh Trí</b><span>bố bé Pam · Q.1</span></div>
+      <div class="rev rv"><div class="st">★★★★☆</div><p>"Văn phòng đặt combo tháng đầu, đổi hàng tận bàn nhanh. Chấm thêm nửa sao nữa nếu có thêm màu bút dạ."</p><b>Cô Hạnh Trâm</b><span>vp quản lý · Bình Thạnh</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="lien-he" style="padding-top:0">
+  <div class="wrap ct-g">
+    <div class="ct-card rv">
+      <h3>🏠 Ghé nhà sách chơi</h3>
+      <div class="ct-line"><div class="ic">📍</div><div><b>Địa chỉ</b><br>Phố Tri Thức, Góc Đọc Vui</div></div>
+      <div class="ct-line"><div class="ic">📞</div><div><b>Hotline &amp; Zalo</b><br><a class="tel" href="tel:0034567899">0034567899</a></div></div>
+      <div class="ct-line"><div class="ic">🕰</div><div><b>Giờ mở cửa</b><br>07:30 – 22:00 tất cả các ngày trong tuần</div></div>
+      <a class="btn btn-g dir-btn" href="https://www.google.com/maps?q=10.7544,106.7235&z=15" target="_blank" rel="noopener">🧭 Chỉ đường tới đây</a>
+    </div>
+    <div class="ct-card rv">
+      <!-- NB110-MAP: 10.7544,106.7235 -->
+      <iframe loading="lazy" src="https://www.google.com/maps?q=10.7544,106.7235&z=15&output=embed&hl=vi" title="Bản đồ Nhà Sách Góc Đọc Vui"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Hỏi &amp; đáp</span>
+      <h2>Vài điều khách hay hỏi trước khi mua</h2>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button>Nhà sách giao hàng trong bao lâu?<i>+</i></button><div class="a">Nội thành giao trong 2 giờ kể từ khi xác nhận đơn. Ngoại thành và tỉnh: 1–3 ngày theo đơn vị vận chuyển, phí tính đúng bảng niêm yết.</div></div>
+      <div class="qa rv"><button>Sách hết hàng hoặc khan có đặt trước được không?<i>+</i></button><div class="a">Được — chọn mục "Đặt trước &amp; tư vấn" hoặc nhắn hotline. Mình săn sách giúp và nhắn lại giá + ngày có hàng trước khi bạn chốt.</div></div>
+      <div class="qa rv"><button>Bộ túi theo lớp có đủ theo yêu cầu nhà trường không?<i>+</i></button><div class="a">Danh sách theo khung phổ thông đầu năm. Nếu trường con bạn có danh sách riêng, chụp gửi hotline — mình soạn đúng danh sách đó, giá không đổi.</div></div>
+      <div class="qa rv"><button>Gói quà có tính phí không?<i>+</i></button><div class="a">Miễn phí cho mọi đơn sách và combo quà tặng: giấy kraft, ruy băng và thiệp viết tay. Bạn muốn themed riêng (sinh nhật, tốt nghiệp) cứ nhắn trước.</div></div>
+      <div class="qa rv"><button>Trường/văn phòng mua số lượng lớn có giá riêng?<i>+</i></button><div class="a">Có — từ 20 bộ trở lên có bảng giá riêng kèm hóa đơn. Gọi hotline để nhận báo giá trong ngày.</div></div>
+      <div class="qa rv"><button>Đổi trả sách thế nào?<i>+</i></button><div class="a">Đổi/trả trong 7 ngày nếu sách lỗi in, cong vênh do vận chuyển. Sách đã bóc seal quà tặng hoặc có ký tên thì mình hỗ trợ đổi cùng loại.</div></div>
+      <div class="qa rv"><button>Thanh toán bằng cách nào?<i>+</i></button><div class="a">Tiền mặt khi nhận hàng, chuyển khoản hoặc quét QR. Đơn công ty xuất hóa đơn VAT theo yêu cầu.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft-g">
+    <div class="ft-brand">
+      <b>📚 Góc Đọc Vui</b>
+      <p>Chạm trang sách · mở lối ý tưởng. Nhà sách &amp; văn phòng phẩm cho học đường, gia đình và văn phòng tại Phố Tri Thức.</p>
+    </div>
+    <div>
+      <h4>Khám phá</h4>
+      <a href="#ke-sach">Kệ sách hôm nay</a>
+      <a href="#combo">Combo &amp; khuyến mãi</a>
+      <a href="#bo-tui">Bộ túi theo lớp</a>
+      <a href="#faq">Hỏi &amp; đáp</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>📍 Phố Tri Thức, Góc Đọc Vui</p>
+      <p>📞 <a href="tel:0034567899">0034567899</a></p>
+      <p>🕰 07:30 – 22:00 hằng ngày</p>
+    </div>
+  </div>
+  <div class="ft-bot">© 2026 Nhà Sách Góc Đọc Vui · Giá tham khảo, có thể điều chỉnh theo đợt nhập hàng</div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="dr-mask" id="drMask"></div>
+<aside id="cartDrawer" aria-label="Giỏ hàng">
+  <div class="dr-head">
+    <h3>🛒 Giỏ hàng của bạn</h3>
+    <button class="dr-x" id="drClose" aria-label="Đóng giỏ hàng">✕</button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="dr-tot"><span>Số món</span><span id="drDisc">0 món</span></div>
+    <div class="dr-tot big"><span>Tạm tính</span><b id="drTotal">0đ</b></div>
+    <button class="btn btn-a dr-cta" id="checkoutBtn">Tiến hành đặt hàng</button>
+    <div class="dr-form" id="drForm">
+      <button class="dr-back" id="drBack">← Quay lại xem giỏ</button>
+      <label for="fName">Họ tên *</label>
+      <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Bích">
+      <label for="fPhone">Số điện thoại *</label>
+      <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
+      <!--NB110-369 — nút Gửi đứng TRÊN các ô tuỳ chọn: widget map địa chỉ của C3
+          chèn khối map sau khi gõ (debounce ~700ms) đẩy layout; nút nằm trên
+          điểm chèn nên không bao giờ nhảy mất khỏi ngón tay đang bấm-->
+      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>📩 Gửi đơn cho nhà sách</button>
+      <p class="dr-opt">📝 Địa chỉ giúp nhà sách giao đúng hẹn — ghi chú thêm thì tuỳ bạn</p>
+      <label for="fAddr">Địa chỉ nhận hàng *</label>
+      <input id="fAddr" data-nghe-order="address" type="text" placeholder="Số nhà, đường, quận/huyện">
+      <label for="fNote">Ghi chú (gói quà, giờ giao…)</label>
+      <textarea id="fNote" data-nghe-order="note" placeholder="VD: gói quà kèm thiệp chúc tốt nghiệp"></textarea>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== FAB GIỎ HÀNG (xếp trên chat — icon SVG nét, không emoji) ===== -->
+<button class="cart-fab" id="cartOpen" aria-label="Mở giỏ hàng">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+    <path d="M3 6h18"/>
+    <path d="M16 10a4 4 0 0 1-8 0"/>
+  </svg>
+  <b id="cartN" hidden>0</b>
+</button>
+
+<!-- ===== CHAT WIDGET (pkc) ===== -->
+<button class="pkc-fab" id="pkcFab" aria-label="Chat tư vấn trực tiếp">💬<span class="pkc-dot"></span></button>
+<div class="pkc-panel" id="pkcPanel" aria-hidden="true">
+  <div class="pkc-head">
+    <div class="pkc-ava">💬</div>
+    <div><div class="pkc-name">Tư vấn <span data-pkc="brand">Góc Đọc Vui</span></div><div class="pkc-on"><i></i>Đang online — trả lời ngay</div></div>
+    <button class="pkc-x" id="pkcClose" aria-label="Đóng chat">✕</button>
+  </div>
+  <div id="pkcMsgs"></div>
+  <div class="pkc-chips" id="pkcChips">
+    <button class="pkc-chip">💰 Sách giảm giá hôm nay?</button>
+    <button class="pkc-chip">🎒 Bộ túi lớp 1 có gì?</button>
+    <button class="pkc-chip">📦 Đặt trước sách khan</button>
+    <button class="pkc-chip">🎁 Gói quà miễn phí?</button>
+    <button class="pkc-chip">🚚 Phí giao hàng</button>
+  </div>
+  <div class="pkc-inrow">
+    <input id="pkcInput" type="text" placeholder="Nhắn cho nhà sách…" aria-label="Nội dung tin nhắn">
+    <button id="pkcSend" aria-label="Gửi tin nhắn">➤</button>
+  </div>
+</div>
+
+<div class="toast-zone" id="toastZone"></div>
+
+<script>
+/*NB110-369*/
+'use strict';
+var P = [
+  {id:'sach-van-hoc',  n:'Sách văn học & kỹ năng',        price:89000,  img:'assets/img/p1.webp', cat:'Sách',          d:'Tiểu thuyết, tản văn, sách kỹ năng cho người đi làm — chọn lọc theo gu.'},
+  {id:'sach-thieu-nhi',n:'Sách thiếu nhi & truyện tranh', price:68000,  img:'assets/img/p2.webp', cat:'Sách',          d:'Truyện tranh, sách ảnh, cổ tích — đọc cùng con mỗi tối 15 phút.'},
+  {id:'sach-giao-khoa',n:'Sách giáo khoa & tham khảo',     price:52000,  img:'assets/img/p3.webp', cat:'Sách',          d:'Đủ bộ theo lớp, sách bài tập và sách nâng cao kềm kèm.'},
+  {id:'so-tay-but',    n:'Sổ tay & bút viết',              price:29000,  img:'assets/img/p4.webp', cat:'Văn phòng phẩm',d:'Sổ ngọt sổ dày, bút viết êm — ký một nét là nghiện.'},
+  {id:'dung-cu-hs',    n:'Dụng cụ học tập học sinh',       price:49000,  img:'assets/img/p5.webp', cat:'Học tập',       d:'Hộp bút, thước, compa, gôm — trọn bộ chuẩn đầu năm.'},
+  {id:'vpp-vanphong',  n:'Văn phòng phẩm văn phòng',       price:35000,  img:'assets/img/p6.webp', cat:'Văn phòng phẩm',d:'Note dán, kẹp giấy, bấm kim — đủ đồ cho một bàn làm việc gọn gàng.'},
+  {id:'combo-qua-tang',n:'Combo sách & quà tặng tri thức', price:299000, img:'assets/img/p7.webp', cat:'Quà tặng',      d:'Sách + sổ da + bút khắc tên trong hộp quà — tặng người thương tri thức.'},
+  {id:'dat-truoc',     n:'Đặt trước & tư vấn chọn sách',   price:0,      img:'assets/img/p8.webp', cat:'Dịch vụ',       d:'Sách khan, sách thiếu — nhắn một dòng, mình săn giúp rồi báo giá.'}
+];
+var COMBOS = [
+  {n:'Combo đầu năm Tiểu học', price:149000},
+  {n:'Quà tặng tri thức', price:299000},
+  {n:'Combo văn phòng tháng đầu', price:129000}
+];
+var KIT = {
+  'mam-non':{name:'Bộ túi Mầm non', grades:['Chíp 3 tuổi','Chíp 4 tuổi','Chíp 5 tuổi'], items:[['sach-thieu-nhi',2],['dung-cu-hs',1],['so-tay-but',1]]},
+  'cap-1':{name:'Bộ túi Tiểu học', grades:['Lớp 1','Lớp 2','Lớp 3','Lớp 4','Lớp 5'], items:[['sach-giao-khoa',1],['sach-thieu-nhi',1],['dung-cu-hs',2],['so-tay-but',2]]},
+  'cap-2':{name:'Bộ túi THCS', grades:['Lớp 6','Lớp 7','Lớp 8','Lớp 9'], items:[['sach-giao-khoa',2],['sach-van-hoc',1],['dung-cu-hs',1],['so-tay-but',2]]},
+  'cap-3':{name:'Bộ túi THPT', grades:['Lớp 10','Lớp 11','Lớp 12'], items:[['sach-giao-khoa',2],['sach-van-hoc',2],['so-tay-but',1],['vpp-vanphong',1]]},
+  'sinh-vien':{name:'Bộ túi Sinh viên', grades:['Năm nhất','Năm 2','Năm 3','Năm cuối'], items:[['sach-van-hoc',2],['so-tay-but',2],['vpp-vanphong',1]]},
+  'van-phong':{name:'Bộ túi Văn phòng', grades:['Mới đi làm','Trưởng nhóm','Phòng 5-10 người'], items:[['vpp-vanphong',2],['so-tay-but',2],['sach-van-hoc',1]]}
+};
+var CART = [];
+var fmt = function(n){ return n.toLocaleString('vi-VN') + 'đ'; };
+var byId = function(id){ for (var i=0;i<P.length;i++){ if(P[i].id===id) return P[i]; } return null; };
+
+/* ===== TOAST: title + message 2 phần tử riêng ===== */
+function toast(title, msg){
+  var zone = document.getElementById('toastZone');
+  while (zone.children.length >= 3) zone.removeChild(zone.firstChild);
+  var t = document.createElement('div');
+  t.className = 'toast';
+  var b = document.createElement('b'); b.textContent = title;
+  var s = document.createElement('span'); s.textContent = msg;
+  t.appendChild(b); t.appendChild(s);
+  zone.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3600);
+}
+
+/* ===== RENDER KỆ SÁCH (khối-8: 2 thẻ nổi bật TO + 6 thẻ đồng đều, kín ô) ===== */
+var FEAT = { 'combo-qua-tang':'CHỌN LÀM QUÀ NHIỀU NHẤT', 'sach-van-hoc':'KỆ ĐƯỢC MỞ NHIỀU NHẤT' };
+var SPINE_COLOR = { 'Sách':'var(--navy)', 'Văn phòng phẩm':'var(--teal)', 'Học tập':'var(--accent)', 'Quà tặng':'#B0533A', 'Dịch vụ':'var(--gold)' };
+function renderShelf(){
+  var g = document.getElementById('shelfGrid');
+  var html = '';
+  for (var i=0;i<P.length;i++){
+    var p = P[i];
+    var feat = FEAT[p.id] ? ' feat' : '';
+    var priceHtml = p.price>0 ? '<div class="pri">'+fmt(p.price)+'<small>giá từ · tùy tựa</small></div>'
+                              : '<div class="pri">Miễn phí<small>dịch vụ của nhà sách</small></div>';
+    var badge = FEAT[p.id] ? '<span class="badge'+(p.cat==='Quà tặng'?'':' navy')+'">'+FEAT[p.id]+'</span>' : '';
+    html += '<article class="shelf'+feat+' rv">'
+      + badge
+      + '<div class="spine" style="background:'+(SPINE_COLOR[p.cat]||'var(--primary-2)')+'"><i style="background:rgba(255,255,255,.30)"></i>'+p.cat+'</div>'
+      + '<div class="ph"><img src="'+p.img+'" alt="'+p.n+'" width="600" height="400" loading="lazy"></div>'
+      + '<div class="bd"><h3>'+p.n+'</h3><p>'+p.d+'</p>'
+      + '<div class="ft">'+priceHtml
+      + '<button class="add" data-add="'+p.id+'">+'+(p.price>0?' Giỏ':' Nhận tư vấn')+'</button></div></div></article>';
+  }
+  g.innerHTML = html;
+  g.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-add]');
+    if (!btn) return;
+    addToCart(btn.getAttribute('data-add'), 1);
+  });
+}
+
+/* ===== GIỎ HÀNG ===== */
+function addToCart(id, qty){
+  var p = byId(id); if (!p) return;
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; renderCart(); return; } }
+  CART.push({id:id, qty:qty});
+  renderCart();
+  toast('Đã thêm vào giỏ', p.n + (p.price>0 ? ' — '+fmt(p.price) : ' — miễn phí'));
+}
+function addCombo(i){ addToCartCartCombo(i); }
+function addToCartCartCombo(i){
+  var c = COMBOS[i];
+  var key = 'combo-'+i;
+  for (var k=0;k<CART.length;k++){ if (CART[k].id===key){ CART[k].qty++; renderCart(); toast('Đã thêm vào giỏ', c.n); return; } }
+  CART.push({id:key, qty:1, name:c.n, price:c.price});
+  renderCart();
+  toast('Đã thêm vào giỏ', c.n + ' — ' + fmt(c.price));
+}
+function cartCount(){ var s=0; for(var i=0;i<CART.length;i++) s+=CART[i].qty; return s; }
+function cartTotal(){
+  var s=0;
+  for (var i=0;i<CART.length;i++){
+    var it = CART[i], price = it.price;
+    if (price === undefined){ var p = byId(it.id); price = p ? p.price : 0; }
+    s += price * it.qty;
+  }
+  return s;
+}
+function renderCart(){
+  var n = document.getElementById('cartN');
+  var cnt = cartCount();
+  n.textContent = cnt; n.hidden = cnt===0;
+  var body = document.getElementById('drBody');
+  if (CART.length===0){
+    body.innerHTML = '<div class="dr-empty"><span class="big">📖</span>Giỏ đang trống.<br>Kệ sách hôm nay có nhiều thứ đáng lấy về lắm!</div>';
+  } else {
+    var html = '';
+    for (var i=0;i<CART.length;i++){
+      var it = CART[i];
+      var p = byId(it.id);
+      var name = it.name || (p ? p.n : it.id);
+      var price = it.price !== undefined ? it.price : (p ? p.price : 0);
+      var img = p ? p.img : 'assets/img/p7.webp';
+      html += '<div class="ci"><img src="'+img+'" alt="">'
+        + '<div><div class="nm">'+name+'</div><div class="pr">'+(price>0?fmt(price):'Miễn phí')+'</div></div>'
+        + '<div class="qty"><button data-dec="'+it.id+'" aria-label="Giảm">−</button><span>'+it.qty+'</span><button data-inc="'+it.id+'" aria-label="Tăng">+</button></div></div>';
+    }
+    body.innerHTML = html;
+  }
+  document.getElementById('drDisc').textContent = cnt + ' món';
+  document.getElementById('drTotal').textContent = fmt(cartTotal());
+  document.getElementById('checkoutBtn').disabled = CART.length===0;
+}
+document.getElementById('drBody').addEventListener('click', function(e){
+  var inc = e.target.getAttribute('data-inc'), dec = e.target.getAttribute('data-dec');
+  if (inc){ for (var i=0;i<CART.length;i++){ if (CART[i].id===inc) CART[i].qty++; } renderCart(); }
+  if (dec){
+    for (var j=0;j<CART.length;j++){
+      if (CART[j].id===dec){ CART[j].qty--; if (CART[j].qty<=0) CART.splice(j,1); break; }
+    }
+    renderCart();
+  }
+});
+function openDrawer(){
+  showCartView();
+  document.getElementById('cartDrawer').classList.add('on');
+  document.getElementById('drMask').classList.add('on');
+  document.body.classList.add('dr-open');
+}
+function closeDrawer(){
+  document.getElementById('cartDrawer').classList.remove('on');
+  document.getElementById('drMask').classList.remove('on');
+  document.body.classList.remove('dr-open');
+}
+function showCartView(){
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+}
+document.getElementById('cartOpen').addEventListener('click', openDrawer);
+document.getElementById('drClose').addEventListener('click', closeDrawer);
+document.getElementById('drMask').addEventListener('click', closeDrawer);
+document.getElementById('checkoutBtn').addEventListener('click', function(){
+  if (CART.length===0) return;
+  document.getElementById('drForm').classList.add('on');
+  document.getElementById('checkoutBtn').style.display='none';
+});
+document.getElementById('drBack').addEventListener('click', showCartView);
+document.getElementById('drSubmit').addEventListener('click', function(){
+  var name = document.getElementById('fName'), phone = document.getElementById('fPhone');
+  var addr = document.getElementById('fAddr');
+  var ok = true;
+  [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
+  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Cho mình xin họ tên, số điện thoại và địa chỉ để giao sách nhé!'); return; }
+  var total = fmt(cartTotal());
+  CART = []; renderCart(); closeDrawer(); showCartView();
+  document.getElementById('drForm').classList.remove('on');
+  document.getElementById('checkoutBtn').style.display='';
+  toast('Đã nhận đơn — cảm ơn '+name.value.trim()+'!', 'Nhà sách gọi xác nhận trong ít phút. Tổng tạm tính: '+total+' · Hotline 0034567899');
+});
+
+/* ===== BỘ TÚI THEO LỚP (dacThu) ===== */
+var kitLvl = 'mam-non';
+function kitData(){ return KIT[kitLvl]; }
+function renderKit(){
+  var k = kitData();
+  var gradeSel = document.getElementById('kitGrade');
+  var opts = '';
+  for (var i=0;i<k.grades.length;i++) opts += '<option>'+k.grades[i]+'</option>';
+  gradeSel.innerHTML = opts;
+  var list = document.getElementById('kitList');
+  var html = '', total = 0, count = 0;
+  for (var j=0;j<k.items.length;j++){
+    var p = byId(k.items[j][0]); if (!p) continue;
+    var qty = k.items[j][1];
+    var line = p.price * qty; total += line; count += qty;
+    html += '<div class="kit-row"><span class="n">'+p.n+'</span><span class="q">×'+qty+'</span><span class="m">'+(line>0?fmt(line):'Miễn phí')+'</span></div>';
+  }
+  list.innerHTML = html;
+  document.getElementById('kitName').textContent = k.name + ' — ' + gradeSel.value;
+  document.getElementById('kitCount').textContent = count + ' món';
+  document.getElementById('kitTotal').textContent = fmt(total);
+}
+document.getElementById('kitLvl').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-l]'); if (!b) return;
+  var bs = this.querySelectorAll('button'); for (var i=0;i<bs.length;i++) bs[i].classList.remove('on');
+  b.classList.add('on');
+  kitLvl = b.getAttribute('data-l');
+  renderKit();
+});
+document.getElementById('kitGrade').addEventListener('change', function(){ renderKit(); });
+document.getElementById('kitAdd').addEventListener('click', function(){
+  var k = kitData();
+  for (var i=0;i<k.items.length;i++) addToCartSilent(k.items[i][0], k.items[i][1]);
+  renderCart();
+  toast('Đã thêm cả bộ vào giỏ', k.name + ' — mở giỏ hàng để đặt ngay!');
+  openDrawer();
+});
+function addToCartSilent(id, qty){
+  for (var i=0;i<CART.length;i++){ if (CART[i].id===id){ CART[i].qty += qty; return; } }
+  CART.push({id:id, qty:qty});
+}
+
+/* ===== SEARCH THẬT: typeahead + Enter lọc + toast đếm ===== */
+function searchIndex(){
+  var idx = [];
+  for (var i=0;i<P.length;i++) idx.push({t:P[i].n, id:P[i].id, tag:P[i].cat});
+  for (var j=0;j<COMBOS.length;j++) idx.push({t:COMBOS[j].n, id:'combo-'+j, tag:'Combo'});
+  return idx;
+}
+var SIDX = searchIndex();
+var qEl = document.getElementById('q'), pop = document.getElementById('sPop');
+function sMatch(v){
+  v = v.trim().toLowerCase(); if (!v) return [];
+  var out = [];
+  for (var i=0;i<SIDX.length;i++){ if (SIDX[i].t.toLowerCase().indexOf(v)>=0 || SIDX[i].tag.toLowerCase().indexOf(v)>=0) out.push(SIDX[i]); }
+  return out;
+}
+qEl.addEventListener('input', function(){
+  var r = sMatch(qEl.value);
+  if (!qEl.value.trim() || r.length===0){ pop.classList.remove('open'); return; }
+  var html = '';
+  for (var i=0;i<Math.min(r.length,6);i++){
+    html += '<button data-go="'+r[i].id+'">'+r[i].t+'<b>'+r[i].tag+'</b></button>';
+  }
+  pop.innerHTML = html; pop.classList.add('open');
+});
+pop.addEventListener('click', function(e){
+  var b = e.target.closest('[data-go]'); if (!b) return;
+  pop.classList.remove('open');
+  document.getElementById('ke-sach').scrollIntoView({behavior:'smooth'});
+});
+document.addEventListener('click', function(e){
+  if (!e.target.closest('.srch')) pop.classList.remove('open');
+});
+qEl.addEventListener('keydown', function(e){
+  if (e.key!=='Enter') return;
+  e.preventDefault();
+  var r = sMatch(qEl.value);
+  var g = document.getElementById('shelfGrid');
+  var cards = g.querySelectorAll('.shelf');
+  var found = 0;
+  for (var i=0;i<cards.length;i++){
+    var h = cards[i].querySelector('h3').textContent.toLowerCase();
+    var show = r.length>0 && h.indexOf(qEl.value.trim().toLowerCase())>=0;
+    cards[i].style.display = (r.length>0 && !show) ? 'none' : '';
+    if (show) found++;
+  }
+  pop.classList.remove('open');
+  document.getElementById('ke-sach').scrollIntoView({behavior:'smooth'});
+  if (r.length===0){
+    toast('Tìm thấy 0 mục', 'Chưa có "'+qEl.value.trim()+'" trên kệ — nhắn hotline 0034567899, mình săn giúp!');
+    for (var k2=0;k2<cards.length;k2++) cards[k2].style.display='';
+  } else {
+    toast('Kết quả trên kệ', 'Tìm thấy '+found+' mục khớp "'+qEl.value.trim()+'"');
+  }
+});
+
+/* ===== FAQ ===== */
+document.querySelectorAll('.qa>button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var qa = btn.parentNode, open = qa.classList.contains('open');
+    var all = document.querySelectorAll('.qa.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+    if (!open) qa.classList.add('open');
+  });
+});
+
+/* ===== CHAT WIDGET — không bot, gửi là lưu local + hẹn chủ nhà ===== */
+var pkcPanel = document.getElementById('pkcPanel');
+var pkcFabBtn = document.getElementById('pkcFab');
+function pkcToggle(open){
+  pkcPanel.classList.toggle('on', open);
+  pkcPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('chat-open', open);
+}
+pkcFabBtn.addEventListener('click', function(){ pkcToggle(!pkcPanel.classList.contains('on')); });
+document.getElementById('pkcClose').addEventListener('click', function(){ pkcToggle(false); });
+function pkcSendMsg(text){
+  if (!text.trim()) return;
+  var msgs = document.getElementById('pkcMsgs');
+  var b = document.createElement('div');
+  b.className = 'mg v'; b.textContent = text.trim();
+  msgs.appendChild(b);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('pkcInput').value = '';
+}
+document.getElementById('pkcSend').addEventListener('click', function(){
+  pkcSendMsg(document.getElementById('pkcInput').value);
+});
+document.getElementById('pkcInput').addEventListener('keydown', function(e){
+  if (e.key==='Enter'){ e.preventDefault(); pkcSendMsg(this.value); }
+});
+document.getElementById('pkcChips').addEventListener('click', function(e){
+  var c = e.target.closest('.pkc-chip'); if (!c) return;
+  document.getElementById('pkcInput').value = c.textContent.replace(/^[^\s]+\s/,'');
+  document.getElementById('pkcInput').focus();
+});
+
+/* ===== REVEAL + FAILSAFE ===== */
+function initReveal(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    for (var i=0;i<els.length;i++) els[i].classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ for (var j=0;j<els.length;j++) els[j].classList.add('in'); }, 3000);
+}
+
+/* ===== INIT ===== */
+renderShelf();
+renderCart();
+renderKit();
+initReveal();
+</script>
+</body>
+</html>
