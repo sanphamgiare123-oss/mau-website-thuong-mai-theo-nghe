@@ -1836,3 +1836,23 @@ try{Object.defineProperty(window,"MENU",{get:function(){return MENU;},configurab
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>/*NB93-FIX-140:t6hint vuot-ngang*/
+(function(){
+  function tag(){
+    var vw = document.documentElement.clientWidth;
+    document.querySelectorAll('table').forEach(function(t){
+      if (t.scrollWidth <= vw + 8) return;
+      var wrap = t.parentElement;
+      if (!wrap || wrap.dataset.t6hint) return;
+      var cs = getComputedStyle(wrap);
+      if (cs.overflowX !== 'auto' && cs.overflowX !== 'scroll') return;
+      var h = document.createElement('div');
+      h.textContent = '\u2194 Vu\u1ed1t ngang \u0111\u1ec3 xem b\u1ea3ng';
+      h.style.cssText = 'font-size:11.5px;font-weight:700;color:#8A7A66;background:#F3EDE2;border:1px dashed #C9B896;border-radius:99px;padding:4px 12px;margin:6px 0 2px;display:inline-block';
+      wrap.parentNode.insertBefore(h, wrap);
+      wrap.dataset.t6hint = '1';
+    });
+  }
+  tag(); setTimeout(tag, 800); setTimeout(tag, 2000);
+})();
+</script>
