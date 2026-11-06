@@ -777,6 +777,11 @@ button:active{transform:scale(.96)}
 }
 </style>
 <style data-nb93fix="102:t3b1hl">/*NB93-FIX-102:t3b1hl*/</style>
+<style data-nb93fix="102:t5k1ba">
+/*NB93-FIX-102:t5k1ba — TRUOC la anh khac (p1), bo filter xam sepia nang; vach chia van nen anh TRUOC cho de phan biet*/
+.ba-before{filter:none}
+.ba-cover::after{content:"";position:absolute;inset:0;background:rgba(38,26,14,.16);pointer-events:none}
+</style>
 </head>
 <body data-nb93fix="102:t3b1hl">>
 
@@ -1181,8 +1186,9 @@ button:active{transform:scale(.96)}
     <div class="ba-wrap" data-rv>
       <div class="ba-frame" id="baFrame">
         <img src="assets/img/p7.webp" alt="Đàn guitar sau khi vệ sinh bảo dưỡng sạch bóng" draggable="false">
+        <!--NB93-FIX-102:t5k1ba TRUOC doi anh khac (p1.webp) — khong con 2 ben cung 1 anh chi doi filter-->
         <div class="ba-cover" id="baCover">
-          <img class="ba-before" src="assets/img/p7.webp" alt="Đàn guitar bám bụi trước khi vệ sinh" draggable="false">
+          <img class="ba-before" src="assets/img/p1.webp" alt="Đàn guitar trên bàn thợ trước khi vệ sinh bảo dưỡng" draggable="false">
         </div>
         <div class="ba-line" id="baLine"></div>
         <div class="ba-handle" id="baHandle">‹›</div>
@@ -1691,7 +1697,7 @@ function calFillItem(){
 function calRun(){
   var u=CAL[cal.d][cal.item][1]*1000;
   var gap=parseInt($('#calWhen').value,10)||0;
-  var lo=u*cal.qty+gap,hi=Math.round(u*1.6/10000)*10*cal.qty+gap;
+  var lo=u*cal.qty+gap,hi=(Math.round(u*1.6/10000)*10000)*cal.qty+gap; /*NB93-FIX-102:t5k1ba them *10000 — truoc day ra 190đ*/
   $('#calPrice').textContent=fmt(lo)+' – '+fmt(hi);
   $('#calSub').textContent=DEVICES[cal.d].name+' · '+CAL[cal.d][cal.item][0];
   $('#calUnit').textContent='từ '+fmt(u);

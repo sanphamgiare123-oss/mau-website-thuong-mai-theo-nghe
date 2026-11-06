@@ -795,15 +795,15 @@ body.dr-open .toast-zone{bottom:auto;top:14px}
 <script>
 /*NB110-003*/
 'use strict';
-var P = [
+var P = [ /*NB93-FIX-003:t5k3anh hoan doi src khop ten the (soi 8 poster p1-p8, E2 P2): mon-hoa<-p4, mon-nhat<-p8(ca hoi~sushi), combo-nuoc<-p2, phong-tiec<-p7(bit tet "hop bua toi"~phong tiec); giu p1 set-viet(pho trong mo ta), p6 set-tiec(lau trong mo ta), p3 mon-han(suon nuong~tram nuong), p5 mon-thai(khop nguyen cum "goi cuon tom thit")*/
   {id:'set-viet',   n:'Set món Việt truyền thống', price:589000,  img:'assets/img/p1.webp', loai:'Việt', d:'Phở, gỏi cuốn, cơm tấm… mâm quê đủ vị theo bàn 10 người.', donvi:'từ · 4 món/bàn'},
-  {id:'mon-hoa',    n:'Món Hoa',                   price:459000,  img:'assets/img/p2.webp', loai:'Hoa',  d:'Vịt quay, sủ cảo, dimsum — xoay món theo mùa raw liệu.', donvi:'từ · 3 món/bàn'},
+  {id:'mon-hoa',    n:'Món Hoa',                   price:459000,  img:'assets/img/p4.webp', loai:'Hoa',  d:'Vịt quay, sủ cảo, dimsum — xoay món theo mùa raw liệu.', donvi:'từ · 3 món/bàn'},
   {id:'mon-han',    n:'Món Hàn',                   price:519000,  img:'assets/img/p3.webp', loai:'Hàn',  d:'Trạm nướng tại bàn, kim chi tự ủi, cơm đá nóng hổi.', donvi:'từ · kèm nướng'},
-  {id:'mon-nhat',   n:'Món Nhật',                  price:689000,  img:'assets/img/p4.webp', loai:'Nhật', d:'Sushi và mì trộn fusion — dọn từng phần nhỏ xinh.', donvi:'từ · theo phần'},
+  {id:'mon-nhat',   n:'Món Nhật',                  price:689000,  img:'assets/img/p8.webp', loai:'Nhật', d:'Sushi và mì trộn fusion — dọn từng phần nhỏ xinh.', donvi:'từ · theo phần'},
   {id:'mon-thai',   n:'Món Thái',                  price:549000,  img:'assets/img/p5.webp', loai:'Thái', d:'Gỏi cuốn tôm thịt cuộn tại chỗ, chấm nước mắm chua ngọt.', donvi:'từ · 3 món/bàn'},
   {id:'set-tiec',   n:'Set tiệc gia đình',         price:1590000, img:'assets/img/p6.webp', loai:'Tiệc', d:'Trọn bàn 10 khách 6 món có lẩu mặt tiền — cỗ giỗ chuẩn vị.', donvi:'trọn bàn 10 khách'},
-  {id:'combo-nuoc', n:'Combo đồ uống kèm món',     price:29000,   img:'assets/img/p7.webp', loai:'Đồ uống', d:'2 ly nước + trà đá một khách — tính theo đầu người dễ chốt.', donvi:'/ 1 khách'},
-  {id:'phong-tiec', n:'Phòng tiệc riêng',          price:1200000, img:'assets/img/p8.webp', loai:'Không gian', d:'Máy lạnh, màn chiếu, âm thanh — cọc hoàn khi dùng đủ tiệc.', donvi:'cọc giữ phòng · hoàn lại'}
+  {id:'combo-nuoc', n:'Combo đồ uống kèm món',     price:29000,   img:'assets/img/p2.webp', loai:'Đồ uống', d:'2 ly nước + trà đá một khách — tính theo đầu người dễ chốt.', donvi:'/ 1 khách'},
+  {id:'phong-tiec', n:'Phòng tiệc riêng',          price:1200000, img:'assets/img/p7.webp', loai:'Không gian', d:'Máy lạnh, màn chiếu, âm thanh — cọc hoàn khi dùng đủ tiệc.', donvi:'cọc giữ phòng · hoàn lại'}
 ];
 var COMBOS = [
   {n:'Gói thôi nôi đủ đầy — 2 bàn', price:4290000, img:'assets/img/p6.webp'},
@@ -995,6 +995,7 @@ function renderPhieu(){
   var d = REC[bbDup], g = d[bbGu];
   document.getElementById('phTen').textContent = 'Thực đơn ' + d.name + (bbGu==='co-truyen' ? ' — truyền thống' : bbGu==='nhe-nhang' ? ' — nhẹ nhàng' : ' — nổi bật');
   document.getElementById('phSo').textContent = bbBan + ' bàn · ' + (bbBan*10) + ' khách';
+  document.getElementById('banN').textContent = bbBan + ' bàn'; /*NB93-FIX-003:t5k3stepper nhan so ban canh nut -/+ chay theo phieu that (E2 P2)*/
   var html = '', total = 0, count = 0;
   for (var i=0;i<g.items.length;i++){
     var p = byId(g.items[i][0]); if (!p) continue;
@@ -1117,5 +1118,26 @@ renderCart();
 renderPhieu();
 initReveal();
 </script>
+<script>
+/*NB93-FIX-003:t5k3combo 3 nut "Them goi vao gio" chet (E2 P1): gan listener doc data-combo -> addCombo (khuon nut combo S001) -> them gio + toast + FAB tang*/
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-combo]');
+  if (!b) return;
+  addCombo(parseInt(b.getAttribute('data-combo'), 10) || 0);
+});
+</script>
+<style data-nb93fix="003:t5k3nav">
+/*NB93-FIX-003:t5k3nav mobile mat nav chinh (E2 P3): nav cuon ngang gon gan duoi logo, khong them hamburger phuc tap*/
+@media (max-width:960px){
+  .hd{flex-wrap:wrap}
+  nav.main{display:flex!important;order:3;width:100%;margin-left:0;overflow-x:auto;gap:6px;padding:2px 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap;padding:8px 13px;font-size:13px;background:#F3E6CE;border-radius:99px}
+}
+/*NB93-FIX-003:t5k3fab cap FAB gio+chat de chu thich duoi bang menu (E2 P3): dat le phai cho dong chu trai qua vung FAB*/
+@media (max-width:640px){
+  .bang-note,.quect{padding-right:78px}
+}
+</style>
 </body>
 </html>

@@ -978,6 +978,13 @@ button:active{transform:scale(.96)}
 }
 </style>
 <style data-nb93fix="105:t3b1hl">/*NB93-FIX-105:t3b1hl*/</style>
+<style data-nb93fix="S105:t5k7tbl">
+/*NB93-FIX-S105:t5k7tbl — bảng thông số (.spec-table-wrap) overflow:hidden cắt bảng 520px trên mobile (geo_classify: CLIPPED-HIDDEN): cho cuộn ngang + hint vuốt*/
+.spec-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.spec-hint{display:none;align-items:center;gap:7px;margin-top:9px;font-size:.8rem;font-weight:700;color:var(--soft)}
+.spec-hint svg{width:15px;height:15px;flex:none;color:var(--primary)}
+@media (max-width:860px){.spec-hint{display:flex}}
+</style>
 </head>
 <body data-nb93fix="105:t3b1hl">>
 
@@ -2574,3 +2581,10 @@ document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>
+/*NB93-FIX-S105:t5k7tbl — chèn hint vuốt ngang dưới mỗi bảng thông số (chỉ hiện mobile qua CSS)*/
+document.querySelectorAll(".spec-table-wrap").forEach(function(el){
+  if(el.nextElementSibling&&el.nextElementSibling.classList.contains("spec-hint"))return;
+  el.insertAdjacentHTML("afterend",'<div class="spec-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8m0 0-4-4m4 4-4 4"/></svg>Vuốt ngang bảng để xem đủ cột</div>');
+});
+</script>

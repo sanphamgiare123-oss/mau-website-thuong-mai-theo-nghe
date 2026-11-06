@@ -268,7 +268,14 @@ header.site{position:sticky;top:0;z-index:70;background:rgba(255,251,243,.88);ba
 .calc-result h3{font-size:1.35rem;font-weight:900;color:var(--primary-deep)}
 .cr-line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1.5px dashed var(--line);font-size:.94rem;color:#3D4A3A;font-weight:600}
 .cr-line b{color:var(--primary-deep);white-space:nowrap}
-.cr-tier{width:100%;border-collapse:collapse;margin-top:18px;font-size:.88rem}
+.cr-tier{width:100%;max-width:100%;border-collapse:collapse;margin-top:18px;font-size:.82rem}/*NB93-FIX-024:t5k4-tier*/
+@media(max-width:430px){
+  .calc-grid{grid-template-columns:minmax(0,1fr)}
+  .calc-result{min-width:0;max-width:100%;overflow-x:auto}
+  .cr-tier th,.cr-tier td{padding:8px 6px;word-break:break-word}
+  .calc-result .btn{white-space:normal}
+}/*NB93-FIX-024:t5k4-tier*/
+@media(max-width:430px){.cr-tier th,.cr-tier td{padding:8px 8px}}
 .cr-tier th{text-align:left;background:var(--texture-2);color:var(--primary-deep);font-weight:800;padding:10px 13px}
 .cr-tier th:last-child,.cr-tier td:last-child{text-align:right}
 .cr-tier td{padding:10px 13px;border-bottom:1.4px solid var(--line);font-weight:600;color:#3D4A3A}
@@ -355,6 +362,17 @@ header.site{position:sticky;top:0;z-index:70;background:rgba(255,251,243,.88);ba
 .ct-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:stretch}
 .map-box{border-radius:var(--r-lg);overflow:hidden;border:1.5px solid rgba(255,255,255,.18);min-height:420px;box-shadow:var(--sh-2)}
 .map-box iframe{width:100%;height:100%;min-height:420px;border:0;filter:saturate(.9)}
+/*NB93-FIX-S024:t5k4mapph placeholder nen iframe map — hien khi map chua/khong tai duoc (xem offline), online map phu len*/
+.map-box{position:relative}
+.map-box .map-ph{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;padding:24px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 14px,rgba(255,255,255,.02) 14px 28px)}
+.map-box .map-ph b{font-size:15px;color:#fff}
+.map-box .map-ph span{font-size:13px;color:#FFB48A;font-weight:700}
+.map-box .map-ph small{font-size:11.5px;color:#CFE3D5;max-width:360px;line-height:1.55}
+.map-box iframe{position:relative;z-index:1;background:transparent}
+/*NB93-FIX-S024:t5k4khetrong thong bao khong tim thay khi ke trong sau search (nen kem sang — chu toi du doc)*/
+.sap-empty{margin:6px 0 18px;padding:16px 20px;border:1.5px dashed rgba(43,26,12,.3);border-radius:14px;text-align:center;color:#4A3826;font-size:14px;background:rgba(255,255,255,.65)}
+.sap-empty b{color:#B4531E}
+.sap-empty[hidden]{display:none}
 .ct-form{background:rgba(255,255,255,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:32px;color:#F2EBDD}
 .ct-form h3{font-size:1.4rem;font-weight:900;color:#fff}
 .ct-form .lead{display:block;color:#C9BFA9;font-size:.9rem;margin-top:6px}
@@ -987,6 +1005,8 @@ footer.site{background:var(--primary-deep);color:#C4BBA6;padding:64px 0 0}
         <button class="car-btn" id="cNext" aria-label="Sau">›</button>
       </div>
     </div>
+    <!--NB93-FIX-S024:t5k4khetrong thong bao khi ke trong sau search-->
+    <p class="sap-empty" id="sapEmpty" hidden><b>Không có mặt hàng nào khớp</b> từ từ khoá bạn gõ — thử “heo”, “cá”, “trứng”, “rau” hoặc xoá ô tìm kiếm để xem lại đủ 8 món sạp hôm nay.</p>
     <div class="car-track" id="track">
       <article class="p-card" data-pid="p1">
         <div class="p-media"><img src="assets/img/p1.webp" alt="Thịt heo tươi nhập sáng" loading="lazy"><span class="p-tag">✅ Kiểm dịch</span>
@@ -1347,6 +1367,8 @@ footer.site{background:var(--primary-deep);color:#C4BBA6;padding:64px 0 0}
     </div>
     <div class="ct-grid">
       <div class="map-box rv-el">
+        <!--NB93-FIX-S024:t5k4mapph placeholder duoi iframe map-->
+        <div class="map-ph" aria-hidden="true"><b>📍 Bản đồ khu vực sạp</b><span>Sạp P. Chợ Xanh — ghé 5:30–20:30</span><small>Bản đồ tương tác sẽ hiện ở đây khi có kết nối Internet — hoặc nhắn số điện thoại, tư vấn gọi lại trong 30 phút.</small></div>
         <!--NB93-MAP: 10.9625,108.2820--><iframe title="Bản đồ khu vực sạp" src="https://www.google.com/maps?q=10.9625,108.2820&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <form class="ct-form rv-el" data-d="1" id="ctForm" novalidate>
@@ -1775,11 +1797,15 @@ $('#hdrSearch').addEventListener('submit',function(e){
 $('#hdrSearchInput').addEventListener('input',applySearch);
 function applySearch(){
   var q=$('#hdrSearchInput').value.trim().toLowerCase();
+  var vis=0;
   $$('.p-card').forEach(function(c){
     var hit=!q||c.textContent.toLowerCase().indexOf(q)>-1;
     c.style.display=hit?'':'none';
+    if(hit)vis++;
   });
   track.scrollTo({left:0});
+  /*NB93-FIX-S024:t5k4khetrong ke trong -> hien thong bao, khong im lang*/
+  var em=$('#sapEmpty'); if(em) em.hidden=vis>0;
   updateCar();
 }
 
@@ -2193,3 +2219,20 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>/*NB93-FIX-024:t5k4-tier-scroll*/
+(function(){
+  function wrapTables(){
+    document.querySelectorAll('table.cr-tier').forEach(function(t){
+      if(t.parentElement && t.parentElement.dataset && t.parentElement.dataset.tierScroll) return;
+      var d = document.createElement('div');
+      d.style.overflowX = 'auto';
+      d.style.webkitOverflowScrolling = 'touch';
+      d.dataset.tierScroll = '1';
+      t.parentNode.insertBefore(d, t);
+      d.appendChild(t);
+    });
+  }
+  wrapTables();
+  setTimeout(wrapTables, 800);
+})();
+</script>

@@ -183,7 +183,7 @@ section{padding:76px 0}
 .lst-card:hover::before{opacity:1}
 .lst-media{aspect-ratio:3/2;overflow:hidden;position:relative;cursor:pointer}
 .lst-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.lst-card:hover .lst-media img{transform:scale(1.05)}
+.lst-media img{transform:scale(var(--lz,1));transform-origin:var(--lo,50% 50%)}/*NB93-FIX-088:t5k7imgzoom*/.lst-card:hover .lst-media img{transform:scale(calc(var(--lz,1)*1.05))}
 .lst-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,30,56,.16),transparent 45%,rgba(15,30,56,.18));pointer-events:none}
 .lst-badge{position:absolute;top:11px;right:11px;z-index:2;font-size:.72rem;font-weight:800;padding:5px 12px;border-radius:999px;background:rgba(10,20,36,.85);color:var(--accent-2)}
 .lst-badge.b-new{background:var(--grad-red);color:#fff}
@@ -656,7 +656,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
     </div>
     <div class="hero-vis">
       <div class="hv-badge">Xe đã kiểm định<br><b>báo cáo in tay đi kèm từng xe</b></div>
-      <div class="hv-main"><img src="assets/img/cover.webp" alt="Showroom Hoàng Kim Auto — mua bán ô tô, xe máy cũ, uy tín, chất lượng, giá hợp lý" width="1536" height="1024"></div>
+      <div class="hv-main"><img src="assets/img/cover.webp" alt="Showroom Hoàng Kim Auto — mua bán ô tô, xe máy cũ, uy tín, chất lượng, giá hợp lý" width="1536" height="838"></div>
       <div class="hv-stats">
         <div><b>10+</b><span>Năm uy tín</span></div>
         <div><b>6.400+</b><span>Xe giao dịch</span></div>
@@ -1241,34 +1241,34 @@ const LISTINGS=[
   {id:2,type:"oto",name:"VinFast Lux A2.0 Cao cấp",year:2021,odo:"56.000 km",gear:"Số tự động",fuel:"Xăng",price:615,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p4.webp",pos:"14% 62%",
    desc:"Xe ký gửi của khách ruột, full option, pin – máy chạy tốt. Đang kiểm định bổ sung giấy tờ, sẵn sàng bán trong tuần.",
    bullets:["Cảm biến 360, ghế điện chỉnh điện","Vành nguyên zin, lốp còn 80%","Hỗ trợ trả góp tới 80% giá trị"]},
-  {id:3,type:"oto",name:"Hyundai Accent 1.4 MT",year:2019,odo:"68.000 km",gear:"Số sàn",fuel:"Xăng",price:355,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/p3.webp",pos:"58% 58%",
+  {id:3,type:"oto",name:"Hyundai Accent 1.4 MT",year:2019,odo:"68.000 km",gear:"Số sàn",fuel:"Xăng",price:355,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/p3.webp",pos:"55% 72%",z:"1.4",
    desc:"Xe gia đình chạy phố, số sàn bền bỉ, chi phí bảo dưỡng thấp. Đã thay nhớt – lọc gió – má phanh trước.",
    bullets:["Tiết kiệm xăng 5,5 – 6 lít/100 km","Sơn zin 90% — chỉ dác 1 cản sau","Kiểm định đạt 91/100 điểm"]},
-  {id:4,type:"oto",name:"Mazda CX-5 2.0 Premium",year:2020,odo:"62.000 km",gear:"Số tự động",fuel:"Xăng",price:545,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/p6.webp",pos:"30% 62%",
+  {id:4,type:"oto",name:"Mazda CX-5 2.0 Premium",year:2020,odo:"62.000 km",gear:"Số tự động",fuel:"Xăng",price:545,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/p6.webp",pos:"70% 55%",z:"1.5",
    desc:"SUV đô thị đẹp nhất phân khúc, full option trời – đề nổ – ghế nhớ. Máy Skyactiv nguyên bản, không chạy gas.",
    bullets:["Cửa sổ trời, đề nổ, ghế nhớ 2 hàng","Khung sườn nguyên bản 100%","Đã bảo dưỡng lớn mốc 60.000 km"]},
-  {id:5,type:"oto",name:"Kia Seltos 1.4 Premium",year:2022,odo:"30.000 km",gear:"Số tự động",fuel:"Xăng",price:null,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p8.webp",pos:"78% 50%",
+  {id:5,type:"oto",name:"Kia Seltos 1.4 Premium",year:2022,odo:"30.000 km",gear:"Số tự động",fuel:"Xăng",price:null,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/space.webp",pos:"22% 60%",z:"1.6",
    desc:"Xe mới về, đang hoàn tất kiểm định và thủ tục giấy tờ. Gọi 0034 567 899 để nhận báo giá trong 15 phút.",
    bullets:["Odo thấp hiếm — 1 chủ since mới","Máy turbo 1.4 chạy mạnh, êm","Dự kiến bán trong tuần này"]},
-  {id:6,type:"oto",name:"Toyota Camry 2.5Q",year:2018,odo:"89.000 km",gear:"Số tự động",fuel:"Xăng",price:720,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/cover.webp",pos:"50% 60%",
+  {id:6,type:"oto",name:"Toyota Camry 2.5Q",year:2018,odo:"89.000 km",gear:"Số tự động",fuel:"Xăng",price:720,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/intro.webp",pos:"80% 58%",z:"1.6",
    desc:"Camry bản đầy đủ nhất, giữ giá bậc nhất phân khúc sedan. Đã đổi 4 lốp mới, ắc quy 2025.",
    bullets:["Ghế da gốc, nội thất như mới","Máy 2.5Q êm nổi tiếng — chạy cao tốc hết ý","Giấy tờ chính chủ, sang tên trong ngày"]},
-  {id:7,type:"xemay",name:"Honda SH 160 ABS",year:2023,odo:"6.200 km",gear:"Tự động",fuel:"Xăng",price:51.5,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p2.webp",pos:"66% 55%",
+  {id:7,type:"xemay",name:"Honda SH 160 ABS",year:2023,odo:"6.200 km",gear:"Tự động",fuel:"Xăng",price:51.5,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p2.webp",pos:"70% 64%",z:"1.5",
    desc:"SH 160 ABS mới 95%, đồng hồ zin, tem xe còn nguyên. Chính chủ bán vì đi công tác dài hạn.",
    bullets:["Odo 6.200 km — như xe đại lý","Remote khóa smartkey nguyên bản","Bảo hành máy 30 ngày / 1.000 km"]},
-  {id:8,type:"xemay",name:"Honda Vision 110",year:2022,odo:"8.900 km",gear:"Tự động",fuel:"Xăng",price:27.5,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/intro.webp",pos:"72% 55%",
+  {id:8,type:"xemay",name:"Honda Vision 110",year:2022,odo:"8.900 km",gear:"Tự động",fuel:"Xăng",price:27.5,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/p8.webp",pos:"0% 100%",z:"2.4",
    desc:"Vision màu trắng của nữ chính chủ, chạy đi học – đi làm. Máy nguyên zin, chưa mở.",
    bullets:["Máy nguyên zin — chưa mở máy","Đèn LED, cốp rộng 18 lít","Giá tốt cho sinh viên – người mới đi"]},
-  {id:9,type:"xemay",name:"Honda SH Mode 125",year:2021,odo:"15.400 km",gear:"Tự động",fuel:"Xăng",price:null,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p5.webp",pos:"86% 56%",
+  {id:9,type:"xemay",name:"Honda SH Mode 125",year:2021,odo:"15.400 km",gear:"Tự động",fuel:"Xăng",price:null,badge:"MỚI VỀ",bcls:"b-new",img:"assets/img/p5.webp",pos:"100% 95%",z:"2.4",
    desc:"Xe mới nhận từ khách ký gửi, đang kiểm định máy móc và giấy tờ. Liên hệ để nhận báo giá sớm nhất.",
    bullets:["Smartkey, phanh ABS trước sau","Sơn bóng — chỉ dác 1 mảng hông","Ký gửi giá cao — chủ xe cần bán nhanh"]},
-  {id:10,type:"xemay",name:"Yamaha Exciter 155 VVA",year:2022,odo:"11.800 km",gear:"Số",fuel:"Xăng",price:44,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/p4.webp",pos:"88% 55%",
+  {id:10,type:"xemay",name:"Yamaha Exciter 155 VVA",year:2022,odo:"11.800 km",gear:"Số",fuel:"Xăng",price:44,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/p6.webp",pos:"94% 64%",z:"1.6",
    desc:"Exciter 155 bản RC, xe chơi giữ kỹ, đã độ ống xe nguyên bản kèm trong hộp. Máy 155cc mạnh nhất phân khúc.",
    bullets:["Máy mạnh — 15,4 mã lực","Phụ tùng zin kèm theo đầy đủ","Kiểm tra kỹ trước khi bấm nổ cùng khách"]},
-  {id:11,type:"xemay",name:"Honda Air Blade 125",year:2020,odo:"23.500 km",gear:"Tự động",fuel:"Xăng",price:30.5,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/p7.webp",pos:"88% 38%",
+  {id:11,type:"xemay",name:"Honda Air Blade 125",year:2020,odo:"23.500 km",gear:"Tự động",fuel:"Xăng",price:30.5,badge:"KIỂM ĐỊNH ĐẠT",bcls:"",img:"assets/img/p2.webp",pos:"45% 62%",z:"2.2",
    desc:"Air Blade bản phanh ABS, xe chạy công ty bảo dưỡng định kỳ đúng mốc, giấy tờ đầy đủ.",
    bullets:["Phanh ABS — an toàn chạy phố","Máy 125cc tiết kiệm xăng","Bảo hành máy 30 ngày"]},
-  {id:12,type:"xemay",name:"Yamaha Janus Standard",year:2020,odo:"19.000 km",gear:"Tự động",fuel:"Xăng",price:18.9,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/space.webp",pos:"74% 55%",
+  {id:12,type:"xemay",name:"Yamaha Janus Standard",year:2020,odo:"19.000 km",gear:"Tự động",fuel:"Xăng",price:18.9,badge:"GIÁ TỐT",bcls:"b-good",img:"assets/img/space.webp",pos:"82% 62%",z:"1.6",
    desc:"Janus nhẹ nhàng, phù hợp học sinh – sinh viên và người mới lái. Xe đã thay bình ắc quy và dúi mới.",
    bullets:["Nhẹ — dễ lái cho người mới","Tiết kiệm xăng 1,8 lít/100 km","Giá dưới 20 triệu — nhận xe ngay"]}
 ];
@@ -1354,7 +1354,7 @@ function renderListings(){
   lstGrid.innerHTML=arr.map(l=>`
     <article class="lst-card" data-id="${l.id}">
       <div class="lst-media" data-view="${l.id}">
-        <img src="${l.img}" alt="${l.name} ${l.year} — xe đã qua sử dụng tại Hoàng Kim Auto" style="object-position:${l.pos}" loading="lazy">
+        <img src="${l.img}" alt="${l.name} ${l.year} — xe đã qua sử dụng tại Hoàng Kim Auto" style="object-position:${l.pos}${l.z?`;--lz:${l.z};--lo:${l.pos}`:""}" loading="lazy">
         <span class="lst-badge ${l.bcls}">${l.badge}</span>
         ${priceHTML(l)}
       </div>
@@ -1406,6 +1406,7 @@ function openModal(id){
   const l=LISTINGS.find(x=>x.id===+id);if(!l)return;
   document.getElementById("mImg").src=l.img;
   document.getElementById("mImg").style.objectPosition=l.pos;
+  if(l.z)document.getElementById("mImg").style.setProperty("--lz",l.z);else document.getElementById("mImg").style.removeProperty("--lz");
   document.getElementById("mBadge").textContent=l.badge;
   document.getElementById("mPrice").textContent=priceTxt(l);
   document.getElementById("mName").textContent=`${l.name} · ${l.year}`;

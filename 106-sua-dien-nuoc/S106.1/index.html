@@ -2066,17 +2066,7 @@ $('drClose').addEventListener('click', closeDrawer);
 $('drOv').addEventListener('click', closeDrawer);
 
 /* ================= SEARCH HEADER ================= */
-$('searchInput').addEventListener('input', function(){
-  var q = this.value.trim().toLowerCase(), drop = $('searchDrop');
-  if(!q){ drop.classList.remove('open'); return; }
-  var m = SV.filter(function(s){ return (s.n + ' ' + s.d + ' ' + s.cat).toLowerCase().indexOf(q) !== -1; });
-  if(!m.length){ drop.classList.remove('open'); return; }
-  drop.innerHTML = m.map(function(s){ return '<button data-sv="' + SV.indexOf(s) + '"><svg class="i"><use href="#' + catIcon[s.cat] + '"/></svg>' + esc(s.n) + '</button>'; }).join('');
-  drop.classList.add('open');
-  drop.querySelectorAll('[data-sv]').forEach(function(b){
-    b.addEventListener('click', function(){ drop.classList.remove('open'); $('searchInput').value = ''; openQuick(+b.getAttribute('data-sv')); });
-  });
-});
+/*NB93-FIX-S106:t5k7nrm — dropdown cũ (#searchDrop) đã bị khối sfx tìm kiếm bên dưới (có chuẩn hoá bỏ dấu) thay thế hoàn toàn; bỏ listener cũ để không mở 2 dropdown đè nhau*/
 document.addEventListener('click', function(e){
   if(!e.target.closest('.search')) $('searchDrop').classList.remove('open');
 });

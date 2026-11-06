@@ -909,9 +909,9 @@ function modCard(p, i){
 function renderGrid(){
   var g = document.getElementById('grid8');
   var html = '';
-  /*NB110-198 — DOM = thứ tự hiển thị ở mọi viewport (kín ô, không hở do order):
-    4 cột: [F1 F2] / [p2 p3 p4 p5] / [p7 p8 DV DV]; mobile: F1, F2 lên đầu (order:-1 trùng DOM)*/
-  var order = ['laptop','linh-kien','pc-bo','man-hinh','ban-phim','chuot','ssd-hdd','phu-kien'];
+  /*NB93-FIX-S198:t5k4order — sua lai thu tu KHE 01->08 dung so (truoc do NB110 xep F1 F2 len dau lam KHE nhay 1-6-2-3-4-5-7-8):
+    4 cot: [KHE01F 02 03 04] / [05 KHE06F 07 08] / [DV DV]; khong co CSS order — DOM = thu tu hien thi moi viewport*/
+  var order = ['laptop','pc-bo','man-hinh','ban-phim','chuot','linh-kien','ssd-hdd','phu-kien'];
   var map = {};
   for (var i=0;i<P.length;i++) map[P[i].id] = P[i];
   for (var j=0;j<2;j++) html += modCard(map[order[j]], j);

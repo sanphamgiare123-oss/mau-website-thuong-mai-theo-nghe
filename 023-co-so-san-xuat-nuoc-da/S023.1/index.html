@@ -306,6 +306,13 @@ nav.main a:hover{background:var(--ice);color:var(--blue)}
 .contact-g{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}
 .cmap{border-radius:var(--r2);overflow:hidden;border:1.5px solid rgba(191,217,240,.3);min-height:400px;box-shadow:var(--sh-2)}
 .cmap iframe{width:100%;height:100%;min-height:400px;border:0;display:block}
+/*NB93-FIX-S023:t5k4mapph placeholder nen iframe map — hien khi map chua/khong tai duoc (xem offline), online map phu len*/
+.cmap{position:relative}
+.cmap .map-ph{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;padding:24px;background:repeating-linear-gradient(45deg,rgba(191,217,240,.07) 0 14px,rgba(191,217,240,.02) 14px 28px)}
+.cmap .map-ph b{font-size:15px;color:#fff}
+.cmap .map-ph span{font-size:13px;color:#FFC86B;font-weight:700}
+.cmap .map-ph small{font-size:11.5px;color:#A9C4DC;max-width:360px;line-height:1.55}
+.cmap iframe{position:relative;z-index:1;background:transparent}
 .cinfo{background:rgba(255,255,255,.06);border:1.5px solid rgba(191,217,240,.25);border-radius:var(--r2);padding:28px;display:flex;flex-direction:column;gap:14px;backdrop-filter:blur(6px)}
 .cinfo h3{font-size:1.3rem;color:#fff}
 .c-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
@@ -929,6 +936,8 @@ footer{background:var(--abyss);color:#9FC3E2;padding:46px 0 0}
     <div class="contact-g">
       <div class="cmap rv">
         <!-- NB110-MAP: 10.8411,106.8100 -->
+        <!--NB93-FIX-S023:t5k4mapph placeholder duoi iframe map-->
+        <div class="map-ph" aria-hidden="true"><b>📍 Bản đồ khu vực cơ sở</b><span>88 Đường Lạnh Buốt, P. Mát Rượi, Quận Vui Vẻ</span><small>Bản đồ tương tác sẽ hiện ở đây khi có kết nối Internet — hoặc gọi xưởng 0034567899 để được chỉ đường.</small></div>
         <!--NB93-MAP: 10.7765,106.7012--><iframe loading="lazy" src="https://www.google.com/maps?q=10.7765,106.7012&z=13&output=embed" title="Bản đồ khu vực cơ sở" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="cinfo rv">

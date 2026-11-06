@@ -88,6 +88,8 @@ nav.main a:hover{background:var(--accent-100);color:var(--accent)}
 .btn-cart{position:relative;width:46px;height:46px;border-radius:14px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;transition:.2s;color:var(--primary)}
 .btn-cart:hover{border-color:var(--accent);color:var(--accent)}
 .cart-n{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:100px;background:var(--accent);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center;padding:0 5px;box-shadow:0 4px 10px rgba(232,114,12,.4)}
+/* NB93-FIX-S010:t5k2badge — giỏ trống không hiện badge "0": [hidden] phải thắng display:grid (khuôn S006 t5-K2) */
+.cart-n[hidden]{display:none !important}
 .cart-n.pulse{animation:pulseN .5s}
 @keyframes pulseN{40%{transform:scale(1.35)}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;border-radius:14px;padding:13px 24px;font-size:15px;transition:.25s;position:relative;overflow:hidden}
@@ -1044,8 +1046,8 @@ img{height:auto!important;max-height:560px;object-fit:cover}
           <thead><tr><th>Số phần</th><th>Đơn giá / phần</th><th>Ưu đãi</th></tr></thead>
           <tbody>
             <tr data-tier="1"><td>1 – 9 phần</td><td><b id="t1">45K</b></td><td>—</td></tr>
-            <tr data-tier="10"><td>10 – 19 phần</td><td><b id="t2">43K</b></td><td>giảm 5%</td></tr>
-            <tr data-tier="20"><td>Từ 20 phần</td><td><b id="t3">41K</b></td><td>giảm 10%</td></tr>
+            <tr data-tier="10"><td>10 – 19 phần</td><td><b id="t2">42,8K</b></td><td>giảm 5%</td></tr>
+            <tr data-tier="20"><td>Từ 20 phần</td><td><b id="t3">40,5K</b></td><td>giảm 10%</td></tr><!--NB93-FIX-S010:t5k2tier-->
           </tbody>
         </table>
         <div class="res-total">
@@ -1517,7 +1519,8 @@ const DRINKS = [
 ];
 const K8 = [
   {id:'k1', feat:'a', img:'assets/img/p1.webp', tag:'Bán chạy nhất', tagCls:'', n:'Cơm phần đặt trước', p:45, unit:'/ phần', qv:true,
-   d:'Chọn 2 món từ thực đơn hôm nay, đặt trước 10:00 — bếp nấu riêng ca trưa và giao đúng khung giờ bạn chọn. Kèm cơm gạo mới + canh rau ngày.',
+   /*NB93-FIX-S010:t5k2promise — bỏ hứa "Chọn 2 món": luồng đặt không có bước chọn món, hứa thừa gây thất hứa*/
+   d:'Đặt trước 10:00 — bếp nấu riêng ca trưa theo thực đơn hôm nay và giao đúng khung giờ bạn chọn. Kèm cơm gạo mới + canh rau ngày.',
    list:['Đặt trước 10:00 — nấu riêng ca trưa, không nằm chờ','Chọn khung giao 11:15 / 11:45 / 12:15','Đổi món miễn phí trước 20:00 hôm trước']},
   {id:'k2', feat:'b', img:'assets/img/p2.webp', tag:'Tiết kiệm nhất', tagCls:'new', n:'Set món theo tuần', p:215, unit:'/ tuần 5 ngày', qv:true,
    d:'5 ngày làm việc × 1 phần trưa đổi món mỗi ngày, giao đều đúng khung giờ văn phòng. Đóng đơn 1 lần cả tuần — bếp lên menu, bạn chỉ việc ăn.',
@@ -1793,8 +1796,10 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     const slot = document.querySelector('input[name=slot]:checked').value;
     const ship = +document.getElementById('calcShip').value;
     document.getElementById('t1').textContent = set + 'K';
-    document.getElementById('t2').textContent = Math.round(set * .95) + 'K';
-    document.getElementById('t3').textContent = Math.round(set * .9) + 'K';
+    /* NB93-FIX-S010:t5k2tier — bảng tier hiện đúng 1 chữ số lẻ (42,8K thay 43K) khớp tổng tiền đang tính; "Tiết kiệm" lấy hiệu thật với tổng đã hiển thị */
+    const kLabel = v => { const r = Math.round(v * 10) / 10; return (r % 1 ? r.toFixed(1).replace('.', ',') : r) + 'K'; };
+    document.getElementById('t2').textContent = kLabel(set * .95);
+    document.getElementById('t3').textContent = kLabel(set * .9);
     document.querySelectorAll('.res-table tr[data-tier]').forEach(tr => tr.classList.remove('hit'));
     document.querySelector('.res-table tr[data-tier="' + [1, 10, 20][tierOf(n)] + '"]').classList.add('hit');
     const disc = tierOf(n) === 2 ? .1 : tierOf(n) === 1 ? .05 : 0;
@@ -1802,7 +1807,7 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     const total = Math.round(gross * (1 - disc)) + ship;
     document.getElementById('resSummary').textContent = n + ' phần × ' + setName + ' ' + set + 'K · giao ' + slot;
     document.getElementById('resTotal').textContent = money(total);
-    document.getElementById('resSave').textContent = disc ? 'Tiết kiệm ' + money(gross * disc) + ' giá nhóm' : 'Đơn lẻ — từ 10 phần giảm 5%';
+    document.getElementById('resSave').textContent = disc ? 'Tiết kiệm ' + money(gross - (total - ship)) + ' giá nhóm' : 'Đơn lẻ — từ 10 phần giảm 5%';
     return {n, total, setName, set, slot, label:'Đơn ' + n + ' phần — giao ' + slot};
   }
   [people, range].forEach(el => el.addEventListener('input', calc));
@@ -1885,14 +1890,16 @@ document.getElementById('specTabs').addEventListener('click', e => {
 
 /* ================= CART ================= */
 let CART = [];
-function addToCart(item){
+/* NB93-FIX-S010:t5k2qvqty — addToCart nhận qty: quick-view chọn 3 phần thì giỏ nhận 3 phần (đơn đúng số - đúng tiền) */
+function addToCart(item, qty){
+  const q = Math.max(1, Math.min(200, parseInt(qty, 10) || 1));
   const ex = CART.find(x => x.id === item.id);
-  if (ex) ex.qty++;
-  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:1});
+  if (ex) ex.qty += q;
+  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:q});
   renderCart();
   const badge = document.getElementById('cartN');
   badge.classList.remove('pulse'); void badge.offsetWidth; badge.classList.add('pulse');
-  toast('Đã thêm "' + item.n + '"', 'Giỏ đang có ' + CART.reduce((s, x) => s + x.qty, 0) + ' phần — chốt đơn để giữ khung giờ giao.');
+  toast('Đã thêm "' + item.n + '" × ' + q, 'Giỏ đang có ' + CART.reduce((s, x) => s + x.qty, 0) + ' phần — chốt đơn để giữ khung giờ giao.');
 }
 function cartQty(){
   return CART.reduce((s, x) => s + x.qty, 0);
@@ -1988,8 +1995,9 @@ document.getElementById('qvClose').addEventListener('click', closeQV);
 qv.addEventListener('click', e => { if (e.target === qv) closeQV(); });
 document.getElementById('qvMinus').addEventListener('click', () => { qvQty = Math.max(1, qvQty - 1); qvTotalRender(); });
 document.getElementById('qvPlus').addEventListener('click', () => { qvQty = Math.min(200, qvQty + 1); qvTotalRender(); });
-document.getElementById('qvAdd').addEventListener('click', () => { addToCart({id:'qv-' + qvItem.id, n:qvItem.n, p:tierPrice(qvItem.p, qvQty), img:qvItem.img}); closeQV(); });
-document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({id:'qv-' + qvItem.id, n:qvItem.n, p:tierPrice(qvItem.p, qvQty), img:qvItem.img}); closeQV(); openCart(); });
+/* NB93-FIX-S010:t5k2qvqty — quick-view truyền đúng số lượng khách đã chọn vào giỏ */
+document.getElementById('qvAdd').addEventListener('click', () => { addToCart({id:'qv-' + qvItem.id, n:qvItem.n, p:tierPrice(qvItem.p, qvQty), img:qvItem.img}, qvQty); closeQV(); });
+document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({id:'qv-' + qvItem.id, n:qvItem.n, p:tierPrice(qvItem.p, qvQty), img:qvItem.img}, qvQty); closeQV(); openCart(); });
 
 /* ================= DOCK ================= */
 const dock = document.getElementById('dock');
@@ -2081,7 +2089,7 @@ renderCart();
 .pkc-inrow input:focus{border-color:#2F9E6E;box-shadow:0 0 0 3px rgba(47,158,110,.13)}
 .pkc-inrow button{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#2F9E6E,#1F7A50);color:#fff;border:none;cursor:pointer;font-size:1rem}
 .pkc-inrow button:hover{filter:brightness(1.08)}
-@media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:78px;width:52px;height:52px}}
+@media(max-width:680px){.pkc-panel{right:10px;bottom:160px;height:min(440px,calc(100vh - 200px))}.pkc-fab{right:12px;bottom:96px;width:52px;height:52px}}/*NB93-FIX-S010:t5k2fabdock — FAB chat nhích lên trên dock đáy (dock mobile top≈68px), hết đè nhau khi dock hiện; chỉ dịch lay-out, không đụng logic chat*/
 </style>
 <script>
 /* NB93-010 CHAT JS */
@@ -2221,3 +2229,15 @@ document.querySelectorAll('.rv,[data-rv]').forEach(function(el){
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>/* NB93-FIX-S010:t5k2emptycart — giỏ TRỐNG bấm "Chốt đơn": toast nhắc, không mở panel đặt hàng. Window-capture chắn trước capture-handler của bake NGHE-15 đang nuốt click */
+window.addEventListener('click', function(ev){
+  var t = ev.target;
+  if(!t || !t.closest || !t.closest('#checkoutBtn')) return;
+  try{
+    if (typeof CART !== 'undefined' && CART.length === 0) {
+      ev.preventDefault(); ev.stopPropagation(); ev.stopImmediatePropagation();
+      toast('Giỏ đang trống', 'Chọn vài phần ở menu hôm nay đã nhé — ca trưa đóng 10:00.');
+    }
+  }catch(e){}
+}, true);
+</script>

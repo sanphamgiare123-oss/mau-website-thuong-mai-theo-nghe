@@ -1126,7 +1126,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 <section class="safe">
   <div class="container">
     <div class="sec-head rv">
-      <span class="kicker">Khung an toàn — tiêu chuẩn không thoát</span>
+      <span class="kicker">Khung an toàn — tiêu chuẩn an toàn, không phải thang thoát hiểm</span><!--NB93-FIX-S145:t5k7pill-->
       <h2>Nhà thầu ký hợp đồng vì hồ sơ an toàn, không chỉ vì giá</h2>
       <p>Mỗi mét vuông giàn ra khỏi bãi An Tâm đều có số liệu tải trọng, hồ sơ kiểm định và đội dựng có thẻ — sẵn sàng cho mọi đợt nghiệm thu của chủ đầu tư.</p>
     </div>
@@ -1633,7 +1633,8 @@ function calc(){
   var total=rent-discV+fee+lap;
   html+='<tr class="sum"><td colspan="2">Tổng tham chiếu hợp đồng '+T+' tháng</td><td><b>'+VND(total)+'</b></td></tr>';
   $("#calBody").innerHTML=html;
-  $("#perMonth").textContent="≈ "+VND(Math.round(total/T))+"/tháng";
+  var pmNicely=Math.round(Math.round(total/T)/100000)*100000;/*NB93-FIX-S145:t5k7round — làm tròn chẵn 100k, hết giá lẻ kỳ*/
+  $("#perMonth").textContent="≈ "+VND(pmNicely)+"/tháng";
   $("#truckName").textContent="Xe 6t — "+trips+" chuyến khứ hồi";
   $("#truckMeta").textContent="Khảo sát miễn phí trước khi xuất bãi"+(km<=15?" · ≤15km miễn phí chiều về":" · vượt "+(km-15)+"km tính 18.000đ/km");
   calc._last={A:A,T:T,km:km,total:total};

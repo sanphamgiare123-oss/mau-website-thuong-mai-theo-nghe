@@ -542,6 +542,13 @@ footer{background:var(--primary-3);background-image:var(--grad-dark),var(--noodl
 .dr-total span{font-weight:700;color:var(--soft);font-size:14px}
 .dr-total b{font-size:1.45rem;font-weight:900;color:var(--accent)}
 .dr-foot .btn{width:100%}
+/* NB93-FIX-S001:t5k2drform — form Tên + SĐT + Địa chỉ trong drawer; thiếu thông tin = viền đỏ */
+.dr-f{display:flex;flex-direction:column;gap:9px;margin:12px 0}
+.dr-f label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:800;color:var(--soft)}
+.dr-f label i{color:#D42B1F;font-style:normal}
+.dr-f input{border:1.5px solid var(--line);border-radius:11px;padding:10px 13px;font:inherit;font-size:14px;background:#fff;color:var(--primary);min-height:42px;width:100%;box-sizing:border-box}
+.dr-f input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(244,118,27,.16)}
+.dr-f input.err{border-color:#D42B1F;background:#FDF1F0}
 
 /* ============ QUICK VIEW ============ */
 .qv{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.3s}
@@ -729,8 +736,8 @@ footer{background:var(--primary-3);background-image:var(--grad-dark),var(--noodl
 .bfix-n{background:linear-gradient(150deg,#6B4A3A,#3B291E)}
 .bfix-y{background:linear-gradient(150deg,#2F7D5A,#173F2B)}
 
-/* BULKFIX3: dang ORDER — an quiz, tap trung mat hang/combo */
-#quiz{display:none !important;}
+/* NB93-FIX-S001:t5k2reopen — mở lại #quiz (quiz khẩu vị 30 giây) theo t5-K2: BULKFIX3 ẩn là chế độ ORDER cũ, owner duyệt mở lại vì 3 link #quiz đang chết */
+/* #quiz{display:none !important;} — đã gỡ t5-K2 */
 
 
 /* BULKFIX4-BA: scene ve CSS rieng theo nghe */
@@ -742,8 +749,8 @@ footer{background:var(--primary-3);background-image:var(--grad-dark),var(--noodl
 /* BULKFIX5-PRESS: micro-interaction phan hoi khi nhan */
 button:active{transform:scale(.96)}
 .pkc-chip:active{transform:scale(.94)}
-/* BULKFIX6-TRIM: order site gian gon — tap trung mat hang/combo */
-#chuan{display:none !important;}
+/* NB93-FIX-S001:t5k2reopen — mở lại #chuan (bảng chuẩn bếp niêm yết) theo t5-K2: nav "Chuẩn bếp" đang chết vì section bị ẩn */
+/* #chuan{display:none !important;} — đã gỡ t5-K2 */
 
 /* ===== HMENU-CARD: khoi 8 mon — the ngang kieu nha hang (anh trai ~38% · noi dung phai) ===== */
 .car-track{
@@ -764,8 +771,8 @@ button:active{transform:scale(.96)}
 }
 .car-track .pcard:hover{border-color:var(--accent)}
 .car-track .pcard:hover .pcard-img img{transform:scale(1.06)}
-/* CARFIX: an nhom nut xem nhanh (icon kinh lup) hoat anh khi hover — chong de len anh card dau */
-.car-track .pcard-qa{display:none}
+/* NB93-FIX-S001:t5k2qv — gỡ rule ẩn ".car-track .pcard-qa{display:none}" (CARFIX): nút Xem nhanh/Thêm giỏ từng chết vô hình, quick-view không mở được bằng chuột; hiện lại như khuôn S008 t5-K2 đã duyệt */
+.car-track .pcard-qa{display:flex}
 /* CARFIX: card cuoi canh sat mip phai container (bo margin cuoi) */
 .car-track .pcard:last-child{margin-right:0}
 .car-track .pcard-img{flex:0 0 38%;width:38%;aspect-ratio:4/3;min-height:100%}
@@ -1656,6 +1663,11 @@ body{padding-bottom:92px}
     <div class="dr-line disc" id="drDiscLine" hidden><span>Giảm giá sỉ (tự động)</span><span id="drDisc">-0₫</span></div>
     <div class="dr-line"><span>Phí giao (3km đầu)</span><span>Miễn phí</span></div>
     <div class="dr-total"><span>Tổng cần trả</span><b id="drTotal">0₫</b></div>
+    <div class="dr-f" id="drForm">
+      <label for="cfName">Tên của bạn <i>*</i><input id="cfName" type="text" placeholder="VD: Chị Lan" autocomplete="name"></label>
+      <label for="cfPhone">SĐT / Zalo <i>*</i><input id="cfPhone" type="tel" placeholder="VD: 0912 345 678" autocomplete="tel"></label>
+      <label for="cfAddr">Địa chỉ nhận <i>*</i><input id="cfAddr" type="text" placeholder="Số nhà · phố · quận — bếp gọi xác nhận 15 phút" autocomplete="street-address"></label>
+    </div>
     <button class="btn btn-accent" id="checkoutBtn">Xác nhận đơn — bếp gọi lại 15 phút</button>
   </div>
 </aside>
@@ -1702,11 +1714,11 @@ body{padding-bottom:92px}
 /* ================= DATA ================= */
 /*NB93-FIX-001:t3pho*/
 const P = [
-  {id:'p1', n:'Phở bò', p:50, img:'assets/img/p1.webp', tag:'Bán chạy', hot:true,
+  {id:'p1', n:'Phở bò', p:50, img:'assets/img/p1.webp', tag:'Bán chạy như máy', hot:true,
    d:'Nước dùng trong ngọt xương ninh 8 tiếng, bò tái nạm gân mềm, bánh phở cuộn trong ngày — chuẩn bát Hà Nội.'},
   {id:'p2', n:'Phở gà', p:45, img:'assets/img/p2.webp', tag:'Sáng bán nhất', hot:false,
    d:'Gà ta da vàng thịt chắc, nước dùng thanh ngọt củ cải, hành lá — thanh nhẹ, tinh tế, ấm bụng buổi sáng.'},
-  {id:'p3', n:'Bún bò Huế', p:55, img:'assets/img/p3.webp', tag:'Bán chạy', hot:true,
+  {id:'p3', n:'Bún bò Huế', p:55, img:'assets/img/p3.webp', tag:'Bán chạy như máy', hot:true,
    d:'Nước leo sánh đỏ son sa tế sả Huế, chả bò chả giòn đầy đủ — cay nồng đậm đà, chuẩn vị cố đô.'},
   {id:'p4', n:'Hủ tiếu', p:50, img:'assets/img/p4.webp', tag:'Béo mịn', hot:false,
    d:'Sợi dai mềm gập không gãy, nước dùng ngọt thanh, tôm gan thịt bằm trộn vị — bát no đủ chuẩn Nam Vang.'},
@@ -1842,7 +1854,7 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     let rows = m.items.map(id => {
       const p = P.find(x => x.id === id);
       return '<div class="mrow"><div class="mi"><span class="mn"><b>' + p.n + '</b>' +
-        (p.hot ? '<span class="hot">Bán chạy</span>' : '') + '</span>' +
+        (p.hot ? '<span class="hot">Bán chạy như máy</span>' : '') + '</span>' +
         '<span class="md">' + p.d + '</span></div>' +
         '<span class="dots"></span>' +
         '<span class="mp"><b>' + p.p + 'K</b><span>/ bát</span></span>' +
@@ -2172,12 +2184,14 @@ document.getElementById('specTabs').addEventListener('click', e => {
 
 /* ================= CART ================= */
 let CART = [];
-function addToCart(item){
+/* NB93-FIX-S001:t5k2qvqty — addToCart nhận qty (quick-view chọn 3 phần thì giỏ nhận 3, không còn cộng 1) */
+function addToCart(item, qty){
+  const q = Math.max(1, Math.min(500, parseInt(qty, 10) || 1));
   const ex = CART.find(x => x.id === item.id);
-  if (ex) ex.qty++;
-  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:1});
+  if (ex) ex.qty += q;
+  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:q});
   renderCart();
-  toast('Đã thêm "' + item.n + '" vào giỏ');
+  toast('Đã thêm "' + item.n + '" × ' + q + ' vào giỏ');
 }
 function renderCart(){
   const itemsEl = document.getElementById('drItems');
@@ -2222,10 +2236,18 @@ document.getElementById('drItems').addEventListener('click', e => {
   const rm = e.target.closest('[data-rm]');
   if (rm) { CART.splice(+rm.dataset.rm, 1); renderCart(); }
 });
+/* NB93-FIX-S001:t5k2drform — xác nhận đơn: bắt buộc Tên + SĐT + Địa chỉ; thiếu = tô đỏ ô + nhắc tên ô, KHÔNG báo đơn ok */
+const CF_IDS = ['cfName', 'cfPhone', 'cfAddr'];
+const CF_NAMES = {cfName:'Tên của bạn', cfPhone:'SĐT/Zalo', cfAddr:'Địa chỉ nhận'};
+CF_IDS.forEach(id => document.getElementById(id).addEventListener('input', e => e.target.classList.remove('err')));
 document.getElementById('checkoutBtn').addEventListener('click', () => {
   if (!CART.length) { toast('Giỏ đang trống — chọn bát nóng đã nhé'); return; }
+  const miss = CF_IDS.filter(id => !document.getElementById(id).value.trim());
+  CF_IDS.forEach(id => document.getElementById(id).classList.toggle('err', miss.includes(id)));
+  if (miss.length) { toast('Thiếu ' + miss.map(id => CF_NAMES[id]).join(' · ') + ' — bếp cần để gọi xác nhận nhé'); return; }
   const code = 'TN-' + Math.floor(1000 + Math.random() * 9000);
   CART = []; renderCart(); closeCart();
+  CF_IDS.forEach(id => document.getElementById(id).value = '');
   toast('Đơn ' + code + ' đã vào bếp — xác nhận trong 15 phút');
 });
 
@@ -2268,8 +2290,9 @@ document.getElementById('qvClose').addEventListener('click', closeQV);
 qv.addEventListener('click', e => { if (e.target === qv) closeQV(); });
 document.getElementById('qvMinus').addEventListener('click', () => { qvQty = Math.max(1, qvQty - 1); qvTotalRender(); });
 document.getElementById('qvPlus').addEventListener('click', () => { qvQty = Math.min(500, qvQty + 1); qvTotalRender(); });
-document.getElementById('qvAdd').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}); closeQV(); });
-document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}); closeQV(); openCart(); });
+/* NB93-FIX-S001:t5k2qvqty — quick-view truyền đúng số lượng khách đã chọn vào giỏ */
+document.getElementById('qvAdd').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}, qvQty); closeQV(); });
+document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}, qvQty); closeQV(); openCart(); });
 
 /* ================= DOCK ================= */
 const dock = document.getElementById('dock');
@@ -2359,6 +2382,20 @@ renderCart();
   .pkc-fab{bottom:78px;right:12px}
   .pkc-panel{bottom:138px}
 }
+/* ================= NB93-FIX-S001:t5k2 P2/P3 lay-out ================= */
+/* t5k2stamp — tem "BÁN CHÁY HÔM NAY" không đè dòng "Cập nhật 5:00" */
+.board-head{padding-right:118px}
+@media(max-width:680px){.board-head{padding-right:92px}}
+/* t5k2pill — mobile: pill "Ninh xương 3:00 sáng" nhích lên trên dải số liệu hero, hết đè chú thích */
+@media(max-width:680px){.hero-eco{bottom:158px}}
+/* t5k2bachip — chip trước-sau co theo nửa panel đang mở, hết cắt chữ ở 25%/75% */
+.ba-stage > .bscene .bs-chip{max-width:calc(var(--bx, 50%) - 9%)}
+.ba-after .bs-chip{max-width:calc(100% - var(--bx, 50%) - 9%)}
+/* t5k2zdrawer — drawer mở nổi trên FAB chat; toast sang đáy trái, không đè nút "Xác nhận đơn" */
+body:has(.drawer.on) .overlay{z-index:230}
+.drawer.on{z-index:240}
+#toastZone{left:24px;right:auto;bottom:24px;z-index:250}
+@media(max-width:680px){#toastZone{left:16px;right:16px;bottom:140px}}
 </style><script>(function(){
   var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
       inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');

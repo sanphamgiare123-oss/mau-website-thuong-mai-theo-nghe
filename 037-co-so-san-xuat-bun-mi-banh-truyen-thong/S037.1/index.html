@@ -677,6 +677,24 @@ button:active{transform:scale(.96)}
 .combo-gallery .cg-item{height:auto!important}
 .combo-gallery .cg-item img{height:auto!important;max-height:none!important;width:100%!important}
 </style>
+<style data-nb93fix="037:t5k1ba">
+/*NB93-FIX-037:t5k1ba — good hien ben phai vach; nhan thanh con cua stage luon hien; 2 nen khac mau ro*/
+.cmp-good{clip-path:inset(0 0 0 calc(100% - var(--cut,55%)));background:linear-gradient(180deg,#F1F6E6 0%,#DFEACA 70%,#C6DAA4 100%)}
+.cmp-bad{background:linear-gradient(180deg,#E7E0D0 0%,#CFC5AC 70%,#B3A689 100%)}
+.cmp-bad .stick{left:25%}
+.cmp-bad .strands{left:25%;width:34%}
+.cmp-good .stick{left:75%}
+.cmp-good .strands{left:75%;width:34%}
+.cmp-good .steam{left:75%}
+.cmp-label{z-index:3}
+.cmp-label.lab-bad{left:14px;right:auto;background:#fff;color:#6E5B45;border:1.5px solid #DDD2BC;text-align:left}
+.cmp-label.lab-good{right:14px;left:auto;background:#fff;color:#3C6330;border:1.5px solid #CDE2BE;text-align:right}
+@media (max-width:676px){
+  .cmp-label.lab-bad{left:10px}
+  .cmp-label.lab-good{right:10px}
+  .cmp-bad .strands,.cmp-good .strands{width:40%}
+}
+</style>
 </head>
 <body>
 
@@ -1187,18 +1205,20 @@ button:active{transform:scale(.96)}
       <h2 class="sec-title">Bún tráng phụ gia <mark>vs bún lò Sớm Mai</mark></h2>
       <span class="sec-sub">Cùng nhìn một vắt bún để qua đêm: bên tráng oxy giữ hình, bóng cứng; bên mình mềm rũ tự nhiên, còn mùi gạo. Hình mô phỏng theo tiêu chí độ tươi.</span>
     </div>
+    <!--NB93-FIX-037:t5k1ba clip mo dung phia (good = ben phai vach), nhan keo ra ngoai lop clip,
+        2 nen khac ro, bun 2 ben ve giua nua cua no (bad ~25% / good ~75%) — khuon S001 t3combo-ba-->
     <div class="cmp rv-el" id="cmp" style="--cut:55%">
+      <div class="cmp-half cmp-bad">
+        <div class="stick"></div>
+        <div class="strands"></div>
+      </div>
       <div class="cmp-half cmp-good">
         <div class="stick"></div>
         <div class="strands"></div>
         <span class="steam"></span>
-        <div class="cmp-label"><b>Bún lò Sớm Mai</b><small>mềm, mùi gạo — dùng trong ngày</small></div>
       </div>
-      <div class="cmp-half cmp-bad">
-        <div class="stick"></div>
-        <div class="strands"></div>
-        <div class="cmp-label"><b>Bún tráng phụ gia</b><small>bóng, cứng giòn — để 3 ngày không chua</small></div>
-      </div>
+      <div class="cmp-label lab-bad"><b>Bún tráng phụ gia</b><small>bóng, cứng giòn — để 3 ngày không chua</small></div>
+      <div class="cmp-label lab-good"><b>Bún lò Sớm Mai</b><small>mềm, mùi gạo — dùng trong ngày</small></div>
       <div class="cmp-div"><span class="cmp-grip">↔</span></div>
       <input class="cmp-range" id="cmpRange" type="range" min="6" max="94" value="55" aria-label="Kéo so sánh hai vắt bún">
     </div>

@@ -1014,6 +1014,12 @@ da 47% nen giu nguyen khong phong anh qua lon.*/
 }
 </style>
 <style data-nb93fix="103:t3b1hl">/*NB93-FIX-103:t3b1hl*/</style>
+<style data-nb93fix="S103:t5k7search">
+/*NB93-FIX-S103:t5k7search — header search lọc thật: .b-card ẩn được khi lọc + pill đếm kết quả*/
+.b-card.hide{display:none}
+.search{position:relative}
+.hd-count{position:absolute;top:calc(100% + 9px);left:0;background:var(--primary);color:#fff;font-size:12.5px;font-weight:800;padding:7px 12px;border-radius:10px;z-index:80;box-shadow:0 10px 26px rgba(8,31,66,.28);display:none;align-items:center;gap:6px}
+</style>
 </head>
 <body data-nb93fix="103:t3b1hl">>
 
@@ -1043,6 +1049,7 @@ da 47% nen giu nguyen khong phong anh qua lon.*/
     <div class="search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="hdSearch" type="text" placeholder="Tìm tủ lạnh, máy giặt, điều hòa, TV, bếp từ, nồi cơm điện…" aria-label="Tìm sản phẩm">
+      <div class="hd-count" id="hdSearchCount"></div>
     </div>
     <nav class="nav">
       <a href="#products">Danh mục</a>
@@ -2356,16 +2363,35 @@ function faqFilter(kw){
 faqSearch.addEventListener('input',function(){faqFilter(this.value)});
 
 /* ================= HEADER SEARCH loc bento ================= */
-document.getElementById('hdSearch').addEventListener('keydown',function(e){
-  if(e.key!=='Enter')return;
-  var kw=this.value.trim().toLowerCase();
-  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+/*NB93-FIX-S103:t5k7search — lọc thật (bỏ dấu: "bep" ra "bếp") + đếm kết quả trực quan*/
+function nrmVN(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d')}
+var bentoCards=[].slice.call(document.querySelectorAll('#bentoGrid .b-card'));
+var bentoNames=bentoCards.map(function(c){return nrmVN(c.dataset.name)});
+function bentoFilter(kw){
+  kw=nrmVN(kw).trim();
   var hits=0;
-  document.querySelectorAll('#bentoGrid .b-card').forEach(function(c){
-    var show=!kw||c.dataset.name.indexOf(kw)>-1;
+  bentoCards.forEach(function(c,i){
+    var show=!kw||bentoNames[i].indexOf(kw)>-1;
     c.classList.toggle('hide',!show);if(show)hits++;
   });
-  toast(kw?('Tìm thấy '+hits+' sản phẩm cho "'+kw+'"'):'Đã hiển thị lại đủ 8 nhóm hàng','Nhập "tủ lạnh", "máy giặt", "nồi cơm"… rồi bấm Enter để lọc');
+  return hits;
+}
+var hdCount=document.getElementById('hdSearchCount');
+document.getElementById('hdSearch').addEventListener('input',function(){
+  var kw=this.value.trim();
+  var hits=bentoFilter(kw);
+  if(hdCount){
+    if(!kw){hdCount.style.display='none';return}
+    hdCount.textContent=hits+'/'+bentoCards.length+' sản phẩm khớp "'+kw+'"';
+    hdCount.style.display='flex';
+  }
+});
+document.getElementById('hdSearch').addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;
+  var kw=this.value;
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+  var hits=bentoFilter(kw);
+  toast(kw?(hits?('Tìm thấy '+hits+'/'+bentoCards.length+' sản phẩm cho "'+kw.trim()+'"'):('Không có sản phẩm nào khớp "'+kw.trim()+'" — gọi 0034567899 để kho tra giúp bạn')):'Đã hiển thị lại đủ '+bentoCards.length+' nhóm hàng','Nhập "tủ lạnh", "máy giặt", "nồi cơm"… rồi bấm Enter để lọc');
 });
 /* chieu cao card bat dong sau khi an/lien: tu sap xep lai grid dense la tu dong */
 

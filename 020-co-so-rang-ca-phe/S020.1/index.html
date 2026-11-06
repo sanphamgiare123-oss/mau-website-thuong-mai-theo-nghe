@@ -78,8 +78,9 @@ input,select,textarea{font-family:inherit;font-size:15px}
 .sec-head p{color:var(--soft);font-size:15.5px}
 .hl{position:relative;display:inline-block;white-space:nowrap}
 .hl::before{
-  content:"";position:absolute;inset:52% -6px 6% -6px;z-index:-1;border-radius:6px;
-  background:var(--grad-accent);transform:skewX(-8deg);opacity:.92;
+  /*NB93-FIX-S020:t5k4hl to dam highlight — phu ca dong chu, chu trang doc ro tren nen cam dam*/
+  content:"";position:absolute;inset:0 -6px 4% -6px;z-index:-1;border-radius:6px;
+  background:var(--grad-accent);transform:skewX(-8deg);opacity:.98;
 }
 .hl-w{color:#fff;text-shadow:0 1px 6px rgba(150,70,0,.3)}
 
@@ -373,6 +374,15 @@ nav.main a:hover{background:var(--accent-100);color:#9C5310}
 .price-panel{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start;min-width:0}
 .pt-wrap{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow-1);min-width:0}
 .pt-scroll{overflow-x:auto}
+/*NB93-FIX-S020:t5k4banggia mobile hien hint vuot ngang cho bang gia; modal xem nhanh cho phep cuon ngang*/
+.pt-wrap{position:relative}
+#mvTierTable{overflow-x:auto}
+@media(max-width:768px){
+  .price-panel .pt-wrap::before{
+    content:"↔ Vuốt ngang để xem đủ bảng giá";display:block;font-size:12px;font-weight:600;
+    color:#8a7358;padding:9px 14px;border-bottom:1px dashed var(--line);background:var(--accent-100);
+  }
+}
 table.pt{width:100%;border-collapse:collapse;min-width:520px}
 table.pt th{
   background:var(--primary);color:#FFE9CB;text-align:left;font-size:12.5px;letter-spacing:.05em;
@@ -574,6 +584,8 @@ footer{background:var(--primary-3);color:#D9C4A8;padding:56px 0 0}
   border:1.5px solid rgba(255,215,160,.3);border-radius:99px;padding:9px 12px;
   box-shadow:var(--shadow-3);transition:transform .45s,opacity .45s;
 }
+/*NB93-FIX-S020:t5k4dock dock chi mobile — an tren desktop de khong de "Buoi rang ke tiep"*/
+@media(min-width:769px){.dock{display:none!important}}
 .dock.away{transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none}
 .dock-btn{
   width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#F0DCBE;transition:all .22s;position:relative;flex:none;

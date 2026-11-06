@@ -88,6 +88,8 @@ nav.main a:hover{background:var(--gold-100);color:var(--accent)}
 .btn-cart{position:relative;width:46px;height:46px;border-radius:14px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;transition:.2s;color:var(--night)}
 .btn-cart:hover{border-color:var(--accent);color:var(--accent)}
 .cart-n{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:100px;background:var(--accent);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center;padding:0 5px;box-shadow:0 4px 10px rgba(226,71,43,.4)}
+/* NB93-FIX-S009:t5k2badge — giỏ trống không hiện badge "0": [hidden] phải thắng display:grid (khuôn S006 t5-K2) */
+.cart-n[hidden]{display:none !important}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;border-radius:14px;padding:13px 24px;font-size:15px;transition:.25s;position:relative;overflow:hidden}
 .btn-accent{background:var(--grad-accent);color:#3A2405;box-shadow:0 12px 26px rgba(240,126,18,.32)}
 .btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(240,126,18,.42)}
@@ -417,6 +419,8 @@ nav.main a:hover{background:var(--gold-100);color:var(--accent)}
 .rev-av{width:50px;height:50px;border-radius:50%;background:var(--grad-accent);color:#3A2405;font-weight:900;font-size:18px;display:grid;place-items:center;flex:none}
 .rev-who b{display:block;font-size:15px}
 .rev-who span{display:block;font-size:12.5px;color:var(--soft)}
+/* NB93-FIX-S009:t5k2av — chữ cái đầu avatar review về giữa vòng tròn: .rev-who span(display:block) từng đè display:grid của .rev-av làm chữ lệch góc trên trái */
+.rev-who span.rev-av{display:grid;place-items:center;font-size:18px;color:#3A2405}
 .rev-dots{display:flex;gap:7px;margin-top:22px}
 .rev-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.25s}
 .rev-dots i.on{background:var(--accent);width:26px;border-radius:10px}
@@ -705,6 +709,14 @@ footer{background:var(--night-3);color:#C9BCE4;padding:56px 0 0}
 <style data-nb93fix="009:t3a1">
 /*NB93-FIX-009:t3a1 SDT 0034567899 + dia chi vui + map pool NB93-MAP (worker A1)*/
 .ct-item iframe,.ct-maprow iframe,.map-card iframe{max-width:100%}
+/* NB93-FIX-S009:t5k2topbar — mobile topbar không còn vỡ từng chữ / cắt SĐT lề phải: xuống dòng gọn, căn giữa, ghi chú ẩn */
+@media(max-width:680px){
+  .topbar .wrap{flex-wrap:wrap;justify-content:center;gap:6px 18px}
+  .tb-status{flex:1 1 100%;justify-content:center;min-width:0}
+  .tb-status span{white-space:normal}
+  .topbar .tb-note{display:none}
+  .tb-right{flex-wrap:wrap;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -1583,7 +1595,7 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     }).join('');
     rows += '<div class="mrow"><div class="mi"><span class="mn"><b>Nước uống kèm bàn</b></span><span class="md">' +
       DRINKS.map(x => x.n + ' ' + x.p + 'K').join(' • ') + '</span></div>' +
-      '<span class="dots"></span><span class="mp"><b>10K</b><span>từ mốc</span></span>' +
+      '<span class="dots"></span><span class="mp"><b>10K</b><span>/ ly</span></span>' + /*NB93-FIX-S009:t5k2unit — bỏ chữ vô nghĩa "từ mốc", đúng đơn vị bán: 10K/ ly*/
       '<button class="madd" data-add="d1" aria-label="Thêm trà gừng">+</button></div>';
     listEl.innerHTML = rows;
   }
@@ -2052,3 +2064,15 @@ renderCart();
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>/* NB93-FIX-S009:t5k2emptycart — giỏ TRỐNG bấm "Chốt đơn": hiện toast "Giỏ đang trống", KHÔNG mở panel đặt hàng đơn không món. Chạy window-capture để chắn trước capture-handler của bake NGHE-15 (script đặt hàng) đang nuốt click của nút */
+window.addEventListener('click', function(ev){
+  var t = ev.target;
+  if(!t || !t.closest || !t.closest('#checkoutBtn')) return;
+  try{
+    if (typeof CART !== 'undefined' && CART.length === 0) {
+      ev.preventDefault(); ev.stopPropagation(); ev.stopImmediatePropagation();
+      toast('Giỏ đang trống', 'Chọn vài phần nóng đã nhé — bếp tới 3h sáng vẫn chế');
+    }
+  }catch(e){}
+}, true);
+</script>

@@ -88,7 +88,10 @@ nav.main a:hover{background:var(--kraft);color:var(--green)}
 .bang-clip{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--navy);color:#F4E9CF;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:6px 16px;border-radius:7px;white-space:nowrap;box-shadow:0 4px 10px rgba(14,42,61,.3)}
 .bang-date{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:22px 4px 9px;font-size:12px;color:var(--mut);font-weight:700}
 .bang-date b{color:var(--green)}
-.bang img{border-radius:7px;width:100%;border:1px solid var(--line-2)}
+/*NB93-FIX-S400:t5k4hero img max-width:100% — ảnh minh hoạ bảng giá (min-content 477px) từng đẩy cả cột hero ra 505px trên mobile, mất chữ + cắt nút*/
+.bang img{border-radius:7px;width:100%;max-width:100%;border:1px solid var(--line-2)}
+/*NB93-FIX-S400:t5k4hero cột hero co được dưới min-content của con*/
+.hero-g > *{min-width:0}
 .bang .dau{position:absolute;right:-16px;bottom:-18px;background:rgba(255,251,240,.9);z-index:3}
 .bang-ticks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}
 .tick{background:var(--paper-2);border:1.5px dashed var(--line-2);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--navy)}
@@ -376,6 +379,9 @@ footer{background:var(--navy-3);color:#A9BFD0;margin-top:44px}
   .rev-g{grid-template-columns:1fr}
   .ft-g{grid-template-columns:1fr;gap:18px;padding:26px 0 16px}
   .bang .dau{right:-8px}
+  /*NB93-FIX-S400:t5k4tick 3 chip giá/ hàng tràn chip 150px trên 390 — xuống 2 cột + cho phép co, đủ chữ không tràn*/
+  .bang-ticks{grid-template-columns:repeat(2,1fr)}
+  .tick{min-width:0;flex-wrap:wrap}
   .btn{white-space:normal;text-align:center}
 }
 </style>

@@ -738,6 +738,15 @@ footer{background:var(--primary-3);background-image:var(--grad-dark),var(--noodl
 .bscene svg{width:min(340px,72%);height:auto;filter:drop-shadow(0 16px 18px rgba(0,0,0,.30))}
 .bs-chip{font-weight:800;font-size:.84rem;padding:8px 18px;border-radius:999px;color:#fff;background:rgba(0,0,0,.38);backdrop-filter:blur(6px)}
 .bscene.after .bs-chip{color:#12331F;background:rgba(255,255,255,.78)}
+/* NB93-FIX-S008:t5k2ba — lớp SAU đè theo --bx như khuôn S001; 2 art căn 2 đầu để kéo đến đâu thấy khác biệt đến đó */
+.ba-after{position:absolute;inset:0;z-index:2;clip-path:inset(0 0 0 var(--bx,50%))}
+.ba-stage > .bscene{align-items:flex-start;padding-left:4%}
+.ba-stage .bscene svg{width:min(300px,44%)}
+.ba-after .bscene{align-items:flex-end;padding-right:4%}
+.bs-chip{max-width:86%;text-align:center;white-space:normal;line-height:1.35}
+.ba-stage > .bscene .bs-chip{max-width:calc(var(--bx, 50%) - 9%)}
+.ba-after .bs-chip{max-width:calc(100% - var(--bx, 50%) - 9%)}
+@media (max-width:676px){.ba-stage > .bscene{padding-left:2%}.ba-after .bscene{padding-right:2%}.ba-stage .bscene svg{width:min(240px,58%)}}
 
 /* BULKFIX5-PRESS: micro-interaction phan hoi khi nhan */
 button:active{transform:scale(.96)}
@@ -764,8 +773,9 @@ button:active{transform:scale(.96)}
 }
 .car-track .pcard:hover{border-color:var(--accent)}
 .car-track .pcard:hover .pcard-img img{transform:scale(1.06)}
-/* CARFIX: an nhom nut xem nhanh (icon kinh lup) hoat anh khi hover — chong de len anh card dau */
-.car-track .pcard-qa{display:none}
+/* NB93-FIX-S008:t5k2qv — gỡ rule ẩn .pcard-qa (8 nút "Xem nhanh" + "Thêm giỏ" từng width 0 chết vô hình); quick-view vốn có sẵn JS openQV nên chỉ cần hiện lại */
+.car-track .pcard-qa{display:flex}
+/* NB93-FIX-S008:t5k2qv — đã gỡ ".car-track .pcard-qa{display:none}" của CARFIX: nút Xem nhanh/Thêm giỏ hiện lại; chống đè ảnh giữ nguyên bằng z-index của .pcard-qa */
 /* CARFIX: card cuoi canh sat mip phai container (bo margin cuoi) */
 .car-track .pcard:last-child{margin-right:0}
 .car-track .pcard-img{flex:0 0 38%;width:38%;aspect-ratio:4/5;min-height:100%}/*NB93-FIX
@@ -909,7 +919,7 @@ button:active{transform:scale(.96)}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bát Sáng","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"24 Hẻm Xôi Nóng, P. Mơ Sớm, Q. Sáng Vui","addressLocality":"TP. Cơm Nóng","addressCountry":"VN"},"description":"Bát Sáng — xôi, bánh mì, phở, cháo, bánh cuốn, bánh bao, cà phê sáng. Nấu từ 5:45 mỗi ngày, đặt qua máy tối hôm trước giảm 10%, tới quầy báo tên nhận trong 60 g","url":"http://127.0.0.1:8174/008-quan-an-sang/"}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bát Sáng","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"88 Hẻm Gà Gáy, P. Bình Minh, Q. Sáng Vui","addressLocality":"TP. Cơm Nóng","addressCountry":"VN"},"description":"Bát Sáng — xôi, bánh mì, phở, cháo, bánh cuốn, bánh bao, cà phê sáng. Nấu từ 5:45 mỗi ngày, đặt qua máy tối hôm trước giảm 10%, tới quầy báo tên nhận trong 60 g","url":"http://127.0.0.1:8174/008-quan-an-sang/"}
 </script>
 <style data-nb93fix="008:t3a1">
 /*NB93-FIX-008:t3a1 SDT 0034567899 + dia chi vui + map pool NB93-MAP (worker A1)*/
@@ -1260,8 +1270,8 @@ button:active{transform:scale(.96)}
           <thead><tr><th>Số phần</th><th>Đơn giá / người</th><th>Ưu đãi</th></tr></thead>
           <tbody>
             <tr data-tier="4"><td>4 – 9 phần</td><td><b id="t1">25K</b></td><td>—</td></tr>
-            <tr data-tier="10"><td>10 – 19 phần</td><td><b id="t2">24K</b></td><td>giảm 5%</td></tr>
-            <tr data-tier="20"><td>Từ 20 phần</td><td><b id="t3">23K</b></td><td>giảm 10%</td></tr>
+            <tr data-tier="10"><td>10 – 19 phần</td><td><b id="t2">23,8K</b></td><td>giảm 5%</td></tr>
+            <tr data-tier="20"><td>Từ 20 phần</td><td><b id="t3">22,5K</b></td><td>giảm 10%</td></tr>
           </tbody>
         </table>
         <div class="res-total">
@@ -1346,14 +1356,14 @@ button:active{transform:scale(.96)}
       <h2 class="block-title" style="margin-top:14px">Xếp hàng kiểu cũ <span class="hl">và cách Bát Sáng làm</span></h2>
       <span class="block-sub">Buổi sáng quý từng phút — đặt qua máy thì phần của bạn đã nằm sẵn hàng đầu trước khi bạn tới.</span>
     </div>
-    <div class="ba-stage rv" id="baStage">
-      <div class="bscene" style="background:linear-gradient(150deg,#2C6B47,#12301F)"><div class="bs-art"><svg viewBox="0 0 260 150"><ellipse cx="130" cy="132" rx="100" ry="8" fill="rgba(0,0,0,.28)"/><rect x="70" y="52" width="120" height="66" rx="10" fill="#E8E2D5"/><rect x="70" y="52" width="120" height="20" rx="10" fill="#F7A11B"/><circle cx="196" cy="96" r="14" fill="#FFF" stroke="#7FD69A" stroke-width="5"/><path d="M191 96l4 4 8-8" stroke="#2C6B47" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div><div class="bs-chip">Bát Sáng — báo tên, 60 giây nhận ngay</div></div>
-      <div class="bfix-panel bfix-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Xếp hàng 10 – 15 phút buổi cao điểm, may ra may còn phần thích</span><b>TRƯỚC</b></div>
+    <div class="ba-stage rv" id="baStage"><!--NB93-FIX-S008:t5k2ba — 2 art khác biệt rõ theo khuôn S001: TRƯỚC hộp nguội xám vs SAU bánh nóng ấm khói; bỏ panel .bfix-panel nhân bản art nằm ngoài stage-->
+      <div class="bscene" style="background:linear-gradient(150deg,#57503F,#2E2A1F)"><div class="bs-art"><svg viewBox="0 0 260 150"><ellipse cx="130" cy="132" rx="100" ry="8" fill="rgba(0,0,0,.28)"/><rect x="64" y="62" width="132" height="56" rx="10" fill="#DED9CC"/><rect x="64" y="50" width="132" height="24" rx="10" fill="#B5AE9D"/><path d="M92 104h76" stroke="#A79F8D" stroke-width="6" stroke-linecap="round"/><path d="M86 84q10-8 20 0t20 0 20 0 20 0" stroke="#C9C2B2" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M112 34q-6-9 0-18M132 36q-6-9 0-18" stroke="#8FA6BC" stroke-width="4" fill="none" stroke-linecap="round" opacity=".75"/></svg></div><div class="bs-chip">Kiểu cũ — chờ 10 – 15 phút, bánh nguội trong hộp</div></div>
+      <div class="ba-after"><div class="bscene after" style="background:linear-gradient(150deg,#8A4A12,#3B1D08)"><div class="bs-art"><svg viewBox="0 0 260 150"><ellipse cx="130" cy="133" rx="102" ry="9" fill="rgba(0,0,0,.35)"/><path d="M88 36q-12-16 0-30" stroke="#FFFFFFEE" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M128 30q12-16 0-30" stroke="#FFFFFFCC" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M168 36q-12-16 0-30" stroke="#FFFFFFEE" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="58" y="88" width="144" height="34" rx="9" fill="#F7F1E3"/><path d="M64 92q0-26 30-30l84 0q26 4 26 30q0 12-26 12l-88 0q-26 0-26-12z" fill="#E8A25D"/><path d="M70 90q0-20 26-24" stroke="#F6C98A" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="122" cy="80" rx="22" ry="9" fill="#D96A2B"/><circle cx="176" cy="82" r="5" fill="#4C9A2A"/><circle cx="188" cy="80" r="5" fill="#58B368"/><circle cx="196" cy="96" r="14" fill="#FFF" stroke="#FFB84D" stroke-width="5"/><path d="M190 96l4 4 9-9" stroke="#C96A12" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div><div class="bs-chip">Bát Sáng — báo tên, 60 giây nhận bánh nóng hổi</div></div></div>
       <span class="ba-label l">Kiểu cũ — xếp hàng, không chắc còn phần</span>
       <span class="ba-label r">Bát Sáng — đặt qua máy, tới là nhận</span>
       <div class="ba-handle" id="baHandle"></div>
     </div>
-    <p class="ba-cap">Minh hoạ cùng một phần bánh mì — bên trái mô phỏng cách mua truyền thống buổi cao điểm 7:15.</p>
+    <p class="ba-cap">Kéo thanh chia để so hội bánh mì buổi cao điểm 7:15 — bên trái cách mua kiểu cũ, bên phải cách Bát Sáng giữ bánh nóng tới tay.</p>
   </div>
 </section>
 
@@ -1503,7 +1513,7 @@ button:active{transform:scale(.96)}
       <div class="ct-info rv">
         <div class="ct-item">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
-          <span><b>Quầy 1 — Xôi Nóng</b><span>24 Hẻm Xôi Nóng, P. Mơ Sớm, Q. Sáng Vui, TP. Cơm Nóng • 5:45 – 10:30</span></span>
+          <span><b>Quầy 1 — Xôi Nóng</b><span>88 Hẻm Gà Gáy, P. Bình Minh, Q. Sáng Vui, TP. Cơm Nóng • 5:45 – 10:30</span></span><!--NB93-FIX-S008:t5k2id — thống nhất địa chỉ theo cover "88 Hẻm Gà Gáy, Phường Bình Minh"-->
         </div>
         <div class="ct-item">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
@@ -1514,7 +1524,7 @@ button:active{transform:scale(.96)}
           <span><b>Hotline đặt món &amp; đặt hộp</b><a href="tel:0034567899" style="color:#FFC961;font-weight:800;font-size:17px">0034 567 899</a></span>
         </div>
         <div class="map-box">
-          <!--NB93-MAP: 11.9417,108.4400--><iframe src="https://maps.google.com/maps?q=11.9417,108.4400&z=13&output=embed" loading="lazy" title="Bản đồ quán Bát Sáng" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <!--NB93-FIX-S008:t5k2id — iframe map trỏ đúng địa chỉ quán (trước đây là toạ độ Tây Nguyên lạ) --><iframe src="https://maps.google.com/maps?q=88+H%E1%BA%BBm+G%C3%A0+G%C3%A1y%2C+P.+B%C3%ACnh+Minh%2C+Q.+S%C3%A1ng+Vui%2C+TP.+C%C6%A1m+N%C3%B3ng&z=15&output=embed&hl=vi" loading="lazy" title="Bản đồ quán Bát Sáng" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
       <form class="ct-form rv" data-d="1" id="ctForm">
@@ -1606,7 +1616,7 @@ button:active{transform:scale(.96)}
       <div>
         <h4>2 quầy Bát Sáng</h4>
         <ul class="ft-contact">
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg>24 Hẻm Xôi Nóng, P. Mơ Sớm, Q. Sáng Vui — 5:45 – 10:30</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg>88 Hẻm Gà Gáy, P. Bình Minh, Q. Sáng Vui — 5:45 – 10:30</li><!--NB93-FIX-S008:t5k2id-->
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg>112 Phố Bánh Bao, P. Mơ Sớm, Q. Sáng Vui — 5:45 – 10:30</li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:0034567899">0034 567 899 — gọi là bếp nghe ngay</a></li>
         </ul>
@@ -1626,7 +1636,7 @@ button:active{transform:scale(.96)}
   <a href="#dat-lai" aria-label="Đặt qua máy"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.8.5-1.3 1-1.3 1.9M12 17h.01"/></svg><span class="dd-tip">Đặt qua máy</span></a>
   <button id="dockCart" aria-label="Giỏ hàng"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L22 6H5.12"/></svg><span class="dd-tip">Giỏ của bạn</span></button>
   <a href="tel:0034567899" aria-label="Gọi quán"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="dd-tip">Gọi 0034 567 899</span></a>
-  <a href="https://maps.google.com/maps?q=Dinh+Cong+Ha+Hoang+Mai+Ha+Noi" target="_blank" rel="noopener" aria-label="Chỉ đường"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span class="dd-tip">Chỉ đường tới quầy</span></a>
+  <a href="https://maps.google.com/maps?q=88+Hem+Ga+Gay+P.+Binh+Minh+Q.+Sang+Vui+TP.+Com+Nong" target="_blank" rel="noopener" aria-label="Chỉ đường"><!--NB93-FIX-S008:t5k2id — Chỉ đường trỏ đúng địa chỉ quán, hết dẫn tới Đình Công Hà Nội--><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4-3 8-6.5 8-12a8 8 0 0 0-16 0c0 5.5 4 9 8 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span class="dd-tip">Chỉ đường tới quầy</span></a>
 </div>
 
 <!-- ============ OVERLAY + CART DRAWER ============ -->
@@ -1989,9 +1999,11 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     if (document.getElementById('extraQuay').checked) extra += 3;
     if (document.getElementById('extraSua').checked) extra += 8;
     const ship = +document.getElementById('calcShip').value;
-    document.getElementById('t1').textContent = set + 'K';
-    document.getElementById('t2').textContent = Math.round(set * .95) + 'K';
-    document.getElementById('t3').textContent = Math.round(set * .9) + 'K';
+    /* NB93-FIX-S008:t5k2tier — bảng tier khớp quote: 35K×90% = 31,5K (hiện 31,5K thay vì làm tròn 32K lệch với tổng tiền) */
+    const kLabel = v => { const r = Math.round(v * 10) / 10; return (r % 1 ? r.toFixed(1).replace('.', ',') : r) + 'K'; };
+    document.getElementById('t1').textContent = kLabel(set);
+    document.getElementById('t2').textContent = kLabel(set * .95);
+    document.getElementById('t3').textContent = kLabel(set * .9);
     document.querySelectorAll('.res-table tr[data-tier]').forEach(tr => tr.classList.remove('hit'));
     document.querySelector('.res-table tr[data-tier="' + [4, 10, 20][tierOf(n)] + '"]').classList.add('hit');
     const perHead = set + extra;
@@ -2172,12 +2184,14 @@ document.getElementById('specTabs').addEventListener('click', e => {
 
 /* ================= CART ================= */
 let CART = [];
-function addToCart(item){
+/* NB93-FIX-S008:t5k2qv — addToCart nhận qty để nối quick-view đúng số lượng (chọn 3 phần thì giỏ nhận 3) */
+function addToCart(item, qty){
+  const q = Math.max(1, Math.min(500, parseInt(qty, 10) || 1));
   const ex = CART.find(x => x.id === item.id);
-  if (ex) ex.qty++;
-  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:1});
+  if (ex) ex.qty += q;
+  else CART.push({id:item.id, n:item.n, p:item.p, img:item.img || '', qty:q});
   renderCart();
-  toast('Đã thêm "' + item.n + '" vào giỏ');
+  toast('Đã thêm "' + item.n + '" × ' + q + ' vào giỏ');
 }
 function renderCart(){
   const itemsEl = document.getElementById('drItems');
@@ -2269,8 +2283,9 @@ document.getElementById('qvClose').addEventListener('click', closeQV);
 qv.addEventListener('click', e => { if (e.target === qv) closeQV(); });
 document.getElementById('qvMinus').addEventListener('click', () => { qvQty = Math.max(1, qvQty - 1); qvTotalRender(); });
 document.getElementById('qvPlus').addEventListener('click', () => { qvQty = Math.min(500, qvQty + 1); qvTotalRender(); });
-document.getElementById('qvAdd').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}); closeQV(); });
-document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}); closeQV(); openCart(); });
+/* NB93-FIX-S008:t5k2qv — quick-view truyền đúng số lượng khách đã chọn */
+document.getElementById('qvAdd').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}, qvQty); closeQV(); });
+document.getElementById('qvBuyNow').addEventListener('click', () => { addToCart({...qvItem, p:tierPrice(qvItem.p, qvQty)}, qvQty); closeQV(); openCart(); });
 
 /* ================= DOCK ================= */
 const dock = document.getElementById('dock');
@@ -2281,10 +2296,12 @@ new IntersectionObserver(es => {
 /* ================= SEARCH ================= */
 document.getElementById('searchBtn').addEventListener('click', doSearch);
 document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+/* NB93-FIX-S008:t5k2search — tìm bỏ dấu: "pho" ra "Phở", "banh mi" ra "bánh mì" (so sánh NFD gạch dấu + đ→d) */
+const bSearch = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
 function doSearch(){
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const q = bSearch(document.getElementById('searchInput').value.trim());
   if (!q) return;
-  const hits = P.filter(p => (p.n + ' ' + p.d).toLowerCase().includes(q));
+  const hits = P.filter(p => bSearch(p.n + ' ' + p.d).includes(q));
   if (hits.length) {
     document.getElementById('menu').scrollIntoView({behavior:'smooth'});
     toast('Tìm thấy ' + hits.length + ' phần khớp "' + q + '" — xem trong menu buổi sáng');
@@ -2494,4 +2511,44 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
     if(mapsLink){mapsLink.href='https://www.google.com/maps/search/?api=1&query='+q;mapsLink.style.display='inline-block';}
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
+})();</script>
+<script>/* NB93-FIX-S008:t5k2ckval — checkout trống không im lặng nữa: thiếu Tên/SĐT bấm Gửi → tô đỏ ô + nhắc tên ô, KHÔNG gửi; đủ thông tin mới chạy luồng NGHE-15 như cũ */
+(function(){
+  var panel=document.querySelector('[data-nghe-checkout-bake="1"]');
+  if(!panel)return;
+  var sub=panel.querySelector('[data-nghe-order-submit]');
+  var hint=panel.querySelector('[data-nghe-checkout-hint]');
+  var nameI=panel.querySelector('[data-nghe-order=name]');
+  var phoneI=panel.querySelector('[data-nghe-order=phone]');
+  function missing(){
+    var m=[];
+    if(!nameI.value.trim())m.push('Họ và tên');
+    if(!phoneI.value.trim())m.push('Số điện thoại');
+    return m;
+  }
+  function paint(m){
+    nameI.style.borderColor=(m.indexOf('Họ và tên')>-1)?'#D42B1F':'';
+    phoneI.style.borderColor=(m.indexOf('Số điện thoại')>-1)?'#D42B1F':'';
+    if(m.length){hint.style.display='block';hint.style.color='#D42B1F';hint.textContent='Thiếu '+m.join(' và ')+' — điền đủ để quán gọi lại xác nhận nhé';}
+    else{hint.style.display='none';}
+  }
+  /* giữ nút bấm được (không còn disabled-lặng im) nhưng mờ đi khi thiếu thông tin */
+  function unlock(){
+    if(sub.getAttribute('data-sent')==='1'){sub.style.opacity='';return;}
+    if(sub.disabled){sub.removeAttribute('disabled');sub.setAttribute('aria-disabled','true');sub.style.opacity='0.55';}
+    else{sub.removeAttribute('aria-disabled');}
+  }
+  [nameI,phoneI].forEach(function(i){
+    i.addEventListener('input',function(){setTimeout(unlock,0);paint(missing());});
+  });
+  /* window capture chặn TRƯỚC handler "mark sent" của bake khi còn thiếu thông tin */
+  window.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest||!t.closest('[data-nghe-order-submit]'))return;
+    if(sub.getAttribute('data-sent')==='1')return;
+    var m=missing();
+    if(m.length){ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();paint(m);}
+  },true);
+  unlock();
+  new MutationObserver(unlock).observe(sub,{attributes:true,attributeFilter:['disabled']});
 })();</script>

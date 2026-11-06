@@ -800,6 +800,21 @@ img{height:auto!important;max-height:560px;object-fit:cover}
   #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
 }
 </style>
+<style data-nb93fix="S134:t5k7ba">
+/*NB93-FIX-S134:t5k7ba — art trước/sau phóng to chiếm khung (viewBox đã crop vào vùng nội dung): hết cảnh nền trống lớn*/
+.ba-layer{padding:14px}
+.ba-layer svg{width:100%;height:auto;filter:none}
+</style>
+<style data-nb93fix="S134:t5k7cal">
+/*NB93-FIX-S134:t5k7cal — panel thông số: phủ lớp tối lên hoạ tiết gạch, chữ đủ tương phản; bảng kết quả mobile cuộn ngang thấy đủ cột Thành tiền, CTA luôn nhìn thấy*/
+.cal-form{background-image:linear-gradient(rgba(13,18,25,.9),rgba(13,18,25,.93)),var(--brick);background-size:auto,52px}
+.cal-form>p{color:#AEBBCB}
+.cal-res{overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-y:hidden}
+.cal-res>.res-tbl{min-width:520px}
+.res-hint{display:none;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:var(--soft);margin:2px 0 6px}
+.res-hint svg{width:14px;height:14px;flex:none;color:var(--accent)}
+@media (max-width:664px){.res-hint{display:flex}}
+</style>
 </head>
 <body><!--NB93-FIX-134:t3b3hl-addr-map-->
 
@@ -956,7 +971,8 @@ img{height:auto!important;max-height:560px;object-fit:cover}
     <div class="svc-grid">
       <article class="svc dark rv" data-d="0">
         <div class="svc-img">
-          <img src="assets/img/space.webp" alt="Xe tải chở vật liệu xây dựng vào công trình" loading="lazy" width="1280" height="720">
+          <!--NB93-FIX-S134:t5k7img — đổi từ space.webp (poster văn phòng, trùng hệt card 2) sang p3.webp (cát đá + băng giao hàng)-->
+          <img src="assets/img/p3.webp" alt="Xe tải chở vật liệu xây dựng vào công trình" loading="lazy" width="1280" height="720">
           <span class="svc-badge">Điểm mạnh số 1</span>
           <div class="svc-price">Từ 0đ<small>miễn phí ≤ 5km</small></div>
         </div>
@@ -1329,7 +1345,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
     </div>
     <div class="ba rv" id="ba">
       <div class="ba-layer ba-before-scene" aria-hidden="true">
-        <svg viewBox="0 0 560 300" role="img" aria-label="Bãi vật liệu lộn xộn — bao rách, cát không ván chắn, thép vứt chéo, xe chất lệch">
+        <svg viewBox="0 58 560 242" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bãi vật liệu lộn xộn — bao rách, cát không ván chắn, thép vứt chéo, xe chất lệch">
           <rect x="0" y="206" width="560" height="94" fill="#382217"/>
           <rect x="0" y="206" width="560" height="7" fill="#462C1E"/>
           <path d="M56 244q28 12 18 34M468 238q24 16 12 38" stroke="#27150C" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -1371,7 +1387,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
         <span class="ba-flag f1">Trước</span>
       </div>
       <div class="ba-layer ba-after-scene ba-after" aria-hidden="true">
-        <svg viewBox="0 0 560 300" role="img" aria-label="Bãi vật liệu xếp chuẩn — lô cát đá có ván chắn, bao xếp pallet, thép bó thẳng, xe nâng bốc hàng">
+        <svg viewBox="0 46 560 254" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bãi vật liệu xếp chuẩn — lô cát đá có ván chắn, bao xếp pallet, thép bó thẳng, xe nâng bốc hàng">
           <rect x="0" y="206" width="560" height="94" fill="#16371F"/>
           <rect x="0" y="206" width="560" height="7" fill="#1E4A2A"/>
           <path d="M240 244h280" stroke="#1E4A2A" stroke-width="4" stroke-linecap="round" stroke-dasharray="14 12"/>
@@ -2410,3 +2426,10 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<script>
+/*NB93-FIX-S134:t5k7cal — chèn hint vuốt cho bảng vật liệu (chỉ mobile qua CSS)*/
+document.querySelectorAll(".cal-res > .res-tbl").forEach(function(t){
+  if(t.nextElementSibling&&t.nextElementSibling.classList.contains("res-hint"))return;
+  t.insertAdjacentHTML("afterend",'<div class="res-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8m0 0-4-4m4 4-4 4"/></svg>Vuốt ngang để xem đủ cột thành tiền</div>');
+});
+</script>

@@ -443,6 +443,10 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
 .rv-el{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
 .rv-el.on{opacity:1;transform:none}
 /* responsive 1080 */
+/*NB93-FIX-S027:t5k5mnav — nav mobile cuộn ngang, hiện từ 1080px xuống (hdr-nav ẩn từ breakpoint này)*/
+.hdr-mnav{display:none;gap:8px;overflow-x:auto;padding:2px 20px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hdr-mnav::-webkit-scrollbar{display:none}
+.hdr-mnav a{flex:none;padding:8px 14px;border-radius:999px;font-weight:800;font-size:.86rem;white-space:nowrap;background:rgba(255,255,255,.9);border:1.5px solid var(--line);color:var(--primary-deep)}
 @media(max-width:1080px){
   .hero h1{font-size:2.5rem}
   .hero-grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -452,6 +456,7 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
   .about-grid{grid-template-columns:1fr;gap:36px}
   .about-media img{aspect-ratio:16/10}
   .hdr-nav{display:none}
+  .hdr-mnav{display:flex}
   .ft-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:34px}
   /*NB93-027: tablet 2 cot — hero 1 hang day du, 8 the con = 4 hang kin*/
@@ -604,6 +609,7 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
       </button>
     </div>
   </div>
+<nav class="hdr-mnav" aria-label="Điều hướng mobile"><!--NB93-FIX-S027:t5k5mnav--><a href="#vi-theo-mon">Vị theo món</a><a href="#san-pham">Sạp hôm nay</a><a href="#si">Mua sỉ</a><a href="#ghe-tham">Ghé sạp</a><a href="#faq">Hỏi đáp</a></nav>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -708,7 +714,7 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
       <span class="sec-sub">Chọn món, xem đủ vị trong nồi, bấm thêm giỏ. Từng vị cân riêng, dán nhãn tên món — khỏi đo lường khi nấu.</span>
     </div>
     <div class="combo-tabs rv-el" role="tablist" aria-label="Chọn combo theo món">
-      <button class="combo-tab on" data-combo="pho" role="tab" aria-selected="true">🍜 <b>Nấu phở — đủ vị phở bắc</b><span class="pz">82k</span></button>
+      <button class="combo-tab on" data-combo="pho" data-search="phở pho nồi phở đủ vị gia vị phở bắc quế hồi thảo quả gừng hành nướng" role="tab" aria-selected="true">🍜 <b>Nấu phở — đủ vị phở bắc</b><span class="pz">82k</span></button>
       <button class="combo-tab" data-combo="lau" role="tab" aria-selected="false">🍲 <b>Nấu lẩu — chua cay Thái</b><span class="pz">81k</span></button>
       <button class="combo-tab" data-combo="kho" role="tab" aria-selected="false">🥘 <b>Nấu kho — đậm đà Nam Bộ</b><span class="pz">67k</span></button>
     </div>
@@ -856,7 +862,7 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
     </div>
     <div class="g8-note rv-el"><span id="g8Count"><b>9</b> ô hàng trên sạp</span></div>
     <div class="g8-grid" id="g8Grid">
-      <article class="g8-card g8-hero" data-pid="p8">
+      <article class="g8-card g8-hero" data-pid="p8" data-search="hộp quà biếu tặng tết quà tặng gia vị bánh cookie chocolate hạt rang trà hoa">
         <div class="g8-media"><img src="assets/img/p8.webp" alt="Hộp quà khô và gia vị biếu tặng" loading="lazy"><span class="g8-tag hl">🎁 Quà biếu sang trọng</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p8">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p8">＋ Thêm giỏ</button></div>
         </div>
@@ -868,49 +874,49 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
           <span class="p-tier">Mua 5 hộp chỉ 549.000đ/hộp · thiệp ghi tên miễn phí</span>
         </div>
       </article>
-      <article class="g8-card" data-pid="p1">
+      <article class="g8-card" data-pid="p1" data-search="set nấu món hàn gochujang ramen rong biển gia vị hàn quốc">
         <div class="g8-media"><img src="assets/img/p1.webp" alt="Set gia vị và mì nấu món Hàn" loading="lazy"><span class="g8-tag">🇰🇷 Vị Hàn</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p1">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p1">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Lô Hàn nhập khách T7</span><span class="g8-name">Set nấu món Hàn: gochujang, ramen, rong biển</span>
           <div class="p-price"><b>259.000đ</b><span>/ bộ</span></div><span class="p-tier">Mua 5 bộ chỉ 239.000đ/bộ</span></div>
       </article>
-      <article class="g8-card" data-pid="p2">
+      <article class="g8-card" data-pid="p2" data-search="set gia vị nhật dashi miso xì dầu nấu món nhật">
         <div class="g8-media"><img src="assets/img/p2.webp" alt="Set gia vị Nhật: dashi, miso, xì dầu" loading="lazy"><span class="g8-tag">🇯🇵 Vị Nhật</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p2">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p2">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Hàng Nhật · date mới</span><span class="g8-name">Set gia vị Nhật: dashi – miso – xì dầu</span>
           <div class="p-price"><b>289.000đ</b><span>/ bộ</span></div><span class="p-tier">Mua 5 bộ chỉ 269.000đ/bộ</span></div>
       </article>
-      <article class="g8-card" data-pid="p3">
+      <article class="g8-card" data-pid="p3" data-search="combo gia vị lẩu thái tom yum cà ri cốt dừa nấu lẩu">
         <div class="g8-media"><img src="assets/img/p3.webp" alt="Combo gia vị nấu lẩu Thái: tom yum, cà ri, nước cốt dừa" loading="lazy"><span class="g8-tag">🌶 Vị Thái</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p3">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p3">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Nhập Thái chính ngạch</span><span class="g8-name">Combo gia vị lẩu Thái: tom yum – cà ri – cốt dừa</span>
           <div class="p-price"><b>129.000đ</b><span>/ bộ</span></div><span class="p-tier">Mua 5 bộ chỉ 119.000đ/bộ</span></div>
       </article>
-      <article class="g8-card" data-pid="p4">
+      <article class="g8-card" data-pid="p4" data-search="mì Ý pasta sốt Ý dầu ô liu nấu món ý">
         <div class="g8-media"><img src="assets/img/p4.webp" alt="Mì ống, dầu ô liu và sốt nấu món Ý" loading="lazy"><span class="g8-tag">🇮🇹 Vị Ý</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p4">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p4">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Mì Ý + sốt khô Ý</span><span class="g8-name">Mì ống &amp; sốt nấu món Ý tại nhà</span>
           <div class="p-price"><b>189.000đ</b><span>/ bộ</span></div><span class="p-tier">Mua 5 bộ chỉ 175.000đ/bộ</span></div>
       </article>
-      <article class="g8-card" data-pid="p5">
+      <article class="g8-card" data-pid="p5" data-search="bánh kẹo nhập khẩu Âu Mỹ hộp quà ngọt">
         <div class="g8-media"><img src="assets/img/p5.webp" alt="Bánh kẹo nhập khẩu đóng hộp quà" loading="lazy"><span class="g8-tag">🎁 Vị ngọt</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p5">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p5">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Bánh kẹo Âu – Mỹ</span><span class="g8-name">Bánh kẹo nhập khẩu đóng hộp quà</span>
           <div class="p-price"><b>175.000đ</b><span>/ hộp 500g</span></div><span class="p-tier">Mua 10 hộp chỉ 165.000đ/hộp</span></div>
       </article>
-      <article class="g8-card" data-pid="p6">
+      <article class="g8-card" data-pid="p6" data-search="nước ép trà cà phê cold brew đồ uống khát">
         <div class="g8-media"><img src="assets/img/p6.webp" alt="Đồ uống nhập khẩu: nước ép, trà, cà phê" loading="lazy"><span class="g8-tag">🥤 Khát lành</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p6">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p6">＋ Thêm giỏ</button></div>
         </div>
         <div class="g8-body"><span class="g8-src">📍 Nước ép – trà – cold brew</span><span class="g8-name">Set 6 chai đồ uống nhập khẩu</span>
           <div class="p-price"><b>245.000đ</b><span>/ set 6 chai</span></div><span class="p-tier">Mua 5 set chỉ 229.000đ/set</span></div>
       </article>
-      <article class="g8-card" data-pid="p7">
+      <article class="g8-card" data-pid="p7" data-search="ngũ cốc hạt hữu cơ granola yến mạch cân theo gram ăn sáng">
         <div class="g8-media"><img src="assets/img/p7.webp" alt="Ngũ cốc và hạt hữu cơ cân theo gram" loading="lazy"><span class="g8-tag">🌱 Hữu cơ</span>
           <div class="g8-quick"><button class="qk-btn" data-qv="p7">👁 Xem nhanh</button><button class="qk-btn accent" data-add="p7">＋ Thêm giỏ</button></div>
         </div>
@@ -1254,7 +1260,7 @@ footer.site{background:var(--primary-deep);color:#D8C4A4;padding:64px 0 0}
     <div class="dr-line"><span>Tạm tính</span><span id="subEl">0đ</span></div>
     <div class="dr-line disc"><span>Ưu đãi tự động</span><span id="discEl">0đ</span></div>
     <div class="dr-line"><span>Phí giao</span><span id="shipEl">—</span></div>
-    <div class="dr-total"><span>TỔNG CỘT</span><b id="totEl">0đ</b></div>
+    <div class="dr-total"><span>TỔNG CỘNG</span><b id="totEl">0đ</b></div>
     <button class="btn btn-accent btn-block" id="checkoutBtn" style="margin-top:14px">Đặt vị — xác nhận trong 15 phút</button>
   </div>
 </aside>
@@ -1413,8 +1419,10 @@ document.addEventListener('click',function(e){
   else if(t.dataset.dec!==undefined){var it=cart[+t.dataset.dec];it.qty--;if(it.qty<1)cart.splice(+t.dataset.dec,1);updateCart()}
   else if(t.dataset.rm!==undefined){cart.splice(+t.dataset.rm,1);updateCart()}
 });
-function openDrawer(){$('#cartDrawer').classList.add('on');$('#overlay').classList.add('on');document.body.style.overflow='hidden'}
-function closeDrawer(){$('#cartDrawer').classList.remove('on');$('#overlay').classList.remove('on');document.body.style.overflow=''}
+function openDrawer(){$('#cartDrawer').classList.add('on');$('#overlay').classList.add('on');document.body.style.overflow='hidden';toastLift27()}
+/*NB93-FIX-S027:t5k5toastlift — đẩy toast lên trên footer drawer, không đè dòng tiền*/
+function toastLift27(){var f=$('.dr-foot');if(f&&toastBox)toastBox.style.bottom=(f.offsetHeight+34)+'px'}
+function closeDrawer(){$('#cartDrawer').classList.remove('on');$('#overlay').classList.remove('on');document.body.style.overflow='';if(toastBox)toastBox.style.bottom='22px'}
 $('#cartBtn').addEventListener('click',openDrawer);
 $('#fabCart').addEventListener('click',openDrawer);
 $('#drawerClose').addEventListener('click',closeDrawer);
@@ -1471,26 +1479,56 @@ $$('.wchips').forEach(function(box){
 });
 
 /* ---------- SEARCH FILTER (khoi-8) ---------- */
+/*NB93-FIX-S027:t5k5search — data-search + bỏ dấu (NFD), khớp cả combo phở/lẩu/kho, đếm động, toast phản hồi khi gõ*/
 var g8Cards=$$('#g8Grid [data-pid]');
+var s27Tabs=$$('.combo-tab');
+var s27Timer=null,s27Q='',s27Res={g:0,c:0};
+function deacc27(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\u0111/g,'d')}
 function applySearch(){
-  var q=$('#hdrSearchInput').value.trim().toLowerCase();
-  var hits=0;
+  var raw=$('#hdrSearchInput').value.trim();
+  var q=deacc27(raw);
+  var hits=0,comboHits=0;
   g8Cards.forEach(function(c){
-    var show=!q||c.textContent.toLowerCase().indexOf(q)>-1;
+    var hay=deacc27((c.getAttribute('data-search')||'')+' '+c.textContent);
+    var show=!q||hay.indexOf(q)>-1;
     c.style.display=show?'':'none';
     if(show)hits++;
   });
-  $('#g8Count').innerHTML=q?('Tìm <b>"'+q.replace(/</g,'&lt;')+'"</b>: '+hits+'/9 mặt hàng khớp'):'<b>9</b> ô hàng trên sạp';
-  $('#g8Empty').classList.toggle('show',hits===0);
-  return hits;
+  s27Tabs.forEach(function(t){
+    var hay=deacc27((t.getAttribute('data-search')||'')+' '+t.textContent);
+    if(q&&hay.indexOf(q)>-1)comboHits++;
+  });
+  s27Res={g:hits,c:comboHits};
+  var total=hits+comboHits;
+  $('#g8Count').innerHTML=q?('Tìm <b>"'+raw.replace(/</g,'&lt;')+'"</b>: '+total+' mặt hàng khớp'):'<b>9</b> ô hàng trên sạp';
+  var emptyEl=$('#g8Empty');
+  emptyEl.classList.toggle('show',total===0);
+  if(q)emptyEl.innerHTML=(hits===0&&comboHits>0)?('Trên sạp không có, nhưng <b>khối "Ghép vị theo món"</b> có '+comboHits+' combo khớp — cuộn nhẹ lên xem nhé'):'Không có mặt hàng nào khớp từ khóa — gọi <b>0034 567 899</b> để sạp tìm hàng, lô mới về thứ 4 &amp; thứ 7.';
+  return total;
 }
 $('#hdrSearch').addEventListener('submit',function(e){
   e.preventDefault();
   var hits=applySearch();
-  toast('Tìm thấy <b>'+hits+'/9</b> mặt hàng khớp',hits?'Xem kết quả ở khối Sạp hôm nay':'Gọi 0034 567 899 để sạp tìm hàng giúp');
-  if(hits)$('#san-pham').scrollIntoView({behavior:'smooth'});
+  toast('Tìm thấy <b>'+(s27Res.g+s27Res.c)+'</b> mặt hàng khớp',hits?'Xem kết quả ở khối Sạp hôm nay':'Gọi 0034 567 899 để sạp tìm hàng giúp');
+  if(s27Res.g)$('#san-pham').scrollIntoView({behavior:'smooth'});
+  else if(s27Res.c)$('#vi-theo-mon').scrollIntoView({behavior:'smooth'});
 });
-$('#hdrSearchInput').addEventListener('input',applySearch);
+$('#hdrSearchInput').addEventListener('input',function(){
+  applySearch();
+  clearTimeout(s27Timer);
+  var self=this;
+  s27Timer=setTimeout(function(){
+    var q=self.value.trim();
+    if(q&&q!==s27Q){
+      var t=deacc27(q),n=0;
+      g8Cards.forEach(function(c){if(deacc27((c.getAttribute('data-search')||'')+' '+c.textContent).indexOf(t)>-1)n++});
+      s27Tabs.forEach(function(x){if(deacc27((x.getAttribute('data-search')||'')+' '+x.textContent).indexOf(t)>-1)n++});
+      toast('Tìm thấy <b>'+n+'</b> mặt hàng khớp "'+q+'"','Đang lọc kệ khi gõ — Enter để nhảy tới kết quả');
+      s27Q=q;
+    }
+    if(!q)s27Q='';
+  },500);
+});
 
 /* ---------- QUICK VIEW ---------- */
 var qvPid=null,qvQtyV=1;

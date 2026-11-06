@@ -583,6 +583,18 @@ footer.site{background:var(--primary-deep);color:#AFC9BB;padding:56px 0 0}
 img{height:auto!important;max-height:560px;object-fit:cover}
 /* Khối nổi bật luôn to gấp đôi */
 [class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
+
+/*NB93-FIX-S040:t5k5giatret — bảng giá sạp HTML gọn đẹp (thay giấy note vẽ tay)*/
+.price-board{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px 26px;box-shadow:var(--sh-2,0 10px 28px rgba(7,34,27,.10));max-width:760px;margin:0 auto}
+.price-board .pb-title{font-size:1.3rem;font-weight:900;color:var(--primary-deep);text-align:center;margin-bottom:14px}
+.price-board .pb-title em{font-style:normal;color:var(--accent-deep,#E86A1D)}
+.pb-table{width:100%;border-collapse:collapse;font-size:.95rem;background:#fff;border-radius:12px;overflow:hidden}
+.pb-table th{background:var(--primary-deep);color:#fff;font-weight:800;padding:10px 14px;text-align:left}
+.pb-table td{padding:11px 14px;border-top:1.4px solid var(--line);font-weight:600;color:var(--ink);vertical-align:top}
+.pb-table tr:nth-child(even) td{background:var(--texture-2,#F2F7F1)}
+.pb-table .num b{color:#D42B1F;font-size:1.05rem;white-space:nowrap}
+.price-board .pb-note{margin:12px 0 0;font-size:.85rem;font-weight:600;color:var(--soft);text-align:center}
+@media(max-width:680px){.price-board{padding:16px 14px}.price-board .pb-title{font-size:1.02rem}.pb-table th,.pb-table td{padding:9px 10px;font-size:.85rem}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -873,7 +885,19 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 <!-- ============ BẢNG GIÁ SẠP HÔM NAY ============ -->
 <section style="padding:38px 0 8px;background:transparent">
   <div class="wrap" style="max-width:1000px">
-    <div class="promo-board rv-el"><span class="b-tape"></span><div class="b-title">GIÁ SẠP HÔM NAY — <em>bảng treo tại kệ</em></div><div class="promo-grid"><div class="b-line"><span class="dot"></span><span class="what">Thùng mì 24 gói</span><span class="val">135K</span><span class="how">8 – 10 loại đổi đợt</span></div><div class="b-line"><span class="dot"></span><span class="what">Bia &amp; nước thùng 24 lon</span><span class="val">245K</span><span class="how">đá lạnh sẵn</span></div><div class="b-line"><span class="dot"></span><span class="what">Trứng gà ta</span><span class="val">35K</span><span class="how">mỗi chục 10 quả</span></div><div class="b-line"><span class="dot"></span><span class="what">Freeship nội khu</span><span class="val">từ 150K</span><span class="how">Bình An &amp; lõi 2km</span></div></div><svg class="b-arrow" viewBox="0 0 90 60" fill="none"><path d="M6 8q30 44 70 40" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M60 34l18 12-22 6" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="price-board rv-el"><!--NB93-FIX-S040:t5k5giatret — bảng giá HTML niêm yết thay mock vẽ tay (không thêm ảnh mới)-->
+      <div class="pb-title">GIÁ SẠP HÔM NAY — <em>bảng niêm yết tại kệ</em></div>
+      <table class="pb-table">
+        <thead><tr><th>Mặt hàng</th><th>Giá</th><th>Ghi chú</th></tr></thead>
+        <tbody>
+          <tr><td>Thùng mì 24 gói</td><td class="num"><b>135K</b></td><td>8 – 10 loại, đổi đợt theo hàng về</td></tr>
+          <tr><td>Bia &amp; nước — thùng 24 lon</td><td class="num"><b>245K</b></td><td>kèm đá lạnh sẵn</td></tr>
+          <tr><td>Trứng gà ta</td><td class="num"><b>35K</b></td><td>mỗi chục 10 quả</td></tr>
+          <tr><td>Freeship nội khu</td><td class="num"><b>từ 150K</b></td><td>Bình An &amp; lõi 2km</td></tr>
+        </tbody>
+      </table>
+      <p class="pb-note">Niêm yết giá từng món trên kệ — chốt đơn online, shipper giao trong 1 giờ quanh khu.</p>
+    </div>
   </div>
 </section>
 
@@ -1446,7 +1470,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
     <div class="dr-line"><span>Tạm tính</span><span id="subEl">0đ</span></div>
     <div class="dr-line disc"><span>Ưu đãi tự động ≥ 500k</span><span id="discEl">0đ</span></div>
     <div class="dr-line"><span>Phí giao theo khu</span><span id="shipEl">—</span></div>
-    <div class="dr-total"><span>TỔNG CỘT</span><b id="totEl">0đ</b></div>
+    <div class="dr-total"><span>TỔNG CỘNG</span><!--NB93-FIX-S040:t5k5tongcong — cùng họ lỗi TỔNG CỘT ×6 ngoài lệnh, soi bằng chứng S040 thấy sót → vá luôn--><b id="totEl">0đ</b></div>
     <button class="btn btn-accent btn-block" id="checkoutBtn" style="margin-top:14px">Chốt đơn — sạp xác nhận trong 5 phút</button>
   </div>
 </aside>
@@ -1591,8 +1615,8 @@ document.addEventListener('click',function(e){
   else if(t.dataset.dec!==undefined){var it=cart[+t.dataset.dec];it.qty--;if(it.qty<1)cart.splice(+t.dataset.dec,1);updateCart()}
   else if(t.dataset.rm!==undefined){cart.splice(+t.dataset.rm,1);updateCart()}
 });
-function openDrawer(){$('#cartDrawer').classList.add('on');$('#overlay').classList.add('on');document.body.style.overflow='hidden'}
-function closeDrawer(){$('#cartDrawer').classList.remove('on');$('#overlay').classList.remove('on');document.body.style.overflow=''}
+function openDrawer(){$('#cartDrawer').classList.add('on');$('#overlay').classList.add('on');document.body.style.overflow='hidden';document.body.classList.add('drawer-on')}
+function closeDrawer(){$('#cartDrawer').classList.remove('on');$('#overlay').classList.remove('on');document.body.style.overflow='';document.body.classList.remove('drawer-on')}
 $('#cartBtn').addEventListener('click',openDrawer);
 $('#fabCart').addEventListener('click',openDrawer);
 $('#drawerClose').addEventListener('click',closeDrawer);
@@ -1955,6 +1979,8 @@ try{Object.defineProperty(window,"MENU",{get:function(){return MENU;},configurab
 /*NB93-040: chat widget */
 .pkc-fab{position:fixed;right:18px;bottom:18px;z-index:210;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#15805F,#0B5140);color:#fff;display:grid;place-items:center;cursor:pointer;border:none;box-shadow:0 12px 30px -8px rgba(11,81,64,.55);transition:.25s}
 .pkc-fab:hover{transform:translateY(-3px) scale(1.04)}
+/*NB93-FIX-S040:t5k5fabdrawer — FAB chat nhường layout khi drawer giỏ mở, hết đè nút Chốt đơn*/
+body.drawer-on .pkc-fab{opacity:0;visibility:hidden;pointer-events:none}
 .pkc-dot{position:absolute;top:3px;right:3px;width:13px;height:13px;border-radius:50%;background:#FF5B5B;border:2.5px solid #fff;animation:pkcPulse 1.6s infinite}
 @keyframes pkcPulse{50%{box-shadow:0 0 0 6px rgba(255,91,91,.15)}}
 .pkc-panel{position:fixed;right:18px;bottom:88px;z-index:211;width:min(352px,calc(100vw - 24px));height:min(478px,calc(100vh - 130px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -18px rgba(8,28,49,.45);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:.28s cubic-bezier(.22,1,.36,1)}

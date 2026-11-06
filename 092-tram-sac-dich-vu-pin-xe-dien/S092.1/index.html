@@ -1431,6 +1431,9 @@ function toast(title,msg){
 }
 /* ==================== TAPE ==================== */
 (()=>{const tr=document.getElementById("tapeTrack");tr.innerHTML+=tr.innerHTML;})();
+/*NB93-FIX-S092:t5k7hint — chèn hint vuốt ngang dưới mỗi bảng giá (chỉ hiện mobile qua CSS)*/
+document.querySelectorAll(".pgt").forEach(el=>{if(el.nextElementSibling&&el.nextElementSibling.classList.contains("pgt-hint"))return;
+el.insertAdjacentHTML("afterend",'<div class="pgt-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8m0 0-4-4m4 4-4 4"/></svg>Vuốt ngang bảng để xem đủ cột giá</div>');});
 /* ==================== HEADER + DOCK ==================== */
 const header=document.getElementById("header"),dock=document.getElementById("dock");
 addEventListener("scroll",()=>{
@@ -1769,6 +1772,16 @@ document.getElementById("ftServices").innerHTML=SERVICES.map(s=>`<li><a href="#d
 .pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2FD97A,#128A4E);color:#fff;border:none;cursor:pointer;font-size:1rem;flex:none}
 .pkc-inrow button:hover{filter:brightness(1.08)}
 @media(max-width:680px){.pkc-panel{right:10px;bottom:146px;height:min(440px,calc(100vh - 200px))}.pkc-fab{right:12px;bottom:84px;width:52px;height:52px}}
+</style>
+<style data-nb93fix="S092:t5k7fix">
+/*NB93-FIX-S092:t5k7pgt — bảng giá mobile: wrapper cuộn ngang thay vì clip mất cột ĐƠN GIÁ + hint vuốt*/
+.pgt{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pgt-hint{display:none;align-items:center;gap:7px;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--soft)}
+.pgt-hint svg{width:15px;height:15px;flex:none;color:var(--accent-deep)}
+@media (max-width:860px){.pgt-hint{display:flex}}
+/*NB93-FIX-S092:t5k7drop — dropdown gợi ý đủ chữ: rộng 430px neo mép phải kéo sang trái, chữ được xuống dòng*/
+.search-drop{left:auto;right:0;width:min(430px,calc(100vw - 40px))}
+.search-drop button span.minw0{overflow-wrap:anywhere}
 </style>
 <script>
 /*NB93-092: bot tra loi theo nghe tram sac*/

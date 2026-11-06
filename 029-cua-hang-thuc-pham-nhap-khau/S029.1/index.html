@@ -497,6 +497,10 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
 .rv-el{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
 .rv-el.on{opacity:1;transform:none}
 /* responsive 1080 */
+/*NB93-FIX-S029:t5k5mnav — nav mobile cuộn ngang, hiện từ 1080px xuống (hdr-nav ẩn từ breakpoint này)*/
+.hdr-mnav{display:none;gap:8px;overflow-x:auto;padding:2px 20px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hdr-mnav::-webkit-scrollbar{display:none}
+.hdr-mnav a{flex:none;padding:8px 14px;border-radius:999px;font-weight:800;font-size:.86rem;white-space:nowrap;background:rgba(255,255,255,.9);border:1.5px solid var(--line);color:var(--primary-deep)}
 @media(max-width:1080px){
   .hero h1{font-size:2.45rem}
   .hero-grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -507,6 +511,7 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
   .about-grid{grid-template-columns:1fr;gap:36px}
   .about-media img{aspect-ratio:16/9}
   .hdr-nav{display:none}
+  .hdr-mnav{display:flex}
   .ft-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:34px}
   .pg{grid-template-columns:1fr 1fr}
@@ -608,6 +613,9 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
   .btn{min-height:40px!important}
 }
 /*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+
+/*NB93-FIX-S029:t5k5mapcap — nhãn pin dưới map, khách vẫn định vị được kể cả khi tile map tải mỏng nhãn đường*/
+.map-cap{display:block;padding:10px 16px 0;font-size:.8rem;font-weight:600;color:#CFE6D4;line-height:1.45}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Tinh Hoa","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"268 Đại Lộ Châu Âu, P. Vị Ngon, Thủ Đức","addressLocality":"TP. Hồ Chí Minh","addressCountry":"VN"},"description":"Tinh Hoa — thực phẩm nhập khẩu Nhật, Hàn, châu Âu, Đông Nam Á theo đường chính ngạch: tem lô nguồn gốc trên từng sản phẩm, hoá đơn đỏ mọi đơn, box tuần 4 châu t","url":"http://127.0.0.1:8174/029-cua-hang-thuc-pham-nhap-khau/"}
@@ -706,6 +714,7 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
       </button>
     </div>
   </div>
+<nav class="hdr-mnav" aria-label="Điều hướng mobile"><!--NB93-FIX-S029:t5k5mnav--><a href="#box-tuan">Box tuần</a><a href="#san-pham">Sạp tuần này</a><a href="#tem">Tem nguồn gốc</a><a href="#may-tinh">Tính box</a><a href="#lien-he">Liên hệ</a></nav>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -1308,7 +1317,8 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
     <div class="ct-grid">
       <div class="map-card rv-el">
         <!--NB93-MAP: 8.6760,104.8000-->
-          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=8.6760,104.8000&amp;z=15&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+          <iframe class="gmap" loading="lazy" style="width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%" src="https://www.google.com/maps?q=8.6760,104.8000&amp;z=13&amp;output=embed" title="Bản đồ" allowfullscreen></iframe>
+          <span class="map-cap"><!--NB93-FIX-S029:t5k5mapcap-->📍 Pin bản đồ khu kho-sạp: 268 Đại Lộ Châu Âu, P. Vị Ngon, TP. Thủ Đức — bấm “🧭 Chỉ đường tới sạp” để mở Google Maps.</span>
         <div class="map-body">
           <h3>Sạp chính — Thủ Đức</h3>
           <span class="map-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> 268 Đại Lộ Châu Âu, P. Vị Ngon, TP. Thủ Đức, TP.HCM — bãi xe rộng, có khu thử món cuối sạp</span>
@@ -1504,7 +1514,7 @@ footer.site::before{content:"";position:absolute;top:0;left:0;right:0;height:8px
     <div class="dr-line"><span>Tạm tính</span><span id="subEl">0đ</span></div>
     <div class="dr-line disc"><span>Ưu đãi tự động</span><span id="discEl">0đ</span></div>
     <div class="dr-line"><span>Phí giao</span><span id="shipEl">—</span></div>
-    <div class="dr-total"><span>TỔNG CỘT</span><b id="totEl">0đ</b></div>
+    <div class="dr-total"><span>TỔNG CỘNG</span><b id="totEl">0đ</b></div>
     <button class="btn btn-accent btn-block" id="checkoutBtn" style="margin-top:14px">Đặt hàng — xác nhận trong 15 phút</button>
   </div>
 </aside>

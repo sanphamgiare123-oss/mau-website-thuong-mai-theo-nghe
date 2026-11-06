@@ -86,6 +86,8 @@ nav.main a:hover{background:var(--accent-100);color:var(--accent)}
 .btn-cart{position:relative;width:46px;height:46px;border-radius:14px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;transition:.2s}
 .btn-cart:hover{border-color:var(--accent);color:var(--accent)}
 .cart-n{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:100px;background:var(--accent);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center;padding:0 5px;box-shadow:0 4px 10px rgba(224,49,27,.4)}
+/* NB93-FIX-S006:t5k2badge — giỏ trống không hiện badge "0": [hidden] phải thắng display:grid */
+.cart-n[hidden]{display:none !important}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;border-radius:14px;padding:13px 24px;font-size:15px;transition:.25s;position:relative;overflow:hidden}
 .btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 12px 26px rgba(224,49,27,.32)}
 .btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(224,49,27,.42)}
@@ -245,6 +247,8 @@ nav.main a:hover{background:var(--accent-100);color:var(--accent)}
 .cd{margin-left:auto;display:flex;gap:8px;align-items:center}
 .cd .u{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:8px 12px;text-align:center;min-width:56px}
 .cd .u b{display:block;font-size:1.25rem;font-weight:900;font-variant-numeric:tabular-nums}
+/* NB93-FIX-S006:t5k2cd — chú thích chế độ đếm của khung Giờ vàng */
+.cd-note{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#F0D3B2;text-align:right;max-width:150px;line-height:1.35}
 .cd .u span{display:block;font-size:10px;color:#F0D3B2;letter-spacing:.08em}
 .car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
 .car-nav{display:flex;align-items:center;gap:14px}
@@ -1149,6 +1153,7 @@ button:active{transform:scale(.96)}
         <div class="u"><b id="cdH">00</b><span>GIỜ</span></div>
         <div class="u"><b id="cdM">00</b><span>PHÚT</span></div>
         <div class="u"><b id="cdS">00</b><span>GIÂY</span></div>
+        <span class="cd-note" id="cdNote">Đếm ngược tới Giờ vàng 15:00</span><!--NB93-FIX-S006:t5k2cd-->
       </div>
     </div>
     <div class="car-head rv">
@@ -1833,7 +1838,7 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     }).join('');
     rows += '<div class="mrow"><div class="mi"><span class="mn"><b>Nước kèm combo</b><span class="new">Mọi khung giờ</span></span><span class="md">' +
       DRINKS.map(x => x.n + ' ' + x.p + 'K').join(' • ') + '</span></div>' +
-      '<span class="dots"></span><span class="mp"><b>5K</b><span>từ mốc</span></span>' +
+      '<span class="dots"></span><span class="mp"><b>8K</b><span>/ ly</span></span>' + /*NB93-FIX-S006:t5k2nuoc — bảng ghi đúng giá giỏ đang tính: Trà chanh 8K (hết lệch 5K/8K)*/
       '<button class="madd" data-add="d1" aria-label="Thêm trà chanh">+</button></div>';
     listEl.innerHTML = rows;
   }
@@ -1938,17 +1943,25 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
 })();
 
 /* ================= COUNTDOWN ================= */
+/* NB93-FIX-S006:t5k2cd — "Giờ vàng 15:00–17:00" đếm theo giờ thật: trong khung đếm xuống hết khung; ngoài khung đếm tới 15:00 kế tiếp */
 (function(){
+  const START = 15, END = 17;
   function tick(){
     const now = new Date();
-    const end = new Date(now); end.setHours(23, 59, 59, 999);
-    let s = Math.max(0, Math.floor((end - now) / 1000));
-    const h = Math.floor(s / 3600); s %= 3600;
-    const m = Math.floor(s / 60), sec = s % 60;
+    const h = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+    const inGold = h >= START && h < END;
+    const target = new Date(now);
+    if (inGold) target.setHours(END, 0, 0, 0);
+    else { target.setHours(START, 0, 0, 0); if (h >= START) target.setDate(target.getDate() + 1); }
+    let s = Math.max(0, Math.floor((target - now) / 1000));
+    const hh = Math.floor(s / 3600); s %= 3600;
+    const mm = Math.floor(s / 60), ss = s % 60;
     const pad = n => String(n).padStart(2, '0');
-    document.getElementById('cdH').textContent = pad(h);
-    document.getElementById('cdM').textContent = pad(m);
-    document.getElementById('cdS').textContent = pad(sec);
+    document.getElementById('cdH').textContent = pad(hh);
+    document.getElementById('cdM').textContent = pad(mm);
+    document.getElementById('cdS').textContent = pad(ss);
+    const note = document.getElementById('cdNote');
+    if (note) note.textContent = inGold ? 'Giờ vàng đang diễn ra — còn' : 'Đếm ngược tới Giờ vàng 15:00';
   }
   tick(); setInterval(tick, 1000);
 })();
@@ -1982,7 +1995,12 @@ document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
     return {n, total, label:'Combo nhóm ' + n + ' người'};
   }
   [people, range].forEach(el => el.addEventListener('input', calc));
-  document.getElementById('setCards').addEventListener('change', calc);
+  document.getElementById('setCards').addEventListener('change', function(){ /*NB93-FIX-S006:t5k2combo-sel — sync .sel theo radio (khuôn NB93-FIX-001:t3combo-ba): chọn Set nào thẻ set đó sáng*/
+    document.querySelectorAll('#setCards .set-card').forEach(function(c){
+      c.classList.toggle('sel', c.querySelector('input').checked);
+    });
+    calc();
+  });
   ['extraChe', 'extraGoi', 'calcShip'].forEach(id => document.getElementById(id).addEventListener('change', calc));
   document.getElementById('calcAdd').addEventListener('click', () => {
     const r = calc();
@@ -2258,13 +2276,21 @@ new IntersectionObserver(es => {
 /* ================= SEARCH ================= */
 document.getElementById('searchBtn').addEventListener('click', doSearch);
 document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+/* NB93-FIX-S006:t5k2search — tìm kiếm nói đúng thật: món chỉ có ở khay 8 món (không thuộc menu 3 khung giờ) thì báo rõ, không dẫn khách tìm hụt kiểu "sushi" */
 function doSearch(){
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   if (!q) return;
   const hits = P.filter(p => p.n.toLowerCase().includes(q));
-  if (hits.length) {
+  const inMenu = Object.values(MENU).some(m => m.items.some(id => {
+    const p = P.find(x => x.id === id);
+    return p && p.n.toLowerCase().includes(q);
+  })) || DRINKS.some(d => d.n.toLowerCase().includes(q));
+  if (hits.length && inMenu) {
     document.getElementById('menu').scrollIntoView({behavior:'smooth'});
     toast('Tìm thấy ' + hits.length + ' món khớp "' + q + '" — xem trong menu hôm nay');
+  } else if (hits.length) {
+    document.getElementById('thuc-don').scrollIntoView({behavior:'smooth'});
+    toast('"' + hits.map(p => p.n).join(', ') + '" chưa nằm trong menu 3 khung giờ hôm nay — thấy ở khay 8 món bên dưới nhé');
   } else {
     document.getElementById('thuc-don').scrollIntoView({behavior:'smooth'});
     toast('Không thấy "' + q + '" — thử 8 món đặc trưng bên dưới nhé');

@@ -1391,6 +1391,23 @@ $("#hsearchInput").addEventListener("keydown",e=>{
   setTimeout(()=>$$(".bcard").forEach(c=>c.classList.remove("dim")),6000);
 });
 
+/*NB93-FIX-S039:t5k5typetoast — phản hồi khi gõ (debounce 500ms), Enter vẫn lọc + toast như cũ*/
+var s39T=null,s39Q="";
+$("#hsearchInput").addEventListener("input",function(){
+  clearTimeout(s39T);
+  var self=this;
+  s39T=setTimeout(function(){
+    var q=self.value.trim();
+    if(q&&q!==s39Q){
+      const k=q.toLowerCase();let n=0;
+      $$(".bcard").forEach(c=>{if(((c.dataset.name||"")+" "+c.textContent.toLowerCase()).includes(k))n++});
+      toast(n?("Tìm thấy "+n+' dịch vụ khớp "'+q+'" — Enter để xem ngay, mục lệch sẽ mờ dần'):('Chưa có dịch vụ khớp "'+q+'" — thử "sơ chế", "đông lạnh", "nhãn"'));
+      s39Q=q;
+    }
+    if(!q)s39Q="";
+  },500);
+});
+
 /* ==================== XEM NHANH (MODAL) ==================== */
 const modal=$("#qvModal");
 let qvIdx=0;

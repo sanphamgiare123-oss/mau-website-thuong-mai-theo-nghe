@@ -776,11 +776,11 @@ body.dr-open .toast-zone{bottom:auto;top:14px}
       <input id="fName" data-nghe-order="name" type="text" placeholder="VD: Nguyễn Thị Bích">
       <label for="fPhone">Số điện thoại *</label>
       <input id="fPhone" data-nghe-order="phone" type="tel" placeholder="VD: 0901 234 567">
-      <!--NB110-005 — nút Gửi đứng TRÊN các ô tuỳ chọn (chuẩn 369): map/widget chèn dưới không đẩy nút khỏi ngón tay-->
-      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>📩 Gửi đơn cho quầy</button>
-      <p class="dr-opt">📝 Địa chỉ giúp xe chạy đúng ngõ — ghi chú thêm thì tuỳ bạn</p>
+      <!--NB93-FIX-005:t5k3form nut Gui XUONG DUOI cac o bat buoc (ten+SĐT+dia chi) — khuon S001/S289; ghi chú tuỳ chọn dời xuống dưới nút (E3 P2)-->
       <label for="fAddr">Địa chỉ nhận hàng *</label>
       <input id="fAddr" data-nghe-order="address" type="text" placeholder="Số nhà, hẻm/đường, quận/huyện">
+      <button class="btn btn-a dr-cta" id="drSubmit" data-nghe-order-submit>📩 Gửi đơn cho quầy</button>
+      <p class="dr-opt">📝 Địa chỉ giúp xe chạy đúng ngõ — ghi chú thêm thì tuỳ bạn</p>
       <label for="fNote">Ghi chú (mức cay, giờ giao…)</label>
       <textarea id="fNote" data-nghe-order="note" placeholder="VD: 2 phần không cay, giao 18h30"></textarea>
     </div>
@@ -989,10 +989,12 @@ document.getElementById('drSubmit').addEventListener('click', function(){
   var addr = document.getElementById('fAddr');
   var ok = true;
   [name, phone, addr].forEach(function(el){ el.classList.remove('err'); });
-  if (!name.value.trim()){ name.classList.add('err'); ok = false; }
-  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); ok = false; }
-  if (!addr.value.trim()){ addr.classList.add('err'); ok = false; }
-  if (!ok){ toast('Thiếu thông tin', 'Cho quầy xin họ tên, số điện thoại và địa chỉ — xe chạy tắt ngõ cần đủ 3 thứ này nhé!'); return; }
+  /*NB93-FIX-005:t5k3toast toast nêu đúng tên ô còn thiếu (E3 P2) thay câu chung chung*/
+  var miss = [];
+  if (!name.value.trim()){ name.classList.add('err'); miss.push('Họ tên'); ok = false; }
+  if (!/^0\d{8,10}$/.test(phone.value.replace(/[\s.]/g,''))){ phone.classList.add('err'); miss.push('Số điện thoại'); ok = false; }
+  if (!addr.value.trim()){ addr.classList.add('err'); miss.push('Địa chỉ nhận hàng'); ok = false; }
+  if (!ok){ toast('Thiếu thông tin', 'Điền thêm ô ' + miss.join(' + ') + ' — xe chạy tắt ngõ cần đủ 3 thứ này nhé!'); return; }
   var total = fmt(cartTotal());
   CART = []; renderCart(); closeDrawer(); showCartView();
   document.getElementById('drForm').classList.remove('on');
@@ -1202,6 +1204,30 @@ renderCart();
 renderChips();
 renderKq();
 initReveal();
+</script>
+<style data-nb93fix="005:t5k3scroll">
+/*NB93-FIX-005:t5k3scroll header sticky cao 86px (1440) / 115px (390) de cut doi kicker (E3 P2): moi section co anchor chui xuoi duoi header*/
+section[id]{scroll-margin-top:118px}
+@media (max-width:640px){section[id]{scroll-margin-top:122px}}
+/*NB93-FIX-005:t5k3tem trang thai "da dong" cua tem-mo doi mau trung tinh*/
+.tem-mo.dong{background:#8a8378}
+.tem-mo.dong i{animation:none;background:#e9e4da}
+</style>
+<script>
+/*NB93-FIX-005:t5k3tem tem "Dang mo - toi 23:30" tinh theo gio that (E3 P3) — quầy mở 15:00–23:30, ngoài khung tự chuyển "Đã đóng"*/
+(function(){
+  var tem = document.querySelector('.tem-mo');
+  if (!tem) return;
+  function upd(){
+    var n = new Date();
+    var m = n.getHours()*60 + n.getMinutes();
+    var on = m >= 900 && m < 1410; /* 15:00–23:30 */
+    tem.classList.toggle('dong', !on);
+    tem.innerHTML = '<i></i>' + (on ? 'Đang mở · tới 23:30' : 'Đã đóng · đèn bật lại 15:00');
+  }
+  upd();
+  setInterval(upd, 60000);
+})();
 </script>
 </body>
 </html>

@@ -431,6 +431,8 @@ footer.site{background:var(--primary-deep);color:#A7C3E0;padding:64px 0 0}
 /* FAB dock */
 .fab-dock{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:8px;background:rgba(13,42,79,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.4px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 12px;box-shadow:var(--sh-3);transition:.4s}
 .fab-dock.hide{transform:translateX(-50%) translateY(120px);opacity:0}
+/*NB93-FIX-S031:t5k5dockmobile — dock 6 icon chỉ còn mobile (ẩn từ 769px lên), hết đè chữ section trên desktop*/
+@media(min-width:769px){.fab-dock{display:none}}
 .fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#DCEAF8;transition:.2s;position:relative;background:transparent}
 .fab:hover{background:rgba(255,255,255,.14);color:#fff}
 .fab.hot{background:var(--grad-accent);color:#fff;box-shadow:0 8px 20px rgba(240,138,18,.45)}
@@ -507,6 +509,10 @@ footer.site{background:var(--primary-deep);color:#A7C3E0;padding:64px 0 0}
 .rv-el{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
 .rv-el.on{opacity:1;transform:none}
 /* responsive 1080 */
+/*NB93-FIX-S031:t5k5mnav — nav mobile cuộn ngang, hiện từ 1080px xuống (hdr-nav ẩn từ breakpoint này)*/
+.hdr-mnav{display:none;gap:8px;overflow-x:auto;padding:2px 20px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hdr-mnav::-webkit-scrollbar{display:none}
+.hdr-mnav a{flex:none;padding:8px 14px;border-radius:999px;font-weight:800;font-size:.86rem;white-space:nowrap;background:rgba(255,255,255,.9);border:1.5px solid var(--line);color:var(--primary-deep)}
 @media(max-width:1080px){
   .hero h1{font-size:2.5rem}
   .hero-grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -518,6 +524,7 @@ footer.site{background:var(--primary-deep);color:#A7C3E0;padding:64px 0 0}
   .adv-grid,.bc-grid,.combo-panel,.rv-grid,.ct-grid{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr;gap:36px}
   .hdr-nav{display:none}
+  .hdr-mnav{display:flex}
   .ft-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:34px}
   .spec-panel{grid-template-columns:1fr}
@@ -610,6 +617,10 @@ footer.site{background:var(--primary-deep);color:#A7C3E0;padding:64px 0 0}
 /* BULKFIX5-PRESS: micro-interaction phan hoi khi nhan */
 button:active{transform:scale(.96)}
 /*NB93-MAP*/.gmap{width:100%;height:220px;border:0;border-radius:12px;display:block;max-width:100%}
+
+/*NB93-FIX-S031:t5k5empty — thông báo không-tìm-thấy của kệ (thay vì trống trơn)*/
+.car-none{margin:14px 0 0;background:#fff;border:1.6px dashed var(--line);border-radius:12px;padding:18px 20px;font-weight:700;color:var(--soft)}
+.car-none .car-none-clear{border:none;background:none;padding:0;font:inherit;font-weight:900;text-decoration:underline;cursor:pointer;color:var(--primary-deep)}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -712,6 +723,7 @@ button:active{transform:scale(.96)}
       </button>
     </div>
   </div>
+<nav class="hdr-mnav" aria-label="Điều hướng mobile"><!--NB93-FIX-S031:t5k5mnav--><a href="#chon-sua">Chọn sữa</a><a href="#chinh-hang">Chính hãng</a><a href="#san-pham">Sản phẩm</a><a href="#gio">Giỏ tuần</a><a href="#faq">Hỏi đáp</a></nav>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -930,6 +942,7 @@ button:active{transform:scale(.96)}
         <button class="car-btn" id="cNext" aria-label="Sau">›</button>
       </div>
     </div>
+    <p class="car-none" id="carNone" hidden>Không có mặt hàng nào khớp “<b id="carNoneQ"></b>” trên kệ — <button type="button" id="carNoneClear" class="car-none-clear">xoá tìm, xem lại cả kệ</button>.</p><!--NB93-FIX-S031:t5k5empty-->
     <div class="car-track" id="track">
       <article class="p-card" data-pid="p1">
         <div class="p-media"><span class="p-tag org">🎁 Miễn phí</span><img src="assets/img/p1.webp" alt="Tư vấn dinh dưỡng theo độ tuổi" style="object-position:center 62%" loading="lazy">
@@ -1568,7 +1581,7 @@ button:active{transform:scale(.96)}
     <div class="dr-line"><span>Tạm tính</span><span id="subEl">0đ</span></div>
     <div class="dr-line disc"><span>Ưu đãi tự động</span><span id="discEl">0đ</span></div>
     <div class="dr-line"><span>Phí giao</span><span id="shipEl">—</span></div>
-    <div class="dr-total"><span>TỔNG CỘT</span><b id="totEl">0đ</b></div>
+    <div class="dr-total"><span>TỔNG CỘNG</span><b id="totEl">0đ</b></div>
     <button class="btn btn-accent btn-block" id="checkoutBtn" style="margin-top:14px">Đặt sữa — xác nhận trong 15 phút</button>
   </div>
 </aside>
@@ -1864,13 +1877,19 @@ $('#hdrSearch').addEventListener('submit',function(e){
 $('#hdrSearchInput').addEventListener('input',applySearch);
 function applySearch(){
   var q=vnorm($('#hdrSearchInput').value.trim());
+  var n31=0;
   $$('.p-card').forEach(function(c){
     var hit=!q||vnorm(c.textContent).indexOf(q)>-1;
     c.style.display=hit?'':'none';
+    if(hit)n31++;
   });
+  /*NB93-FIX-S031:t5k5empty — hiện thông báo không-tìm-thấy thay vì kệ trống trơn*/
+  var noneEl=$('#carNone');
+  if(noneEl){noneEl.hidden=!(q&&n31===0);if(q&&n31===0)$('#carNoneQ').textContent=$('#hdrSearchInput').value.trim()}
   track.scrollTo({left:0});
   updateCar();
 }
+$('#carNoneClear').addEventListener('click',function(){$('#hdrSearchInput').value='';applySearch();$('#hdrSearchInput').focus()});
 
 /* ---------- QUICK VIEW ---------- */
 var qvPid=null,qvQtyV=1;
@@ -2007,7 +2026,7 @@ var cio=new IntersectionObserver(function(es){
     function step(ts){
       if(!t0)t0=ts;
       var k=Math.min(1,(ts-t0)/1400);
-      var v=Math.floor((end/dv)*(1-Math.pow(1-k,3)));
+      var v=(end/dv)*(1-Math.pow(1-k,3));if(dv===1)v=Math.floor(v);/*NB93-FIX-S031:t5k5count49 — không floor khi chia 10: đếm tới 4.9 thật, không đứng im 4.0*/
       el.textContent=(dv>1?v.toFixed(1):v.toLocaleString('vi-VN'))+(k===1?suf:'');
       if(k<1)requestAnimationFrame(step);
     }
