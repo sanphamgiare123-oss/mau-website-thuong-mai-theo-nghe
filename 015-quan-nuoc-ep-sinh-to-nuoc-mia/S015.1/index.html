@@ -1757,6 +1757,7 @@ function applyMenuFilter(){
 document.querySelectorAll("#menuChips .mchip").forEach(function(b){
   b.addEventListener("click",function(){
     mCat=b.dataset.cat;
+    if(mQ){mQ="";var si=$("hdrSearch");if(si)si.value="";} /*NB93-FIX-015:t5chipq — bam chip loc phai xoa tu khoa tim (thong bao rong huong dan bam Tat ca nhung van 0 ket qua)*/
     document.querySelectorAll("#menuChips .mchip").forEach(function(x){x.classList.toggle("on",x===b)});
     var n=applyMenuFilter();
     if(mCat&&n>0)showToast("Lọc: "+b.textContent,"Có "+n+" mặt hàng trong nhóm này");
