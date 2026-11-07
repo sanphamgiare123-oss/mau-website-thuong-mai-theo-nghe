@@ -150,7 +150,7 @@ nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
 .tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
 .tape-track span{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(255,255,255,.45)}
 .tape-track .i{width:17px;height:17px}
-@keyframes tape{to{transform:translateX(-50%)}}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* ============ SECTION KHUNG ============ */
 section{position:relative}
@@ -698,19 +698,13 @@ button:active{transform:scale(.96)}
 /* ============ NÚT CHẠY THẬT: phản hồi khi nhấn (giữ sau mobilefix) ============ */
 @media(min-width:681px){button:active{transform:scale(.96)}}
 </style>
-<style data-nb93fix="315:wrap">
-/*NB93-FIX-315:wrap hang gia/nut wrap tren mobile*/
-@media(max-width:768px){
-  .pd-price{flex-wrap:wrap!important;white-space:normal!important}
-}
-</style>
-<style data-nb93fix="315:t3d2fix">/*NB93-FIX-315:t3d2fix hotline-0034567899+addr-vui-cover+map-pool-N5*/</style>
-<style data-nb93fix="NB93-FIX-315:t9l7ov">/*NB93-FIX-315:t9l7ov vong-t9-L7*/</style>
+<style data-nb93fix="315:wrap">  .pd-price{flex-wrap:wrap!important;white-space:normal!important}</style>
 
-<style data-nb93fix="S315:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+
+<style data-nb93fix="S315:r1base">/*NB93-FIX-S315:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 </style>
 </head>
 <body>
@@ -2041,28 +2035,11 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 </script>
 
 <!-- NB93-FIX-S315:tw6tapechipbtnov [W6 07-11-2026 r2] -->
-<style id="w6fixStyle">
-/* NB93-FIX-S315:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
-.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
-.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
-.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
-@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-
-/* NB93-FIX-S315:tw6chip - chip/badge absolute de anh -> static duoi anh */
-.w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}
-
-/* NB93-FIX-S315:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
-.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}
-.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}
-a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}
-
-/* NB93-FIX-S315:tw6ov - sua tran ngang/de chu site-specific */
+<style id="w6fixStyle">* NB93-FIX-S315:tw6chip - chip/badge absolute de anh -> static duoi anh */
+.w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}* NB93-FIX-S315:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
+.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}* NB93-FIX-S315:tw6ov - sua tran ngang/de chu site-specific */
 /* tw6ov slider blowout: grid item khong duoc day ngang hon khung */
-.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}
-.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}
-.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}
-.rvw-card,.rev-card{max-width:100%}</style>
+.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}.rvw-card,.rev-card{max-width:100%}</style>
 <script id="w6fixJs">
 /* NB93-FIX-S315:tw6js - W6 runner: chip lift + btn 40px + tbl wrap + tape doc (re-run khi load/scroll) */
 (function(){
@@ -2165,3 +2142,5 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
   window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
 })();
 </script>
+
+

@@ -146,7 +146,7 @@ nav.main a:hover{color:var(--accent-deep);background:var(--accent-100)}
 .tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
 .tape-track span{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(255,255,255,.4)}
 .tape-track .i{width:17px;height:17px}
-@keyframes tape{to{transform:translateX(-50%)}}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* ============ SECTION KHUNG ============ */
 section{position:relative}
@@ -748,11 +748,12 @@ button:active{transform:scale(.96)}
 .pc-qa button,.bundle-tab,.pchips,.pchips button,.dr-sel button{min-height:40px!important;min-width:40px!important}
 }
 </style>
-<style data-nb93fix="242:t3c3fix">/*NB93-FIX-242:t3c3fix hotline-0034567899+addr-vui+map-pool-N2*/</style>
-<style data-nb93fix="S242:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+<style data-nb93fix="S242:r1base">/*NB93-FIX-S242:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+
 </style>
 </head>
 <body>
@@ -2058,18 +2059,7 @@ faqRender(FAQ);
 .pkc-inrow button:hover{filter:brightness(1.08)}
 @media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
 
-/*NB93-FIX-242:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/
-.fcard .ribbon{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.ab-img .ab-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.fimg{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-/*NB93-FIX-242:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*/
-.tape{height:145px}
-.tape-track{flex-direction:column;width:auto;height:max-content;animation-name:NB93tapeV242;animation-duration:30s;padding:8px 0}
-.tape-track > *{white-space:normal;justify-content:center;text-align:center;border-right:0}
-@keyframes NB93tapeV242{to{transform:translateY(-50%)}}
-/*NB93-FIX-242:tw5btn — W5: nut nho <40px -> nang 40px*/
-.on{min-width:40px;min-height:40px}
-</style><script>(function(){
+/*NB93-FIX-242:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/.fcard .ribbon{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.ab-img .ab-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.fimg{height:auto!important;min-height:0!important;aspect-ratio:auto!important}/*NB93-FIX-242:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*//*NB93-FIX-242:tw5btn — W5: nut nho <40px -> nang 40px*/.on{min-width:40px;min-height:40px}</style><script>(function(){
   var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
       inp=document.getElementById('pkcInput'),send=document.getElementById('pkcSend'),chips=document.getElementById('pkcChips');
   if(!fab||!panel)return;
@@ -2106,6 +2096,7 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 });
 }catch(e){}},1600);})();
 </script>
+<style data-nb93fix="S242:r1dir">/*NB93-FIX-S242:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
 </body>
 </html>
 
@@ -2129,3 +2120,4 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
   tag(); setTimeout(tag, 800); setTimeout(tag, 2000);
 })();
 </script>
+

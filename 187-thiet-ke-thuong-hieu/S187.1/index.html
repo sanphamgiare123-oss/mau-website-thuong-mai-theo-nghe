@@ -899,6 +899,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 .tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
 .tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
 </style>
+<style data-nb93fix="S187:r1dir">.tape .in,.tape>.in,.tape-in,.tape-inner,.tape-track,.ticker-in,.ticker .in,.ticker .tkr,#ticker,.tapeMove,.marquee-inner,.marquee-track,.feed-track,[class*="tape-in"],[class*="tape-track"],[class*="ticker-in"],[class*="marquee-track"]{animation-direction:reverse!important}</style>
 </head>
 <body class="hero-on">
 
@@ -2150,22 +2151,15 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 </script>
 <script>/*P0-DOCKHIDE: dock tu an khi cuon xuong — khong che gia/CTA*/
 (function(){var c=[].slice.call(document.querySelectorAll('body *')).filter(function(e){var s=getComputedStyle(e);var b=parseFloat(s.bottom)||0;return s.position==='fixed'&&b>=0&&b<40&&e.offsetWidth>150&&e.offsetHeight>40&&e.offsetHeight<150&&s.display!=='none'&&s.visibility!=='hidden';})[0];if(!c)return;var last=window.scrollY;c.style.transition='bottom .28s ease';var hide=function(){c.style.bottom='-150px'};var show=function(){c.style.bottom=(c.dataset.ob||getComputedStyle(c).bottom)};c.dataset.ob=c.dataset.ob||(getComputedStyle(c).bottom);window.addEventListener('scroll',function(){var y=window.scrollY;if(y>last&&y>240){hide()}else{show()}last=y;},{passive:true});})();</script><!-- NB93-FIX-187:tw4B marquee ngang -> cot doc tu duoi di len (translateY) -->
-<style data-tw4="187">@keyframes tape{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.tape-track{flex-direction:column!important;flex-wrap:nowrap!important;width:auto!important;height:max-content!important;gap:0!important;align-items:center!important}
-.tape-track>span,.tape-track>*{flex:0 0 auto;white-space:nowrap;padding:9px 0}
-.tape{height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none!important}
-@media (max-width:700px){.tape{height:250px}}
-</style>
+<style data-tw4="187"></style>
 <script data-tw4="187">(function(anim,trackSel,wrapSel,extra){
  try{
   var tr=document.querySelector(trackSel); if(!tr)return;
-  Array.prototype.slice.call(tr.children).forEach(function(c){
-   if(c.children.length>1){while(c.firstChild)tr.insertBefore(c.firstChild,c); c.remove();}
-  });
+  
   tr.innerHTML=tr.innerHTML+tr.innerHTML;
   var p=tr.parentElement, pp=p?p.parentElement:null;
-  if(p){p.style.cssText+=';height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none;';}
-  if(pp){pp.style.transform='none';pp.style.overflow='hidden';}
+  if(p){p.style.cssText+=';overflow:hidden;';}
+  if(pp){pp.style.overflow='hidden';}
   if(extra){document.querySelectorAll(extra).forEach(function(el){el.style.transform='none';el.style.overflow='hidden';});}
  }catch(_){}
  window.addEventListener('load',function(){setTimeout(function(){try{var t=document.querySelector(trackSel);if(t&&t.parentElement){t.parentElement.style.overflow='hidden';}}catch(_){}},400);});
@@ -2379,3 +2373,7 @@ section .wrap .svx-grid.svx-grid>*{grid-column:auto!important}
 </style>
 </body>
 </html>
+
+<!-- NB93-FIX-187:ta8TapeUp băng roll: băng ngang 48px, chữ chạy dọc từ dưới lên -->
+
+<script data-nb93fix="S187:ta8TapeUp">(function(){try{var tr=document.getElementById('')||document.querySelector('.tape-track');if(tr&&tr.dataset.nbDup!=='1'&&(tr.scrollHeight||0)<160){tr.innerHTML+=tr.innerHTML;tr.dataset.nbDup='1';}}catch(_){}})();</script>

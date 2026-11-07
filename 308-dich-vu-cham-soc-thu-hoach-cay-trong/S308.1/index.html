@@ -109,7 +109,7 @@ h1{display:block;font-size:2.85rem;font-weight:900;line-height:1.15;letter-spaci
 .tape-track{display:flex;gap:0;width:max-content;animation:tapeslide 30s linear infinite}
 .tape-track span{display:inline-flex;align-items:center;gap:14px;color:#fff;font-weight:900;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;padding:13px 0;white-space:nowrap}
 .tape-track span::after{content:'❋';margin:0 22px;opacity:.75;font-size:.85rem}
-@keyframes tapeslide{to{transform:translateX(-50%)}}
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 /* khoi-8: 2 the lon + 6 the nho — grid 6 cot kin o NB93-308 */
 .svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
 .svc-big{grid-column:span 3;background:#fff;border-radius:var(--r2);overflow:clip;box-shadow:var(--sh1);border:1.5px solid var(--line);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;position:relative;min-width:0}
@@ -471,21 +471,14 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"MùaVàng Agri","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"88 Đường Vườn Vui, Xã Trái Ngọt","addressLocality":"H. Nắng Mèm, Tỉnh Gió Xanh","addressCountry":"VN"},"description":"MùaVàng Agri — đội 60+ công nhân và 4 kỹ sư nông học nhận chăm sóc vườn theo hợp đồng tháng/ha, thu hoạch mùa vụ bằng máy và đội riêng. Khảo sát vườn miễn phí, ","url":"http://127.0.0.1:8174/308-dich-vu-cham-soc-thu-hoach-cay-trong/"}
 </script>
-<style data-nb93fix="308:input40">
-/*NB93-FIX-308:input40 input tim kiem du 40px touch target*/
-@media(max-width:768px){
-  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}
-  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
-}
-</style>
-<style data-nb93fix="308:t3d1hotmap">/*NB93-FIX-308:t3d1hotmap*/</style>
-<style data-nb93fix="308:t3d1cov4">/*NB93-FIX4-308*/</style>
-<style data-nb93fix="308:t3d1ldaddr">/*NB93-FIX5-308*/</style>
+<style data-nb93fix="308:input40">  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}</style>
 
-<style data-nb93fix="S308:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+
+
+<style data-nb93fix="S308:r1base">/*NB93-FIX-S308:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 </style>
 </head>
 <body id="top">
@@ -1696,29 +1689,11 @@ $('#fabTop').addEventListener('click',function(){
 </style>
 
 <!-- NB93-FIX-S308:tw6tapetblbtnov [W6 07-11-2026 r2] -->
-<style id="w6fixStyle">
-/* NB93-FIX-S308:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
-.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
-.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
-.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
-@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-
-/* NB93-FIX-S308:tw6tbl - bang 390: wrapper cuon ngang + hint */
-.w6-tblw{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
-.w6-tblhint{font:500 12px/1.5 system-ui,sans-serif;color:#8a8a8a;text-align:right;padding:3px 2px 0}
-
-/* NB93-FIX-S308:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
-.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}
-.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}
-a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}
-
-/* NB93-FIX-S308:tw6ov - sua tran ngang/de chu site-specific */
+<style id="w6fixStyle">* NB93-FIX-S308:tw6tbl - bang 390: wrapper cuon ngang + hint */
+.w6-tblw{overflow-x:auto!important;-webkit-overflow-scrolling:touch}.w6-tblhint{font:500 12px/1.5 system-ui,sans-serif;color:#8a8a8a;text-align:right;padding:3px 2px 0}* NB93-FIX-S308:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
+.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}* NB93-FIX-S308:tw6ov - sua tran ngang/de chu site-specific */
 /* tw6ov slider blowout: grid item khong duoc day ngang hon khung */
-.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}
-.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}
-.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}
-.rvw-card,.rev-card{max-width:100%}</style>
+.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}.rvw-card,.rev-card{max-width:100%}</style>
 <script id="w6fixJs">
 /* NB93-FIX-S308:tw6js - W6 runner: chip lift + btn 40px + tbl wrap + tape doc (re-run khi load/scroll) */
 (function(){
@@ -1821,6 +1796,8 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
   window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
 })();
 </script>
+
+<style data-nb93fix="S308:r1dir">/*NB93-FIX-S308:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
 </body>
 </html>
 

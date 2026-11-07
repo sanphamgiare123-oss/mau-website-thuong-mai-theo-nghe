@@ -143,7 +143,7 @@ nav.main a:hover{color:var(--primary);background:var(--accent-100)}
 .tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
 .tape-track span{display:inline-flex;align-items:center;gap:10px;color:#9C2050;font-weight:800;font-size:.92rem;padding:0 22px;border-right:2px dashed rgba(156,32,80,.35)}
 .tape-track .i{width:17px;height:17px}
-@keyframes tape{to{transform:translateX(-50%)}}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* ============ SECTION KHUNG ============ */
 section{position:relative}
@@ -624,11 +624,12 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 /* Khối nổi bật luôn to gấp đôi */
 [class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
 </style>
-<style data-nb93fix="260:t3c5fix">/*NB93-FIX-260:t3c5fix hotline-0034567899+addr-vui-cover+map-pool-N0*/</style>
-<style data-nb93fix="S260:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+<style data-nb93fix="S260:r1base">/*NB93-FIX-S260:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+
 </style>
 </head>
 <body>
@@ -1726,21 +1727,7 @@ faqRender(FAQ);
 .pkc-inrow button:hover{filter:brightness(1.08)}
 @media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
 
-/*NB93-FIX-260:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/
-.svx-badge{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.sp-img .sp-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.modal .m-img .cat-b{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.svx-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-.sp-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-.m-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-/*NB93-FIX-260:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*/
-.tape{height:164px}
-.tape-track{flex-direction:column;width:auto;height:max-content;animation-name:NB93tapeV260;animation-duration:30s;padding:8px 0}
-.tape-track > *{white-space:normal;justify-content:center;text-align:center;border-right:0}
-@keyframes NB93tapeV260{to{transform:translateY(-50%)}}
-/*NB93-FIX-260:tw5btn — W5: nut nho <40px -> nang 40px*/
-.on{min-width:40px;min-height:40px}
-</style><script>
+/*NB93-FIX-260:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/.svx-badge{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.sp-img .sp-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.modal .m-img .cat-b{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.svx-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}.sp-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}.m-img{height:auto!important;min-height:0!important;aspect-ratio:auto!important}/*NB93-FIX-260:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*//*NB93-FIX-260:tw5btn — W5: nut nho <40px -> nang 40px*/.on{min-width:40px;min-height:40px}</style><script>
 /* NB93-260: chat logic */
 (function(){
   var fab=document.getElementById('pkcFab'),panel=document.getElementById('pkcPanel'),msgs=document.getElementById('pkcMsgs'),
@@ -1779,7 +1766,8 @@ document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
   if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
 });
 }catch(e){}},1600);})();
-</script></body>
+</script><style data-nb93fix="S260:r1dir">/*NB93-FIX-S260:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
+</body>
 </html>
 
 <script>/*NB93-FIX-260:t6hint vuot-ngang*/
@@ -1802,3 +1790,4 @@ document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
   tag(); setTimeout(tag, 800); setTimeout(tag, 2000);
 })();
 </script>
+

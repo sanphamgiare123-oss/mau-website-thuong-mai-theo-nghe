@@ -126,7 +126,7 @@ h1 .hl{display:inline;background:var(--grad-accent);color:#fff;padding:1px 14px 
 .tape-in{display:flex;width:max-content;animation:tape 28s linear infinite}
 .tape span{color:#fff;font-weight:900;font-size:.92rem;letter-spacing:1.2px;text-transform:uppercase;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
 .tape span::after{content:"✚";font-size:.72rem;opacity:.85}
-@keyframes tape{to{transform:translateX(-50%)}}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /*NB93-274: dai 5 nhom hang*/
 .strip{background:#fff;padding:6px 0 70px}
@@ -578,17 +578,13 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Tâm An","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"58 Ngõ Băng Keo, Phường Xe Lăn","addressLocality":"TP. Sức Vui","addressCountry":"VN"},"description":"Tâm An — thiết bị y tế chính hãng đủ số công bố: máy đo huyết áp, đường huyết, xe lăn, giường bệnh, vật tư tiêu hao. Chọn theo nhu cầu chăm sóc người già, bệnh ","url":"http://127.0.0.1:8174/274-cua-hang-thiet-bi-vat-tu-y-te/"}
 </script>
-<style data-nb93fix="274:ghost">
-/*NB93-FIX-274:ghost sua ghost-column: bo span tren mobile*/
-@media(max-width:1080px){
-  .cat-grid.rv.in > *{grid-column:auto!important}
-}
-</style>
-<style data-nb93fix="274:t3c6fix">/*NB93-FIX-274:t3c6fix hotline-0034567899+addr-vui+map-pool-N4*/</style>
-<style data-nb93fix="S274:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+<style data-nb93fix="274:ghost">  .cat-grid.rv.in > *{grid-column:auto!important}</style>
+
+
+<style data-nb93fix="S274:r1base">/*NB93-FIX-S274:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+
 </style>
 </head>
 <body>
@@ -1460,19 +1456,7 @@ window.addEventListener('scroll',function(){
 .pkc-inrow button:hover{filter:brightness(1.08)}
 @media(max-width:680px){.pkc-panel{right:10px;bottom:142px;height:min(440px,calc(100vh - 180px))}.pkc-fab{right:12px;bottom:84px}}
 
-/*NB93-FIX-274:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/
-.sg .q{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.sg .n{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.p-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.p-off{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.sg{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-.p-media{height:auto!important;min-height:0!important;aspect-ratio:auto!important}
-/*NB93-FIX-274:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*/
-.tape{height:118px}
-.tape-in{flex-direction:column;width:auto;height:max-content;animation-name:NB93tapeV274;animation-duration:28s;padding:8px 0}
-.tape-in > *{white-space:normal;justify-content:center;text-align:center;border-right:0}
-@keyframes NB93tapeV274{to{transform:translateY(-50%)}}
-</style>
+/*NB93-FIX-274:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/.sg .q{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.sg .n{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.p-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.p-off{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.sg{height:auto!important;min-height:0!important;aspect-ratio:auto!important}.p-media{height:auto!important;min-height:0!important;aspect-ratio:auto!important}/*NB93-FIX-274:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*/</style>
 <script>
 /*NB93-274: chat logic — tra loi theo nghe thiet bi y te*/
 (function(){
@@ -1610,3 +1594,4 @@ document.querySelectorAll('.rv').forEach(function(el){
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+

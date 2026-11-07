@@ -150,7 +150,7 @@ nav.main a:hover{color:var(--primary);background:var(--texture-2)}
 .tape-track{display:flex;gap:0;width:max-content;animation:tape 30s linear infinite;padding:13px 0}
 .tape-track span{display:inline-flex;align-items:center;gap:10px;color:#14532D;font-weight:800;font-size:.92rem;white-space:nowrap;padding:0 22px;border-right:2px dashed rgba(20,83,45,.35)}
 .tape-track .i{width:17px;height:17px}
-@keyframes tape{to{transform:translateX(-50%)}}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* ============ SECTION KHUNG ============ */
 section{position:relative}
@@ -642,43 +642,16 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 /* Khối nổi bật luôn to gấp đôi */
 [class*="grid"]>[class*="feat"],[class*="grid"]>[class*="big"],[class*="grid"]>[class*="hot"],[class*="grid"]>[class*="star"],[class*="grid"]>[class*="noi-bat"]{grid-column:span 2}
 /*NB93-FIX-296: (1) mobile pbd-grid 1 cot bi dut thanh track 30px + 306px vi span 2 de len 1fr — feat ve lai full row,
-7 the gia .pbd-card bi ep con 30px (<38px); (2) bump cac nut nho <38px (dots 9px, dr-close 36px, dr-chip 36px) len 40px*/
-@media(max-width:680px){
-  .pbd-grid>.pbd-feat{grid-column:1/-1}
-  .rvw-dots button,.rvw-dots button.on{min-width:40px!important;min-height:40px!important;width:40px!important;height:40px!important}
-  .dr-close{min-width:40px!important;min-height:40px!important;width:40px!important;height:40px!important}
-  .dr-chip{min-height:40px}
-}
-</style>
-<style data-nb93fix="296:ghost">
-/*NB93-FIX-296:ghost sua ghost-column: bo span tren mobile*/
-@media(max-width:1080px){
-  .pbd-card.rv.on > *{grid-column:auto!important}
-}
-</style>
-<style data-nb93fix="296:fab">
-/*NB93-FIX-296:fab CTA day phai tranh fab chat*/
-@media(max-width:768px){
-  .btn-xl{padding-right:64px}
-}
-</style>
-<style data-nb93fix="296:rowimg">
-/*NB93-FIX-296:rowimg rowimg: phong thumb khoi-8 hang ngang len 104x78 (loi 1)*/
-/*NB93-FIX rowimg: phong thumb .pbd-card .th 48 -> 104x78; desktop 3 cot cho chu du rong*/
-.pbd-card{grid-template-columns:auto 104px minmax(0,1fr)!important}
-.pbd-card>.th{width:104px!important;height:78px!important;aspect-ratio:auto!important}
-.pbd-card>.th img{width:100%!important;height:100%!important;object-fit:cover!important}
-.pbd-card>.tx{min-width:0!important}
-@media(min-width:1024px){
-  .pbd-grid{grid-template-columns:repeat(3,1fr)!important}
-}
-</style>
-<style data-nb93fix="296:t3c7fix">/*NB93-FIX-296:t3c7fix map-pool-N6+tel+addr*/</style>
+7 the gia .pbd-card bi ep con 30px (<38px); (2) bump cac nut nho <38px (dots 9px, dr-close 36px, dr-chip 36px) len 40px*/  .pbd-grid>.pbd-feat{grid-column:1/-1}  .rvw-dots button,.rvw-dots button.on{min-width:40px!important;min-height:40px!important;width:40px!important;height:40px!important}  .dr-close{min-width:40px!important;min-height:40px!important;width:40px!important;height:40px!important}  .dr-chip{min-height:40px}</style>
+<style data-nb93fix="296:ghost">  .pbd-card.rv.on > *{grid-column:auto!important}</style>
+<style data-nb93fix="296:fab">  .btn-xl{padding-right:64px}</style>
+<style data-nb93fix="296:rowimg">*NB93-FIX-296:rowimg rowimg: phong thumb khoi-8 hang ngang len 104x78 (loi 1)*/
+/*NB93-FIX rowimg: phong thumb .pbd-card .th 48 -> 104x78; desktop 3 cot cho chu du rong*/.pbd-card{grid-template-columns:auto 104px minmax(0,1fr)!important}.pbd-card>.th{width:104px!important;height:78px!important;aspect-ratio:auto!important}.pbd-card>.th img{width:100%!important;height:100%!important;object-fit:cover!important}.pbd-card>.tx{min-width:0!important}  .pbd-grid{grid-template-columns:repeat(3,1fr)!important}</style>
 
-<style data-nb93fix="S296:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+<style data-nb93fix="S296:r1base">/*NB93-FIX-S296:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 </style>
 </head>
 <body>
@@ -1877,10 +1850,7 @@ faqRender(FAQ);
 .pkc-inrow button{width:44px;border-radius:11px;background:linear-gradient(135deg,#2E9E52,#14532D);color:#fff;border:none;cursor:pointer;font-size:1rem}
 .pkc-inrow button:hover{filter:brightness(1.08)}
 @media(max-width:680px){.pkc-panel{right:10px;bottom:84px;height:min(440px,calc(100vh - 120px))}.pkc-fab{right:12px;bottom:12px;width:52px;height:52px}}
-/*NB93-FIX-296: nut chat nho <38px (close 30px, chip 29px cao) — bump 40px tap target*/
-.pkc-x{width:40px!important;height:40px!important}
-.pkc-chip{min-height:40px}
-</style>
+/*NB93-FIX-296: nut chat nho <38px (close 30px, chip 29px cao) — bump 40px tap target*/.pkc-x{width:40px!important;height:40px!important}.pkc-chip{min-height:40px}</style>
 <script>
 /*NB93-296 chat bot logic */
 (function(){
@@ -1923,28 +1893,11 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 </script>
 
 <!-- NB93-FIX-S296:tw6tapechipbtnov [W6 07-11-2026 r2] -->
-<style id="w6fixStyle">
-/* NB93-FIX-S296:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
-.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
-.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
-.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
-@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-
-/* NB93-FIX-S296:tw6chip - chip/badge absolute de anh -> static duoi anh */
-.w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}
-
-/* NB93-FIX-S296:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
-.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}
-.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}
-a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}
-
-/* NB93-FIX-S296:tw6ov - sua tran ngang/de chu site-specific */
+<style id="w6fixStyle">* NB93-FIX-S296:tw6chip - chip/badge absolute de anh -> static duoi anh */
+.w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}* NB93-FIX-S296:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
+.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}* NB93-FIX-S296:tw6ov - sua tran ngang/de chu site-specific */
 /* tw6ov slider blowout: grid item khong duoc day ngang hon khung */
-.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}
-.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}
-.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}
-.rvw-card,.rev-card{max-width:100%}</style>
+.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}.rvw-card,.rev-card{max-width:100%}</style>
 <script id="w6fixJs">
 /* NB93-FIX-S296:tw6js - W6 runner: chip lift + btn 40px + tbl wrap + tape doc (re-run khi load/scroll) */
 (function(){
@@ -2047,5 +2000,7 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
   window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
 })();
 </script>
+
+<style data-nb93fix="S296:r1dir">/*NB93-FIX-S296:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
 </body>
 </html>

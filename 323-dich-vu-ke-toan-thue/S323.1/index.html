@@ -575,11 +575,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 }
 </style>
 <style data-nb93fix="323:t3d2fix">/*NB93-FIX-323:t3d2fix hotline-0034567899+addr-vui-cover+map-pool-N3*/</style>
-<style data-nb93fix="S323:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
-</style>
+
 </head>
 <body>
 
@@ -1479,11 +1475,6 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 </script>
 <!-- NB93-FIX-S323:tw6tapechipbtnov [W6 07-11-2026 r2] -->
 <style id="w6fixStyle">
-/* NB93-FIX-S323:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
-.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
-.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
-.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
-@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 
 /* NB93-FIX-S323:tw6chip - chip/badge absolute de anh -> static duoi anh */
 .w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}
@@ -1582,18 +1573,8 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
       }
     });
   }
-  function tapeV(){
-    d.querySelectorAll('body *').forEach(function(e){
-      if(e.classList.contains('w6-vtrack'))return;
-      var s=getComputedStyle(e);
-      if(s.animationName&&/tape|marquee|ticker/i.test(s.animationName)&&s.animationIterationCount.indexOf('infinite')>=0){
-        e.classList.add('w6-vtrack');
-        var p=e.parentElement;
-        if(p&&p!==d.body&&!p.classList.contains('w6-vband'))p.classList.add('w6-vband');
-      }
-    });
-  }
-  function run(){try{liftChips();fixBtns();wrapTbl();tapeV();}catch(x){}}
+  
+  function run(){try{liftChips();fixBtns();wrapTbl();}catch(x){}}
   run();
   window.addEventListener('load',function(){run();setTimeout(run,700);setTimeout(run,2000);setTimeout(run,4200);setTimeout(run,6500);setTimeout(run,9000);});
   var iv=setInterval(function(){run();},2500);
@@ -1602,5 +1583,12 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
   window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
 })();
 </script>
+
+
+<style data-nb93fix="S323:r1dir">
+/* NB93-FIX-S323:r1dir băng chạy trái → phải (dx>0) */
+.tape-track{animation-direction:reverse !important}
+.tape-in{animation-direction:reverse !important}
+</style>
 </body>
 </html>

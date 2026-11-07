@@ -732,8 +732,6 @@ footer{background:var(--primary-3);color:#E3C2D2;font-size:.86rem}
 .lv.lv-a{position:static!important;inset:auto!important;transform:none!important;width:fit-content!important;max-width:100%!important;margin:10px 14px 0!important;z-index:auto!important;animation:none!important}
 
 /* B) NB93-FIX-S077:tw2W2 bang-chay-ngang -> cot-doc-di-len */
-.tape{height:90px!important;max-height:90px!important;transform:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;margin-left:0!important;margin-right:0!important}
-.tape-track{flex-direction:column!important;align-items:center!important;gap:9px!important;width:100%!important;max-width:100%!important;margin:0!important}
 .tape-track span{white-space:normal!important;max-width:100%!important;text-align:center!important}
 .tape-track .sep{display:none!important}
 
@@ -788,7 +786,6 @@ sec wrap rvw-shell.on rvw-side > *{min-width:0!important;max-width:100%!importan
 
 <style data-nb93fix="S077:t10tape-h">
 /* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
 .tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
 </style>
 <style data-nb93fix="S077:t10tape-h2">/* tape 90px */</style></head>
@@ -2138,6 +2135,23 @@ el.classList.add('tw2-b40')})}
 if(W){b40();setTimeout(b40,1200);setTimeout(b40,3000);window.addEventListener('scroll',b40,{passive:true})}
 }catch(e){}})();
 </script>
+<style id="nb93-ta8L2" data-mark="NB93-FIX-S077:ta8L2">
+/*NB93-FIX-S077:ta8L2 - bang giu thiet ke ngang (gradient+rotate+trang tri), cao 48px (<=60), chu ben trong xep doc chay tu duoi len nhu ticker trong dai ngang*/
+.tape{height:48px!important;max-height:48px!important;overflow:hidden!important;display:block!important;padding-top:0!important;padding-bottom:0!important;margin-left:0!important;margin-right:0!important;transform:rotate(-1deg) scale(1.02)!important;}
+.tape-track span{white-space:nowrap!important;text-align:center!important;max-width:none!important;overflow-wrap:normal!important}
+.tape-track .sep{display:none!important}
+@media (prefers-reduced-motion:reduce){.tape-track{animation:none!important}}
+.tape-wrap{height:auto!important;max-height:none!important}
+</style>
+
+<style data-nb93fix="NB93-FIX-S077:r1dir">
+/* NB93-FIX-S077:r1dir - ROLLBACK marquee ve bang ngang goc + doi chieu chu chay TRAI SANG PHAI (tang dan) */
+.tape:has(.tape-in),.tape:has(.tape-track),.tape:has(.tapeMove),.tape:has(#tapeIn),.tape:has(#tapeTrack),.tape:has(#ticker),.tape:has(.marquee-inner){display:flex;height:50px!important;min-height:0!important;max-height:60px!important;padding:0!important;overflow:hidden!important}
+.tape-in,.tape-track,.tapeMove,.tape .in,#tapeIn,#tapeTrack,#ticker,.marquee-inner,.w6-vtrack{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:max-content!important;height:auto!important;align-items:center!important;animation:tape 30s linear infinite!important;will-change:transform}
+.tape-in span,.tape-track span,.tapeMove span,.tape .in span,#tapeIn span,#tapeTrack span,#ticker span,.marquee-inner span,.w6-vtrack span,.w6-vtrack>*{white-space:nowrap!important;width:auto!important;max-width:none!important;padding:6px 24px!important;text-align:left!important}
+.w6-vband{height:50px!important;max-height:60px!important;overflow:hidden!important;transform:none!important}
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+</style>
 </body>
 </html>
 

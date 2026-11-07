@@ -124,7 +124,7 @@ h1,h2,h3,h4{line-height:1.22;letter-spacing:-.015em}
 .tape-in{display:flex;width:max-content;animation:tape 30s linear infinite}
 .tape-in span{display:inline-flex;align-items:center;gap:12px;color:#3D2A00;font-weight:900;font-size:.95rem;padding:13px 22px;white-space:nowrap;letter-spacing:.02em}
 .tape-in span::after{content:"◆";font-size:.7rem;opacity:.6}
-@keyframes tape{to{transform:translateX(-50%)}}
+/*NB93-FIX-135:r1dir chay trai->phai*/@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* section base */
 .sec{padding:84px 0}
@@ -648,12 +648,8 @@ img height 100% (dac thang cu the, thang qua img{height:auto!important} chung) -
 }
 </style>
 
-<style data-nb93fix="S135:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
-</style>
-<style data-nb93fix="S135:t10tape-h2">/* tape 90px */</style></head>
+
+</head>
 <body><!--NB93-FIX-135:t3b3hl-addr-map-->
 
 <!-- ============ TOPBAR ============ -->
@@ -1747,33 +1743,6 @@ try{Object.defineProperty(window,"MENU",{get:function(){return MENU;},configurab
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
-<style id="nb93-tw3" data-code="135">
-/*NB93-FIX-135:tw3chip*/
-.sp-img{display:flex!important;flex-direction:column!important;align-items:stretch}
-.sp-img > img{order:-1!important;height:auto!important;position:static!important}
-.sp-img > .sp-badge{position:static!important;inset:auto!important;transform:none!important;animation:none!important;width:fit-content!important;max-width:100%!important;align-self:flex-start!important;margin:10px 12px 2px!important;white-space:normal!important}
-.ab-imgs.rv{display:flex!important;flex-direction:column!important;align-items:stretch}
-.ab-imgs.rv > img{order:-1!important;height:auto!important;position:static!important}
-.ab-imgs.rv > .ab-chip{position:static!important;inset:auto!important;transform:none!important;animation:none!important;width:fit-content!important;max-width:100%!important;align-self:flex-start!important;margin:10px 12px 2px!important;white-space:normal!important}
-.qv-img{display:flex!important;flex-direction:column!important;align-items:stretch}
-.qv-img > img{order:-1!important;height:auto!important;position:static!important}
-.qv-img > #qvCat{position:static!important;inset:auto!important;transform:none!important;animation:none!important;width:fit-content!important;max-width:100%!important;align-self:flex-start!important;margin:10px 12px 2px!important;white-space:normal!important}
-.sp-img{aspect-ratio:auto!important}
-.sp-img > img{aspect-ratio:501 / 428!important;object-fit:cover!important;width:100%!important;height:auto!important;position:static!important}
-.qv-img{aspect-ratio:auto!important}
-.qv-img > img{aspect-ratio:16 / 7!important;object-fit:cover!important;width:100%!important;height:auto!important;position:static!important}
-/*NB93-FIX-135:tw3tape*/
-@keyframes nbTw3Y{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-.tape{height:90px!important;overflow:hidden!important;transform:none!important;margin:0 0 12px!important;width:auto!important}
-.tape > #tapeIn{display:flex!important;flex-direction:column!important;align-items:center!important;width:auto!important;height:max-content!important;animation:nbTw3Y 9s linear infinite!important;padding:8px 0!important}
-.tape > #tapeIn > *{white-space:normal!important;border-right:0!important;border-bottom:1px dashed rgba(125,125,125,.35)!important;padding:9px 18px!important;width:fit-content!important;max-width:100%!important;height:auto!important;flex:0 0 auto!important;min-width:0!important}
-.ticker-wrap{height:90px!important;overflow:hidden!important;transform:none!important;margin:0 0 12px!important;width:auto!important}
-.ticker-wrap > #ticker{display:flex!important;flex-direction:column!important;align-items:center!important;width:auto!important;height:max-content!important;animation:nbTw3Y 10s linear infinite!important;padding:8px 0!important}
-.ticker-wrap > #ticker > *{white-space:normal!important;border-right:0!important;border-bottom:1px dashed rgba(125,125,125,.35)!important;padding:9px 18px!important;width:fit-content!important;max-width:100%!important;height:auto!important;flex:0 0 auto!important;min-width:0!important}
-/*NB93-FIX-135:tw3mob*/
-@media(max-width:430px){
-  button,.btn,a[class*="btn"],a.dir-btn{min-height:40px;min-width:40px}
-  button:empty{min-height:10px;min-width:14px}
-}
-</style>
+
 <script data-nb93-tw3="dup">/*NB93-FIX-135:tw3dup*/(function(){['#tapeIn', '#ticker'].forEach(function(s){var t=document.querySelector(s);if(t&&!t.dataset.nbTw3){t.innerHTML+=t.innerHTML;t.dataset.nbTw3="1"}})})()</script>
+

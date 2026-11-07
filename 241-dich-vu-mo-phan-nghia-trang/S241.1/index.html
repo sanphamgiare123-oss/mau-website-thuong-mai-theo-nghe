@@ -109,7 +109,7 @@ h1{font-family:'Playfair Display',serif;font-size:2.9rem;font-weight:800;line-he
 .tape-track{display:flex;gap:0;width:max-content;animation:tapeslide 36s linear infinite}
 .tape-track span{display:inline-flex;align-items:center;gap:14px;color:#fff;font-weight:800;font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 0;white-space:nowrap}
 .tape-track span::after{content:'❧';margin:0 22px;opacity:.7;font-size:.85rem}
-@keyframes tapeslide{to{transform:translateX(-50%)}}
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 /*NB93-241: KHOI-8 — 2 the noi bat TO (16/9) + luoi 3x2 the thuong (4/3), kin o*/
 .svc-feat{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .svc-card{background:#fff;border-radius:var(--r2);overflow:clip;box-shadow:var(--sh1);border:1.5px solid var(--line);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;position:relative;min-width:0}
@@ -469,22 +469,17 @@ button:active{transform:scale(.96)}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Bình An Viên","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"Số 12, đường Thiền Môn, xã Gió Hồng","addressLocality":"TP. An Nghỉ","addressCountry":"VN"},"description":"Bình An Viên — xây mộ trọn gói, tu tạo nâng cấp, chăm sóc mộ định kỳ theo mùa (Thanh minh, giỗ chạp, Vu lan), bốc mộ cải táng, tư vấn vị trí nghĩa trang. Báo gi","url":"http://127.0.0.1:8174/241-dich-vu-mo-phan-nghia-trang/"}
 </script>
-<style data-nb93fix="241:input40">
-/*NB93-FIX-241:input40 input tim kiem du 40px touch target*/
-@media(max-width:768px){
-  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}
-  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
-}
-</style>
+<style data-nb93fix="241:input40">  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}</style>
 <style>
 /* FACTORY-NGHE-21-SURFACE: 241 — 2 section .sec-dark (#uoc-tinh, #tu-van) hien tieu de/nhan/ket qua chu trang nga (#EAF0EA) va nhan trang doc (#C3CFC2/#fff) tren nen kem sang, khong doc duoc; tra lai nen toi goc dang co trong site (--grad-dark) de chu sang san co doc duoc, khong them mau moi */
 #uoc-tinh,#tu-van{background:linear-gradient(140deg,#415246,#2E3B33 55%,#1B241E)!important;color:#EAF0EA!important}
 </style>
-<style data-nb93fix="241:t3c3fix">/*NB93-FIX-241:t3c3fix hotline-0034567899+addr-vui+map-pool-N1*/</style>
-<style data-nb93fix="S241:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+<style data-nb93fix="S241:r1base">/*NB93-FIX-S241:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+
 </style>
 </head>
 <body id="top">
@@ -1549,19 +1544,7 @@ document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
   .sfx-none{font-size:12.5px}
 }
 
-/*NB93-FIX-241:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/
-.hv-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-.about-exp{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}
-/*NB93-FIX-241:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*/
-.tape{height:240px}
-.tape-track{flex-direction:column;width:auto;height:max-content;animation-name:NB93tapeV241;animation-duration:36s;padding:8px 0}
-.tape-track > *{white-space:normal;justify-content:center;text-align:center;border-right:0}
-@keyframes NB93tapeV241{to{transform:translateY(-50%)}}
-/*NB93-FIX-241:tw5btn — W5: nut nho <40px -> nang 40px*/
-.hotline{min-width:40px;min-height:40px}
-.on{min-width:40px;min-height:40px}
-.fab-zalo{min-width:40px;min-height:40px}
-</style>
+/*NB93-FIX-241:tw5chip — W5: chip absolute de anh -> static duoi anh, bo rotate*/.hv-tag{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}.about-exp{position:static;transform:none;top:auto;right:auto;bottom:auto;left:auto;z-index:auto;margin:10px auto 0;width:fit-content;max-width:100%}/*NB93-FIX-241:tw5mq — W5: tape ngang -> cot doc chay tu duoi len (translateY)*//*NB93-FIX-241:tw5btn — W5: nut nho <40px -> nang 40px*/.hotline{min-width:40px;min-height:40px}.on{min-width:40px;min-height:40px}.fab-zalo{min-width:40px;min-height:40px}</style>
 <script>/*NB93-241: tim kiem header chay that — index quet tu DOM (8 dich vu + FAQ + cac khoi), dropdown goi y toi da 6 ket qua, Enter = ket qua dau tien*/
 (function(){
   var input=document.getElementById('hdrSearch');
@@ -1720,5 +1703,7 @@ document.querySelectorAll('.rv,.reveal,[data-rv]').forEach(function(el){
     }
   });
 })();
-</script></body>
+</script><style data-nb93fix="S241:r1dir">/*NB93-FIX-S241:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
+</body>
 </html>
+

@@ -665,6 +665,7 @@ img{height:auto!important;max-height:560px;object-fit:cover}
 .tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
 .tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
 </style>
+<style data-nb93fix="S179:r1dir">.tape .in,.tape>.in,.tape-in,.tape-inner,.tape-track,.ticker-in,.ticker .in,.ticker .tkr,#ticker,.tapeMove,.marquee-inner,.marquee-track,.feed-track,[class*="tape-in"],[class*="tape-track"],[class*="ticker-in"],[class*="marquee-track"]{animation-direction:reverse!important}</style>
 </head>
 <body>
 
@@ -1701,11 +1702,6 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 <!-- NB93-FIX-179:tw4B marquee ngang -> cot doc tu duoi di len (translateY) -->
 <style data-tw4="179">.ribbon,
 .m8-tag{position:static!important;transform:none!important;inset:auto!important;width:-moz-fit-content;width:fit-content;max-width:100%;display:inline-block;margin:8px 14px 0;white-space:normal;text-align:left}
-@keyframes tape{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.tape-track{flex-direction:column!important;flex-wrap:nowrap!important;width:auto!important;height:max-content!important;gap:0!important;align-items:center!important}
-.tape-track>span,.tape-track>*{flex:0 0 auto;white-space:nowrap;padding:9px 0}
-.tape{height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none!important}
-@media (max-width:700px){.tape{height:250px}}
 </style>
 <script data-tw4="179">(function(P){
  function move(ch){
@@ -1728,13 +1724,11 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
 (function(anim,trackSel,wrapSel,extra){
  try{
   var tr=document.querySelector(trackSel); if(!tr)return;
-  Array.prototype.slice.call(tr.children).forEach(function(c){
-   if(c.children.length>1){while(c.firstChild)tr.insertBefore(c.firstChild,c); c.remove();}
-  });
+  
   tr.innerHTML=tr.innerHTML+tr.innerHTML;
   var p=tr.parentElement, pp=p?p.parentElement:null;
-  if(p){p.style.cssText+=';height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none;';}
-  if(pp){pp.style.transform='none';pp.style.overflow='hidden';}
+  if(p){p.style.cssText+=';overflow:hidden;';}
+  if(pp){pp.style.overflow='hidden';}
   if(extra){document.querySelectorAll(extra).forEach(function(el){el.style.transform='none';el.style.overflow='hidden';});}
  }catch(_){}
  window.addEventListener('load',function(){setTimeout(function(){try{var t=document.querySelector(trackSel);if(t&&t.parentElement){t.parentElement.style.overflow='hidden';}}catch(_){}},400);});
@@ -1948,3 +1942,7 @@ section .wrap .svx-grid.svx-grid>*{grid-column:auto!important}
 </style>
 </body>
 </html>
+
+<!-- NB93-FIX-179:ta8TapeUp băng roll: băng ngang 48px, chữ chạy dọc từ dưới lên -->
+
+<script data-nb93fix="S179:ta8TapeUp">(function(){try{var tr=document.getElementById('tapeTrack')||document.querySelector('.tape-track');if(tr&&tr.dataset.nbDup!=='1'&&(tr.scrollHeight||0)<160){tr.innerHTML+=tr.innerHTML;tr.dataset.nbDup='1';}}catch(_){}})();</script>

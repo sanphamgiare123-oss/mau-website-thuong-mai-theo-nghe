@@ -113,7 +113,7 @@ h1{display:block;font-size:2.8rem;font-weight:900;line-height:1.15;letter-spacin
 .tape-track{display:flex;gap:0;width:max-content;animation:tapeslide 30s linear infinite}
 .tape-track span{display:inline-flex;align-items:center;gap:14px;color:#241C06;font-weight:900;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;padding:13px 0;white-space:nowrap}
 .tape-track span::after{content:'✦';margin:0 22px;opacity:.6;font-size:.85rem}
-@keyframes tapeslide{to{transform:translateX(-50%)}}
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 /* khoi-8: 2 the lon + 6 the nho — grid 6 cot kin o NB93-307 */
 .svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
 .svc-big{grid-column:span 3;background:#fff;border-radius:var(--r2);overflow:clip;box-shadow:var(--sh1);border:1.5px solid var(--line);border-top:5px solid var(--accent);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;position:relative;min-width:0}
@@ -310,228 +310,29 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .rev-dots{display:flex;gap:9px;justify-content:center;margin-top:22px}
 .rev-dots button{width:10px;height:10px;border-radius:99px;border:none;background:var(--texture-2);cursor:pointer;transition:.3s;padding:0;min-width:10px;min-height:10px}
 .rev-dots button.on{width:30px;background:var(--grad-accent)}
-/*NB93-FIX-307: vung cham dot slider >=40px mobile — hinh thi van la dot 10px nho background-clip*/
-@media(max-width:680px){
-  .rev-dots{gap:2px}
-  .rev-dots button{width:40px;height:40px;padding:15px;background-clip:content-box}
-  .rev-dots button.on{width:40px;padding:15px 5px;background-clip:content-box}
-}
-.partners{margin-top:38px;text-align:center}
-.partners p{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:16px}
-.partner-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.partner-row span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 18px;font-weight:900;font-size:.8rem;color:var(--primary);letter-spacing:.03em;transition:.25s}
-.partner-row span:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);box-shadow:var(--sh1)}
-/* quote form NB93-307 */
-.qf-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
-.qf-box{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:32px;box-shadow:var(--sh2)}
-.qf-box h3{font-size:1.32rem;font-weight:900;color:#fff;display:block}
-.qf-box .fsub{display:block;color:#ACc6b4;font-size:.88rem;margin:8px 0 20px}
-.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.f-grid .full{grid-column:1/-1}
-.field{display:flex;flex-direction:column;gap:7px;min-width:0}
-.field label{font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#C8D9CB}
-.field input,.field select,.field textarea{background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.24);border-radius:12px;padding:13px 15px;color:#fff;outline:none;width:100%;min-width:0;transition:.2s}
-.field textarea{resize:vertical;min-height:84px}
-.field input::placeholder,.field textarea::placeholder{color:#7E9A88}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(232,150,10,.16)}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FFC24B' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
-.field select option{color:var(--ink);background:#fff}
-.qf-secure{display:flex;align-items:center;gap:9px;font-size:.76rem;color:#93B29D;margin-top:14px;justify-content:center}
-.qf-box .btn{width:100%;margin-top:20px}
-.qf-info h2{text-align:left;margin-bottom:14px}
-.qf-info .sec-sub{text-align:left}
-.qf-points{display:flex;flex-direction:column;gap:14px;margin-top:24px}
-.qf-points li{display:flex;gap:13px;align-items:flex-start;color:#DAE9DB;font-size:.93rem;font-weight:500}
-.qf-points svg{flex:none;color:var(--accent-2);margin-top:3px}
-.qf-hotline{margin-top:26px;display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.24);border-radius:16px;padding:16px 22px}
-.qf-hotline .ic{width:48px;height:48px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#241C06;flex:none}
-.qf-hotline span{display:block;font-size:.72rem;color:#A3C0AC;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.qf-hotline b{display:block;font-size:1.5rem;color:#fff;letter-spacing:.02em}
-/* map + contact NB93-307 */
-.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:stretch}
-.map-box{border-radius:var(--r2);overflow:clip;border:5px solid #fff;box-shadow:var(--sh2);min-height:380px;min-width:0;background:#fff}
-.map-box iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
-.map-cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
-.map-cta a{flex:1 1 160px}
-.contact-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:28px;box-shadow:var(--sh1);display:flex;flex-direction:column;gap:18px;min-width:0}
-.contact-card h3{font-size:1.15rem;font-weight:900;display:block}
-.contact-line{display:flex;gap:14px;align-items:flex-start}
-.contact-line .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-100);border:1.5px solid var(--accent-200);display:grid;place-items:center;color:var(--accent);flex:none}
-.contact-line b{display:block;font-size:.92rem;font-weight:800}
-.contact-line span{display:block;font-size:.84rem;color:var(--soft)}
-/* faq NB93-307 */
-.faq-shell{max-width:820px;margin:0 auto}
-.faq-tools{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
-.faq-search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:11px 20px;width:min(420px,100%);transition:.2s}
-.faq-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,150,10,.12)}
-.faq-search input{border:none;outline:none;background:none;width:100%;min-width:0}
-.faq-chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}
-.faq-chips button{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:7px 16px;font-size:.8rem;font-weight:700;color:var(--soft);cursor:pointer;transition:.2s;min-height:40px}
-.faq-chips button:hover{border-color:var(--accent);color:var(--accent)}
-.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;margin-bottom:13px;overflow:clip;transition:.25s}
-.faq-item.open{border-color:var(--accent);box-shadow:var(--sh1)}
-.faq-q{width:100%;display:flex;align-items:center;gap:14px;justify-content:space-between;text-align:left;background:none;border:none;padding:18px 22px;font-weight:800;font-size:.98rem;cursor:pointer;color:var(--ink);min-width:0;min-height:52px}
-.faq-q .pm{flex:none;width:32px;height:32px;border-radius:9px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;font-size:1.2rem;font-weight:900;transition:.3s;line-height:1}
-.faq-item.open .pm{background:var(--grad-accent);color:#241C06;transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.faq-a p{padding:0 22px 20px;color:var(--soft);font-size:.9rem}
-.faq-none{display:none;text-align:center;color:var(--soft);font-weight:700;padding:18px}
-/* footer gon 1 tang NB93-307 */
-.footer{background:var(--primary-3);color:#BBD0BF;padding:56px 0 0}
-.foot-grid{display:grid;grid-template-columns:1.3fr .75fr .95fr;gap:36px;padding-bottom:40px}
-.foot-grid h4{color:#fff;font-size:.96rem;font-weight:800;margin-bottom:16px;display:block}
-.foot-grid p{font-size:.85rem;line-height:1.7}
-.foot-social{display:flex;gap:11px;margin-top:18px}
-.foot-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#E2EEDF;transition:.25s}
-.foot-social a:hover{background:var(--grad-accent);border-color:transparent;color:#241C06;transform:translateY(-3px)}
-.foot-grid ul li{margin-bottom:10px}
-.foot-grid ul a{font-size:.87rem;transition:.2s;display:inline-flex;align-items:center;gap:8px}
-.foot-grid ul a:hover{color:var(--accent-2)}
-.foot-grid ul a::before{content:'›';color:var(--accent);font-weight:900}
-.foot-contact li{display:flex;gap:12px;margin-bottom:13px;font-size:.85rem;align-items:flex-start}
-.foot-contact svg{flex:none;color:var(--accent-2);margin-top:3px}
-.foot-hot{display:inline-flex;flex-direction:column;background:rgba(255,194,75,.13);border:1.5px solid rgba(255,194,75,.4);border-radius:14px;padding:12px 20px;margin-top:4px}
-.foot-hot span{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A3C0AC}
-.foot-hot b{font-size:1.38rem;color:var(--accent-2);font-weight:900}
-.foot-pay{border-top:1.5px solid rgba(255,255,255,.1);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.foot-pay p{font-size:.78rem}
-.foot-copy{border-top:1.5px solid rgba(255,255,255,.1);padding:16px 0;text-align:center;font-size:.78rem;color:#7E9A88}
-/* fab NB93-307 */
-.fab{position:fixed;left:50%;transform:translateX(-50%) translateY(120px);bottom:16px;z-index:70;display:flex;gap:10px;background:rgba(22,40,27,.88);border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);border-radius:99px;padding:9px;box-shadow:var(--sh3);transition:transform .45s cubic-bezier(.5,.05,.2,1.2)}
-.fab.show{transform:translateX(-50%) translateY(0)}
-.fab a,.fab button{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:none;cursor:pointer;color:#fff;background:rgba(255,255,255,.1);transition:.25s;position:relative}
-.fab a:hover,.fab button:hover{transform:translateY(-4px);background:rgba(255,255,255,.22)}
-.fab .fab-main{width:auto;border-radius:99px;padding:0 20px;gap:9px;background:var(--grad-accent);display:flex;align-items:center;font-weight:900;font-size:.9rem;color:#241C06;box-shadow:0 10px 26px rgba(232,150,10,.45)}
-.fab .fab-zalo{background:#0D6EFD}
-.fab-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(.85);background:var(--primary-3);color:#fff;font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
-.fab a:hover .fab-label,.fab button:hover .fab-label{opacity:1;transform:translateX(-50%) scale(1)}
-/* toast — pointer-events none de khong chan nut duoi NB93-307 */
-.toast{position:fixed;right:20px;bottom:24px;z-index:90;background:var(--primary);color:#fff;border-radius:14px;padding:15px 20px;font-size:.88rem;font-weight:600;box-shadow:var(--sh3);display:flex;gap:12px;align-items:center;max-width:340px;opacity:0;transform:translateY(16px);pointer-events:none;transition:.35s;border-left:5px solid var(--accent)}
-.toast.show{opacity:1;transform:translateY(0)}
-.toast svg{flex:none;color:#57D97F}
-/* fx NB93-307 */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-.spot{position:relative}
-.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none}
-.spot:hover::after{opacity:1}
-/* 1080 NB93-307 */
-@media (max-width:1080px){
-  h1{font-size:2.25rem}
-  h2.sec-title{font-size:1.8rem}
-  .hero .wrap{grid-template-columns:1fr;padding:46px 0 64px}
-  .hero-vis{max-width:640px}
-  .svc-grid{grid-template-columns:1fr 1fr}
-  .svc-big,.svc-card{grid-column:auto}
-  .calc-grid,.about-grid,.qf-grid,.contact-grid{grid-template-columns:1fr}
-  .season-grid{grid-template-columns:1fr;gap:14px}
-  .commit-stats{grid-template-columns:1fr 1fr;gap:14px}
-  .commit-grid{grid-template-columns:1fr 1fr}
-  .proc-grid{grid-template-columns:1fr 1fr}
-  .badges{grid-template-columns:repeat(3,1fr)}
-  .rev-shell{grid-template-columns:1fr}
-  .price-panel{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .hdr-nav{display:none}
-}
-/* MOBILE 680 NB93-307 */
-@media (max-width:680px){
-  .sec{padding:48px 0}
-  h1{font-size:1.58rem}
-  h2.sec-title{font-size:1.42rem}
-  .sec-head{margin-bottom:30px}
-  .commit-band{clip-path:polygon(0 1.8%,100% 0,100% 98.2%,0 100%);padding:56px 0}
-  /* header 2 hang */
-  .hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0;row-gap:10px}
-  .logo{order:1}
-  .hdr-cta{order:2;margin-left:auto}
-  .hdr-phone{display:none}
-  .hdr-cta .btn span{display:none}
-  .hdr-cta .btn{padding:11px 13px}
-  .hdr-search{order:3;flex-basis:100%;max-width:none}
-  /* hero */
-  .hero .wrap{padding:34px 0 46px;gap:26px}
-  .hero-pill{font-size:.75rem;padding:8px 14px}
-  .hv-main{border-width:4px;border-radius:16px}
-  .hv-stats{margin-top:14px;padding:12px 4px;flex-wrap:wrap;justify-content:space-between}
-  .hv-stats li{padding:2px 8px;flex:1 0 40%}
-  .hv-stats b{font-size:1.02rem}
-  .hv-stats span{font-size:.66rem}
-  .hv-note{font-size:.78rem;padding:9px 14px;text-align:center;width:100%;justify-content:center}
-  .hero-ctas{flex-direction:column;align-items:stretch}
-  .hero-ctas .btn{width:100%}
-  .hero-call{justify-content:center;width:100%}
-  .trust-chips{gap:8px}
-  .trust-chips li{font-size:.74rem;padding:7px 12px}
-  .tape-track span{font-size:.76rem;padding:10px 0}
-  /* khoi-8 1 cot */
-  .svc-grid{grid-template-columns:1fr}
-  .sb-body{padding:20px 18px 22px}
-  .sb-body h3{font-size:1.22rem}
-  .sb-price b{font-size:1.28rem}
-  .proc-grid,.about-strong,.f-grid,.about-row{grid-template-columns:1fr}
-  .f-grid .full{grid-column:auto}
-  .commit-stats b{font-size:1.7rem}
-  .commit-stats li{padding:18px 10px}
-  .badges{grid-template-columns:repeat(2,1fr)}
-  .glass,.calc-res,.qf-box{padding:24px 18px;border-radius:22px}
-  .cr-price{font-size:1.75rem}
-  .lv-row{grid-template-columns:1fr}
-  .price-tbl{min-width:560px}
-  .price-tab{padding:9px 16px;font-size:.82rem}
-  .rev-card{padding:22px 18px}
-  .rev-metric li b{min-width:76px;font-size:1.28rem}
-  .field input,.field select,.field textarea{padding:12px 13px}
-  .qf-hotline{width:100%;justify-content:center}
-  .map-box{min-height:250px}
-  .map-box iframe{min-height:250px}
-  .contact-card{padding:20px}
-  .foot-grid{grid-template-columns:1fr;gap:28px}
-  .foot-pay{justify-content:center;text-align:center}
-  .fab{bottom:12px;gap:7px;padding:7px}
-  .fab a,.fab button{width:44px;height:44px}
-  .fab .fab-main{padding:0 14px;font-size:.8rem}
-  .fab .fab-main svg{display:none}
-  .toast{right:12px;left:12px;max-width:none;bottom:88px}
-  .fleet-chip{font-size:.8rem;padding:10px 14px}
-  .season-card{padding:20px 18px}
-}
-/*MOBILEFIX NB93-307: chu nho nhat >=12px tren dien thoai*/
-@media (max-width:680px){
-  .logo span,.hdr-phone span,.hero-call span,.trust-chips li,.hv-stats span,.hv-note,.sb-badge,.sc-num,.sb-price span,.sc-price span,.lv small,.cr-tbl th,.price-tbl th,.foot-hot span,.qf-hotline span,.qf-secure,.fab-label,.pkc-chip,.pkc-on,.ss-chip,.ss-row span,.ss-time,.ss-note,.fleet-chip{font-size:12px}
-}
-/*MOBILE-TAP40 NB93-307: dieu khien cam >=40px*/
-@media(max-width:640px){
-  .faq-chips button,.price-tab{min-height:40px!important;min-width:40px!important}
-  .btn{min-height:44px!important}
-  .seg button,.lv span{min-height:44px!important}
-  .field input,.field select{min-height:46px!important}
-}
-</style>
+/*NB93-FIX-307: vung cham dot slider >=40px mobile — hinh thi van la dot 10px nho background-clip*/  .rev-dots{gap:2px}  .rev-dots button{width:40px;height:40px;padding:15px;background-clip:content-box}  .rev-dots button.on{width:40px;padding:15px 5px;background-clip:content-box}.partners{margin-top:38px;text-align:center}.partners p{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:16px}.partner-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}.partner-row span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 18px;font-weight:900;font-size:.8rem;color:var(--primary);letter-spacing:.03em;transition:.25s}.partner-row span:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);box-shadow:var(--sh1)}* quote form NB93-307 */
+.qf-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}.qf-box{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:32px;box-shadow:var(--sh2)}.qf-box h3{font-size:1.32rem;font-weight:900;color:#fff;display:block}.qf-box .fsub{display:block;color:#ACc6b4;font-size:.88rem;margin:8px 0 20px}.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.f-grid .full{grid-column:1/-1}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field label{font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#C8D9CB}.field input,.field select,.field textarea{background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.24);border-radius:12px;padding:13px 15px;color:#fff;outline:none;width:100%;min-width:0;transition:.2s}.field textarea{resize:vertical;min-height:84px}.field input::placeholder,.field textarea::placeholder{color:#7E9A88}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(232,150,10,.16)}.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FFC24B' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}.field select option{color:var(--ink);background:#fff}.qf-secure{display:flex;align-items:center;gap:9px;font-size:.76rem;color:#93B29D;margin-top:14px;justify-content:center}.qf-box .btn{width:100%;margin-top:20px}.qf-info h2{text-align:left;margin-bottom:14px}.qf-info .sec-sub{text-align:left}.qf-points{display:flex;flex-direction:column;gap:14px;margin-top:24px}.qf-points li{display:flex;gap:13px;align-items:flex-start;color:#DAE9DB;font-size:.93rem;font-weight:500}.qf-points svg{flex:none;color:var(--accent-2);margin-top:3px}.qf-hotline{margin-top:26px;display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.24);border-radius:16px;padding:16px 22px}.qf-hotline .ic{width:48px;height:48px;border-radius:13px;background:var(--grad-accent);display:grid;place-items:center;color:#241C06;flex:none}.qf-hotline span{display:block;font-size:.72rem;color:#A3C0AC;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.qf-hotline b{display:block;font-size:1.5rem;color:#fff;letter-spacing:.02em}* map + contact NB93-307 */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:stretch}.map-box{border-radius:var(--r2);overflow:clip;border:5px solid #fff;box-shadow:var(--sh2);min-height:380px;min-width:0;background:#fff}.map-box iframe{width:100%;height:100%;min-height:380px;border:0;display:block}.map-cta{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}.map-cta a{flex:1 1 160px}.contact-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r2);padding:28px;box-shadow:var(--sh1);display:flex;flex-direction:column;gap:18px;min-width:0}.contact-card h3{font-size:1.15rem;font-weight:900;display:block}.contact-line{display:flex;gap:14px;align-items:flex-start}.contact-line .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-100);border:1.5px solid var(--accent-200);display:grid;place-items:center;color:var(--accent);flex:none}.contact-line b{display:block;font-size:.92rem;font-weight:800}.contact-line span{display:block;font-size:.84rem;color:var(--soft)}* faq NB93-307 */
+.faq-shell{max-width:820px;margin:0 auto}.faq-tools{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}.faq-search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:11px 20px;width:min(420px,100%);transition:.2s}.faq-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,150,10,.12)}.faq-search input{border:none;outline:none;background:none;width:100%;min-width:0}.faq-chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}.faq-chips button{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:7px 16px;font-size:.8rem;font-weight:700;color:var(--soft);cursor:pointer;transition:.2s;min-height:40px}.faq-chips button:hover{border-color:var(--accent);color:var(--accent)}.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;margin-bottom:13px;overflow:clip;transition:.25s}.faq-item.open{border-color:var(--accent);box-shadow:var(--sh1)}.faq-q{width:100%;display:flex;align-items:center;gap:14px;justify-content:space-between;text-align:left;background:none;border:none;padding:18px 22px;font-weight:800;font-size:.98rem;cursor:pointer;color:var(--ink);min-width:0;min-height:52px}.faq-q .pm{flex:none;width:32px;height:32px;border-radius:9px;background:var(--accent-100);color:var(--accent);display:grid;place-items:center;font-size:1.2rem;font-weight:900;transition:.3s;line-height:1}.faq-item.open .pm{background:var(--grad-accent);color:#241C06;transform:rotate(45deg)}.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}.faq-a p{padding:0 22px 20px;color:var(--soft);font-size:.9rem}.faq-none{display:none;text-align:center;color:var(--soft);font-weight:700;padding:18px}* footer gon 1 tang NB93-307 */
+.footer{background:var(--primary-3);color:#BBD0BF;padding:56px 0 0}.foot-grid{display:grid;grid-template-columns:1.3fr .75fr .95fr;gap:36px;padding-bottom:40px}.foot-grid h4{color:#fff;font-size:.96rem;font-weight:800;margin-bottom:16px;display:block}.foot-grid p{font-size:.85rem;line-height:1.7}.foot-social{display:flex;gap:11px;margin-top:18px}.foot-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#E2EEDF;transition:.25s}.foot-social a:hover{background:var(--grad-accent);border-color:transparent;color:#241C06;transform:translateY(-3px)}.foot-grid ul li{margin-bottom:10px}.foot-grid ul a{font-size:.87rem;transition:.2s;display:inline-flex;align-items:center;gap:8px}.foot-grid ul a:hover{color:var(--accent-2)}.foot-grid ul a::before{content:'›';color:var(--accent);font-weight:900}.foot-contact li{display:flex;gap:12px;margin-bottom:13px;font-size:.85rem;align-items:flex-start}.foot-contact svg{flex:none;color:var(--accent-2);margin-top:3px}.foot-hot{display:inline-flex;flex-direction:column;background:rgba(255,194,75,.13);border:1.5px solid rgba(255,194,75,.4);border-radius:14px;padding:12px 20px;margin-top:4px}.foot-hot span{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A3C0AC}.foot-hot b{font-size:1.38rem;color:var(--accent-2);font-weight:900}.foot-pay{border-top:1.5px solid rgba(255,255,255,.1);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.foot-pay p{font-size:.78rem}.foot-copy{border-top:1.5px solid rgba(255,255,255,.1);padding:16px 0;text-align:center;font-size:.78rem;color:#7E9A88}* fab NB93-307 */
+.fab{position:fixed;left:50%;transform:translateX(-50%) translateY(120px);bottom:16px;z-index:70;display:flex;gap:10px;background:rgba(22,40,27,.88);border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);border-radius:99px;padding:9px;box-shadow:var(--sh3);transition:transform .45s cubic-bezier(.5,.05,.2,1.2)}.fab.show{transform:translateX(-50%) translateY(0)}.fab a,.fab button{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:none;cursor:pointer;color:#fff;background:rgba(255,255,255,.1);transition:.25s;position:relative}.fab a:hover,.fab button:hover{transform:translateY(-4px);background:rgba(255,255,255,.22)}.fab .fab-main{width:auto;border-radius:99px;padding:0 20px;gap:9px;background:var(--grad-accent);display:flex;align-items:center;font-weight:900;font-size:.9rem;color:#241C06;box-shadow:0 10px 26px rgba(232,150,10,.45)}.fab .fab-zalo{background:#0D6EFD}.fab-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(.85);background:var(--primary-3);color:#fff;font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}.fab a:hover .fab-label,.fab button:hover .fab-label{opacity:1;transform:translateX(-50%) scale(1)}* toast — pointer-events none de khong chan nut duoi NB93-307 */
+.toast{position:fixed;right:20px;bottom:24px;z-index:90;background:var(--primary);color:#fff;border-radius:14px;padding:15px 20px;font-size:.88rem;font-weight:600;box-shadow:var(--sh3);display:flex;gap:12px;align-items:center;max-width:340px;opacity:0;transform:translateY(16px);pointer-events:none;transition:.35s;border-left:5px solid var(--accent)}.toast.show{opacity:1;transform:translateY(0)}.toast svg{flex:none;color:#57D97F}* fx NB93-307 */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}.spot{position:relative}.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none}.spot:hover::after{opacity:1}  h1{font-size:2.25rem}  h2.sec-title{font-size:1.8rem}  .hero .wrap{grid-template-columns:1fr;padding:46px 0 64px}  .hero-vis{max-width:640px}  .svc-grid{grid-template-columns:1fr 1fr}  .svc-big,.svc-card{grid-column:auto}  .calc-grid,.about-grid,.qf-grid,.contact-grid{grid-template-columns:1fr}  .season-grid{grid-template-columns:1fr;gap:14px}  .commit-stats{grid-template-columns:1fr 1fr;gap:14px}  .commit-grid{grid-template-columns:1fr 1fr}  .proc-grid{grid-template-columns:1fr 1fr}  .badges{grid-template-columns:repeat(3,1fr)}  .rev-shell{grid-template-columns:1fr}  .price-panel{grid-template-columns:1fr}  .foot-grid{grid-template-columns:1fr 1fr}  .hdr-nav{display:none}  .sec{padding:48px 0}  h1{font-size:1.58rem}  h2.sec-title{font-size:1.42rem}  .sec-head{margin-bottom:30px}  .commit-band{clip-path:polygon(0 1.8%,100% 0,100% 98.2%,0 100%);padding:56px 0}  /* header 2 hang */
+  .hdr .wrap{flex-wrap:wrap;gap:10px;padding:10px 0;row-gap:10px}  .logo{order:1}  .hdr-cta{order:2;margin-left:auto}  .hdr-phone{display:none}  .hdr-cta .btn span{display:none}  .hdr-cta .btn{padding:11px 13px}  .hdr-search{order:3;flex-basis:100%;max-width:none}  /* hero */
+  .hero .wrap{padding:34px 0 46px;gap:26px}  .hero-pill{font-size:.75rem;padding:8px 14px}  .hv-main{border-width:4px;border-radius:16px}  .hv-stats{margin-top:14px;padding:12px 4px;flex-wrap:wrap;justify-content:space-between}  .hv-stats li{padding:2px 8px;flex:1 0 40%}  .hv-stats b{font-size:1.02rem}  .hv-stats span{font-size:.66rem}  .hv-note{font-size:.78rem;padding:9px 14px;text-align:center;width:100%;justify-content:center}  .hero-ctas{flex-direction:column;align-items:stretch}  .hero-ctas .btn{width:100%}  .hero-call{justify-content:center;width:100%}  .trust-chips{gap:8px}  .trust-chips li{font-size:.74rem;padding:7px 12px}  /* khoi-8 1 cot */
+  .svc-grid{grid-template-columns:1fr}  .sb-body{padding:20px 18px 22px}  .sb-body h3{font-size:1.22rem}  .sb-price b{font-size:1.28rem}  .proc-grid,.about-strong,.f-grid,.about-row{grid-template-columns:1fr}  .f-grid .full{grid-column:auto}  .commit-stats b{font-size:1.7rem}  .commit-stats li{padding:18px 10px}  .badges{grid-template-columns:repeat(2,1fr)}  .glass,.calc-res,.qf-box{padding:24px 18px;border-radius:22px}  .cr-price{font-size:1.75rem}  .lv-row{grid-template-columns:1fr}  .price-tbl{min-width:560px}  .price-tab{padding:9px 16px;font-size:.82rem}  .rev-card{padding:22px 18px}  .rev-metric li b{min-width:76px;font-size:1.28rem}  .field input,.field select,.field textarea{padding:12px 13px}  .qf-hotline{width:100%;justify-content:center}  .map-box{min-height:250px}  .map-box iframe{min-height:250px}  .contact-card{padding:20px}  .foot-grid{grid-template-columns:1fr;gap:28px}  .foot-pay{justify-content:center;text-align:center}  .fab{bottom:12px;gap:7px;padding:7px}  .fab a,.fab button{width:44px;height:44px}  .fab .fab-main{padding:0 14px;font-size:.8rem}  .fab .fab-main svg{display:none}  .toast{right:12px;left:12px;max-width:none;bottom:88px}  .fleet-chip{font-size:.8rem;padding:10px 14px}  .season-card{padding:20px 18px}  .logo span,.hdr-phone span,.hero-call span,.trust-chips li,.hv-stats span,.hv-note,.sb-badge,.sc-num,.sb-price span,.sc-price span,.lv small,.cr-tbl th,.price-tbl th,.foot-hot span,.qf-hotline span,.qf-secure,.fab-label,.pkc-chip,.pkc-on,.ss-chip,.ss-row span,.ss-time,.ss-note,.fleet-chip{font-size:12px}  .faq-chips button,.price-tab{min-height:40px!important;min-width:40px!important}  .btn{min-height:44px!important}  .seg button,.lv span{min-height:44px!important}  .field input,.field select{min-height:46px!important}</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"ÁnhLúa CơGiới","telephone":"0034567899","address":{"@type":"PostalAddress","streetAddress":"88 Đường Máy Cày, Xã Mùa Vàng","addressLocality":"H. Đồng Xanh, tỉnh Nắng Vàng","addressCountry":"VN"},"description":"ÁnhLúa CơGiới — đội 28 máy riêng (máy kéo, gặt đập liên hợp, drone, xe thùng) kèm 19 tài xế, nhận cày – bừa – gieo – gặt theo ha cho nông dân, hợp tác xã và nôn","url":"http://127.0.0.1:8174/307-co-gioi-nong-nghiep/"}
 </script>
-<style data-nb93fix="307:fab">
-/*NB93-FIX-307:fab CTA day phai tranh fab chat*/
-@media(max-width:768px){
-  .btn.btn-ghost{padding-right:64px}
-}
-</style>
-<style data-nb93fix="307:input40">
-/*NB93-FIX-307:input40 input tim kiem du 40px touch target*/
-@media(max-width:768px){
-  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}
-  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}
-}
-</style>
-<style data-nb93fix="307:t3d1hotmap">/*NB93-FIX-307:t3d1hotmap*/</style>
-<style data-nb93fix="307:t3d1cov3">/*NB93-FIX3-307*/</style>
-<style data-nb93fix="307:t3d1ldaddr">/*NB93-FIX5-307*/</style>
+<style data-nb93fix="307:fab">  .btn.btn-ghost{padding-right:64px}</style>
+<style data-nb93fix="307:input40">  #hdrSearch,.hdrSearch{min-height:40px;height:auto;box-sizing:border-box}  #faqSearch,.faqSearch{min-height:40px;height:auto;box-sizing:border-box}</style>
 
-<style data-nb93fix="S307:t10tape-h">
-/* băng roll dọc: co khung 90px, chi thay 2 dong chay tu duoi len */
-.tape,.tape-wrap,.ticker-wrap,.marquee-wrap,.tape-box,.ribbon-wrap{height:90px!important;overflow:hidden!important}
-.tape-in,.tape-track,.tapeMove,#tapeIn,#ticker,.marquee-inner{height:max-content!important;animation-timing-function:linear!important}
+
+
+
+
+<style data-nb93fix="S307:r1base">/*NB93-FIX-S307:r1base — phuc hoi CSS tape ngang goc bi mat khi rollback (tu backup), doi chieu trai->phai*/
+@keyframes tapeslide{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 </style>
 </head>
 <body id="top">
@@ -1826,29 +1627,11 @@ $('#fabTop').addEventListener('click',function(){
 </style>
 
 <!-- NB93-FIX-S307:tw6tapetblbtnov [W6 07-11-2026 r2] -->
-<style id="w6fixStyle">
-/* NB93-FIX-S307:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
-.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
-.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
-.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
-@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-
-/* NB93-FIX-S307:tw6tbl - bang 390: wrapper cuon ngang + hint */
-.w6-tblw{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
-.w6-tblhint{font:500 12px/1.5 system-ui,sans-serif;color:#8a8a8a;text-align:right;padding:3px 2px 0}
-
-/* NB93-FIX-S307:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
-.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}
-.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}
-a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}
-
-/* NB93-FIX-S307:tw6ov - sua tran ngang/de chu site-specific */
+<style id="w6fixStyle">* NB93-FIX-S307:tw6tbl - bang 390: wrapper cuon ngang + hint */
+.w6-tblw{overflow-x:auto!important;-webkit-overflow-scrolling:touch}.w6-tblhint{font:500 12px/1.5 system-ui,sans-serif;color:#8a8a8a;text-align:right;padding:3px 2px 0}* NB93-FIX-S307:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
+.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}* NB93-FIX-S307:tw6ov - sua tran ngang/de chu site-specific */
 /* tw6ov slider blowout: grid item khong duoc day ngang hon khung */
-.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}
-.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}
-.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}
-.rvw-card,.rev-card{max-width:100%}</style>
+.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}.rvw-card,.rev-card{max-width:100%}</style>
 <script id="w6fixJs">
 /* NB93-FIX-S307:tw6js - W6 runner: chip lift + btn 40px + tbl wrap + tape doc (re-run khi load/scroll) */
 (function(){
@@ -1951,6 +1734,8 @@ a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!imp
   window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
 })();
 </script>
+
+<style data-nb93fix="S307:r1dir">/*NB93-FIX-S307:r1dir — rollback tape ngang goc (translateX) + doi chieu chay chu TRAI->PHAI (from -50% -> to 0)*/</style>
 </body>
 </html>
 
