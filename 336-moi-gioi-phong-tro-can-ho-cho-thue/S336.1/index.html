@@ -1986,5 +1986,131 @@ document.querySelectorAll('.rv,.reveal,.rv-el,.rv1,.rv2,.rv3,.rv4,[data-rv]').fo
   if(parseFloat(getComputedStyle(el).opacity)<0.15){el.style.opacity='1';el.style.transform='none';el.classList.add('in','on');}
 });
 }catch(e){}},1600);})();
-</script></body>
+</script>
+<!-- NB93-FIX-S336:tw6tapechipbtnov [W6 07-11-2026 r2] -->
+<style id="w6fixStyle">
+/* NB93-FIX-S336:tw6tape - bang chay ngang -> cot doc tu duoi di len, nam gon khung khong tran */
+.w6-vband{max-height:176px!important;overflow:hidden!important;transform:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
+.w6-vtrack{flex-direction:column!important;width:100%!important;animation-name:w6tapeV!important;animation-duration:24s!important;animation-timing-function:linear!important}
+.w6-vtrack span,.w6-vtrack>*{white-space:normal!important;justify-content:center;text-align:center}
+@keyframes w6tapeV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+
+/* NB93-FIX-S336:tw6chip - chip/badge absolute de anh -> static duoi anh */
+.w6-lift{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:8px auto 0!important;width:fit-content!important;max-width:100%!important;white-space:normal!important;text-align:center;z-index:auto!important;float:none!important}
+
+/* NB93-FIX-S336:tw6btn - nong nut cham toi thieu 40px, giu nguyen kieu dot */
+.w6-hit{box-sizing:border-box;min-width:40px!important;min-height:40px!important}
+.w6-hit-txt,.w6-hit-ic{display:inline-flex;align-items:center;justify-content:center}
+a.tel,a.hotline,.hotline a,.cr-hot a,.map-bar a,.care-note a{min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+[id*="Dots"] button,[class*="Dots"] button,[class*="-dots"] button,[class*="_dots"] button{width:40px!important;height:40px!important;padding:13px!important;background-clip:content-box!important;border:0!important;box-sizing:border-box!important}
+
+/* NB93-FIX-S336:tw6ov - sua tran ngang/de chu site-specific */
+/* tw6ov slider blowout: grid item khong duoc day ngang hon khung */
+.rvw-shell>*,.rev-shell>*{min-width:0!important;max-width:100%}
+.rvw-view,.rev-viewport,.rev-shell>div,.rvw-shell>div{max-width:100%;min-width:0}
+.rvw-slide,.rev-slide{min-width:0;flex-basis:100%}
+.rvw-card,.rev-card{max-width:100%}</style>
+<script id="w6fixJs">
+/* NB93-FIX-S336:tw6js - W6 runner: chip lift + btn 40px + tbl wrap + tape doc (re-run khi load/scroll) */
+(function(){
+  var d=document;
+  function visEff(e){var n=e;while(n&&n.nodeType===1&&n!==d.body){var s=getComputedStyle(n);if(s.display==='none'||s.visibility==='hidden'||s.visibility==='collapse'||parseFloat(s.opacity||'1')<0.5)return false;n=n.parentElement;}return e.getClientRects().length>0;}
+  function liftChips(){
+    var vw=innerWidth;
+    d.querySelectorAll('body *').forEach(function(e){
+      if(e.classList.contains('w6-lift'))return;
+      if(!/^(SPAN|DIV|B|P|EM|STRONG|LABEL|A)$/.test(e.tagName))return;
+      var s=getComputedStyle(e);
+      if(s.position!=='absolute'&&s.position!=='fixed')return;
+      if(!visEff(e))return;
+      var t=(e.innerText||'').trim(); if(!t)return;
+      var r=e.getBoundingClientRect();
+      if(r.width<20||r.height<14)return;
+      if(r.width>vw*0.85)return;
+      if(parseFloat(s.fontSize)>=28)return;
+      if(/modal|drawer|chat|toast|panel|quick/i.test((e.id||'')+' '+e.className))return;
+      var best=null;
+      d.querySelectorAll('img').forEach(function(im){
+        if(!visEff(im))return;
+        if(e.contains(im)||im.contains(e))return;
+        var ir=im.getBoundingClientRect();
+        if(ir.width<80||ir.height<60)return;
+        var ix=Math.max(0,Math.min(r.right,ir.right)-Math.max(r.left,ir.left));
+        var iy=Math.max(0,Math.min(r.bottom,ir.bottom)-Math.max(r.top,ir.top));
+        var pct=(ix*iy)/(r.width*r.height);
+        if(pct>=0.10&&(!best||pct>best.pct))best={pct:pct,im:im};
+      });
+      if(!best)return;
+      e.classList.add('w6-lift');
+      var anc=[],a=e.parentElement;while(a){anc.push(a);a=a.parentElement;}
+      var b=best.im.parentElement,common=null;
+      while(b){if(anc.indexOf(b)>=0){common=b;break;}b=b.parentElement;}
+      if(!common)return;
+      if(common===e.parentElement){common.insertAdjacentElement('afterend',e);return;}
+      var n=e.parentElement;
+      while(n&&n.parentElement!==common)n=n.parentElement;
+      if(n&&n!==common)n.insertAdjacentElement('afterend',e);
+    });
+  }
+  function fixBtns(){
+    d.querySelectorAll('a[href],button,[role=button],input[type=button],input[type=submit]').forEach(function(b){
+      var r=b.getBoundingClientRect();
+      if(r.width<8||r.height<8)return;
+      if(Math.min(r.width,r.height)>=40)return;
+      if(!visEff(b))return;
+      var t=(b.innerText||b.value||'').trim();
+      var m=Math.max(r.width,r.height);
+      if(m<=30){
+        if(!b.classList.contains('w6-hit')){
+          b.classList.add('w6-hit');
+          var px=Math.max(0,(40-Math.round(r.width))/2), py=Math.max(0,(40-Math.round(r.height))/2);
+          b.style.padding=py+'px '+px+'px';
+          b.style.width='40px';b.style.height='40px';
+          b.style.backgroundClip='content-box';b.style.boxSizing='border-box';
+          if(getComputedStyle(b).borderStyle!=='none')b.style.border='0';
+        }
+      } else if(!b.classList.contains('w6-hit')){
+        b.classList.add('w6-hit');
+        b.classList.add(t?'w6-hit-txt':'w6-hit-ic');
+      }
+    });
+  }
+  function wrapTbl(){
+    d.querySelectorAll('table').forEach(function(t){
+      var r=t.getBoundingClientRect();
+      if(r.width<=innerWidth+1)return;
+      var w=t.parentElement;
+      if(!w||!w.classList.contains('w6-tblw')){
+        w=d.createElement('div');w.className='w6-tblw';
+        t.parentNode.insertBefore(w,t);w.appendChild(t);
+      }
+      var hint=w.nextElementSibling;
+      if(!hint||!hint.classList.contains('w6-tblhint')){
+        hint=d.createElement('div');hint.className='w6-tblhint';
+        hint.textContent='Vu\u1ed1t ngang \u0111\u1ec3 xem \u0111\u1ee7 b\u1ea3ng \u2192';
+        w.insertAdjacentElement('afterend',hint);
+      }
+    });
+  }
+  function tapeV(){
+    d.querySelectorAll('body *').forEach(function(e){
+      if(e.classList.contains('w6-vtrack'))return;
+      var s=getComputedStyle(e);
+      if(s.animationName&&/tape|marquee|ticker/i.test(s.animationName)&&s.animationIterationCount.indexOf('infinite')>=0){
+        e.classList.add('w6-vtrack');
+        var p=e.parentElement;
+        if(p&&p!==d.body&&!p.classList.contains('w6-vband'))p.classList.add('w6-vband');
+      }
+    });
+  }
+  function run(){try{liftChips();fixBtns();wrapTbl();tapeV();}catch(x){}}
+  run();
+  window.addEventListener('load',function(){run();setTimeout(run,700);setTimeout(run,2000);setTimeout(run,4200);setTimeout(run,6500);setTimeout(run,9000);});
+  var iv=setInterval(function(){run();},2500);
+  setTimeout(function(){clearInterval(iv);},40000);
+  var tl=0;
+  window.addEventListener('scroll',function(){var now=Date.now();if(now-tl>350){tl=now;run();}},{passive:true});
+})();
+</script>
+</body>
 </html>

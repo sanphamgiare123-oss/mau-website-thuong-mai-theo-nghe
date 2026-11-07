@@ -1844,6 +1844,234 @@ document.querySelectorAll('.rv').forEach(function(el){
 window.addEventListener('scroll',function(){var y=window.scrollY;
 if(y>last&&y>240){f.classList.add('hide')}else if(y<last){f.classList.remove('hide')}last=y;},{passive:true});})();
 </script>
+<!-- NB93-FIX-209:tw4B marquee ngang -> cot doc tu duoi di len (translateY) -->
+<style data-tw4="209">@keyframes tapeMove{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.tape-in{flex-direction:column!important;flex-wrap:nowrap!important;width:auto!important;height:max-content!important;gap:0!important;align-items:center!important}
+.tape-in>span,.tape-in>*{flex:0 0 auto;white-space:nowrap;padding:9px 0}
+.tape{height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none!important}
+@media (max-width:700px){.tape{height:250px}}
+</style>
+<script data-tw4="209">(function(anim,trackSel,wrapSel,extra){
+ try{
+  var tr=document.querySelector(trackSel); if(!tr)return;
+  Array.prototype.slice.call(tr.children).forEach(function(c){
+   if(c.children.length>1){while(c.firstChild)tr.insertBefore(c.firstChild,c); c.remove();}
+  });
+  tr.innerHTML=tr.innerHTML+tr.innerHTML;
+  var p=tr.parentElement, pp=p?p.parentElement:null;
+  if(p){p.style.cssText+=';height:300px;max-height:62vh;overflow:hidden;display:flex;align-items:center;justify-content:center;transform:none;';}
+  if(pp){pp.style.transform='none';pp.style.overflow='hidden';}
+  if(extra){document.querySelectorAll(extra).forEach(function(el){el.style.transform='none';el.style.overflow='hidden';});}
+ }catch(_){}
+ window.addEventListener('load',function(){setTimeout(function(){try{var t=document.querySelector(trackSel);if(t&&t.parentElement){t.parentElement.style.overflow='hidden';}}catch(_){}},400);});
+})("tapeMove",".tape-in",".tape",null);</script>
+<!-- NB93-FIX-209:tw4C2 mobile390 vong2: rvw-shell 1 cot / cap band tape / boc table ancestor hidden -->
+<style data-tw4="209v2">
+.tw4-tbl{max-width:100%}
+.tw4-hint{display:none;font-size:11px;color:#64748b;padding:2px 0 6px;font-weight:600}
+@media (max-width:700px){.tw4-hint{display:block}}
+@media (max-width:700px){.rvw-shell{grid-template-columns:minmax(0,1fr)!important}.rvw-shell>.rvw-dots,.rvw-shell>div{max-width:100%}}@media (max-width:700px){.tape{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important}}.tape-wrap{overflow:hidden}}
+.tape{width:min(560px,calc(100vw - 16px))!important;max-width:calc(100vw - 16px)}</style>
+<script data-tw4="209v2">(function(){
+ try{
+  function nearestClip(el){
+   var a=el.parentElement;
+   for(var k=0;k<6&&a;k++){
+    var ps=getComputedStyle(a);
+    var ox=ps.overflowX;
+    if(ox==='auto'||ox==='scroll')return 'esc';
+    if(ox==='hidden'||ox==='clip')return 'cut';
+    a=a.parentElement;
+   }
+   return 'none';
+  }
+  function tbl(){
+   document.querySelectorAll('table').forEach(function(t){
+    if(t.getBoundingClientRect().width<=window.innerWidth-16)return;
+    var p=t.parentElement;
+    if(p&&p.classList&&p.classList.contains('tw4-tbl'))return;
+    if(nearestClip(t)==='esc')return;
+    var d=document.createElement('div'); d.className='tw4-tbl';
+    var h=document.createElement('div'); h.className='tw4-hint'; h.textContent='Vuot ngang de xem bang';
+    t.parentElement.insertBefore(h,t); t.parentElement.insertBefore(d,t); d.appendChild(t);
+   });
+  }
+  tbl(); window.addEventListener('load',function(){setTimeout(tbl,400);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C3 mobile390 vong3: grid 1 cot + tb-l wrap + cap tape spec x3 -->
+<style data-tw4="209v3">
+/* grid 2 cot -> 1 cot mobile (min-content tran 390) */
+@media (max-width:700px){
+ .calc-grid,.fare-grid,.ct-grid,.svx-grid,.co-grid,.fd-grid{grid-template-columns:minmax(0,1fr)!important}
+ .ptable-card,.calc-pane,.fare-card{min-width:0}
+ .tb-l span{white-space:normal}
+ .hd-cta{overflow:hidden}
+}
+
+.tape.tape.tape{width:min(560px,calc(100vw - 16px))!important;max-width:calc(100vw - 16px)!important}
+</style>
+<!-- NB93-FIX-209:tw4C4 mobile390 vong4: tb-l wrap !important + re-bump nut khi mo drawer -->
+<style data-tw4="209v4">@media (max-width:700px){
+.tb-l span{white-space:normal!important}
+.topbar{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.calc-grid.calc-grid,.fare-grid.fare-grid,.ct-grid.ct-grid,.svx-grid.svx-grid{grid-template-columns:minmax(0,1fr)!important}
+}
+</style>
+<script data-tw4="209v4">(function(){
+ try{
+  function bump(){
+   document.querySelectorAll('button,a.btn').forEach(function(b){
+    var r=b.getBoundingClientRect(); if(!r.width&&!r.height)return;
+    var cls=(' '+(b.className||'')+' ').toLowerCase();
+    if(/(rev-dot|\sdot|dots|pager|page|swiper|slick|carousel)/.test(cls))return;
+    var txt=(b.textContent||'').trim();
+    if(!txt&&Math.max(r.width,r.height)<30)return;
+    if(r.width<40)b.style.minWidth='40px';
+    if(r.height<40)b.style.minHeight='40px';
+   });
+  }
+  bump();
+  document.addEventListener('click',function(){setTimeout(bump,380);},true);
+  window.addEventListener('load',function(){bump();setTimeout(bump,600);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C5 vong5: input max-width / m-close 44 (card scale .92) / bump khong bien dang thanh trang tri -->
+<style data-tw4="209v5">@media (max-width:700px){input,select,textarea{max-width:100%}}
+.m-close{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+</style>
+<script data-tw4="209v5">(function(){
+ try{
+  function thinReset(){
+   document.querySelectorAll('button,a.btn').forEach(function(b){
+    var r=b.getBoundingClientRect(); if(!r.width)return;
+    var txt=(b.textContent||'').trim();
+    if(!txt&&Math.min(r.width,r.height)<=14){b.style.minWidth='';b.style.minHeight='';}
+   });
+  }
+  function bump(){
+   document.querySelectorAll('button,a.btn').forEach(function(b){
+    var r=b.getBoundingClientRect(); if(!r.width)return;
+    var txt=(b.textContent||'').trim();
+    if(!txt&&Math.min(r.width,r.height)<=14)return;
+    if(r.width<40)b.style.minWidth='40px';
+    if(r.height<40)b.style.minHeight='40px';
+   });
+  }
+  bump();
+  document.addEventListener('click',function(){setTimeout(bump,380);setTimeout(thinReset,560);},true);
+  window.addEventListener('load',function(){bump();thinReset();setTimeout(bump,600);setTimeout(thinReset,750);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C6 vong6: svx/bg grid 1 cot (0,3,0) + av-item chan tron 21px -->
+<style data-tw4="209v6">@media (max-width:700px){
+.wrap .svx-grid.svx-grid,.wrap .bg-grid.bg-grid{grid-template-columns:minmax(0,1fr)!important}
+.av-item,.av-info{min-width:0!important;max-width:100%}
+.av-btn{white-space:normal!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C7 vong7: ctf chan rong + svx-foot sticker ve static pill -->
+<style data-tw4="209v7">@media (max-width:700px){
+.ct-form-card .ctf{max-width:100%!important;min-width:0!important}
+.ct-form-card input,.ct-form-card label,.ct-form-card .ctf div{max-width:100%!important}
+.svx-foot{position:static!important;transform:none!important;width:fit-content;max-width:100%;margin:8px 14px 0}
+}
+</style>
+<!-- NB93-FIX-209:tw4C8 vong8: track .ctf minmax(0,1fr) (site dat min cot 345px tan 390) -->
+<style data-tw4="209v8">@media (max-width:700px){
+.ct-form-card .ctf{grid-template-columns:minmax(0,1fr)!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C9 vong9: svx-grid 12-cot -> 1 cot mobile + reset span items -->
+<style data-tw4="209v9">@media (max-width:700px){
+section .wrap .svx-grid.svx-grid{grid-template-columns:minmax(0,1fr)!important}
+section .wrap .svx-grid.svx-grid>*{grid-column:auto!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C10 vong10: svx/bg grid inline 1-cot mobile (chien thang cascade) -->
+<script data-tw4="209v10">(function(){
+ try{
+  function fixGrid(){
+   if(window.innerWidth>700)return;
+   document.querySelectorAll('.svx-grid,.bg-grid').forEach(function(g){
+    g.style.gridTemplateColumns='minmax(0,1fr)';
+    Array.prototype.forEach.call(g.children,function(c){c.style.gridColumn='auto';});
+   });
+  }
+  fixGrid();
+  document.addEventListener('DOMContentLoaded',fixGrid);
+  window.addEventListener('load',function(){fixGrid();setTimeout(fixGrid,500);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C11 vong11: inline !important danh bai author important (svx/bg grid) -->
+<script data-tw4="209v11">(function(){
+ try{
+  function fix(){
+   if(window.innerWidth>700)return;
+   document.querySelectorAll('.svx-grid,.bg-grid').forEach(function(g){
+    g.style.setProperty('grid-template-columns','minmax(0,1fr)','important');
+    Array.prototype.forEach.call(g.children,function(c){c.style.setProperty('grid-column','auto','important');});
+   });
+  }
+  fix();
+  document.addEventListener('DOMContentLoaded',fix);
+  window.addEventListener('load',function(){fix();setTimeout(fix,500);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C12 vong12: svx-foot flex wrap xuong dong rieng mobile -->
+<style data-tw4="209v12">@media (max-width:700px){
+.svx-card .svx-foot{flex:0 0 100%!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C13 vong13: svx-card flex-wrap wrap (foot 100% xuong hang moi) -->
+<style data-tw4="209v13">@media (max-width:700px){.svx-card{flex-wrap:wrap!important}}
+</style>
+<!-- NB93-FIX-209:tw4C14 vong14: MutationObserver giu fix svx/bg grid + svx-foot (site JS ghi de sau load) -->
+<script data-tw4="209v14">(function(){
+ try{
+  if(window.innerWidth>700)return;
+  var busy=false;
+  function fix(){
+   document.querySelectorAll('.svx-grid,.bg-grid').forEach(function(g){
+    g.style.setProperty('grid-template-columns','minmax(0,1fr)','important');
+    Array.prototype.forEach.call(g.children,function(c){c.style.setProperty('grid-column','auto','important');});
+   });
+   document.querySelectorAll('.svx-card').forEach(function(c){c.style.setProperty('flex-wrap','wrap','important');});
+   document.querySelectorAll('.svx-foot').forEach(function(f){
+    f.style.setProperty('flex','0 0 100%','important');
+    f.style.setProperty('position','static','important');
+    f.style.setProperty('max-width','100%','important');
+   });
+  }
+  function tick(){ if(busy)return; busy=true; requestAnimationFrame(function(){ try{fix();}catch(_){} busy=false; }); }
+  var mo=new MutationObserver(tick);
+  function boot(){ fix(); mo.observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['style','class']}); }
+  boot();
+  document.addEventListener('DOMContentLoaded',boot);
+  window.addEventListener('load',function(){fix();setTimeout(fix,600);});
+ }catch(_){}
+})();</script>
+<!-- NB93-FIX-209:tw4C15 vong15: selector tran .svx-grid>* auto (site JS dat inline span, author important thang inline) -->
+<style data-tw4="209v15">@media (max-width:700px){
+.svx-grid{grid-template-columns:minmax(0,1fr)!important}
+.svx-grid>*{grid-column:auto!important}
+.svx-card{flex-wrap:wrap!important}
+.svx-foot{flex:0 0 100%!important;position:static!important;max-width:100%!important}
+.bg-grid{grid-template-columns:minmax(0,1fr)!important}
+.bg-grid>*{grid-column:auto!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C16 vong16: translate:none (hieu ung reveal giu translateX lam scrollWidth tran) -->
+<style data-tw4="209v16">@media (max-width:700px){.svx-foot,.svx-hit{translate:none!important}}
+</style>
+<!-- NB93-FIX-209:tw4C17 vong17: foot ve cot 1 cua card-grid (card mobile la grid 2 cot) + stretch -->
+<style data-tw4="209v17">@media (max-width:700px){
+.svx-card .svx-foot{grid-column:1!important;justify-self:stretch!important;width:auto!important;max-width:100%!important}
+}
+</style>
+<!-- NB93-FIX-209:tw4C18 vong18: svx-card block mobile (flex column+wrap quirk day foot tran) -->
+<style data-tw4="209v18">@media (max-width:700px){.svx-card{display:block!important}}
+</style>
 </body>
 </html>
 

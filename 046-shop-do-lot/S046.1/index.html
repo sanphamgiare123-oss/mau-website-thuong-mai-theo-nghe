@@ -781,8 +781,8 @@ button:active{transform:scale(.96)}
       <div class="hv-badge"><b>−12%</b><span>combo 3 chiếc</span></div>
       <div class="hv-main">
         <img src="assets/img/cover.webp" alt="Shop đồ lót Em Ái — tinh tế, êm ái, hiện đại" width="1448" height="1086">
-        <div class="hv-price">Nữ · Nam · Mẹ &amp; Bé<em>89.000đ<s>119.000đ</s></em></div>
-      </div>
+        
+      </div><div class="hv-price">Nữ · Nam · Mẹ &amp; Bé<em>89.000đ<s>119.000đ</s></em></div>
       <div class="hero-stat">
         <div class="hs-i"><b>8+</b><span>năm chọn đồ lót</span></div>
         <div class="hs-i"><b>36.000+</b><span>gói kín đã giao</span></div>
@@ -1091,7 +1091,7 @@ button:active{transform:scale(.96)}
       <button class="ch-tab" data-ch="nam">Đồ lót nam</button>
     </div>
     <div class="ch-panel on" id="ch-ao">
-      <div class="ch-tbl-wrap rv"><div class="scroll">
+      <div class="ch-tbl-wrap rv"><span class="nb93-hint">↔ Vuốt ngang</span><div class="scroll">
         <table class="ch-tbl">
           <thead><tr><th>Dây (size)</th><th>Vòng dưới ngực</th><th>Cúp A — VT</th><th>Cúp B — VT</th><th>Cúp C — VT</th><th>Cúp D — VT</th></tr></thead>
           <tbody>
@@ -1980,3 +1980,31 @@ document.querySelectorAll('.rv,.reveal,.rv-el,[data-rv]').forEach(function(el){
   }
   if(addrI){addrI.addEventListener('input',function(){clearTimeout(mapTimer);mapTimer=setTimeout(updateMap,700);});addrI.addEventListener('change',updateMap);}
 })();</script>
+<style>
+/* NB93-FIX-S046:tw1marq - doi bang chay ngang thanh cot doc (chu tu duoi di len), nam gon khung */
+.tape{transform:none !important;height:200px;min-height:0;padding:0 !important;overflow:hidden}
+.tape-in{flex-direction:column !important;flex-wrap:nowrap;width:100% !important;max-width:100%;animation:nb93tw1up046 24s linear infinite !important}
+.tape-in span{white-space:normal !important;padding:11px 26px !important;width:100%;box-sizing:border-box}
+@keyframes nb93tw1up046{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+@media(max-width:760px){.tape{height:160px}
+.tape-in span{padding:8px 20px !important;font-size:12.5px !important}}
+/* NB93-FIX-S046:tw1chip - chip/badge khong de len anh, duoi anh theo flow (desktop) */
+@media(min-width:681px){
+.hv-price{position:static !important;transform:none !important;width:fit-content;max-width:100%;margin:14px auto 0}
+}
+/* NB93-FIX-S046:tw1tbl - bang keo ngang co hint */
+.nb93-hint{display:none;font-size:12px;font-weight:700;color:#94836d;padding:3px 6px 1px;letter-spacing:.02em}
+.nb93-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:760px){.nb93-hint{display:block}}
+
+/* NB93-FIX-S046:tw1btn - nut cham toi thieu 40px */
+@media(max-width:760px){
+.qv-close,.mv-close,.dr-close,.dr-x,.qa,.add,.pq-btn,.pc-add,.search button,.bb-g button,.ch-tab{min-width:42px !important;min-height:42px !important;box-sizing:border-box}
+.qty button,.mv-qty button,.qv-qty button,.stp button{min-width:42px !important;min-height:42px !important;box-sizing:border-box}
+}
+.rw-dot,.rvw-dots button{position:relative}
+.rw-dot::after,.rvw-dots button::after{content:"";position:absolute;inset:-16px}
+</style>
+<style>
+/* NB93-FIX-S046:tw1b2 - nut dong popup chat cham du 40px tren mobile */
+@media(max-width:760px){.pkc-x{min-width:40px !important;min-height:40px !important;box-sizing:border-box}}</style>
