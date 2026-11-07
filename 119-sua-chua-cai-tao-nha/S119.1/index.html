@@ -1962,6 +1962,14 @@ document.querySelectorAll('.rv,.reveal,.rv-el,[data-rv]').forEach(function(el){
 
 <script>/*NB93-119: tim kiem header chay that — index dịch vụ + phòng + section + FAQ, dropdown goi y, Enter = ket qua dau tien*/
 (function(){
+  /*NB93-FIX-119:t7v1$roomGo — $$ & roomGo la bien LOCAL trong IIFE block JS chinh,
+    block tim kiem khong nhin thay -> ReferenceError "$$ is not defined" khi go/Enter
+    o o tim kiem header. Dinh nghia lai cuc bo (cung semantics voi block chinh).*/
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  function roomGo(id){
+    var b=document.querySelector('.room-tab[data-r="'+id+'"]');
+    if(b&&b.click)b.click();
+  }
   var input=document.getElementById('hdrSearch');
   if(!input)return;
   var host=input.closest('label')||input.parentElement;

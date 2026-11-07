@@ -1147,5 +1147,149 @@ footer::before{content:"";position:absolute;inset:0;background:repeating-conic-g
   });
 })();
 </script>
+<script>/*NB93-FIX-S066:t7v1interact — phuc hoi lop tuong tac bi thieu (dock, data-reg, FAQ+chip loc, toast, form):
+  HTML da co hook (#fabDock.hide, [data-reg] x13, #fchips/#faqList/#faqEmpty, #toast, #leadForm)
+  va CSS (.fab.hide, .fitem/.fq/.pm/.fa, .fchip.on, .toast.on) nhung khong co JS noi —
+  moi nut deu chet (smoke bat "nut khong phan hoi"). Chat giu nguyen khong đong)*/
+(function(){
+  'use strict';
+  function $(id){return document.getElementById(id)}
+  function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}
+
+  /* ---------- Toast ---------- */
+  var toastEl=$('toast'),toastT=$('toastTitle'),toastM=$('toastMsg'),toastTimer=null;
+  function toast(title,msg){
+    if(!toastEl)return;
+    if(toastT)toastT.textContent=title;
+    if(toastM)toastM.textContent=msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){toastEl.classList.remove('on')},3000);
+  }
+
+  /* ---------- FAB dock: an khi hero thay / cuon xuong; hien khi cuon len (khop mau S182) ---------- */
+  var dock=$('fabDock'),hero=document.querySelector('.hero');
+  if(dock){
+    var heroVis=!!hero,lastY=window.pageYOffset||0;
+    function syncDock(){
+      var y=window.pageYOffset||document.documentElement.scrollTop||0;
+      var down=y>lastY+2,up=y<lastY-2;
+      dock.classList.toggle('hide',heroVis||(y>100&&down&&!up));
+      lastY=y;
+    }
+    if(hero&&window.IntersectionObserver){
+      new IntersectionObserver(function(es){heroVis=es[0].isIntersecting;syncDock();},{threshold:.15}).observe(hero);
+    }
+    window.addEventListener('scroll',syncDock,{passive:true});
+    syncDock();
+  }
+  var fabTop=$('fabTop');
+  if(fabTop)fabTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var fabForm=$('fabForm');
+  if(fabForm)fabForm.addEventListener('click',function(){
+    var sec=$('dangky');
+    if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
+    var nm=$('rkName');
+    if(nm)setTimeout(function(){try{nm.focus({preventScroll:true});}catch(_){nm.focus();}},650);
+  });
+
+  /* ---------- [data-reg]: chon dich vu -> prefill rkLoai + toi phieu dang ky ---------- */
+  function goReg(v){
+    var sel=$('rkLoai');
+    if(sel&&v){
+      var want=v.replace(/\s+/g,' ');
+      for(var i=0;i<sel.options.length;i++){
+        if(sel.options[i].text.replace(/\s+/g,' ')===want){sel.selectedIndex=i;break;}
+      }
+    }
+    var sec=$('dangky');
+    if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
+    toast('Đã chọn "'+v+'"','Điền tên & SĐT ở phiếu đăng ký — xưởng gọi lại trong ngày');
+    var nm=$('rkName');
+    if(nm)setTimeout(function(){try{nm.focus({preventScroll:true});}catch(_){nm.focus();}},650);
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest?e.target.closest('[data-reg]'):null;
+    if(t){e.preventDefault();goReg(t.getAttribute('data-reg')||'');}
+  });
+
+  /* ---------- FAQ: 7 cau noi dung theo dich vu site + accordion + chip loc ---------- */
+  var FAQ=[
+    {k:'phi',q:'Quy trình gửi đồ diễn ra thế nào?',
+     a:'Khảo sát và chụp ảnh hiện trạng tại xưởng (hoặc tại nhà với món cồng kềnh) → duyệt phí trước bằng văn bản → kiểm định, bảo quản hoặc phục chế theo kế hoạch đã duyệt → bàn giao kèm hồ sơ ảnh trọn bộ. Phí chốt trước, không phát sinh khi chưa có duyệt của bạn.'},
+    {k:'phi',q:'Mỗi hạng mục mất bao lâu?',
+     a:'Kiểm định định danh: 3–5 ngày làm việc. Bảo quản niêm phong: 1–2 ngày kể từ khi nhận món. Phục chế tuỳ mức hư hỏng — ghép mảnh gốm vỡ, xử lý tranh bong tróc thường 10–20 ngày. Món có lịch hẹn trưng bày được báo mốc giao ngay khi duyệt phí.'},
+    {k:'ct',q:'Chứng thư kiểm định dùng để làm gì được?',
+     a:'Chứng thư là kết luận chuyên môn về chất liệu, kỹ thuật, niên đại tương đối và hiện trạng — dùng làm hồ sơ lưu giữ, bảo hiểm, chia thừa kế hoặc tham chiếu trước khi mua bán. Chứng thư không phải văn bản định giá pháp lý và không thay thế giám định tư pháp.'},
+    {k:'ct',q:'Hồ sơ bàn giao gồm những gì?',
+     a:'Mỗi món một bộ hồ sơ: ảnh hiện trạng trước – trong – sau, biên bản tình trạng ký hai bên, chứng thư kiểm định (nếu có) và khuyến nghị bảo quản. Hồ sơ PDF gửi qua Zalo/email, bản in giao cùng lúc nhận lại món.'},
+    {k:'pc',q:'Phục chế có làm thay nguyên liệu gốc không?',
+     a:'Nguyên tắc giữ nguyên trạng tối đa: ghép mảnh gốm bằng keo chuyên ngành có thể tháo gỡ, bổ khuyết phân biệt được với mảng gốc, tranh bong tróc được cố định mặt màn không sơn đè. Mọi can thiệp ghi rõ trong hồ sơ — không làm cổ, không nâng tuổi.'},
+    {k:'at',q:'Món đồ có được bảo hiểm khi lưu giữ không?',
+     a:'Có. Bảo hiểm hàng hoá của xưởng áp dụng mức trần theo hợp đồng; món đặc biệt giá trị cao ký phụ lục và định giá trước khi lưu giữ. Kho niêm phong từng món riêng, ra vào kho có nhật ký.'},
+    {k:'at',q:'Xưởng có nhận mọi loại đồ không?',
+     a:'Chỉ tiếp nhận nguồn gốc hợp pháp. Món có dấu hiệu trộm cắp, gian lận hoặc tranh chấp sẽ từ chối tiếp nhận. Xưởng cũng từ chối mọi yêu cầu làm giả, nâng tuổi — kể cả khi khách yêu cầu.'}
+  ];
+  var faqList=$('faqList'),faqEmpty=$('faqEmpty');
+  if(faqList&&!faqList.children.length){
+    faqList.innerHTML=FAQ.map(function(f){
+      return '<div class="fitem" data-k="'+f.k+'"><button class="fq" type="button" aria-expanded="false"><span>'+f.q+'</span><span class="pm">+</span></button><div class="fa"><div class="fa-in">'+f.a+'</div></div></div>';
+    }).join('');
+  }
+  function faqClose(it){
+    it.classList.remove('open');
+    var fa=it.querySelector('.fa');
+    if(fa)fa.style.maxHeight='0px';
+    var q=it.querySelector('.fq');
+    if(q)q.setAttribute('aria-expanded','false');
+  }
+  function faqOpen(it){
+    it.classList.add('open');
+    var fa=it.querySelector('.fa');
+    if(fa)fa.style.maxHeight=fa.scrollHeight+'px';
+    var q=it.querySelector('.fq');
+    if(q)q.setAttribute('aria-expanded','true');
+  }
+  if(faqList)faqList.addEventListener('click',function(e){
+    var q=e.target&&e.target.closest?e.target.closest('.fq'):null;
+    if(!q)return;
+    var it=q.parentElement;
+    if(!it)return;
+    if(it.classList.contains('open'))faqClose(it);
+    else{
+      $$('.fitem.open',faqList).forEach(faqClose);
+      faqOpen(it);
+    }
+  });
+  var chips=$('fchips');
+  if(chips&&faqList){
+    chips.addEventListener('click',function(e){
+      var c=e.target&&e.target.closest?e.target.closest('.fchip'):null;
+      if(!c)return;
+      $$('.fchip',chips).forEach(function(x){x.classList.toggle('on',x===c);});
+      var k=c.getAttribute('data-k')||'all';
+      var vis=0;
+      $$('.fitem',faqList).forEach(function(it){
+        var show=(k==='all')||((' '+(it.getAttribute('data-k')||'')+' ').indexOf(' '+k+' ')>-1);
+        it.style.display=show?'':'none';
+        if(show){vis++;}else{faqClose(it);}
+      });
+      if(faqEmpty)faqEmpty.style.display=vis?'none':'block';
+    });
+  }
+
+  /* ---------- Form dang ky: tu kiem + toast ---------- */
+  var form=$('leadForm');
+  if(form)form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nm=$('rkName'),ph=$('rkPhone');
+    var n=nm?nm.value.trim():'',p=ph?ph.value.trim():'';
+    if(!n||!p){toast('Thiếu thông tin','Điền đủ họ tên và số điện thoại để xưởng gọi lại nhé!');return;}
+    if(!/^(0|\+84)[0-9\s.\-]{8,}$/.test(p)){toast('Số điện thoại chưa hợp lệ','Kiểm tra lại số — ví dụ: 0901 234 567');return;}
+    form.reset();
+    toast('Đã gửi phiếu đăng ký','Xưởng gọi lại trong ngày — giữ điện thoại bạn nhé!');
+  });
+})();
+</script>
 </body>
 </html>
